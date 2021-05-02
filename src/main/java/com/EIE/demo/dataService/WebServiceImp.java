@@ -1,0 +1,999 @@
+package com.EIE.demo.dataService;
+
+import com.EIE.demo.model.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//
+@Service
+public class WebServiceImp implements WebService {
+
+	@Value("${url}")
+	private String urlRest;
+
+
+
+
+	@Override
+	public Compte getCompteConnected() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name=auth.getName();
+		final String uri = urlRest+"/SelectOneUser/"+name;
+		RestTemplate restTemplate = new RestTemplate();
+		Compte  result = restTemplate.getForObject(uri, Compte.class);
+		return result;
+	}
+
+
+
+	@Override
+	public void addNumNotification(Notification nt,String text) {
+		final String uris = urlRest + "/addNumNotifcationRest/"+text;
+		RestTemplate restTemplate = new RestTemplate();
+
+		restTemplate.postForLocation(uris, nt, Notification.class);
+
+	}
+
+	@Override
+	public String addSociete(Societe nt, int secteur) {
+		final String uris = urlRest + "/addSocieteRest/"+secteur;
+		RestTemplate restTemplate = new RestTemplate();
+
+		URI identifiant =restTemplate.postForLocation(uris, nt, Societe.class);
+
+		String tt = identifiant.getPath().split("/")[1];
+		tt = identifiant.getPath().split("/")[2];
+		return tt;
+	}
+
+	@Override
+	public void changertatutDemande(DemandeInformation nt, int statut) {
+		final String uris = urlRest + "/changeStatutRest/"+statut;
+		RestTemplate restTemplate = new RestTemplate();
+
+		restTemplate.postForLocation(uris, nt, DemandeInformation.class);
+
+	}
+
+	@Override
+	public String addDemandeInformation(DemandeInformation nt,String type) {
+
+		final String uris = urlRest + "/addDemandeInformationRest/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+
+		URI test = restTemplate.postForLocation(uris, nt, DemandeInformation.class);
+		String tt = "";
+		tt = test.getPath().split("/")[2];
+		return tt;
+
+	}
+
+//	@Override
+//	public void addDemandeInformationDoc(DemandeInformation nt) {
+//		final String uris = urlRest + "/addDemandeInformationDocRest";
+//		RestTemplate restTemplate = new RestTemplate();
+//
+//		restTemplate.postForLocation(uris, nt, DemandeInformation.class);
+//
+//	}
+
+	@Override
+	public void addDocInfo( MultipartFile[] fileToUpload,int id,int check) {
+		final String uris = urlRest + "/addDemandeInformationDocRest/"+id+"/"+check;
+		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+		bodyMap.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+
+	}
+
+	@Override
+	public void addDocAut( MultipartFile[] fileToUpload,int id,int check,String typeauto) {
+		final String uris = urlRest + "/addDocAutRest/"+id+"/"+check+"/"+typeauto;
+		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+		bodyMap.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+
+	}
+	public static File convert(MultipartFile file)
+	{
+		File convFile = new File(file.getOriginalFilename());
+		try {
+			convFile.createNewFile();
+			FileOutputStream fos = new FileOutputStream(convFile);
+			fos.write(file.getBytes());
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return convFile;
+	}
+
+	@Override
+	public void verifierCompte(int id) {
+		final String uris = urlRest + "/verifiedCompteRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForLocation(uris,  Societe.class);
+
+	}
+	@Override
+	public String autologin2(String j_name, String j_pass) {
+		final String uris = urlRest + "/login2/"+j_name+"/"+j_pass;
+		RestTemplate restTemplate = new RestTemplate();
+		String response = restTemplate.getForObject(uris, String.class);
+		return response;
+	}
+
+	@Override
+	public Compte chackmail(String email) {
+		final String uris = urlRest + "/SelectOneUser/"+email;
+		RestTemplate restTemplate = new RestTemplate();
+		Compte response = restTemplate.getForObject(uris, Compte.class);
+		return response;
+	}
+
+
+	@Override
+	public DocImport[] listDocImport() {
+
+		final String uri = urlRest + "/listDocRest";
+		RestTemplate restTemplate = new RestTemplate();
+		DocImport[] resultat = restTemplate.getForObject(uri, DocImport[].class);
+
+		return resultat;
+	}
+
+	@Override
+	public Compte oneCompte(int id) {
+
+		final String uri = urlRest + "/OneCompte/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Compte resultat = restTemplate.getForObject(uri, Compte.class);
+
+		return resultat;
+	}
+
+	@Override
+	public DocImport[] listDocImportByType(int id,String type) {
+
+		final String uri = urlRest + "/listDocRestByType/"+id+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		DocImport[] resultat = restTemplate.getForObject(uri, DocImport[].class);
+
+		return resultat;
+	}
+
+	@Override
+	public ListDocNotif[] listDocNotif(int id,String type) {
+
+		final String uri = urlRest + "/listDocNotifRest/"+id+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		ListDocNotif[] resultat = restTemplate.getForObject(uri, ListDocNotif[].class);
+
+		return resultat;
+	}
+
+
+	@Override
+	public Notification findByIdnotif(int idNotif) {
+		final String uris = urlRest + "/findByIdnotifRest/"+idNotif;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification response = restTemplate.getForObject(uris, Notification.class);
+		return response;
+	}
+
+
+	@Override
+	public Object[] tronsaction(String opiration, String table,String filter) {
+
+		final String uri = urlRest + "/TransactionInTable/"+opiration+"/"+table+"/"+filter;
+		RestTemplate restTemplate = new RestTemplate();
+		Object[] resultat = restTemplate.getForObject(uri, Object[].class);
+
+		return resultat;
+	}
+
+	@Override
+	public String addObject(Object nt, String table) {
+		final String uris = urlRest + "/add_object/"+table;
+		RestTemplate restTemplate = new RestTemplate();
+
+		URI test = restTemplate.postForLocation(uris, nt, Object.class);
+		String tt = test.getPath().split("/")[1];
+		tt = test.getPath().split("/")[2];
+		return tt;
+	}
+
+
+	@Override
+	public String updateObject(Object nt, String table,String id) {
+		final String uris = urlRest + "/update_object/"+table+"/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+
+		URI test = restTemplate.postForLocation(uris, nt, Object.class);
+		String tt = test.getPath().split("/")[1];
+		tt = test.getPath().split("/")[2];
+		return tt;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<Notification>> getListNotiifcationByCompte(Pageable page, int compteId, String  type, String  zfet) {
+		final String uri = urlRest+"/getListeNotificationByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId+"/"+type+"/"+zfet;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<Notification>> responseType = new ParameterizedTypeReference<RestResponsePage<Notification>>() { };
+
+		ResponseEntity<RestResponsePage<Notification>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+
+		return result;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<Installation>> getListInstallationByCompte(Pageable page, int compteId) {
+		final String uri = urlRest+"/getListInstallationByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<Installation>> responseType = new ParameterizedTypeReference<RestResponsePage<Installation>>() { };
+
+		ResponseEntity<RestResponsePage<Installation>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+
+		return result;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<CollecteTransporteur>> getListCollectesByCompte(Pageable page, int compteId) {
+		final String uri = urlRest+"/getListCollecteByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<CollecteTransporteur>> responseType = new ParameterizedTypeReference<RestResponsePage<CollecteTransporteur>>() { };
+
+		ResponseEntity<RestResponsePage<CollecteTransporteur>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+
+		return result;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompte(Pageable page, int compteId) {
+		final String uri = urlRest+"/getListeDemandeInformationByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<DemandeInformation>> responseType = new ParameterizedTypeReference<RestResponsePage<DemandeInformation>>() { };
+
+		ResponseEntity<RestResponsePage<DemandeInformation>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+
+		return result;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompteStatut(Pageable page, int compteId,int statut) {
+		final String uri = urlRest+"/getListeDemandeInformationByCompteStatut/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId+"/"+statut;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<DemandeInformation>> responseType = new ParameterizedTypeReference<RestResponsePage<DemandeInformation>>() { };
+
+		ResponseEntity<RestResponsePage<DemandeInformation>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+
+		return result;
+	}
+
+	@Override
+	public Notification getNotiifcationByNumZFET(String num,String type) {
+
+
+		final String uri = urlRest+"/getNotByNumzfEt/"+num+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification  result = restTemplate.getForObject(uri, Notification.class);
+		return result;
+	}
+
+	@Override
+	public Notification getNotiifcationByNum(String num) {
+
+
+		final String uri = urlRest+"/getNotByNum/"+num;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification  result = restTemplate.getForObject(uri, Notification.class);
+		return result;
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteByNum(String num) {
+
+		final String uri = urlRest+"/getCollByNum/"+num;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur  result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+	@Override
+	public Installation getInstallByNum(String num) {
+
+		final String uri = urlRest+"/getInstallByNum/"+num;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+	@Override
+	public Installation getInstalById(int id,int compt_id) {
+
+		final String uri = urlRest+"/getInstalById/"+id+"/"+compt_id;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public DemandeInformation getDemandeInfoByNum(String num) {
+
+
+		final String uri = urlRest+"/getDemandeInfoByNum/"+num;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+	@Override
+	public DemandeInformation getDemandeInfoById(int id) {
+
+
+		final String uri = urlRest+"/getDemandeInfoByIdRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+	@Override
+	public Notification getNotiifcationById(int id) {
+		final String uri = urlRest+"/getNotById/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification  result = restTemplate.getForObject(uri, Notification.class);
+		return result;
+	}
+
+	@Override
+	public Installation getIndtallationById(int id) {
+		final String uri = urlRest+"/getInstallById/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public Region getRegion(int id) {
+
+
+		final String uri = urlRest+"/getRegionId/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Region  result = restTemplate.getForObject(uri, Region.class);
+		return result;
+	}
+
+
+	@Override
+	public ResponseEntity<RestResponsePage<Questions>> getListQuestions(Pageable page) {
+		final String uri = urlRest+"/getListQuestions/"+page.getPageNumber()+"/"+page.getPageSize();
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<Questions>> responseType = new ParameterizedTypeReference<RestResponsePage<Questions>>() { };
+		ResponseEntity<RestResponsePage<Questions>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+		return result;
+	}
+
+
+	@Override
+	public void saveQuestion(Questions question) {
+		final String uris = urlRest + "/saveQuestion";
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForLocation(uris, question, Questions.class);
+	}
+
+	@Override
+	public Questions getQuestionById(int id) {
+		final String uri = urlRest+"/getquestionbyId/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Questions  result = restTemplate.getForObject(uri, Questions.class);
+		return result;
+	}
+
+	@Override
+	public List<AutorisationParam> getListParam() {
+		final String uri = urlRest+"/getListParam/";
+		RestTemplate restTemplate = new RestTemplate();
+		AutorisationParam[] result= restTemplate.getForObject(uri,AutorisationParam[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<EvaluationParam> getListEvaParam() {
+		final String uri = urlRest+"/getListEvaParam/";
+		RestTemplate restTemplate = new RestTemplate();
+		EvaluationParam[] result= restTemplate.getForObject(uri,EvaluationParam[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<Questions>> getListQuestionsByAuto(String type, PageRequest page) {
+		final String uri = urlRest+"/getListQuestionsByAuto/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<Questions>> responseType = new ParameterizedTypeReference<RestResponsePage<Questions>>() { };
+		ResponseEntity<RestResponsePage<Questions>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+		return result;
+	}
+
+	@Override
+	public List<Code> getListcodeTab() {
+		final String uri = urlRest+"/getListCodeTab";
+		RestTemplate restTemplate = new RestTemplate();
+		Code[] result= restTemplate.getForObject(uri,Code[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<Code> getListCodeTabByClassif(int classification) {
+		final String uri = urlRest+"/getListCodeTabByClassif/"+classification;
+		RestTemplate restTemplate = new RestTemplate();
+		Code[] result= restTemplate.getForObject(uri,Code[].class);
+		return Arrays.asList(result);
+	}
+
+
+
+
+
+	@Override
+	public ResponseEntity<RestResponsePage<Reponse>> getListReponseByIdQuestion(int id, PageRequest page) {
+		final String uri = urlRest+"/getListReponseByIdQuestion/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<Reponse>> responseType = new ParameterizedTypeReference<RestResponsePage<Reponse>>() { };
+		ResponseEntity<RestResponsePage<Reponse>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+		return result;
+	}
+
+	@Override
+	public void saveReponse(Reponse r,int id) {
+		final String uris = urlRest + "/saveReponse/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForLocation(uris, r, Reponse.class);
+	}
+
+	@Override
+	public void deleteReponse(int id_ques, int idrep) {
+		final String uris = urlRest + "/deleteReponse/"+idrep+"/"+id_ques;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uris, Reponse.class);
+	}
+
+	@Override
+	public Reponse getReponseById(int id) {
+		final String uri = urlRest+"/getReponseById/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Reponse  result = restTemplate.getForObject(uri, Reponse.class);
+		return result;
+	}
+
+	@Override
+	public ResponseEntity<RestResponsePage<ContactMessage>> getListContactMessage(PageRequest page,int iduser) {
+		final String uri = urlRest+"/getListeMessageContact/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+iduser;
+		RestTemplate restTemplate = new RestTemplate();
+		ParameterizedTypeReference<RestResponsePage<ContactMessage>> responseType = new ParameterizedTypeReference<RestResponsePage<ContactMessage>>() { };
+		ResponseEntity<RestResponsePage<ContactMessage>> result = restTemplate.exchange(uri, HttpMethod.GET, null/*httpEntity*/, responseType);
+		return result;
+	}
+
+
+	@Override
+	public void addMsgContact(ContactMessage msg) {
+		final String uris = urlRest + "/saveMsgContact";
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForLocation(uris, msg, ContactMessage.class);
+	}
+
+	@Override
+	public ContactMessage getContactMessageById(int id,int iduser) {
+		final String uri = urlRest+"/getContactMessageById/"+id+"/"+iduser;
+		RestTemplate restTemplate = new RestTemplate();
+		ContactMessage  result = restTemplate.getForObject(uri, ContactMessage.class);
+		return result;
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteById(int id, int compteId) {
+		final String uri = urlRest+"/getCollecteByIdRest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur  result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteById(int id, int compteId,String typerenew) {
+		final String uri = urlRest+"/getCollecteById2Rest/"+id+"/"+compteId+"/"+typerenew;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur  result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public Installation getInstallationById(int id, int compteId) {
+		final String uri = urlRest+"/getInstallationByIdRest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public List<EquipementSecurite> getListEquipementSecurite() {
+		final String uri = urlRest+"/getListEquipementSecurite/";
+		RestTemplate restTemplate = new RestTemplate();
+		EquipementSecurite[] result= restTemplate.getForObject(uri, EquipementSecurite[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<TypeVehicule> getListAllTypeVehicule() {
+		final String uri = urlRest+"/getListTypeVehicule/";
+		RestTemplate restTemplate = new RestTemplate();
+		TypeVehicule[] result= restTemplate.getForObject(uri, TypeVehicule[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<TypeConteneurs> getListAllTypeConteneur() {
+		final String uri = urlRest+"/getListTypeConteneur/";
+		RestTemplate restTemplate = new RestTemplate();
+		TypeConteneurs[] result= restTemplate.getForObject(uri, TypeConteneurs[].class);
+		return Arrays.asList(result);
+	}
+
+
+	public String saveVehicule(MultipartFile[] fileToUpload,MultipartFile[] equipementsecurite, int id_collecte, String v) {
+		final String uris = urlRest + "/saveVehiculeRest";
+		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+		if(fileToUpload.length>0){
+			bodyMap.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		}else{
+			bodyMap.add("file", null);
+		}
+
+		if(equipementsecurite.length>0){
+			bodyMap.add("file1", new FileSystemResource(convert(equipementsecurite[0])));
+		}else{
+			bodyMap.add("file1", null);
+		}
+
+
+		bodyMap.add("id_collecte", id_collecte);
+		bodyMap.add("vehicule", v );
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
+	@Override
+	public Vehicules getVehiculeById(int parseInt) {
+		final String uri = urlRest+"/getVehiculeByIdRest/"+parseInt;
+		RestTemplate restTemplate = new RestTemplate();
+		Vehicules  result = restTemplate.getForObject(uri, Vehicules.class);
+		return result;
+	}
+
+	@Override
+	public void deleteVehiculeById(int id, int id_coll, int id_user) {
+		final String uris = urlRest + "/deleteVehiculeRest/"+id+"/"+id_coll + "/"+ id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Vehicules.class);
+	}
+
+	@Override
+	public void setcode(int id_coll, int id_code, int id_user,String type) {
+		final String uris = urlRest + "/setcodeCollectRest/"+id_coll+"/"+id_code + "/"+ type+"/"+id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
+	public void setcodeinstall(int id_inst, int id_code, int id_user,String type) {
+		final String uris = urlRest + "/setcodeInstallationRest/"+id_inst+"/"+id_code + "/"+ type+"/"+id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteByNumDemande(String id, int compteId) {
+		final String uri = urlRest+"/getCollecteByNumDemandeRest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur  result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteByNumDemande2(String id, int compteId) {
+		final String uri = urlRest+"/getCollecteByNumDemande2Rest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur  result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public Installation getInstalById2(int id, int compteId, String typeRenv) {
+		final String uri = urlRest+"/getInstalById2Rest/"+id+"/"+compteId+"/"+typeRenv;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public Installation getInstallByNumDemande(String id, int compteId) {
+		final String uri = urlRest+"/getInstallByNumDemandeRest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation  result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public Notification getNotificationByNumDemande(String id, int compteId,String type) {
+		final String uri = urlRest+"/getNotificationByNumDemandeRest/"+id+"/"+type+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification  result = restTemplate.getForObject(uri, Notification.class);
+		return result;
+	}
+
+	@Override
+	public int getNombreCollecteByUser(int compteId,String type) {
+		final String uri = urlRest+"/getNombreCollecteByUserRest/"+compteId+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		Integer  result = restTemplate.getForObject(uri, Integer.class);
+		return result;
+	}
+
+	@Override
+	public List<CollecteTransporteur> getListCollectesRenouvByCompte( int compteId) {
+		final String uri = urlRest+"/getListCollectesRenouvByCompteRest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur[] result = restTemplate.getForObject(uri,CollecteTransporteur[].class);
+		return Arrays.asList(result);
+
+	}
+
+	@Override
+	public int getNombreInstaByUser(int compteId, String type) {
+		final String uri = urlRest+"/getNombreInstaByUserRest/"+compteId+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		Integer  result = restTemplate.getForObject(uri, Integer.class);
+		return result;
+	}
+
+	@Override
+	public List<Installation> getListInstallRenouvByCompte( int compteId) {
+		final String uri = urlRest+"/getListInstallRenouvByCompteRest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation[] result = restTemplate.getForObject(uri,Installation[].class);
+		return Arrays.asList(result);
+
+	}
+
+	@Override
+	public Installation getInstallByNumAndUser(String num, int compteId) {
+		final String uri = urlRest+"/getInstallByNumAndUserRest/"+num+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation result = restTemplate.getForObject(uri,Installation.class);
+		return result;
+
+	}
+
+	@Override
+	public DocImport[] getDocImportByType(String type) {
+		final String uri = urlRest+"/getDocImportByTypeREST/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		DocImport[]  result = restTemplate.getForObject(uri, DocImport[].class);
+		return result;
+
+	}
+
+	@Override
+	public int getNombreNotifUser(int compteId, String all,String type) {
+		final String uri = urlRest+"/getNombreNotifUserRest/" + compteId + "/" + all + "/" + type;
+		RestTemplate restTemplate = new RestTemplate();
+		Integer  result = restTemplate.getForObject(uri, Integer.class);
+		return result;
+	}
+
+	@Override
+	public DemandeInformation getDemandeInfoByNumByUser(String id, int compteId) {
+		final String uri = urlRest+"/getDemandeInfoByNumByUserRest/" + id + "/" + compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+	@Override
+	public List<Prefecture> getAllPrefectureByRegion2(String id,int id_dmd,int id_compt) {
+		final String uri = urlRest+"/getProvinceByRegionRest/"+id+"/"+id_dmd+"/"+id_compt;
+		RestTemplate restTemplate = new RestTemplate();
+		Prefecture[] result = restTemplate.getForObject(uri, Prefecture[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<Prefecture> getAllPrefectureByRegion(String id) {
+		final String uri = urlRest+"/getProvinceByRegion/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Prefecture[] result = restTemplate.getForObject(uri, Prefecture[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<Commune> getAllCommuneByPrefecture(String id) {
+		final String uri = urlRest+"/getCommuneByPrefecture/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Commune[] result = restTemplate.getForObject(uri, Commune[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<Commune> getAllCommuneByPrefecture2(String id,int id_dmd, int id_compt) {
+		final String uri = urlRest+"/getCommuneByPrefectureRest/"+id+"/"+id_dmd+"/"+id_compt;
+		RestTemplate restTemplate = new RestTemplate();
+		Commune[] result = restTemplate.getForObject(uri, Commune[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public Region[] getArrRegion() {
+		final String uri = urlRest+"/getArrRegionRest";
+		RestTemplate restTemplate = new RestTemplate();
+		Region[] result = restTemplate.getForObject(uri, Region[].class);
+		return result;
+	}
+
+	@Override
+	public Categorie[] getArrCategorie() {
+		final String uri = urlRest+"/getArrCategorieRest";
+		RestTemplate restTemplate = new RestTemplate();
+		Categorie[] result = restTemplate.getForObject(uri, Categorie[].class);
+		return result;
+	}
+
+	@Override
+	public CollecteTransporteur getCollecteById_v2(int compteId) {
+		final String uri = urlRest+"/getCollecteById_v2Rest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		CollecteTransporteur result = restTemplate.getForObject(uri, CollecteTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public Installation getInstallById_v2(int compteId) {
+		final String uri = urlRest+"/getInstallById_v2Rest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation result = restTemplate.getForObject(uri, Installation.class);
+		return result;
+	}
+
+	@Override
+	public Notification[] getNotificationNotDepo(int compteId, String type) {
+		final String uri = urlRest+"/getNotificationNotDepoRest/"+compteId+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification[] result = restTemplate.getForObject(uri, Notification[].class);
+		return result;
+	}
+
+
+	@Override
+	public Notification[] getNotificationAll(int compteId, String type) {
+		final String uri = urlRest+"/getNotificationAllRest/"+compteId + "/" + type;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification[] result = restTemplate.getForObject(uri, Notification[].class);
+
+		return result;
+	}
+
+	@Override
+	public LieuElimination[] getLieuEliminationArr() {
+		final String uri = urlRest+"/getLieuEliminationArrRest";
+		RestTemplate restTemplate = new RestTemplate();
+		LieuElimination[] result = restTemplate.getForObject(uri, LieuElimination[].class);
+		return result;
+	}
+
+	@Override
+	public String setFilQualifToInstall(int id, MultipartFile[] fileToUpload) {
+		final String uris = urlRest + "/setFilQualifToInstallRest/"+id;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+
+	}
+
+	@Override
+	public String updateDetailRegionInstall(int id, String region, String prefecture, String commune,String type) {
+		final String uri = urlRest+"/updateDetailRegionInstall/"+id +"/"+region + "/" +prefecture+"/"+commune+"/"+type;
+		RestTemplate restTemplate = new RestTemplate();
+		String result = restTemplate.getForObject(uri,String.class);
+		return result;
+	}
+
+	@Override
+	public Integer getcountEIEByType(String type,int id_compt) {
+		final String uri = urlRest+"/getcountEIEByTypeRest/"+type +"/"+id_compt;
+		RestTemplate restTemplate = new RestTemplate();
+		Integer result = restTemplate.getForObject(uri,Integer.class);
+		return result;
+	}
+
+	@Override
+	public Notification getNotificationByIdComptId(int id, int id_compt) {
+		final String uri = urlRest+"/getNotificationByIdComptIdRest/"+id +"/"+id_compt;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification result = restTemplate.getForObject(uri,Notification.class);
+		return result;
+	}
+
+	@Override
+	public String setAvisProjetDemandeInformation(int id, MultipartFile[] fileToUpload) {
+		final String uris = urlRest + "/setAvisProjetDemandeInformationRest/"+id;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+	}
+
+	@Override
+	public String saveTransporeuretranger(MultipartFile[] fileToUpload, String raison, String matricule, String type_vehicule,String adresse ,String port[],int id_notif, int id_trans) {
+		final String uris = urlRest + "/saveTransporeuretranger/"+id_notif+"/"+id_trans;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		if(fileToUpload.length>0)
+			bodyMapw.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		else
+			bodyMapw.add("file", null);
+		bodyMapw.add("raison", raison);
+		bodyMapw.add("type_vehicule", type_vehicule);
+		bodyMapw.add("matricule",matricule);
+		bodyMapw.add("adresse",adresse);
+		bodyMapw.add("port",port);
+
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
+	@Override
+	public String saveTransporeuretrangerNational(MultipartFile[] fileToUpload, String raison, String matricule, String type_vehicule,String adresse,int id_notif, int id_trans) {
+		final String uris = urlRest + "/saveTransporeuretrangerNational/"+id_notif+"/"+id_trans;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		if(fileToUpload.length>0)
+			bodyMapw.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		else
+			bodyMapw.add("file", null);
+		bodyMapw.add("raison", raison);
+		bodyMapw.add("type_vehicule", type_vehicule);
+		bodyMapw.add("matricule",matricule);
+		bodyMapw.add("adresse",adresse);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
+	@Override
+	public void deleteTransporteuretranger(int id_notif, int id_trans) {
+		final String uri = urlRest+"/deleteTransporteuretrangerRest/"+id_trans+"/"+id_notif ;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uri,String.class);
+	}
+
+	@Override
+	public TransporteurEtranger getTransporteurEtrangerById(int id_trans) {
+		final String uri = urlRest+"/getTransporteurEtrangerByIdRest/"+id_trans ;
+		RestTemplate restTemplate = new RestTemplate();
+		TransporteurEtranger result = restTemplate.getForObject(uri,TransporteurEtranger.class);
+		return result;
+	}
+
+	@Override
+	public String setStatutNotification(int id_notif, int id_statut, int compteId,String type) {
+		final String uri = urlRest+"/setStatutNotificationRest/"+id_notif+"/"+id_statut+"/"+compteId+"/"+type ;
+		RestTemplate restTemplate = new RestTemplate();
+		String result = restTemplate.getForObject(uri,String.class);
+		return result;
+	}
+
+	@Override
+	public DocumentDechetND getDocumentDechetND() {
+		final String uri = urlRest+"/getDocumentDechetNDRest";
+		RestTemplate restTemplate = new RestTemplate();
+		DocumentDechetND result = restTemplate.getForObject(uri,DocumentDechetND.class);
+		return result;
+	}
+
+	@Override
+	public List<Commune> savecommuneDetailRegion(String id, int id_dmd, int compteId) {
+		final String uri = urlRest+"/savecommuneDetailRegionRest/"+id+"/"+id_dmd+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Commune[] result = restTemplate.getForObject(uri,Commune[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public String updateDemandeInformation(String intitule_projet, String montant_investissement, String tronsfrontalier, int id) {
+		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri,String.class);
+	}
+
+	@Override
+	public String setFileToDemande(int id, MultipartFile[] fileToUpload) {
+		final String uris = urlRest + "/setFileToDemandeRest/"+id;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+
+		bodyMapw.add("file",new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+	}
+
+	//autorisation@2020
+//	admin_auto
+
+
+}

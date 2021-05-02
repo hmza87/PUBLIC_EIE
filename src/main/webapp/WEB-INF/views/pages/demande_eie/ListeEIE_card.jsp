@@ -1,0 +1,97 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib
+        prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<spring:url value="/resources/" var="resources"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page session="false" %>
+
+<style>
+    <!--
+
+    -->
+    .card-body {
+        text-align: center !important;
+    }
+</style>
+
+<jsp:include page="../../includes/head.jsp"/>
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-lg-1"></div>
+
+            <div class="col-md-3 col-sm-3 col-lg-3">
+
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
+                        <h6 class="card-title"><spring:message code="option.Etudedimpactenvironnementale"/></h6>
+
+                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EIE}','/api/checkEIESelect')"><spring:message code="button.consulter"/></a>
+                        <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkEIESelect"><spring:message code="button.consulter"/></a>--%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-lg-4">
+
+                <div class="card" style="width:100%;">
+                    <div class="card-body">
+                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
+                        <h6 class="card-title"><spring:message code="option.Noticedimpact"/></h6>
+
+                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.NT}','#')"><spring:message code="button.consulter"/> </a>
+                        <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkUserDispatch/IT"><spring:message code="button.consulter"/> </a>--%>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3">
+
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
+                        <h6 class="card-title"><spring:message code="option.Auditenvironnementale"/></h6>
+
+                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','#')"><spring:message
+                                code="button.consulter"/></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="myModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body justify-content-center">
+                <h4 class="text-center">Voulez-vous ajouter cette demande à votre profil ?</h4>
+                <i class="fa fa-info-circle" style="font-size: 80px; justify-content: center; display: flex; color: #f1c40f"></i>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <div class="btn-group">
+                    <button class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span> Non</button>
+                    <a class="btn btn-primary" type="button" href="/Mon_profil#comptes"> Oui <span class="fa fa-check"></span></a>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dalog -->
+</div>
+
+<script>
+    function checkAut2(checked, lien) {
+        if (checked == 'on') {
+            window.location = lien;
+        } else {
+            $("#myModal").modal('show');
+        }
+    }
+</script>
+<jsp:include page="../../includes/footer1.jsp"/>
