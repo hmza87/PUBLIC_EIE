@@ -471,7 +471,7 @@
 
                             </div>
                              <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
-                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select()">
+                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select(1)">
                                     <div class="div_shadow rounded" style="border-top-right-radius: 3px !important; border-bottom-left-radius: 3px !important; border:1px solid gray;">
                                         <img src="/assets/images/arbre2.png" style=" width: 100px;
 border-radius: 50%;
@@ -483,7 +483,7 @@ margin-bottom: 10px;">
                                     </div>
 
                                 </div>
-                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectevaluation()">
+                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select(2)">
                                     <div class="div_shadow rounded" style="border-bottom-right-radius: 3px !important;border-top-left-radius: 3px !important; border:1px solid gray;">
                                         <img src="/assets/images/Arb1.png" style=" width: 100px;
 border-radius: 50%;
@@ -496,7 +496,8 @@ margin-bottom: 10px;">
 
                             <div class="row justify-content-center mt-4" id="zone_select">
                                 <div class="col-md-8 col-sm-12 mt-4">
-                                    <div id="slct1" class="text-center disp_none mb-4">
+
+                                   <div id="slct1" class="text-center disp_none mb-4">
                                         <h4><i class="fa fa-recycle"></i> <spring:message
                                                 code="label.Autorisations"/></h4>
                                         <select onchange="slct1()" id="slct1change" class="form-control select2"
@@ -521,17 +522,14 @@ margin-bottom: 10px;">
                                     </div>
 
                                     <div id="slct2" class="text-center disp_none mt-4">
-                                        <h4><i class="fa fa-tree"></i> <spring:message
-                                                code="label.EvaluationEnvironnementale"/></h4>
+                                        <h4><i class="fa fa-tree"></i> <spring:message code="label.EvaluationEnvironnementale"/></h4>
                                         <select onchange="slct2()" id="slct2change" class="form-control select2"
                                                 style="margin-top: 5%;width: 90%;margin-left: 5%;" ${dd}>
                                             <option><spring:message code="option.Choisir"/></option>
 
-                                            <option value="1"><spring:message
-                                                    code="option.Auditenvironnementale"/></option>
+                                            <option value="1"><spring:message code="option.Auditenvironnementale"/></option>
                                             <option value="2"><spring:message code="option.Noticedimpact"/></option>
-                                            <option value="3"><spring:message
-                                                    code="option.Etudedimpactenvironnementale"/></option>
+                                            <option value="3"><spring:message code="option.Etudedimpactenvironnementale"/></option>
                                         </select>
                                     </div>
 
@@ -546,7 +544,7 @@ margin-bottom: 10px;">
                     <!--  debut  -->
 
 
-                    <div class="col-12 pl-2 pr-2 mb-2">
+                    <div class="col-12 pl-2 pr-2 mb-2" id="procedure_content">
                         <div class="row-fluid d-none border p-2" id="dev_step">
                             <p class="text-center h4 w-100 font_bold"><spring:message
                                     code="option.Procedureasuivrepourobtenir"/></p>
@@ -557,7 +555,7 @@ margin-bottom: 10px;">
                             <div class="col-sm-12 p-4 mt-4">
                                 <div class="row p-0 justify-content-center">
 
-                                    <div class="col-12">
+                                   <%-- <div class="col-12">
                                         <hr class="p_absolute_top">
                                         <div class="row p-0 justify-content-center">
                                             <div class="col-2 text-center">
@@ -579,6 +577,7 @@ margin-bottom: 10px;">
                                             <div class="col-2 text-center">
                                                 <button data-toggle="tooltip" data-placement="top"
                                                         title="Attacher vos Fichier"
+                                                        data_type="ZF"
                                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
                                                         onclick="show_zone('attache',this)">
                                                     <img src="${pageContext.request.contextPath}/assets/images/attache_file.png">
@@ -601,7 +600,7 @@ margin-bottom: 10px;">
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--%>
                                     <div class="col-12">
                                         <div class="row clss_hide mt-5 z_compt">
                                             <div class="col-12">
@@ -643,129 +642,9 @@ margin-bottom: 10px;">
                                                         code="label.Lespieceafournir"/> :</p>
 
                                                 <div id="accordion">
-                                                    <h3><spring:message code="label.Cahierdecharge"/></h3>
+                                                    <h3>Test</h3>
                                                     <div>
-                                                        <p><spring:message code="label.Maurismaurisante"/></p>
-                                                    </div>
-                                                    <h3><spring:message code="label.Documentdenotification"/></h3>
-                                                    <div>
-                                                        <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-                                                            sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet,
-                                                            mauris turpis porttitor velit, faucibus interdum tellus
-                                                            libero ac justo. Vivamus non quam. In suscipit faucibus
-                                                            urna. </p>
-                                                    </div>
-                                                    <h3><spring:message code="label.Documentdetransportmouvement"/></h3>
-                                                    <div>
-                                                        <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
-                                                            Quisque lobortis. Phasellus pellentesque purus in massa.
-                                                            Aenean in pede. Phasellus ac libero ac tellus pellentesque
-                                                            semper. Sed ac felis. Sed commodo, magna quis lacinia
-                                                            ornare, quam ante aliquam nisi, eu iaculis leo purus
-                                                            venenatis dui. </p>
-                                                        <ul>
-                                                            <li>List item one</li>
-                                                            <li>List item two</li>
-                                                            <li>List item three</li>
-                                                        </ul>
-                                                    </div>
-                                                    <h3><spring:message code="label.GarantieFinanciere"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Copieducontratconcluentrelexportateur"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Documentdesanalysesphysicochimiquesdesdechets"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Attestationdacceptationdesdechetsde"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Copiedelautorisationdexploitationdelinstallation"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Copiedelautorisationdelnstallationpourlavalorisationdesdechetsdangereuxetdeleurelimination"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Assurancesurlaresponsabiliteciviledelinstallationdevalorisation"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Lautorisationdelacollecteetdutransportdes"/></h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
-                                                    </div>
-                                                    <h3><spring:message
-                                                            code="label.Declarationsurlhonneursurlexactitudedesinformationspresenteessignee"/>. </h3>
-                                                    <div>
-                                                        <p>Cras dictum. Pellentesque habitant morbi tristique senectus
-                                                            et netus et malesuada fames ac turpis egestas. Vestibulum
-                                                            ante ipsum primis in faucibus orci luctus et ultrices
-                                                            posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                                                        <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-                                                            consequat lectus. Class aptent taciti sociosqu ad litora
-                                                            torquent per conubia nostra, per inceptos himenaeos. </p>
+                                                        desciption
                                                     </div>
                                                 </div>
 
@@ -860,7 +739,7 @@ margin-bottom: 10px;">
                             </div>
 
 
-                            <div class="col-12 border">
+                            <div class="col-12 border" id="autorisation_groupe">
                                 <div class="row p-0 m-0 mt-3">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
@@ -907,7 +786,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ZF')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('IT')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -919,7 +798,7 @@ margin-bottom: 10px;">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ET')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('XD')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -931,14 +810,57 @@ margin-bottom: 10px;">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('CT')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('TR')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="col-12 border" id="EIE_groupe">
+                                <div class="row p-0 m-0 mt-3">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                    <spring:message code="option.Auditenvironnementale"/>
+                                                </h6>
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
+                                                    <spring:message code="label.Acceder"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                    <spring:message code="option.Noticedimpact"/>
+                                                </h6>
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
+                                                    <spring:message code="label.Acceder"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                    <spring:message code="option.Etudedimpactenvironnementale"/>
+                                                </h6>
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
+                                                    <spring:message code="label.Acceder"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2036,7 +1958,6 @@ margin-bottom: 10px;">
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-12 col-sm-12 pl-2 pr-2 disp_none mb-2" id="section_02">
                     <div class="border  rounded" style="height: 100%">
                         <div class="row">

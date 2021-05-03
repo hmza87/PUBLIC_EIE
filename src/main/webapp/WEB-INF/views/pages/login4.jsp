@@ -497,7 +497,7 @@
 
                                     </div>
                                     <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
-                                        <div class="col-6 d-block block_vert" onclick="sectautoris_table_select()">
+                                        <div class="col-6 d-block block_vert" onclick="sectautoris_table_select(1)">
                                             <div class="div_shadow rounded">
                                                 <i class="fa fa-recycle"></i>
                                                 <h5>

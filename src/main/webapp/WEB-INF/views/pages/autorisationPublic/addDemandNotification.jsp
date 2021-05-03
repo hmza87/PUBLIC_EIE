@@ -866,7 +866,7 @@
                                                 <select name="id_transporteur" id="id_Transporteur"
                                                         class="form-control select2"
                                                         data-width="100%">
-                                                    <option value=""><spring:message code="option.Choisir"/></option>
+                                                    <option value="">Déclarer votre transporteur</option>
                                                     <c:forEach items="${Transporteur_liste}" var="t">
                                                         <option value="${t[0] }">${t[1] }</option>
                                                     </c:forEach>
@@ -2000,6 +2000,7 @@
 
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
+                    <p>Les fichiers uploader doivent être scanner </p>
 
                     <c:forEach items="${doc}" var="dc">
                         <c:set var="id_doc" value="${dc.id_docImport}"/>

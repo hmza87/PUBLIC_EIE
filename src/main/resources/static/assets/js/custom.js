@@ -1,14 +1,14 @@
-function show_sing_sele(val){
+function show_sing_sele(val) {
     show_etape_perso()
-    $(".single_check").prop("checked",false);
-    $(val).prop("checked",true);
+    $(".single_check").prop("checked", false);
+    $(val).prop("checked", true);
 }
 
-function fun_setqulaif(){
+function fun_setqulaif() {
     event.preventDefault();
     var id_install = $("#id_installation").val();
 
-    if($.trim(id_install)=="" || id_install==0 || id_install==null){
+    if ($.trim(id_install) == "" || id_install == 0 || id_install == null) {
         return false;
     }
     var data = new FormData();
@@ -22,25 +22,24 @@ function fun_setqulaif(){
 
         type: "POST",
         enctype: 'multipart/form-data',
-        url : "/api/setFilQualifToInstall/"+id_install,
+        url: "/api/setFilQualifToInstall/" + id_install,
         data: data,
         processData: false,
         contentType: false,
         cache: false,
-        success : function(response) {
+        success: function (response) {
 
         },
-        error : function() {
+        error: function () {
 
         }
     });
 
 
-
 }
 
-function affiche_eie_zone(id_show,id_btn_to_active){
-    if(event!=null)
+function affiche_eie_zone(id_show, id_btn_to_active) {
+    if (event != null)
         event.preventDefault();
     $(".cls_step").removeClass("active");
     $(id_btn_to_active).addClass('active');
@@ -50,59 +49,115 @@ function affiche_eie_zone(id_show,id_btn_to_active){
 
 }
 
-function affiche_nume_zone(val){
+function affiche_nume_zone(val) {
     $(".zone_tab").slideUp();
 
-    $("#"+val).slideDown({
-        "duration":"5000",
-        "start":function(){
-            $('#'+val).css('display', 'flex')
+    $("#" + val).slideDown({
+        "duration": "5000",
+        "start": function () {
+            $('#' + val).css('display', 'flex')
         },
-        "done":function(){
-            window.scrollTo(0,document.body.scrollHeight)
+        "done": function () {
+            window.scrollTo(0, document.body.scrollHeight)
         },
     });
 
 
 }
-function show_etape_perso(id){
 
-    if(id==null || id==""){
+function show_etape_perso(id) {
+
+    if (id == null || id == "") {
         swal("Merci de choisir un type d'autorisation");
         return false;
-    }else if(id!="ZF"){
-        swal("La page est en cours de développement");
-        return false;
     }
+
     $("#zone_rech").addClass("d-none");
     $("#dev_step").removeClass("d-none");
     $("#dev_list_slc").addClass("d-none");
 
+    $.ajax({
+        url: '/getProcedureAuto/'+id,
+        type: 'POST',
+        data: {},
+    })
+        .done(function(response) {
+            $("#procedure_content").html(response);
+            $("#zone_rech").addClass("d-none");
+            $("#dev_step").removeClass("d-none");
+            $("#dev_list_slc").addClass("d-none");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
 }
-function show_etape_normal(){
-    retsecmain2();
+
+function show_etape_normal() {
+
     $("#zone_rech").removeClass("d-none");
     $("#dev_step").addClass("d-none");
     $("#dev_list_slc").addClass("d-none");
+    $("#EIE_groupe").removeClass("d-none");
+    $("#autorisation_groupe").removeClass("d-none");
 
 }
 
-function show_zone(hideClass,val){
+function show_zone(hideClass, val) {
     $(".clss_hide").hide();
-    $("."+hideClass).show();
-
+    $("." + hideClass).show();
     $(".btn_step_perso").removeClass("btn-success");
     $(".btn_step_perso").addClass("btn_gris");
-
     $(val).removeClass("btn_gris");
     $(val).addClass("btn-success");
+    if(hideClass==="attache"){
+        var type = $(val).attr("data_type");
+        if (type===""){
+            return false;
+        }
+        $.ajax({
+            url: '/getAccordionDoc/'+type,
+            type: 'POST',
+            data: {},
+        })
+            .done(function(response) {
+                $(val).attr("data_type","");
+                $("#accordion").html(response);
+                $("#accordion").accordion({
+                    collapsible: true,
+                    heightStyle: "content",
+                });
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    }
 }
 
-function go_to(url){
-    window.location.href=url;
+function go_to(url) {
+    window.location.href = url;
 }
 
-function sectautoris_table_select(){
+function sectautoris_table_select(nbr) {
+    $("#zone_rech").addClass("d-none");
+    $("#dev_list_slc").removeClass("d-none");
+    if(nbr==1){
+        $("#autorisation_groupe").removeClass("d-none");
+        $("#EIE_groupe").addClass("d-none");
+    }else if(nbr==2){
+        $("#EIE_groupe").removeClass("d-none");
+        $("#autorisation_groupe").addClass("d-none");
+    }
+
+}
+
+function secteie_table_select() {
     $("#zone_rech").addClass("d-none");
     $("#dev_list_slc").removeClass("d-none");
 }
@@ -130,28 +185,28 @@ function getOptionByFilter(val, table, select_id) {
             .append('<option selected="selected" value="">Choisir...</option>');
 
         $.each(data, function (i, v) {
-            console.log("data : ",$(data));
-            console.log("v : ",$(v));
+            console.log("data : ", $(data));
+            console.log("v : ", $(v));
             $("#" + select_id).prepend(new Option(v[1], v[0]));
         })
 
-        if($(data).length==1){
-            $("#"+select_id +" option").eq(0).prop("selected",true);
+        if ($(data).length == 1) {
+            $("#" + select_id + " option").eq(0).prop("selected", true);
         }
-
 
 
     })
     ;
 }
-$( function() {
-    $( "#accordion" ).accordion({
+
+$(function () {
+    $("#accordion").accordion({
         collapsible: true,
         heightStyle: "content",
     });
-} );
+});
 
-function addDoc_eie(id_name,type,idInput){
+function addDoc_eie(id_name, type, idInput) {
     var data = new FormData();
 
     var ins = document.getElementById(idInput).files.length;
@@ -159,9 +214,9 @@ function addDoc_eie(id_name,type,idInput){
     for (var x = 0; x < ins; x++) {
         data.append("fileToUpload", document.getElementById(idInput).files[x]);
     }
-    var id = $("#"+id_name).val();
-    if($.trim(id)=="" || !$.isNumeric(id) || id ==null){
-        swal("Avertissement !","le numero de EIE n'est pas valide","error");
+    var id = $("#" + id_name).val();
+    if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
+        swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
         return false;
     }
 
@@ -170,42 +225,38 @@ function addDoc_eie(id_name,type,idInput){
 
         type: "POST",
         enctype: 'multipart/form-data',
-        url : "/api/addDoc/"+id+"/"+type,
+        url: "/api/addDoc/" + id + "/" + type,
         data: data,
         processData: false,
         contentType: false,
         cache: false,
-        success : function(response) {
-
-
-
+        success: function (response) {
 
 
         },
-        error : function() {
-
+        error: function () {
 
 
         }
     });
 }
 
-function updateRegionDemandeInfomration(type,id_name,next_step,id_btn){
+function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     event.preventDefault();
     var region = ""
     var prefecture = "";
     var commune = "";
 
     var trans = $("#tron").val();
-    if(trans=="oui"){
-        if(next_step!="end"){
+    if (trans == "oui") {
+        if (next_step != "end") {
             $(".cls_step").removeClass('active')
             $(id_btn).addClass('active');
             $(".z_collecteur").hide();
             $(next_step).show();
             return false;
-        }else if(next_step=="end"){
-            window.location.href="/api/ListeEie";
+        } else if (next_step == "end") {
+            window.location.href = "/api/ListeEie";
             return false;
         }
     }
@@ -231,25 +282,25 @@ function updateRegionDemandeInfomration(type,id_name,next_step,id_btn){
     })*/
 
     var formdata = new FormData();
-    formdata.append('region',region);
-    formdata.append("prefecture",prefecture);
-    formdata.append('commune',commune);
+    formdata.append('region', region);
+    formdata.append("prefecture", prefecture);
+    formdata.append('commune', commune);
 
     var id = $("#id_demande_information").val();
 
     $.ajax({
         type: "POST",
-        url: "/api/updateRegionDemandeInformation/"+id+"/"+type,
+        url: "/api/updateRegionDemandeInformation/" + id + "/" + type,
         contentType: false,
         processData: false,
-        data:formdata,
+        data: formdata,
         success: function (response) {
-            if(next_step!="end"){
+            if (next_step != "end") {
                 $(".cls_step").removeClass('active')
                 $(id_btn).addClass('active');
                 $(".z_collecteur").hide();
                 $(next_step).show();
-            }else if(next_step=="end"){
+            } else if (next_step == "end") {
                 Swal.fire({
                     title: '<strong>Votre demande est déposée avec succès</strong>',
                     icon: 'success',
@@ -270,23 +321,23 @@ function updateRegionDemandeInfomration(type,id_name,next_step,id_btn){
 
 }
 
-function changer_statut(id_name,code_statut,msg_alert){
+function changer_statut(id_name, code_statut, msg_alert) {
     event.preventDefault();
-    var id=$("#"+id_name).val();
+    var id = $("#" + id_name).val();
 
-    if($.trim(id)=="" || !$.isNumeric(id) || id ==null){
-        swal("Avertissement !","le numero de EIE n'est pas valide","error");
+    if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
+        swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
         return false;
     }
 
     $.ajax({
-        url: "/api/changerStatuts/"+id+"/"+code_statut,
+        url: "/api/changerStatuts/" + id + "/" + code_statut,
         type: 'GET',
-        data:{},
+        data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             Swal.fire({
-                title: '<strong>'+msg_alert+'</strong>',
+                title: '<strong>' + msg_alert + '</strong>',
                 icon: 'success',
                 html: '<a href="/api/checkEIESelect" class="btn btn-success mt-2 ">Retour</a>',
                 showCloseButton: false,
@@ -295,24 +346,24 @@ function changer_statut(id_name,code_statut,msg_alert){
                 focusConfirm: false,
             })
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 }
 
-function set_avis_projet(val_id,id_dmd){
+function set_avis_projet(val_id, id_dmd) {
     event.preventDefault();
     var id_demande = $(id_dmd).val();
-    if($.trim(id_demande)=="" || id_demande==0 || id_demande==null){
+    if ($.trim(id_demande) == "" || id_demande == 0 || id_demande == null) {
         return false;
     }
 
     var data = new FormData();
     var file = $(val_id);
-    if($(file)[0].files.length==0)
+    if ($(file)[0].files.length == 0)
         return false;
 
     data.append("fileToUpload", $(file)[0].files[0]);
@@ -322,12 +373,12 @@ function set_avis_projet(val_id,id_dmd){
 
         type: "POST",
         enctype: 'multipart/form-data',
-        url : "/api/setAvisProjet/"+id_demande,
+        url: "/api/setAvisProjet/" + id_demande,
         data: data,
         processData: false,
         contentType: false,
         cache: false,
-        success : function(response) {
+        success: function (response) {
             swal({
                     title: "Document enregistrer",
                     text: "L'avis du projet à été Enregistré avec succès",
@@ -336,31 +387,30 @@ function set_avis_projet(val_id,id_dmd){
                     confirmButtonText: "Retour",
                     closeOnConfirm: false,
                 },
-                function(isConfirm) {
+                function (isConfirm) {
                     if (isConfirm) {
-                        window.location.href="/api/checkEIESelect";
+                        window.location.href = "/api/checkEIESelect";
                     }
                 });
         },
-        error : function() {
+        error: function () {
 
         }
     });
 
 }
 
-function ajouterTranporteur_Etranger(id_name){
+function ajouterTranporteur_Etranger(id_name) {
     event.preventDefault();
-    var id = $("#"+id_name).val();
+    var id = $("#" + id_name).val();
     var raison = $("#raison_social").val();
     var matricule = $("#num_matriule").val();
     var type_vehicule = $("#type_vehicule").val();
     var adresse = $("#adresseTr").val();
 
-    var port = $('input[name^=port]').map(function(idx, elem) {
+    var port = $('input[name^=port]').map(function (idx, elem) {
         return $(elem).val();
     }).get();
-
 
 
     var id_trans = $("#id_trans").val();
@@ -372,8 +422,8 @@ function ajouterTranporteur_Etranger(id_name){
     data.append("port", port);
 
     var ins = document.getElementById("doc_assurance").files.length;
-    if(ins==0){
-        swal("Avertissement ! ","Le fichier est obligatoire",'error');
+    if (ins == 0) {
+        swal("Avertissement ! ", "Le fichier est obligatoire", 'error');
         return false;
     }
 
@@ -388,37 +438,37 @@ function ajouterTranporteur_Etranger(id_name){
 
 
     $.ajax({
-        url: '/api/addTransporteuretranger/'+id+"/"+id_trans,
+        url: '/api/addTransporteuretranger/' + id + "/" + id_trans,
         type: 'POST',
         processData: false,
         contentType: false,
         cache: false,
         data: data,
     })
-        .done(function(data) {
+        .done(function (data) {
             $("#row_from_groupe_port").html(data);
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function ajouterTranporteur_EtrangerNational(id_name){
+function ajouterTranporteur_EtrangerNational(id_name) {
 
     event.preventDefault();
-    var id = $("#"+id_name).val();
+    var id = $("#" + id_name).val();
     var raison = $("#raison_social_n").val();
     var matricule = $("#num_matriule_n").val();
     var type_vehicule = $("#type_vehicule_n").val();
     var adresse = $("#adresseTr_n").val();
 
     var id_trans = $("#id_trans_n").val();
-    if($.trim(id_trans)==="" || id_trans==null || !$.isNumeric(id_trans)){
-        id_trans =  0;
+    if ($.trim(id_trans) === "" || id_trans == null || !$.isNumeric(id_trans)) {
+        id_trans = 0;
     }
     var data = new FormData();
     data.append("raison", raison);
@@ -428,8 +478,8 @@ function ajouterTranporteur_EtrangerNational(id_name){
 
 
     var ins = document.getElementById("doc_assurance_n").files.length;
-    if(ins==0 && !$("#btn_downolad").is(":visible")){
-        swal("Avertissement ! ","Le fichier est obligatoire",'error');
+    if (ins == 0 && !$("#btn_downolad").is(":visible")) {
+        swal("Avertissement ! ", "Le fichier est obligatoire", 'error');
         return false;
     }
 
@@ -444,97 +494,97 @@ function ajouterTranporteur_EtrangerNational(id_name){
 
 
     $.ajax({
-        url: '/api/addTransporteuretrangerNational/'+id+"/"+id_trans,
+        url: '/api/addTransporteuretrangerNational/' + id + "/" + id_trans,
         type: 'POST',
         processData: false,
         contentType: false,
         cache: false,
         data: data,
     })
-        .done(function(data) {
+        .done(function (data) {
             $("#row_from_groupe").html(data);
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function delete_transp_etrang(id,id_name,type){
-    var id_notif = $("#"+id_name).val();
+function delete_transp_etrang(id, id_name, type) {
+    var id_notif = $("#" + id_name).val();
     $.ajax({
-        url: '/api/deleteTransporteuretranger/'+id_notif+'/'+id+"/"+type,
+        url: '/api/deleteTransporteuretranger/' + id_notif + '/' + id + "/" + type,
         type: 'POST',
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             swal({
                     title: "Suppression ",
                     text: "Le transporteurs à été supprimer avec succès",
                     type: "success",
                 },
-                function(){
+                function () {
                     $("#row_from_groupe").html(data);
                 });
 
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function edit_transp_trang(id,id_name,type){
-    var id_notif = $("#"+id_name).val();
+function edit_transp_trang(id, id_name, type) {
+    var id_notif = $("#" + id_name).val();
     $.ajax({
-        url: '/api/getoneTransporteuretranger/'+id+'/'+id_notif+"/"+type,
+        url: '/api/getoneTransporteuretranger/' + id + '/' + id_notif + "/" + type,
         type: 'POST',
         data: {},
     })
-        .done(function(data) {
-            if(type==="nationale")
+        .done(function (data) {
+            if (type === "nationale")
                 $("#row_from_groupe").html(data);
-            else if(type==="etranger")
+            else if (type === "etranger")
                 $("#row_from_groupe_port").html(data);
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 }
 
-function changer_quantite(val){
+function changer_quantite(val) {
     var qte = $(val).val();
     $(".quantiteTotalPrevu").val(qte);
 }
 
-function changer_zoneFranche(val){
+function changer_zoneFranche(val) {
     var id = $(val).val();
     $(".changerZonneFranche").val(id);
     $(".changerZonneFranche").trigger("change");
 }
 
-function changer_unite(val){
+function changer_unite(val) {
     var id = $(val).val();
     $(".changerUnite").val(id);
     $(".changerUnite").trigger("change");
 }
 
-function affche_message(form){
+function affche_message(form) {
     event.preventDefault();
-    var se = $("#"+form).serializeObject();
+    var se = $("#" + form).serializeObject();
 
     $.ajax({
         type: "POST",
-        url: "/api/addDemandeInformation/"+region+"/"+categorie ,
+        url: "/api/addDemandeInformation/" + region + "/" + categorie,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
@@ -559,72 +609,72 @@ function affche_message(form){
 
 }
 
-function fun_disabled_region(val){
+function fun_disabled_region(val) {
     var id = $(val).val();
-    if(id===""){
+    if (id === "") {
         return false;
     }
-    if(id=="oui"){
-        $(".id_region").attr("disabled",true);
-        $(".id_commune").attr("disabled",true);
-        $(".id_prefecture").attr("disabled",true);
-    }else if(id=="non"){
-        $(".id_region").attr("disabled",false);
-        $(".id_commune").attr("disabled",false);
-        $(".id_prefecture").attr("disabled",false);
+    if (id == "oui") {
+        $(".id_region").attr("disabled", true);
+        $(".id_commune").attr("disabled", true);
+        $(".id_prefecture").attr("disabled", true);
+    } else if (id == "non") {
+        $(".id_region").attr("disabled", false);
+        $(".id_commune").attr("disabled", false);
+        $(".id_prefecture").attr("disabled", false);
     }
 }
 
-function load_commune_by_pref(val){
-    if(event!=null)
+function load_commune_by_pref(val) {
+    if (event != null)
         event.preventDefault();
     var id = $(val).val();
-    id = ($.trim(id)=="" || id==null)?0:id;
+    id = ($.trim(id) == "" || id == null) ? 0 : id;
 
     var id_obj = $("#id_demande_information").val();
-    if(id_obj==="" || id_obj==null){
+    if (id_obj === "" || id_obj == null) {
         return false;
     }
 
     $.ajax({
-        url: '/api/getCommuneByPref/'+id+"/"+id_obj,
+        url: '/api/getCommuneByPref/' + id + "/" + id_obj,
         type: 'post',
         dataType: "html",
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             var row = $(val).closest('.row');
             $(row).find(".id_commune option").remove();
             $(row).find(".id_commune").append(data);
             $(row).find("#id_commune select").trigger("change");
         })
-        .fail(function() {
+        .fail(function () {
             alert("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function load_pref_by_region(val){
-    if(event!=null)
+function load_pref_by_region(val) {
+    if (event != null)
         event.preventDefault();
 
     var id = $(val).val();
-    id = ($.trim(id)=="" || id==null)?0:id;
+    id = ($.trim(id) == "" || id == null) ? 0 : id;
 
     var id_obj = $("#id_demande_information").val();
-    if(id_obj==="" || id_obj==null){
+    if (id_obj === "" || id_obj == null) {
         return false;
     }
 
     $.ajax({
-        url: '/api/getPrefectureByRegion/'+id+"/"+id_obj,
+        url: '/api/getPrefectureByRegion/' + id + "/" + id_obj,
         type: 'post',
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             var row = $(val).closest('.row');
             $(row).find(".id_prefecture option").remove();
             $(row).find(".id_prefecture").append(data);
@@ -632,69 +682,71 @@ function load_pref_by_region(val){
             var el = document.getElementById("id_prefecture");
             load_commune_by_pref(el);
         })
-        .fail(function() {
+        .fail(function () {
             alert("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function saveCommuneDetailregion(val){
-    if(event!=null)
+function saveCommuneDetailregion(val) {
+    if (event != null)
         event.preventDefault();
 
     var id = $(val).val();
-    if(id==="" || id==null){
+    if (id === "" || id == null) {
         return false;
     }
 
     var id_obj = $("#id_demande_information").val();
-    if(id_obj==="" || id_obj==null){
+    if (id_obj === "" || id_obj == null) {
         return false;
     }
 
     $.ajax({
-        url: '/api/savecommuneDetailregion/'+id+"/"+id_obj,
+        url: '/api/savecommuneDetailregion/' + id + "/" + id_obj,
         type: 'post',
         dataType: "html",
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
 
         })
-        .fail(function() {
+        .fail(function () {
             alert("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 }
 
-function updateDemandeInfomration(form,id_name,step,id_btn_step){
-    if(event!=null)
+function updateDemandeInfomration(form, id_name, step, id_btn_step) {
+    if (event != null)
         event.preventDefault();
-    var id = $("#"+id_name).val();
-    if($.trim(id)==="" || id==null){
+    var id = $("#" + id_name).val();
+    if ($.trim(id) === "" || id == null) {
         return false;
     }
 
     var montant = $("input[name=montant_investissement]").val();
-    if($.trim(montant)=="" || montant== null || !$.isNumeric(montant)){
-        swal("Avertissement ! ",'Le champs Montant d\'investissement est incorrecte','error');
+    if ($.trim(montant) == "" || montant == null || !$.isNumeric(montant)) {
+        swal("Avertissement ! ", 'Le champs Montant d\'investissement est incorrecte', 'error');
         return false;
     }
 
     $.ajax({
         type: "POST",
-        url: "/api/updateDemandeInfomration/"+id,
-        data: { "intitule_projet":$("input[name=intitule_projet]").val(),
-            "montant_investissement":$("input[name=montant_investissement]").val(),
-            "tronsfrontalier":$("select[name=tronsfrontalier]").val()},
+        url: "/api/updateDemandeInfomration/" + id,
+        data: {
+            "intitule_projet": $("input[name=intitule_projet]").val(),
+            "montant_investissement": $("input[name=montant_investissement]").val(),
+            "tronsfrontalier": $("select[name=tronsfrontalier]").val()
+        },
         success: function (response) {
-            console.log("success : "+response);
-            affiche_eie_zone(step,id_btn_step);
+            console.log("success : " + response);
+            affiche_eie_zone(step, id_btn_step);
         },
         error: function (response) {
 
@@ -704,53 +756,53 @@ function updateDemandeInfomration(form,id_name,step,id_btn_step){
     });
 }
 
-function affiche_files(id){
+function affiche_files(id) {
     $.ajax({
-        url: '/api/getfileByIdDemande/'+id+"/getfile",
+        url: '/api/getfileByIdDemande/' + id + "/getfile",
         type: 'POST',
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             $("#zone_tab_fichier").html(data);
             $("#modal_fichiers").modal("show");
             console.log("success");
 
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 }
 
 
-function affiche_msg_file(id_dmd){
-    if($.trim(id_dmd)===""){
+function affiche_msg_file(id_dmd) {
+    if ($.trim(id_dmd) === "") {
         return false;
     }
 
     $.ajax({
-        url: '/api/getfileByIdDemande/'+id_dmd+"/sendfile",
+        url: '/api/getfileByIdDemande/' + id_dmd + "/sendfile",
         type: 'POST',
         data: {},
     })
-        .done(function(data) {
+        .done(function (data) {
             $("#complementDocument").modal("show");
             $("#completerlesdocuments").html(data);
             console.log("success");
 
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         })
-        .always(function() {
+        .always(function () {
             console.log("complete");
         });
 
 }
 
-function setfileReunionToDemande(id_dmd){
+function setfileReunionToDemande(id_dmd) {
 
     var data = new FormData();
     var ins = document.getElementById("file_to_complete").files.length;
@@ -762,33 +814,34 @@ function setfileReunionToDemande(id_dmd){
 
         type: "POST",
         enctype: 'multipart/form-data',
-        url : "/api/setFileReunionToDemande/"+id_dmd,
+        url: "/api/setFileReunionToDemande/" + id_dmd,
         data: data,
         processData: false,
         contentType: false,
         cache: false,
-        success : function(response) {
+        success: function (response) {
 
             swal({
                     title: "Document envoyé ! ",
                     text: "les documents ont été envoyé avec succès",
                     type: "success",
                 },
-                function(){
-                    window.location.href='/api/ListeEie';
+                function () {
+                    window.location.href = '/api/ListeEie';
                 });
 
         },
-        error : function() {
+        error: function () {
 
         }
     });
 }
 
-function fun_prescription_hide(){
+function fun_prescription_hide() {
     $("#azertyui").hide();
 }
-function fun_prescription_show(){
+
+function fun_prescription_show() {
     $("#azertyui").show();
 }
 

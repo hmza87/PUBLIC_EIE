@@ -927,6 +927,24 @@ public class Hatim {
 		return webt.setFileToDemande(id,fileToUpload);
 	}
 
+	@RequestMapping(value = "/getAccordionDoc/{type}", method = RequestMethod.POST)
+	public ModelAndView getAccordionDoc(@PathVariable String type) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("doc",webt.getDocImportByType(type));
+		model.put("Admin_url",urlRest);
+		model.put("show","accordion");
+		return new ModelAndView("user_select/auto_load_accordion",model);
+	}
+
+	@RequestMapping(value = "/getProcedureAuto/{type}", method = RequestMethod.POST)
+	public ModelAndView getProcedureAuto(@PathVariable String type) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("doc",webt.getDocImportByType(type));
+		model.put("type",type);
+		model.put("show","procedure");
+		return new ModelAndView("user_select/auto_load_accordion",model);
+	}
+
 
 
 
