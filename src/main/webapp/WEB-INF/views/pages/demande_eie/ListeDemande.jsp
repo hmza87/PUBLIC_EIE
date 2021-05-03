@@ -50,6 +50,7 @@
                     <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
                     <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
                     <th rowspan="2" ><spring:message code="label.Region"/></th>
+                    <th rowspan="2" ><spring:message code="label.Recap"/></th>
                     <th rowspan="2" ><spring:message code="label.Categorie"/></th>
                     <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
                     <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
@@ -94,6 +95,11 @@
                                 -
                             </c:if>
                            <%-- <c:forEach items="${nt.regions}" var="rg">${rg.nom_fr}</c:forEach>--%>
+                        </td>
+                        <td>
+                            <div class="col-md-3 col-sm-6">
+                                <a href="/api/generate_recap_Eie/${nt.id_demande_information}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+                            </div>
                         </td>
                         <td>
                             <c:if test="${not empty nt.categories}">

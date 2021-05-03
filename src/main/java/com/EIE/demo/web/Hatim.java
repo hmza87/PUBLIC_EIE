@@ -783,7 +783,7 @@ public class Hatim {
 
 		HttpHeaders headers = new HttpHeaders();
 		// headers.add("Content-Disposition", "inline; filename=testx.pdf");
-		headers.add("Content-Disposition", "attachment; filename=InstalationRecap.pdf");
+		headers.add("Content-Disposition", "attachment; filename=CollecteRecap.pdf");
 		CollecteTransporteur ns = webt.getCollecteById(id,webt.getCompteConnected().getCompteId());
 		ListDocNotif[] l = webt.listDocNotif(ns.getId_collecte(),"CT");
 		DocImport[] d =webt.getDocImportByType("CT");
@@ -796,16 +796,31 @@ public class Hatim {
 				.body(new InputStreamResource(bis));
 	}
 
+	@GetMapping("/api/generate_recap_Eie/{id}")
+	public ResponseEntity<InputStreamResource> generate_recap_Eie(@PathVariable int id) throws Exception {
+
+		HttpHeaders headers = new HttpHeaders();
+		// headers.add("Content-Disposition", "inline; filename=testx.pdf");
+		headers.add("Content-Disposition", "attachment; filename=EieRecap.pdf");
+		DemandeInformation d = webt.getDemandeInfoById(id);
+		ListDocNotif[] l = webt.listDocNotif(d.getId_demande_information(),"EIE");
+		ByteArrayInputStream bis = GeneratePDFDocuments.generateRecapEie(d,l);
+		return ResponseEntity.ok()
+				.headers(headers)
+				.contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.body(new InputStreamResource(bis));
+	}
+
 	@GetMapping("/api/generate_recap_instalation/{id}")
 	public ResponseEntity<InputStreamResource> generate_recap_instalation(@PathVariable int id) throws Exception {
 
 		HttpHeaders headers = new HttpHeaders();
 		// headers.add("Content-Disposition", "inline; filename=testx.pdf");
-		headers.add("Content-Disposition", "attachment; filename=collecteRecap.pdf");
-		Installation ns = webt.getInstallationById(id,webt.getCompteConnected().getCompteId());
-		ListDocNotif[] l = webt.listDocNotif(ns.getId_installation(),"IT");
+		headers.add("Content-Disposition", "attachment; filename=InstalationRecap.pdf");
+		Installation ins = webt.getInstallById_v2(webt.getCompteConnected().getCompteId());
+		ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),"IT");
 		DocImport[] d =webt.getDocImportByType("IT");
-		ByteArrayInputStream bis = GeneratePDFDocuments.generateRecapInstalation(ns,l,d);
+		ByteArrayInputStream bis = GeneratePDFDocuments.generateRecapInstalation(ins,l,d);
 
 		return ResponseEntity.ok()
 				.headers(headers)

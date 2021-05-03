@@ -601,8 +601,8 @@ public class GeneratePDFDocuments {
         par20.add(new Phrase("15.Declaration de l'importateur/producteur : ",fontbold));
         par20.add(Chunk.NEWLINE);
         par20.add("    Je soussigné certifie que les renseignements  indiques sont exacts et établis de bonne foi." +
-                  " Je certifie également que le mouvement des déchets sera couvert par toutes les assurances ou " +
-                  "garanties financières éventuellement requises notamment l'assurance de transport des déchets dangereuses.");
+                " Je certifie également que le mouvement des déchets sera couvert par toutes les assurances ou " +
+                "garanties financières éventuellement requises notamment l'assurance de transport des déchets dangereuses.");
         par20.add(Chunk.NEWLINE);
 
         par20.add("Nom : ");
@@ -901,17 +901,12 @@ public class GeneratePDFDocuments {
         par4.setFont(font);
         par4.setSpacingAfter(7);
         //========
-        String quantite_en_tonne="1500";
-        String quantite_en_m2="5900";
-        //========
+        String qte = ns.getQuantite()!=null?ns.getQuantite():"";
+        String unite = ns.getUnite().getNom_fr()!=null?ns.getUnite().getNom_fr():"";
 
-        par4.add(new Phrase("5.Quantité total prévue (4) : ",fontbold));
+        par4.add(new Phrase("5.Quantité total prévue (4) : "+qte+" "+unite,fontbold));
         par4.add(Chunk.NEWLINE);
-        par4.add("Tonnes(Mg) : ");
-        par4.add(quantite_en_tonne);
-        par4.add(Chunk.NEWLINE);
-        par4.add("m3 : ");
-        par4.add(quantite_en_m2);
+
 
         cell = new PdfPCell();
         cell.addElement(par4);
@@ -925,12 +920,12 @@ public class GeneratePDFDocuments {
         par01.add(Chunk.NEWLINE);
         //========
 
-        String nom_importateur ="nom importateur";
-        String adresse_importateur ="adresse importateur";
-        String persone_a_contacte_importateur = "PERSONNE A CONTACTER Importateur";
-        String tele_importateur ="tel importateur";
-        String fax_importateur ="fex importateur";
-        String email_importateur ="email importateur";
+        String nom_importateur ="";
+        String adresse_importateur ="";
+        String persone_a_contacte_importateur = "";
+        String tele_importateur ="";
+        String fax_importateur ="";
+        String email_importateur ="";
 
         if(ns.getImportateur()!=null){
             ImportateurNotifiant ww = ns.getImportateur();
@@ -1015,7 +1010,7 @@ public class GeneratePDFDocuments {
             TypeConditionnement t = ns.getTypeconditionnement();
             type_conditionnement = t.getNom_fr();
         }
-        String prescription="prescription";
+        String prescription="";
         boolean isPrescription=prescription.equalsIgnoreCase("oui");
 
         //========
@@ -1041,13 +1036,13 @@ public class GeneratePDFDocuments {
         par7.setSpacingAfter(7);
         //========
 
-        String nom_transporteur ="nom transporteur";
-        String adresse_transporteur ="adresse transporteur";
-        String persone_a_contacte_transporteur = "PERSONNE A CONTACTER transporteur";
-        String tele_transporteur ="tel transporteur";
-        String fax_transporteur ="fex transporteur";
-        String email_transporteur ="email transporteur";
-        String moyen_de_transporteur = "moyen de transporteur";
+        String nom_transporteur ="";
+        String adresse_transporteur ="";
+        String persone_a_contacte_transporteur = "";
+        String tele_transporteur ="";
+        String fax_transporteur ="";
+        String email_transporteur ="";
+        String moyen_de_transporteur = "";
 
         if(ns.getTransporteur()!=null){
             List<TransporteurParam> i = ns.getTransporteur();
@@ -1154,13 +1149,13 @@ public class GeneratePDFDocuments {
         par10.setSpacingAfter(7);
         //========
 
-        String nom_producteur ="NOM producteur";
-        String adresse_producteur ="ADRESSE producteur";
-        String persone_a_contacte_producteur ="PERSONNE A CONTACTER Producteur";
-        String tele_producteur ="TELE producteur";
-        String fax_producteur ="FAX producteur";
-        String mail_producteur ="EMAIL producteur";
-        String lieu_procede_producteur ="Lieu procede producteur";
+        String nom_producteur ="";
+        String adresse_producteur ="";
+        String persone_a_contacte_producteur ="";
+        String tele_producteur ="";
+        String fax_producteur ="";
+        String mail_producteur ="";
+        String lieu_procede_producteur ="";
 
         if(ns.getProducteur()!=null){
             Producteur p = ns.getProducteur();
@@ -1238,8 +1233,8 @@ public class GeneratePDFDocuments {
         par12.setFont(font);
         par12.setSpacingAfter(7);
 
-        String nom_entreprise ="nom entreprise";
-        String address_entreprise ="adresse entreprise";
+        String nom_entreprise ="";
+        String address_entreprise ="";
 
         if(ns.getImportateur()!=null){
             ImportateurNotifiant i = ns.getImportateur();
@@ -2602,12 +2597,12 @@ public class GeneratePDFDocuments {
         par02.setFont(font);
         par02.setSpacingAfter(3);
         //========
-        String nom_importateur = "Nom";
-        String adresse_importateur = "Adresse";
-        String persone_a_contacte_importateur ="Personne à contacter";
-        String tele_importateur = "Tél";
-        String fax_importateur = "Télécopie";
-        String email_importateur = "Courrier électronique";
+        String nom_importateur = "";
+        String adresse_importateur = "";
+        String persone_a_contacte_importateur ="";
+        String tele_importateur = "";
+        String fax_importateur = "";
+        String email_importateur = " ";
 
         if(ns.getImportateur()!=null){
             ImportateurNotifiant np = ns.getImportateur();
@@ -2716,9 +2711,6 @@ public class GeneratePDFDocuments {
         par3.add(new Phrase("5. Quantité réelle : ",fontbold));
         par3.add(new Phrase(quantite_en_tonne+" "+unite,font));
         par3.add(Chunk.TABBING);
-        par3.add("tonnes (Mg) : "+quantite_en_tonne);
-        par3.add(Chunk.TABBING);
-        par3.add("m3 : "+quantite_en_m3);
 
         cell = new PdfPCell();
         cell.addElement(par3);
@@ -2753,7 +2745,7 @@ public class GeneratePDFDocuments {
         par5.setFont(font);
         par5.setSpacingAfter(3);
         //========
-        String condit_type="Type conditionnement";//ns.getConditionement()==null?"Types":ns.getConditionement();
+        String condit_type="";//ns.getConditionement()==null?"Types":ns.getConditionement();
         String nombre_colis="0";
         if(ns.getTypeconditionnement()!=null){
             condit_type = ns.getTypeconditionnement().getNom_fr();
@@ -2791,12 +2783,12 @@ public class GeneratePDFDocuments {
         par6.setFont(font);
         par6.setSpacingAfter(3);
         //========
-        String nom_transporteur1 ="NOM transporteur1";
-        String adresse_transporteur1 ="ADRESSE transporteur1";
-        String persone_a_contacte_transporteur1 ="PERSONE transporteur1";
-        String tele_transporteur1 ="TELE transporteur1";
-        String fax_transporteur1 ="FAX transporteur1";
-        String email_transporteur1 ="EMAIL transporteur1";
+        String nom_transporteur1 ="";
+        String adresse_transporteur1 ="";
+        String persone_a_contacte_transporteur1 ="";
+        String tele_transporteur1 ="";
+        String fax_transporteur1 ="";
+        String email_transporteur1 ="";
 
         if(ns.getTransporteurOne()!=null){
             Transporteur ww = ns.getTransporteurOne();
@@ -2807,6 +2799,7 @@ public class GeneratePDFDocuments {
             email_transporteur1 =ww.getMail();
         }
         //========
+
 
         par6.add(new Phrase("8. a) 1er transporteur  : ",fontbold));
         par6.add(Chunk.NEWLINE);
@@ -2846,12 +2839,12 @@ public class GeneratePDFDocuments {
         par7.setFont(font);
         par7.setSpacingAfter(3);
         //========
-        String nom_transporteur2 ="NOM transporteur2";
-        String adresse_transporteur2 ="ADRESSE transporteur2";
-        String persone_a_contacte_transporteur2 ="PERSONE transporteur2";
-        String tele_transporteur2 ="TELE transporteur2";
-        String fax_transporteur2 ="FAX transporteur2";
-        String email_transporteur2 ="EMAIL transporteur2";
+        String nom_transporteur2 ="";
+        String adresse_transporteur2 ="";
+        String persone_a_contacte_transporteur2 ="";
+        String tele_transporteur2 ="";
+        String fax_transporteur2 ="";
+        String email_transporteur2 ="";
         //========
 
         par7.add(new Phrase("8. b) 2ème transporteur : ",fontbold));
@@ -2897,12 +2890,12 @@ public class GeneratePDFDocuments {
         par8.setFont(font);
         par8.setSpacingAfter(3);
         //========
-        String nom_transporteur3 ="NOM transporteur3";
-        String adresse_transporteur3 ="ADRESSE transporteur3";
-        String persone_a_contacte_transporteur3 ="PERSONE transporteur3";
-        String tele_transporteur3 ="TELE transporteur3";
-        String fax_transporteur3 ="FAX transporteur3";
-        String email_transporteur3 ="EMAIL transporteur3";
+        String nom_transporteur3 ="";
+        String adresse_transporteur3 ="";
+        String persone_a_contacte_transporteur3 ="";
+        String tele_transporteur3 ="";
+        String fax_transporteur3 ="";
+        String email_transporteur3 ="";
         //========
 
         par8.add(new Phrase("7. c) Dernier transporteur : ",fontbold));
@@ -2967,7 +2960,7 @@ public class GeneratePDFDocuments {
         //========
 
         String date_prise_charge1= ns.getTransporteurOne()!=null?df.format(ns.getTransporteurOne().getDate_pris_charge()):"YYYY/MM/DD";
-        String signature1="SIGNATURE 1";
+        String signature1="";
         //========
 
         par10.add(new Phrase("Moyen de transport (1) : ",fontbold));
@@ -2990,8 +2983,8 @@ public class GeneratePDFDocuments {
         par11.setFont(font);
         par11.setSpacingAfter(4);
         //========
-        String date_prise_charge2=ns.getTransporteurOne()!=null?df.format(ns.getTransporteurOne().getDate_pris_charge()):"YYYY/MM/DD";
-        String signature2="SIGNATURE 2";
+        String date_prise_charge2=ns.getTransporteurOne()!=null?df.format(ns.getTransporteurOne().getDate_pris_charge()):"";
+        String signature2="";
         //========
 
         par11.add(new Phrase("Moyen de transport (1) : ",fontbold));
@@ -3014,8 +3007,8 @@ public class GeneratePDFDocuments {
         par12.setFont(font);
         par12.setSpacingAfter(4);
         //========
-        String date_prise_charge3=ns.getTransporteurOne()!=null?df.format(ns.getTransporteurOne().getDate_pris_charge()):"YYYY/MM/DD";
-        String signature3="SIGNATURE 3";
+        String date_prise_charge3=ns.getTransporteurOne()!=null?df.format(ns.getTransporteurOne().getDate_pris_charge()):"";
+        String signature3="";
         //========
 
         par12.add(new Phrase("Moyen de transport (1) : ",fontbold));
@@ -3037,13 +3030,13 @@ public class GeneratePDFDocuments {
         par13.setFont(font);
         par13.setSpacingAfter(4);
         //=======
-        String nom_producteur ="NOM producteur";
-        String adresse_producteur ="ADRESSE producteur";
-        String persone_a_contacte_producteur ="PERSONE producteur";
-        String tele_producteur ="TELE producteur";
-        String fax_producteur ="FAX producteur";
-        String email_producteur ="EMAIL producteur";
-        String lieu_production ="LIEU PROD";
+        String nom_producteur ="";
+        String adresse_producteur ="";
+        String persone_a_contacte_producteur =" ";
+        String tele_producteur ="";
+        String fax_producteur ="";
+        String email_producteur ="";
+        String lieu_production ="";
 
         if(ns.getProducteur()!=null){
             nom_producteur =ns.getProducteur().getNom_fr();
@@ -3260,9 +3253,9 @@ public class GeneratePDFDocuments {
         par19.setSpacingAfter(4);
         //=======
 
-        String nom_declaration="NOM DECLARATION";
-        String date_declaration="DATE DECLARATION";
-        String signature_declaration="SIGNATURE declaration";
+        String nom_declaration="";
+        String date_declaration="";
+        String signature_declaration="";
         //=======
 
         par19.add(new Phrase("15. Déclaration de l'importateur / producteur  : ",fontbold));
@@ -3296,9 +3289,9 @@ public class GeneratePDFDocuments {
         par20.setFont(font);
         par20.setSpacingAfter(4);
         //=======
-        String expedition_nom=ns.getExpedition()==null?"NOM expedition":ns.getExpedition();
-        String expedition_date= "DATE expedition";
-        String expedition_signature="SIGNATURE expedition";
+        String expedition_nom=ns.getExpedition()==null?"":ns.getExpedition();
+        String expedition_date= "";
+        String expedition_signature="";
         //=======
 
         par20.add(new Phrase("16. Transfet reçu par l'importateur - le destinataire (autre qu'une installation): ",fontbold));
@@ -3340,9 +3333,9 @@ public class GeneratePDFDocuments {
         //========
         String date_reception=ns.getDateD();
         String date_approx_elim_ou_val=ns.getDateF();
-        String nom_entreprise="NOM ENTREPRISE";
-        String date_entreprise="DATE";
-        String signature_entreprise="SIGNATURE ENTREPRISE";
+        String nom_entreprise="";
+        String date_entreprise="";
+        String signature_entreprise="";
         //========
 
         par22.add(new Phrase("17. Transfert reçu à l'installation d'élimination ",fontbold));
@@ -3908,34 +3901,20 @@ public class GeneratePDFDocuments {
         table5.completeRow();
         table5.setSpacingAfter(12);
 
-
         //--------------------- Tableau Les Pièces ---------------------
         PdfPTable table7 = new PdfPTable(3);
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("les Pièces",3));
+        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
-        PdfPCell cell7 = new PdfPCell();
-        Paragraph par15= new Paragraph();
-        par15.setAlignment(Element.ALIGN_CENTER);
-        par15.setSpacingAfter(5);
-        Font black = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC, BaseColor.BLACK);
-        Chunk chunk1 = new Chunk("les Pièces fournies seront vérifié et validé",black);
-        par15.add(chunk1);
-        cell7.addElement(par15);
-        cell7.setPadding(5);
-        cell7.setColspan(3);
-        table7.addCell(cell7);
-        table7.completeRow();
-
-        PdfPCell cell2 = new PdfPCell();
-        cell2.setBorder(Rectangle.NO_BORDER);
-        cell2.setColspan(1);
-        cell2.addElement(new Phrase(""));
-        table7.addCell(cell2);
-        table7.completeRow();
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
 
         //--------------------- Tableau Document de mouvements des déchets ---------------------
         PdfPTable table6 = new PdfPTable(new float[]{2,1.5f,2,2.5f});
@@ -4094,30 +4073,15 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("les Pièces",3));
+        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
-        PdfPCell cell7 = new PdfPCell();
-        Paragraph par15= new Paragraph();
-        par15.setAlignment(Element.ALIGN_CENTER);
-        par15.setSpacingAfter(5);
-        Font black = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC, BaseColor.BLACK);
-        Chunk chunk1 = new Chunk("les Pièces fournies seront vérifié et validé",black);
-        par15.add(chunk1);
-        cell7.addElement(par15);
-        cell7.setPadding(5);
-        cell7.setColspan(3);
-        table7.addCell(cell7);
-        table7.completeRow();
-
-        PdfPCell cell2 = new PdfPCell();
-        cell2.setBorder(Rectangle.NO_BORDER);
-        cell2.setColspan(1);
-        cell2.addElement(new Phrase(""));
-        table7.addCell(cell2);
-        table7.completeRow();
-
-
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
         document.add(headerPar);
         document.add(table0);
         document.add(table1);
@@ -4260,21 +4224,15 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("les Pièces",3));
+        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
-        PdfPCell cell7 = new PdfPCell();
-        Paragraph par15= new Paragraph();
-        par15.setAlignment(Element.ALIGN_CENTER);
-        par15.setSpacingAfter(5);
-        Font black = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC, BaseColor.BLACK);
-        Chunk chunk1 = new Chunk("les Pièces fournies seront vérifié et validé",black);
-        par15.add(chunk1);
-        cell7.addElement(par15);
-        cell7.setPadding(5);
-        cell7.setColspan(3);
-        table7.addCell(cell7);
-        table7.completeRow();
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
 
         PdfPCell cell2 = new PdfPCell();
         cell2.setBorder(Rectangle.NO_BORDER);
@@ -4283,6 +4241,139 @@ public class GeneratePDFDocuments {
         table7.addCell(cell2);
         table7.completeRow();
 
+
+
+        document.add(headerPar);
+        document.add(table0);
+        document.add(table01);
+        document.add(table3);
+        document.add(table7);
+        document.close();
+
+        return new ByteArrayInputStream(out.toByteArray());
+    }
+
+    public static ByteArrayInputStream generateRecapEie(DemandeInformation ns,ListDocNotif[] l) throws DocumentException, IOException {
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
+        PdfWriter.getInstance(document,out);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        document.open();
+
+        BaseFont base = null;
+        try {
+            base = BaseFont.createFont("/static/assets_admin/fonts/WingdingsRegular.ttf", BaseFont.IDENTITY_H, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Setting up the font to be used in Paragraphs
+        Font font=new Font(Font.FontFamily.TIMES_ROMAN,10.0f);
+        Font fontTitre = new Font(Font.FontFamily.TIMES_ROMAN,16.0f,Font.BOLD);
+        Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,10.0f,Font.BOLD);
+        Font fontBox = new Font(base, 20.0f);
+
+        String logo = "/word_header1.png";
+        Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
+        image.scaleToFit(612,800);
+
+        document.add(image);
+
+        //GLUE CHUNK
+        Chunk glue = new Chunk(new VerticalPositionMark());
+
+//        char checked='\u00FE';
+//        char unchecked='\u00A8';
+
+        Chunk checkedChunk=new Chunk(String.valueOf('\u00FE'),fontBox);
+        Chunk uncheckedChunk=new Chunk(String.valueOf('\u00A8'),fontBox);
+//        Chunk mCube=new Chunk(String.valueOf('\u33A5'),fontBox);
+
+        Chunk oui = new Chunk("Oui : ",font);
+        Chunk non = new Chunk("Non : ",font);
+
+
+        Paragraph headerPar=new Paragraph(10);
+        headerPar.setAlignment(Element.ALIGN_CENTER);
+        headerPar.add("Récapitulation de la demande Etude d’Impact sur l’Environnement");
+        headerPar.setFont(fontTitre);
+        headerPar.setSpacingBefore(20);
+
+        //--------------------- Table numero de Collecte  ---------------------
+        PdfPTable table0 = new PdfPTable(new float[]{1,1,1,1});
+        table0.setWidthPercentage(100);
+        table0.setSpacingBefore(12);
+        table0.setSpacingAfter(12);
+        //--------------------- Row Title ---------------------
+        table0.addCell(saisir_cellule_titre("1. informations sur le pétitionnaire ",4));
+        table0.completeRow();
+        //--------------------- completeRow ---------------------
+        table0.addCell( saisir_cellule("N° de la demande : ",font,fontbold,ns.getNum_demande(),2));
+        table0.addCell( saisir_cellule("Raison Sociale: ",font,fontbold,ns.getRaison_social(),1));
+        table0.addCell( saisir_cellule("Represantant : ",font,fontbold,ns.getRepresantant(),1));
+        table0.completeRow();
+
+        table0.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getTel(),1));
+        table0.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getFax(),1));
+        table0.addCell( saisir_cellule("Email : ",font,fontbold,ns.getEmail(),1));
+        table0.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse(),1));
+        table0.completeRow();
+
+        PdfPTable table01 = new PdfPTable(new float[]{3,3});
+        table01.setWidthPercentage(100);
+        table01.setSpacingBefore(12);
+        table01.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        table01.addCell(saisir_cellule_titre("2. informations sur le projet ",3));
+        table01.completeRow();
+        //--------------------- completeRow ---------------------
+        table01.addCell(saisir_cellule("Intitulé du projet ",font,fontbold,ns.getIntitule_projet(),1));
+        table01.addCell(saisir_cellule("Montant d'investissement en MDH ",font,fontbold,String.valueOf(ns.getMontant_investissement()),1));
+        table01.addCell(saisir_cellule("Transfrontalier ",font,fontbold,ns.getTronsfrontalier(),1));
+        table01.completeRow();
+        //--------------------- Tableau Document de notification ---------------------
+        PdfPTable table3 = new PdfPTable(new float[]{4,4,4,4});
+        table3.setWidthPercentage(100);
+        table3.setSpacingBefore(12);
+        table3.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        table3.addCell(saisir_cellule_titre(" 3. Localisation du projet  ",4));
+        table3.completeRow();
+        //--------------------- completeRow ---------------------
+        table3.addCell(saisir_cellule_transporteur_titre("Région",2));
+        table3.addCell(saisir_cellule_transporteur_titre("Prefectures",1));
+        table3.addCell(saisir_cellule_transporteur_titre("Communes",1));
+        table3.completeRow();
+
+                for(Region r:ns.getDetailRegion().getRegion()) {
+                    table3.addCell(saisir_cellule(r.getNom_fr(), font, font, "", 2));
+                }
+                for(Prefecture p:ns.getDetailRegion().getPrefectures()) {
+                    table3.addCell(saisir_cellule(p.getNom_fr(), font, font, "", 1));
+                }
+                for(Commune c:ns.getDetailRegion().getCommunes()) {
+                    table3.addCell(saisir_cellule(c.getNom_fr(), font, font, "", 1));
+                }
+                table3.completeRow();
+
+        table3.setSpacingAfter(12);
+        //--------------------- Tableau Les Pièces ---------------------
+        PdfPTable table7 = new PdfPTable(3);
+        table7.setWidthPercentage(100);
+        table7.setSpacingBefore(12);
+        table7.setSpacingAfter(12);
+        table7.addCell(saisir_cellule_titre("4. Pièces Jointe",3));
+        table7.completeRow();
+        //--------------------- Row Title ---------------------
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
 
 
         document.add(headerPar);
@@ -4340,6 +4431,16 @@ public class GeneratePDFDocuments {
         cell0.setBackgroundColor(new BaseColor(222, 226, 230));
         return cell0;
     }
+    public static PdfPCell saisir_cellule_2(String label,int collspan){
+        Font BlackText = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+        Paragraph para = new Paragraph(label,BlackText);
+        para.setAlignment(Element.ALIGN_LEFT);
+        PdfPCell cell0 = new PdfPCell(para);
+        cell0.setColspan(collspan);
+        cell0.setPaddingBottom(5f);
+        cell0.setPaddingTop(2.5f);
+        return cell0;
+    }
 
     public static ByteArrayInputStream generateDocumentGeneraleDemandeNum(Notification ns) throws DocumentException, IOException {
 
@@ -4394,7 +4495,7 @@ public class GeneratePDFDocuments {
         }else if(ns.getZf_et().equals("TR")){
             title_type = "Transit des déchets";
         }
-        headerPar.add("Reçu de dépôt  "+title_type);
+        headerPar.add("Dépôt reçu "+title_type);
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
@@ -4601,7 +4702,7 @@ public class GeneratePDFDocuments {
         table8.setSpacingBefore(12);
         table8.setSpacingAfter(12);
         //--------------------- Row Title ---------------------
-        table8.addCell(saisir_cellule_titre(" Reçu de dépôt ",4));
+        table8.addCell(saisir_cellule_titre("Dépôt reçu",4));
         table8.completeRow();
         //--------------------- completeRow ---------------------
         //--------------------- completeRow ---------------------
@@ -4615,8 +4716,8 @@ public class GeneratePDFDocuments {
         String dateTest=convertDate("dd/MM/yyyy",ns.getDateDepot());
         String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
 
-        table8.addCell( saisir_cellule("Representant legal :",font,fontbold,username,1));
-        table8.addCell( saisir_cellule("Demandeur :",font,fontbold,contact,1));
+        table8.addCell( saisir_cellule("Presenteur :",font,fontbold,username,1));
+        table8.addCell( saisir_cellule("Nom demandeur :",font,fontbold,contact,1));
         table8.addCell( saisir_cellule("Date de dépôt :",font,fontbold,dateTest,1));
         table8.addCell( saisir_cellule("Numéro de demmande :",font,fontbold,num_notification,1));
         table8.completeRow();
