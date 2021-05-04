@@ -878,7 +878,7 @@
 
                                                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
                                                         onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
-                                                        class="btn btn-success">
+                                                        class="btn btn-success mb-0 mt-4">
                                                     <spring:message code="button.ajouter"/>
                                                 </button>
 

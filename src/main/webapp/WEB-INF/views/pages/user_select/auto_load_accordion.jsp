@@ -12,14 +12,49 @@
         <c:forEach items="${doc}" var="d">
             <h3>${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
             <div>
+                <c:if test="${d.nom_fr=='Garantie financière'}">
+                    <p style="padding-left: 1%;border: 2px solid black;">
+                        <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
+                    </p>
+
+                    <p style="padding-left: 1%;border: 2px solid black;">
+                        <strong style="color: green">CS</strong><spring:message code="label.CS"/> : <spring:message code="label.coutdestockage"/>
+                    </p>
+                    <p style="padding-left: 1%;border: 2px solid black;">
+                        <strong style="color: green">Q</strong> : <spring:message code="label.Quantitededechetstransferes"/>
+                        <spring:message code="label.quantitededechetalaquantitetotale"/>
+                    </p>
+                    <br>
+                    <div style="background-color: red;color: white;padding-left: 1%;border: 1px solid black;">
+
+                        <div class="row-fluid justify-content-center mb-1 mt-3" >
+                            <div class="col-sm-12 pl-0 ">
+                                <strong style="color: #eaeaea">CT</strong> = <input value="0" min="0" class="frm_cal" type="number" placeholder="Cu" id="inp_cu">
+                                * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q2">
+                                * <input value="0" min="0" class="frm_cal" type="number" placeholder="D" id="inp_d">
+                                &nbsp; <button class="btn btn-sm btn-success" onclick="calculer2()" ><spring:message code="button.Calculer"/></button>
+                                <br>
+                                <span id="resultat_calcul2" class="disp_none"><strong style="color: #eaeaea;">CT</strong> = <p class="res2 d-inline" id="res2">  </p></span>
+                            </div>
+                        </div>
+
+                        <div class="row-fluid justify-content-center mb-5 mt-3">
+                            <div class="col-sm-12 pl-0">
+                                <strong style="color: #eaeaea">GF</strong> = <input value="0" min="0" class="frm_cal" width="20%" type="number" placeholder="CT" id="inp_ct">
+                                + <input class="frm_cal" value="0" min="0" type="number" placeholder="CTR" id="inp_ctr"> + <input value="0" min="0" class="frm_cal" type="number" placeholder="Cs" id="inp_cs">
+                                * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q"> * 1,2 &nbsp; <button class="btn btn-sm btn-success" onclick="calculer()" style="margin-top: 10px"><spring:message code="button.Calculer"/></button>
+                                <br>
+                                <span id="resultat_calcul" class="disp_none"><strong style="color: #eaeaea">GF</strong> = <p class="res d-inline" id="res">  </p></span>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
                    ${(not empty d.description)?d.description:"Aucune Descritpion"}
                 <c:if test="${not empty d.uri}">
                     <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                 </c:if>
             </div>
         </c:forEach>
-
-
     </c:when>
     <c:when test="${show=='procedure'}">
         <div class="row-fluid d-none border p-2" id="dev_step">
@@ -78,7 +113,7 @@
                                     <img src="${pageContext.request.contextPath}/assets/images/cadnat.png">
                                 </button>
                             </div>
-                            <c:if test="${type=='ZF' || type=='XD'}">
+                            <c:if test="${type=='ZF' || type=='XD' || type=='EIE'}">
                                 <div class="col-2 text-center">
                                     <button data-toggle="tooltip" data-placement="top"
                                             title="Saisir votre demande"
@@ -132,21 +167,37 @@
 
                         <div class="row clss_hide mt-5 saisie collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold"><spring:message
-                                        code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/></p>
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/assets/images/warning.png"
-                                         style="width: 40px;margin-left: 10px">
-                                    Pour déposer une demande d'autorisation ${l_ph1},
-                                    il faut disposer au préalable d'un numéro de notification
+                                <p class="text-success h-4 font_bold">
+                                    <c:if test="${type=='ZF' || type=='XD'}">
+                                        <spring:message code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/>
+                                    </c:if>
+                                    <c:if test="${type=='EIE'}">
+                                        Je remplis le formulaire de demande du renseignement préalable en ligne
+                                    </c:if>
                                 </p>
-                                <p>
-                                    <spring:message code="label.Apreslacreationdevotrecompte"/>
-                                </p>
-                                <p>
-                                    A la fin vous avez la possibilité de déposer votre demande en cliquant sur le
-                                    bouton "Continuer !" du message de confirmation de la création du numéro de notification
-                                </p>
+                                <c:if test="${type=='ZF' || type=='XD'}">
+                                    <p>
+                                        <img src="${pageContext.request.contextPath}/assets/images/warning.png"
+                                             style="width: 40px;margin-left: 10px">
+                                        Pour déposer une demande d'autorisation ${l_ph1},
+                                        il faut disposer au préalable d'un numéro de notification
+                                    </p>
+                                    <p>
+                                        <spring:message code="label.Apreslacreationdevotrecompte"/>
+                                    </p>
+                                    <p>
+                                        A la fin vous avez la possibilité de déposer votre demande en cliquant sur le
+                                        bouton "Continuer !" du message de confirmation de la création du numéro de notification
+                                    </p>
+                                </c:if>
+
+                                <c:if test="${type=='EIE'}">
+                                    Vous pouvez déposer une demande d'autorisation ${l_ph1} de deux façon :
+                                    <ul>
+                                        <li> soit en remplissant le formulaire de renseignement préalable qui une fois validé va vous permetre de déposé votre demande d'autorisation ${l_ph1}</li>
+                                        <li> ou bien vous pouvez passez cette etape qui est une étape facultatife et remplir directement votre demande d'autorisation ${l_ph1}  </li>
+                                    </ul>
+                                </c:if>
                             </div>
                         </div>
 
@@ -161,11 +212,12 @@
                                         après l'obtention du numéro de notification
                                     </c:if>
                                     vous pouvez déposer une nouvelle demande d'autorisation ${l_ph1}, en replissant le formulaire de dépôt de la demande en veillant
-                                    à renseigner tous les champs du formulaire, et aussi les pièces à fournir: </p>
+                                    à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à envoyer au niveau du système: </p>
 
 
-                                <p class="text-underline text-success font_bold"><spring:message
-                                        code="label.Lespieceafournir"/> :</p>
+                                <p class="text-underline text-success font_bold">
+                                    Les pièce à scanner :
+                                </p>
 
                                 <div id="accordion">
                                     <h3>Test</h3>
@@ -181,6 +233,9 @@
                                         Chaque compte peux déposé une seule demande d'autorisation ${l_ph1} renouvlable
                                         uniquement si la date de validation de la demande est proche de la date de péremption
                                     </p>
+                                    <c:if test="${type=='CT'}">
+                                        <p>Dans le cas demande d'autorisation ${l_ph1} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
+                                    </c:if>
                                 </c:if>
 
                                 <c:if test="${type=='ZF'|| type=='XD'}">
@@ -188,9 +243,50 @@
                                         Le choix du transporteur :
                                     </p>
                                     <p>
-                                        Dans le cas des déchêts Dangereux, vous pouvez choisir un ou plusieurs transporteurs
+                                        Dans le cas des déchets Dangereux, vous pouvez Déclarer votre transporteurs
                                         depuis une liste mise a votre disposition.
                                     </p>
+                                    <p>
+                                        Si vous disposez d'un code de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets voulu.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                            <label>List des codes</label>
+                                            <select class="select2 form-control" onchange="rech_transporteur(this)">
+                                                <option> Choisir...</option>
+                                                <c:forEach items="${codes}" var="c">
+                                                    <option value="${c.id_code}"> ${c.nom_fr}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 mt-2" id="tab_transporteur">
+                                            <table class="table table-striped table-bordered">
+                                                <thead class="bg_stat_01">
+                                                <tr>
+                                                    <th>Nom</th>
+                                                    <th>téléphone</th>
+                                                    <th>Email</th>
+                                                    <th>Fax</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <tr class="text-center">
+                                                        <td colspan="4">Aucun transporteur</td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <p>
+                                        Et si vous n'avez pas un code de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets dans la liste suivante <a href="/CatalogueDesDechet" class="btn btn-primary rounded-circle btn-sm"> <span class="fa fa-arrow-right"></span></a>.
+                                    </p>
+
+
                                 </c:if>
 
                                 <p class="text-underline text-success font_bold mt-3"><spring:message
@@ -380,6 +476,20 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="card w-100">
                             <div class="card-body text-center">
+                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                    <spring:message code="option.Etudedimpactenvironnementale"/>
+                                </h6>
+                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
+                                    <spring:message code="label.Acceder"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card w-100">
+                            <div class="card-body text-center">
                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
                                     <spring:message code="option.Auditenvironnementale"/>
                                 </h6>
@@ -390,7 +500,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-4 col-sm-12">
                         <div class="card w-100">
                             <div class="card-body text-center">
@@ -398,19 +507,6 @@
                                     <spring:message code="option.Noticedimpact"/>
                                 </h6>
                                 <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
-                                    <spring:message code="label.Acceder"/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="card w-100">
-                            <div class="card-body text-center">
-                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
-                                    <spring:message code="option.Etudedimpactenvironnementale"/>
-                                </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
                                     <spring:message code="label.Acceder"/>
                                 </button>
                             </div>
