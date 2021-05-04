@@ -559,8 +559,13 @@
         </c:if>
         <c:if test="${notification.statut.id_statut_projet==54}">
           <div class="col-md-auto col-sm-6 ">
-            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i>Télécharger l'autorisation signée</a>
+            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
           </div>
+          <c:if test="${type=='ZF' || type=='XD'}">
+            <div class="col-md-auto col-sm-6 ">
+              <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter document de Mouvement</a>
+            </div>
+          </c:if>
         </c:if>
 
       </div>

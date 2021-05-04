@@ -741,4 +741,13 @@ public class Notification_Controler {
 		return new ModelAndView("demandez_compte/Mon_profil", model);
 	}
 
+	@RequestMapping(value = "/api/addDocmouvement/{id}", method = RequestMethod.GET)
+	public ModelAndView addDocmouvement(@PathVariable int id) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		Notification n = web.getNotificationByIdComptId(id,web.getCompteConnected().getCompteId());
+		model.put("type",n.getZf_et());
+		model.put("notification",n);
+		return new ModelAndView("autorisationPublic/addDocMouvement",model);
+	}
+
 }
