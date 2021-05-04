@@ -145,7 +145,7 @@ $(document).ready(function() {
     $('table:not(.my_table)').DataTable({
         "searching": true,
         "bLengthChange": false,
-        "pageLength":6,
+        "pageLength":4,
         "responsive":true,
         "ordering": false,
         language: {

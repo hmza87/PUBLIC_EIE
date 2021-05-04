@@ -66,6 +66,7 @@ public interface WebService {
 	public List<AutorisationParam> getListParam();
 	List<EvaluationParam> getListEvaParam();
 
+	List<TransporteurParam> getListAllTransporteurParam();
 	ResponseEntity<RestResponsePage<Questions>> getListQuestionsByAuto(String type, PageRequest pageRequest);
 
 	List<Code> getListcodeTab();
@@ -74,6 +75,9 @@ public interface WebService {
 
 	CollecteTransporteur getCollecteById(int id, int compteId);
 	CollecteTransporteur getCollecteById(int id, int compteId,String typeRenouv);
+
+	DemandeInformation getDemandeInformationByCompteId(int id, int compteId);
+
 
 	Installation getInstallationById(int id, int compteId);
 

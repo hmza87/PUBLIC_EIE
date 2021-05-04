@@ -534,6 +534,14 @@ public class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public DemandeInformation getDemandeInformationByCompteId(int id, int compteId) {
+		final String uri = urlRest+"/getDemandeInformationByCompteIdRest/"+id+"/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+	@Override
 	public CollecteTransporteur getCollecteById(int id, int compteId,String typerenew) {
 		final String uri = urlRest+"/getCollecteById2Rest/"+id+"/"+compteId+"/"+typerenew;
 		RestTemplate restTemplate = new RestTemplate();
@@ -570,6 +578,14 @@ public class WebServiceImp implements WebService {
 		final String uri = urlRest+"/getListTypeConteneur/";
 		RestTemplate restTemplate = new RestTemplate();
 		TypeConteneurs[] result= restTemplate.getForObject(uri, TypeConteneurs[].class);
+		return Arrays.asList(result);
+	}
+
+	@Override
+	public List<TransporteurParam> getListAllTransporteurParam() {
+		final String uri = urlRest+"/getListAllTransporteurParam/";
+		RestTemplate restTemplate = new RestTemplate();
+		TransporteurParam[] result= restTemplate.getForObject(uri, TransporteurParam[].class);
 		return Arrays.asList(result);
 	}
 

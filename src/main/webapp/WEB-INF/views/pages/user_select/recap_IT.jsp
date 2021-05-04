@@ -42,7 +42,6 @@
       </nav>
     </div>
   </div>
-
   <div class="row justify-content-center"  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-10 col-sm-12">
       <div class="jumbotron p-3">

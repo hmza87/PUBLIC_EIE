@@ -201,15 +201,21 @@ public class Hatim {
 	@RequestMapping(value = "/videoList",method = RequestMethod.GET)
 	public ModelAndView videoList() throws Exception {
 		Map<String,Object> map = new HashMap<>();
-
 		map.put("user",webt.getCompteConnected());
 		return new ModelAndView("aide/videolist",map);
+	}
+
+	@RequestMapping(value = "/CatalogueDesDechet",method = RequestMethod.GET)
+	public ModelAndView CatalogueDesDechet() throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("listF",webt.getListAllTransporteurParam());
+		map.put("code",webt.getListCodeTabByClassif(1));
+		return new ModelAndView("aide/CatalogueDesDechet",map);
 	}
 
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)
 	public ModelAndView guideList() throws Exception {
 		Map<String,Object> map = new HashMap<>();
-
 		map.put("user",webt.getCompteConnected());
 		return new ModelAndView("aide/guide",map);
 	}
