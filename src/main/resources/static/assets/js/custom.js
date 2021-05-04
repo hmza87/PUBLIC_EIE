@@ -884,7 +884,7 @@ function verifier_champ_vide(form,table,url,nameId,btn){
         $("#quantite").removeClass("bg_error");
     }*/
 
-    addObjectGeneral(form,table,url,nameId,btn)*/
+    addObjectGeneral(form,table,url,nameId,btn);
 }
 
 function alert_error(select){

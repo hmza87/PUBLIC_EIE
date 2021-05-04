@@ -110,3 +110,7 @@ td{
     box-shadow: 0px 0px 20px #ff5363;
     border-color: #ff5363 !important;
 }
+.bg_errorSlecte .select2-selection{
+    box-shadow: 0px 0px 20px #ff5363 !important;
+    border-color: #ff5363 !important;
+}
