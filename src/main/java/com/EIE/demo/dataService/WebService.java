@@ -166,4 +166,6 @@ public interface WebService {
 	String updateDemandeInformation(String intitule_projet, String montant_investissement, String tronsfrontalier, int id);
 
     String setFileToDemande(int id, MultipartFile[] fileToUpload);
+	List<TransporteurParam> getTransporteurParamByCode(int code);
+
 }
