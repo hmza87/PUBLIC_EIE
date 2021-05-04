@@ -55,7 +55,7 @@ public class Notification implements Serializable {
 	private String tel;
 	@Column(name = "telecopie", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String telecopie;
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -107,7 +107,7 @@ public class Notification implements Serializable {
 	@Column(name = "zf_et", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String zf_et;
 
-	
+
 
 	public String getZf_et() {
 		return zf_et;
@@ -135,7 +135,7 @@ public class Notification implements Serializable {
 
 	@Column(name = "uniques", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String uniques;
-	
+
 	@Column(name = "lieu", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String lieu;
 
@@ -274,7 +274,7 @@ public class Notification implements Serializable {
 
 	@Column(name = "url_doc_signer", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String url_doc_signer;
-	
+
 	@Column(name = "destination_final", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String destination_final;
 
@@ -322,12 +322,12 @@ public class Notification implements Serializable {
 		this.dateDepot = dateDepot;
 	}
 
-	
+
 
 	public Date getDateValidation() {
 		return dateValidation;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_statut")
 	private StatutProjet statut;
@@ -453,11 +453,11 @@ public class Notification implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idproducteur")
 	private Producteur producteur;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "regionId")
 	private Region region;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prefectureId")
 	private Prefecture prefecture;
@@ -596,14 +596,28 @@ public class Notification implements Serializable {
 	private LieuElimination lieux_elimination;
 
 
-	
+
 	@Column(name = "dateConteur", nullable = true)
 	private Date dateConteur;
 
 	@Column(name = "nbJour", nullable = true, columnDefinition = "int default 0")
 	private Integer nbJour;
 
-	
+	@Column(name = "url_certicat_elimination", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_certicat_elimination;
+
+	@Column(name = "url_quantite_justificatif", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_quantite_justificatif;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	@JoinTable(name = "notification_DetailDocMouvement", joinColumns = { @JoinColumn(name = "idNotification") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_doc_mouvement") })
+
+	private List<DetailDocumentMouvement> docMouvement = new ArrayList<DetailDocumentMouvement>();
+
+
+
 	public Date getDateConteur() {
 		return dateConteur;
 	}
@@ -675,4 +689,12 @@ public class Notification implements Serializable {
 	public void setTransporteur_etranger(List<TransporteurEtranger> transporteur_etranger) {
 		this.transporteur_etranger = transporteur_etranger;
 	}
+
+	public List<DetailDocumentMouvement> getDocMouvement() {
+		return docMouvement;
+	}
+	public void setDocMouvement(List<DetailDocumentMouvement> docMouvement) {
+		this.docMouvement = docMouvement;
+	}
+
 }
