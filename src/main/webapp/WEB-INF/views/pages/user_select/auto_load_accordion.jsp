@@ -25,36 +25,40 @@
         <div class="row-fluid d-none border p-2" id="dev_step">
             <p class="text-center h4 w-100 font_bold">
                 <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
-                Procédure à suivre pour obtenir votre demande d'autorisation
-                <c:choose>
-                    <c:when test="${type=='ZF'}">
-                        d'importation des déchets d'une zone franche
-                    </c:when>
-                    <c:when test="${type=='ET'}">
-                        d'importation des déchets non dangereux d'un pays étranger
-                    </c:when>
-                    <c:when test="${type=='CT'}">
-                        de collecte - transport des déchets dangereux
-                    </c:when>
-                    <c:when test="${type=='IT'}">
-                        d'installation de traitement des déchets
-                    </c:when>
-                    <c:when test="${type=='XD'}">
-                        d'exportation des déchets
-                    </c:when>
-                    <c:when test="${type=='TR'}">
-                        de transit des déchets
-                    </c:when>
-                    <c:when test="${type=='EIE'}">
-                        <spring:message code="option.Etudedimpactenvironnementale"/>
-                    </c:when>
-                    <c:when test="${type=='EIE1'}">
-                        <spring:message code="option.Noticedimpact"/>
-                    </c:when>
-                    <c:when test="${type=='EIE2'}">
-                        <spring:message code="option.Auditenvironnementale"/>
-                    </c:when>
-                </c:choose>
+                    <c:choose>
+                        <c:when test="${type=='ZF'}">
+                            <c:set var="l_ph1" value=" d'importation des déchets d'une zone franche "/>
+                        </c:when>
+                        <c:when test="${type=='ET'}">
+                            <c:set var="l_ph1" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                        </c:when>
+                        <c:when test="${type=='CT'}">
+                            <c:set var="l_ph1" value=" de collecte - transport des déchets dangereux "/>
+                        </c:when>
+                        <c:when test="${type=='IT'}">
+                            <c:set var="l_ph1" value=" d'installation de traitement des déchets "/>
+
+                        </c:when>
+                        <c:when test="${type=='XD'}">
+                            <c:set var="l_ph1" value=" d'exportation des déchets "/>
+                        </c:when>
+                        <c:when test="${type=='TR'}">
+                            <c:set var="l_ph1" value=" de transit des déchets "/>
+                        </c:when>
+                        <c:when test="${type=='EIE'}">
+                            <c:set var="l_ph1" value=" d'étude d'Impact sur l’Environnement "/>
+                        </c:when>
+                        <c:when test="${type=='EIE1'}">
+                            <c:set var="l_ph1" value=" de transit des déchets "/>
+                            <spring:message code="option.Noticedimpact" var="l_ph1"/>
+                        </c:when>
+                        <c:when test="${type=='EIE2'}">
+                            <c:set var="l_ph1" value=" de transit des déchets "/>
+                            <spring:message code="option.Auditenvironnementale" var="l_ph1"/>
+                        </c:when>
+                    </c:choose>
+                Procédure à suivre pour obtenir votre demande d'autorisation ${l_ph1}
+
             </p>
             <div class="col-2 p-0">
                 <button class="btn btn-success btn-block" onclick="show_etape_normal()"><span
@@ -132,37 +136,33 @@
                                         code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/></p>
                                 <p>
                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
-                                         style="width: 40px;margin-left: 10px"><spring:message
-                                        code="label.Pourdeposeunedemandedautorisationdimportationdes"/>
+                                         style="width: 40px;margin-left: 10px">
+                                    Pour déposer une demande d'autorisation ${l_ph1},
+                                    il faut disposer au préalable d'un numéro de notification
                                 </p>
                                 <p>
                                     <spring:message code="label.Apreslacreationdevotrecompte"/>
                                 </p>
                                 <p>
-                                    <spring:message code="label.Alafinvousavezlapossibilite"/>
+                                    A la fin vous avez la possibilité de déposer votre demande en cliquant sur le
+                                    bouton "Continuer !" du message de confirmation de la création du numéro de notification
                                 </p>
                             </div>
                         </div>
 
                         <div class="row clss_hide mt-5 attache collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold"><spring:message
-                                        code="label.Jedeposemademandedautorisationd"/></p>
+                                <p class="text-success h-4 font_bold">
+                                    Je dépose ma demande d'autorisation ${l_ph1}
+                                </p>
+
                                 <p>
                                     <c:if test="${type=='ZF' || type=='XD'}">
                                         après l'obtention du numéro de notification
                                     </c:if>
-                                    <spring:message code="label.apreslobtentiondunumerodefication"/>: </p>
+                                    vous pouvez déposer une nouvelle demande d'autorisation ${l_ph1}, en replissant le formulaire de dépôt de la demande en veillant
+                                    à renseigner tous les champs du formulaire, et aussi les pièces à fournir: </p>
 
-                                <c:if test="${type=='ZF'|| type=='XD'}">
-                                    <p class="text-underline text-success font_bold">
-                                        Le choix du transporteur :
-                                    </p>
-                                    <p>
-                                        Dans le cas des déchêts Dangereux, vous pouvez choisir un ou plusieurs transporteurs
-                                        depuis une liste mise a votre disposition.
-                                    </p>
-                                </c:if>
 
                                 <p class="text-underline text-success font_bold"><spring:message
                                         code="label.Lespieceafournir"/> :</p>
@@ -173,6 +173,25 @@
                                         desciption
                                     </div>
                                 </div>
+                                <c:if test="${type=='CT' || type=='IT'}">
+                                    <p class="text-underline text-success font_bold mt-3">
+                                        Nombre de Demande Déposé :
+                                    </p>
+                                    <p>
+                                        Chaque compte peux déposé une seule demande d'autorisation ${l_ph1} renouvlable
+                                        uniquement si la date de validation de la demande est proche de la date de péremption
+                                    </p>
+                                </c:if>
+
+                                <c:if test="${type=='ZF'|| type=='XD'}">
+                                    <p class="text-underline text-success font_bold mt-3">
+                                        Le choix du transporteur :
+                                    </p>
+                                    <p>
+                                        Dans le cas des déchêts Dangereux, vous pouvez choisir un ou plusieurs transporteurs
+                                        depuis une liste mise a votre disposition.
+                                    </p>
+                                </c:if>
 
                                 <p class="text-underline text-success font_bold mt-3"><spring:message
                                         code="label.Acteurimpliqueetdelaisdetraitementparphase"/></p>
@@ -224,22 +243,35 @@
                             <div class="col-12">
                                 <p class="text-success h-4 font_bold"><spring:message
                                         code="label.Jefaislesuividemademandeenligne"/></p>
-                                <p><spring:message code="label.Vouspouvezsuivrelevolution"/></p>
-                                <p><spring:message code="label.Aussivousrecevrezegalement"/></p>
+                                <p>
+                                    Vous pouvez suivre l’évolution du traitement de votre ${l_ph1} à partir de la rubrique « Statut
+                                    du Dossier ». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph1}
+                                </p>
+                                <p>
+                                    Aussi vous recevrez également un email lors d'évolution d'état de votre
+                                    dossier de demande d'autorisation ${l_ph1}
+                                </p>
                             </div>
                         </div>
 
                         <div class="row clss_hide mt-5 recevoir collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold"><spring:message
-                                        code="label.Jerecuperemondautorisation"/></p>
-                                <p><spring:message
-                                        code="label.Alafinduprocessusdutraitementdevotredemande"/>
+                                <p class="text-success h-4 font_bold">
+                                    Je récupère mon autorisation ${l_ph1}
                                 </p>
-                                <p><spring:message
-                                        code="label.Lautorisationdimportationdesdechetsdunezone"/></p>
-                                <p><spring:message
-                                        code="label.Lesautorisationsdimportationdesdechetsdunezonefranchenonret"/>.</p>
+                                <p>
+                                    A la fin du processus de traitement de votre demande ${l_ph1},
+                                    vous seriez notifié par email de la date
+                                    à partir de laquelle vous pouvez récupérer votre demande d'autorisation
+                                </p>
+                                <p>
+                                    L'autorisation ${l_ph1} doit être retiré personnellement par son titulaire
+                                </p>
+                                <p>
+                                    Les autorisations ${l_ph1} non retirées par
+                                    leurs propriétaires dans un délai de deux mois à compter de leur date de notification
+                                    sont annulées et détruites.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -351,7 +383,7 @@
                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
                                     <spring:message code="option.Auditenvironnementale"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
+                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
                                     <spring:message code="label.Acceder"/>
                                 </button>
                             </div>
@@ -378,7 +410,7 @@
                                 <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
+                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
                                     <spring:message code="label.Acceder"/>
                                 </button>
                             </div>

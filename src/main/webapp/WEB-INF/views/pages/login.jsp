@@ -827,7 +827,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="option.Auditenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -854,7 +854,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
