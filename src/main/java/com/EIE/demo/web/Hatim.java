@@ -947,9 +947,19 @@ public class Hatim {
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("doc",webt.getDocImportByType(type));
 		model.put("type",type);
+		model.put("codes",webt.getListCodeTabByClassif(1));
 		model.put("show","procedure");
 		return new ModelAndView("user_select/auto_load_accordion",model);
 	}
+
+	@RequestMapping(value = "/getTabtransporteur/{code}", method = RequestMethod.POST)
+	public ModelAndView getTabtransporteur(@PathVariable int code) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("trans",webt.getTransporteurParamByCode(code));
+		return new ModelAndView("user_select/auto_load_TabtransporteurDechets",model);
+	}
+
+
 
 
 
