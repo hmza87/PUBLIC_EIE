@@ -324,7 +324,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 function changer_statut(id_name, code_statut, msg_alert) {
     event.preventDefault();
     var id = $("#" + id_name).val();
-
+    var link_recap = "/api/recapEie/" + id;
     if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
         swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
         return false;
@@ -339,7 +339,7 @@ function changer_statut(id_name, code_statut, msg_alert) {
             Swal.fire({
                 title: '<strong>' + msg_alert + '</strong>',
                 icon: 'success',
-                html: '<a href="/api/checkEIESelect" class="btn btn-success mt-2 ">Retour</a>',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,

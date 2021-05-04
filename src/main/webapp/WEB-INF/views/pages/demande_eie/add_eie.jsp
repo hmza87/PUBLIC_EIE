@@ -228,8 +228,7 @@ function step2(form){
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
-
-            //window.location="/api/ListeEieRe";
+            window.location="/api/demandeinformation/"+response+"/EE";
         },
         error: function (response) {
 

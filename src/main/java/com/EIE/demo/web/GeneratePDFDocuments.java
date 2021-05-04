@@ -4329,9 +4329,9 @@ public class GeneratePDFDocuments {
         table01.addCell(saisir_cellule_titre("2. informations sur le projet ",3));
         table01.completeRow();
         //--------------------- completeRow ---------------------
-        table01.addCell(saisir_cellule("Intitulé du projet ",font,fontbold,ns.getIntitule_projet(),1));
-        table01.addCell(saisir_cellule("Montant d'investissement en MDH ",font,fontbold,String.valueOf(ns.getMontant_investissement()),1));
-        table01.addCell(saisir_cellule("Transfrontalier ",font,fontbold,ns.getTronsfrontalier(),1));
+        table01.addCell(saisir_cellule("Intitulé du projet :",font,fontbold,ns.getIntitule_projet(),1));
+        table01.addCell(saisir_cellule("Montant d'investissement en MDH :",font,fontbold,String.valueOf(ns.getMontant_investissement()),1));
+        table01.addCell(saisir_cellule("Transfrontalier :",font,fontbold,ns.getTronsfrontalier(),1));
         table01.completeRow();
         //--------------------- Tableau Document de notification ---------------------
         PdfPTable table3 = new PdfPTable(new float[]{4,4,4,4});
@@ -4347,17 +4347,40 @@ public class GeneratePDFDocuments {
         table3.addCell(saisir_cellule_transporteur_titre("Prefectures",1));
         table3.addCell(saisir_cellule_transporteur_titre("Communes",1));
         table3.completeRow();
-
-                for(Region r:ns.getDetailRegion().getRegion()) {
-                    table3.addCell(saisir_cellule(r.getNom_fr(), font, font, "", 2));
+        PdfPCell cell8 = new PdfPCell();
+        PdfPCell cell9 = new PdfPCell();
+        PdfPCell cell10 = new PdfPCell();
+        Paragraph p5 = new Paragraph();
+        Paragraph p6 = new Paragraph();
+        Paragraph p7 = new Paragraph();
+        if(ns.getDetailRegion()!=null) {
+                    for (Region r : ns.getDetailRegion().getRegion()) {
+                        p5.setAlignment(Element.ALIGN_LEFT);
+                        cell8.setPadding(5);
+                        cell8.setColspan(2);
+                        p5.add(new Phrase("- "+r.getNom_fr()+" \n \n" ,font));
+                       // table3.addCell(saisir_cellule(r.getNom_fr(), font, font, "", 2));
+                    }
+                        cell8.addElement(p5);
+                        table3.addCell(cell8);
+                    for (Prefecture p : ns.getDetailRegion().getPrefectures()) {
+                        p6.setAlignment(Element.ALIGN_LEFT);
+                        cell9.setPadding(5);
+                        p6.add(new Phrase("- "+p.getNom_fr()+" \n \n" ,font));
+                        //table3.addCell(saisir_cellule(p.getNom_fr(), font, font, "", 1));
+                    }
+                        cell9.addElement(p5);
+                        table3.addCell(cell9);
+                    for (Commune c : ns.getDetailRegion().getCommunes()) {
+                        p7.setAlignment(Element.ALIGN_LEFT);
+                        cell10.setPadding(5);
+                        p7.add(new Phrase("- "+c.getNom_fr()+" \n \n" ,font));
+                        //table3.addCell(saisir_cellule(c.getNom_fr(), font, font, "", 1));
+                    }
+                        cell10.addElement(p7);
+                        table3.addCell(cell10);
+                    table3.completeRow();
                 }
-                for(Prefecture p:ns.getDetailRegion().getPrefectures()) {
-                    table3.addCell(saisir_cellule(p.getNom_fr(), font, font, "", 1));
-                }
-                for(Commune c:ns.getDetailRegion().getCommunes()) {
-                    table3.addCell(saisir_cellule(c.getNom_fr(), font, font, "", 1));
-                }
-                table3.completeRow();
 
         table3.setSpacingAfter(12);
         //--------------------- Tableau Les Pièces ---------------------

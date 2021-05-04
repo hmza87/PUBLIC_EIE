@@ -22,7 +22,6 @@
             <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         </c:otherwise>
     </c:choose>
-
     <div class="row">
         <div class="col-12">
             <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" >
@@ -33,7 +32,6 @@
             </nav>
         </div>
     </div>
-
     <div class="row" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
         <div class="col-2" >
            <a href="/api/checkEIESelect" class="btn btn-success btn-block"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
@@ -98,7 +96,7 @@
                         </td>
                         <td>
                             <div class="col-md-3 col-sm-6">
-                                <a href="/api/generate_recap_Eie/${nt.id_demande_information}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+                                <a href="/api/recapEie/${nt.id_demande_information}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
                             </div>
                         </td>
                         <td>
@@ -145,9 +143,7 @@
 
 
                             <c:if test="${nt.statut.id_statut_projet==6}">
-
                                 <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
-
                             </c:if>
 
                             <c:if test="${nt.statut.id_statut_projet==47}">
@@ -160,9 +156,7 @@
 
                             <c:if test="${nt.statut.id_statut_projet==13 }">
                                 <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
-                                   class="btn btn-primary" title="Attacher Avis de projet"><i
-                                        class="fa fa-check"></i> Attacher l'avis de projet</a>
-
+                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
                             </c:if>
 
 
@@ -301,7 +295,6 @@
             </table>
         </div>
     </div>
-
 </section>
 
 <!-- Modal -->

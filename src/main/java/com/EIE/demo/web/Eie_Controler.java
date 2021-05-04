@@ -292,6 +292,17 @@ public class Eie_Controler {
 		model.put("test1", id);
 		return new ModelAndView("demande_eie/piecejointdemande", model);
 	}
+
+	@RequestMapping(value = "/api/recapEie/{id}", method = RequestMethod.GET)
+	public ModelAndView recapEie(@PathVariable int id) {
+		Compte ct = web.getCompteConnected();
+		DemandeInformation demande=web.getDemandeInfoById(id);
+		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("demande", demande);
+		model.put("doc",l);
+		return new ModelAndView("user_select/recap_EIE", model);
+	}
 	
 	@RequestMapping(value = "/api/changerStatuts/{id}/{statut}", method = RequestMethod.GET)
 	public @ResponseBody String changerStatuts(@PathVariable int id,@PathVariable int statut) {
