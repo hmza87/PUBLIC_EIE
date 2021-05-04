@@ -1007,7 +1007,13 @@ public class WebServiceImp implements WebService {
 				HttpMethod.POST, requestEntity, String.class);
 		return response.getBody();
 	}
-
+	@Override
+	public List<TransporteurParam> getTransporteurParamByCode(int code) {
+		final String uri = urlRest+"/getTransporteurParamByCodeRest/"+code;
+		RestTemplate restTemplate = new RestTemplate();
+		TransporteurParam[] result = restTemplate.getForObject(uri,TransporteurParam[].class);
+		return Arrays.asList(result);
+	}
 	//autorisation@2020
 //	admin_auto
 
