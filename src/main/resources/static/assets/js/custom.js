@@ -86,6 +86,7 @@ function show_etape_perso(id) {
             $("#zone_rech").addClass("d-none");
             $("#dev_step").removeClass("d-none");
             $("#dev_list_slc").addClass("d-none");
+            $(".select2").select2();
         })
         .fail(function() {
             console.log("error");
@@ -843,5 +844,27 @@ function fun_prescription_hide() {
 
 function fun_prescription_show() {
     $("#azertyui").show();
+}
+
+function rech_transporteur(val){
+    var code = $(val).val();
+    if($.trim(code)==="" || code==null || !$.isNumeric(code))
+        return false;
+
+    $.ajax({
+        url: '/getTabtransporteur/'+code,
+        type: 'POST',
+        data: {},
+    })
+        .done(function (data) {
+            $("#tab_transporteur").html(data);
+            console.log("success");
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
 }
 
