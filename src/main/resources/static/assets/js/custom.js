@@ -868,3 +868,34 @@ function rech_transporteur(val){
         });
 }
 
+function verifier_champ_vide(form,table,url,nameId,btn){
+
+    alert_error("Select[name=classification_id]");
+    alert_error("Select[name=code_id]");
+    alert_error("#Zone_Franche");
+    alert_error("#id_type");
+    alert_error("#unite_id");
+
+    /*if($.trim(qte)==="" || qte==null || $.isNumeric(qte)){
+        $("#quantite").addClass("bg_error");
+        swal("Avertissement !","le champs quantité est incorrecte","error");
+        return false;
+    }else{
+        $("#quantite").removeClass("bg_error");
+    }*/
+
+    addObjectGeneral(form,table,url,nameId,btn)*/
+}
+
+function alert_error(select){
+    var val = $(select).val();
+    if($.trim(val)==="" || val==null){
+        $(select).closest(".form-group").addClass("bg_errorSlecte");
+        swal("Avertissement !","un ou plusieurs champs sont vides","error");
+        return false;
+    }else{
+        $(select).closest(".form-group").removeClass("bg_errorSlecte");
+    }
+    return 0;
+}
+
