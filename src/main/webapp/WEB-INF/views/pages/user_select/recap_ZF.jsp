@@ -521,66 +521,6 @@
             </div>
           </div>
         </div>
-        <h2><spring:message code="label.Documentdemouvementsdesdechets"/></h2>
-        <div>
-
-          <div class="row">
-            <div class="col-md-6 col-sm-12">
-              <div class="form-group">
-                <label><spring:message code="label.Quantitereelle"/></label>
-                <input disabled class="form-control" value="${notification.quantite_reel}" type="text">
-              </div>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-              <div class="form-group">
-                <label><spring:message code="label.unite"/></label>
-                <input disabled class="form-control" value="${notification.unite.nom_fr}" type="text">
-              </div>
-            </div>
-          </div>
-
-
-          <div class="row">
-            <div class="col-md-6 col-sm-12">
-              <div class="form-group">
-                <label><spring:message code="label.Datereelledelexpedition"/></label>
-                <c:set var="date_reel" value="-"/>
-                <c:if test="${not empty notification.date_reel}">
-                  <fmt:formatDate value="${notification.date_reel}" pattern="dd/MM/yyyy" var="date_reel"/>
-                </c:if>
-                <input disabled class="form-control" value="${date_reel}" type="text">
-              </div>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-              <div class="form-group">
-                <label><spring:message code="label.Nombredecolis"/></label>
-                <input disabled class="form-control" value="${notification.nbr_colis}" type="text">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="form-group">
-                <label><spring:message code="label.Lieueffectifdeleliminationvalorisation"/></label>
-                <input disabled class="form-control" value="${notification.lieu} ${notification.lieux_elimination.nom_fr}" type="text">
-              </div>
-            </div>
-            <div class="col-auto">
-              <a class="btn btn-success" href="/api/okPDF/${notification.id_notification}">
-                <span class="fa fa-download"></span>
-               <spring:message code="label.documentdemouvement"/> 
-              </a>
-
-            </div>
-          </div>
-
-
-
-
-        </div>
         <h2><spring:message code="label.mespieces"/></h2>
         <div>
           <table class="table my_table table-striped table-bordered table-hover">
