@@ -115,12 +115,12 @@
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn2"
                             onclick="openCity(this, '2')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}
+                       2. Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}
                     </button>
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn3"
                             onclick="openCity(this, '3')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        <spring:message code="label.Documentdenotification"/>
+                        3. <spring:message code="label.Documentdenotification"/>
                     </button>
                     <c:if test="${((type.equals('ZF' ) || type.equals('XD'))  && notification.classification.id_classification==1)}">
                         <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn4"
@@ -154,16 +154,16 @@
                         <%--<spring:message code="label.installationdelimination"/>--%>
                             Installation d’élimination / valorisation
                     </button>
-                    <button style="white-space: normal;" class="tablinks btn-primary btn my_tab" ${disabledBtnTab}
+                    <%--<button style="white-space: normal;" class="tablinks btn-primary btn my_tab" ${disabledBtnTab}
                             id="Btn8" onclick="openCity(this, '8')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         4. <spring:message code="label.Documentdemouvementsdesdechets"/>
-                    </button>
+                    </button>--%>
 
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn9"
                             onclick="openCity(this, '9')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        5. <spring:message code="label.mespieces"/>
+                        4. <spring:message code="label.mespieces"/>
                     </button>
 
 
@@ -878,7 +878,7 @@
 
                                                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
                                                         onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
-                                                        class="btn btn-success mb-0 mt-4">
+                                                        class="btn btn-success">
                                                     <spring:message code="button.ajouter"/>
                                                 </button>
 
@@ -1563,14 +1563,14 @@
                                 <c:choose>
                                     <c:when test="${notification.eliminateur.id_eliminateur == null}">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                onclick="addObject_step('formeliminateur','eliminateur','8',${(empty notification)?'\'id_notification\'':notification.id_notification})"
+                                                onclick="addObject_step('formeliminateur','eliminateur','9',${(empty notification)?'\'id_notification\'':notification.id_notification})"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
                                     </c:when>
                                     <c:otherwise>
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                onclick="updateObject('formeliminateur','eliminateur','','8','id_eliminateur = '+${notification.eliminateur.id_eliminateur})"
+                                                onclick="updateObject('formeliminateur','eliminateur','','9','id_eliminateur = '+${notification.eliminateur.id_eliminateur})"
                                                 class="btn btn-success btn-block">
                                             <spring:message code="button.Suivant"/>
                                         </button>
@@ -1583,7 +1583,7 @@
 
                 </div>
                 <%--********************Tab7***************************--%>
-                <div id="8" class="tabcontent">
+                <%--<div id="8" class="tabcontent">
 
                     <h4 class="titre_abs "><spring:message code="label.Documentdemouvementsdesdechets"/></h4>
 
@@ -1650,7 +1650,7 @@
                             <div class="col-6">
                                 <label><spring:message code="label.Prescriptionsspecialesdemanutention"/></label>
                                 <div class="row">
-                                    <%--                                        <div class="col-2"></div>--%>
+                                    &lt;%&ndash;                                        <div class="col-2"></div>&ndash;%&gt;
                                     <div class="col-4 pl-4 border-right">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio"
@@ -1985,16 +1985,16 @@
                                         onclick="updateGeneral('formDoc_Mouv','notification',9,'${id}','id_notification','non')"
                                         class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
                                 </button>
-                                <%--<button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivante7"
+                                &lt;%&ndash;<button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivante7"
                                         onclick="updateObject('formDoc_Mouv','notification','','8', ' id_notification='+$('#id_obj3').val())"
                                         class="btn btn-success kouidi">Suivant
-                                </button>--%>
+                                </button>&ndash;%&gt;
                             </div>
                         </div>
 
                     </form>
 
-                </div>
+                </div>--%>
                 <%--********************Tab8***************************--%>
                 <div id="9" class="tabcontent">
 
@@ -2047,7 +2047,7 @@
                     <div class="row justify-content-center mt-2 mb-4">
                         <div class="col-md-2 col-sm-6">
                             <button type="button"
-                                    onclick="openCity1('Btn8','8')"
+                                    onclick="openCity1('Btn7','7')"
                                     class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
                             </button>
                         </div>

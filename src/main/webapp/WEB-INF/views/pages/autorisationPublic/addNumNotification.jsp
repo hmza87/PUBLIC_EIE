@@ -153,7 +153,7 @@
                            
                                 <select name="classification_id" id="Classification" required
                                         onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
-                                        class="form-control select2" data-width="100%">
+                                        class="form-control select2 bg_error" data-width="100%">
                                     <option value=""><spring:message code="option.Choisir"/></option>
                                     <c:forEach items="${classification}" var="t">
                                         <option  <c:if test="${notif.classification.id_classification== t[0]}"> selected </c:if> value="${t[0] }">${t[1] }</option>
@@ -326,7 +326,7 @@
                         </c:if>
                         <c:if test="${id>0}">
                             <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
-                                    onclick="updateGeneral('formnotif','notification',2,'${id}','id_notification','non')" class="btn btn-success btn-block mt-2 mb-4"><spring:message code="button.Suivant"/>
+                                    onclick="addObjectGeneral('formnotif','notification',2,'${id}','id_notification','non')" class="btn btn-success btn-block mt-2 mb-4"><spring:message code="button.Suivant"/>
                             </button>
 
                         </c:if>
