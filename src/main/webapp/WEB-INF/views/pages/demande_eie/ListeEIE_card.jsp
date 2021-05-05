@@ -29,7 +29,7 @@
                         <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
                         <h6 class="card-title"><spring:message code="option.Etudedimpactenvironnementale"/></h6>
 
-                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EIE}','/api/checkEIESelect')"><spring:message code="button.consulter"/></a>
+                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EIE}','/api/checkEIESelect/EE')"><spring:message code="button.consulter"/></a>
                         <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkEIESelect"><spring:message code="button.consulter"/></a>--%>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
                         <h6 class="card-title"><spring:message code="option.Noticedimpact"/></h6>
 
-                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.NT}','#')"><spring:message code="button.consulter"/> </a>
+                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.NT}','/api/checkEIESelect/NT')"><spring:message code="button.consulter"/> </a>
                         <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkUserDispatch/IT"><spring:message code="button.consulter"/> </a>--%>
                     </div>
                 </div>

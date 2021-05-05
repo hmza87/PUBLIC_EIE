@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -864,6 +865,21 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public String setFilImpactToDemandeInfo(int id, MultipartFile[] fileToUpload) {
+		final String uris = urlRest + "/setFilImpactToDemandeInfoRest/"+id;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file", new FileSystemResource(convert(fileToUpload[0])));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+
+	}
+
+	@Override
 	public String updateDetailRegionInstall(int id, String region, String prefecture, String commune,String type) {
 		final String uri = urlRest+"/updateDetailRegionInstall/"+id +"/"+region + "/" +prefecture+"/"+commune+"/"+type;
 		RestTemplate restTemplate = new RestTemplate();
@@ -989,10 +1005,10 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public String updateDemandeInformation(int id, DemandeInformation demandeInformation) {
-		final String uri = urlRest+"/updateDemandeInformationRest/"+id;
+	public String updateDemandeInformation(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String nature_foncier, String caracteristiques_projet, String ressource, String source, String nature_projet, String qualitative, String quantite_projet, int id_unit, int id_caracter_physique, int id_poplation) {
+		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier+"/"+nature_foncier+"/"+caracteristiques_projet+"/"+ressource+"/"+source+"/"+nature_projet+"/"+qualitative+"/"+quantite_projet+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation;
 		RestTemplate restTemplate = new RestTemplate();
-		return restTemplate.postForObject(uri, demandeInformation, String.class);
+		return restTemplate.getForObject(uri, String.class);
 	}
 
 	@Override

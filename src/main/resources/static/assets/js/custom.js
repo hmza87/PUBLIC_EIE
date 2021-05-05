@@ -1072,4 +1072,46 @@ function go_link(url){
     window.location.href=url;
 }
 
+function fun_setimpacts() {
+    alert("fgdfgdg")
+    event.preventDefault();
+    var id_demande = $("#id_demande_information").val();
+
+
+
+
+
+
+
+
+
+
+
+    if ($.trim(id_demande) == "" || id_demande == 0 || id_demande == null) {
+        return false;
+    }
+    var data = new FormData();
+    var d = document.getElementById("impacts").files.length;
+    for (var x = 0; x < d; x++) {
+        data.append("fileToUpload", document.getElementById("impacts").files[x]);
+    }
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setFilImpactToDemandeInfo/" + id_demande,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+            alert(data)
+        },
+        error: function () {
+
+        }
+    });
+
+
+}
+
 

@@ -161,13 +161,16 @@
                                         <input ${disabled} value="${demande.montant_investissement }" type="text" name="montant_investissement" class="form-control">
                                     </div>
                                 </div>
-                                <c:if test="${type=='NT'}">
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label >Date de réception</label>
-                                        <input ${disabled} value="${demande.date_reception }" type="date" name="date_reception" class="form-control">
+                                        <label> <spring:message code="label.Tronsfrontalier"/>  </label>
+                                        <select ${disabled }  onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
+                                            <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
+                                            <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
+                                        </select>
                                     </div>
                                 </div>
+                                <c:if test="${type=='NT'}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Nature foncier</label>
@@ -213,7 +216,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Unité</label>
-                                            <select name="uniteId" id="uniteId"
+                                            <select  id="uniteId"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -228,7 +231,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Caractéristique physique</label>
-                                            <select name="idcaracteristquePhysique" id="idcaracteristquePhysique"
+                                            <select id="idcaracteristquePhysique"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -243,7 +246,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Population</label>
-                                            <select name="id_population" id="id_population"
+                                            <select id="id_population"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -258,7 +261,9 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Les Impacts positifs et négatifs du projet</label>
-                                            <input ${disabled} value="${demande.impacts }" type="file" name="impacts" class="form-control">
+                                            <input type="file" id="impacts" class="form-control" onchange="fun_setimpacts()">
+                                            <input type="hidden" id="id_demande_information" class="form-control" name=""
+                                                   value="${demande.id_demande_information}">
                                         </div>
                                     </div>
                                 </c:if>
@@ -274,15 +279,6 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.Tronsfrontalier"/>  </label>
-                                        <select ${disabled }  onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
-                                            <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
-                                            <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row justify-content-center p-0 mb-3">
                                 <div class="col-md-3 col-sm-12">

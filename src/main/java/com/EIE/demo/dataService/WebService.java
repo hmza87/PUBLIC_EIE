@@ -4,6 +4,8 @@ import com.EIE.demo.model.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -141,6 +143,8 @@ public interface WebService {
 
 	String setFilQualifToInstall(int id, MultipartFile[] fileToUpload);
 
+	String setFilImpactToDemandeInfo(int id, MultipartFile[] fileToUpload);
+
 	String updateDetailRegionInstall(int id, String region, String prefecture, String commune,String type);
 
 	Integer getcountEIEByType(String type,int id_compt);
@@ -163,7 +167,7 @@ public interface WebService {
 
 	List<Commune> savecommuneDetailRegion(String id, int id_dmd, int compteId);
 
-	String updateDemandeInformation(int id, DemandeInformation demandeInformation);
+	String updateDemandeInformation(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String nature_foncier, String caracteristiques_projet, String ressource, String source, String nature_projet, String qualitative, String quantite_projet, int unite, int id_caracter_physique, int id_poplation );
 
     String setFileToDemande(int id, MultipartFile[] fileToUpload);
 	List<TransporteurParam> getTransporteurParamByCode(int code);
