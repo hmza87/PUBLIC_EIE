@@ -76,14 +76,15 @@ text-align:right !important;
                             <img src="${pageContext.request.contextPath}/assets/images/saisir.png">
                           </div>
                         </div>
+
                         <div class="col-md-9 col-sm-12 pr-0 pl-0">
                           <p class="text-success font_bold text-left pl-2"><spring:message code="label.Deposerundossier"/></p>
                          <hr>
                             <p class="pl-2 text-justify margin10" >
-                              Pour déposer le dossier d'une nouvelle demande de l'EIE, cliquez sur  <b>Etude d’Impact sur l’Environnement :</b><br>
+                              Pour déposer le dossier d'une nouvelle demande de l'EIE, cliquez sur  <b>${titre_dyn} :</b><br>
                             </p>
                           <div class="text-left">
-                            <button onclick="go_to_l('/api/demandeinformation/0/EE')" class="btn btn-sm btn-success margin10" >Etude d’Impact sur l’Environnement <span class="fa fa-angle-double-right"></span></button>
+                            <button onclick="go_to_l('/api/demandeinformation/0/${type}')" class="btn btn-sm btn-success margin10" >${titre_dyn} <span class="fa fa-angle-double-right"></span></button>
                           </div>
 
                           <p class="pl-2 text-justify margin10" >Pour toutes autres informations, cliquez sur <b> Renseignements préalables :</b></p>

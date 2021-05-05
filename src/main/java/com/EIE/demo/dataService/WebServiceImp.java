@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -988,10 +989,10 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public String updateDemandeInformation(String intitule_projet, String montant_investissement, String tronsfrontalier, int id) {
-		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier;
+	public String updateDemandeInformation(int id, DemandeInformation demandeInformation) {
+		final String uri = urlRest+"/updateDemandeInformationRest/"+id;
 		RestTemplate restTemplate = new RestTemplate();
-		return restTemplate.getForObject(uri,String.class);
+		return restTemplate.postForObject(uri, demandeInformation, String.class);
 	}
 
 	@Override
@@ -1060,5 +1061,16 @@ class WebServiceImp implements WebService {
 	//autorisation@2020
 //	admin_auto
 
+
+
+	//dounia
+
+	@Override
+	public int getNombreEIEByUser(int compteId, String type) {
+		final String uri = urlRest+"/getNombreEIEByUserRest/"+compteId + "/" + type;
+		RestTemplate restTemplate = new RestTemplate();
+		Integer  result = restTemplate.getForObject(uri, Integer.class);
+		return result;
+	}
 
 }

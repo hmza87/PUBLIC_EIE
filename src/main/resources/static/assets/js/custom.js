@@ -737,15 +737,13 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
         swal("Avertissement ! ", 'Le champs Montant d\'investissement est incorrecte', 'error');
         return false;
     }
+    var se = $("#"+form).serialize();
 
     $.ajax({
         type: "POST",
         url: "/api/updateDemandeInfomration/" + id,
-        data: {
-            "intitule_projet": $("input[name=intitule_projet]").val(),
-            "montant_investissement": $("input[name=montant_investissement]").val(),
-            "tronsfrontalier": $("select[name=tronsfrontalier]").val()
-        },
+        contentType: 'application/json; charset=utf-8',
+        data: se,
         success: function (response) {
             console.log("success : " + response);
             affiche_eie_zone(step, id_btn_step);

@@ -163,7 +163,7 @@ public interface WebService {
 
 	List<Commune> savecommuneDetailRegion(String id, int id_dmd, int compteId);
 
-	String updateDemandeInformation(String intitule_projet, String montant_investissement, String tronsfrontalier, int id);
+	String updateDemandeInformation(int id, DemandeInformation demandeInformation);
 
     String setFileToDemande(int id, MultipartFile[] fileToUpload);
 	List<TransporteurParam> getTransporteurParamByCode(int code);
@@ -175,5 +175,7 @@ public interface WebService {
 	String setNbrColies(int id_notif, int nbr);
 
 	String setdocMouvement(MultipartFile file, int id_notif, int type);
+
+	public int getNombreEIEByUser(int compteId, String type);
 
 }

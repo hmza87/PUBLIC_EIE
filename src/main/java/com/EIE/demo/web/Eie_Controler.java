@@ -115,6 +115,9 @@ public class Eie_Controler {
 		Compte ct = web.getCompteConnected();
 		Object[] rg = web.tronsaction("select", " * from Region", "delete_date_time is NULL");
 		Object[] cat = web.tronsaction("select", " * from Categorie", "delete_date_time is NULL");
+		Object[] caracteristiquephysique = web.tronsaction("select", " id_classification,nom_fr,nom_ar from caracteristiquephysique ", " delete_date_time is null ");
+		Object[] population = web.tronsaction("select", " id_population,nom_fr,nom_ar from population ", " delete_date_time is null ");
+		Object[] unite_id = web.tronsaction("select", " unite_id,nom_fr,nom_ar from unite ", " delete_date_time is null ");
 		DemandeInformation demande = null;
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("user", ct);
@@ -122,6 +125,8 @@ public class Eie_Controler {
 		model.put("cat", cat);
 		if(type.equals("RS")){
 			model.put("titre_dyn","Renseignements préalables ");
+		}else if(type.equals("NT")){
+			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
 		}else{
 			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
 		}
@@ -169,7 +174,9 @@ public class Eie_Controler {
 		model.put("demande", demande);
 		model.put("id", id);
 		model.put("url_Admin",urlRest);
-
+		model.put("caracteristiquephysique", caracteristiquephysique);
+		model.put("unite_id", unite_id);
+		model.put("population", population);
 		return new ModelAndView("demande_eie/avis_projet_add", model);
 	}
 

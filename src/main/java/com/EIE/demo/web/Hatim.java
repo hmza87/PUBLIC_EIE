@@ -201,21 +201,15 @@ public class Hatim {
 	@RequestMapping(value = "/videoList",method = RequestMethod.GET)
 	public ModelAndView videoList() throws Exception {
 		Map<String,Object> map = new HashMap<>();
+
 		map.put("user",webt.getCompteConnected());
 		return new ModelAndView("aide/videolist",map);
-	}
-
-	@RequestMapping(value = "/CatalogueDesDechet",method = RequestMethod.GET)
-	public ModelAndView CatalogueDesDechet() throws Exception {
-		Map<String,Object> map = new HashMap<>();
-		map.put("listF",webt.getListAllTransporteurParam());
-		map.put("code",webt.getListCodeTabByClassif(1));
-		return new ModelAndView("aide/CatalogueDesDechet",map);
 	}
 
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)
 	public ModelAndView guideList() throws Exception {
 		Map<String,Object> map = new HashMap<>();
+
 		map.put("user",webt.getCompteConnected());
 		return new ModelAndView("aide/guide",map);
 	}
@@ -633,16 +627,29 @@ public class Hatim {
 	}
 
 
-	@RequestMapping(value = "/api/checkEIESelect", method = RequestMethod.GET)
-	public  ModelAndView checkEIESelect() {
+	@RequestMapping(value = "/api/checkEIESelect/{type}", method = RequestMethod.GET)
+	public  ModelAndView checkEIESelect(@PathVariable String type) {
 		Map<String,Object> model = new HashMap<>();
 		model.put("user",webt.getCompteConnected());
-		model.put("type","EIE");
-		model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
-		model.put("EE",webt.getcountEIEByType("EE",webt.getCompteConnected().getCompteId()));
+		//model.put("type","EIE");
+		model.put("type",type);
+		if(type.equals("RS")){
+			model.put("titre_dyn","Renseignements préalables ");
+			model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
+		}else if(type.equals("EE")){
+			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+			model.put("EE",webt.getcountEIEByType("EE",webt.getCompteConnected().getCompteId()));
+		}else if(type.equals("NT")){
+			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
+			model.put("NT",webt.getcountEIEByType("NT",webt.getCompteConnected().getCompteId()));
+		}
+
+
 		return new ModelAndView("user_select/ListeEtudeEnv_card",model);
 
 	}
+
+
 
 	@RequestMapping(value = "/connexion", method = RequestMethod.GET)
 	public  ModelAndView connexion_login() {
@@ -889,7 +896,7 @@ public class Hatim {
 		return new ModelAndView("user_select/auto_load_Transporteur_etranger",map);
 	}
 
-	
+
 
 	@RequestMapping(value = "/api/changerStatus", method = RequestMethod.POST)
 	public @ResponseBody String changerStatus(@RequestParam String type,@RequestParam int id_notif,@RequestParam int id_statut)
@@ -899,12 +906,12 @@ public class Hatim {
 
 
 	@RequestMapping(value = "/api/updateDemandeInfomration/{id}", method = RequestMethod.POST)
-	public @ResponseBody String updateDemandeInfomration(@RequestParam String intitule_projet,@RequestParam String montant_investissement,
-														 @RequestParam String tronsfrontalier,@PathVariable int id)
+	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestBody DemandeInformation demandeInformation)
 			throws JsonParseException {
-		String xd= webt.updateDemandeInformation(intitule_projet,montant_investissement,tronsfrontalier,id);
+		String xd= webt.updateDemandeInformation(id, demandeInformation);
 		return xd;
 	}
+
 
 	@RequestMapping(value = "/api/getfileByIdDemande/{id}/{type}", method = RequestMethod.POST)
 	public ModelAndView getfileByIdDemande(@PathVariable int id,@PathVariable String type){
@@ -947,17 +954,10 @@ public class Hatim {
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("doc",webt.getDocImportByType(type));
 		model.put("type",type);
-		model.put("codes",webt.getListCodeTabByClassif(1));
 		model.put("show","procedure");
 		return new ModelAndView("user_select/auto_load_accordion",model);
 	}
 
-	@RequestMapping(value = "/getTabtransporteur/{code}", method = RequestMethod.POST)
-	public ModelAndView getTabtransporteur(@PathVariable int code) {
-		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("trans",webt.getTransporteurParamByCode(code));
-		return new ModelAndView("user_select/auto_load_TabtransporteurDechets",model);
-	}
 
 
 

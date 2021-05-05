@@ -161,6 +161,107 @@
                                         <input ${disabled} value="${demande.montant_investissement }" type="text" name="montant_investissement" class="form-control">
                                     </div>
                                 </div>
+                                <c:if test="${type=='NT'}">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label >Date de réception</label>
+                                        <input ${disabled} value="${demande.date_reception }" type="date" name="date_reception" class="form-control">
+                                    </div>
+                                </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Nature foncier</label>
+                                            <input ${disabled} value="${demande.nature_foncier }" type="text" name="nature_foncier" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Caractéristiques du projet</label>
+                                            <input ${disabled} value="${demande.caracteristiques_projet }" type="text" name="caracteristiques_projet" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Nature du projet</label>
+                                            <input ${disabled} value="${demande.nature_projet }" type="text" name="nature_projet" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Ressources</label>
+                                            <textarea ${disabled} type="text" name="ressource" class="form-control" rows="3">${demande.ressource }</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Source</label>
+                                            <textarea ${disabled} type="text" name="source" class="form-control" rows="3">${demande.source }</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Qualitative</label>
+                                            <input ${disabled} value="${demande.qualitative }" type="text" name="qualitative" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Quantité estimée</label>
+                                            <input ${disabled} value="${demande.quantite_projet }" type="text" name="quantite_projet" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Unité</label>
+                                            <select name="uniteId" id="uniteId"
+                                                    class="form-control select2"
+                                                    data-width="100%">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <c:forEach items="${unite_id}" var="t">
+                                                    <option  <c:if
+                                                            test="${demande.unite.unite_id== t[0]}"> selected </c:if>
+                                                            value="${t[0] }">${t[1] }</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Caractéristique physique</label>
+                                            <select name="idcaracteristquePhysique" id="idcaracteristquePhysique"
+                                                    class="form-control select2"
+                                                    data-width="100%">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <c:forEach items="${caracteristiquephysique}" var="t">
+                                                    <option  <c:if
+                                                            test="${demande.caracteristquePhysique.id_classification== t[0]}"> selected </c:if>
+                                                            value="${t[0] }">${t[1] }</option>
+                                                </c:forEach>
+                                            </select>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Population</label>
+                                            <select name="id_population" id="id_population"
+                                                    class="form-control select2"
+                                                    data-width="100%">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <c:forEach items="${population}" var="t">
+                                                    <option  <c:if
+                                                            test="${demande.population.id_population== t[0]}"> selected </c:if>
+                                                            value="${t[0] }">${t[1] }</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Les Impacts positifs et négatifs du projet</label>
+                                            <input ${disabled} value="${demande.impacts }" type="file" name="impacts" class="form-control">
+                                        </div>
+                                    </div>
+                                </c:if>
                                 <c:if test="${not empty demande.categories}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
@@ -173,7 +274,6 @@
                                         </div>
                                     </div>
                                 </c:if>
-
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label> <spring:message code="label.Tronsfrontalier"/>  </label>
@@ -258,7 +358,7 @@
                                         <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','#step3','#step_id3')" >  <spring:message code="button.Suivant"/> </button>
                                     </div>
                                     </c:if>
-                                    <c:if test="${type=='RS'}">
+                                    <c:if test="${type=='RS' || type=='NT'}">
                                         <div class="col-sm-12 col-md-3">
                                             <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" >  <spring:message code="button.Enregistrer"/> </button>
                                         </div>

@@ -183,8 +183,8 @@
                                         <c:if test="${!user.st.etat.equals('2')   }">
                                             <li  class="dropdown"><a href="/api/ListeEIE_card" class="at"><spring:message code="label.Evaluationenvironnementale"/></a>
                                                 <ul>
-                                                    <li><a onclick="checkAut('${user.st.EIE}','/api/checkEIESelect')"><spring:message code="label.Etudedimpactenvironnementale"/></a></li>
-                                                     <li><a onclick="checkAut('${user.st.NT}','#')"><spring:message code="label.Noticedimpact"/></a></li>
+                                                    <li><a onclick="checkAut('${user.st.EIE}','/api/checkEIESelect/EE')"><spring:message code="label.Etudedimpactenvironnementale"/></a></li>
+                                                     <li><a onclick="checkAut('${user.st.NT}','/api/checkEIESelect/NT')"><spring:message code="label.Noticedimpact"/></a></li>
                                                 <li><a onclick="checkAut('${user.st.EA}','#')"><spring:message code="label.Auditenvironnementale"/></a></li>
                                                    
                                                 </ul>

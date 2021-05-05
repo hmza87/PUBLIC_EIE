@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -105,6 +106,155 @@ public class DemandeInformation implements Serializable {
 
     @Column(name = "Montant_investissement")
     private Integer Montant_investissement=0;
+
+    //***************************Notice********************************//
+    @Column(name = "Date_reception", nullable = true)
+    private String Date_reception;
+
+    @Column(name = "Nature_foncier", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String Nature_foncier;
+
+    @Column(name = "caracteristiques_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String caracteristiques_projet;
+
+    @Column(name = "ressource", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String ressource;
+
+    @Column(name = "source", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String source;
+
+    @Column(name = "estimation_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String estimation_projet;
+
+    @Column(name = "nature_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String nature_projet;
+
+    @Column(name = "quantite_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String quantite_projet;
+
+    @Column(name = "impacts", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String impacts;
+
+    @Column(name = "qualitative", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String qualitative;
+
+    @Column(name = "caracter_physique", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String caracter_physique;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uniteId")
+    private Unite unite;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idcaracteristquePhysique")
+    private CaracteristquePhysique caracteristquePhysique;
+
+    public CaracteristquePhysique getCaracteristquePhysique() {
+        return caracteristquePhysique;
+    }
+
+    public void setCaracteristquePhysique(CaracteristquePhysique caracteristquePhysique) {
+        this.caracteristquePhysique = caracteristquePhysique;
+    }
+
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String type;
+
+    public String getDate_reception() {
+        return Date_reception;
+    }
+
+    public void setDate_reception(String date_reception) {
+        Date_reception = date_reception;
+    }
+
+    public String getNature_foncier() {
+        return Nature_foncier;
+    }
+
+    public void setNature_foncier(String nature_foncier) {
+        Nature_foncier = nature_foncier;
+    }
+
+    public String getCaracteristiques_projet() {
+        return caracteristiques_projet;
+    }
+
+    public void setCaracteristiques_projet(String caracteristiques_projet) {
+        this.caracteristiques_projet = caracteristiques_projet;
+    }
+
+    public String getRessource() {
+        return ressource;
+    }
+
+    public void setRessource(String ressource) {
+        this.ressource = ressource;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getEstimation_projet() {
+        return estimation_projet;
+    }
+
+    public void setEstimation_projet(String estimation_projet) {
+        this.estimation_projet = estimation_projet;
+    }
+
+    public String getNature_projet() {
+        return nature_projet;
+    }
+
+    public void setNature_projet(String nature_projet) {
+        this.nature_projet = nature_projet;
+    }
+
+    public String getQuantite_projet() {
+        return quantite_projet;
+    }
+
+    public void setQuantite_projet(String quantite_projet) {
+        this.quantite_projet = quantite_projet;
+    }
+
+    public String getImpacts() {
+        return impacts;
+    }
+
+    public void setImpacts(String impacts) {
+        this.impacts = impacts;
+    }
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_population")
+    private Population population;
+
+    public Population getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(Population population) {
+        this.population = population;
+    }
+    //***********************************************************//
 
     public String getTypeEnv() {
         return typeEnv;
@@ -538,6 +688,30 @@ public class DemandeInformation implements Serializable {
 
     public List<ListDocReunion> getListDocReunions() {
         return listDocReunions;
+    }
+
+    public String getQualitative() {
+        return qualitative;
+    }
+
+    public void setQualitative(String qualitative) {
+        this.qualitative = qualitative;
+    }
+
+    public String getCaracter_physique() {
+        return caracter_physique;
+    }
+
+    public void setCaracter_physique(String caracter_physique) {
+        this.caracter_physique = caracter_physique;
+    }
+
+    public Unite getUnite() {
+        return unite;
+    }
+
+    public void setUnite(Unite unite) {
+        this.unite = unite;
     }
 
     public void setListDocReunions(List<ListDocReunion> listDocReunions) {
