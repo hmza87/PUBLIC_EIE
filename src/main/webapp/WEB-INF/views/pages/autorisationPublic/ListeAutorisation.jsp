@@ -85,7 +85,7 @@
                     <td> ${nt.code.nom_fr }  </td>
                     <td> ${nt.code.nom_ar }  </td>
                     <td> ${nt.zonneFranche.nom_fr } ${nt.pays.nom_fr}</td>
-                     <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==48)?nt.statut.nom_fr:"en cours de traitement" }</span>  </td>
+                     <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==65)?nt.statut.nom_fr:"en cours de traitement" }</span>  </td>
                     <td>  ${nt.operation }  </td>
                     <td> ${nt.quantite } ${nt.unite.nom_fr } </td>
                    
