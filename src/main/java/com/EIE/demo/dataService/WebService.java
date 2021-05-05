@@ -168,4 +168,12 @@ public interface WebService {
     String setFileToDemande(int id, MultipartFile[] fileToUpload);
 	List<TransporteurParam> getTransporteurParamByCode(int code);
 
+    Notification saveDocumentMouvement(int id_notif, int id_detail, int qte, MultipartFile file);
+
+    Notification deleteDocMouvbyId(int id,int id_notif);
+
+	String setNbrColies(int id_notif, int nbr);
+
+	String setdocMouvement(MultipartFile file, int id_notif, int type);
+
 }

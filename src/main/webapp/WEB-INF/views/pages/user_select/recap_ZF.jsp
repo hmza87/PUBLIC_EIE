@@ -563,7 +563,7 @@
           </div>
           <c:if test="${type=='ZF' || type=='XD'}">
             <div class="col-md-auto col-sm-6 ">
-              <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter document de Mouvement</a>
+              <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter le certificat d'élimination</a>
             </div>
           </c:if>
         </c:if>

@@ -323,7 +323,8 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 }
 
 function changer_statut(id_name, code_statut, msg_alert) {
-    event.preventDefault();
+    if(event!=null)
+        event.preventDefault();
     var id = $("#" + id_name).val();
     var link_recap = "/api/recapEie/" + id;
     if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
@@ -898,4 +899,165 @@ function alert_error(select){
     }
     return 0;
 }
+
+function add_detail_mouvement(id_notif){
+    if(event!=null)
+        event.preventDefault();
+
+    var id = $("#id_detail_unit").val();
+    var qte = $("#qte_unit").val();
+    var files = $("#file_unit")[0].files.length;
+    var nbr_colis = $("#nbr_colis").val();
+    var tr = $("#detail_mouvement table tbody tr").length;
+    var qteTotal = parseInt($("#qte_prevue").val()) - (parseInt($("#qteTotale").val()) +parseInt(qte));
+
+    if(qteTotal<0){
+        swal("Avertissement !","La quantité saisie est supérieure à la somme totale prévue","error");
+        return false;
+    }
+
+    if($.trim(id)==="" || id==null || !$.isNumeric(id)){
+        id=0;
+    }
+    if($.trim(qte)==="" || qte==null || !$.isNumeric(qte)){
+        swal("Avertissement !","La quantité est invalide","error");
+        return false;
+    }
+    if(files==0){
+        swal("Avertissement !","Le fichier est obligatoire","error");
+        return false;
+    }
+    if($.trim(nbr_colis)==="" || nbr_colis==null || !$.isNumeric(nbr_colis) || nbr_colis===0 || nbr_colis<=tr){
+        swal("Avertissement !","Nombre de colis maximum atteind\nMerci de Changer le nombre de colis","error");
+        return false;
+    }
+    var data = new FormData();
+    data.append("qte", parseInt(qte));
+    data.append("id_detail", parseInt(id));
+    data.append("file",$("#file_unit")[0].files[0]);
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setDocMouvementDetail/" + id_notif,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+            $("#detail_mouvement").html(response);
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function delete_docMouv(id,id_notif){
+    if(event!=null)
+        event.preventDefault();
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/deleteDocMouv/" + id+"/"+id_notif,
+        data: {},
+        success: function (response) {
+            $("#detail_mouvement").html(response);
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function setnbrColis(val,id_notif){
+    if(event!=null)
+        event.preventDefault();
+    var nbr = $(val).val();
+    var tr = $("#detail_mouvement tbody tr").length;
+    if($.trim(nbr)==="" || nbr==null || !$.isNumeric(nbr) || nbr<tr){
+        swal("Avertissement ! ","La valeur saisie est incorecte","error");
+        return false
+    }
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setNbrColie/" + id_notif+"/"+nbr,
+        data: {},
+        success: function (response) {
+            if(nbr==tr)
+                $("#btn_add_detail").prop("disabled",true);
+            else
+                $("#btn_add_detail").prop("disabled",false);
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function updateFile(id_notif,val,type){
+    if(event!=null)
+        event.preventDefault();
+    var data = new FormData();
+    var files = $(val)[0].files.length;
+    if(files==0){
+        swal("Avertissement !","Le fichier est obligatoire","error");
+        return false;
+    }
+
+    data.append("file",$(val)[0].files[0]);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setDocumentDocMouvement/" + id_notif+"/"+type,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+
+        },
+        error: function () {
+
+        }
+    });
+
+
+}
+
+function changer_Statut_zf_auth(id_notif, id_statut, type) {
+    if(event!=null)
+        event.preventDefault();
+    var link_recap = "/api/getnotifById1/" + type + "/" + id_notif;
+    $.ajax({
+        url: '/api/changerStatus',
+        type: 'POST',
+        data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
+    })
+        .done(function () {
+            Swal.fire({
+                title: '<strong>votre demande a été effectué avec succès</strong>',
+                icon: 'success',
+                html:
+                    '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                focusConfirm: false,
+                allowOutsideClick: false
+            });
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
+
+}
+
+
+
 

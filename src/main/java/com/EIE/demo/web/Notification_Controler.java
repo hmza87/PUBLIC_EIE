@@ -22,6 +22,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -747,7 +748,45 @@ public class Notification_Controler {
 		Notification n = web.getNotificationByIdComptId(id,web.getCompteConnected().getCompteId());
 		model.put("type",n.getZf_et());
 		model.put("notification",n);
+		model.put("Admin_url",urlRest);
 		return new ModelAndView("autorisationPublic/addDocMouvement",model);
 	}
+
+	@RequestMapping(value = "/api/setDocMouvementDetail/{id_notif}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelAndView setDocMouvementDetail(@PathVariable int id_notif,@RequestParam MultipartFile file,@RequestParam int qte,@RequestParam int id_detail) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		Notification n = web.saveDocumentMouvement(id_notif,id_detail,qte,file);
+		model.put("notification",n);
+		model.put("Admin_url",urlRest);
+		return new ModelAndView("user_select/auto_load_TabDocMouv",model);
+	}
+
+
+	@RequestMapping(value = "/api/deleteDocMouv/{id}/{id_notif}", method = RequestMethod.POST)
+	public ModelAndView deleteDocMouv(@PathVariable int id,@PathVariable int id_notif) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		Notification n = web.deleteDocMouvbyId(id,id_notif);
+		model.put("Admin_url",urlRest);
+		model.put("notification",n);
+		return new ModelAndView("user_select/auto_load_TabDocMouv",model);
+	}
+
+	@RequestMapping(value = "/api/setNbrColie/{id_notif}/{nbr}", method = RequestMethod.POST)
+	public @ResponseBody String setNbrColie(@PathVariable int id_notif,@PathVariable int nbr) {
+		String s = web.setNbrColies(id_notif,nbr);
+		return s;
+	}
+
+	@RequestMapping(value = "/api/setDocumentDocMouvement/{id_notif}/{type}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public @ResponseBody String setDocumentDocMouvement(@PathVariable int id_notif,@PathVariable int type,@RequestParam MultipartFile file) {
+		String s = web.setdocMouvement(file,id_notif,type);
+		return s;
+	}
+
+
+
+
+
+
 
 }

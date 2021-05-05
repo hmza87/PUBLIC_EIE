@@ -30,7 +30,8 @@ import java.util.stream.Collectors;
 
 //
 @Service
-public class WebServiceImp implements WebService {
+public
+class WebServiceImp implements WebService {
 
 	@Value("${url}")
 	private String urlRest;
@@ -1013,6 +1014,48 @@ public class WebServiceImp implements WebService {
 		RestTemplate restTemplate = new RestTemplate();
 		TransporteurParam[] result = restTemplate.getForObject(uri,TransporteurParam[].class);
 		return Arrays.asList(result);
+	}
+	@Override
+	public Notification saveDocumentMouvement(int id_notif, int id_detail, int qte, MultipartFile file) {
+		final String uris = urlRest + "/saveDocumentMouvementRest/"+id_notif+"/"+id_detail;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+
+		bodyMapw.add("file",new FileSystemResource(convert(file)));
+		bodyMapw.add("qte",qte);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Notification> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, Notification.class);
+		return response.getBody();
+	}
+	@Override
+	public Notification deleteDocMouvbyId(int id,int id_notif) {
+		final String uri = urlRest+"/deleteDocMouvbyIdRest/"+id+"/"+id_notif;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri,Notification.class);
+	}
+	@Override
+	public String setNbrColies(int id_notif, int nbr) {
+		final String uri = urlRest+"/setNbrColiesRest/"+id_notif+"/"+nbr;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri,String.class);
+	}
+	@Override
+	public String setdocMouvement(MultipartFile file, int id_notif, int type) {
+		final String uris = urlRest + "/setdocMouvementRest/"+id_notif+"/"+type;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file",new FileSystemResource(convert(file)));
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
 	}
 	//autorisation@2020
 //	admin_auto

@@ -696,5 +696,17 @@ public class Notification implements Serializable {
 	public void setDocMouvement(List<DetailDocumentMouvement> docMouvement) {
 		this.docMouvement = docMouvement;
 	}
+	public String getUrl_certicat_elimination() {
+		return url_certicat_elimination;
+	}
+	public void setUrl_certicat_elimination(String url_certicat_elimination) {
+		this.url_certicat_elimination = url_certicat_elimination;
+	}
+	public String getUrl_quantite_justificatif() {
+		return url_quantite_justificatif;
+	}
+	public void setUrl_quantite_justificatif(String url_quantite_justificatif) {
+		this.url_quantite_justificatif = url_quantite_justificatif;
+	}
 
 }
