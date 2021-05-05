@@ -1447,7 +1447,7 @@
                                 <c:choose>
                                     <c:when test="${notification.producteur.id_producteur == null}">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                onclick="addObject_step('formproducteur','producteur','7',${(empty notification)?'\'id_notification\'':notification.id_notification})"
+                                                onclick="addObject_step('formproducteur','producteur','7','id_notification')"
                                                 class="btn btn-success btn-block">
                                             <spring:message code="button.Suivant"/>
                                         </button>
@@ -1563,7 +1563,7 @@
                                 <c:choose>
                                     <c:when test="${notification.eliminateur.id_eliminateur == null}">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                onclick="addObject_step('formeliminateur','eliminateur','9',${(empty notification)?'\'id_notification\'':notification.id_notification})"
+                                                onclick="addObject_step('formeliminateur','eliminateur','9','id_notification')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
