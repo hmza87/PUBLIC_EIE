@@ -234,7 +234,13 @@
           </div>
 
         </div>
-        <h2><spring:message code="label.Documentdenotification"/></h2>
+        <h2>
+          <spring:message code="label.Documentdenotification"/>
+          <button style="font-size: 12px !important;" type="button" id="Suivante" onclick="updatePdf(${notification.id_notification })" class="btn btn-warning btn-sm text-white">
+          <spring:message code="label.Imprimer"/>
+
+        </button>
+        </h2>
         <div>
           <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -315,14 +321,15 @@
             </div>
           </div>
 
-          <div class="col-auto">
-          <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivante"
-                  onclick="updatePdf(${notification.id_notification })"
-                  class="btn btn-success">
-            <spring:message code="label.Imprimer"/>
 
-          </button>
+
         </div>
+        <h2><spring:message code="label.documentdemouvement"/>
+          <button onclick="go_link('/api/okPDF/${notification.id_notification}')" style="font-size: 12px !important;" class="btn btn-warning text-white btn-sm">
+            <spring:message code="label.documentdemouvement"/>
+          </button>
+        </h2>
+        <div>
 
         </div>
         <h2><spring:message code="label.transporteurprevu"/></h2>
@@ -561,17 +568,18 @@
           <div class="col-md-auto col-sm-6 ">
             <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
           </div>
-          <c:if test="${type=='ZF' || type=='XD'}">
-            <div class="col-md-auto col-sm-6 ">
-              <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter le certificat d'élimination</a>
-            </div>
-          </c:if>
+        </c:if>
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
+          <div class="col-md-auto col-sm-6 ">
+            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter le certificat d'élimination</a>
+          </div>
         </c:if>
 
       </div>
 
     </div>
   </div>
+  <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
   <jsp:include page="../../includes/footer1.jsp"/>
 </c:if>
 <c:if test="${(empty notification ) }"><spring:message code="label.Aucunresultat"/></c:if>

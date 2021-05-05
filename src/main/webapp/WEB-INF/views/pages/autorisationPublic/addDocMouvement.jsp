@@ -182,7 +182,7 @@
 
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <button class="btn btn-primary btn-block" onclick="changer_Statut_zf_auth('${notification.id_notification}', 63, '${notification.zf_et}');">
+                                    <button class="btn btn-primary btn-block" onclick="changer_Statut_zf_auth_test('${notification.id_notification}', 63, '${notification.zf_et}');">
                                         <spring:message code="button.Enregistrer"/>
                                     </button>
                                 </div>

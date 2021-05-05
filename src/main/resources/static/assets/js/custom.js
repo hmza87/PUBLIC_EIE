@@ -1056,6 +1056,20 @@ function changer_Statut_zf_auth(id_notif, id_statut, type) {
 
 }
 
+function changer_Statut_zf_auth_test(id_notif, id_statut, type){
+    if(event!=null)
+        event.preventDefault();
+    var tr = $("#detail_mouvement tbody tr").length;
+    var nbr = $("#nbr_colis").val();
+    if(tr!=nbr){
+        swal("Avertissement ! ","Le nombre de colis est superieur au nombre des quantité\nMerci de modifier le nombre de colis","error");
+        return false;
+    }
+    changer_Statut_zf_auth(id_notif, id_statut, type);
+}
 
+function go_link(url){
+    window.location.href=url;
+}
 
 
