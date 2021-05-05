@@ -176,6 +176,15 @@
 
                                 </c:if>
 
+                                <c:if test="${notification.statut.id_statut_projet==65}">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Commentaire </label>
+                                            <textarea disabled class="form-control" rows="3">${notification.commentaire}</textarea>
+                                        </div>
+                                    </div>
+                                </c:if>
+
                             </div>
 
 

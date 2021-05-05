@@ -571,7 +571,7 @@
         </c:if>
         <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
           <div class="col-md-auto col-sm-6 ">
-            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Ajouter le certificat d'élimination</a>
+            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>
         </c:if>
 
