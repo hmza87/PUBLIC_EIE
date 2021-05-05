@@ -284,7 +284,8 @@ function updateObject(from,table,url,tap,id_obj) {
 
             if(url=="")
             {
-                $("#id_notification").val(response);
+                if(table=='notification')
+                    $("#id_notification").val(response);
 
                 openCity1('Btn'+tap,tap)
             }else {
