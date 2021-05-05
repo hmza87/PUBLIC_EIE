@@ -74,14 +74,43 @@
   <div class="row justify-content-center pl-3 pr-3">
     <div class="col-12">
       <div class="jumbotron p-3">
-      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54)?nt.statut.nom_fr:"en cours de traitement" } </span>
+      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65)?notification.statut.nom_fr:"en cours de traitement" } </span>
       </div>
     </div>
   </div>
-  <div class="col-md-3 col-sm-6 col-mt-4" >
-    <a href="/api/generate_recap_imp/${notification.id_notification }" class="btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10 col-sm-12">
+      <div class="row p-0 mt-2">
+        <div class="col-md-3 col-sm-6 col-mt-4" >
+          <a href="/api/generate_recap_imp/${notification.id_notification }" class="btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+        </div>
+        <c:if test="${notification.statut.id_statut_projet==48 }">
+          <div class="col-md-2 col-sm-6 ">
+            <a href="/api/addDemandNotification/${notification.id_notification}/${type}/N" class="btn btn-primary btn-block"><i class="fa fa-pen " title="Améliorer les documents" ></i><spring:message code="label.modifier"/></a>
+          </div>
+        </c:if>
+        <c:if test="${notification.statut.id_statut_projet==37 }">
+          <!-- <div class="col-md-3 col-sm-6 ">
+          <a href="/api/validateDoc/${notification.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
+          </div>-->
+        </c:if>
+        <c:if test="${notification.statut.id_statut_projet==54}">
+          <div class="col-md-auto col-sm-6 ">
+            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
+          </div>
+        </c:if>
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
+          <div class="col-md-auto col-sm-6 ">
+            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+          </div>
+        </c:if>
+
+      </div>
+
+    </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center  mb-5">
     <div class="col-md-10 col-sm-12">
       <div id="accordion">
         <h2><spring:message code="label.Numerodenotification"/></h2>
@@ -324,7 +353,7 @@
 
 
         </div>
-        <h2><spring:message code="label.documentdemouvement"/>
+        <h2>Document de mouvement
           <button onclick="go_link('/api/okPDF/${notification.id_notification}')" style="font-size: 12px !important;" class="btn btn-warning text-white btn-sm">
             <spring:message code="label.documentdemouvement"/>
           </button>
@@ -552,32 +581,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10 col-sm-12">
-      <div class="row p-0 mt-2 mb-5">
-        <c:if test="${notification.statut.id_statut_projet==48 }">
-          <div class="col-md-2 col-sm-6 ">
-            <a href="/api/addDemandNotification/${notification.id_notification}/${type}/N" class="btn btn-primary btn-block"><i class="fa fa-pen " title="Améliorer les documents" ></i><spring:message code="label.modifier"/></a>
-          </div>
-        </c:if>
-        <c:if test="${notification.statut.id_statut_projet==37 }">
-        <!-- <div class="col-md-3 col-sm-6 ">
-             <a href="/api/validateDoc/${notification.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
-        </div>-->
-        </c:if>
-        <c:if test="${notification.statut.id_statut_projet==54}">
-          <div class="col-md-auto col-sm-6 ">
-            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
-          </div>
-        </c:if>
-        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
-          <div class="col-md-auto col-sm-6 ">
-            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
-          </div>
-        </c:if>
 
-      </div>
-
-    </div>
   </div>
   <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
   <jsp:include page="../../includes/footer1.jsp"/>
