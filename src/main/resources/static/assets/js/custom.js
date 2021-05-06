@@ -356,6 +356,8 @@ function changer_statut(type, id_name, code_statut, msg_alert) {
         });
 }
 
+
+
 function set_avis_projet(val_id, id_dmd) {
     event.preventDefault();
     var id_demande = $(id_dmd).val();
@@ -799,6 +801,8 @@ function updateDemandeInfomrationEE(form, id_name, step, id_btn_step) {
         }
     });
 }
+
+
 
 function affiche_files(id) {
     $.ajax({

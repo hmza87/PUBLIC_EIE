@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,10 +79,17 @@ class WebServiceImp implements WebService {
 	public void changertatutDemande(DemandeInformation nt, int statut) {
 		final String uris = urlRest + "/changeStatutRest/"+statut;
 		RestTemplate restTemplate = new RestTemplate();
-
 		restTemplate.postForLocation(uris, nt, DemandeInformation.class);
 
 	}
+
+	@Override
+	public void changertatutDemande2(DemandeInformation nt, int statut) {
+		final String uris = urlRest + "/changeStatutRestAE/"+statut;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForLocation(uris, nt, DemandeInformation.class);
+	}
+
 
 	@Override
 	public String addDemandeInformation(DemandeInformation nt,String type) {
@@ -1027,6 +1035,14 @@ class WebServiceImp implements WebService {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(uri, String.class);
 	}
+
+	@Override
+	public String updateDemandeInformationAE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String dateDemarage, String dateResiliation) {
+		final String uri = urlRest+"/updateDemandeInformationAERest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier+"/"+dateDemarage+"/"+dateResiliation;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri, String.class);
+	}
+
 
 	@Override
 	public String setFileToDemande(int id, MultipartFile[] fileToUpload) {

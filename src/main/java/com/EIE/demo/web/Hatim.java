@@ -646,12 +646,17 @@ public class Hatim {
 			model.put("titre_dyn","Renseignements préalables ");
 			model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
 		}else if(type.equals("EE")){
-			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+			model.put("titre_dyn","Etude d’Impact sur l’Environment");
 			model.put("EE",webt.getcountEIEByType("EE",webt.getCompteConnected().getCompteId()));
 		}else if(type.equals("NT")){
-			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
+			model.put("titre_dyn","Notice d'Impact sur l'Environment");
 			model.put("NT",webt.getcountEIEByType("NT",webt.getCompteConnected().getCompteId()));
 		}
+		else if(type.equals("AE")){
+			model.put("titre_dyn","Audit Environmental");
+			model.put("AE",webt.getcountEIEByType("AE",webt.getCompteConnected().getCompteId()));
+		}
+
 
 
 		return new ModelAndView("user_select/ListeEtudeEnv_card",model);
@@ -931,6 +936,13 @@ public class Hatim {
 	public @ResponseBody String updateDemandeInfomrationEE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier)
 			throws JsonParseException {
 		String xd= webt.updateDemandeInformationEE(id, intitule_projet, montant_investissement, tronsfrontalier);
+		return xd;
+	}
+
+	@RequestMapping(value = "/api/updateDemandeInfomrationAE/{id}", method = RequestMethod.GET)
+	public @ResponseBody String updateDemandeInfomrationAE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String dateDemarage,@RequestParam String dateResiliation)
+			throws JsonParseException {
+		String xd= webt.updateDemandeInformationAE(id, intitule_projet, montant_investissement, tronsfrontalier,dateDemarage,dateResiliation);
 		return xd;
 	}
 

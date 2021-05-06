@@ -125,8 +125,11 @@ public class Eie_Controler {
 			model.put("titre_dyn","Renseignements préalables ");
 		}else if(type.equals("NT")){
 			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
-		}else{
+		}else if(type.equals("EE")){
 			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+		}
+		else{
+			model.put("titre_dyn","Audit Environmental");
 		}
 		model.put("type",type);
 
@@ -169,6 +172,8 @@ public class Eie_Controler {
 
 		model.put("doc",web.getDocImportByType("EIE"));
 		model.put("docNotify",web.listDocNotif(id,"EIE"));
+		model.put("docAE",web.getDocImportByType("AE"));
+		model.put("docNotifyAE",web.listDocNotif(id,"AE"));
 		model.put("demande", demande);
 		model.put("id", id);
 		model.put("url_Admin",urlRest);
@@ -278,11 +283,6 @@ public class Eie_Controler {
 	public @ResponseBody void addDocAutorisationG(@PathVariable int id,@PathVariable String typeauto,@PathVariable int check, @RequestParam MultipartFile[] fileToUpload)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		web.addDocAut(fileToUpload, id,check,typeauto);
-
-
-
-		
-
 	}
 
 
@@ -302,7 +302,7 @@ public class Eie_Controler {
 	public ModelAndView recapEie(@PathVariable int id, @PathVariable String type) {
 		Compte ct = web.getCompteConnected();
 		DemandeInformation demande=web.getDemandeInfoById(id);
-		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
+		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"AE");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("demande", demande);
 		model.put("url_Admin",urlRest);
@@ -312,8 +312,10 @@ public class Eie_Controler {
 			model.put("titre_dyn","Renseignements préalables ");
 		}else if(type.equals("NT")){
 			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
-		}else{
+		}else if(type.equals("EE")){
 			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+		}else{
+			model.put("titre_dyn","Audit Environnemental");
 		}
 		return new ModelAndView("user_select/recap_EIE", model);
 	}
@@ -325,8 +327,13 @@ public class Eie_Controler {
 		return "ok";
 	}
 
+	@RequestMapping(value = "/api/changerStatuts2/{id}/{statut}", method = RequestMethod.GET)
+	public @ResponseBody String changerStatuts2(@PathVariable int id,@PathVariable int statut) {
+		DemandeInformation drt=web.getDemandeInfoById(id);
+		web.changertatutDemande2(drt,statut);
+		return "ok";
+	}
 
-	
 	@RequestMapping(value = "/api/test/{idNotif}", method = RequestMethod.GET)
 	public ResponseEntity<InputStreamResource> generatePDF(@PathVariable int idNotif) throws Exception{
 

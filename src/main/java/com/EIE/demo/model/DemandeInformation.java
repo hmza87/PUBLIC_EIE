@@ -621,6 +621,28 @@ public class DemandeInformation implements Serializable {
     private Date deleteDateTime;
 
 
+    @Column(name = "dateDemarage", nullable = true)
+    private Date dateDemarage;
+
+    @Column(name = "dateResiliation", nullable = true)
+    private Date dateResiliation;
+
+
+    public Date getDateDemarage() {
+        return dateDemarage;
+    }
+
+    public void setDateDemarage(Date dateDemarage) {
+        this.dateDemarage = dateDemarage;
+    }
+
+    public Date getDateResiliation() {
+        return dateResiliation;
+    }
+
+    public void setDateResiliation(Date dateResiliation) {
+        this.dateResiliation = dateResiliation;
+    }
 
 
 

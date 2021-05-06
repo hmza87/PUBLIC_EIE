@@ -160,7 +160,7 @@
         </div>
         <h2>2. informations sur le projet </h2>
         <div>
-  <c:if test="${type=='EE'}">
+          <c:if test="${type=='EE'}">
           <div class="row">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
@@ -184,6 +184,46 @@
             </div>
           </div>
   </c:if>
+          <c:if test="${type=='AE'}">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label><spring:message code="label.Intituledeprojet"/></label>
+                  <input disabled type="text" class="form-control" value="${demande.intitule_projet}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Montant d'investissement en MDH</label>
+                  <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Transfrontalier</label>
+                  <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Date démarrage</label>
+                  <fmt:formatDate   dateStyle="long" value="${demande.dateDemarage}"  var="date"/>
+                    <input disabled type="text" class="form-control" value="${date}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Date Résiliation</label>
+                  <fmt:formatDate   dateStyle="long" value="${demande.dateResiliation}"  var="date"/>
+                  <input disabled type="text" class="form-control" value="${date}">
+                </div>
+              </div>
+            </div>
+          </c:if>
           <c:if test="${type=='NT'}">
             <div class="row">
               <div class="col-md-6 col-sm-12">

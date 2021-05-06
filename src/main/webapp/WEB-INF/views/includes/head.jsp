@@ -185,7 +185,7 @@
                                                 <ul>
                                                     <li><a onclick="checkAut('${user.st.EIE}','/api/checkEIESelect/EE')"><spring:message code="label.Etudedimpactenvironnementale"/></a></li>
                                                      <li><a onclick="checkAut('${user.st.NT}','/api/checkEIESelect/NT')"><spring:message code="label.Noticedimpact"/></a></li>
-                                                <li><a onclick="checkAut('${user.st.EA}','#')"><spring:message code="label.Auditenvironnementale"/></a></li>
+                                                <li><a onclick="checkAut('${user.st.EA}','/api/checkEIESelect/AE')"><spring:message code="label.Auditenvironnementale"/></a></li>
                                                    
                                                 </ul>
                                             </li>

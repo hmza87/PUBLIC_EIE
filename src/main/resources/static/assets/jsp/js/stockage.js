@@ -773,15 +773,13 @@ function addDocs2(id_str,type,idInput){
     });
 }
 
-function addDocG(id,type,idInput,typeauto,idcolon){
+function addDocG(id,type2,idInput,typeauto,idcolon){
 	if(id==0){
 		 var id=$("#"+idcolon).val();
 	}
 	else{
 		id=id;
 	}
-   
-    
     var data = new FormData();
 
     var ins = document.getElementById(idInput).files.length;
@@ -789,13 +787,11 @@ function addDocG(id,type,idInput,typeauto,idcolon){
     for (var x = 0; x < ins; x++) {
         data.append("fileToUpload", document.getElementById(idInput).files[x]);
     }
-
-
     $.ajax({
 
         type: "POST",
         enctype: 'multipart/form-data',
-        url : "/api/addDocAutorisationG/"+id+"/"+type+"/"+typeauto,
+        url : "/api/addDocAutorisationG/"+id+"/"+type2+"/"+typeauto,
         data: data,
         processData: false,
         contentType: false,

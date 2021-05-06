@@ -278,7 +278,6 @@ function changer_statut(id_name,code_statut,msg_alert){
         swal("Avertissement !","le numero de EIE n'est pas valide","error");
         return false;
     }
-
     $.ajax({
         
         url: "/api/changerStatuts/"+id+"/"+code_statut,
