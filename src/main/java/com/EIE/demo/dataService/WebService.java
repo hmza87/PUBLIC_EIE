@@ -186,5 +186,6 @@ public interface WebService {
 	public int getNombreEIEByUser(int compteId, String type);
 
 	DeclarationTransporteur getdeclarationbyNotification(int id_notification);
+	public void changertatutDemande2(DemandeInformation drt, int statut);
 
 }
