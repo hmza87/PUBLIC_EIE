@@ -288,7 +288,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     formdata.append('commune', commune);
 
     var id = $("#id_demande_information").val();
-    var link_recap = "/api/recapEie/" + id;
+    var link_recap = "/api/recapEie/" + id+"/"+type;
     $.ajax({
         type: "POST",
         url: "/api/updateRegionDemandeInformation/" + id + "/" + type,
@@ -322,11 +322,11 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 
 }
 
-function changer_statut(id_name, code_statut, msg_alert) {
+function changer_statut(type, id_name, code_statut, msg_alert) {
     if(event!=null)
         event.preventDefault();
     var id = $("#" + id_name).val();
-    var link_recap = "/api/recapEie/" + id;
+    var link_recap = "/api/recapEie/" + id+"/"+type;
     if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
         swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
         return false;

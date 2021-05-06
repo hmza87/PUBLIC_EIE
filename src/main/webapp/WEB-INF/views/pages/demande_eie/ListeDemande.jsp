@@ -15,8 +15,11 @@
 <jsp:include page="card.jsp" />
 <section class="services-section container-fluid bg-white" >
     <c:choose>
-        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie')}">
+        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/EE')}">
             <spring:message code="option.Etudedimpactenvironnementale" var="p_page" />
+        </c:when>
+        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/NT')}">
+            <spring:message code="option.Noticedimpact" var="p_page" />
         </c:when>
         <c:otherwise>
             <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -34,7 +37,7 @@
     </div>
     <div class="row" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
         <div class="col-2" >
-           <a href="/api/checkEIESelect" class="btn btn-success btn-block"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
+           <a href="/api/checkEIESelect/${type}" class="btn btn-success btn-block"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
         </div>
     </div>
     <div class="row">
@@ -46,6 +49,12 @@
                     <th rowspan="2" ><spring:message code="label.datedepot"/>  </th>
                     <th rowspan="2" ><spring:message code="label.Statut"/></th>
                     <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
+                    <c:choose>
+                        <c:when test="${type=='NT'}">
+                            <th rowspan="2">Nature foncier</th>
+                            <th rowspan="2">Nature projet</th>
+                        </c:when>
+                    </c:choose>
                     <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
                     <th rowspan="2" ><spring:message code="label.Region"/></th>
                     <th rowspan="2" ><spring:message code="label.Recap"/></th>
@@ -79,6 +88,8 @@
                         <td> <span class="badge badge-info"> ${nt.statut.nom_fr}</span>
                         </td>
                         <td> ${nt.intitule_projet}  </td>
+                        <td> ${nt.nature_foncier}  </td>
+                        <td> ${nt.nature_projet}  </td>
                         <td>${nt.raison_social}</td>
                         <td>${nt.contact}</td>
                         <td>${nt.tel}</td>
@@ -96,7 +107,7 @@
                         </td>
                         <td>
                             <div class="col-md-3 col-sm-6">
-                                <a href="/api/recapEie/${nt.id_demande_information}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
+                                <a href="/api/recapEie/${nt.id_demande_information}/${type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
                             </div>
                         </td>
                         <td>

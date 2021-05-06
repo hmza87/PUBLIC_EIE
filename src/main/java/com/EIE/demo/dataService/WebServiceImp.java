@@ -289,8 +289,8 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompte(Pageable page, int compteId) {
-		final String uri = urlRest+"/getListeDemandeInformationByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId;
+	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompte(Pageable page, int compteId, String type) {
+		final String uri = urlRest+"/getListeDemandeInformationByCompte/"+page.getPageNumber()+"/"+page.getPageSize()+"/"+compteId+"/"+type;
 		RestTemplate restTemplate = new RestTemplate();
 		ParameterizedTypeReference<RestResponsePage<DemandeInformation>> responseType = new ParameterizedTypeReference<RestResponsePage<DemandeInformation>>() { };
 
@@ -370,6 +370,16 @@ class WebServiceImp implements WebService {
 
 
 		final String uri = urlRest+"/getDemandeInfoByIdRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+	@Override
+	public DemandeInformation getDemandeInfoByIdType(int id, String type) {
+
+
+		final String uri = urlRest+"/getDemandeInfoByIdTypeRest/"+id+"/"+type;
 		RestTemplate restTemplate = new RestTemplate();
 		DemandeInformation  result = restTemplate.getForObject(uri, DemandeInformation.class);
 		return result;

@@ -43,7 +43,8 @@ public interface WebService {
 	public Installation getIndtallationById(int id);
 	public Region getRegion(int id);
 	public DemandeInformation getDemandeInfoById(int id);
-	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompte(Pageable page, int compteId);
+	public DemandeInformation getDemandeInfoByIdType(int id, String type);
+	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompte(Pageable page, int compteId, String type);
 	public ResponseEntity<RestResponsePage<DemandeInformation>> getListDemandeInformationByCompteStatut(Pageable page, int compteId,int statut);
 	public DocImport[] listDocImport();
 	public DocImport[] listDocImportByType(int id,String type);

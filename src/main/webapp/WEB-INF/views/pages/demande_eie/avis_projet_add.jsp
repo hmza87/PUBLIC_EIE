@@ -409,7 +409,7 @@
                                     <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
-                                    <button onclick="changer_statut('id_demande_information',1,'Votre demande est déposée avec succès')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                    <button onclick="changer_statut('${type}','id_demande_information',1,'Votre demande est déposée avec succès')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
                                 </div>
                             </div>
 

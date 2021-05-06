@@ -44,14 +44,14 @@
         <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" >
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Recap Etudedimpactenvironnementale</li>
+            <li class="breadcrumb-item active" aria-current="page">Récap ${titre_dyn}</li>
           </ol>
         </nav>
       </div>
     </div>
     <div class="row" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
       <div class="col-2" >
-        <a href="/api/checkEIESelect" class="btn btn-success btn-block mb-2"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
+        <a href="/api/checkEIESelect/${type}" class="btn btn-success btn-block mb-2"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
       </div>
     </div>
   <div class="row justify-content-center"  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -129,32 +129,26 @@
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
-                <label> Contact : </label>
-                <input type="text" disabled value="${demande.contact}" class="form-control">
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6 col-sm-12">
-              <div class="form-group">
                 <label> <spring:message code="label.AdresseA"/> </label>
                 <input type="text" disabled value="${demande.adresse}" class="form-control">
               </div>
             </div>
+          </div>
+          <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label> <spring:message code="label.TelephoneA"/>  </label>
                 <input type="text" disabled value="${demande.tel}" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label> <spring:message code="label.FaxA"/>  </label>
                 <input type="text" disabled value="${demande.fax}" class="form-control">
               </div>
             </div>
+          </div>
+          <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label> <spring:message code="label.EmailA"/> </label>
@@ -166,6 +160,7 @@
         </div>
         <h2>2. informations sur le projet </h2>
         <div>
+  <c:if test="${type=='EE'}">
           <div class="row">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
@@ -176,7 +171,7 @@
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label>Montant d'investissement en MDH</label>
-                <input disabled type="text" class="form-control" value="${demande.nbr_emploi}">
+                <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
               </div>
             </div>
           </div>
@@ -188,6 +183,109 @@
               </div>
             </div>
           </div>
+  </c:if>
+          <c:if test="${type=='NT'}">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label><spring:message code="label.Intituledeprojet"/></label>
+                  <input disabled type="text" class="form-control" value="${demande.intitule_projet}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Montant d'investissement en MDH</label>
+                  <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Transfrontalier</label>
+                  <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Nature foncier</label>
+                  <input disabled type="text" class="form-control" value="${demande.nature_foncier}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Caractéristiques du projet</label>
+                  <input disabled type="text" class="form-control" value="${demande.caracteristiques_projet}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Nature du projet</label>
+                  <input disabled type="text" class="form-control" value="${demande.nature_projet}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Ressources</label>
+                  <input disabled type="text" class="form-control" value="${demande.ressource}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Source</label>
+                  <input disabled type="text" class="form-control" value="${demande.source}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Qualitative</label>
+                  <input disabled type="text" class="form-control" value="${demande.qualitative}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Quantité estimée</label>
+                  <input disabled type="text" class="form-control" value="${demande.quantite_projet}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Unité</label>
+                  <input disabled type="text" class="form-control" value="${demande.unite.nom_fr}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Caractéristique physique</label>
+                  <input disabled type="text" class="form-control" value="${demande.caracteristquePhysique.nom_fr}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Population</label>
+                  <input disabled type="text" class="form-control" value="${demande.population.nom_fr}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+            <c:if test="${not empty demande.impacts!=null }">
+                  <label>Les Impacts positifs et négatifs du projet</label>
+                  <a target="_blank" class="btn btn-success" download href="${url_Admin}${fn:replace(demande.impacts, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
+            </c:if>
+                </div>
+              </div>
+            </div>
+          </c:if>
           </div>
         <h2>3. informations sur le projet </h2>
         <div>

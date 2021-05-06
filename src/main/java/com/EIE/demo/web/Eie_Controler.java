@@ -37,15 +37,14 @@ public class Eie_Controler {
 //	@Autowired
 //	private FileStorageService fileStorageService;
 
-	@RequestMapping(value = "/api/ListeEie", method = RequestMethod.GET)
-	public ModelAndView stockage_affich() {
+	@RequestMapping(value = "/api/ListeEie/{type}", method = RequestMethod.GET)
+	public ModelAndView stockage_affich(@PathVariable String type) {
 		Compte ct = web.getCompteConnected();
 
 		Map<String, Object> model = new HashMap<String, Object>();
-		
-
+		model.put("type", type);
 		ResponseEntity<RestResponsePage<DemandeInformation>> h = web
-				.getListDemandeInformationByCompte(new PageRequest(0, 100), ct.getCompteId());
+				.getListDemandeInformationByCompte(new PageRequest(0, 100), ct.getCompteId(), type);
 
 		if (h.getBody() != null) {
 			List<DemandeInformation> searchResult = h.getBody().getContent();
@@ -56,7 +55,6 @@ public class Eie_Controler {
 			model.put("totalPage", h.getBody().getTotalPages());
 			model.put("size", h.getBody().getSize());
 			model.put("url_Admin",urlRest);
-
 		} else {
 			model.put("totalPage", 0);
 		}
@@ -300,14 +298,23 @@ public class Eie_Controler {
 		return new ModelAndView("demande_eie/piecejointdemande", model);
 	}
 
-	@RequestMapping(value = "/api/recapEie/{id}", method = RequestMethod.GET)
-	public ModelAndView recapEie(@PathVariable int id) {
+	@RequestMapping(value = "/api/recapEie/{id}/{type}", method = RequestMethod.GET)
+	public ModelAndView recapEie(@PathVariable int id, @PathVariable String type) {
 		Compte ct = web.getCompteConnected();
 		DemandeInformation demande=web.getDemandeInfoById(id);
 		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("demande", demande);
+		model.put("url_Admin",urlRest);
 		model.put("doc",l);
+		model.put("type",type);
+		if(type.equals("RS")){
+			model.put("titre_dyn","Renseignements préalables ");
+		}else if(type.equals("NT")){
+			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
+		}else{
+			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+		}
 		return new ModelAndView("user_select/recap_EIE", model);
 	}
 	

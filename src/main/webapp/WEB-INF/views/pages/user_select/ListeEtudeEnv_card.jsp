@@ -61,7 +61,7 @@ text-align:right !important;
                 <div class="col-12">
                   <div class="card w-100">
                     <div class="card-body" >
-                      <h1><spring:message code="option.Etudedimpactenvironnementale"/></h1>
+                      <h1>${titre_dyn}</h1>
                       <%--<p class="text-left font_bold"><spring:message code="label.msgMerci"/>.</p>--%>
                       <%--<p class="text-left"><spring:message code="label.Vouspouvez"/>.</p>--%>
                     </div>
@@ -146,9 +146,11 @@ text-align:right !important;
                             <button ${RS==0?'disabled':''} onclick="fun_affiche_modal_recap()" class="btn btn-sm btn-success" style="margin: 10px 10px 17px -10px;">  <span class="fa fa-search"></span></button>
 
 
-                          <button ${EE==0?'disabled':''} onclick="go_to_l('/api/ListeEie')" class="btn btn-sm btn-success" style="margin: 10px 0px 17px 10px;">
+                          <button ${type==null?'disabled':''} onclick="go_to_l('/api/ListeEie/${type}')" class="btn btn-sm btn-success" style="margin: 10px 0px 17px 10px;">
                             <spring:message code="label.Affichermesdossiers"/> <span
                                   class="fa fa-angle-double-right"></span></button>
+
+
                                  <%-- <button ${RS==0?'disabled':''} onclick="go_to_l('/api/ListeEieRe')" class="btn btn-sm btn-success" style="margin: 10px 0px 17px 10px;">Afficher les Renseignements préalables <span class="fa fa-angle-double-right"></span></button>--%>
                                   
 
