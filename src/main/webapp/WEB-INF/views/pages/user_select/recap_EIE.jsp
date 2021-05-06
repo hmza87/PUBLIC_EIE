@@ -397,7 +397,7 @@
                 <tr>
                   <td>${file.docImport.nom_fr}</td>
                   <td>
-                    <a target="_blank" class="btn btn-success" href="${url_admin}${fn:replace(file.url, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
+                    <a target="_blank" class="btn btn-success" href="${url_Admin}${fn:replace(file.url, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
                   </td>
                 </tr>
               </c:forEach>

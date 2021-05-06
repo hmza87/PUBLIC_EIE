@@ -49,12 +49,6 @@
                     <th rowspan="2" ><spring:message code="label.datedepot"/>  </th>
                     <th rowspan="2" ><spring:message code="label.Statut"/></th>
                     <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
-                    <c:choose>
-                        <c:when test="${type=='NT'}">
-                            <th rowspan="2">Nature foncier</th>
-                            <th rowspan="2">Nature projet</th>
-                        </c:when>
-                    </c:choose>
                     <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
                     <th rowspan="2" ><spring:message code="label.Region"/></th>
                     <th rowspan="2" ><spring:message code="label.Recap"/></th>
@@ -88,8 +82,6 @@
                         <td> <span class="badge badge-info"> ${nt.statut.nom_fr}</span>
                         </td>
                         <td> ${nt.intitule_projet}  </td>
-                        <td> ${nt.nature_foncier}  </td>
-                        <td> ${nt.nature_projet}  </td>
                         <td>${nt.raison_social}</td>
                         <td>${nt.contact}</td>
                         <td>${nt.tel}</td>
@@ -158,7 +150,7 @@
                             </c:if>
 
                             <c:if test="${nt.statut.id_statut_projet==47}">
-                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/EE" >Modifier</a>
+                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
                             </c:if>
 
                             <c:if test="${nt.statut.id_statut_projet==60}">

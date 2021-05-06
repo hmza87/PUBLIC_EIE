@@ -257,7 +257,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
             $(next_step).show();
             return false;
         } else if (next_step == "end") {
-            window.location.href = "/api/ListeEie";
+            window.location.href = "/api/ListeEie/"+type;
             return false;
         }
     }
@@ -1121,20 +1121,8 @@ function go_link(url){
 }
 
 function fun_setimpacts() {
-    alert("fgdfgdg")
     event.preventDefault();
     var id_demande = $("#id_demande_information").val();
-
-
-
-
-
-
-
-
-
-
-
     if ($.trim(id_demande) == "" || id_demande == 0 || id_demande == null) {
         return false;
     }
@@ -1152,7 +1140,6 @@ function fun_setimpacts() {
         contentType: false,
         cache: false,
         success: function (response) {
-            alert(data)
         },
         error: function () {
 
