@@ -7,7 +7,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
 <c:choose>
-  <c:when test="${not empty prefecture}">
+    <c:when test="${not empty prefecture}">
     <c:forEach items="${prefecture}" var="p">
       <option
               <c:forEach items="${demande.detailRegion.prefectures}" var="pp">
@@ -16,7 +16,7 @@
               value="${p.id_prefecture}" >${pageContext.response.locale=='ar'?p.nom_ar:p.nom_fr}</option>
     </c:forEach>
   </c:when>
-  <c:when test="${not empty commune}">
+    <c:when test="${not empty commune}">
     <c:forEach items="${commune}" var="c">
       <option
               <c:forEach items="${demande.detailRegion.communes}" var="cc">
@@ -25,5 +25,15 @@
               value="${c.id_commune}" >${pageContext.response.locale=='ar'?c.nom_ar:c.nom_fr}</option>
     </c:forEach>
   </c:when>
+    <c:when test="${not empty transporteur}">
+        <option value=""><spring:message code="label.choisir"/> </option>
+        <c:forEach items="${transporteur}" var="t">
+            <option
+                    <c:forEach items="${notification.transporteur}" var="tt">
+                        ${tt.id_transporteurParam==t.id_transporteurParam?"disabled":""}
+                    </c:forEach>
+                    value="${t.id_transporteurParam}">${t.nom}</option>
+        </c:forEach>
+    </c:when>
 </c:choose>
 
