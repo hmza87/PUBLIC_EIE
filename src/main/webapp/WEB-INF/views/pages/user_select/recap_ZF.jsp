@@ -105,6 +105,13 @@
             <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>
         </c:if>
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64) }">
+          <div class="col-md-auto col-sm-6 ">
+            <a href="/api/addTransporteurFinal/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i>Ajouter un transporteur</a>
+          </div>
+        </c:if>
+
+
 
       </div>
 
