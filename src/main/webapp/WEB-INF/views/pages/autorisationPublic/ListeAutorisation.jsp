@@ -98,6 +98,11 @@
                             <a href="/api/addNumNotification/${type }/${nt.id_notification }" class="btn btn-warning"><i class="fa fa-edit " title="Modifier" style="margin:0 !important"></i></a>
 
                         </c:if>
+                        <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==65) }">
+                            <div class="col-md-auto col-sm-6 ">
+                                <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+                            </div>
+                        </c:if>
                         <c:if test="${nt.statut.id_statut_projet==48}">
                                 <a href="/api/addDemandNotification/${nt.id_notification}/${type}/N" class="btn btn-primary mb-2"><spring:message code="label.modifier"/></a>
                         </c:if>
