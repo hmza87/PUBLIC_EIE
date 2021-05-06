@@ -99,9 +99,10 @@
 
                         </c:if>
                         <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==65) }">
-                            <div class="col-md-auto col-sm-6 ">
-                                <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
-                            </div>
+                            <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+                        </c:if>
+                        <c:if test="${(type=='ZF' || type=='XD') && nt.statut.id_statut_projet==64 && nt.classification.id_classification==1  }">
+                            <button onclick="load_modal_transporteur('${nt.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
                         </c:if>
                         <c:if test="${nt.statut.id_statut_projet==48}">
                                 <a href="/api/addDemandNotification/${nt.id_notification}/${type}/N" class="btn btn-primary mb-2"><spring:message code="label.modifier"/></a>
@@ -124,6 +125,38 @@
 
     </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="declarationTransp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Déclaration du transporteur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12" >
+                        <label>Déclarer le nouveau Transporteur </label>
+                        <select class="form-control select2" id="id_transp">
+                            <%-- load_dynamique--%>
+                        </select>
+                        <input class="from-control" type="text" value="" id="id_declaration">
+                        <input class="from-control" type="text" value="" id="id_notif">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="saveDeclarationTransporteur(this)">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -184,5 +217,5 @@
 
 
 
-
+<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>
