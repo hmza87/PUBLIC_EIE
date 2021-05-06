@@ -918,6 +918,13 @@ public class Hatim {
 		return xd;
 	}
 
+	@RequestMapping(value = "/api/updateDemandeInfomrationEE/{id}", method = RequestMethod.GET)
+	public @ResponseBody String updateDemandeInfomrationEE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier)
+			throws JsonParseException {
+		String xd= webt.updateDemandeInformationEE(id, intitule_projet, montant_investissement, tronsfrontalier);
+		return xd;
+	}
+
 
 	@RequestMapping(value = "/api/getfileByIdDemande/{id}/{type}", method = RequestMethod.POST)
 	public ModelAndView getfileByIdDemande(@PathVariable int id,@PathVariable String type){

@@ -284,9 +284,16 @@
                                 <div class="col-md-3 col-sm-12">
                                     <button class="btn btn-success btn_suiv btn-block" onclick="affiche_eie_zone('#step1','#step_id1')">  <spring:message code="button.Precedent"/> </button>
                                 </div>
-                                <div class="col-md-3 col-sm-12">
-                                        <button class="btn btn-success btn_suiv btn-block" onclick="updateDemandeInfomration('formProjet','id_demande_information','#step2','#step_id2')">  <spring:message code="button.Suivant"/> </button>
-                                </div>
+                                <c:if test="${type=='EE' || type=='RS'}">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button class="btn btn-success btn-block" onclick="updateDemandeInfomrationEE('formProjet','id_demande_information','#step2','#step_id2')" >  <spring:message code="button.Suivant"/> </button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${type=='NT'}">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button class="btn btn-success btn_suiv btn-block" onclick="updateDemandeInfomration('formProjet','id_demande_information','#step2','#step_id2')" >  <spring:message code="button.Suivant"/> </button>
+                                    </div>
+                                </c:if>
                             </div>
                         </form>
                     </div>

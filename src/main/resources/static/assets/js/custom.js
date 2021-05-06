@@ -288,7 +288,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     formdata.append('commune', commune);
 
     var id = $("#id_demande_information").val();
-
+    var link_recap = "/api/recapEie/" + id;
     $.ajax({
         type: "POST",
         url: "/api/updateRegionDemandeInformation/" + id + "/" + type,
@@ -305,7 +305,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
                 Swal.fire({
                     title: '<strong>Votre demande est déposée avec succès</strong>',
                     icon: 'success',
-                    html: '<a href="/api/ListeEie" class="btn btn-success mt-2 ">Retour</a>',
+                    html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
@@ -738,10 +738,54 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
         return false;
     }
     var se = $("#"+form).serialize();
+    var id_unit=$("#uniteId").val();
+    if($.trim(id_unit)==="" || id_unit==null || !$.isNumeric(id_unit) ){
+        id_unit=0;
+    }
+    var id_caracter_physique=$("#idcaracteristquePhysique").val();
+    if($.trim(id_caracter_physique)==="" || id_caracter_physique==null || !$.isNumeric(id_caracter_physique) ){
+        id_caracter_physique=0;
+    }
+    var id_poplation=$("#id_population").val();
+    if($.trim(id_poplation)==="" || id_poplation==null || !$.isNumeric(id_poplation) ){
+        id_poplation=0;
+    }
 
     $.ajax({
-        type: "POST",
-        url: "/api/updateDemandeInfomration/" + id,
+        type: "GET",
+        url: "/api/updateDemandeInfomration/" + id+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation,
+        contentType: 'application/json; charset=utf-8',
+        data: se,
+        success: function (response) {
+            console.log("success : " + response);
+            affiche_eie_zone(step, id_btn_step);
+        },
+        error: function (response) {
+
+            alert('Erreur ajout non effectue');
+
+        }
+    });
+}
+
+function updateDemandeInfomrationEE(form, id_name, step, id_btn_step) {
+    if (event != null)
+        event.preventDefault();
+    var id = $("#" + id_name).val();
+    if ($.trim(id) === "" || id == null) {
+        return false;
+    }
+
+    var montant = $("input[name=montant_investissement]").val();
+    if ($.trim(montant) == "" || montant == null || !$.isNumeric(montant)) {
+        swal("Avertissement ! ", 'Le champs Montant d\'investissement est incorrecte', 'error');
+        return false;
+    }
+    var se = $("#"+form).serialize();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/updateDemandeInfomrationEE/" + id,
         contentType: 'application/json; charset=utf-8',
         data: se,
         success: function (response) {

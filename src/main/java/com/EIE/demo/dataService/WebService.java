@@ -169,7 +169,9 @@ public interface WebService {
 
 	String updateDemandeInformation(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String nature_foncier, String caracteristiques_projet, String ressource, String source, String nature_projet, String qualitative, String quantite_projet, int unite, int id_caracter_physique, int id_poplation );
 
-    String setFileToDemande(int id, MultipartFile[] fileToUpload);
+	String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier );
+
+	String setFileToDemande(int id, MultipartFile[] fileToUpload);
 	List<TransporteurParam> getTransporteurParamByCode(int code);
 
     Notification saveDocumentMouvement(int id_notif, int id_detail, int qte, MultipartFile file);

@@ -1012,6 +1012,13 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier) {
+		final String uri = urlRest+"/updateDemandeInformationEERest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri, String.class);
+	}
+
+	@Override
 	public String setFileToDemande(int id, MultipartFile[] fileToUpload) {
 		final String uris = urlRest + "/setFileToDemandeRest/"+id;
 		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
