@@ -34,7 +34,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
-                        <li class="breadcrumb-item"><a href="/api/checkEIESelect">${p_page} </a></li>
+                        <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type}">${p_page} </a></li>
                         <li class="breadcrumb-item active" aria-current="page"> <spring:message code="label.Nouvelledemande"/> </li>
 
                     </ol>
@@ -85,7 +85,7 @@
 
                                     <div class="form-group">
                                         <label><spring:message code="label.Representant"/> </label>
-                                        <input type="text"  value="${demande.contact }" ${disabled} name="contact" class="form-control" >
+                                        <input type="text"  value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
                         <form class="mt-3"  id="formProjet" name="formProjet" >
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 col-sm-12">2
                                     <div class="form-group">
                                         <label ><spring:message code="label.IntituleDeProjet"/></label>
                                         <input ${disabled} value="${demande.intitule_projet }" type="text" name="intitule_projet" class="form-control">
@@ -259,6 +259,9 @@
                                         <div class="form-group">
                                             <label>Les Impacts positifs et négatifs du projet</label>
                                             <input type="file" id="impacts" class="form-control" onchange="fun_setimpacts()">
+                                            <c:if test="${not empty demande.impacts}">
+                                                <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger fichier Qualification</a>
+                                            </c:if>
                                             <input type="hidden" id="id_demande_information" class="form-control" name=""
                                                    value="${demande.id_demande_information}">
                                         </div>
@@ -279,13 +282,13 @@
                                 <c:if test="${type=='AE'}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label> Date Démmarage</label>
+                                            <label> Date de Démarrage</label>
                                             <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" required >
                                         </div>
                                     </div>
                                         <div class="col-md-6 col-sm-12 mt-2">
                                             <div class="form-group">
-                                                <label> Date Résiliation</label>
+                                                <label> Date de Résiliation</label>
                                                 <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" required >
                                             </div>
                                         </div>
