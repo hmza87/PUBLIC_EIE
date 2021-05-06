@@ -130,7 +130,9 @@ function fin() {
 
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
-    $(".select2").select2();
+    $(".select2").select2({
+        closeOnSelect: true
+    });
 
     if(location.hash == "#ressources"){
 
