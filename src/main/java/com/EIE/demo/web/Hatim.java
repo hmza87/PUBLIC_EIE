@@ -988,13 +988,6 @@ public class Hatim {
 		return new ModelAndView("user_select/auto_load_accordion",model);
 	}
 
-	@RequestMapping(value = "/getTabtransporteur/{code}", method = RequestMethod.POST)
-	public ModelAndView getTabtransporteur(@PathVariable int code) {
-		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("trans",webt.getTransporteurParamByCode(code));
-		return new ModelAndView("user_select/auto_load_TabtransporteurDechets",model);
-	}
-
 
 
 
