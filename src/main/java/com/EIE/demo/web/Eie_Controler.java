@@ -301,12 +301,19 @@ public class Eie_Controler {
 	@RequestMapping(value = "/api/recapEie/{id}/{type}", method = RequestMethod.GET)
 	public ModelAndView recapEie(@PathVariable int id, @PathVariable String type) {
 		Compte ct = web.getCompteConnected();
-		DemandeInformation demande=web.getDemandeInfoById(id);
-		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"AE");
 		Map<String, Object> model = new HashMap<String, Object>();
+
+		DemandeInformation demande=web.getDemandeInfoById(id);
+		if(type.equals("EE")){
+			ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
+			model.put("doc",l);
+		}
+		else{
+			ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"AE");
+			model.put("doc",l);
+		}
 		model.put("demande", demande);
 		model.put("url_Admin",urlRest);
-		model.put("doc",l);
 		model.put("type",type);
 		if(type.equals("RS")){
 			model.put("titre_dyn","Renseignements préalables ");
