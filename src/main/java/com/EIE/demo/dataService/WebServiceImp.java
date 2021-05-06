@@ -1105,5 +1105,11 @@ class WebServiceImp implements WebService {
 		Integer  result = restTemplate.getForObject(uri, Integer.class);
 		return result;
 	}
+	@Override
+	public DeclarationTransporteur getdeclarationbyNotification(int id_notification) {
+		final String uri = urlRest+"/getdeclarationbyNotificationRest/"+id_notification ;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(uri, DeclarationTransporteur.class);
+	}
 
 }

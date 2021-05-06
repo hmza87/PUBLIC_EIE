@@ -783,6 +783,19 @@ public class Notification_Controler {
 		return s;
 	}
 
+	@RequestMapping(value = "/api/addTransporteurFinal/{id}", method = RequestMethod.POST)
+	public ModelAndView addTransporteurFinal(@PathVariable int id) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		List<TransporteurParam> tr = web.getListAllTransporteurParam();
+		Notification n = web.getNotificationByIdComptId(id,web.getCompteConnected().getCompteId());
+		model.put("type",n.getZf_et());
+		model.put("notification",n);
+		model.put("transporteur",tr);
+		model.put("declaration",web.getdeclarationbyNotification(n.getId_notification()));
+		model.put("Admin_url",urlRest);
+		return new ModelAndView("user_select/auto_load_selects",model);
+	}
+
 
 
 
