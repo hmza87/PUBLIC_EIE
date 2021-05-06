@@ -77,7 +77,7 @@
                                 <div class=" col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label ><spring:message code="label.Raisonsocial"/>   </label>
-                                        <input  value="${demande.raison_social}" ${disabled} type="text" name="raison_social" class="form-control">
+                                        <input  value="${demande.raison_social}" required ${disabled} type="text" name="raison_social" class="form-control">
                                     </div>
                                 </div>
 
@@ -85,7 +85,7 @@
 
                                     <div class="form-group">
                                         <label><spring:message code="label.Representant"/> </label>
-                                        <input type="text"  value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
+                                        <input type="text" required value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
                                     </div>
                                 </div>
                             </div>
@@ -94,26 +94,26 @@
                                 <div class=" col-md-4 col-sm-12">
                                     <div class="form-group">
                                         <label ><spring:message code="label.Email"/></label>
-                                        <input value="${demande.email }" ${disabled} type="text" name="email" class="form-control" >
+                                        <input value="${demande.email }" required ${disabled} type="text" name="email" class="form-control" >
                                     </div>
                                 </div>
                                     <div class=" col-md-4 col-sm-12 ">
                                         <div class="form-group">
                                             <label ><spring:message code="label.tel"/>  </label>
-                                            <input value="${demande.tel }" type="text" ${disabled} name="tel" class="form-control">
+                                            <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4 col-sm-12 ">
                                         <div class="form-group">
                                             <label ><spring:message code="label.Fax"/></label>
-                                            <input ${disabled} value="${demande.fax }" type="text" name="fax" class="form-control" >
+                                            <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
                                         </div>
                                     </div>
                                 <div class="col-md-12 col-sm-12 ">
                                     <div class="form-group">
                                         <label ><spring:message code="label.Adresse"/></label>
-                                        <input ${disabled} value="${demande.adresse }" type="text" name="adresse" class="form-control" >
+                                        <input ${disabled} required value="${demande.adresse }" type="text" name="adresse" class="form-control" >
                                     </div>
                                 </div>
                                 </div>
@@ -125,7 +125,7 @@
                                 <div class="row">
                                     <div class=" col form-group">
                                         <label >Avis de projet </label>
-                                        <input  ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
+                                        <input required ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
                                     </div>
                                 </div>
                             </c:if>
@@ -146,22 +146,22 @@
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
                         <form class="mt-3"  id="formProjet" name="formProjet" >
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">2
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label ><spring:message code="label.IntituleDeProjet"/></label>
-                                        <input ${disabled} value="${demande.intitule_projet }" type="text" name="intitule_projet" class="form-control">
+                                        <input ${disabled} required value="${demande.intitule_projet }" type="text" name="intitule_projet" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label ><spring:message code="label.montantIves"/></label>
-                                        <input ${disabled} value="${demande.montant_investissement }" type="text" name="montant_investissement" class="form-control">
+                                        <input ${disabled} required value="${demande.montant_investissement }" type="text" name="montant_investissement" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label> <spring:message code="label.Tronsfrontalier"/>  </label>
-                                        <select ${disabled }  onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
+                                        <select ${disabled } onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
                                             <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
                                             <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
                                         </select>
@@ -171,49 +171,49 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Nature foncier</label>
-                                            <input ${disabled} value="${demande.nature_foncier }" type="text" name="nature_foncier" class="form-control">
+                                            <input ${disabled} required value="${demande.nature_foncier }" type="text" name="nature_foncier" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Caractéristiques du projet</label>
-                                            <input ${disabled} value="${demande.caracteristiques_projet }" type="text" name="caracteristiques_projet" class="form-control">
+                                            <input ${disabled} required value="${demande.caracteristiques_projet }" type="text" name="caracteristiques_projet" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Nature du projet</label>
-                                            <input ${disabled} value="${demande.nature_projet }" type="text" name="nature_projet" class="form-control">
+                                            <input ${disabled} required value="${demande.nature_projet }" type="text" name="nature_projet" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Ressources</label>
-                                            <textarea ${disabled} type="text" name="ressource" class="form-control" rows="3">${demande.ressource }</textarea>
+                                            <textarea ${disabled} required type="text" name="ressource" class="form-control" rows="3">${demande.ressource }</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Source</label>
-                                            <textarea ${disabled} type="text" name="source" class="form-control" rows="3">${demande.source }</textarea>
+                                            <textarea ${disabled} required type="text" name="source" class="form-control" rows="3">${demande.source }</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Qualitative</label>
-                                            <input ${disabled} value="${demande.qualitative }" type="text" name="qualitative" class="form-control">
+                                            <input ${disabled} required value="${demande.qualitative }" type="text" name="qualitative" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Quantité estimée</label>
-                                            <input ${disabled} value="${demande.quantite_projet }" type="text" name="quantite_projet" class="form-control">
+                                            <input ${disabled} required value="${demande.quantite_projet }" type="text" name="quantite_projet" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Unité</label>
-                                            <select  id="uniteId"
+                                            <select  id="uniteId" required
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -228,7 +228,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Caractéristique physique</label>
-                                            <select id="idcaracteristquePhysique"
+                                            <select id="idcaracteristquePhysique" required
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -243,7 +243,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Population</label>
-                                            <select id="id_population"
+                                            <select id="id_population" required
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -258,7 +258,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Les Impacts positifs et négatifs du projet</label>
-                                            <input type="file" id="impacts" class="form-control" onchange="fun_setimpacts()">
+                                            <input type="file" required id="impacts" class="form-control" onchange="fun_setimpacts()">
                                             <c:if test="${not empty demande.impacts}">
                                                 <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger fichier Qualification</a>
                                             </c:if>
@@ -283,13 +283,13 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label> Date de Démarrage</label>
-                                            <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" required >
+                                            <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="${demande.dateDemarage}" required >
                                         </div>
                                     </div>
                                         <div class="col-md-6 col-sm-12 mt-2">
                                             <div class="form-group">
                                                 <label> Date de Résiliation</label>
-                                                <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" required >
+                                                <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
                                             </div>
                                         </div>
                                 </c:if>
