@@ -954,7 +954,7 @@ function add_detail_mouvement(id_notif){
     var qte = $("#qte_unit").val();
     var files = $("#file_unit")[0].files.length;
     var nbr_colis = $("#nbr_colis").val();
-    var tr = $("#detail_mouvement table tbody tr").length;
+    var tr = $("#detail_mouvement table tbody tr:not(.text-center)").length;
     var qteTotal = parseInt($("#qte_prevue").val()) - (parseInt($("#qteTotale").val()) +parseInt(qte));
 
     if(qteTotal<0){
@@ -1030,7 +1030,7 @@ function setnbrColis(val,id_notif){
         url: "/api/setNbrColie/" + id_notif+"/"+nbr,
         data: {},
         success: function (response) {
-            if(nbr==tr)
+            if(nbr<tr)
                 $("#btn_add_detail").prop("disabled",true);
             else
                 $("#btn_add_detail").prop("disabled",false);
@@ -1147,6 +1147,66 @@ function fun_setimpacts() {
     });
 
 
+}
+
+function load_modal_transporteur(id_notif){
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/addTransporteurFinal/" + id_notif,
+        data: {},
+        success: function (response) {
+            $("#declarationTransp select").html(response);
+            $("#declarationTransp select").trigger("change");
+            $("#id_notif").val(id_notif);
+
+        },
+        error: function () {
+
+        }
+    });
+    $("#declarationTransp").modal("show");
+}
+
+
+function saveDeclarationTransporteur(){
+    var id_trans = $("#id_transp").val();
+    if($.trim(id_trans)==="" || id_trans==null || !$.isNumeric(id_trans)){
+        swal("Avertissement ! ","Merci de séléctionner un transporteur valide","error");
+        return false;
+    }
+
+    var id_notif = $("#id_notif").val();
+    if($.trim(id_notif)==="" || id_notif==null || !$.isNumeric(id_notif)){
+        return false;
+    }
+
+    var id_decla = $("#id_declaration").val();
+    if($.trim(id_decla)==="" || id_decla==null || !$.isNumeric(id_decla)){
+       id_decla = 0;
+    }
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/saveDeclarationTransporteur/" + id_trans + "/" + id_notif + "/" + id_decla,
+        data: {},
+        success: function (response) {
+            $("#declarationTransp").modal("hide");
+            swal({
+                    title: "Demande en cours de traitement ",
+                    text: "",
+                    type: "success",
+                },
+                function () {
+                    window.location.href="/api/ListeAutorisation/ZF/d";
+                })
+        },
+        error: function () {
+
+        }
+    });
+    $("#declarationTransp").modal("show");
 }
 
 
