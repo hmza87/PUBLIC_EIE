@@ -189,4 +189,6 @@ public interface WebService {
 	public void changertatutDemande2(DemandeInformation drt, int statut);
 
 	String updateDemandeInformationAE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String dateDemarage, String dateResiliation);
+void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl);
+
 }

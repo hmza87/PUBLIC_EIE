@@ -1125,7 +1125,17 @@ class WebServiceImp implements WebService {
 	public DeclarationTransporteur getdeclarationbyNotification(int id_notification) {
 		final String uri = urlRest+"/getdeclarationbyNotificationRest/"+id_notification ;
 		RestTemplate restTemplate = new RestTemplate();
-		return restTemplate.getForObject(uri, DeclarationTransporteur.class);
+		DeclarationTransporteur  result = restTemplate.getForObject(uri, DeclarationTransporteur.class);
+		return result;
 	}
+
+	@Override
+	public void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl) {
+		final String uri = urlRest+"/createDeclarationTransporteurRest/"+id_trans+"/"+id_notif+"/"+id_decl ;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uri, DeclarationTransporteur.class);
+
+	}
+
 
 }

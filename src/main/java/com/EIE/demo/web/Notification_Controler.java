@@ -791,8 +791,17 @@ public class Notification_Controler {
 		model.put("type",n.getZf_et());
 		model.put("notification",n);
 		model.put("transporteur",tr);
-		model.put("declaration",web.getdeclarationbyNotification(n.getId_notification()));
+		DeclarationTransporteur d = web.getdeclarationbyNotification(n.getId_notification());
+		model.put("declaration",d);
 		model.put("Admin_url",urlRest);
+		return new ModelAndView("user_select/auto_load_selects",model);
+	}
+
+	@RequestMapping(value = "/api/saveDeclarationTransporteur/{id_trans}/{id_notif}/{id_decl}", method = RequestMethod.POST)
+	public ModelAndView saveDeclarationTransporteur(@PathVariable int id_trans,@PathVariable int id_notif,@PathVariable int id_decl) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		web.createDeclarationTransporteur(id_trans,id_notif,id_decl);
+
 		return new ModelAndView("user_select/auto_load_selects",model);
 	}
 

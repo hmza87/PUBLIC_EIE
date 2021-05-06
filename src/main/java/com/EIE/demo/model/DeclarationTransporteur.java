@@ -18,13 +18,13 @@ public class DeclarationTransporteur implements Serializable {
 
 
 	public DeclarationTransporteur() {
-		
+
 	}
 
 	@Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
-    @Column (name="declarationId")
-    private int declarationId;
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Column (name="declarationId")
+	private int declarationId;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_transporteurParam")
