@@ -206,6 +206,15 @@ public class Hatim {
 		return new ModelAndView("aide/videolist",map);
 	}
 
+	@RequestMapping(value = "/CatalogueDesDechet",method = RequestMethod.GET)
+	public ModelAndView CatalogueDesDechet() throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("listF",webt.getListAllTransporteurParam());
+		map.put("code",webt.getListCodeTabByClassif(1));
+		return new ModelAndView("aide/CatalogueDesDechet",map);
+	}
+	
+
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)
 	public ModelAndView guideList() throws Exception {
 		Map<String,Object> map = new HashMap<>();
@@ -945,6 +954,13 @@ public class Hatim {
 		}
 
 		return new ModelAndView("user_select/auto_load_filesModal",map);
+	}
+
+	@RequestMapping(value = "/getTabtransporteur/{code}", method = RequestMethod.POST)
+	public ModelAndView getTabtransporteur(@PathVariable int code) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("trans",webt.getTransporteurParamByCode(code));
+		return new ModelAndView("user_select/auto_load_TabtransporteurDechets",model);
 	}
 
 	@RequestMapping(value = "/api/setFileReunionToDemande/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
