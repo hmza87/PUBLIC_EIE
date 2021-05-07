@@ -61,16 +61,13 @@
                     <th rowspan="2" ><spring:message code="label.Action"/></th>
                 </tr>
                 <tr>
-
                     <th><spring:message code="label.Raisonsocial"/>  </th>
                     <th><spring:message code="label.Representant"/>  </th>
                     <th><spring:message code="label.Tel"/> </th>
                     <th> <spring:message code="label.Fax"/> </th>
                     <th><spring:message code="label.Email"/>  </th>
-
                 </tr>
                 </thead>
-
                 <tbody>
                 <c:forEach items="${notif}" var="nt">
                     <tr>
@@ -78,7 +75,6 @@
                         <td>
                             <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
                         </td>
-
                         <td> <span class="badge badge-info"> ${nt.statut.nom_fr}</span>
                         </td>
                         <td> ${nt.intitule_projet}  </td>
@@ -87,7 +83,6 @@
                         <td>${nt.tel}</td>
                         <td>${nt.fax}</td>
                         <td>${nt.email}</td>
-
                         <td>
                             <c:if test="${not empty nt.detailRegion}">
                                 <button  onclick="fun_affiche_modal('#modal_DetailRegion','${nt.id_demande_information}')" class="btn btn-success btn-sm">Details Region</button>
@@ -110,15 +105,13 @@
                                 -
                             </c:if>
                         </td>
-                        <td>  ${nt.tronsfrontalier }  </td>
-
+                        <td>${nt.tronsfrontalier }
+                        </td>
                         <td>
                             <button class="btn btn-success rounded" onclick="affiche_files('${nt.id_demande_information}')">
                                 <span class="fa fa-archive"></span>
                             </button>
                         </td>
-
-
                         <td>
                             <c:if test="${not empty nt.url_enquette_defenitive }">
                                 <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
@@ -126,7 +119,6 @@
                                 </a>
                             </c:if>
                         </td>
-
                         <td>
                             <c:if test="${not empty nt.url_cachier_defenitive!=null }">
                                 <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
@@ -134,35 +126,23 @@
                                 </a>
                             </c:if>
                         </td>
-
-
-
                         <td>
-
                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
                                 <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitive"><i class="fa fa-check" style="margin:0 !important"></i></a>
-
                             </c:if>
-
-
                             <c:if test="${nt.statut.id_statut_projet==6}">
                                 <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
                             </c:if>
-
                             <c:if test="${nt.statut.id_statut_projet==47}">
                                 <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
                             </c:if>
-
                             <c:if test="${nt.statut.id_statut_projet==60}">
                                 <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" >Compléter le Dossier</button>
                             </c:if>
-
                             <c:if test="${nt.statut.id_statut_projet==13 }">
                                 <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
                                    class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
                             </c:if>
-
-
                         </td>
                     </tr>
                     <!-- Modal -->
@@ -211,7 +191,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Modal -->
                     <div class="modal fade" id="modal_DetailRegion_${nt.id_demande_information}" tabindex="-1"
                          role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -319,8 +298,6 @@
         </div>
     </div>
 </div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="complementDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
@@ -340,7 +317,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>

@@ -763,6 +763,8 @@ function saveCommuneDetailregion(val) {
 function updateDemandeInfomration(form, id_name, step, id_btn_step) {
     if (event != null)
         event.preventDefault();
+
+    $("#"+form).validate();
     var id = $("#" + id_name).val();
     if ($.trim(id) === "" || id == null) {
         return false;
@@ -786,22 +788,29 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
     if($.trim(id_poplation)==="" || id_poplation==null || !$.isNumeric(id_poplation) ){
         id_poplation=0;
     }
-
-    $.ajax({
-        type: "GET",
-        url: "/api/updateDemandeInfomration/" + id+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation,
-        contentType: 'application/json; charset=utf-8',
-        data: se,
-        success: function (response) {
-            console.log("success : " + response);
-            affiche_eie_zone(step, id_btn_step);
-        },
-        error: function (response) {
-
-            alert('Erreur ajout non effectue');
-
-        }
+    $empty = $('#'+form).find("input").filter(function() {
+        return this.value === "";
     });
+    if($empty.length) {
+        swal("Avertissement ! ", 'Tous Les Champs est obligatoire', 'error');
+        return false;
+    } else {
+        $.ajax({
+            type: "GET",
+            url: "/api/updateDemandeInfomration/" + id + "/" + id_unit + "/" + id_caracter_physique + "/" + id_poplation,
+            contentType: 'application/json; charset=utf-8',
+            data: se,
+            success: function (response) {
+                console.log("success : " + response);
+                affiche_eie_zone(step, id_btn_step);
+            },
+            error: function (response) {
+
+                alert('Erreur ajout non effectue');
+
+            }
+        });
+    }
 }
 
 function updateDemandeInfomrationEE(form, id_name, step, id_btn_step) {

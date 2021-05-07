@@ -49,7 +49,7 @@
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">2. informations sur le projet </button>
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >3. Localisation du projet </button>
                 </c:if>
-                <c:if test="${type=='EE' || type=='AE'}">
+                <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')">4. Pièce à fournir </button>
                 </c:if>
             </div>
@@ -89,7 +89,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class=" row">
                                 <div class=" col-md-4 col-sm-12">
                                     <div class="form-group">
@@ -117,9 +116,7 @@
                                     </div>
                                 </div>
                                 </div>
-
                         <%--information Projet--%>
-
                             <c:if test="${demande.statut.id_statut_projet==13}">
                                 <hr>
                                 <div class="row">
@@ -129,7 +126,6 @@
                                     </div>
                                 </div>
                             </c:if>
-
                             <div class="row justify-content-center p-0 mb-3">
                                 <div class="col-md-3 col-sm-12">
                                     <c:if test="${demande.statut.id_statut_projet!=13}">
@@ -140,7 +136,6 @@
                                     </c:if>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
@@ -262,8 +257,6 @@
                                             <c:if test="${not empty demande.impacts}">
                                                 <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger fichier Qualification</a>
                                             </c:if>
-                                            <input type="hidden" id="id_demande_information" class="form-control" name=""
-                                                   value="${demande.id_demande_information}">
                                         </div>
                                     </div>
                                 </c:if>
@@ -319,7 +312,7 @@
                     <div id="step2" class="col-12 z_collecteur collapse" >
                         <form class="mt-3"  id="formDetailRegion" name="formDetailRegion" >
                             <%--information region si possible--%>
-                            <div id="zone_region">
+                                 <div id="zone_region">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
@@ -367,23 +360,21 @@
                                     </div>
                                 </div>
                             </div>
-
-                                <div class="row p-0 justify-content-center mb-3">
+                                 <div class="row p-0 justify-content-center mb-3">
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
-                                    <c:if test="${type=='EE' || type=='AE'}">
+                                    <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','#step3','#step_id3')" >  <spring:message code="button.Suivant"/> </button>
                                     </div>
                                     </c:if>
-                                    <c:if test="${type=='RS' || type=='NT'}">
+                                    <c:if test="${type=='RS'}">
                                         <div class="col-sm-12 col-md-3">
                                             <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" >  <spring:message code="button.Enregistrer"/> </button>
                                         </div>
                                     </c:if>
                                 </div>
-
                         </form>
                     </div>
                     <c:if test="${type=='EE'}">
@@ -498,12 +489,65 @@
                             </form>
                         </div>
                     </c:if>
+                    <c:if test="${type=='NT'}">
+                        <div id="step3" class="col-12 z_collecteur collapse" >
+                            <form  class="form-horizontal mt-3" >
+                                <c:forEach items="${docNT}" var="dc">
+                                    <div class="row justify-content-center">
+                                        <div class="col mt-3  ">
+                                            <div class="form-group">
+                                                <div>
+                                                    <label style="width: 100%;"> ${dc.nom_fr } </label> <input
+                                                        required
+                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
+                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                        class="form-control mydoc">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <c:if test="${not empty docNotifyNT}">
+                                            <div class="col-2">
+                                                <c:forEach items="${docNotifyNT}" var="d">
+                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
+                                                        <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
+                                                           class="btn btn-success rounded file_existe"><span
+                                                                class="fa fa-download"></span></a>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </c:forEach>
+
+
+
+                                <div class="row p-0 justify-content-center mb-3 mt-4">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3">
+                                        <button onclick="changer_statut2('${type}','id_demande_information',1,'Votre demande est déposée avec succès')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row m-0 p-0 mt-5">
+                                    <div class="col-3">
+                                    </div>
+                                    <div class="col-6" style="text-align: center">
+
+
+                                    </div>
+                                    <div class="col-3">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </c:if>
                 </div>
             </div>
-
-            <div class="col-md-3 col-sm-12">
-
-            </div>
+            <div class="col-md-3 col-sm-12"></div>
         </div>
     </section>
 </div>
@@ -512,6 +556,8 @@
 <jsp:include page="../../includes/footer1.jsp"/>
 
 <script>
+
+
 
     function updateDemandeInfomrationAE(form, id_name, step, id_btn_step) {
         if (event != null)
@@ -527,21 +573,29 @@
         }
         var se = $("#"+form).serialize();
 
-        $.ajax({
-            type: "GET",
-            url: "/api/updateDemandeInfomrationAE/" + id,
-            contentType: 'application/json; charset=utf-8',
-            data: se,
-            success: function (response) {
-                console.log("success : " + response);
-                affiche_eie_zone(step, id_btn_step);
-            },
-            error: function (response) {
-
-                alert('Erreur ajout non effectue');
-
-            }
+        $empty = $('#'+form).find("input").filter(function() {
+            return this.value === "";
         });
+        if($empty.length) {
+            swal("Avertissement ! ", 'Tous Les Champs est obligatoire', 'error');
+            return false;
+        } else{
+            $.ajax({
+                type: "GET",
+                url: "/api/updateDemandeInfomrationAE/" + id,
+                contentType: 'application/json; charset=utf-8',
+                data: se,
+                success: function (response) {
+                    console.log("success : " + response);
+                    affiche_eie_zone(step, id_btn_step);
+                },
+                error: function (response) {
+
+                    alert('Erreur ajout non effectue');
+
+                }
+            });
+        }
     }
     function changer_statut2(type,id_name, code_statut, msg_alert) {
         if(event!=null)
