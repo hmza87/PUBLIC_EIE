@@ -140,21 +140,15 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12" id="groupe_select" >
-                        <label>Déclarer le nouveau Transporteur </label>
-                        <select class="form-control select2" id="id_transp">
-                            <%-- load_dynamique--%>
-                        </select>
+                        Aucun Transporteur n'est compatible avec le type de déchets de votre autorisation
                     </div>
-                    <div class="col-12">
-                        <label>Uploader le fichier</label>
-                        <input type="file" class="form-control" id="file_declaration">
-                    </div>
+
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="saveDeclarationTransporteur(this)">Enregistrer</button>
+                <button id="btn_valide_trans" type="button" class="btn btn-primary" onclick="saveDeclarationTransporteur()">Enregistrer</button>
             </div>
         </div>
     </div>
