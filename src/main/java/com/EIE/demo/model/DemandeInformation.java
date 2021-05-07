@@ -622,25 +622,25 @@ public class DemandeInformation implements Serializable {
 
 
     @Column(name = "dateDemarage", nullable = true)
-    private Date dateDemarage;
+    private String dateDemarage;
 
     @Column(name = "dateResiliation", nullable = true)
-    private Date dateResiliation;
+    private String dateResiliation;
 
 
-    public Date getDateDemarage() {
+    public String getDateDemarage() {
         return dateDemarage;
     }
 
-    public void setDateDemarage(Date dateDemarage) {
+    public void setDateDemarage(String dateDemarage) {
         this.dateDemarage = dateDemarage;
     }
 
-    public Date getDateResiliation() {
+    public String getDateResiliation() {
         return dateResiliation;
     }
 
-    public void setDateResiliation(Date dateResiliation) {
+    public void setDateResiliation(String dateResiliation) {
         this.dateResiliation = dateResiliation;
     }
 

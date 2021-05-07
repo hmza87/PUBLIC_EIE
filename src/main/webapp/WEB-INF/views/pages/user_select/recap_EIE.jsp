@@ -209,8 +209,7 @@
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                   <label>Date démarrage</label>
-                  <fmt:formatDate   dateStyle="long" value="${demande.dateDemarage}"  var="date"/>
-                    <input disabled type="text" class="form-control" value="${date}">
+                    <input disabled type="text" class="form-control" value="${demande.dateDemarage}">
                 </div>
               </div>
             </div>
@@ -218,8 +217,7 @@
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                   <label>Date Résiliation</label>
-                  <fmt:formatDate   dateStyle="long" value="${demande.dateResiliation}"  var="date"/>
-                  <input disabled type="text" class="form-control" value="${date}">
+                  <input disabled type="text" class="form-control" value="${demande.dateResiliation}">
                 </div>
               </div>
             </div>

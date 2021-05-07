@@ -202,7 +202,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Quantité estimée</label>
-                                            <input ${disabled} required value="${demande.quantite_projet }" type="text" name="quantite_projet" class="form-control">
+                                            <input ${disabled} required value="${demande.quantite_projet }" type="number" name="quantite_projet" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
