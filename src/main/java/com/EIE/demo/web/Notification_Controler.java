@@ -792,6 +792,7 @@ public class Notification_Controler {
 		model.put("type",n.getZf_et());
 		model.put("notification",n);
 		model.put("transporteur",tr);
+		model.put("selectTrans","on");
 		DeclarationTransporteur d = web.getdeclarationbyNotification(n.getId_notification());
 		model.put("declaration",d);
 		model.put("Admin_url",urlRest);

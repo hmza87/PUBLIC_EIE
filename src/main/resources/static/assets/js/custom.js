@@ -1209,8 +1209,13 @@ function load_modal_transporteur(id_notif){
         success: function (response) {
             $("#declarationTransp").modal("show");
             $("#groupe_select").html(response);
-            $("#declarationTransp select").trigger("change");
-            $("#id_notif").val(id_notif);
+            if($("#declarationTransp select").length>0){
+                $("#declarationTransp select").trigger("change");
+                $("#id_notif").val(id_notif);
+            }else{
+                $("#btn_valide_trans").hide();
+            }
+
 
         },
         error: function () {
@@ -1224,7 +1229,11 @@ function load_modal_transporteur(id_notif){
 function saveDeclarationTransporteur(){
     var id_trans = $("#id_transp").val();
     var data = new FormData();
-    if($.trim(id_trans)==="" || id_trans==null || !$.isNumeric(id_trans)){
+    if(id_trans==null){
+        $("#declarationTransp").modal("hide");
+        return false;
+    }
+    if($.trim(id_trans)==="" || !$.isNumeric(id_trans)){
         swal("Avertissement ! ","Merci de séléctionner un transporteur valide","error");
         return false;
     }
