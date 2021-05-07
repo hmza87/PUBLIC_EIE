@@ -306,7 +306,7 @@ public class Eie_Controler {
 		Compte ct = web.getCompteConnected();
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		DemandeInformation demande=web.getDemandeInfoById(id);
+		DemandeInformation demande=web.getDemandeInformationByCompteId(id,ct.getCompteId());
 
 		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");model.put("doc",l);
 

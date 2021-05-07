@@ -986,6 +986,13 @@ public class Hatim {
 		return new ModelAndView("user_select/auto_load_TabtransporteurDechets",model);
 	}
 
+	@RequestMapping(value = "/api/search/{search}", method = RequestMethod.GET)
+	public ModelAndView search(@PathVariable String search) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("listF",webt.search(search));
+		return new ModelAndView("user_select/auto_load_Tabtransporteur",model);
+	}
+
 	@RequestMapping(value = "/api/setFileReunionToDemande/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public @ResponseBody String setFileReunionToDemande(@PathVariable int id, @RequestParam MultipartFile[] fileToUpload)
 			throws JsonParseException, IOException, MessagingException {

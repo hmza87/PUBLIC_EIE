@@ -195,4 +195,6 @@ void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,Multi
 
     List<TransporteurParam> getListTransporteurParamByCodeNotInNotif(int id_notification);
 
+	List<TransporteurParam> search(String txt);
+
 }

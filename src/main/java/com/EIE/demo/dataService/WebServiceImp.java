@@ -1163,4 +1163,12 @@ class WebServiceImp implements WebService {
 		return Arrays.asList(result);
 	}
 
+	@Override
+	public List<TransporteurParam> search(String txt) {
+		final String uri = urlRest+"/searchRest/"+txt;
+		RestTemplate restTemplate = new RestTemplate();
+		TransporteurParam[] result = restTemplate.getForObject(uri,TransporteurParam[].class);
+		return Arrays.asList(result);
+	}
+
 }

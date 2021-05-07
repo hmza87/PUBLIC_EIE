@@ -1,18 +1,13 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib
-        prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <spring:url value="/resources/" var="resources"/>
 <%@ page contentType="text/html; charset=UTF-8" %>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false" %>
-
 <jsp:include page="../../includes/head.jsp"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
         body {
             color: #566787;
@@ -39,6 +34,33 @@
         .container{
             margin-top: 10%;
         }
+        .search-box {
+            position: relative;
+            float: right;
+        }
+        .search-box input {
+            height: 34px;
+            border-radius: 20px;
+            padding-left: 35px;
+            border-color: #ddd;
+            box-shadow: none;
+        }
+        #search{
+            border-radius: 20px;
+            border-color: #ddd;
+            box-shadow: none;
+            margin-bottom: 15px;
+        }
+        .search-box input:focus {
+            border-color: #3FBAE4;
+        }
+        .search-box i {
+            color: #a0a5b1;
+            position: absolute;
+            font-size: 19px;
+            top: 8px;
+            left: 10px;
+        }
         table.table tr th, table.table tr td {
             border-color: #e9e9e9;
         }
@@ -54,33 +76,45 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Transporteur Autorisé</h2></div>
+                    <div class="col-sm-6"><h2>Transporteur Autorisé</h2></div>
+                    <div class="col-sm-6">
+                            <%--<div>
+                                <button class="btn btn-primary float-right" onkeyup="search()" id="search" style="margin-left: 10px">Search</button>
+                            </div>--%>
+                            <div class="search-box">
+                                <i class="material-icons">&#xE8B6;</i>
+                                <input type="text" class="form-control" id="txtsearch" onkeyup="search()"  placeholder="Search&hellip;">
+                            </div>
+
+                    </div>
                 </div>
             </div>
-            <table class="table mytable table-striped table-hover table-bordered" id="example">
-                <thead>
-                <tr>
-                    <th class="text-center"><spring:message code="label.typededechet"/></th>
-                    <th class="text-center"><spring:message code="label.code"/></th>
-                    <th class="text-center"><spring:message code="label.transporteur"/></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${listF}" var="f">
+            <div id="mydata">
+                <table class="table mytable table-striped table-hover table-bordered" id="example">
+                    <thead>
                     <tr>
-                        <td><c:forEach items="${f.code}" var="p">
-                            - ${p.nom_ar}<br/>
-                        </c:forEach>
-                        </td>
-                        <td style="width:20%"><c:forEach items="${f.code}" var="p">
-                            - ${p.nom_fr}<br/>
-                        </c:forEach>
-                        </td>
-                        <td>${f.nom}</td>
+                        <th class="text-center"><spring:message code="label.typededechet"/></th>
+                        <th class="text-center"><spring:message code="label.code"/></th>
+                        <th class="text-center"><spring:message code="label.transporteur"/></th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${listF}" var="f">
+                        <tr>
+                            <td><c:forEach items="${f.code}" var="p">
+                                - ${p.nom_ar}<br/>
+                            </c:forEach>
+                            </td>
+                            <td style="width:20%"><c:forEach items="${f.code}" var="p">
+                                - ${p.nom_fr}<br/>
+                            </c:forEach>
+                            </td>
+                            <td>${f.nom}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -89,7 +123,7 @@
   /*  $(document).ready(function() {
         $('.table').DataTable().destroy();
     });*/
-  $(document).ready(function (){
+ /* $(document).ready(function (){
       $('[type=search]').css({
           'height': '34px',
           'border-radius': '20px',
@@ -97,5 +131,25 @@
           'border-color': '#ddd',
           'box-shadow': 'none'
       });
-  });
+  });*/
+
+
+        function search() {
+            var search = $("#txtsearch").val();
+            if(search.length==3){
+                $.ajax({
+                    type: "GET"
+                    , url: "/api/search/" + search
+                    , data: {}
+                    , contentType: 'application/json;'
+                    , success: function (result) {
+                        $("#mydata").html(result);
+                    }
+                });
+            }
+            else{
+                return false;
+            }
+        }
+
 </script>

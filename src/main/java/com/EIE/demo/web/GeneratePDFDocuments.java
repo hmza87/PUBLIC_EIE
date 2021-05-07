@@ -3933,7 +3933,7 @@ public class GeneratePDFDocuments {
         table0.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse(),1));
         table0.completeRow();
 
-        PdfPTable table01 = new PdfPTable(new float[]{3,3});
+        PdfPTable table01 = new PdfPTable(3);
         table01.setWidthPercentage(100);
         table01.setSpacingBefore(12);
         table01.setSpacingAfter(12);
@@ -3946,6 +3946,28 @@ public class GeneratePDFDocuments {
         table01.addCell(saisir_cellule("Montant d'investissement en MDH :",font,fontbold,String.valueOf(ns.getMontant_investissement()),1));
         table01.addCell(saisir_cellule("Transfrontalier :",font,fontbold,ns.getTronsfrontalier(),1));
         table01.completeRow();
+        if(ns.getType().equals("AE")){
+            table01.addCell(saisir_cellule("Date Démarage :",font,fontbold,ns.getDateDemarage(),1));
+            table01.addCell(saisir_cellule("Date Résiliation :",font,fontbold,ns.getDateResiliation(),2));
+            table01.completeRow();
+        }
+        if(ns.getType().equals("NT")){
+            table01.addCell(saisir_cellule("Nature foncier :",font,fontbold,ns.getNature_foncier(),1));
+            table01.addCell(saisir_cellule("Caractéristiques du projet :",font,fontbold,ns.getCaracteristiques_projet(),1));
+            table01.addCell(saisir_cellule("Nature du projet :",font,fontbold,ns.getNature_projet(),1));
+            table01.completeRow();
+            table01.addCell(saisir_cellule("Ressources :",font,fontbold,ns.getRessource(),1));
+            table01.addCell(saisir_cellule("Source :",font,fontbold,ns.getStatut_RC(),1));
+            table01.addCell(saisir_cellule("Qualitative :",font,fontbold,ns.getQualitative(),1));
+            table01.completeRow();
+            table01.addCell(saisir_cellule("Quantité estimée :",font,fontbold,String.valueOf(ns.getQuantite_projet()),1));
+            table01.addCell(saisir_cellule("Unité :",font,fontbold,ns.getUnite().getNom_fr(),1));
+            table01.addCell(saisir_cellule("Caractéristique physique :",font,fontbold,ns.getCaracter_physique(),1));
+            table01.completeRow();
+            table01.addCell(saisir_cellule("Population :",font,fontbold,ns.getPopulation().getNom_fr(),3));
+            table01.completeRow();
+        }
+
         //--------------------- Tableau Document de notification ---------------------
         PdfPTable table3 = new PdfPTable(new float[]{4,4,4,4});
         table3.setWidthPercentage(100);

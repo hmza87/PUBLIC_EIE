@@ -275,8 +275,7 @@
                                 <c:if test="${type=='AE'}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label> Date de Démarrage</label>
-                                            <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="${demande.dateDemarage}" required >
+                                            <label> Date de Démarrage</label><input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="5" required >
                                         </div>
                                     </div>
                                         <div class="col-md-6 col-sm-12 mt-2">
@@ -364,6 +363,7 @@
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
+                                    <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
                                     <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','#step3','#step_id3')" >  <spring:message code="button.Suivant"/> </button>

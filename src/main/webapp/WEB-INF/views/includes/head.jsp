@@ -29,7 +29,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/styleguru.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/icofont.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/themify-icons.css" >
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Responsive File -->
     <link href="${pageContext.request.contextPath}/assets/css/responsive.css" rel="stylesheet">
 
