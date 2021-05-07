@@ -15,13 +15,13 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect
 public class Societe implements Serializable {
-	
-	
-	
 
-	
 
-	
+
+
+
+
+
 
 	public Profil getProfil() {
 		return profil;
@@ -31,17 +31,17 @@ public class Societe implements Serializable {
 		this.profil = profil;
 	}
 
-	
+
 
 	public Societe() {
-		
+
 	}
 
 	@Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
-    @Column (name="societesId")
-    private int societesId;
-	
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Column (name="societesId")
+	private int societesId;
+
 	public int getSocietesId() {
 		return societesId;
 	}
@@ -52,20 +52,105 @@ public class Societe implements Serializable {
 
 	@Column(name = "NumRc", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String NumRc;
-	
+
 	@Column(name = "raison_ar", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String raison_ar;
-	
+
 	@Column(name = "raison_fr", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String raison_fr;
-	
+
 	@Column(name = "name_fr", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String name_fr;
-	
+
 	@Column(name = "name_ar", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String name_ar;
 	@Column(name = "ZF", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String ZF;
+	@Column(name = "environnement", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String environnement;
+	@Column(name = "autorisation", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String autorisation;
+
+	public String getEnvironnement() {
+		return environnement;
+	}
+
+	public void setEnvironnement(String environnement) {
+		this.environnement = environnement;
+	}
+
+	public String getAutorisation() {
+		return autorisation;
+	}
+
+	public void setAutorisation(String autorisation) {
+		this.autorisation = autorisation;
+	}
+
+	public String getZF() {
+		return ZF;
+	}
+
+	public void setZF(String zF) {
+		ZF = zF;
+	}
+
+	public String getET() {
+		return ET;
+	}
+
+	public void setET(String eT) {
+		ET = eT;
+	}
+
+	public String getTR() {
+		return TR;
+	}
+
+	public void setTR(String tR) {
+		TR = tR;
+	}
+
+	public String getXD() {
+		return XD;
+	}
+
+	public void setXD(String xD) {
+		XD = xD;
+	}
+
+	public String getIT() {
+		return IT;
+	}
+
+	public void setIT(String iT) {
+		IT = iT;
+	}
+
+	public String getCT() {
+		return CT;
+	}
+
+	public void setCT(String cT) {
+		CT = cT;
+	}
+
+	public String getEIE() {
+		return EIE;
+	}
+
+	public void setEIE(String eIE) {
+		EIE = eIE;
+	}
+
+	public String getEA() {
+		return EA;
+	}
+
+	public void setEA(String eA) {
+		EA = eA;
+	}
+
 	@Column(name = "ET", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String ET;
 	@Column(name = "TR", nullable = true, columnDefinition = "NVARCHAR(255)")
@@ -82,11 +167,7 @@ public class Societe implements Serializable {
 	private String EA;
 	@Column(name = "NT", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String NT;
-	@Column(name = "environnement", nullable = true, columnDefinition = "NVARCHAR(255)")
-	private String environnement;
-	@Column(name = "autorisation", nullable = true, columnDefinition = "NVARCHAR(255)")
-	private String autorisation;
-	
+
 	public String getNT() {
 		return NT;
 	}
@@ -101,7 +182,7 @@ public class Societe implements Serializable {
 	private String etat;
 	@Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String type;
-	
+
 	public String getType() {
 		return type;
 	}
@@ -166,12 +247,12 @@ public class Societe implements Serializable {
 
 	@Column(name = "fax", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String fax;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idsecteur")
 	private Secteur secteur;
-	
-	
+
+
 	public String getNumRc() {
 		return NumRc;
 	}
@@ -252,11 +333,11 @@ public class Societe implements Serializable {
 	private String deleted;
 	@Column(name = "urlCertificat", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String urlCertificat;
-	
+
 	@Column(name = "urlRegistre", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String urlRegistre;
-	
-	
+
+
 	public String getDeleted() {
 		return deleted;
 	}
@@ -273,19 +354,19 @@ public class Societe implements Serializable {
 		this.tel = tel;
 	}
 
-	
-	
+
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "profilId")
 	private Profil profil;
-	
-	
-	
 
-	
 
-	
-	
+
+
+
+
+
+
 	public Date getDeleteDateTime() {
 		return deleteDateTime;
 	}
@@ -297,84 +378,25 @@ public class Societe implements Serializable {
 	@Column
 	private Date deleteDateTime;
 
-	public String getZF() {
-		return ZF;
-	}
-
-	public void setZF(String zF) {
-		ZF = zF;
-	}
-
-	public String getET() {
-		return ET;
-	}
-
-	public void setET(String eT) {
-		ET = eT;
-	}
-
-	public String getTR() {
-		return TR;
-	}
-
-	public void setTR(String tR) {
-		TR = tR;
-	}
-
-	public String getXD() {
-		return XD;
-	}
-
-	public void setXD(String xD) {
-		XD = xD;
-	}
-
-	public String getIT() {
-		return IT;
-	}
-
-	public void setIT(String iT) {
-		IT = iT;
-	}
-
-	public String getCT() {
-		return CT;
-	}
-
-	public void setCT(String cT) {
-		CT = cT;
-	}
-
-	public String getEIE() {
-		return EIE;
-	}
-
-	public void setEIE(String eIE) {
-		EIE = eIE;
-	}
-
-	public String getEA() {
-		return EA;
-	}
-
-	public void setEA(String eA) {
-		EA = eA;
-	}
 
 
-	public String getEnvironnement() {
-		return environnement;
-	}
 
-	public void setEnvironnement(String environnement) {
-		this.environnement = environnement;
-	}
 
-	public String getAutorisation() {
-		return autorisation;
-	}
 
-	public void setAutorisation(String autorisation) {
-		this.autorisation = autorisation;
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

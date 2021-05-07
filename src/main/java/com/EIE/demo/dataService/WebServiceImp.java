@@ -1130,12 +1130,37 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl) {
+	public void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,MultipartFile[] file) {
 		final String uri = urlRest+"/createDeclarationTransporteurRest/"+id_trans+"/"+id_notif+"/"+id_decl ;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		if(file.length!=0)
+			bodyMapw.add("file",new FileSystemResource(convert(file[0])));
+		else
+			bodyMapw.add("file",null);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getForObject(uri, DeclarationTransporteur.class);
+		ResponseEntity<String> response = restTemplate.exchange(uri,
+				HttpMethod.POST, requestEntity, String.class);
 
 	}
 
+	@Override
+	public DeclarationTransporteur getDeclaravionValideByNotificationId(int id_notification) {
+		final String uri = urlRest+"/getDeclaravionValideByNotificationIdRest/"+id_notification ;
+		RestTemplate restTemplate = new RestTemplate();
+		DeclarationTransporteur  result = restTemplate.getForObject(uri, DeclarationTransporteur.class);
+		return result;
+	}
+
+	@Override
+	public List<TransporteurParam> getListTransporteurParamByCodeNotInNotif(int id_notification) {
+		final String uri = urlRest+"/getListTransporteurParamByCodeNotInNotifRest/"+id_notification;
+		RestTemplate restTemplate = new RestTemplate();
+		TransporteurParam[] result= restTemplate.getForObject(uri,TransporteurParam[].class);
+		return Arrays.asList(result);
+	}
 
 }

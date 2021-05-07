@@ -517,7 +517,7 @@
 </c:if>
 <c:if test="${Preparezvotredemarche=='0' }">
                                     <h2 class="font-weight-700"><spring:message
-                                            code="label.DeposerleDossier"/></h2>
+                                            code="label.DeposerleDossier"/> kouidi</h2>
 </c:if>
 
                                 </div>
@@ -526,7 +526,7 @@
                             </div>
                             <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
                                 <div class="col-6 d-block block_vert hvr-float-shadow"
-                                     onclick="sectautoris_table_select()">
+                                     onclick="sectautoris_table_select('auth')">
                                     <div class="div_shadow rounded"
                                          style="border-top-right-radius: 3px !important; border-bottom-left-radius: 3px !important; border:1px solid gray;">
                                         <img src="/assets/images/arbre2.png" style=" width: 100px;
@@ -539,7 +539,7 @@ margin-bottom: 10px;">
                                     </div>
 
                                 </div>
-                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectevaluation()">
+                                <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select('EIE')">
                                     <div class="div_shadow rounded"
                                          style="border-bottom-right-radius: 3px !important;border-top-left-radius: 3px !important; border:1px solid gray;">
                                         <img src="/assets/images/Arb1.png" style=" width: 100px;
@@ -915,8 +915,9 @@ margin-bottom: 10px;">
                             <div class="col-12 p-0 m-0  bg-light border">
                                 <div class="row p-0 m-0">
                                     <div class="col-12 ">
-                                        <p class="font_bold p-3 mb-0"><spring:message
-                                                code="label.Jesouhaitefaireunedemandedautorisation"/> : </p>
+                                        <p class="font_bold p-3 mb-0">
+                                            <spring:message code="label.Jesouhaitefaireunedemandedautorisation"/> :
+                                        </p>
                                     </div>
 
                                 </div>
@@ -928,7 +929,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
                                                 <c:if test="${Preparezvotredemarche=='1' }">
                                                     <button class="btn btn-primary btn-sm"
@@ -949,7 +950,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
 
@@ -974,7 +975,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message
                                                             code="label.Collectetransportdesdechetsdangereux"/></h6>
                                                 <c:if test="${Preparezvotredemarche=='1' }">
@@ -998,7 +999,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
 
@@ -1022,7 +1023,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
                                                 <c:if test="${Preparezvotredemarche=='1' }">
                                                     <button class="btn btn-primary btn-sm"
@@ -1044,7 +1045,7 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
 
                                                 <c:if test="${Preparezvotredemarche=='1' }">
@@ -1065,6 +1066,85 @@ margin-bottom: 10px;">
                                     </div>
                                 </div>
 
+                            </div>
+                        </div>
+                        <div class="row-fluid border d-none" id="dev_list_slc2">
+                            <div class="col-12">
+                                <c:if test="${Preparezvotredemarche=='1' }">
+                                    <p class="h3 font_bold w-100 text-center p-4"><spring:message
+                                            code="label.Preparezvotredemarche"/></p>
+                                </c:if>
+                                <c:if test="${Preparezvotredemarche=='0' }">
+                                    <p class="h3 font_bold w-100 text-center p-4"><spring:message
+                                            code="label.DeposerleDossier"/></p>
+                                </c:if>
+                            </div>
+                            <div class="col-12 p-0 m-0  bg-light border">
+                                <div class="row p-0 m-0">
+                                    <div class="col-12 ">
+                                        <p class="font_bold p-3 mb-0">
+                                            <c:if test="${Preparezvotredemarche=='1' }">
+                                                <spring:message code="label.Jesouhaitefaireunedemandedautorisation"/> :
+                                            </c:if>
+                                            <c:if test="${Preparezvotredemarche=='0' }">
+                                                Je souhaite faire la demande de :
+                                            </c:if>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 border">
+                                <div class="row p-0 m-0 mt-3">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                    <spring:message code="label.etudeimpactenvironnemental"/></h6>
+                                                <button class="btn btn-primary btn-sm"
+                                                        onclick="checkAut('${user.st.EIE}','/api/checkEIESelect/EE')">
+                                                    Entrer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                    <spring:message
+                                                            code="label.Noticedimpact"/></h6>
+
+
+                                                <button
+                                                        onclick="checkAut('${user.st.NT}','/api/checkEIESelect/NT')"
+                                                        class="btn btn-primary btn-sm">
+                                                    Entrer
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
+                                                    <spring:message
+                                                            code="label.Auditenvironnementale"/></h6>
+                                                <button
+                                                        onclick="checkAut('${user.st.EA}','/api/checkEIESelect/AE')"
+                                                        class="btn btn-primary btn-sm">
+                                                    Entrer
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

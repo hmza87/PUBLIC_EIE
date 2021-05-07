@@ -786,8 +786,9 @@ public class Notification_Controler {
 	@RequestMapping(value = "/api/addTransporteurFinal/{id}", method = RequestMethod.POST)
 	public ModelAndView addTransporteurFinal(@PathVariable int id) {
 		Map<String,Object> model = new HashMap<String,Object>();
-		List<TransporteurParam> tr = web.getListAllTransporteurParam();
+
 		Notification n = web.getNotificationByIdComptId(id,web.getCompteConnected().getCompteId());
+		List<TransporteurParam> tr = web.getListTransporteurParamByCodeNotInNotif(n.getId_notification());
 		model.put("type",n.getZf_et());
 		model.put("notification",n);
 		model.put("transporteur",tr);
@@ -797,10 +798,10 @@ public class Notification_Controler {
 		return new ModelAndView("user_select/auto_load_selects",model);
 	}
 
-	@RequestMapping(value = "/api/saveDeclarationTransporteur/{id_trans}/{id_notif}/{id_decl}", method = RequestMethod.POST)
-	public ModelAndView saveDeclarationTransporteur(@PathVariable int id_trans,@PathVariable int id_notif,@PathVariable int id_decl) {
+	@RequestMapping(value = "/api/saveDeclarationTransporteur/{id_trans}/{id_notif}/{id_decl}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelAndView saveDeclarationTransporteur(@PathVariable int id_trans,@PathVariable int id_notif,@PathVariable int id_decl, @RequestParam MultipartFile[] fileToUpload) {
 		Map<String,Object> model = new HashMap<String,Object>();
-		web.createDeclarationTransporteur(id_trans,id_notif,id_decl);
+		web.createDeclarationTransporteur(id_trans,id_notif,id_decl,fileToUpload);
 
 		return new ModelAndView("user_select/auto_load_selects",model);
 	}

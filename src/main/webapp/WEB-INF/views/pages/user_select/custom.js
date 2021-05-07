@@ -107,6 +107,7 @@ function sectautoris_table_select(){
     $("#dev_list_slc").removeClass("d-none");
 }
 
+
 function openCity2(id_active, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

@@ -26,14 +26,24 @@
     </c:forEach>
   </c:when>
     <c:when test="${not empty transporteur}">
-        <option value=""><spring:message code="label.choisir"/> </option>
-        <c:forEach items="${transporteur}" var="t">
-            <option
-                    <c:forEach items="${notification.transporteur}" var="tt">
-                        ${tt.id_transporteurParam==t.id_transporteurParam?"disabled":""}
-                    </c:forEach>
-                    value="${t.id_transporteurParam}">${t.nom}</option>
-        </c:forEach>
+        <c:if test="${notification.statut.id_statut_projet==68}">
+            <textarea class="form-control" disabled rows="2">${declaration.commentaire}</textarea>
+        </c:if>
+        <label>Déclarer le nouveau Transporteur </label>
+        <select class="form-control select2" id="id_transp">
+            <option value=""><spring:message code="label.choisir"/> </option>
+            <c:forEach items="${transporteur}" var="t">
+                <option
+                        <c:forEach items="${notification.transporteur}" var="tt">
+                            ${tt.id_transporteurParam==t.id_transporteurParam?"disabled":""}
+                        </c:forEach>
+
+                        ${declaration.transporteurParam.id_transporteurParam==t.id_transporteurParam?'selected':""}
+                        value="${t.id_transporteurParam}">${t.nom}</option>
+            </c:forEach>
+        </select>
+        <input class="from-control" type="hidden" value="${declaration.declarationId}" id="id_declaration">
+        <input class="from-control" type="hidden" value="${notification.id_notification}" id="id_notif">
     </c:when>
 </c:choose>
 

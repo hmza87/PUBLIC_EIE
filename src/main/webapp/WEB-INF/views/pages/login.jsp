@@ -463,7 +463,8 @@
                                 </div>
                                 <div class="col-8 text-center text-underline">
 
-                                    <h2 class="font-weight-700"><spring:message
+                                    <h2 class="font-weight-700">
+                                        <spring:message
                                             code="label.Preparezvotredemarche"/></h2>
 
                                 </div>
@@ -522,6 +523,7 @@ margin-bottom: 10px;">
                                     </div>
 
                                     <div id="slct2" class="text-center disp_none mt-4">
+
                                         <h4><i class="fa fa-tree"></i> <spring:message code="label.EvaluationEnvironnementale"/></h4>
                                         <select onchange="slct2()" id="slct2change" class="form-control select2"
                                                 style="margin-top: 5%;width: 90%;margin-left: 5%;" ${dd}>

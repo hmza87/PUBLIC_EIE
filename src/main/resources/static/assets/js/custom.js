@@ -146,8 +146,16 @@ function go_to(url) {
 }
 
 function sectautoris_table_select(nbr) {
-    $("#zone_rech").addClass("d-none");
-    $("#dev_list_slc").removeClass("d-none");
+    if(nbr=="auth"){
+        $("#zone_rech").addClass("d-none");
+        $("#dev_list_slc").removeClass("d-none");
+        $("#dev_list_slc2").addClass("d-none");
+    }else{
+        $("#zone_rech").addClass("d-none");
+        $("#dev_list_slc2").removeClass("d-none");
+        $("#dev_list_slc").addClass("d-none");
+    }
+
     if(nbr==1){
         $("#autorisation_groupe").removeClass("d-none");
         $("#EIE_groupe").addClass("d-none");
@@ -1199,7 +1207,8 @@ function load_modal_transporteur(id_notif){
         url: "/api/addTransporteurFinal/" + id_notif,
         data: {},
         success: function (response) {
-            $("#declarationTransp select").html(response);
+            $("#declarationTransp").modal("show");
+            $("#groupe_select").html(response);
             $("#declarationTransp select").trigger("change");
             $("#id_notif").val(id_notif);
 
@@ -1208,16 +1217,23 @@ function load_modal_transporteur(id_notif){
 
         }
     });
-    $("#declarationTransp").modal("show");
+
 }
 
 
 function saveDeclarationTransporteur(){
     var id_trans = $("#id_transp").val();
+    var data = new FormData();
     if($.trim(id_trans)==="" || id_trans==null || !$.isNumeric(id_trans)){
         swal("Avertissement ! ","Merci de séléctionner un transporteur valide","error");
         return false;
     }
+
+    var ins = document.getElementById("file_declaration").files.length;
+    for (var x = 0; x < ins; x++) {
+        data.append("fileToUpload", document.getElementById("file_declaration").files[x]);
+    }
+
 
     var id_notif = $("#id_notif").val();
     if($.trim(id_notif)==="" || id_notif==null || !$.isNumeric(id_notif)){
@@ -1233,11 +1249,14 @@ function saveDeclarationTransporteur(){
         type: "POST",
         enctype: 'multipart/form-data',
         url: "/api/saveDeclarationTransporteur/" + id_trans + "/" + id_notif + "/" + id_decla,
-        data: {},
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
         success: function (response) {
             $("#declarationTransp").modal("hide");
             swal({
-                    title: "Demande en cours de traitement ",
+                    title: "Votre demande est en cours de traitement ",
                     text: "",
                     type: "success",
                 },

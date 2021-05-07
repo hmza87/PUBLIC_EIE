@@ -751,7 +751,7 @@ public class Hatim {
 		ListDocNotif[] l = webt.listDocNotif(n.getId_notification(),type);
 		model.put("doc",l);
 		model.put("url_Admin",urlRest);
-
+		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
 		return new ModelAndView("user_select/recap_ZF",model);
 	}
 

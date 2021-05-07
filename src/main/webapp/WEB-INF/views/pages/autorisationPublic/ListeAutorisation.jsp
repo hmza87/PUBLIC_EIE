@@ -85,7 +85,7 @@
                     <td> ${nt.code.nom_fr }  </td>
                     <td> ${nt.code.nom_ar }  </td>
                     <td> ${nt.zonneFranche.nom_fr } ${nt.pays.nom_fr}</td>
-                     <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==65)?nt.statut.nom_fr:"en cours de traitement" }</span>  </td>
+                     <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==65 || nt.statut.id_statut_projet==67 ||  nt.statut.id_statut_projet==68 )?nt.statut.nom_fr:"en cours de traitement" }</span>  </td>
                     <td>  ${nt.operation }  </td>
                     <td> ${nt.quantite } ${nt.unite.nom_fr } </td>
                    
@@ -101,7 +101,7 @@
                         <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==65) }">
                             <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
                         </c:if>
-                        <c:if test="${(type=='ZF' || type=='XD') && nt.statut.id_statut_projet==64 && nt.classification.id_classification==1  }">
+                        <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==68) && nt.classification.id_classification==1  }">
                             <button onclick="load_modal_transporteur('${nt.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
                         </c:if>
                         <c:if test="${nt.statut.id_statut_projet==48}">
@@ -139,13 +139,15 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-12" >
+                    <div class="col-12" id="groupe_select" >
                         <label>Déclarer le nouveau Transporteur </label>
                         <select class="form-control select2" id="id_transp">
                             <%-- load_dynamique--%>
                         </select>
-                        <input class="from-control" type="text" value="" id="id_declaration">
-                        <input class="from-control" type="text" value="" id="id_notif">
+                    </div>
+                    <div class="col-12">
+                        <label>Uploader le fichier</label>
+                        <input type="file" class="form-control" id="file_declaration">
                     </div>
                 </div>
 

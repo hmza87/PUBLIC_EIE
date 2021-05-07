@@ -74,7 +74,7 @@
   <div class="row justify-content-center pl-3 pr-3">
     <div class="col-12">
       <div class="jumbotron p-3">
-      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65)?notification.statut.nom_fr:"en cours de traitement" } </span>
+      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68)?notification.statut.nom_fr:"en cours de traitement" } </span>
       </div>
     </div>
   </div>
@@ -105,9 +105,9 @@
             <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>
         </c:if>
-        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64) }">
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
           <div class="col-md-auto col-sm-6 ">
-            <a href="/api/addTransporteurFinal/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i>Ajouter un transporteur</a>
+            <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
           </div>
         </c:if>
 
@@ -393,7 +393,16 @@
                 </tr>
               </c:forEach>
             </c:if>
-            <c:if test="${empty notification.transporteur}">
+            <c:if test="${not empty declarationTrans}">
+              <tr class="bg-primary">
+                <td>${declarationTrans.transporteurParam.nom}</td>
+                <td>${declarationTrans.transporteurParam.identifiant}</td>
+                <td>${declarationTrans.transporteurParam.tel}</td>
+                <td>${declarationTrans.transporteurParam.fax}</td>
+                <td>${declarationTrans.transporteurParam.email}</td>
+              </tr>
+            </c:if>
+            <c:if test="${(empty notification.transporteur && empty declarationTrans)}">
               <tr>
                 <td class="text-center" colspan="5"> <spring:message code="label.AucunTransporteur"/>  </td>
               </tr>
@@ -590,6 +599,41 @@
     </div>
 
   </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="declarationTransp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Déclaration du transporteur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12" id="groupe_select" >
+              <label>Déclarer le nouveau Transporteur </label>
+              <select class="form-control select2" id="id_transp">
+                  <%-- load_dynamique--%>
+              </select>
+            </div>
+            <div class="col-12">
+              <label>Assurance</label>
+              <input type="file" class="form-control" id="file_declaration">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" onclick="saveDeclarationTransporteur(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
   <jsp:include page="../../includes/footer1.jsp"/>
 </c:if>
