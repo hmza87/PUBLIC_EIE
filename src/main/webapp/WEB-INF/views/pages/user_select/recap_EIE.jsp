@@ -327,7 +327,7 @@
             </div>
           </c:if>
           </div>
-        <h2>3. informations sur le projet </h2>
+        <h2>3. localisation du projet </h2>
         <div>
         <div class="row">
           <div class="col-sm-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
