@@ -1017,7 +1017,13 @@ public class Hatim {
 		model.put("show","procedure");
 		return new ModelAndView("user_select/auto_load_accordion",model);
 	}
-
+    @RequestMapping(value = "/Actualite",method = RequestMethod.GET)
+    public ModelAndView Actualite() throws Exception {
+        Map<String,Object> map = new HashMap<>();
+        //map.put("listF",webt.getListAllTransporteurParam());
+        //map.put("code",webt.getListCodeTabByClassif(1));
+        return new ModelAndView("aide/Actualite",map);
+    }
 
 
 

@@ -19,7 +19,7 @@
             <div class="featured-block col-lg-6 col-md-6 col-sm-12 ">
                  <div class="inner-box" style=''>
                     <div class="content-box">
-                        <div class="icon-box"><span class="fa fa-recycle"></span></div>
+                        <div class="icon-box"><img src="/assets/images/arbre2.png" alt=""></div>
                         <div class="content">
                             
                             <h4><a href="/api/ListeAutorisation_card/ZF/d" class="st"><spring:message code="label.Autorisationdesdechets"/></a></h4>
@@ -37,7 +37,7 @@
                     <div class="inner-box" >
 
                         <div class="content-box">
-                            <div class="icon-box"><span class="fa fa-tree"></span></div>
+                            <div class="icon-box"><img src="/assets/images/Arb1.png" alt=""></div>
                             <div class="content">
                                 <h4><a href="/api/ListeEIE_card"  class="st"><spring:message code="label.Evaluationenvironnementale"/></a></h4>
                             </div>

@@ -280,7 +280,7 @@ function changer_statut(id_name,code_statut,msg_alert){
         return false;
     }
     $.ajax({
-        
+
         url: "/api/changerStatuts/"+id+"/"+code_statut,
         type: 'GET',
         data:{},
