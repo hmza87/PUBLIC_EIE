@@ -901,7 +901,7 @@ function affiche_msg_file(id_dmd) {
 
 }
 
-function setfileReunionToDemande(id_dmd) {
+function setfileReunionToDemande(id_dmd,type) {
 
     var data = new FormData();
     var ins = document.getElementById("file_to_complete").files.length;
@@ -926,7 +926,7 @@ function setfileReunionToDemande(id_dmd) {
                     type: "success",
                 },
                 function () {
-                    window.location.href = '/api/ListeEie';
+                    window.location.href = '/api/ListeEie/'+type;
                 });
 
         },

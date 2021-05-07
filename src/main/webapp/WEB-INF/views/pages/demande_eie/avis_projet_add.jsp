@@ -23,9 +23,16 @@
     <section class="mt-2 bg-white container-fluid" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
         <div class="row">
             <div class="col-12">
+
                 <c:choose>
-                    <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/demandeinformation/')}">
+                    <c:when test="${type=='EE'}">
                         <spring:message code="option.Etudedimpactenvironnementale" var="p_page" />
+                    </c:when>
+                    <c:when test="${type=='NT'}">
+                        <spring:message code="option.Noticedimpact" var="p_page" />
+                    </c:when>
+                    <c:when test="${type=='AE'}">
+                        <spring:message code="option.Auditenvironnementale" var="p_page" />
                     </c:when>
                     <c:otherwise>
                         <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>

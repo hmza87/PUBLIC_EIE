@@ -73,7 +73,18 @@ public class ListDocNotif implements Serializable {
 	@JoinColumn(name = "id_collecte")
 	private CollecteTransporteur collecte;
 
-	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_demande_information")
+	private DemandeInformation DemandeEIE;
+
+	public DemandeInformation getDemandeEIE() {
+		return DemandeEIE;
+	}
+
+	public void setDemandeEIE(DemandeInformation demandeEIE) {
+		DemandeEIE = demandeEIE;
+	}
+
 	public Installation getInstall() {
 		return install;
 	}

@@ -28,11 +28,27 @@
                                                     <h4 class="titre_abs "> Attacher les documents définitifs</h4>
                                                         <input type="hidden" id="id_dmd" value="${iddemande}">
                                                   <div class="row m-0 p-0 mt-5">
+                                                    <c:if test="${type=='EE'}">
                                                             <div class="col-6">
                                                                 <label >Etude d’Impact sur l’Environnement définitive: </label>
                                                                  <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
-                                                         
+
                                                             </div>
+                                                    </c:if>
+                                                      <c:if test="${type=='NT'}">
+                                                          <div class="col-6">
+                                                              <label >Notice d’Impact sur l’Environnement définitive: </label>
+                                                              <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
+
+                                                          </div>
+                                                      </c:if>
+                                                      <c:if test="${type=='AE'}">
+                                                          <div class="col-6">
+                                                              <label >Audit Environnemental définitive: </label>
+                                                              <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
+
+                                                          </div>
+                                                      </c:if>
                                                             <div class="col-6">
                                                                 <label > Cahier des charges définitif: </label><br/>
                                                                 <input multiple onchange="addDoc(${test1},'6','docp')"  type="file" class="form-control"  id="docp"  ></input>

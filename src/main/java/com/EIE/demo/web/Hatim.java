@@ -646,14 +646,14 @@ public class Hatim {
 			model.put("titre_dyn","Renseignements préalables ");
 			model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
 		}else if(type.equals("EE")){
-			model.put("titre_dyn","Etude d’Impact sur l’Environment");
+			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
 			model.put("EE",webt.getcountEIEByType("EE",webt.getCompteConnected().getCompteId()));
 		}else if(type.equals("NT")){
-			model.put("titre_dyn","Notice d'Impact sur l'Environment");
+			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
 			model.put("NT",webt.getcountEIEByType("NT",webt.getCompteConnected().getCompteId()));
 		}
 		else if(type.equals("AE")){
-			model.put("titre_dyn","Audit Environmental");
+			model.put("titre_dyn","Audit Environnemental");
 			model.put("AE",webt.getcountEIEByType("AE",webt.getCompteConnected().getCompteId()));
 		}
 

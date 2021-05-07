@@ -50,7 +50,7 @@
                 </p>
             </div>
             <div class="col-10 mt-3">
-                <input id="file_to_complete" onchange="setfileReunionToDemande('${demande.id_demande_information}')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                <input id="file_to_complete" onchange="setfileReunionToDemande('${demande.id_demande_information}','${demande.type}')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
             </div>
         </div>
 

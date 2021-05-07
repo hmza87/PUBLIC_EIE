@@ -314,11 +314,11 @@
                   <input disabled type="text" class="form-control" value="${demande.population.nom_fr}">
                 </div>
               </div>
-              <div class="col-md-6 col-sm-12">
+              <div class="col-md-6 col-sm-12 mt-4">
                 <div class="form-group">
             <c:if test="${not empty demande.impacts!=null }">
                   <label>Les Impacts positifs et négatifs du projet</label>
-                  <a target="_blank" class="btn btn-success" download href="${url_Admin}${fn:replace(demande.impacts, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
+                  <a target="_blank" class="btn btn-success float-right" download href="${url_Admin}${fn:replace(demande.impacts, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
             </c:if>
                 </div>
               </div>

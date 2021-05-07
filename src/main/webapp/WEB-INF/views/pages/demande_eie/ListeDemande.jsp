@@ -21,6 +21,9 @@
         <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/NT')}">
             <spring:message code="option.Noticedimpact" var="p_page" />
         </c:when>
+        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/AE')}">
+            <spring:message code="option.Auditenvironnementale" var="p_page" />
+        </c:when>
         <c:otherwise>
             <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         </c:otherwise>
@@ -142,6 +145,11 @@
                             <c:if test="${nt.statut.id_statut_projet==13 }">
                                 <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
                                    class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
+                            </c:if>
+
+                            <c:if test="${nt.statut.id_statut_projet==59 }">
+                                <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
+                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Valider les documents</a>
                             </c:if>
                         </td>
                     </tr>

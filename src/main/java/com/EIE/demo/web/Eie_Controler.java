@@ -274,11 +274,6 @@ public class Eie_Controler {
 	public @ResponseBody void addDocAutorisation(@PathVariable int id,@PathVariable int check, @RequestParam MultipartFile[] fileToUpload)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		web.addDocAut(fileToUpload, id,check,"ZF");
-
-
-
-		
-
 	}
 	
 	@RequestMapping(value = "/api/addDocAutorisationG/{id}/{check}/{typeauto}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -371,5 +366,15 @@ public class Eie_Controler {
 		return rep;
 	}
 
+	@RequestMapping(value = "/api/validateDocEIE/{id}/{type}", method = RequestMethod.GET)
+	public ModelAndView validateDocEIE(@PathVariable int id, @PathVariable String type) {
+		Map<String, Object> model = new HashMap<String, Object>();
 
+		model.put("doc", web.listDocNotif(id,"EIE"));
+		model.put("url_Admin", urlRest);
+		model.put("id", id);
+		model.put("type", type);
+
+		return new ModelAndView("demande_eie/validationDoc", model);
+	}
 }
