@@ -287,14 +287,15 @@ public class Eie_Controler {
 
 
 
-	@RequestMapping(value = "/api/piecejointdemande/{id}", method = RequestMethod.GET)
-	public ModelAndView piecejointdemande(@PathVariable int id) {
+	@RequestMapping(value = "/api/piecejointdemande/{id}/{type}", method = RequestMethod.GET)
+	public ModelAndView piecejointdemande(@PathVariable int id,@PathVariable String type) {
 		Compte ct = web.getCompteConnected();
 
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("user", ct);
 		model.put("iddemande", id);
 		model.put("test1", id);
+		model.put("type", type);
 		return new ModelAndView("demande_eie/piecejointdemande", model);
 	}
 

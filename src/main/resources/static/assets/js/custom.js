@@ -322,7 +322,41 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 
 }
 
-function changer_statut(type, id_name, code_statut, msg_alert) {
+function changer_statut(id_name, code_statut, msg_alert) {
+    if(event!=null)
+        event.preventDefault();
+    var id = $("#" + id_name).val();
+    var link_recap = "/api/recapEie/" + id;
+    if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
+        swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
+        return false;
+    }
+
+    $.ajax({
+        url: "/api/changerStatuts/" + id + "/" + code_statut,
+        type: 'GET',
+        data: {},
+    })
+        .done(function (data) {
+            Swal.fire({
+                title: '<strong>' + msg_alert + '</strong>',
+                icon: 'success',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                focusConfirm: false,
+            })
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+}
+
+function changer_statut_type(id_name, code_statut, msg_alert, type) {
     if(event!=null)
         event.preventDefault();
     var id = $("#" + id_name).val();

@@ -46,7 +46,7 @@
                                                             <div class="col-3">
                                                             </div>
                                                             <div class="col-6" style="text-align: center">
-                                                                <button onclick="changer_statut('id_dmd','9','Les fichiers sont enregistrés')" style="margin-top: 10px;margin-bottom: 10px;" class="btn btn-success" ><spring:message code="button.Enregistrer"/></button>
+                                                                <button onclick="changer_statut_type('id_dmd','9','Les fichiers sont enregistrés','${type}')" style="margin-top: 10px;margin-bottom: 10px;" class="btn btn-success" ><spring:message code="button.Enregistrer"/></button>
 
                                                             </div>
                                                             <div class="col-3">
