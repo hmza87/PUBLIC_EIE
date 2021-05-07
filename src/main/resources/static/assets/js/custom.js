@@ -805,8 +805,8 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
     } else {
         $.ajax({
             type: "GET",
-            url: "/api/updateDemandeInfomration/" + id + "/" + id_unit + "/" + id_caracter_physique + "/" + id_poplation,
-            contentType: 'application/json; charset=utf-8',
+            url: "/api/updateDemandeInfomration/" + id ,
+            
             data: se,
             success: function (response) {
                 console.log("success : " + response);

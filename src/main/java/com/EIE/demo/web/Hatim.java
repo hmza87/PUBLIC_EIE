@@ -925,11 +925,22 @@ public class Hatim {
 	}
 
 
-	@RequestMapping(value = "/api/updateDemandeInfomration/{id}/{id_unit}/{id_caracter_physique}/{id_poplation}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String nature_foncier, @RequestParam String caracteristiques_projet, @RequestParam String ressource, @RequestParam String source, @RequestParam String nature_projet, @RequestParam String qualitative, @RequestParam String quantite_projet,@PathVariable int id_unit,@PathVariable int id_caracter_physique,@PathVariable int id_poplation )
+	@RequestMapping(value = "/api/updateDemandeInfomration/{id}", method = RequestMethod.GET)
+	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String nature_foncier, @RequestParam String caracteristiques_projet, @RequestParam String ressource, @RequestParam String source, @RequestParam String nature_projet, @RequestParam String qualitative, @RequestParam String quantite_projet,@RequestParam int id_unit,@RequestParam int id_caracter_physique,@RequestParam int id_poplation )
 			throws JsonParseException {
-		String xd= webt.updateDemandeInformation(id, intitule_projet, montant_investissement, tronsfrontalier, nature_foncier, caracteristiques_projet, ressource, source, nature_projet, qualitative, quantite_projet, id_unit, id_caracter_physique, id_poplation);
-		return xd;
+		DemandeInformation d = webt.getDemandeInfoById(id);
+		d.setMontant_investissement(montant_investissement);
+		d.setIntitule_projet(intitule_projet);
+		d.setTronsfrontalier(tronsfrontalier);
+		d.setNature_foncier(nature_foncier);
+		d.setCaracteristiques_projet(caracteristiques_projet);
+		d.setRessource(ressource);
+		d.setSource(source);
+		d.setNature_projet(nature_projet);
+		d.setQualitative(qualitative);
+		d.setQuantite_projet(quantite_projet);
+		 webt.updateDemandeInformation(id,d , id_unit, id_caracter_physique, id_poplation);
+		return "";
 	}
 
 	@RequestMapping(value = "/api/updateDemandeInfomrationEE/{id}", method = RequestMethod.GET)

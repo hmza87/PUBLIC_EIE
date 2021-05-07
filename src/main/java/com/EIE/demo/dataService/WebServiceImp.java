@@ -1023,10 +1023,10 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public String updateDemandeInformation(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String nature_foncier, String caracteristiques_projet, String ressource, String source, String nature_projet, String qualitative, String quantite_projet, int id_unit, int id_caracter_physique, int id_poplation) {
-		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier+"/"+nature_foncier+"/"+caracteristiques_projet+"/"+ressource+"/"+source+"/"+nature_projet+"/"+qualitative+"/"+quantite_projet+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation;
+	public void updateDemandeInformation(int id, DemandeInformation d , int id_unit, int id_caracter_physique, int id_poplation) {
+		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation;
 		RestTemplate restTemplate = new RestTemplate();
-		return restTemplate.getForObject(uri, String.class);
+		restTemplate.postForLocation(uri, d, DemandeInformation.class);
 	}
 
 	@Override

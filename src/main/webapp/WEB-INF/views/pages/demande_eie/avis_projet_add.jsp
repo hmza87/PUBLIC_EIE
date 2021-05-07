@@ -208,7 +208,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Unité</label>
-                                            <select  id="uniteId" required
+                                            <select  id="uniteId" required name="id_unit"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -223,7 +223,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Caractéristique physique</label>
-                                            <select id="idcaracteristquePhysique" required
+                                            <select id="idcaracteristquePhysique" required name="id_caracter_physique"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -238,7 +238,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Population</label>
-                                            <select id="id_population" required
+                                            <select id="id_population" required name="id_poplation"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
