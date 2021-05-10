@@ -86,12 +86,12 @@ text-align:right !important;
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/${type}')" class="btn btn-sm btn-success margin10" >${titre_dyn} <span class="fa fa-angle-double-right"></span></button>
                           </div>
-
+                        <c:if test="${type=='EE'}">
                           <p class="pl-2 text-justify margin10" >Pour toutes autres informations, cliquez sur <b> Renseignements préalables :</b></p>
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > Renseignements préalables <span class="fa fa-angle-double-right"></span></button>
                           </div>
-
+                        </c:if>
                         </div>
                         <div class="col-12">
 

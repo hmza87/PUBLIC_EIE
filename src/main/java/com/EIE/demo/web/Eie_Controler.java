@@ -259,11 +259,6 @@ public class Eie_Controler {
 	public @ResponseBody void addDoc(@PathVariable int id,@PathVariable int check, @RequestParam MultipartFile[] fileToUpload)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		web.addDocInfo(fileToUpload, id,check);
-
-
-
-
-
 	}
 	
 	

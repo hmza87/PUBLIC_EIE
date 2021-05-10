@@ -55,11 +55,21 @@
                     <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
                     <th rowspan="2" ><spring:message code="label.Region"/></th>
                     <th rowspan="2" ><spring:message code="label.Recap"/></th>
-                    <th rowspan="2" ><spring:message code="label.Categorie"/></th>
+                    <th rowspan="2" ><spring:message code="label.TypedeProjet"/></th>
                     <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
                     <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
-                    <th rowspan="2"><spring:message code="label.EtudedimpcatenvirennementaleDefinitive"/> </th>
+                    <c:if test="${type=='EE'}">
+                        <th rowspan="2"><spring:message code="label.EtudedimpcatenvirennementaleDefinitive"/> </th>
+                        <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
+                    </c:if>
+                    <c:if test="${type=='NT'}">
+                        <th rowspan="2">Notice d'impact environnementale définitive </th>
+                    </c:if>
+                    <c:if test="${type=='AE'}">
+                        <th rowspan="2">Audit environnemental définitif </th>
+                    </c:if>
                     <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
+
                     <%--<th rowspan="2" ><spring:message code="label.Informationcomplementaire"/></th>--%>
                     <th rowspan="2" ><spring:message code="label.Action"/></th>
                 </tr>
@@ -97,7 +107,7 @@
                         </td>
                         <td>
                             <div class="col-md-3 col-sm-6">
-                                <a href="/api/recapEie/${nt.id_demande_information}/${type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
+                                <a href="/api/recapEie/${nt.id_demande_information}/${nt.type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
                             </div>
                         </td>
                         <td>
@@ -123,7 +133,7 @@
                             </c:if>
                         </td>
                         <td>
-                            <c:if test="${not empty nt.url_cachier_defenitive!=null }">
+                            <c:if test="${not empty nt.url_cachier_defenitive }">
                                 <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
                                     <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
                                 </a>

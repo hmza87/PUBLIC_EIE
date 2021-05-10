@@ -69,16 +69,16 @@
                         <form class="mt-3"  id="formAvisProjet" name="formAvisProjet" >
                             <input type="hidden" value="${(not empty demande)?demande.id_demande_information:'0'}" name="id_demande_information" id="id_demande_information">
                             <c:if test="${not empty demande}">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label ><spring:message code="label.NumeroDemande"/></label>
-                                        <input onchange="checkUpdate(this.value)" disabled value="${demande.num_demande }" type="text" name="num_demande" class="form-control">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label ><spring:message code="label.NumeroDemande"/></label>
+                                            <input onchange="checkUpdate(this.value)" disabled value="${demande.num_demande }" type="text" name="num_demande" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </c:if>
-                        <%--information demandeur--%>
+                            <%--information demandeur--%>
                             <div class="row">
 
                                 <div class=" col-md-6 col-sm-12">
@@ -103,27 +103,27 @@
                                         <input value="${demande.email }" required ${disabled} type="text" name="email" class="form-control" >
                                     </div>
                                 </div>
-                                    <div class=" col-md-4 col-sm-12 ">
-                                        <div class="form-group">
-                                            <label ><spring:message code="label.tel"/>  </label>
-                                            <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
-                                        </div>
+                                <div class=" col-md-4 col-sm-12 ">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.tel"/>  </label>
+                                        <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
                                     </div>
+                                </div>
 
-                                    <div class="col-md-4 col-sm-12 ">
-                                        <div class="form-group">
-                                            <label ><spring:message code="label.Fax"/></label>
-                                            <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
-                                        </div>
+                                <div class="col-md-4 col-sm-12 ">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.Fax"/></label>
+                                        <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
                                     </div>
+                                </div>
                                 <div class="col-md-12 col-sm-12 ">
                                     <div class="form-group">
                                         <label ><spring:message code="label.Adresse"/></label>
                                         <input ${disabled} required value="${demande.adresse }" type="text" name="adresse" class="form-control" >
                                     </div>
                                 </div>
-                                </div>
-                        <%--information Projet--%>
+                            </div>
+                            <%--information Projet--%>
                             <c:if test="${demande.statut.id_statut_projet==13}">
                                 <hr>
                                 <div class="row">
@@ -136,7 +136,7 @@
                             <div class="row justify-content-center p-0 mb-3">
                                 <div class="col-md-3 col-sm-12">
                                     <c:if test="${demande.statut.id_statut_projet!=13}">
-                                    <button class="btn btn-success btn_suiv btn-block" onclick="addDemandeInfomration('formAvisProjet','${type}','${id}','#step1_2','#step_id1_2')">  <spring:message code="button.Suivant"/> </button>
+                                        <button class="btn btn-success btn_suiv btn-block" onclick="addDemandeInfomration('formAvisProjet','${type}','${id}','#step1_2','#step_id1_2')">  <spring:message code="button.Suivant"/> </button>
                                     </c:if>
                                     <c:if test="${demande.statut.id_statut_projet==13}">
                                         <button class="btn btn-success btn_suiv btn-block" onclick="set_avis_projet('#avis_projet','#id_demande_information')">  <spring:message code="button.Enregistrer"/> </button>
@@ -216,8 +216,8 @@
                                         <div class="form-group">
                                             <label >Unité</label>
                                             <select  id="uniteId" required name="id_unit"
-                                                    class="form-control select2"
-                                                    data-width="100%">
+                                                     class="form-control select2"
+                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
                                                 <c:forEach items="${unite_id}" var="t">
                                                     <option  <c:if
@@ -240,7 +240,7 @@
                                                             value="${t[0] }">${t[1] }</option>
                                                 </c:forEach>
                                             </select>
-                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
@@ -282,15 +282,16 @@
                                 <c:if test="${type=='AE'}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label> Date de Démarrage</label><input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="5" required >
+                                            <label> Date de Démarrage</label>
+                                            <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="${demande.dateDemarage}" required >
                                         </div>
                                     </div>
-                                        <div class="col-md-6 col-sm-12 mt-2">
-                                            <div class="form-group">
-                                                <label> Date de Résiliation</label>
-                                                <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
-                                            </div>
+                                    <div class="col-md-6 col-sm-12 mt-2">
+                                        <div class="form-group">
+                                            <label> Date de Résiliation</label>
+                                            <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
                                         </div>
+                                    </div>
                                 </c:if>
                             </div>
                             <div class="row justify-content-center p-0 mb-3">
@@ -318,7 +319,7 @@
                     <div id="step2" class="col-12 z_collecteur collapse" >
                         <form class="mt-3"  id="formDetailRegion" name="formDetailRegion" >
                             <%--information region si possible--%>
-                                 <div id="zone_region">
+                            <div id="zone_region">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
@@ -353,92 +354,91 @@
                                         <div class="form-group">
                                             <label>Communes</label>
                                             <select class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
-                                               <%--auto load dynamique--%>
-                                                   <c:forEach items="${lc}" var="c" varStatus="loopp">
-                                                       <option
-                                                               <c:forEach items="${demande.detailRegion.communes}" var="cc">
-                                                                   ${cc.id_commune==c.id_commune?"selected":""}
-                                                               </c:forEach>
-                                                               value="${c.id_commune}">${pageContext.response.locale=='ar'?c.nom_ar:c.nom_fr}</option>
-                                                   </c:forEach>
+                                                <%--auto load dynamique--%>
+                                                <c:forEach items="${lc}" var="c" varStatus="loopp">
+                                                    <option
+                                                            <c:forEach items="${demande.detailRegion.communes}" var="cc">
+                                                                ${cc.id_commune==c.id_commune?"selected":""}
+                                                            </c:forEach>
+                                                            value="${c.id_commune}">${pageContext.response.locale=='ar'?c.nom_ar:c.nom_fr}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                 <div class="row p-0 justify-content-center mb-3">
-                                    <div class="col-sm-12 col-md-3">
-                                        <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="button.Precedent"/> </button>
-                                    </div>
-                                    <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
-                                    <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
+                            <div class="row p-0 justify-content-center mb-3">
+                                <div class="col-sm-12 col-md-3">
+                                    <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="button.Precedent"/> </button>
+                                </div>
+                                <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','#step3','#step_id3')" >  <spring:message code="button.Suivant"/> </button>
                                     </div>
-                                    </c:if>
-                                    <c:if test="${type=='RS'}">
-                                        <div class="col-sm-12 col-md-3">
-                                            <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" >  <spring:message code="button.Enregistrer"/> </button>
-                                        </div>
-                                    </c:if>
-                                </div>
+                                </c:if>
+                                <c:if test="${type=='RS'}">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" >  <spring:message code="button.Enregistrer"/> </button>
+                                    </div>
+                                </c:if>
+                            </div>
                         </form>
                     </div>
                     <c:if test="${type=='EE'}">
                         <div id="step3" class="col-12 z_collecteur collapse" >
-                        <form  class="form-horizontal mt-3" >
-                            <c:forEach items="${doc}" var="dc">
-                                <div class="row justify-content-center">
-                                    <div class="col mt-3  ">
-                                        <div class="form-group">
-                                            <div>
-                                                <label style="width: 100%;"> ${dc.nom_fr } </label> <input
-                                                    required
-                                                    onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','EIE','id_demande_information')"
-                                                    accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                    class="form-control mydoc">
+                            <form  class="form-horizontal mt-3" >
+                                <c:forEach items="${doc}" var="dc">
+                                    <div class="row justify-content-center">
+                                        <div class="col mt-3  ">
+                                            <div class="form-group">
+                                                <div>
+                                                    <label style="width: 100%;"> ${dc.nom_fr } </label> <input
+                                                        required
+                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','EIE','id_demande_information')"
+                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                        class="form-control mydoc">
+                                                </div>
                                             </div>
                                         </div>
+                                        <c:if test="${not empty docNotify}">
+                                            <div class="col-2">
+                                                <c:forEach items="${docNotify}" var="d">
+                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
+                                                        <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
+                                                           class="btn btn-success rounded file_existe"><span
+                                                                class="fa fa-download"></span></a>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
                                     </div>
-                                    <c:if test="${not empty docNotify}">
-                                        <div class="col-2">
-                                            <c:forEach items="${docNotify}" var="d">
-                                                <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
-                                                    <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
-                                                       class="btn btn-success rounded file_existe"><span
-                                                            class="fa fa-download"></span></a>
-                                                </c:if>
-                                            </c:forEach>
-                                        </div>
-                                    </c:if>
+                                </c:forEach>
+
+
+
+                                <div class="row p-0 justify-content-center mb-3 mt-4">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3">
+                                        <button onclick="changer_statut1('id_demande_information',1,'Votre demande est déposée avec succès','${type}')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                    </div>
                                 </div>
-                            </c:forEach>
 
 
 
-                            <div class="row p-0 justify-content-center mb-3 mt-4">
-                                <div class="col-sm-12 col-md-3">
-                                    <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
+                                <div class="row m-0 p-0 mt-5">
+                                    <div class="col-3">
+                                    </div>
+                                    <div class="col-6" style="text-align: center">
+
+
+                                    </div>
+                                    <div class="col-3">
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <button onclick="changer_statut1('id_demande_information',1,'Votre demande est déposée avec succès','${type}')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
-                                </div>
-                            </div>
-
-
-
-                            <div class="row m-0 p-0 mt-5">
-                                <div class="col-3">
-                                </div>
-                                <div class="col-6" style="text-align: center">
-
-
-                                </div>
-                                <div class="col-3">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
                     </c:if>
                     <c:if test="${type=='AE'}">
                         <div id="step3" class="col-12 z_collecteur collapse" >

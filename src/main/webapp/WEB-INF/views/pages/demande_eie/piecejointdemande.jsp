@@ -31,27 +31,27 @@
                                                     <c:if test="${type=='EE'}">
                                                             <div class="col-6">
                                                                 <label >Etude d’Impact sur l’Environnement définitive: </label>
-                                                                 <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
+                                                                 <input multiple onchange="addDoc_eie('id_dmd','7','docr')"  type="file" class="form-control"  id="docr"  ></input>
 
                                                             </div>
                                                     </c:if>
                                                       <c:if test="${type=='NT'}">
                                                           <div class="col-6">
                                                               <label >Notice d’Impact sur l’Environnement définitive: </label>
-                                                              <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
+                                                              <input multiple onchange="addDoc_eie('id_dmd','7','docr1')"  type="file" class="form-control"  id="docr1"  ></input>
 
                                                           </div>
                                                       </c:if>
                                                       <c:if test="${type=='AE'}">
                                                           <div class="col-6">
-                                                              <label >Audit Environnemental définitive: </label>
-                                                              <input multiple onchange="addDoc(${test1},'7','docr')"  type="file" class="form-control"  id="docr"  ></input>
+                                                              <label >Audit Environnemental définitif: </label>
+                                                              <input multiple onchange="addDoc_eie('id_dmd','7','docr2')"  type="file" class="form-control"  id="docr2"  ></input>
 
                                                           </div>
                                                       </c:if>
                                                             <div class="col-6">
                                                                 <label > Cahier des charges définitif: </label><br/>
-                                                                <input multiple onchange="addDoc(${test1},'6','docp')"  type="file" class="form-control"  id="docp"  ></input>
+                                                                <input multiple onchange="addDoc_eie('id_dmd','6','docp')"  type="file" class="form-control"  id="docp"  ></input>
                                                             </div>
                                                         </div>
 
@@ -81,4 +81,43 @@
 
 
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
+<script>
+
+    function addDoc_eie(id_name, type, idInput) {
+        var data = new FormData();
+
+        var ins = document.getElementById(idInput).files.length;
+
+        for (var x = 0; x < ins; x++) {
+            data.append("fileToUpload", document.getElementById(idInput).files[x]);
+        }
+        var id = $("#" + id_name).val();
+        alert(id)
+        if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
+            swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
+            return false;
+        }
+
+
+        $.ajax({
+
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/api/addDoc/" + id + "/" + type,
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+
+
+            },
+            error: function () {
+
+
+            }
+        });
+    }
+
+</script>
 <jsp:include page="../../includes/footer1.jsp" />
