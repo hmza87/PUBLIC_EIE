@@ -14,6 +14,7 @@
     .card-body {
         text-align: center !important;
     }
+
 </style>
 
 <jsp:include page="../../includes/head.jsp"/>
@@ -26,22 +27,49 @@
 
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
-                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
-                        <h6 class="card-title"><spring:message code="option.Etudedimpactenvironnementale"/></h6>
+                        <div class="row justify-content-center">
+                            <div class="col-3 text-center">
+                                <img src="/assets/images/Arb1.png" alt="">
+                            </div>
+                            <div class="col-12 text-center ">
+                                <h6 class="card-title"><spring:message code="option.Etudedimpactenvironnementale"/></h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-3 col-sm-12">
+                                </div>
+                            </div>
+                            <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EIE}','/api/checkEIESelect/EE')"><spring:message code="button.consulter"/></a>
+                        </div>
 
-                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EIE}','/api/checkEIESelect/EE')"><spring:message code="button.consulter"/></a>
+
+
+
                         <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkEIESelect"><spring:message code="button.consulter"/></a>--%>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-lg-4">
+            <div class="col-md-3 col-sm-3 col-lg-3">
 
                 <div class="card" style="width:100%;">
                     <div class="card-body">
-                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
-                        <h6 class="card-title"><spring:message code="option.Noticedimpact"/></h6>
+                        <div class="row justify-content-center">
+                            <div class="col-3 text-center">
+                                <img src="/assets/images/Arb1.png" alt="">
+                            </div>
+                            <div class="col-12 text-center ">
+                                <h6 class="card-title"><spring:message code="option.Noticedimpact"/></h6>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 col-sm-12">
+                                <a class="btn btn-primary hvr-float-shadow " onclick="checkAut2('${user.st.NT}','/api/checkEIESelect/NT')"><spring:message code="button.consulter"/> </a>
+                            </div>
+                        </div>
 
-                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.NT}','/api/checkEIESelect/NT')"><spring:message code="button.consulter"/> </a>
+                        <div  class="img-container"></div>
+
+
+
                         <%--<a class="btn btn-primary hvr-float-shadow" href="/api/checkUserDispatch/IT"><spring:message code="button.consulter"/> </a>--%>
                     </div>
                 </div>
@@ -51,11 +79,22 @@
 
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
-                        <span class="fa fa-tree" aria-hidden="true" style="font-size:40px"></span>
-                        <h6 class="card-title"><spring:message code="option.Auditenvironnementale"/></h6>
+                        <div class="row justify-content-center">
+                            <div class="col-3 text-center">
+                                <img src="/assets/images/Arb1.png" alt="">
+                            </div>
+                            <div class="col-12 text-center ">
+                                <h6 class="card-title"><spring:message code="option.Auditenvironnementale"/></h6>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 col-sm-12">
+                                <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','#')"><spring:message code="button.consulter"/></a>
+                            </div>
+                        </div>
 
-                        <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','#')"><spring:message
-                                code="button.consulter"/></a>
+
+
                     </div>
                 </div>
             </div>
