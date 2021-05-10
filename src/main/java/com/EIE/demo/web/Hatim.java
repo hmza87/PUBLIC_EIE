@@ -1025,6 +1025,27 @@ public class Hatim {
         return new ModelAndView("aide/Actualite",map);
     }
 
+    /* ------------------- login7 ----------------- */
+
+	@RequestMapping(value = "/getAccordionDoc2/{type}", method = RequestMethod.POST)
+	public ModelAndView getAccordionDoc2(@PathVariable String type) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("doc",webt.getDocImportByType(type));
+		model.put("Admin_url",urlRest);
+		model.put("show","accordion");
+		return new ModelAndView("user_select/login7_autoload_accordion",model);
+	}
+
+	@RequestMapping(value = "/getProcedureAuto2/{type}", method = RequestMethod.POST)
+	public ModelAndView getProcedureAuto2(@PathVariable String type) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("doc",webt.getDocImportByType(type));
+		model.put("type",type);
+		model.put("codes",webt.getListCodeTabByClassif(1));
+		model.put("show","procedure");
+		return new ModelAndView("user_select/login7_autoload_accordion",model);
+	}
+
 
 
 

@@ -65,7 +65,7 @@
     <c:if test="${empty notification.url_quantite_justificatif}">
         <div class="col-12">
             <div class="form-group">
-                <label>Quantité justifier </label>
+                <label>Justificatif </label>
                 <input type="file" class="form-control" onchange="updateFile('${notification.id_notification}',this,2)">
             </div>
         </div>
@@ -73,7 +73,7 @@
     <c:if test="${not empty notification.url_quantite_justificatif}">
         <div class="col-11">
             <div class="form-group">
-                <label>Quantité justifier </label>
+                <label>Justificatif </label>
                 <input type="file" class="form-control" onchange="updateFile('${notification.id_notification}',this,2)">
             </div>
         </div>

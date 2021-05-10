@@ -752,9 +752,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ZF')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -764,10 +764,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ET')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ET')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -777,10 +777,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message
                                                             code="label.Collectetransportdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('CT')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('CT')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -791,10 +791,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('IT')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('IT')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -804,9 +804,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('XD')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('XD')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -816,9 +816,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('TR')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('TR')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -832,10 +832,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -846,10 +846,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="option.Auditenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -859,10 +859,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="option.Noticedimpact"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>

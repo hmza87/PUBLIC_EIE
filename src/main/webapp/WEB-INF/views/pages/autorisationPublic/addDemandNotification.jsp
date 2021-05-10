@@ -2002,7 +2002,7 @@
 
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
-                    <p>Les fichiers uploader doivent être scanner </p>
+                    <p class="h5 text-center mt-2"> <span class="bg-warning text-white p-2 pl-3 pr-3 rounded ">Les fichiers à importer doivent être scanner</span> </p>
 
                     <c:forEach items="${doc}" var="dc">
                         <c:set var="id_doc" value="${dc.id_docImport}"/>

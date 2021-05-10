@@ -4153,12 +4153,12 @@ public class GeneratePDFDocuments {
         }else if(ns.getZf_et().equals("TR")){
             title_type = "Transit des déchets";
         }
-        headerPar.add("Dépôt reçu "+title_type);
+        headerPar.add("Reçu de Dépôt d'une demande d'autorisation "+title_type);
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
         //--------------------- Table Numéro de notification ---------------------
-        PdfPTable table0 = new PdfPTable(new float[]{2,3,1,2});
+        PdfPTable table0 = new PdfPTable(new float[]{2.3f,2.7f,1,2});
         table0.setWidthPercentage(100);
         table0.setSpacingBefore(12);
         table0.setSpacingAfter(12);
@@ -4175,10 +4175,9 @@ public class GeneratePDFDocuments {
             table0.addCell( saisir_cellule("Pays Etranger : ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
         table0.completeRow();
 
-        table0.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?ns.getQuantite():"",1));
+        table0.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?(ns.getQuantite()+" "+(ns.getUnite()!=null?ns.getUnite().getNom_fr():"")):"",1));
         table0.addCell( saisir_cellule("Opération : ",font,fontbold,ns.getOperation()!=null?ns.getOperation():"",1));
-        table0.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
-        table0.addCell( saisir_cellule("Producteur : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
+        table0.addCell( saisir_cellule("Producteur : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",2));
         table0.completeRow();
 
         table0.addCell( saisir_cellule("Type de déchet : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_ar():"-",4));
@@ -4345,10 +4344,9 @@ public class GeneratePDFDocuments {
         table6.addCell(saisir_cellule_titre("Document de mouvements des déchets",4));
         table6.completeRow();
         //--------------------- completeRow ---------------------
-        table6.addCell( saisir_cellule("Quantité réelle : ",font,fontbold,ns.getQuantite_reel()!=null ? ns.getQuantite_reel() :"",1));
-        table6.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
+        table6.addCell( saisir_cellule("Quantité réelle : ",font,fontbold,ns.getQuantite_reel()!=null ? ns.getQuantite_reel() +" "+(ns.getUnite()!=null?ns.getUnite().getNom_fr():" ") :"",1));
         table6.addCell( saisir_cellule("Nombre de colis : ",font,fontbold,ns.getNbr_colis()!=null?ns.getNbr_colis():"",1));
-        table6.addCell( saisir_cellule("Date réelle de l'expédition : ",font,fontbold,ns.getDate_reel()!=null ? dateFormat.format(ns.getDate_reel()):"",1));
+        table6.addCell( saisir_cellule("Date réelle de l'expédition : ",font,fontbold,ns.getDate_reel()!=null ? dateFormat.format(ns.getDate_reel()):"",2));
         table6.completeRow();
         table6.addCell( saisir_cellule("Lieu effectif de l'élimination/valorisation: ",font,fontbold,ns.getLieux_elimination()!=null?ns.getLieux_elimination().getNom_fr():ns.getLieu(),4));
         table6.completeRow();
@@ -4360,7 +4358,7 @@ public class GeneratePDFDocuments {
         table8.setSpacingBefore(12);
         table8.setSpacingAfter(12);
         //--------------------- Row Title ---------------------
-        table8.addCell(saisir_cellule_titre("Dépôt reçu",4));
+        table8.addCell(saisir_cellule_titre("Reçu de dépos" ,4));
         table8.completeRow();
         //--------------------- completeRow ---------------------
         //--------------------- completeRow ---------------------
@@ -4372,12 +4370,7 @@ public class GeneratePDFDocuments {
         }
 
         String dateTest=convertDate("dd/MM/yyyy",ns.getDateDepot());
-        String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
-
-        table8.addCell( saisir_cellule("Presenteur :",font,fontbold,username,1));
-        table8.addCell( saisir_cellule("Nom demandeur :",font,fontbold,contact,1));
-        table8.addCell( saisir_cellule("Date de dépôt :",font,fontbold,dateTest,1));
-        table8.addCell( saisir_cellule("Numéro de demmande :",font,fontbold,num_notification,1));
+        table8.addCell( saisir_cellule("Date de dépôt de la demande :",font,fontbold,dateTest,4));
         table8.completeRow();
         table8.setSpacingAfter(12);
 
@@ -4387,7 +4380,7 @@ public class GeneratePDFDocuments {
         table9.setWidthPercentage(100);
         table9.setSpacingBefore(12);
         table9.setSpacingAfter(12);
-
+        String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
         BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:85/downloadRecuDepo/"
                 + ns.getId_notification() + "\n Numero de notification : " + num_notification, 300,
                 300,null);

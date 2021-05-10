@@ -191,6 +191,8 @@ function openCity2(id_active, cityName) {
 
 
 function getOptionByFilter(val, table, select_id) {
+    alert_error_disabled("Select[name=classification_id]");
+    alert_error_disabled("Select[name=code_id]");
     $.get('/api/tronsactionCO/select/' + table + '/delete_date_time is null and ' + val, function (data) {
 
         $("#" + select_id)
@@ -207,7 +209,7 @@ function getOptionByFilter(val, table, select_id) {
             $("#" + select_id + " option").eq(0).prop("selected", true);
         }
 
-
+        $("#" + select_id).trigger("change");
     })
     ;
 }
@@ -976,29 +978,47 @@ function verifier_champ_vide(form,table,url,nameId,btn){
     alert_error("Select[name=code_id]");
     alert_error("#Zone_Franche");
     alert_error("#id_type");
-    alert_error("#unite_id");
+    alert_error("#unite");
 
-    /*if($.trim(qte)==="" || qte==null || $.isNumeric(qte)){
-        $("#quantite").addClass("bg_error");
-        swal("Avertissement !","le champs quantité est incorrecte","error");
+    var find = false;
+    $(".select_test").each(function(indx,elem){
+        if($(elem).hasClass("bg_errorSlecte") && !find){
+            find=true;
+        }
+    })
+
+    var qte = $("#quantite").val();
+    if($.trim(qte)===""|| !$.isNumeric(qte) || qte==null || qte<=0){
+        swal("Avertissement !","La quantité est incorrecte","error");
+        return false
+    }
+
+    if (find){
+        swal("Avertissement !","un ou plusieurs champs obligatoires sont vides","error");
         return false;
     }else{
-        $("#quantite").removeClass("bg_error");
-    }*/
+        addObjectGeneral(form,table,url,nameId,btn);
+    }
 
-    addObjectGeneral(form,table,url,nameId,btn);
+
 }
 
 function alert_error(select){
     var val = $(select).val();
     if($.trim(val)==="" || val==null){
         $(select).closest(".form-group").addClass("bg_errorSlecte");
-        swal("Avertissement !","un ou plusieurs champs sont vides","error");
-        return false;
     }else{
         $(select).closest(".form-group").removeClass("bg_errorSlecte");
     }
     return 0;
+}
+
+function alert_error_disabled(select){
+    var val = $(select).val();
+    if($.trim(val)!=="" && val!=null){
+        $(select).closest(".form-group").removeClass("bg_errorSlecte");
+    }
+
 }
 
 function add_detail_mouvement(id_notif){
@@ -1285,3 +1305,70 @@ function saveDeclarationTransporteur(){
 }
 
 
+
+// ---- login 7 --------------
+function show_zone2(hideClass, val) {
+    $(".clss_hide").hide();
+    $("." + hideClass).show();
+    $(".btn_step_perso").removeClass("btn-success");
+    $(".btn_step_perso").addClass("btn_gris");
+    $(val).removeClass("btn_gris");
+    $(val).addClass("btn-success");
+    if(hideClass==="attache"){
+        var type = $(val).attr("data_type");
+        if (type===""){
+            return false;
+        }
+        $.ajax({
+            url: '/getAccordionDoc2/'+type,
+            type: 'POST',
+            data: {},
+        })
+            .done(function(response) {
+                $(val).attr("data_type","");
+                $("#accordion").html(response);
+                $("#accordion").accordion({
+                    collapsible: true,
+                    heightStyle: "content",
+                });
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    }
+}
+function show_etape_perso2(id) {
+
+    if (id == null || id == "") {
+        swal("Merci de choisir un type d'autorisation");
+        return false;
+    }
+
+    $("#zone_rech").addClass("d-none");
+    $("#dev_step").removeClass("d-none");
+    $("#dev_list_slc").addClass("d-none");
+
+    $.ajax({
+        url: '/getProcedureAuto2/'+id,
+        type: 'POST',
+        data: {},
+    })
+        .done(function(response) {
+            $("#procedure_content").html(response);
+            $("#zone_rech").addClass("d-none");
+            $("#dev_step").removeClass("d-none");
+            $("#dev_list_slc").addClass("d-none");
+            $(".select2").select2();
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+}
+// ---- End login 7 --------------

@@ -148,8 +148,8 @@
 
                 <div class="row m-0 p-0 mt-5">
                     <div class="col-6">
-                        <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.classification"/>  </label>
+                        <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.classification"/> <sup class="text-danger">*</sup>  </label>
                            
                                 <select name="classification_id" id="Classification" required
                                         onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
@@ -213,8 +213,8 @@
                 </div>
                 <div class="row m-0 p-0 mt-2">
                     <div class="col-6">
-                        <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.code"/> </label>
+                        <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.code"/> <sup class="text-danger">*</sup> </label>
                             <select name="code_id" id="code" required
                                     onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
                                     class="form-control select2" data-width="100%">
@@ -227,9 +227,9 @@
                     </div>
 
                     <div class="col-6">
-                        <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.typededechet"/> </label>
-                            <select id="id_type" required class="form-control select2" data-width="100%">
+                        <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.typededechet"/> <sup class="text-danger">*</sup> </label>
+                            <select onchange="alert_error_disabled('#id_type');" id="id_type" required class="form-control select2" data-width="100%">
                                 <option value=""><spring:message code="option.Choisir"/></option>
                                 <c:if test="${notif!=null }">
                                     <option value="${notif.code.id_code }" selected>${notif.code.nom_ar}</option>
@@ -244,11 +244,11 @@
 
 
                     <div class="col-6">
-                        <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                        <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                             <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}">
                                 <c:choose>
                                     <c:when test="${type=='ZF'}">
-                                        <spring:message code="label.Zonnefranche"/>
+                                        <spring:message code="label.Zonnefranche"/> <sup class="text-danger">*</sup>
                                     </c:when>
                                     <c:otherwise>
                                         <spring:message code="label.pays"/> étranger
@@ -258,7 +258,7 @@
 
                             </label>
 
-                            <select name="${type=='ZF'?'idzonne_franche':'id_pays' }" required id="Zone_Franche" class="form-control select2"
+                            <select onchange="alert_error_disabled('#Zone_Franche');" name="${type=='ZF'?'idzonne_franche':'id_pays' }" required id="Zone_Franche" class="form-control select2"
                                     data-width="100%">
                                 <option value=""><spring:message code="option.Choisir"/></option>
                               
@@ -288,15 +288,15 @@
                     <div class="col-6">
                         <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                             <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"> <spring:message code="label.Quantite"/> </label>
-                            <input type="text" required name="quantite" value="${notif.quantite}" id="quantite"
+                            <input min="0" type="number" required name="quantite" value="${notif.quantite}" id="quantite"
                                    class="form-control">
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.unite"/> </label>
-                            <select name="unite_id" required id="unite" class="form-control select2" data-width="100%">
+                        <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                            <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.unite"/> <sup class="text-danger">*</sup> </label>
+                            <select onchange="alert_error_disabled('#unite');" name="unite_id" required id="unite" class="form-control select2" data-width="100%">
                                 <option value=""><spring:message code="option.Choisir"/></option>
                                 <c:forEach items="${unite_id}" var="t">
                                     <option  <c:if test="${notif.unite.unite_id== t[0]}"> selected </c:if>
@@ -320,7 +320,7 @@
                         <c:if test="${id==0}">
                             <button type="button" id="Suivant"
                                     <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
-                                    onclick="addObjectGeneral('formnotif','notification','','id_notification','2')"
+                                    onclick="verifier_champ_vide('formnotif','notification','','id_notification','2')"
                                     class="btn btn-success btn-block mt-2 mb-4"><spring:message code="button.Suivant"/>
                             </button>
                         </c:if>
@@ -456,6 +456,7 @@
 
 
     function getOptionByFilter(val, table, select_id) {
+
         $.get('/api/tronsactionCO/select/' + table + '/delete_date_time is null and ' + val, function (data) {
 
             $("#" + select_id)
