@@ -13,7 +13,7 @@
 
 <style>
  body{
-    background: linear-gradient(128deg,white 50%, #14ffe4 50%); height: 70vh; font-family: Poppins;
+    background: linear-gradient(128deg,white 50%, #03b6d6 50%); height: 70vh; font-family: Poppins;
 }
 .container {
     margin-top: 15%
@@ -60,7 +60,7 @@
     {
         left: 0;
         top: auto;
-        bottom: -20%;
+        bottom: -10%;
     }
     .carousel-indicators li
     {
@@ -71,7 +71,7 @@
     }
     .carousel-indicators .active
     {
-        background: #4ce9d3;;
+        background: #03b6d6;;
 
     }
 
