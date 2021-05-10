@@ -230,7 +230,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Caractéristique physique</label>
-                                            <select id="idcaracteristquePhysique" required name="id_caracter_physique"
+                                            <select id="idcaracteristquePhysique"  name="id_caracter_physique"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
@@ -245,14 +245,14 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label >Population</label>
-                                            <select id="id_population" required name="id_poplation"
+                                            <select id="id_population"  name="id_poplation"
                                                     class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/></option>
                                                 <c:forEach items="${population}" var="t">
                                                     <option  <c:if
                                                             test="${demande.population.id_population== t[0]}"> selected </c:if>
-                                                            value="${t[0] }">${t[1] }</option>
+                                                            value="${t[0]}">${t[1]}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -401,7 +401,7 @@
                                             </div>
                                         </div>
                                         <c:if test="${not empty docNotify}">
-                                            <div class="col-2">
+                                            <div class="col-2 mt-5">
                                                 <c:forEach items="${docNotify}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
                                                         <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
@@ -457,7 +457,7 @@
                                             </div>
                                         </div>
                                         <c:if test="${not empty docNotifyAE}">
-                                            <div class="col-2">
+                                            <div class="col-2 mt-5">
                                                 <c:forEach items="${docNotifyAE}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
                                                         <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
@@ -513,7 +513,7 @@
                                             </div>
                                         </div>
                                         <c:if test="${not empty docNotifyNT}">
-                                            <div class="col-2">
+                                            <div class="col-2 mt-5">
                                                 <c:forEach items="${docNotifyNT}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
                                                         <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"

@@ -146,7 +146,7 @@
                             <c:if test="${nt.statut.id_statut_projet==6}">
                                 <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
                             </c:if>
-                            <c:if test="${nt.statut.id_statut_projet==47}">
+                            <c:if test="${nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==1}">
                                 <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
                             </c:if>
                             <c:if test="${nt.statut.id_statut_projet==60}">

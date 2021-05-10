@@ -39,6 +39,8 @@
         <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>
       </c:otherwise>
     </c:choose>
+    
+
     <div class="row">
       <div class="col-12">
         <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" >

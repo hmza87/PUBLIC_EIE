@@ -15,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -3866,7 +3867,7 @@ public class GeneratePDFDocuments {
         return new ByteArrayInputStream(out.toByteArray());
     }
 
-    public static ByteArrayInputStream generateRecapEie(DemandeInformation ns,ListDocNotif[] l) throws DocumentException, IOException {
+	public static ByteArrayInputStream generateRecapEie(DemandeInformation ns,ListDocNotif[] l) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Document document=new Document(PageSize.A4, 10, 10, 10, 10);
@@ -3909,7 +3910,15 @@ public class GeneratePDFDocuments {
 
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Récapitulation de la demande Etude d’Impact sur l’Environnement");
+        if(ns.getType().equals("EE")) {
+            headerPar.add("Récapitulation de la demande Etude d’Impact sur l’Environnement");
+        }
+        if(ns.getType().equals("AE")) {
+            headerPar.add("Récapitulation de la demande  d’Audit Environnementale");
+        }
+        if(ns.getType().equals("NT")) {
+            headerPar.add("Récapitulation de la demande Notice d’Impact sur l’Environnement");
+        }
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
@@ -3947,9 +3956,28 @@ public class GeneratePDFDocuments {
         table01.addCell(saisir_cellule("Transfrontalier :",font,fontbold,ns.getTronsfrontalier(),1));
         table01.completeRow();
         if(ns.getType().equals("AE")){
-            table01.addCell(saisir_cellule("Date Démarage :",font,fontbold,ns.getDateDemarage(),1));
-            table01.addCell(saisir_cellule("Date Résiliation :",font,fontbold,ns.getDateResiliation(),2));
-            table01.completeRow();
+        	
+        	DateFormat dateFormate = new SimpleDateFormat("yyyy-MM-dd");
+        	Date date;
+        	Date date2;
+        	try {
+        	    date = dateFormate.parse(ns.getDateDemarage());
+        	    date2 = dateFormate.parse(ns.getDateResiliation());
+
+                String dateDemarage=convertDate("dd/MM/yyyy",date);
+                String dateResiliation=convertDate("dd/MM/yyyy",date2);
+                
+                table01.addCell(saisir_cellule("Date Démarage : ",font,fontbold,dateDemarage,1));
+                table01.addCell(saisir_cellule("Date Résiliation : ",font,fontbold,dateResiliation,2));
+                table01.completeRow();
+
+        	} 
+        	
+        	catch (ParseException e) {
+        	    e.printStackTrace();
+        	}
+        	
+           
         }
         if(ns.getType().equals("NT")){
             table01.addCell(saisir_cellule("Nature foncier :",font,fontbold,ns.getNature_foncier(),1));
@@ -3957,14 +3985,12 @@ public class GeneratePDFDocuments {
             table01.addCell(saisir_cellule("Nature du projet :",font,fontbold,ns.getNature_projet(),1));
             table01.completeRow();
             table01.addCell(saisir_cellule("Ressources :",font,fontbold,ns.getRessource(),1));
-            table01.addCell(saisir_cellule("Source :",font,fontbold,ns.getStatut_RC(),1));
+            table01.addCell(saisir_cellule("Source :",font,fontbold,ns.getSource(),1));
             table01.addCell(saisir_cellule("Qualitative :",font,fontbold,ns.getQualitative(),1));
             table01.completeRow();
-            table01.addCell(saisir_cellule("Quantité estimée :",font,fontbold,String.valueOf(ns.getQuantite_projet()),1));
-            table01.addCell(saisir_cellule("Unité :",font,fontbold,ns.getUnite().getNom_fr(),1));
-            table01.addCell(saisir_cellule("Caractéristique physique :",font,fontbold,ns.getCaracter_physique(),1));
-            table01.completeRow();
-            table01.addCell(saisir_cellule("Population :",font,fontbold,ns.getPopulation().getNom_fr(),3));
+            table01.addCell(saisir_cellule("Quantité estimée :",font,fontbold,String.valueOf(ns.getQuantite_projet())+" "+ns.getUnite().getNom_fr(),1));
+            table01.addCell(saisir_cellule("Caractéristique physique :",font,fontbold,ns.getCaracteristquePhysique().getNom_fr(),1));
+            table01.addCell(saisir_cellule("Population :",font,fontbold,ns.getPopulation().getNom_fr(),1));
             table01.completeRow();
         }
 

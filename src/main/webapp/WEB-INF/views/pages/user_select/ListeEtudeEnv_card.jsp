@@ -44,7 +44,7 @@ text-align:right !important;
           <%--<div class="row m-0 p-0 justify-content-center">--%>
             <%--<div class="col-md-4 col-sm-12">--%>
               <%--<div class="form-group">--%>
-                <%--<input type="hidden" value="${type}" id="type">--%>
+                <input type="hidden" value="${type}" id="type">
                 <%--<select onchange="changer_select()" class="form-control select2" id="choix" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">--%>
                   <%--<option value=""><spring:message code="label.ChoisirA"/></option>--%>
                   <%--<option value="1"><spring:message code="label.Nouvelledemande"/></option>--%>
@@ -254,8 +254,11 @@ text-align:right !important;
     $("#Row_Nouvelle_EIE_2").show();
     $("#Row_Nouvelle_EIE_1").hide();
   }
+  
+  
   function fun_affiche_modal_recap(){
     var id = $("#num_demande1").val();
+    var typee = $("#type").val();
     if($.trim(id)==""){
        id = $("#num_demande2").val();
     }
@@ -264,7 +267,6 @@ text-align:right !important;
     }
 
 
-   
     if($.trim(id)==""){
       swal('Champs vide',"merci de saisir un numero valide","warning");
       return false;
@@ -286,7 +288,7 @@ text-align:right !important;
                 swal("Aucun résultat","merci de saisir un numero valide","info");
                 return false;
               }else{
-                window.location.href="/api/demandeinformation/"+response+"/EE";
+                window.location.href="/api/demandeinformation/"+response+"/"+typee;
               }
 
 

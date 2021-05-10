@@ -173,9 +173,9 @@ public class Eie_Controler {
 		model.put("doc",web.getDocImportByType("EIE"));
 		model.put("docNotify",web.listDocNotif(id,"EIE"));
 		model.put("docAE",web.getDocImportByType("AE"));
-		model.put("docNotifyAE",web.listDocNotif(id,"AE"));
+		model.put("docNotifyAE",web.listDocNotif(id,"EIE"));
 		model.put("docNT",web.getDocImportByType("NT"));
-		model.put("docNotifyNT",web.listDocNotif(id,"NT"));
+		model.put("docNotifyNT",web.listDocNotif(id,"EIE"));
 		model.put("demande", demande);
 		model.put("id", id);
 		model.put("url_Admin",urlRest);
@@ -296,10 +296,11 @@ public class Eie_Controler {
 		Compte ct = web.getCompteConnected();
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		DemandeInformation demande=web.getDemandeInformationByCompteId(id,ct.getCompteId());
+		DemandeInformation demande=web.getDemandeInfoById(id);
 
-		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");model.put("doc",l);
-
+		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
+		
+		model.put("doc",l);
 		model.put("demande", demande);
 		model.put("url_Admin",urlRest);
 		model.put("type",type);
