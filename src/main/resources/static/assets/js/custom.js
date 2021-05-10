@@ -146,20 +146,24 @@ function go_to(url) {
 }
 
 function sectautoris_table_select(nbr) {
-    if(nbr=="auth"){
+    if(nbr==="auth"){
         $("#zone_rech").addClass("d-none");
         $("#dev_list_slc").removeClass("d-none");
         $("#dev_list_slc2").addClass("d-none");
-    }else{
+    }else if(nbr==="EIE"){
         $("#zone_rech").addClass("d-none");
         $("#dev_list_slc2").removeClass("d-none");
         $("#dev_list_slc").addClass("d-none");
     }
 
-    if(nbr==1){
+    if(nbr===1){
+        $("#dev_list_slc").removeClass("d-none");
+        $("#zone_rech").addClass("d-none");
         $("#autorisation_groupe").removeClass("d-none");
         $("#EIE_groupe").addClass("d-none");
-    }else if(nbr==2){
+    }else if(nbr===2){
+        $("#dev_list_slc").removeClass("d-none");
+        $("#zone_rech").addClass("d-none");
         $("#EIE_groupe").removeClass("d-none");
         $("#autorisation_groupe").addClass("d-none");
     }

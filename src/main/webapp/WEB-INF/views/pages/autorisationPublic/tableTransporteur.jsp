@@ -8,8 +8,8 @@
 <%@ page session="false" %>
 
 
-<form id="formTransporteur" name="formTransporteur">
-    <div class="row m-0 p-0 mt-5">
+<form id="formTransporteur" name="formTransporteur" class="w-100">
+    <div class="row m-0 p-0">
         <div class="col-6">
             <div class="form-group">
                 <label>Transporteur : </label><input type="hidden" name="id_notification"
@@ -20,13 +20,13 @@
                         data-width="100%">
                     <option value="">Choisir...</option>
                     <c:forEach items="${Transporteur_liste}" var="t">
-                        <option value="${t[0] }">${t[1] }</option>
+                        <option value="${t.id_transporteurParam }">${t.nom }</option>
                     </c:forEach>
                 </select>
             </div>
         </div>
         <div class="col-6">
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
                         onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
                         class="btn btn-success">
@@ -49,7 +49,7 @@
         <th class="">Fax</th>
         <th class="">Email</th>
 
-        <th class="">Action</th>
+       <%-- <th class="">Action</th>--%>
     </tr>
     </thead>
     <tbody id="tbodyTransporteur">
@@ -64,7 +64,7 @@
             <td>${Tr_l.tel} </td>
             <td>${Tr_l.fax} </td>
             <td>${Tr_l.email} </td>
-            <td class="">
+           <%-- <td class="">
                 <ul class="list-inline m-0">
                     <li class="list-inline-item">
                         <button onclick="delete_tr(this)"
@@ -106,7 +106,7 @@
                         </button>
                     </li>
                 </ul>
-            </td>
+            </td>--%>
         </tr>
     </c:forEach>
     </tbody>

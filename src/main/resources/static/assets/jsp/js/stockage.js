@@ -232,6 +232,7 @@ function addObject_TR(from,table,id) {
         success: function (response) {
             $('#'+id).empty()
             $('#'+id).append(response)
+            $("#"+from).find("#"+from+" select.select2").select2();
         },
         error: function (response) {
             alert('Erreur ajout non effectue');

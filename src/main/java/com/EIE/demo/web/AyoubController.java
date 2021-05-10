@@ -32,5 +32,11 @@ public class AyoubController {
 
     }
 
+    @RequestMapping(value = "/login7", method = RequestMethod.GET)
+    public  ModelAndView login7() {
+
+        return new ModelAndView("p_test/login7");
+    }
+
 
 }

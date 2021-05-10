@@ -557,14 +557,17 @@ public class Notification_Controler {
 		String id = web.addObject(se, table);
 
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("notification", web.getNotiifcationById(id_t));
-		Object[] Transporteur_liste = web.tronsaction("select",
+		Notification n = web.getNotiifcationById(id_t);
+		model.put("notification", n);
+		List<TransporteurParam> lp = web.getListTransporteurParamByCodeNotInNotif(n.getId_notification());
+		/*Object[] Transporteur_liste = web.tronsaction("select",
 				" transporteurparam.id_transporteur_param, transporteurparam.nom,transporteur_param_code.id_code, transporteurparam.tel FROM transporteurparam INNER JOIN transporteur_param_code ON transporteurparam.id_transporteur_param = transporteur_param_code.id_transporteur_param ",
 				" transporteurparam.delete_date_time is null and id_code ="
 						+ web.getNotiifcationById(id_t).getCode().getId_code()
 						+ " and transporteurparam.id_transporteur_param not in(select id_transporteur from notif_tranport where id_notification = "
 						+ id + ") ");
-		model.put("Transporteur_liste", Transporteur_liste);
+		model.put("Transporteur_liste", Transporteur_liste);*/
+		model.put("Transporteur_liste", lp);
 		page = page.replace('-', '/');
 
 		return new ModelAndView(page, model);

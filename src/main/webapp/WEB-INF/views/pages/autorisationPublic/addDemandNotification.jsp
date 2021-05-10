@@ -856,78 +856,79 @@
                     <h4 class="titre_abs "><spring:message code="label.transporteurprevu"/></h4>
 
                             <div class="row m-0 p-0 mt-3" id="divTableTranport">
-                                <form id="formTransporteur" name="formTransporteur" style=" width: 100%;">
-                                    <div class="row m-0 p-0 mt-5">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label> </label><input type="hidden" name="id_notification"
-                                                                       id="id_notification4"
-                                                                       value="${notification.id_notification}">
-                                                <select name="id_transporteur" id="id_Transporteur"
-                                                        class="form-control select2"
-                                                        data-width="100%">
-                                                    <option value="">Déclarer votre transporteur</option>
-                                                    <c:forEach items="${Transporteur_liste}" var="t">
-                                                        <option value="${t[0] }">${t[1] }</option>
-                                                    </c:forEach>
-                                                </select>
+                                <div class="col-12">
+                                    <form id="formTransporteur" name="formTransporteur" class="w-100" ">
+                                        <div class="row m-0 p-0">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label> </label><input type="hidden" name="id_notification"
+                                                                           id="id_notification4"
+                                                                           value="${notification.id_notification}">
+                                                    <select name="id_transporteur" id="id_Transporteur"
+                                                            class="form-control select2"
+                                                            data-width="100%">
+                                                        <option value="">Déclarer votre transporteur</option>
+                                                        <c:forEach items="${Transporteur_liste}" var="t">
+                                                            <option value="${t[0] }">${t[1] }</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group mt-4">
+
+                                                    <button type="button"
+                                                            onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
+                                                            class="btn btn-success">
+                                                        <spring:message code="button.ajouter"/>
+                                                    </button>
+
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-
-                                                <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                        onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
-                                                        class="btn btn-success">
-                                                    <spring:message code="button.ajouter"/>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <table id="tableProfils"
-                                       class="table my_table table-striped hover compact table-bordered text-md-nowrap">
-                                    <thead class="thead-bleu">
-                                    <tr>
-                                        <th class=""><spring:message code="label.nom"/></th>
-
-
-                                        <th class=""><spring:message code="label.identifiantfiscal"/></th>
-                                            <%--<th class="">Adresse</th>--%>
-                                        <th class=""><spring:message code="label.telephone"/></th>
-                                        <th class=""><spring:message code="label.Fax"/></th>
-                                        <th class=""><spring:message code="label.email"/></th>
-
-                                        <th class=""><spring:message code="label.Action"/></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="tbodyTransporteur">
-                                    <c:forEach items="${notification.transporteur}" var="Tr_l">
-
+                                    </form>
+                                    <table id="tableProfils"
+                                           class="table my_table table-striped hover compact table-bordered text-md-nowrap">
+                                        <thead class="thead-bleu">
                                         <tr>
-                                            <td>${Tr_l.nom} </td>
+                                            <th class=""><spring:message code="label.nom"/></th>
 
 
-                                            <td>${Tr_l.identifiant} </td>
-                                                <%--<td>${Tr_l.adresse} </td>--%>
-                                            <td>${Tr_l.tel} </td>
-                                            <td>${Tr_l.fax} </td>
-                                            <td>${Tr_l.email} </td>
+                                            <th class=""><spring:message code="label.identifiantfiscal"/></th>
+                                            <%--<th class="">Adresse</th>--%>
+                                            <th class=""><spring:message code="label.telephone"/></th>
+                                            <th class=""><spring:message code="label.Fax"/></th>
+                                            <th class=""><spring:message code="label.email"/></th>
 
-                                            <td class="">
-                                                <ul class="list-inline m-0">
-                                                    <li class="list-inline-item">
-                                                        <button onclick="delete_tr(this)"
-                                                                class="btn btn-danger btn-sm rounded-circle tab_trash"
-                                                                type="button" data-toggle="tooltip" data-placement="top"
-                                                                title="Supprimer">
-                                                            <div class="icon_trash_1">
-                                                                <svg version="1.1" id="Capa_1"
-                                                                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                     width="20px" height="20px" viewBox="0 0 489.74 489.74"
-                                                                     style="enable-background:new 0 0 489.74 489.74;"
-                                                                     xml:space="preserve">
+                                            <%--<th class=""><spring:message code="label.Action"/></th>--%>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbodyTransporteur">
+                                        <c:forEach items="${notification.transporteur}" var="Tr_l">
+
+                                            <tr>
+                                                <td>${Tr_l.nom} </td>
+
+
+                                                <td>${Tr_l.identifiant} </td>
+                                                    <%--<td>${Tr_l.adresse} </td>--%>
+                                                <td>${Tr_l.tel} </td>
+                                                <td>${Tr_l.fax} </td>
+                                                <td>${Tr_l.email} </td>
+
+                                                <%--<td class="">
+                                                    <ul class="list-inline m-0">
+                                                        <li class="list-inline-item">
+                                                            <button onclick="delete_tr(this)"
+                                                                    class="btn btn-danger btn-sm rounded-circle tab_trash"
+                                                                    type="button" data-toggle="tooltip" data-placement="top"
+                                                                    title="Supprimer">
+                                                                <div class="icon_trash_1">
+                                                                    <svg version="1.1" id="Capa_1"
+                                                                         xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                         width="20px" height="20px" viewBox="0 0 489.74 489.74"
+                                                                         style="enable-background:new 0 0 489.74 489.74;"
+                                                                         xml:space="preserve">
                                                              <g>
                                                                  <g>
                                                                      <path d="M399.179,67.285l-74.794,0.033L324.356,0L166.214,0.066l0.029,67.318l-74.802,0.033l0.025,62.914h307.739L399.179,67.285z
@@ -937,13 +938,13 @@
                                                                  </g>
                                                              </g>
                                                            </svg>
-                                                            </div>
-                                                            <div class="icon_trash_2 d-none">
-                                                                <svg version="1.1" id="Capa_1"
-                                                                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                     width="20px" height="20px" viewBox="0 0 489.74 489.74"
-                                                                     style="enable-background:new 0 0 489.74 489.74;"
-                                                                     xml:space="preserve">
+                                                                </div>
+                                                                <div class="icon_trash_2 d-none">
+                                                                    <svg version="1.1" id="Capa_1"
+                                                                         xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                         width="20px" height="20px" viewBox="0 0 489.74 489.74"
+                                                                         style="enable-background:new 0 0 489.74 489.74;"
+                                                                         xml:space="preserve">
                                                              <g>
                                                                  <g>
                                                                      <path d="M361.051,199.929H102.01V489.74h259.041V199.929L361.051,199.929z M170.818,450.163h-13.492V239.505h13.492V450.163z
@@ -953,15 +954,16 @@
                                                                  </g>
                                                              </g>
                                                            </svg>
-                                                            </div>
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
+                                                                </div>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </td>--%>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="row">
