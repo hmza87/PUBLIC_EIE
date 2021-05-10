@@ -136,7 +136,7 @@
 
         function search() {
             var search = $("#txtsearch").val();
-            if(search.length==3){
+            if(search.length=>3){
                 $.ajax({
                     type: "GET"
                     , url: "/api/search/" + search
