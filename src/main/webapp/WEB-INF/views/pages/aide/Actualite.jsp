@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="single-box">
-                                    <div class="img-area">  <img src="/assets/images/arbre.png" alt=""></div>
+                                    <div class="img-area">  <img src="/assets/images/environnement.jpg" alt=""></div>
                                     <div class="img-text">
                                         <h2>les dernières informations</h2>
                                         <p>On sait que l'atmosphère de la Terre laisse passer la lumière du soleil qui réchauffe la surface du globe. La chaleur qui s'élève de la surface est en partie absorbée par les gaz et la vapeur d'eau présents dans l'atmosphère – on appelle ce processus naturel</p>
@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="single-box">
-                                    <div class="img-area">  <img src="/assets/images/Arb1.png" alt=""></div>
+                                    <div class="img-area">  <img src="/assets/images/audit.jpg" alt=""></div>
                                     <div class="img-text">
                                         <h2>les dernières informations</h2>
                                         <p>On sait que l'atmosphère de la Terre laisse passer la lumière du soleil qui réchauffe la surface du globe. La chaleur qui s'élève de la surface est en partie absorbée par les gaz et la vapeur d'eau présents dans l'atmosphère – on appelle ce processus naturel</p>
@@ -130,7 +130,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="single-box">
-                                    <div class="img-area">  <img src="/assets/images/arbre2.png" alt=""></div>
+                                    <div class="img-area">  <img src="/assets/images/envol.png" alt=""></div>
                                     <div class="img-text">
                                         <h2>les dernières informations</h2>
                                         <p>On sait que l'atmosphère de la Terre laisse passer la lumière du soleil qui réchauffe la surface du globe. La chaleur qui s'élève de la surface est en partie absorbée par les gaz et la vapeur d'eau présents dans l'atmosphère – on appelle ce processus naturel</p>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="single-box">
-                                    <div class="img-area">  <img src="/assets/images/arbre.png" alt=""></div>
+                                    <div class="img-area">  <img src="/assets/images/RES.png" alt=""></div>
                                     <div class="img-text">
                                         <h2>les dernières informations</h2>
                                         <p>On sait que l'atmosphère de la Terre laisse passer la lumière du soleil qui réchauffe la surface du globe. La chaleur qui s'élève de la surface est en partie absorbée par les gaz et la vapeur d'eau présents dans l'atmosphère – on appelle ce processus naturel</p>
