@@ -621,6 +621,12 @@ margin-bottom: 10px;">
                                         <div class="row clss_hide mt-5 saisie collapse">
                                             <div class="col-12">
                                                 <p class="text-success h-4 font_bold"><spring:message
+                                                        code="label.Jedeposemademandedautorisationd"/></p>
+                                                <p><spring:message
+                                                        code="label.apreslobtentiondunumerodefication"/>: </p>
+
+
+                                                <p class="text-success h-4 font_bold"><spring:message
                                                         code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/></p>
                                                 <p>
                                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
@@ -636,10 +642,7 @@ margin-bottom: 10px;">
 
                                         <div class="row clss_hide mt-5 attache collapse">
                                             <div class="col-12">
-                                                <p class="text-success h-4 font_bold"><spring:message
-                                                        code="label.Jedeposemademandedautorisationd"/></p>
-                                                <p><spring:message
-                                                        code="label.apreslobtentiondunumerodefication"/>: </p>
+
                                                 <p class="text-underline text-success font_bold"><spring:message
                                                         code="label.Lespieceafournir"/> :</p>
 

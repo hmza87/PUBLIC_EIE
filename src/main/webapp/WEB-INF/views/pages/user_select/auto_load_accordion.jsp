@@ -72,7 +72,6 @@
                         </c:when>
                         <c:when test="${type=='IT'}">
                             <c:set var="l_ph1" value=" d'installation de traitement des déchets "/>
-
                         </c:when>
                         <c:when test="${type=='XD'}">
                             <c:set var="l_ph1" value=" d'exportation des déchets "/>
@@ -134,7 +133,7 @@
                             </div>
                             <div class="col-2 text-center">
                                 <button data-toggle="tooltip" data-placement="top"
-                                        title="Suivre votre demande"
+                                        title="Traitement de ma demande"
                                         class=" rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
                                         onclick="show_zone('suivre',this)">
                                     <img src="${pageContext.request.contextPath}/assets/images/check_file.png">
@@ -167,13 +166,9 @@
 
                         <div class="row clss_hide mt-5 saisie collapse">
                             <div class="col-12">
+
                                 <p class="text-success h-4 font_bold">
-                                    <c:if test="${type=='ZF' || type=='XD'}">
-                                        <spring:message code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/>
-                                    </c:if>
-                                    <c:if test="${type=='EIE'}">
-                                        Je remplis le formulaire de demande du renseignement préalable en ligne
-                                    </c:if>
+                                    Je dépose ma demande d'autorisation ${l_ph1}
                                 </p>
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <p>
@@ -183,60 +178,36 @@
                                         il faut disposer au préalable d'un numéro de notification
                                     </p>
                                     <p>
-                                        <spring:message code="label.Apreslacreationdevotrecompte"/>
+                                        Après la création de votre compte, vous pouvez faire la demande d'un numéro
+                                        de notification en replissant le formulaire cette demande en veillant à renseigner tous les champs du formulaire
                                     </p>
                                     <p>
-                                        A la fin vous avez la possibilité de déposer votre demande en cliquant sur le
-                                        bouton "Continuer !" du message de confirmation de la création du numéro de notification
+                                        A la fin vous avez la possibilité soit de déposer votre demande en cliquant sur le
+                                        bouton "Continuer !" du message de confirmation de la création de votre demande,
+                                        qui vas vous rediriger vers un nouveau formulaire de dépos des demandes d'autorisation ${l_ph1},
+                                        ou bien vous avez la possibilité de terminer l'enregistrement de votre demande de numeros de notification
+                                         pour ainsi déposé votre demande de d'autorisation ${l_ph1} dans une date ultérieure.
                                     </p>
                                 </c:if>
-
                                 <c:if test="${type=='EIE'}">
+                                   <h2>Je remplis le formulaire de demande du renseignement préalable en ligne</h2>
                                     Vous pouvez déposer une demande d'autorisation ${l_ph1} de deux façon :
                                     <ul>
                                         <li> soit en remplissant le formulaire de renseignement préalable qui une fois validé va vous permetre de déposé votre demande d'autorisation ${l_ph1}</li>
                                         <li> ou bien vous pouvez passez cette etape qui est une étape facultatife et remplir directement votre demande d'autorisation ${l_ph1}  </li>
                                     </ul>
                                 </c:if>
-                            </div>
-                        </div>
-
-                        <div class="row clss_hide mt-5 attache collapse">
-                            <div class="col-12">
-                                <p class="text-success h-4 font_bold">
-                                    Je dépose ma demande d'autorisation ${l_ph1}
-                                </p>
-
                                 <p>
                                     <c:if test="${type=='ZF' || type=='XD'}">
                                         après l'obtention du numéro de notification
                                     </c:if>
                                     vous pouvez déposer une nouvelle demande d'autorisation ${l_ph1}, en replissant le formulaire de dépôt de la demande en veillant
-                                    à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à envoyer au niveau du système: </p>
+                                    à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à les envoyer au niveau du système: </p>
 
 
-                                <p class="text-underline text-success font_bold">
-                                    Les pièce à scanner :
-                                </p>
 
-                                <div id="accordion">
-                                    <h3>Test</h3>
-                                    <div>
-                                        desciption
-                                    </div>
-                                </div>
-                                <c:if test="${type=='CT' || type=='IT'}">
-                                    <p class="text-underline text-success font_bold mt-3">
-                                        Nombre de Demande Déposé :
-                                    </p>
-                                    <p>
-                                        Chaque compte peux déposé une seule demande d'autorisation ${l_ph1} renouvlable
-                                        uniquement si la date de validation de la demande est proche de la date de péremption
-                                    </p>
-                                    <c:if test="${type=='CT'}">
-                                        <p>Dans le cas demande d'autorisation ${l_ph1} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
-                                    </c:if>
-                                </c:if>
+
+
 
                                 <c:if test="${type=='ZF'|| type=='XD'}">
                                     <p class="text-underline text-success font_bold mt-3">
@@ -272,9 +243,9 @@
                                                 <tbody>
 
 
-                                                    <tr class="text-center">
-                                                        <td colspan="4">Aucun transporteur</td>
-                                                    </tr>
+                                                <tr class="text-center">
+                                                    <td colspan="4">Aucun transporteur</td>
+                                                </tr>
 
 
                                                 </tbody>
@@ -288,57 +259,44 @@
 
 
                                 </c:if>
+                            </div>
+                        </div>
 
-                                <p class="text-underline text-success font_bold mt-3"><spring:message
-                                        code="label.Acteurimpliqueetdelaisdetraitementparphase"/></p>
+                        <div class="row clss_hide mt-5 attache collapse">
+                            <div class="col-12">
 
-                                <table class="table table-striped table-bordered table-hover my_table">
-                                    <thead class="bg_stat_01">
-                                    <tr>
-                                        <th><spring:message code="label.Statut"/></th>
-                                        <th><spring:message code="label.Acteur"/></th>
-                                        <th><spring:message code="label.Delais"/></th>
-                                        <th><spring:message code="label.Detail"/></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><spring:message code="label.EnAttente"/></td>
-                                        <td><spring:message code="label.Ministere"/></td>
-                                        <td><spring:message code="label.jours"/></td>
-                                        <td><spring:message
-                                                code="label.Danscetteetapevotredossierestredirige"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><spring:message code="label.demandedecomplement"/></td>
-                                        <td><spring:message code="label.Demandeur"/></td>
-                                        <td> -</td>
-                                        <td><spring:message
-                                                code="label.Danscetteetapevotredossierestincomplet"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><spring:message code="label.AvisCommission"/></td>
-                                        <td><spring:message code="label.Commission"/></td>
-                                        <td><spring:message code="label.jours"/></td>
-                                        <td><spring:message code="label.leservicedecommission"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><spring:message code="label.Favorable"/></td>
-                                        <td><spring:message code="label.Ministere"/></td>
-                                        <td><spring:message code="label.jours"/></td>
-                                        <td><spring:message code="label.servicespecialise"/></td>
-                                    </tr>
-                                    </tbody>
+                                <p class="text-underline text-success font_bold">
+                                    Les pièce à scanner :
+                                </p>
 
-                                </table>
+                                <div id="accordion">
+                                    <h3>Test</h3>
+                                    <div>
+                                        desciption
+                                    </div>
+                                </div>
+                                <c:if test="${type=='CT' || type=='IT'}">
+                                    <p class="text-underline text-success font_bold mt-3">
+                                        Nombre de Demande Déposé :
+                                    </p>
+                                    <p>
+                                        Chaque compte peux déposé une seule demande d'autorisation ${l_ph1} renouvlable
+                                        uniquement si la date de validation de la demande est proche de la date de péremption
+                                    </p>
+                                    <c:if test="${type=='CT'}">
+                                        <p>Dans le cas demande d'autorisation ${l_ph1} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
+                                    </c:if>
+                                </c:if>
 
                             </div>
                         </div>
 
                         <div class="row clss_hide mt-5 suivre collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold"><spring:message
-                                        code="label.Jefaislesuividemademandeenligne"/></p>
+                                <p class="text-success h-4 font_bold">
+                                    Traitement de ma demande
+                                   <%-- <spring:message code="label.Jefaislesuividemademandeenligne"/>--%>
+                                </p>
                                 <p>
                                     Vous pouvez suivre l’évolution du traitement de votre ${l_ph1} à partir de la rubrique « Statut
                                     du Dossier ». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph1}
@@ -347,6 +305,55 @@
                                     Aussi vous recevrez également un email lors d'évolution d'état de votre
                                     dossier de demande d'autorisation ${l_ph1}
                                 </p>
+
+                                <p class="text-underline text-success font_bold mt-3">
+                                    je m'informe sur les acteurs impliqués et les délais de traitement par phase
+                                        <%-- <spring:message
+                                             code="label.Acteurimpliqueetdelaisdetraitementparphase"/>--%>
+                                </p>
+
+                                <table class="table table-striped table-bordered table-hover my_table">
+                                    <thead class="bg_stat_01">
+                                    <tr>
+                                        <th><spring:message code="label.Acteur"/></th>
+                                        <th><spring:message code="label.Delais"/></th>
+                                        <th><spring:message code="label.Statut"/></th>
+                                        <th><spring:message code="label.Detail"/></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><spring:message code="label.Ministere"/></td>
+                                        <td><spring:message code="label.jours"/></td>
+                                        <td><spring:message code="label.EnAttente"/></td>
+                                        <td>
+                                            <spring:message code="label.Danscetteetapevotredossierestredirige"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:message code="label.Demandeur"/></td>
+                                        <td> -</td>
+                                        <td><spring:message code="label.demandedecomplement"/></td>
+                                        <td>
+                                            <spring:message code="label.Danscetteetapevotredossierestincomplet"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:message code="label.Commission"/></td>
+                                        <td><spring:message code="label.jours"/></td>
+                                        <td><spring:message code="label.AvisCommission"/></td>
+                                        <td><spring:message code="label.leservicedecommission"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:message code="label.Ministere"/></td>
+                                        <td><spring:message code="label.jours"/></td>
+                                        <td><spring:message code="label.Favorable"/></td>
+                                        <td><spring:message code="label.servicespecialise"/></td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+
                             </div>
                         </div>
 
