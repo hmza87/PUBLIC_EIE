@@ -218,7 +218,7 @@
                                             <select  id="uniteId" required name="id_unit"
                                                      class="form-control select2"
                                                      data-width="100%">
-                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <option value="0"><spring:message code="option.Choisir"/></option>
                                                 <c:forEach items="${unite_id}" var="t">
                                                     <option  <c:if
                                                             test="${demande.unite.unite_id== t[0]}"> selected </c:if>
@@ -233,7 +233,7 @@
                                             <select id="idcaracteristquePhysique"  name="id_caracter_physique"
                                                     class="form-control select2"
                                                     data-width="100%">
-                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <option value="0"><spring:message code="option.Choisir"/></option>
                                                 <c:forEach items="${caracteristiquephysique}" var="t">
                                                     <option  <c:if
                                                             test="${demande.caracteristquePhysique.id_classification== t[0]}"> selected </c:if>
@@ -248,7 +248,7 @@
                                             <select id="id_population"  name="id_poplation"
                                                     class="form-control select2"
                                                     data-width="100%">
-                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <option value="0"><spring:message code="option.Choisir"/></option>
                                                 <c:forEach items="${population}" var="t">
                                                     <option  <c:if
                                                             test="${demande.population.id_population== t[0]}"> selected </c:if>

@@ -65,19 +65,19 @@
     <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
      
        
-        <a href="/api/ListInstallation" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Liste des demandes</a>
+        <a href="/api/ListeEie/${type}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Liste des demandes</a>
        
        
-        <a href="/api/addInstallation/0/N" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Nouvelle demande</a>
+        <a href="/api/demandeinformation/0/${type}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Nouvelle demande</a>
 
-<section class="services-section" style="background-color: white;margin-top: 2%">
-    <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
-        <div class="col-12 from_add" id="frm_etatDoss" style="margin-top: 43px;">
-            <div class="row p-0 m-0 justify-content-center">
-                <div class="col-md-4 col-sm-12 grid-margin stretch-card ">
-                    <div class="photo  hvr-buzz-out">
-                        <i class="mdi icc mdi-folder-multiple menu-icon"></i>
-                    </div>
+        <section class="services-section" style="background-color: white;margin-top: 2%">
+            <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
+                <div class="col-12 from_add" id="frm_etatDoss" style="margin-top: 43px;">
+                    <div class="row p-0 m-0 justify-content-center">
+                        <div class="col-md-6 col-sm-12 grid-margin stretch-card ">
+                            <div class="photo  hvr-buzz-out">
+                                <i class="mdi icc mdi-folder-multiple menu-icon"></i>
+                            </div>
                     <form name="doc" id="doc">
                         <div class="card" style="padding-bottom: 15px;">
                             <div class="row justify-content-center">
@@ -87,41 +87,53 @@
 
                                     <%--<h5 style="float:right;color:black">Validation du documents</h5>--%>
 
-                                    <h4>Améliorer les documents</h4>
-                                    <div class="row p-0 m-0 mt-5">
+                                    <h4>Compléter les documents</h4>
+                                        <div class="row p-0 m-0 mt-5">
 
 
-                                    </div>
-                                    <c:forEach items="${doc}" var="dc">
-                                        <div class="row">
-
-                                            <div class="col-12  ${dc.nom_ar=='oui'?'Doc_ok':'Doc_Not_ok'}">
-                                                <div class="form-group">
-
-
-                                                    <label class=""> ${dc.docImport.nom_fr } : </label>
-                                                    <a download
-                                                       href="${url_Admin}${fn:replace(dc.nom_ar, "/assets/myFile/", "/dowload_uploaded/")}">
-                                                        <i class="fa fa-upload " title="Télécharger le document"
-                                                           style="margin:0 !important"></i> </a>
-                                                    <div class="${dc.nom_ar=='oui'?'hidden':'' }">
-                                                        <label disabled id="id${dc.id_listDocNotif }"
-                                                               style="width: 100%;"> ${dc.nom_fr } </label>
-                                                        <input required
-                                                               onchange="addDocG(${dc.demandeEIE.id_demande_information},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport}','EIE','')"
-                                                               accept=".pdf" type="file"
-                                                               id="doc${dc.docImport.id_docImport }"
-                                                               class="form-control mydoc">
-                                                    </div>
-
-
-                                                </div>
-
-                                            </div>
                                         </div>
-                                    </c:forEach>
 
-<a href="/api/ListeEie/${type}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+                                        <table class="table table-bordered my_table">
+                                            <thead>
+                                            <tr>
+
+                                                <th scope="col">Piéces a fournir</th>
+                                                <th scope="col">Commentaitre</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${doc}" var="dc">
+                                                <c:if test="${dc.nom_ar!='oui'}">
+                                                    <tr>
+
+                                                        <td class="${dc.nom_ar=='oui'?'Doc_ok':'Doc_Not_ok'}">
+
+
+
+                                                            <div class="form-group">
+
+
+                                                                <label class=""> ${dc.docImport.nom_fr } : </label>
+                                                                <a download href="${url_Admin}${fn:replace(dc.url, "/assets/myFile/", "/dowload_uploaded/")}"><i class="fa fa-upload " title="Télécharger le document" style="margin:0 !important"></i> </a>
+                                                                <div class="${dc.nom_ar=='oui'?'hidden':'' }">
+
+                                                                    <input required onchange="addDocG(${dc.demandeEIE.id_demande_information},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport}','EIE','')" accept=".pdf" type="file" id="doc${dc.docImport.id_docImport }" class="form-control mydoc">
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </td>
+                                                        <td><label disabled id="id${dc.id_listDocNotif }" style="width: 100%;"> ${dc.nom_fr } </label></td>
+
+                                                    </tr></c:if>
+
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+
+                                        <a href="/api/ListeEie/${type}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
        
                                 </div>
                             </div>

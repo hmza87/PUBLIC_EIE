@@ -109,7 +109,7 @@ public class DemandeInformation implements Serializable {
 
     //***************************Notice********************************//
     @Column(name = "Date_reception", nullable = true)
-    private String Date_reception;
+    private Date Date_reception;
 
     @Column(name = "Nature_foncier", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String Nature_foncier;
@@ -170,11 +170,11 @@ public class DemandeInformation implements Serializable {
     @Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String type;
 
-    public String getDate_reception() {
+    public Date getDate_reception() {
         return Date_reception;
     }
 
-    public void setDate_reception(String date_reception) {
+    public void setDate_reception(Date date_reception) {
         Date_reception = date_reception;
     }
 

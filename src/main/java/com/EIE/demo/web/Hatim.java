@@ -926,7 +926,7 @@ public class Hatim {
 
 
 	@RequestMapping(value = "/api/updateDemandeInfomration/{id}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String nature_foncier, @RequestParam String caracteristiques_projet, @RequestParam String ressource, @RequestParam String source, @RequestParam String nature_projet, @RequestParam String qualitative, @RequestParam String quantite_projet,@RequestParam(required=false) int id_unit,@RequestParam(required=false) int id_caracter_physique,@RequestParam(required=false) int id_poplation )
+	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String nature_foncier, @RequestParam String caracteristiques_projet, @RequestParam String ressource, @RequestParam String source, @RequestParam String nature_projet, @RequestParam String qualitative, @RequestParam String quantite_projet,@RequestParam int id_unit,@RequestParam int id_caracter_physique,@RequestParam int id_poplation )
 			throws JsonParseException {
 		DemandeInformation d = webt.getDemandeInfoById(id);
 		d.setMontant_investissement(montant_investissement);
@@ -939,7 +939,9 @@ public class Hatim {
 		d.setNature_projet(nature_projet);
 		d.setQualitative(qualitative);
 		d.setQuantite_projet(quantite_projet);
-		 webt.updateDemandeInformation(id,d , id_unit, id_caracter_physique, id_poplation);
+		d.setDate_reception(new Date());
+		d.setType("NT");
+		webt.updateDemandeInformation(id,d , id_unit, id_caracter_physique, id_poplation);
 		return "";
 	}
 

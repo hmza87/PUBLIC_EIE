@@ -128,9 +128,10 @@
                         <td>
                             <c:if test="${not empty nt.url_enquette_defenitive }">
                                 <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                    <span class="fa fa-eye" style="font-size:12px;color: #33994c;" ></span>
+                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
                                 </a>
                             </c:if>
+                            <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
                         </td>
                         <td>
                             <c:if test="${not empty nt.url_cachier_defenitive }">
@@ -138,6 +139,7 @@
                                     <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
                                 </a>
                             </c:if>
+                            <c:if test="${empty nt.url_cachier_defenitive}">-</c:if>
                         </td>
                         <td>
                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
@@ -169,7 +171,7 @@
                         <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Catégories</h5>
+                                    <h5 class="modal-title">Type de projet</h5>
                                     <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -242,7 +244,7 @@
                                                     <c:if test="${not empty nt.detailRegion.region}">
                                                         <ul>
                                                             <c:forEach items="${nt.detailRegion.region}" var="det">
-                                                                <li> - ${det.nom_fr}</li>
+                                                                <li>  ${det.nom_fr}</li>
                                                             </c:forEach>
                                                         </ul>
                                                     </c:if>
@@ -254,7 +256,7 @@
                                                     <c:if test="${not empty nt.detailRegion.prefectures}">
                                                         <ul>
                                                             <c:forEach items="${nt.detailRegion.prefectures}" var="det">
-                                                                <li> - ${det.nom_fr}</li>
+                                                                <li>  ${det.nom_fr}</li>
                                                             </c:forEach>
                                                         </ul>
                                                     </c:if>
@@ -266,7 +268,7 @@
                                                     <c:if test="${not empty nt.detailRegion.communes}">
                                                         <ul>
                                                             <c:forEach items="${nt.detailRegion.communes}" var="det">
-                                                                <li> - ${det.nom_fr}</li>
+                                                                <li>  ${det.nom_fr}</li>
                                                             </c:forEach>
                                                         </ul>
                                                     </c:if>

@@ -789,26 +789,24 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
         swal("Avertissement ! ", 'Le champs Montant d\'investissement est incorrecte', 'error');
         return false;
     }
+    var intitule = $("input[name=intitule_projet]").val();
+    if ($.trim(intitule) == "" || intitule == null) {
+        swal("Avertissement ! ", 'Le champs Intitulé du projet est obligatoire', 'error');
+        return false;
+    }
+    var unite = $("#uniteId").val();
+    if ($.trim(unite) == "" || unite == null) {
+        unite=" ";
+    }
     var se = $("#"+form).serialize();
-    var id_unit=$("#uniteId").val();
-    if($.trim(id_unit)==="" || id_unit==null || !$.isNumeric(id_unit) ){
-        id_unit=0;
-    }
-    var id_caracter_physique=$("#idcaracteristquePhysique").val();
-    if($.trim(id_caracter_physique)==="" || id_caracter_physique==null || !$.isNumeric(id_caracter_physique) ){
-        id_caracter_physique=0;
-    }
-    var id_poplation=$("#id_population").val();
-    if($.trim(id_poplation)==="" || id_poplation==null || !$.isNumeric(id_poplation) ){
-        id_poplation=0;
-    }
-    $empty = $('#'+form).find("input").filter(function() {
+
+    /*$empty = $('#'+form).find("input").filter(function() {
         return this.value === "";
     });
     if($empty.length) {
         swal("Avertissement ! ", 'Tous Les Champs est obligatoire', 'error');
         return false;
-    } else {
+    } else {*/
         $.ajax({
             type: "GET",
             url: "/api/updateDemandeInfomration/" + id ,
@@ -824,7 +822,6 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
 
             }
         });
-    }
 }
 
 function updateDemandeInfomrationEE(form, id_name, step, id_btn_step) {
