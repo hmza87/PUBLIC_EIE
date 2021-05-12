@@ -446,7 +446,7 @@ function set_avis_projet(val_id, id_dmd) {
                 },
                 function (isConfirm) {
                     if (isConfirm) {
-                        window.location.href = "/api/checkEIESelect";
+                        window.location.href = "/api/checkEIESelect/EE";
                     }
                 });
         },
@@ -649,7 +649,7 @@ function affche_message(form) {
             Swal.fire({
                 title: '<strong>Votre demande a été déposée avec succès</strong>',
                 icon: 'success',
-                html: '<a href="/api/checkEIESelect" class="btn btn-success ml-2 ">Retour</a>',
+                html: '<a href="/api/checkEIESelect"+ class="btn btn-success ml-2 ">Retour</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,

@@ -260,7 +260,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Les Impacts positifs et négatifs du projet</label>
-                                            <input type="file" required id="impacts" class="form-control" onchange="fun_setimpacts()">
+                                            <input type="file" required id="impacts" accept=".doc,.docx,.pdf" class="form-control" onchange="fun_setimpacts()">
                                             <c:if test="${not empty demande.impacts}">
                                                 <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger Impacts du projet</a>
                                             </c:if>
@@ -507,7 +507,7 @@
                                                     <label style="width: 100%;"> ${dc.nom_fr } </label> <input
                                                         required
                                                         onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
-                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                        accept=".doc,.docx,.pdf" type="file" id="doc${dc.id_docImport }"
                                                         class="form-control mydoc">
                                                 </div>
                                             </div>

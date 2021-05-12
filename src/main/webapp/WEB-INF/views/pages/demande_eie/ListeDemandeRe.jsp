@@ -29,7 +29,7 @@
             <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-                    <li class="breadcrumb-item"><a href="/api/checkEIESelect"><spring:message
+                    <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type}"><spring:message
                             code="label.etudeimpactenvironnemental"/></a></li>
                     <li class="breadcrumb-item active" aria-current="page">${p_page}</li>
                 </ol>
