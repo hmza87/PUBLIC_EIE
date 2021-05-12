@@ -14,13 +14,13 @@
 <jsp:include page="card.jsp" />
 <section class="services-section container-fluid bg-white" >
     <c:choose>
-        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/EE')}">
+        <c:when test="${type=='EE' || type=='RS'}">
             <spring:message code="option.Etudedimpactenvironnementale" var="p_page" />
         </c:when>
-        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/NT')}">
+        <c:when test="${type=='NT'}">
             <spring:message code="option.Noticedimpact" var="p_page" />
         </c:when>
-        <c:when test="${fn:startsWith(requestScope['javax.servlet.forward.request_uri'], '/api/ListeEie/AE')}">
+        <c:when test="${type=='AE'}">
             <spring:message code="option.Auditenvironnementale" var="p_page" />
         </c:when>
         <c:otherwise>
