@@ -158,7 +158,7 @@
             </div>
             <h2>2. informations sur le projet </h2>
             <div>
-              <c:if test="${type=='EE'}">
+              <c:if test="${type=='EE' || type=='RS'}">
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
@@ -385,6 +385,7 @@
                 </div>
               </div>
             </div>
+            <c:if test="${type!='RS'}">
             <h2>4. <spring:message code="label.mespieces" /></h2>
             <div>
               <table class="table my_table table-striped table-bordered table-hover">
@@ -405,6 +406,7 @@
                 </c:if>
               </table>
             </div>
+            </c:if>
           </div>
         </div>
       </div>
