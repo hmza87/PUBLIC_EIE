@@ -99,28 +99,7 @@ text-align:right !important;
                           </div>
                     </div>
                     </div>
-                   <%-- <div class="card-body"  id="Row_Nouvelle_EIE_2" style="min-height: 295px;display: none">
-                      <div class="row">
-                        <div class=" col-md-3 col-sm-12  rounded pl-0 pr-0">
-                          <div class="rounded-circle my_bg p-3 m-3">
-                            <img src="${pageContext.request.contextPath}/assets/images/saisir.png">
-                          </div>
-                        </div>
-                        <div class="col-md-9 col-sm-12 pr-0 pl-0">
-                          <p class="text-success font_bold text-left pl-2"><spring:message
-                                  code="label.Deposerundossier"/></p>
-                          <hr>
-                          <p class="pl-2 text-justify margin10" >
-                            Pour remplir l'ÉIE sans Renseignement préalable, cliquez sur le bouton   <b>Sans Renseignement préalable</b>,  Si non vous cliquez sur le bouton <b> Avec Renseignement préalable </b>
-                          </p>
-                        </div>
-                        <div class="col-12" >
-                          <button onclick="go_to_l('/api/demandeinformation/0/EE')" class="btn btn-sm btn-success margin10" >Sans Renseignement préalable <span class="fa fa-angle-double-right"></span></button>
-                          <button onclick=" $('#staticBackdrop').modal('toggle');"  class="btn btn-sm btn-success margin10" >Avec Renseignement préalable <span class="fa fa-angle-double-right"></span></button>
 
-                        </div>
-                    </div>
-                    </div>--%>
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6">

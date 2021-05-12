@@ -184,6 +184,12 @@
                                 <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
                                    class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
                             </c:if>
+                            <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
+                                <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
+                                   class="btn btn-primary" title="Attacher les documents définitive"><i
+                                        class="fa fa-pencil"></i> Déposer la demande</a>
+                            </c:if>
+
                         </td>
                     </tr>
                     <!-- Modal -->

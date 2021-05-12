@@ -260,10 +260,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     if(event!=null)
         event.preventDefault();
 
-    if($("#id_region").val().length<2){
-        swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
-        return false;
-    }
+
 
     var region = ""
     var prefecture = "";
@@ -283,6 +280,11 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
         }
     }
 
+
+    if($("#id_region").val().length<2){
+        swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
+        return false;
+    }
 
 
     var region = $("#id_region").val().join();
