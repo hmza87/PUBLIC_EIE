@@ -1301,8 +1301,6 @@ function saveDeclarationTransporteur(){
     $("#declarationTransp").modal("show");
 }
 
-
-
 // ---- login 7 --------------
 function show_zone2(hideClass, val) {
     $(".clss_hide").hide();

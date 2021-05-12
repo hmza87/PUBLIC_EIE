@@ -178,10 +178,6 @@ function addDoc_eie(id_name,type,idInput){
         cache: false,
         success : function(response) {
 
-
-
-
-
         },
         error : function() {
 

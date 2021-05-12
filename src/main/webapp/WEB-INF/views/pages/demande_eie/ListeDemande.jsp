@@ -5,7 +5,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <spring:url value="/resources/" var="resources" />
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link= cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css>
 <%@ page session="false"%>
 
 
@@ -68,7 +67,7 @@
                     <c:if test="${type=='AE'}">
                         <th rowspan="2">Audit environnemental définitif </th>
                     </c:if>
-                    <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
+
 
                     <%--<th rowspan="2" ><spring:message code="label.Informationcomplementaire"/></th>--%>
                     <th rowspan="2" ><spring:message code="label.Action"/></th>
@@ -92,7 +91,7 @@
                         </td>
                         <td> ${nt.intitule_projet}  </td>
                         <td>${nt.raison_social}</td>
-                        <td>${nt.contact}</td>
+                        <td>${nt.represantant}</td>
                         <td>${nt.tel}</td>
                         <td>${nt.fax}</td>
                         <td>${nt.email}</td>
@@ -125,22 +124,47 @@
                                 <span class="fa fa-archive"></span>
                             </button>
                         </td>
-                        <td>
-                            <c:if test="${not empty nt.url_enquette_defenitive }">
-                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                </a>
-                            </c:if>
-                            <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
-                        </td>
-                        <td>
-                            <c:if test="${not empty nt.url_cachier_defenitive }">
-                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                </a>
-                            </c:if>
-                            <c:if test="${empty nt.url_cachier_defenitive}">-</c:if>
-                        </td>
+
+                        <c:if test="${type=='EE'}">
+                            <td>
+                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                    </a>
+                                </c:if>
+                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                            </td>
+                            <td>
+                                <c:if test="${not empty nt.url_cachier_defenitive }">
+                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                    </a>
+                                </c:if>
+                                <c:if test="${empty nt.url_cachier_defenitive}">-</c:if>
+                            </td>
+                        </c:if>
+                        <c:if test="${type=='NT'}">
+                            <td>
+                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                    </a>
+                                </c:if>
+                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                            </td>
+                        </c:if>
+                        <c:if test="${type=='AE'}">
+                            <td>
+                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                    </a>
+                                </c:if>
+                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                            </td>
+                        </c:if>
+
+
                         <td>
                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
                                 <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitive"><i class="fa fa-check" style="margin:0 !important"></i></a>
@@ -161,7 +185,7 @@
 
                             <c:if test="${nt.statut.id_statut_projet==59 }">
                                 <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
-                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Valider les documents</a>
+                                   class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
                             </c:if>
                         </td>
                     </tr>

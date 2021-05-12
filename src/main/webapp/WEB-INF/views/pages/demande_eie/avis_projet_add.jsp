@@ -262,7 +262,7 @@
                                             <label>Les Impacts positifs et négatifs du projet</label>
                                             <input type="file" required id="impacts" class="form-control" onchange="fun_setimpacts()">
                                             <c:if test="${not empty demande.impacts}">
-                                                <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger fichier Qualification</a>
+                                                <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger Impacts du projet</a>
                                             </c:if>
                                         </div>
                                     </div>
