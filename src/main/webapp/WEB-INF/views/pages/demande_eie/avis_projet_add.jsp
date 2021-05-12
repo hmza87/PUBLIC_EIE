@@ -41,7 +41,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
-                        <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type}">${p_page} </a></li>
+                        <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
                         <li class="breadcrumb-item active" aria-current="page"> <spring:message code="label.Nouvelledemande"/> </li>
 
                     </ol>

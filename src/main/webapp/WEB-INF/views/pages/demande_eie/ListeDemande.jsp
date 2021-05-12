@@ -32,16 +32,13 @@
             <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" >
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">${p_page}</li>
+                    <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mes Dossiers</li>
                 </ol>
             </nav>
         </div>
     </div>
-    <div class="row" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-        <div class="col-2" >
-           <a href="/api/checkEIESelect/${type}" class="btn btn-success btn-block"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
             <table style="width:100% !important; " id="tableProfils" class="table table-striped hover compact table-bordered text-md-nowrap">
