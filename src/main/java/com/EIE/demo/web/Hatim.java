@@ -209,6 +209,7 @@ public class Hatim {
 	@RequestMapping(value = "/CatalogueDesDechet",method = RequestMethod.GET)
 	public ModelAndView CatalogueDesDechet() throws Exception {
 		Map<String,Object> map = new HashMap<>();
+		map.put("user",webt.getCompteConnected());
 		map.put("listF",webt.getListAllTransporteurParam());
 		map.put("code",webt.getListCodeTabByClassif(1));
 		return new ModelAndView("aide/CatalogueDesDechet",map);
@@ -1025,6 +1026,7 @@ public class Hatim {
     @RequestMapping(value = "/Actualite",method = RequestMethod.GET)
     public ModelAndView Actualite() throws Exception {
         Map<String,Object> map = new HashMap<>();
+        map.put("user",webt.getCompteConnected());
         //map.put("listF",webt.getListAllTransporteurParam());
         //map.put("code",webt.getListCodeTabByClassif(1));
         return new ModelAndView("aide/Actualite",map);
