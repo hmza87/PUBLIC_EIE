@@ -498,7 +498,7 @@
                     </c:if>
                     <c:if test="${type=='NT'}">
                         <div id="step3" class="col-12 z_collecteur collapse" >
-                            <form  class="form-horizontal mt-3" >
+                            <form  class="form-horizontal mt-3" id="formdoc">
                                 <c:forEach items="${docNT}" var="dc">
                                     <div class="row justify-content-center">
                                         <div class="col mt-3  ">
@@ -609,33 +609,47 @@
             event.preventDefault();
         var id = $("#" + id_name).val();
         var link_recap = "/api/recapEie/" + id+"/"+type;
+        var test = false;
+        var tr = $("#formdoc").find("input[type=file]").closest(".row.justify-content-center");
+        $(tr).each(function (idx, el) {
+            var input = $(el).find("input[type=file]");
+            var files = $(input).prop('files');
+            var btn = $(el).find(".file_existe");
+            if ($(btn).length == 0 && files.length == 0 && !test) {
+                $(input).addClass("bg_error");
+                test = true
+            }
+        });
         if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
             swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
             return false;
         }
-
-        $.ajax({
-            url: "/api/changerStatuts2/" + id + "/" + code_statut,
-            type: 'GET',
-            data: {},
-        })
-            .done(function (data) {
-                Swal.fire({
-                    title: '<strong>' + msg_alert + '</strong>',
-                    icon: 'success',
-                    html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
+        if (test) {
+            swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+        } else {
+            $.ajax({
+                url: "/api/changerStatuts2/" + id + "/" + code_statut,
+                type: 'GET',
+                data: {},
+            })
+                .done(function (data) {
+                    Swal.fire({
+                        title: '<strong>' + msg_alert + '</strong>',
+                        icon: 'success',
+                        html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                        showCloseButton: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        focusConfirm: false,
+                    })
                 })
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+        }
     }
     function changer_statut1(id_name, code_statut, msg_alert,type) {
         if(event!=null)

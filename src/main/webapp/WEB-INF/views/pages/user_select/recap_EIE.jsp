@@ -45,7 +45,18 @@
           <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" >
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-              <li class="breadcrumb-item"><a href="/api/checkEIESelect/NT"><spring:message code="label.Noticedimpact"/></a></li>
+           <c:if test="${type=='EE'}">
+             <li class="breadcrumb-item"><a href="/api/ListeEie/${type}"><spring:message code="label.EtudedimpactEnvironnementale"/></a></li>
+           </c:if>
+              <c:if test="${type=='RS'}">
+                <li class="breadcrumb-item"><a href="/api/ListeEie/${type}"><spring:message code="label.Renseignementprealable"/></a></li>
+              </c:if>
+              <c:if test="${type=='NT'}">
+                <li class="breadcrumb-item"><a href="/api/ListeEie/${type}"><spring:message code="label.Noticedimpact"/></a></li>
+              </c:if>
+              <c:if test="${type=='AE'}">
+                <li class="breadcrumb-item"><a href="/api/ListeEie/${type}"><spring:message code="label.Auditenvironnementale"/></a></li>
+              </c:if>
               <li class="breadcrumb-item active" aria-current="page">Récap ${titre_dyn}</li>
             </ol>
           </nav>
