@@ -73,7 +73,7 @@
 
           <c:if test="${installation.statut.id_statut_projet==17 }">
             <div class="col-md-3">
-                <a href="/api/generateDocInstallFavorable/${installation.id_installation}" class="btn btn-primary rounded"><span class="fa fa-file-download"></span></a>
+                <a href="/api/generateDocInstallFavorable/${installation.id_installation}" class="btn btn-primary rounded"><span class="fas fa-file-download"></span></a>
             </div>
           </c:if>
 
