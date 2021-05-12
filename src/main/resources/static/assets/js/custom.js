@@ -275,21 +275,30 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
             $(next_step).show();
             return false;
         } else if (next_step == "end") {
-            window.location.href = "/api/ListeEie/"+type;
-            return false;
+           // window.location.href = "/api/ListeEie/"+type;
+
         }
     }
 
 
-    if($("#id_region").val().length<2){
-        swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
-        return false;
+    var tmp = $("#id_region").val();
+    if(trans != "oui"){
+        if( tmp.length<2){
+            swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
+            return false;
+        }
     }
 
+    if(trans == "non"){
+        region = $("#id_region").val().join();
+        prefecture = $("#id_prefecture").val().join();
+        commune = $("#id_commune").val().join();
+    }else if(trans=="oui"){
+        region = "0";
+        prefecture = "0";
+        commune = "0";
+    }
 
-    var region = $("#id_region").val().join();
-    var prefecture = $("#id_prefecture").val().join();
-    var commune = $("#id_commune").val().join();
 
 
     var formdata = new FormData();
