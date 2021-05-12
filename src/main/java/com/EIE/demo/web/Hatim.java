@@ -655,6 +655,9 @@ public class Hatim {
 		else if(type.equals("AE")){
 			model.put("titre_dyn","Audit Environnemental");
 			model.put("AE",webt.getcountEIEByType("AE",webt.getCompteConnected().getCompteId()));
+		}else if(type.equals("RS")){
+			model.put("titre_dyn","Renseingement préalable");
+			model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
 		}
 
 
