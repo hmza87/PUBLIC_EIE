@@ -241,7 +241,6 @@ public class Eie_Controler {
 		String tt = web.addDemandeInformation(dm,type);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("user", ct);
-
 		if(id==0){
 			model.put("id",tt);
 		}
@@ -302,6 +301,7 @@ public class Eie_Controler {
 		
 		model.put("doc",l);
 		model.put("demande", demande);
+		model.put("user",web.getCompteConnected());
 		model.put("url_Admin",urlRest);
 		model.put("type",type);
 		if(type.equals("RS")){

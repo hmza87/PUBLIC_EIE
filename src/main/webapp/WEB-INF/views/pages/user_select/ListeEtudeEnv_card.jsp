@@ -81,7 +81,7 @@ text-align:right !important;
                           <p class="text-success font_bold text-left pl-2"><spring:message code="label.Deposerundossier"/></p>
                          <hr>
                             <p class="pl-2 text-justify margin10" >
-                              Pour déposer le dossier d'une nouvelle demande de ${(type=="EIE" || type=="RS")?"l\'EIE":(type=="NT"?"Notice d'Impact sur l'Environnement":"Audit Environnemental")}  l'EIE, cliquez sur  <b>${titre_dyn} :</b><br>
+                              Pour déposer le dossier d'une nouvelle demande de ${(type=="EE" || type=="RS")?"l\'EIE":(type=="NT"?"Notice d'Impact sur l'Environnement":"Audit Environnemental")} , cliquez sur  <b>${titre_dyn} :</b><br>
                             </p>
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/${type}')" class="btn btn-sm btn-success margin10" >${titre_dyn} <span class="fa fa-angle-double-right"></span></button>

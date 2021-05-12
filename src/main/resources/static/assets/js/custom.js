@@ -257,7 +257,14 @@ function addDoc_eie(id_name, type, idInput) {
 }
 
 function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
-    event.preventDefault();
+    if(event!=null)
+        event.preventDefault();
+
+    if($("#id_region").val().length<2){
+        swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
+        return false;
+    }
+
     var region = ""
     var prefecture = "";
     var commune = "";
@@ -276,25 +283,12 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
         }
     }
 
+
+
     var region = $("#id_region").val().join();
     var prefecture = $("#id_prefecture").val().join();
     var commune = $("#id_commune").val().join();
 
-    /*$(".id_region:visible").each(function (ind,el){
-        var region_tmp = $(el).val();
-        region += region_tmp!=null?region_tmp:0
-
-        var prefecture_tmp = $(el).closest(".row").find(".id_prefecture").val();
-        prefecture += prefecture_tmp!=null?prefecture_tmp:0;
-        var commune_tmp = $(el).closest(".row").find(".id_commune").val();
-        commune += commune_tmp!=null?commune_tmp:0;
-
-        if(ind!=($(".id_region:visible").length-1)){
-            region+=',';
-            prefecture+=',';
-            commune+=',';
-        }
-    })*/
 
     var formdata = new FormData();
     formdata.append('region', region);

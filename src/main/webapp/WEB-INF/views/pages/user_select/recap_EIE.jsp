@@ -51,11 +51,7 @@
           </nav>
         </div>
       </div>
-      <div class="row" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-        <div class="col-2" >
-          <a href="/api/checkEIESelect/${type}" class="btn btn-success btn-block mb-2"> <span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </a>
-        </div>
-      </div>
+
       <div class="row justify-content-center"  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
         <div class="col-md-10 col-sm-12">
           <div class="jumbotron p-3">

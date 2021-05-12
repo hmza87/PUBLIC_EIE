@@ -25,7 +25,7 @@
             <div class="col-12">
 
                 <c:choose>
-                    <c:when test="${type=='EE'}">
+                    <c:when test="${type=='EE' || type=='RS'}">
                         <spring:message code="option.Etudedimpactenvironnementale" var="p_page" />
                     </c:when>
                     <c:when test="${type=='NT'}">
