@@ -4044,20 +4044,26 @@ public class GeneratePDFDocuments {
                 }
 
         table3.setSpacingAfter(12);
-        //--------------------- Tableau Les Pièces ---------------------
+
         PdfPTable table7 = new PdfPTable(3);
+        //--------------------- Tableau Les Pièces ---------------------
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
         table7.addCell(saisir_cellule_titre("4. Pièces Jointe",3));
         table7.completeRow();
-        //--------------------- Row Title ---------------------
-        int i=1;
-        for (ListDocNotif ld: l){
-            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
-            i++;
-            table7.completeRow();
+        if(!ns.getType().equals("RS")){
+            //--------------------- Row Title ---------------------
+            int i=1;
+            for (ListDocNotif ld: l){
+                table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+                i++;
+                table7.completeRow();
+            }
+        }else{
+            table7.addCell(saisir_cellule_transporteur_titre("Aucun Documents ",3));
         }
+
 
 
         document.add(headerPar);

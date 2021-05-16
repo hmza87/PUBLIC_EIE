@@ -324,7 +324,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Régions</label>
-                                            <select class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
+                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
                                                 <c:forEach items="${regions}" var="reg" varStatus="loop">
                                                     <option
                                                             <c:forEach items="${demande.detailRegion.region}" var="rr">
@@ -338,7 +338,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Préféctures / Provinces</label>
-                                            <select class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
+                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lp}" var="p">
                                                     <option
@@ -353,7 +353,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Communes</label>
-                                            <select class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
+                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lc}" var="c" varStatus="loopp">
                                                     <option
