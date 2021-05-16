@@ -3138,7 +3138,7 @@ public class GeneratePDFDocuments {
         Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,9.0f,Font.BOLD);
         Font fontBox = new Font(base, 10f);
 
-        String logo = "word_header.png";
+        String logo = "word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getClassLoader().getResource(logo));
         image.scaleToFit(610,800);
         document.add(image);

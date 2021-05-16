@@ -58,56 +58,57 @@
 
   <div class="row justify-content-center "  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-10 col-sm-12">
-      <div class="jumbotron p-3">
+      <div class="jumbotron p-3 mb-2">
         <spring:message code="label.Statutdelademande"/> : <span class="text-success h4 font-weight-bold">${collect.statut[lng]}</span>
       </div>
     </div>
   </div>
-  <div class="col-md-10 col-sm-12">
-      <div class="row p-0 mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-sm-12">
+      <div class="row p-0 mb-2">
 
-          <c:choose>
-            <c:when test="${collect.statut.id_statut_projet==20 || collect.statut.id_statut_projet==41}">
+        <c:choose>
+          <c:when test="${collect.statut.id_statut_projet==20 || collect.statut.id_statut_projet==41}">
             <div class="col-auto">
               <a href="/api/validateDocCt/${collect.id_collecte }"
                  class="btn btn-primary"><i class="fa fa-upload "
                                             title="Améliorer les documents" style="margin: 0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
             </div>
-            </c:when>
-            <c:otherwise>
-              <c:choose>
-                <c:when test="${collect.statut.id_statut_projet==22}">
+          </c:when>
+          <c:otherwise>
+            <c:choose>
+              <c:when test="${collect.statut.id_statut_projet==22}">
                 <div class="col-auto">
-                      <a class="btn btn-warning rounded"
-                         href="${url_admin}/generate_pdf_collecte/${collect.id_collecte}">
-                        <span class="fa fa-download"></span>
-                      </a>
+                  <a class="btn btn-warning rounded"
+                     href="${url_admin}/generate_pdf_collecte/${collect.id_collecte}">
+                    <span class="fa fa-download"></span>
+                  </a>
                 </div>
-                </c:when>
-                <c:when test="${collect.statut.id_statut_projet==25}">
+              </c:when>
+              <c:when test="${collect.statut.id_statut_projet==25}">
                 <div class="col-auto">
-                      <a class="btn btn-warning rounded"
-                         href="${url_admin}/generate_word_collecte/${collect.id_collecte}">
-                        <span class="fa fa-download"><spring:message code="label.Telechargerlarrete"/> </span>
-                      </a>
+                  <a class="btn btn-warning rounded"
+                     href="${url_admin}/generate_word_collecte/${collect.id_collecte}">
+                    <span class="fa fa-download"><spring:message code="label.Telechargerlarrete"/> </span>
+                  </a>
                 </div>
-                </c:when>
-              </c:choose>
-            </c:otherwise>
-          </c:choose>
+              </c:when>
+            </c:choose>
+          </c:otherwise>
+        </c:choose>
         <c:if test="${collect.statut.id_statut_projet==56}">
-        <div class="col-md-3 col-sm-6">
-          <a href="${url_Admin}${fn:replace(collect.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
-        </div>
-        </c:if>
-          <c:if test="${collect.statut.id_statut_projet==50 && (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
-            <%-- non conforme - dmd_complement - favorable--%>
           <div class="col-md-3 col-sm-6">
-              <a class="btn btn-success btn-block"
-                 href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span> <spring:message
-                      code="label.Ajouter_Vehicules" /> </a>
+            <a href="${url_Admin}${fn:replace(collect.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
           </div>
-          </c:if>
+        </c:if>
+        <c:if test="${collect.statut.id_statut_projet==50 && (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
+          <%-- non conforme - dmd_complement - favorable--%>
+          <div class="col-md-3 col-sm-6">
+            <a class="btn btn-success btn-block"
+               href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span> <spring:message
+                    code="label.Ajouter_Vehicules" /> </a>
+          </div>
+        </c:if>
         <c:if test="${collect.statut.id_statut_projet==50}">
           <div class="col-md-3 col-sm-6">
             <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pen mr-2"></i><spring:message code="label.deposerDossier"/></a>
@@ -126,6 +127,8 @@
         </div>
       </c:if>
     </div>
+  </div>
+
   <div class="row justify-content-center mb-5"  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-10 col-sm-12">
       <div id="accordion">
