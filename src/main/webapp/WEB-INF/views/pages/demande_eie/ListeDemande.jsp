@@ -164,7 +164,7 @@
 
                         <td>
                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
-                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitive"><i class="fa fa-check" style="margin:0 !important"></i></a>
+                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i> Attacher les documents définitifs</a>
                             </c:if>
                             <c:if test="${nt.statut.id_statut_projet==6}">
                                 <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>

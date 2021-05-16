@@ -218,7 +218,8 @@
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                       <label>Date démarrage</label>
-                      <input disabled type="text" class="form-control" value="${demande.dateDemarage}">
+                      <c:set value="${fn:split(demande.dateDemarage, ' ')}" var="dt" />
+                      <input disabled type="text" class="form-control" value="${dt[0]}">
                     </div>
                   </div>
                 </div>
@@ -226,7 +227,8 @@
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                       <label>Date Résiliation</label>
-                      <input disabled type="text" class="form-control" value="${demande.dateResiliation}">
+                      <c:set value="${fn:split(demande.dateResiliation, ' ')}" var="dt2" />
+                      <input disabled type="text" class="form-control" value="${dt2[0]}">
                     </div>
                   </div>
                 </div>
