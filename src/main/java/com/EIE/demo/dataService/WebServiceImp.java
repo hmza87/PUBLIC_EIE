@@ -665,6 +665,20 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void updateRegion(int id, int regionId) {
+		final String uris = urlRest + "/updateRegionRest/"+id+"/"+regionId;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
+	public void updatePrefecture(int id, int prefectureId) {
+		final String uris = urlRest + "/updatePrefectureRest/"+id+"/"+prefectureId;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
 	public void setcodeinstall(int id_inst, int id_code, int id_user,String type) {
 		final String uris = urlRest + "/setcodeInstallationRest/"+id_inst+"/"+id_code + "/"+ type+"/"+id_user;
 		RestTemplate restTemplate = new RestTemplate();

@@ -96,6 +96,11 @@ public interface WebService {
 
 	void setcode(int id_coll, int id_code, int id_user, String type);
 
+	void updateRegion(int id, int regionId);
+	void updatePrefecture(int id, int prefectureId);
+
+
+
 	void setcodeinstall(int id_inst, int id_code, int id_user, String type);
 
 	CollecteTransporteur getCollecteByNumDemande(String id, int compteId);

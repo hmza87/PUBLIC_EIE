@@ -447,6 +447,20 @@ public class Hatim {
 	}
 
 
+	@RequestMapping(value = "/api/UpdateRegion", method = RequestMethod.POST)
+	public @ResponseBody String updateRegion(@RequestParam int id,@RequestParam int regionId)
+			throws JsonParseException, IOException, MessagingException {
+			webt.updateRegion(id,regionId);
+			return String.valueOf(0);
+	}
+
+	@RequestMapping(value = "/api/UpdatePrefecture", method = RequestMethod.POST)
+	public @ResponseBody String updatePrefecture(@RequestParam int id,@RequestParam int prefectureId)
+			throws JsonParseException, IOException, MessagingException {
+		webt.updatePrefecture(id,prefectureId);
+		return String.valueOf(0);
+	}
+
 	@RequestMapping(value = "/api/getOneInstall", method = RequestMethod.POST)
 	public @ResponseBody String getOneInstall(@RequestParam String id)
 			throws JsonParseException, IOException, MessagingException {

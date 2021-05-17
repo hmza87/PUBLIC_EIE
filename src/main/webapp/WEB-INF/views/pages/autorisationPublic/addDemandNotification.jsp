@@ -434,9 +434,6 @@
                             </div>
                         </div>
                         <input type="hidden" name="val_ou_trait" id="val_ou_trait">
-
-
-
                     </form>
 
 
@@ -534,10 +531,8 @@
                                 <div class="form-group">
 
                                     <label> Ville/province </label>
-                                    <select name="prefecture_id" id="prefecture_id"
-
-                                            class="form-control select2" data-width="100%">
-                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                    <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
+                                        <option value="0"><spring:message code="option.Choisir"/></option>
                                         <c:forEach items="${prefectures}" var="t">
                                             <option  <c:if
                                                     test="${notification.prefecture.id_prefecture== t[0]}"> selected </c:if>
@@ -549,10 +544,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label> <spring:message code="label.Region"/> </label>
-                                    <select name="region_id" id="region_id"
-
-                                            class="form-control select2" data-width="100%">
-                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                    <select name="region_id" id="region_id" class="form-control select2" data-width="100%" onchange="updateRegion(this.value)">
+                                        <option value="0"><spring:message code="option.Choisir"/></option>
                                         <c:forEach items="${region}" var="t">
                                             <option <c:if
                                                     test="${notification.region.regionId== t[0]}"> selected </c:if>
@@ -2135,7 +2128,55 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+    function updateRegion(value) {
+    event.preventDefault();
+    if(value!=0){
+        $.ajax({
+            url: '/api/UpdateRegion',
+            type: 'post',
+            data: {
+                "id": $("#id_notification").val(),
+                "regionId": value
+            },
+        })
+            .done(function (response) {
+                console.log(response);
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            });
+    }
+
+}
+
+    function updatePrefecture(value) {
+        event.preventDefault();
+        if(value!="0"){
+            $.ajax({
+                url: '/api/UpdatePrefecture',
+                type: 'post',
+                data: {
+                    "id": $("#id_notification").val(),
+                    "prefectureId": value
+                },
+            })
+                .done(function (response) {
+                    console.log(response);
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+        }
+    }
+
+
+$(document).ready(function(){
         $("#defaultOpen").click();
     });
     function checkNumNotifRenouv(type, val) {
