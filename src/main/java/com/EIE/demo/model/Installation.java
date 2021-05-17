@@ -97,6 +97,29 @@ public class Installation implements Serializable {
 	@Column(name = "url_doc_signer", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String url_doc_signer;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "regionId")
+	private Region region;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "prefectureId")
+	private Prefecture prefecture;
+	public Prefecture getPrefecture() {
+		return prefecture;
+	}
+
+	public void setPrefecture(Prefecture prefecture) {
+		this.prefecture = prefecture;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
 	public String getDocument_attache() {
 		return document_attache;
 	}

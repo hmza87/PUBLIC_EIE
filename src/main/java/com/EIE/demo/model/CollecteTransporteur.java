@@ -35,6 +35,28 @@ public class CollecteTransporteur implements Serializable {
   private String raison;
   @Column(name = "cin", nullable = true, columnDefinition = "NVARCHAR(255)")
   private String cin;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "regionId")
+  private Region region;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "prefectureId")
+  private Prefecture prefecture;
+  public Prefecture getPrefecture() {
+    return prefecture;
+  }
+
+  public void setPrefecture(Prefecture prefecture) {
+    this.prefecture = prefecture;
+  }
+
+  public Region getRegion() {
+    return region;
+  }
+
+  public void setRegion(Region region) {
+    this.region = region;
+  }
   public String getRaison() {
     return raison;
   }
