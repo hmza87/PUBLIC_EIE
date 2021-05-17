@@ -1982,7 +1982,7 @@
                                 </button>
                                 &lt;%&ndash;<button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivante7"
                                         onclick="updateObject('formDoc_Mouv','notification','','8', ' id_notification='+$('#id_obj3').val())"
-                                        class="btn btn-success kouidi">Suivant
+                                        class="btn btn-success">Suivant
                                 </button>&ndash;%&gt;
                             </div>
                         </div>

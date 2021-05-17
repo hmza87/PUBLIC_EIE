@@ -272,6 +272,12 @@
                                     Les pièce à scanner :
                                 </p>
 
+                                <p>
+                                    <img src="${pageContext.request.contextPath}/assets/images/warning.png"
+                                         style="width: 40px;margin-left: 10px">
+                                    les Documents à scanner et envoyer au niveau du système doivents être obligatoirement au format d'un fichier PDF ou bien au format image
+                                </p>
+
                                 <div id="accordion">
                                     <h3>Test</h3>
                                     <div>

@@ -517,7 +517,7 @@
 </c:if>
 <c:if test="${Preparezvotredemarche=='0' }">
                                     <h2 class="font-weight-700"><spring:message
-                                            code="label.DeposerleDossier"/> kouidi</h2>
+                                            code="label.DeposerleDossier"/></h2>
 </c:if>
 
                                 </div>
