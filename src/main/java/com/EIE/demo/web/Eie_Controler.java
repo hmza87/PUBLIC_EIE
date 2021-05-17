@@ -170,12 +170,8 @@ public class Eie_Controler {
 
 		}
 
-		model.put("doc",web.getDocImportByType("EIE"));
-		model.put("docNotify",web.listDocNotif(id,"EIE"));
-		model.put("docAE",web.getDocImportByType("AE"));
-		model.put("docNotifyAE",web.listDocNotif(id,"EIE"));
-		model.put("docNT",web.getDocImportByType("NT"));
-		model.put("docNotifyNT",web.listDocNotif(id,"EIE"));
+		model.put("doc",web.getDocImportByType(type));
+		model.put("docNotify",web.listDocNotif(id,type));
 		model.put("demande", demande);
 		model.put("id", id);
 		model.put("url_Admin",urlRest);
@@ -297,7 +293,7 @@ public class Eie_Controler {
 
 		DemandeInformation demande=web.getDemandeInfoById(id);
 
-		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),"EIE");
+		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),type);
 		
 		model.put("doc",l);
 		model.put("demande", demande);
@@ -366,7 +362,7 @@ public class Eie_Controler {
 	public ModelAndView validateDocEIE(@PathVariable int id, @PathVariable String type) {
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		model.put("doc", web.listDocNotif(id,"EIE"));
+		model.put("doc", web.listDocNotif(id,type));
 		model.put("url_Admin", urlRest);
 		model.put("id", id);
 		model.put("type", type);

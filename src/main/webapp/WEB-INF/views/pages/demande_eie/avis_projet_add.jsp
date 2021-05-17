@@ -443,7 +443,7 @@
                     <c:if test="${type=='AE'}">
                         <div id="step3" class="col-12 z_collecteur collapse" >
                             <form  class="form-horizontal mt-3" >
-                                <c:forEach items="${docAE}" var="dc">
+                                <c:forEach items="${doc}" var="dc">
                                     <div class="row justify-content-center">
                                         <div class="col mt-3  ">
                                             <div class="form-group">
@@ -456,9 +456,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <c:if test="${not empty docNotifyAE}">
+                                        <c:if test="${not empty docNotify}">
                                             <div class="col-2 mt-5">
-                                                <c:forEach items="${docNotifyAE}" var="d">
+                                                <c:forEach items="${docNotify}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
                                                         <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
                                                            class="btn btn-success rounded file_existe"><span
@@ -499,7 +499,7 @@
                     <c:if test="${type=='NT'}">
                         <div id="step3" class="col-12 z_collecteur collapse" >
                             <form  class="form-horizontal mt-3" id="formdoc">
-                                <c:forEach items="${docNT}" var="dc">
+                                <c:forEach items="${doc}" var="dc">
                                     <div class="row justify-content-center">
                                         <div class="col mt-3  ">
                                             <div class="form-group">
@@ -512,9 +512,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <c:if test="${not empty docNotifyNT}">
+                                        <c:if test="${not empty docNotify}">
                                             <div class="col-2 mt-5">
-                                                <c:forEach items="${docNotifyNT}" var="d">
+                                                <c:forEach items="${docNotify}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
                                                         <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
                                                            class="btn btn-success rounded file_existe"><span
