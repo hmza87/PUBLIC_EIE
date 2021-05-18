@@ -297,6 +297,15 @@
                                     </c:if>
                                 </c:if>
 
+
+                                <p class="text-underline text-success font_bold">
+                                    Suivre un dossier
+                                </p>
+                                <p>
+                                    ....
+                                </p>
+
+
                             </div>
                         </div>
 
@@ -316,7 +325,7 @@
                                 </p>
 
                                 <p class="text-underline text-success font_bold mt-3">
-                                    je m'informe sur les acteurs impliqués et les délais de traitement par phase
+                                   Les etapes et les acteurs impliqués dans le traitement de mon dossier
                                         <%-- <spring:message
                                              code="label.Acteurimpliqueetdelaisdetraitementparphase"/>--%>
                                 </p>

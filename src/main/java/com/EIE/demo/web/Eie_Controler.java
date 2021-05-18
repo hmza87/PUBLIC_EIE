@@ -366,7 +366,7 @@ public class Eie_Controler {
 		model.put("url_Admin", urlRest);
 		model.put("id", id);
 		model.put("type", type);
-
+		model.put("user",web.getCompteConnected());
 		return new ModelAndView("demande_eie/validationDoc", model);
 	}
 }

@@ -463,8 +463,13 @@ public class DemandeInformation implements Serializable {
     private Date dateDepot;
     @Column(name = "dateValidation", nullable = true)
     private Date dateValidation;
+    @Column(name = "dateFinValidation", nullable = true)
+    private Date dateFinValidation;
 
-
+    @Column(name = "dateDebutUtilisation", nullable = true)
+    private Date dateDebutUtilisation;
+    @Column(name = "dateFinUtilisation", nullable = true)
+    private Date dateFinUtilisation;
 
     public Date getDateValidation() {
         return dateValidation;
@@ -579,6 +584,14 @@ public class DemandeInformation implements Serializable {
     @Column(name = "adresse", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String adresse;
 
+    @Column(name = "visite_object", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String visite_object;
+    @Column(name = "visite_adresse", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String visite_adresse;
+    @Column(name = "visite_date", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String visite_date;
+    @Column(name = "visite_url", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String visite_url;
 
 
 
@@ -739,4 +752,51 @@ public class DemandeInformation implements Serializable {
     public void setListDocReunions(List<ListDocReunion> listDocReunions) {
         this.listDocReunions = listDocReunions;
     }
+
+    public Date getDateFinValidation() {
+        return dateFinValidation;
+    }
+    public void setDateFinValidation(Date dateFinValidation) {
+        this.dateFinValidation = dateFinValidation;
+    }
+
+    public Date getDateDebutUtilisation() {
+        return dateDebutUtilisation;
+    }
+    public void setDateDebutUtilisation(Date dateDebutUtilisation) {
+        this.dateDebutUtilisation = dateDebutUtilisation;
+    }
+    public Date getDateFinUtilisation() {
+        return dateFinUtilisation;
+    }
+    public void setDateFinUtilisation(Date dateFinUtilisation) {
+        this.dateFinUtilisation = dateFinUtilisation;
+    }
+
+    public String getVisite_object() {
+        return visite_object;
+    }
+    public void setVisite_object(String visite_object) {
+        this.visite_object = visite_object;
+    }
+    public String getVisite_adresse() {
+        return visite_adresse;
+    }
+    public void setVisite_adresse(String visite_adresse) {
+        this.visite_adresse = visite_adresse;
+    }
+    public String getVisite_date() {
+        return visite_date;
+    }
+    public void setVisite_date(String visite_date) {
+        this.visite_date = visite_date;
+    }
+
+    public String getVisite_url() {
+        return visite_url;
+    }
+    public void setVisite_url(String visite_url) {
+        this.visite_url = visite_url;
+    }
+
 }

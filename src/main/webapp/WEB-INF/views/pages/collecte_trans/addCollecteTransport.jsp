@@ -91,7 +91,7 @@
                     </c:choose>
 
                     <div class="row p-0 m-0">
-                        <div class="col-md-2 col-sm-12 pl-0 pr-0 mb-3">
+                        <div class="col-md-3 col-sm-12 pl-0 pr-0 mb-3">
                             <div class="">
 
                                 <button class="tablinks btn-primary btn"
@@ -109,7 +109,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-10 col-sm-12 pl-sm-3 pl-0  pr-sm-3 pr-0">
+                        <div class="col-md-9 col-sm-12 pl-sm-3 pl-0  pr-sm-3 pr-0">
                             <div id="1" class="tabcontent">
                                 <div class="row m-0 p-0 ">
                                     <div class="col-auto  pl-sm-3 pl-0">
@@ -575,33 +575,36 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
 
-                                </div>
+                                        <div class="row m-0 p-0 mt-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <c:choose>
+                                                        <c:when test="${(not empty collect)}">
+                                                            <c:set value="${collect.nombre_vehicule}" var="nbr_v"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:set value="0" var="nbr_v"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
 
-                                <div class="row m-0 p-0 mt-2">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <c:choose>
-                                                <c:when test="${(not empty collect)}">
-                                                    <c:set value="${collect.nombre_vehicule}" var="nbr_v"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <c:set value="0" var="nbr_v"/>
-                                                </c:otherwise>
-                                            </c:choose>
-
-                                            <label><spring:message code="label.NombredeVehiculeA"/> </label>
-                                            <input class="form-control" type="text" readonly name="nombre_vehicule"
-                                                   value="${nbr_v}">
+                                                    <label><spring:message code="label.NombredeVehiculeA"/> </label>
+                                                    <input class="form-control" type="text" readonly name="nombre_vehicule"
+                                                           value="${nbr_v}">
+                                                </div>
+                                            </div>
+                                            <%--<div class="col-md-2 col-sm-4 align-content-end display-grid pb-3">
+                                                <button id="add_new" onclick="getVehicule('0')"
+                                                        class="btn btn-success btn-block"><spring:message
+                                                        code="label.jouterVehiculeA"/></button>
+                                            </div>--%>
                                         </div>
+
                                     </div>
-                                    <%--<div class="col-md-2 col-sm-4 align-content-end display-grid pb-3">
-                                        <button id="add_new" onclick="getVehicule('0')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="label.jouterVehiculeA"/></button>
-                                    </div>--%>
+
                                 </div>
+
+
 
                                 <div class="row justify-content-center  mb-5 mt-3">
                                     <div class="col-md-2 col-sm-4">

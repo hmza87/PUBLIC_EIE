@@ -4390,7 +4390,7 @@ public class GeneratePDFDocuments {
         table8.setSpacingBefore(12);
         table8.setSpacingAfter(12);
         //--------------------- Row Title ---------------------
-        table8.addCell(saisir_cellule_titre("Reçu de dépos" ,4));
+        table8.addCell(saisir_cellule_titre("reçus de dépôt." ,4));
         table8.completeRow();
         //--------------------- completeRow ---------------------
         //--------------------- completeRow ---------------------
