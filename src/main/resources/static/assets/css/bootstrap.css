@@ -12,7 +12,7 @@
 	background:#7dc7bd !important;
 	}
 
-	.btn-block{
+	.btn-block,.breadcrumb{
 	background:#036 !important;
 	}
 	.text-success {
@@ -23,4 +23,10 @@ body{
 }
 .rounded{
 	background:white;
+}
+.breadcrumb-item.active {
+    color: white !important;
+}
+ .breadcrumb-item a{
+	color:white !important;
 }
