@@ -105,8 +105,9 @@
           <%-- non conforme - dmd_complement - favorable--%>
           <div class="col-md-3 col-sm-6">
             <a class="btn btn-success btn-block"
-               href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span> <spring:message
-                    code="label.Ajouter_Vehicules" /> </a>
+               href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span>
+              <spring:message code="label.Ajouter_Vehicules" />
+            </a>
           </div>
         </c:if>
         <c:if test="${collect.statut.id_statut_projet==50}">

@@ -1372,3 +1372,14 @@ function show_etape_perso2(id) {
 
 }
 // ---- End login 7 --------------
+
+function afficher_accord(val){
+    var id = $(val).val();
+    if(id==1){
+        $(".Grp_dang").removeClass('d-none');
+        $(".Grp_simpl").addClass('d-none');
+    }else{
+        $(".Grp_simpl").removeClass('d-none');
+        $(".Grp_dang").addClass('d-none');
+    }
+}

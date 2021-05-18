@@ -10,8 +10,8 @@
 <c:choose>
     <c:when test="${show=='accordion'}">
         <c:forEach items="${doc}" var="d">
-            <h3>${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
-            <div>
+            <h3 class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+            <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
                 <c:if test="${d.nom_fr=='Garantie financière'}">
                     <p style="padding-left: 1%;border: 2px solid black;">
                         <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
@@ -277,6 +277,20 @@
                                          style="width: 40px;margin-left: 10px">
                                     les Documents à scanner et envoyer au niveau du système doivents être obligatoirement au format d'un fichier PDF ou bien au format image
                                 </p>
+                                <c:if test="${type=='ZF' || type=='XD'}">
+                                    <div class="row mb-3">
+                                        <div class="col-auto pt-1 pr-0">
+                                            List des pièces a fournir pour les de déchêts
+                                        </div>
+                                        <div class="col-3">
+                                            <select class="form-control" onchange="afficher_accord(this)">
+                                                <option selected value="1">Dangereux</option>
+                                                <option value="2">Non Dangereux</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </c:if>
+
 
                                 <div id="accordion">
                                     <h3>Test</h3>
@@ -298,34 +312,36 @@
                                 </c:if>
 
 
-                                <p class="text-underline text-success font_bold">
-                                    Suivre un dossier
+
+                            </div>
+                        </div>
+
+                        <div class="row clss_hide mt-5 recevoir collapse">
+                            <div class="col-12">
+                                <p class="text-success h-4 font_bold">
+                                    Je récupère mon autorisation ${l_ph1}
                                 </p>
                                 <p>
-                                    ....
+                                    A la fin du processus de traitement de votre demande ${l_ph1},
+                                    vous seriez notifié par email de la date
+                                    à partir de laquelle vous pouvez récupérer votre demande d'autorisation
                                 </p>
-
-
+                                <p>
+                                    L'autorisation ${l_ph1} doit être retiré personnellement par son titulaire
+                                </p>
+                                <p>
+                                    Les autorisations ${l_ph1} non retirées par
+                                    leurs propriétaires dans un délai de deux mois à compter de leur date de notification
+                                    sont annulées et détruites.
+                                </p>
                             </div>
                         </div>
 
                         <div class="row clss_hide mt-5 suivre collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold">
-                                    Traitement de ma demande
-                                        <%-- <spring:message code="label.Jefaislesuividemademandeenligne"/>--%>
-                                </p>
-                                <p>
-                                    Vous pouvez suivre l’évolution du traitement de votre ${l_ph1} à partir de la rubrique «Statut
-                                    du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph1}
-                                </p>
-                                <p>
-                                    Aussi vous recevrez également un email lors d'évolution d'état de votre
-                                    dossier de demande d'autorisation ${l_ph1}
-                                </p>
 
                                 <p class="text-underline text-success font_bold mt-3">
-                                   Les etapes et les acteurs impliqués dans le traitement de mon dossier
+                                    Les etapes et les acteurs impliqués dans le traitement de mon dossier
                                         <%-- <spring:message
                                              code="label.Acteurimpliqueetdelaisdetraitementparphase"/>--%>
                                 </p>
@@ -372,27 +388,40 @@
 
                                 </table>
 
+                                <p class="text-success h-4 font_bold mt-3">
+                                    Suivre mon dossier
+                                        <%-- <spring:message code="label.Jefaislesuividemademandeenligne"/>--%>
+                                </p>
+                                <p>
+                                    Vous pouvez suivre l’évolution du traitement de votre ${l_ph1} à partir de la rubrique «Statut
+                                    du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph1}
+                                </p>
+                                <p>
+                                    Aussi vous recevrez également un email lors d'évolution d'état de votre
+                                    dossier de demande d'autorisation ${l_ph1}
+                                </p>
+
+
                             </div>
                         </div>
 
-                        <div class="row clss_hide mt-5 recevoir collapse">
+                        <div class="row clss_hide mt-3 suivre collapse">
                             <div class="col-12">
                                 <p class="text-success h-4 font_bold">
-                                    Je récupère mon autorisation ${l_ph1}
+                                    Base juridique
                                 </p>
-                                <p>
-                                    A la fin du processus de traitement de votre demande ${l_ph1},
-                                    vous seriez notifié par email de la date
-                                    à partir de laquelle vous pouvez récupérer votre demande d'autorisation
-                                </p>
-                                <p>
-                                    L'autorisation ${l_ph1} doit être retiré personnellement par son titulaire
-                                </p>
-                                <p>
-                                    Les autorisations ${l_ph1} non retirées par
-                                    leurs propriétaires dans un délai de deux mois à compter de leur date de notification
-                                    sont annulées et détruites.
-                                </p>
+                                <table>
+                                    <c:if test="${type=='XD' || type=='ZF'}">
+                                        <tr>
+                                            <td>Décret n° 2-14-85 du 20 janvier 2015 relatif à la gestion des déchets dangereux <a target="_blank" download="Décret.docx" href="${pageContext.request.contextPath}/assets/file/decret.docx">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_word.png" width="40px">
+                                            </a></td>
+
+                                        </tr>
+                                    </c:if>
+                                </table>
+
+
                             </div>
                         </div>
                     </div>

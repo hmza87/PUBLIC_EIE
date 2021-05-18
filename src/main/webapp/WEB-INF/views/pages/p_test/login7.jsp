@@ -10,21 +10,21 @@
 <jsp:include page="../../includes/head.jsp"/>
 
 <style>
-.stCaroussel{
-	color: white;
-    BACKGROUND: #036;
-    padding: 12px;
-}
+    .stCaroussel{
+        color: white;
+        BACKGROUND: #036;
+        padding: 12px;
+    }
 
     .f_20{
         font-size: 20px;
     }
-    
-     .bcc{
-	    background: white !important;
-    color: #036 !important;
-    padding: 8px;
-}
+
+    .bcc{
+        background: white !important;
+        color: #036 !important;
+        padding: 8px;
+    }
     .f_28{
         font-size: 28px;
     }
@@ -403,54 +403,54 @@
         <div class="container-fluid page-body-wrapper" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
             <div class="main-panel">
                 <div class="content-wrapper p-2">
-                <%--<div id="carouselExampleIndicators" class="carousel card slide" data-ride="carousel">
-                <img src="/assets/images/animation.gif" alt="test">
-                    <ol class=" carousel-indicators" >
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color:#036;"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"  style="background-color:gray;"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"  style="background-color:gray;"></li>
-                    </ol>
-                    <div class="pl-5 pr-5 carousel-inner" style="height:200px">
-                        <div class="carousel-item active">
+                    <%--<div id="carouselExampleIndicators" class="carousel card slide" data-ride="carousel">
+                    <img src="/assets/images/animation.gif" alt="test">
+                        <ol class=" carousel-indicators" >
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color:#036;"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"  style="background-color:gray;"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"  style="background-color:gray;"></li>
+                        </ol>
+                        <div class="pl-5 pr-5 carousel-inner" style="height:200px">
+                            <div class="carousel-item active">
 
 
-                            <div style="text-align: center">
+                                <div style="text-align: center">
 
-                                <h3 class="pt-3 stCaroussel" >Présentation du systéme</h3>
-                                <div class="h5 col-auto">Systeme de dématérialisation des autorisations  <br>
-                                    délivrées par le département de l'environnement</div>
+                                    <h3 class="pt-3 stCaroussel" >Présentation du systéme</h3>
+                                    <div class="h5 col-auto">Systeme de dématérialisation des autorisations  <br>
+                                        délivrées par le département de l'environnement</div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item " style="height:200px">
+
+
+                                <div style="text-align: center">
+
+                                    <h3 class="pt-3 stCaroussel" >1 Avril </h3>
+                                    <div class="h5 col-auto"> Ajouter votre rapport annnuel  <br>
+                                        délivrées par le département de l'environnement</div>
+                                </div>
+                            </div>
+                            <div class="pl-5 pr-5 carousel-item" style="height:200px">
+
+                                <div style="text-align: center">
+                                    <h3 class="pt-3 upper-text stCaroussel" >à partir de cette plateforme</h3>
+                                    <div class="h5">vous avez la possibilité de déposé et de suivre <br>
+                                        tous  vos demande d'autorisation <br>
+                                        délivrées par le département de l'environnement</div>
+                            </div>
                             </div>
                         </div>
-
-                        <div class="carousel-item " style="height:200px">
-
-
-                            <div style="text-align: center">
-
-                                <h3 class="pt-3 stCaroussel" >1 Avril </h3>
-                                <div class="h5 col-auto"> Ajouter votre rapport annnuel  <br>
-                                    délivrées par le département de l'environnement</div>
-                            </div>
-                        </div>
-                        <div class="pl-5 pr-5 carousel-item" style="height:200px">
-
-                            <div style="text-align: center">
-                                <h3 class="pt-3 upper-text stCaroussel" >à partir de cette plateforme</h3>
-                                <div class="h5">vous avez la possibilité de déposé et de suivre <br>
-                                    tous  vos demande d'autorisation <br>
-                                    délivrées par le département de l'environnement</div>
-                        </div>
-                        </div>
-                    </div>
-                   <!--  <a style="background-color: #87939a;opacity: 1" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a  style="background-color: #87939a;opacity: 1" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a> -->
-                </div>--%>
+                       <!--  <a style="background-color: #87939a;opacity: 1" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a  style="background-color: #87939a;opacity: 1" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a> -->
+                    </div>--%>
                 </div>
                 <div class="content-wrapper">
                     <div class="col-md-12 col-sm-12 pl-2 pr-2 mb-2" id="zone_rech">
@@ -465,13 +465,13 @@
 
                                     <h2 class="font-weight-700">
                                         <spring:message
-                                            code="label.Preparezvotredemarche"/></h2>
+                                                code="label.Preparezvotredemarche"/></h2>
 
                                 </div>
                                 <div class="col-2"></div>
 
                             </div>
-                             <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
+                            <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
                                 <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select(1)">
                                     <div class="div_shadow rounded" style="border-top-right-radius: 3px !important; border-bottom-left-radius: 3px !important; border:1px solid gray;">
                                         <img src="/assets/images/arbre2.png" style=" width: 100px;
@@ -498,7 +498,7 @@ margin-bottom: 10px;">
                             <div class="row justify-content-center mt-4" id="zone_select">
                                 <div class="col-md-8 col-sm-12 mt-4">
 
-                                   <div id="slct1" class="text-center disp_none mb-4">
+                                    <div id="slct1" class="text-center disp_none mb-4">
                                         <h4><i class="fa fa-recycle"></i> <spring:message
                                                 code="label.Autorisations"/></h4>
                                         <select onchange="slct1()" id="slct1change" class="form-control select2"
@@ -557,52 +557,52 @@ margin-bottom: 10px;">
                             <div class="col-sm-12 p-4 mt-4">
                                 <div class="row p-0 justify-content-center">
 
-                                   <%-- <div class="col-12">
-                                        <hr class="p_absolute_top">
-                                        <div class="row p-0 justify-content-center">
-                                            <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top"
-                                                        title="Créer votre Compte"
-                                                        class="p-3 rounded-circle btn btn-success btn_step_perso btn_step_perso1"
-                                                        onclick="show_zone('z_compt',this)">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/cadnat.png">
-                                                </button>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top"
-                                                        title="Saisir votre demande"
-                                                        class="rounded-circle btn btn_gris btn_step_perso btn_step_perso2"
-                                                        onclick="show_zone('saisie',this)">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/saisir.png">
-                                                </button>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top"
-                                                        title="Attacher vos Fichier"
-                                                        data_type="ZF"
-                                                        class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
-                                                        onclick="show_zone('attache',this)">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/attache_file.png">
-                                                </button>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top"
-                                                        title="Suivre votre demande"
-                                                        class=" rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
-                                                        onclick="show_zone('suivre',this)">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/check_file.png">
-                                                </button>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top"
-                                                        title="Recevoir votre document E-signé"
-                                                        class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
-                                                        onclick="show_zone('recevoir',this)">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/img_doc_ok.png">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>--%>
+                                    <%-- <div class="col-12">
+                                         <hr class="p_absolute_top">
+                                         <div class="row p-0 justify-content-center">
+                                             <div class="col-2 text-center">
+                                                 <button data-toggle="tooltip" data-placement="top"
+                                                         title="Créer votre Compte"
+                                                         class="p-3 rounded-circle btn btn-success btn_step_perso btn_step_perso1"
+                                                         onclick="show_zone('z_compt',this)">
+                                                     <img src="${pageContext.request.contextPath}/assets/images/cadnat.png">
+                                                 </button>
+                                             </div>
+                                             <div class="col-2 text-center">
+                                                 <button data-toggle="tooltip" data-placement="top"
+                                                         title="Saisir votre demande"
+                                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso2"
+                                                         onclick="show_zone('saisie',this)">
+                                                     <img src="${pageContext.request.contextPath}/assets/images/saisir.png">
+                                                 </button>
+                                             </div>
+                                             <div class="col-2 text-center">
+                                                 <button data-toggle="tooltip" data-placement="top"
+                                                         title="Attacher vos Fichier"
+                                                         data_type="ZF"
+                                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
+                                                         onclick="show_zone('attache',this)">
+                                                     <img src="${pageContext.request.contextPath}/assets/images/attache_file.png">
+                                                 </button>
+                                             </div>
+                                             <div class="col-2 text-center">
+                                                 <button data-toggle="tooltip" data-placement="top"
+                                                         title="Suivre votre demande"
+                                                         class=" rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
+                                                         onclick="show_zone('suivre',this)">
+                                                     <img src="${pageContext.request.contextPath}/assets/images/check_file.png">
+                                                 </button>
+                                             </div>
+                                             <div class="col-2 text-center">
+                                                 <button data-toggle="tooltip" data-placement="top"
+                                                         title="Recevoir votre document E-signé"
+                                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
+                                                         onclick="show_zone('recevoir',this)">
+                                                     <img src="${pageContext.request.contextPath}/assets/images/img_doc_ok.png">
+                                                 </button>
+                                             </div>
+                                         </div>
+                                     </div>--%>
                                     <div class="col-12">
                                         <div class="row clss_hide mt-5 z_compt">
                                             <div class="col-12">
@@ -621,12 +621,6 @@ margin-bottom: 10px;">
                                         <div class="row clss_hide mt-5 saisie collapse">
                                             <div class="col-12">
                                                 <p class="text-success h-4 font_bold"><spring:message
-                                                        code="label.Jedeposemademandedautorisationd"/></p>
-                                                <p><spring:message
-                                                        code="label.apreslobtentiondunumerodefication"/>: </p>
-
-
-                                                <p class="text-success h-4 font_bold"><spring:message
                                                         code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/></p>
                                                 <p>
                                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
@@ -642,7 +636,10 @@ margin-bottom: 10px;">
 
                                         <div class="row clss_hide mt-5 attache collapse">
                                             <div class="col-12">
-
+                                                <p class="text-success h-4 font_bold"><spring:message
+                                                        code="label.Jedeposemademandedautorisationd"/></p>
+                                                <p><spring:message
+                                                        code="label.apreslobtentiondunumerodefication"/>: </p>
                                                 <p class="text-underline text-success font_bold"><spring:message
                                                         code="label.Lespieceafournir"/> :</p>
 
@@ -659,37 +656,37 @@ margin-bottom: 10px;">
                                                 <table class="table table-striped table-bordered table-hover my_table">
                                                     <thead class="bg_stat_01">
                                                     <tr>
+                                                        <th><spring:message code="label.Statut"/></th>
                                                         <th><spring:message code="label.Acteur"/></th>
                                                         <th><spring:message code="label.Delais"/></th>
-                                                        <th><spring:message code="label.Statut"/></th>
                                                         <th><spring:message code="label.Detail"/></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tr>
+                                                        <td><spring:message code="label.EnAttente"/></td>
                                                         <td><spring:message code="label.Ministere"/></td>
                                                         <td><spring:message code="label.jours"/></td>
-                                                        <td><spring:message code="label.EnAttente"/></td>
-                                                        <td><spring:message code="label.Danscetteetapevotredossierestredirige"/></td>
+                                                        <td><spring:message
+                                                                code="label.Danscetteetapevotredossierestredirige"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><spring:message code="label.Demandeur"/></td>
-                                                        <td> - </td>
                                                         <td><spring:message code="label.demandedecomplement"/></td>
-                                                        <td>
-                                                            <spring:message code="label.Danscetteetapevotredossierestincomplet"/>
-                                                        </td>
+                                                        <td><spring:message code="label.Demandeur"/></td>
+                                                        <td> -</td>
+                                                        <td><spring:message
+                                                                code="label.Danscetteetapevotredossierestincomplet"/></td>
                                                     </tr>
                                                     <tr>
+                                                        <td><spring:message code="label.AvisCommission"/></td>
                                                         <td><spring:message code="label.Commission"/></td>
                                                         <td><spring:message code="label.jours"/></td>
-                                                        <td><spring:message code="label.AvisCommission"/></td>
                                                         <td><spring:message code="label.leservicedecommission"/></td>
                                                     </tr>
                                                     <tr>
+                                                        <td><spring:message code="label.Favorable"/></td>
                                                         <td><spring:message code="label.Ministere"/></td>
                                                         <td><spring:message code="label.jours"/></td>
-                                                        <td><spring:message code="label.Favorable"/></td>
                                                         <td><spring:message code="label.servicespecialise"/></td>
                                                     </tr>
                                                     </tbody>
@@ -701,11 +698,8 @@ margin-bottom: 10px;">
 
                                         <div class="row clss_hide mt-5 suivre collapse">
                                             <div class="col-12">
-                                                <p class="text-success h-4 font_bold">
-                                                    <%--<spring:message
-                                                        code="label.Jefaislesuividemademandeenligne"/>--%>
-                                                    Traitement de la demande
-                                                </p>
+                                                <p class="text-success h-4 font_bold"><spring:message
+                                                        code="label.Jefaislesuividemademandeenligne"/></p>
                                                 <p><spring:message code="label.Vouspouvezsuivrelevolution"/></p>
                                                 <p><spring:message code="label.Aussivousrecevrezegalement"/></p>
                                             </div>
@@ -752,9 +746,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ZF')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -764,10 +758,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message
                                                             code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ET')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('ET')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -777,10 +771,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                                     <spring:message
                                                             code="label.Collectetransportdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('CT')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('CT')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -791,10 +785,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('IT')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('IT')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -804,9 +798,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('XD')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('XD')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -816,9 +810,9 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('TR')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('TR')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -832,10 +826,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center ">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify ">
                                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -846,10 +840,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="option.Auditenvironnementale"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -859,10 +853,10 @@ margin-bottom: 10px;">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-justify">
                                                     <spring:message code="option.Noticedimpact"/>
                                                 </h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
+                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
                                             </div>
@@ -2175,12 +2169,12 @@ margin-bottom: 10px;">
                                 <div class="card-block-small">
                                     <a href="/videoList">
                                         <c:choose>
-                                            <c:when test="${pageContext.response.locale=='ar'}">
-                                                <img src="${pageContext.request.contextPath}/assets/images/Arabe Video.png">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <img src="${pageContext.request.contextPath}/assets/images/video.png" />
-                                            </c:otherwise>
+                                        <c:when test="${pageContext.response.locale=='ar'}">
+                                        <img src="${pageContext.request.contextPath}/assets/images/Arabe Video.png">
+                                        </c:when>
+                                        <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/images/video.png" />
+                                        </c:otherwise>
                                         </c:choose>
                                 </div>
                             </div>
@@ -2225,58 +2219,58 @@ margin-bottom: 10px;">
 
                     </div>
 
-            <%--         <!--  statistique -->
-                    <div class="container" style="margin-top: 20px">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 text-center">
-                                <label style="border-bottom: 5px solid #7dc7bd8c;font-weight: bold;"><spring:message code="label.Statistique"/></label>
-                            </div>
-                        </div>
-                        <div class="mt-5 row justify-content-center border-bottom " id="counter">
-                            <div class="col-md-4 col-sm-4 text-center border-right">
-                                <p><span class="fas fa-user-check" style="font-size: 22px;color:#00e300"></span></p>
-                                <div class="counter-value" data-count="2000">900</div>
-                                <p><spring:message code="label.Nombredevisite"/></p>
-                            </div>
-                            <div class="col-md-4 col-sm-4 text-center border-right">
-                                <p><span class="fas fa-wifi" style="font-size: 22px;color:#00e300" ></span></p>
-                                <div class="counter-value" data-count="2000">4000</div>
-                                <p><spring:message code="label.Nombredesutilisateursconnectees"/></p>
-                            </div>
-                            <div class="col-md-4 col-sm-4 text-center">
-                                <p><span class="fas fa-user-shield" style="font-size: 22px;color:#00e300" ></span></p>
-                                <div class="counter-value" data-count="2000">2000</div>
-                                <p><spring:message code="label.Nombredesutilisateursinscrits"/></p>
-                            </div>
-                        </div>
-                        <div class="row mt-2 justify-content-center" >
-                            <div class="col-md-4 col-sm-6 text-center rounded bg_stat_01 m-2">
-                                <div class="row mr-3 ml-3 mt-2">
-                                    <div class="col-md-6 col-sm-6 text-left p-2">
-                                        <div class="counter-value f_20" data-count="2000">12000</div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 text-right p-2">
-                                        <span class="fas fa-user-check f_28"></span>
+                    <%--         <!--  statistique -->
+                            <div class="container" style="margin-top: 20px">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 text-center">
+                                        <label style="border-bottom: 5px solid #7dc7bd8c;font-weight: bold;"><spring:message code="label.Statistique"/></label>
                                     </div>
                                 </div>
-                                <hr class="ligne_white">
-                                <p><spring:message code="label.Nombredautorisationdelivreeans"/></p>
-                            </div>
-                            <div class="col-md-4 col-sm-4 text-center rounded bg_stat_02 m-2 ">
-                                <div class="row mr-3 ml-3 mt-2">
-                                    <div class="col-md-6 col-sm-6 text-left p-2">
-                                        <div class="counter-value f_20" data-count="2000">16000</div>
+                                <div class="mt-5 row justify-content-center border-bottom " id="counter">
+                                    <div class="col-md-4 col-sm-4 text-center border-right">
+                                        <p><span class="fas fa-user-check" style="font-size: 22px;color:#00e300"></span></p>
+                                        <div class="counter-value" data-count="2000">900</div>
+                                        <p><spring:message code="label.Nombredevisite"/></p>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 text-right p-2">
-                                        <span class="fas fa-wifi f_28"></span>
+                                    <div class="col-md-4 col-sm-4 text-center border-right">
+                                        <p><span class="fas fa-wifi" style="font-size: 22px;color:#00e300" ></span></p>
+                                        <div class="counter-value" data-count="2000">4000</div>
+                                        <p><spring:message code="label.Nombredesutilisateursconnectees"/></p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 text-center">
+                                        <p><span class="fas fa-user-shield" style="font-size: 22px;color:#00e300" ></span></p>
+                                        <div class="counter-value" data-count="2000">2000</div>
+                                        <p><spring:message code="label.Nombredesutilisateursinscrits"/></p>
                                     </div>
                                 </div>
-                                <hr class="ligne_white">
-                                <p><spring:message code="label.NombreEIEdelivreeans"/></p>
-                            </div>
+                                <div class="row mt-2 justify-content-center" >
+                                    <div class="col-md-4 col-sm-6 text-center rounded bg_stat_01 m-2">
+                                        <div class="row mr-3 ml-3 mt-2">
+                                            <div class="col-md-6 col-sm-6 text-left p-2">
+                                                <div class="counter-value f_20" data-count="2000">12000</div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 text-right p-2">
+                                                <span class="fas fa-user-check f_28"></span>
+                                            </div>
+                                        </div>
+                                        <hr class="ligne_white">
+                                        <p><spring:message code="label.Nombredautorisationdelivreeans"/></p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 text-center rounded bg_stat_02 m-2 ">
+                                        <div class="row mr-3 ml-3 mt-2">
+                                            <div class="col-md-6 col-sm-6 text-left p-2">
+                                                <div class="counter-value f_20" data-count="2000">16000</div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 text-right p-2">
+                                                <span class="fas fa-wifi f_28"></span>
+                                            </div>
+                                        </div>
+                                        <hr class="ligne_white">
+                                        <p><spring:message code="label.NombreEIEdelivreeans"/></p>
+                                    </div>
 
-                        </div>
-                    </div> --%>
+                                </div>
+                            </div> --%>
 
 
                 </div>
