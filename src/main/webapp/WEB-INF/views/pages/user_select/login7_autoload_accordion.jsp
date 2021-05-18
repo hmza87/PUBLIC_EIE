@@ -7,6 +7,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
 
+<style>
+    .select2-results__option{
+        text-align: left;
+    }
+</style>
 <c:choose>
     <c:when test="${show=='accordion'}">
         <c:forEach items="${doc}" var="d">
@@ -221,20 +226,45 @@
                                         depuis une liste mise a votre disposition.
                                     </p>
                                     <p>
-                                        Si vous disposez d'un code de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets voulu.
+                                        Si vous disposez d'un code de déchets ou du type de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets voulu.
                                     </p>
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-12">
-                                            <label>List des codes</label>
-                                            <select class="select2 form-control" onchange="rech_transporteur(this)">
+                                    <div class="row justify-content-start">
+                                        <div class="col-md-3 col-sm-12">
+                                            <p>Rechercher le déchets par :</p>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="form-group">
+                                                <input type="radio" value="code" name="code" checked> Code de déchets
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="form-group">
+                                                <input type="radio" value="type" name="code" > Type de déchets
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 text-left" id="dechet_code">
+                                            <label>Code de déchets </label>
+                                            <select dir="ltr" class="select2 form-control" onchange="rech_transporteur(this)">
                                                 <option> Choisir...</option>
                                                 <c:forEach items="${codes}" var="c">
                                                     <option value="${c.id_code}"> ${c.nom_fr}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
+
+                                        <div class="col-12 text-left d-none" id="dechet_type">
+                                            <label>Type de déchets </label>
+                                            <select class="select2 form-control " onchange="rech_transporteur(this)">
+                                                <option> Choisir...</option>
+                                                <c:forEach items="${codes}" var="c">
+                                                    <option value="${c.id_code}"> ${c.nom_ar}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
                                         <div class="col-12 mt-2" id="tab_transporteur">
-                                            <table class="table table-striped table-bordered">
+                                            <table class="table table-striped table-bordered d-none">
                                                 <thead class="bg_stat_01">
                                                 <tr>
                                                     <th>Nom</th>
@@ -280,7 +310,7 @@
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <div class="row mb-3">
                                         <div class="col-auto pt-1 pr-0">
-                                            List des pièces a fournir pour les de déchêts
+                                            List des pièces a fournir pour les de déchets
                                         </div>
                                         <div class="col-3">
                                             <select class="form-control" onchange="afficher_accord(this)">
@@ -572,6 +602,17 @@
     </c:when>
 </c:choose>
 
-
+<script>
+    $("input[name=code]").off().on("change",function(){
+       var id = $(this).val();
+       if(id=='type'){
+           $("#dechet_code").addClass("d-none");
+           $("#dechet_type").removeClass("d-none");
+       }else{
+           $("#dechet_type").addClass("d-none");
+           $("#dechet_code").removeClass("d-none");
+       }
+    });
+</script>
 
 

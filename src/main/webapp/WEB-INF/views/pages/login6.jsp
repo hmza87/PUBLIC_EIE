@@ -2420,7 +2420,7 @@ margin-bottom: 10px;">
 
 
                         </div> --%>
-<c:if test="${Preparezvotredemarche=='0' }">
+<%--<c:if test="${Preparezvotredemarche=='0' }">
                         <div class="border rounded pl-2 pr-2 col-md-12  text-center mb-2 alice_blue">
                             <!-- <div class="border  rounded p-2  alice_blue" style="position: relative;top: 50%;transform: translateY(-50%);"> -->
                             <div class="row p-0 m-0 mb-2 justify-content-center">
@@ -2461,7 +2461,7 @@ margin-bottom: 10px;">
 
                             </div>
                         </div>
-</c:if>
+</c:if>--%>
                     </div>
                 </div>
 

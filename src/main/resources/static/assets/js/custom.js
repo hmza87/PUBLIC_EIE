@@ -954,8 +954,11 @@ function fun_prescription_show() {
 
 function rech_transporteur(val){
     var code = $(val).val();
-    if($.trim(code)==="" || code==null || !$.isNumeric(code))
+    if($.trim(code)==="" || code==null || !$.isNumeric(code)){
+        $("#tab_transporteur").html("");
         return false;
+    }
+
 
     $.ajax({
         url: '/getTabtransporteur/'+code,
