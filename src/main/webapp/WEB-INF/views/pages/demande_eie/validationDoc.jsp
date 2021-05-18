@@ -116,7 +116,7 @@
                                                                         <div class="${dc.nom_ar=='oui'?'hidden':'' }">
 
                                                                             <input required
-                                                                                   onchange="addDocG(${dc.demandeEIE.id_demande_information},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport}','EIE','')"
+                                                                                   onchange="addDocG(${dc.demandeEIE.id_demande_information},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport}','${type }','')"
                                                                                    accept=".pdf" type="file"
                                                                                    id="doc${dc.docImport.id_docImport }"
                                                                                    class="form-control mydoc">

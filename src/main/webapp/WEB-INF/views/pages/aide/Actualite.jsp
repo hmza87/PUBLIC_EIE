@@ -21,13 +21,14 @@
 
     .img-text{
         width: 300px;
-        height: 400px;
-        display: block;
-        text-align: center;
-        padding: 40% 5%;
-        background: #7dc7b8;
-        color: #fff;
-        border-radius: 15px;
+    height: 400px;
+    display: block;
+    text-align: center;
+    padding: 40% 5%;
+    background: white;
+    color: BLACK;
+    border-radius: 15px;
+    border: 1px solid #036;
     }
     .img-text h2 {
         font-size: 25px;
