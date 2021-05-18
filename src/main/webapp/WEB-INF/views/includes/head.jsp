@@ -258,6 +258,7 @@
                     <div class="other-links clearfix" >
                         <!--Language-->
                         <div class="language">
+
                             <div class="lang-btn">
                                 <span class="icon flaticon-worldwide-1"></span>
                                 <c:if test="${pageContext.response.locale=='ar'}">
@@ -266,11 +267,9 @@
                                 <c:if test="${pageContext.response.locale=='fr'}">
                                     <span class="txt" id="curntlng"><spring:message code="label.Arabic"/></span>
                                 </c:if>
-
-
-
                                 <span class="arrow fa fa-angle-down"></span>
                             </div>
+
                             <div class="lang-dropdown" >
                                 <ul>
                                     <li><a href="?lang=ar" id="choslng"><spring:message code="label.Arabic"/></a></li>
@@ -317,22 +316,24 @@
                         <%--</div>--%>
 
                         <div class="language">
-                            <div class="lang-btn">
-                                <span class="icon flaticon-user-2"></span>
-                                <span class="txt">${user.email==null?"":user.email}</span>
-                                <span class="arrow fa fa-angle-down"></span>
-                            </div>
-                            <c:if test="${user.email!=null}">
-                                <div class="lang-dropdown">
-                                    <ul>
-                                        <li><a href="/Mon_profil">Mon profil</a></li>
-                                        <li><a href="/logout"><spring:message code="label.sedeconnecter"/></a></li>
-                                       
-                                    </ul>
+                            <c:if test="${(not empty user)}">
+                                <div class="lang-btn">
+                                    <span class="icon flaticon-user-2"></span>
+                                    <span class="txt">${user.email==null?"":user.email}</span>
+                                    <span class="arrow fa fa-angle-down"></span>
                                 </div>
-                            </c:if>
+                                <c:if test="${user.email!=null}">
+                                    <div class="lang-dropdown">
+                                        <ul>
+                                            <li><a href="/Mon_profil">Mon profil</a></li>
+                                            <li><a href="/logout"><spring:message code="label.sedeconnecter"/></a></li>
 
+                                        </ul>
+                                    </div>
+                                </c:if>
+                            </c:if>
                         </div>
+
                     </div>
 
                 </div>
