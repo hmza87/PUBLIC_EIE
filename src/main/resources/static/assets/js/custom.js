@@ -1386,3 +1386,4 @@ function afficher_accord(val){
         $(".Grp_dang").addClass('d-none');
     }
 }
+

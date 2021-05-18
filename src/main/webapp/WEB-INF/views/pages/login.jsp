@@ -8,7 +8,11 @@
 <%@ page session="false" %>
 
 <jsp:include page="../includes/head.jsp"/>
-
+<style>
+    .select2-results__option{
+        text-align: left;
+    }
+</style>
 <style>
     .stCaroussel{
         color: white;
@@ -3062,6 +3066,8 @@ margin-bottom: 10px;">
     };
 
 </script>
+
+
 
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../includes/footer1.jsp"/>

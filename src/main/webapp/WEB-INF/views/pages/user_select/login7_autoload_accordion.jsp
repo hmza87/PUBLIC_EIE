@@ -7,11 +7,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
 
-<style>
-    .select2-results__option{
-        text-align: left;
-    }
-</style>
+
 <c:choose>
     <c:when test="${show=='accordion'}">
         <c:forEach items="${doc}" var="d">
@@ -599,20 +595,21 @@
                 </div>
             </div>
         </div>
+        <script>
+            $("input[name=code]").off().on("change",function(){
+                var id = $(this).val();
+                if(id=='type'){
+                    $("#dechet_code").addClass("d-none");
+                    $("#dechet_type").removeClass("d-none");
+                }else{
+                    $("#dechet_type").addClass("d-none");
+                    $("#dechet_code").removeClass("d-none");
+                }
+            });
+        </script>
     </c:when>
 </c:choose>
 
-<script>
-    $("input[name=code]").off().on("change",function(){
-       var id = $(this).val();
-       if(id=='type'){
-           $("#dechet_code").addClass("d-none");
-           $("#dechet_type").removeClass("d-none");
-       }else{
-           $("#dechet_type").addClass("d-none");
-           $("#dechet_code").removeClass("d-none");
-       }
-    });
-</script>
+
 
 
