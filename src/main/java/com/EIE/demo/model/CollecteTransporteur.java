@@ -163,19 +163,19 @@ public class CollecteTransporteur implements Serializable {
 
   @Column(name = "datecoll2", nullable = true)
   private Date datecoll2;
-  
+
   @Column(name = "dateInformation", nullable = true)
   private Date dateInfomration;
 
   public Date getDateInfomration() {
-	return dateInfomration;
-}
+    return dateInfomration;
+  }
 
-public void setDateInfomration(Date dateInfomration) {
-	this.dateInfomration = dateInfomration;
-}
+  public void setDateInfomration(Date dateInfomration) {
+    this.dateInfomration = dateInfomration;
+  }
 
-@Column(name = "commentaire", nullable = true)
+  @Column(name = "commentaire", nullable = true)
   private String commentaire;
 
   @Column(name = "typeCollecte", nullable = true, columnDefinition = "NVARCHAR(255)")
@@ -183,6 +183,9 @@ public void setDateInfomration(Date dateInfomration) {
 
   @Column(name = "url_doc_signer", nullable = true, columnDefinition = "NVARCHAR(255)")
   private String url_doc_signer;
+
+  @Column(name = "url_pv_commission", nullable = true, columnDefinition = "NVARCHAR(255)")
+  private String url_pv_commission;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @Fetch(FetchMode.SELECT)
@@ -194,6 +197,29 @@ public void setDateInfomration(Date dateInfomration) {
 
   @Column(name = "id_collecteOriginale", nullable = true)
   private Integer id_collecteOriginale=0;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "regionId")
+  private Region region;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "prefectureId")
+  private Prefecture prefecture;
+  public Prefecture getPrefecture() {
+    return prefecture;
+  }
+
+  public void setPrefecture(Prefecture prefecture) {
+    this.prefecture = prefecture;
+  }
+
+  public Region getRegion() {
+    return region;
+  }
+
+  public void setRegion(Region region) {
+    this.region = region;
+  }
 
 
   public String getCommentaire() {
@@ -448,4 +474,12 @@ public void setDateInfomration(Date dateInfomration) {
   public void setUrl_doc_signer(String url_doc_signer) {
     this.url_doc_signer = url_doc_signer;
   }
+
+  public String getUrl_pv_commission() {
+    return url_pv_commission;
+  }
+  public void setUrl_pv_commission(String url_pv_commission) {
+    this.url_pv_commission = url_pv_commission;
+  }
+
 }

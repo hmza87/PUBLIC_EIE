@@ -57,11 +57,11 @@
 
 </style>
 
-<section class="services-section" style="background-color: white;margin-top: 2%">
+<section class="services-section mt-5 bg-white mt-5 pt-5" >
     <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
-        <div class="col-12 from_add" id="frm_etatDoss" style="margin-top: 43px;">
-            <div class="row p-0 m-0 justify-content-center">
-                <div class="col-md-4 col-sm-12 grid-margin stretch-card ">
+        <div class="col-12 from_add" id="frm_etatDoss pt-5" >
+            <div class="row p-0 m-0 justify-content-center pt-4">
+                <div class="col-md-8 col-sm-12 grid-margin stretch-card ">
                     <div class="photo  hvr-buzz-out">
                         <i class="mdi icc mdi-folder-multiple menu-icon"></i>
                     </div>
