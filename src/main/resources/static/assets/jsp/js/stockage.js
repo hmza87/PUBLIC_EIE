@@ -36,14 +36,14 @@ function openCity1(idBtn, cityName) {
 
 
 function openCityValidate(idBtn, cityName,form,url) {
-	
-	if($('#'+form).valid()){
-		window.location=url;
-	}
-	else{
-		
-	}
-    
+
+    if($('#'+form).valid()){
+        window.location=url;
+    }
+    else{
+
+    }
+
 }
 
 function schowform(blo_none, cityName) {
@@ -67,10 +67,10 @@ function addObject_step(from,table,tap,id_notif) {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
-                if(Notchange)
-                    $("#id_notification").val(response);
-                openCity1('Btn'+tap,tap);
-                $('.my_tab').removeAttr('disabled');
+            if(Notchange)
+                $("#id_notification").val(response);
+            openCity1('Btn'+tap,tap);
+            $('.my_tab').removeAttr('disabled');
         },
         error: function (response) {
 
@@ -142,26 +142,26 @@ function updateGeneral(from,table,tap,id_notif,nameId,returns) {
 
     var se = $("#"+from).serializeObject();
     // var se = $("#formnotif").serialize();
-   if(id_notif==0){
-	   id_notif=$('#'+nameId).val();
-   }
-   
+    if(id_notif==0){
+        id_notif=$('#'+nameId).val();
+    }
+
     $.ajax({
         type: "POST",
         url: "/api/updateInstal/"+table+"/"+ id_notif+"/"+ nameId,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
-                $("#"+nameId).val(response);
-                if(returns=="non"){
-                    $(".my_tab").removeAttr("disabled");
-                	 openCity1('Btn'+tap,tap)
-                }
-                else{
+            $("#"+nameId).val(response);
+            if(returns=="non"){
+                $(".my_tab").removeAttr("disabled");
+                openCity1('Btn'+tap,tap)
+            }
+            else{
 
-                	 window.location=returns;
-                }
-               
+                window.location=returns;
+            }
+
         },
         error: function (response) {
 
@@ -243,27 +243,27 @@ function addObject_TR(from,table,id) {
 function addDemandeInfomration(from,type,id,next_step,id_btn){
     event.preventDefault();
 
-	 var se = $("#"+from).serializeObject();
+    var se = $("#"+from).serializeObject();
 
-	 $.ajax({
-	        type: "POST",
-	        url: "/api/addDemandeInformation/"+id+"/"+type,
-	        contentType: 'application/json; charset=utf-8',
-	        data:JSON.stringify(se),
-	        success: function (response) {
-                $(".cls_step").prop("disabled",false);
-                $(".cls_step").removeClass('active')
-                $(id_btn).addClass('active');
-                $(".z_collecteur").hide();
-                $(next_step).show();
-                $("#id_demande_information").val(response);
-	        },
-	        error: function (response) {
+    $.ajax({
+        type: "POST",
+        url: "/api/addDemandeInformation/"+id+"/"+type,
+        contentType: 'application/json; charset=utf-8',
+        data:JSON.stringify(se),
+        success: function (response) {
+            $(".cls_step").prop("disabled",false);
+            $(".cls_step").removeClass('active')
+            $(id_btn).addClass('active');
+            $(".z_collecteur").hide();
+            $(next_step).show();
+            $("#id_demande_information").val(response);
+        },
+        error: function (response) {
 
-	            alert('Erreur ajout non effectue');
+            alert('Erreur ajout non effectue');
 
-	        }
-	    });
+        }
+    });
 
 }
 
@@ -404,7 +404,7 @@ function addcompos() {
         cache: false,
         data: $("#formcompos").serialize(),
         success: function (data) {
-          
+
         },
         error: function () {
         }
@@ -418,7 +418,7 @@ function add_composdossier() {
     $.ajax({
         data: $(this).serialize(),
         success: function (data) {
-            
+
         },
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -477,52 +477,7 @@ function checkNumNotif(type) {
         }
     });
 }
-function checkNumNotif2(val) {
-    if(event!=null)
-        event.preventDefault();
 
-    var numnotif = $(val).val();
-    if ($.trim(numnotif)=== "" || numnotif==null) {
-        return false;
-    }
-
-    $.ajax({
-        type: "GET",
-        url :"/api/checknotif2/"+numnotif,
-        success : function(response) {
-            if(response!='0'){
-                swal({
-                    title: 'Avertissement ! ',
-                    text: "Le numéro de notification n'est pas disponible",
-                    icon: 'error',
-                    showCancelButton: false,
-                    confirmButtonColor: '#00695c',
-
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        $(val).val("");
-                    }
-                });
-            }
-        },
-        error : function(response) {
-            swal({
-                title: 'Demande de numero de notification ?',
-                text: "Vous devez Créer une demande de numero de notification!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#00695c',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Oui, Rediriger !',
-
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    window.location.href="/api/addNumNotification/"+type;
-                }
-            });
-        }
-    });
-}
 function checknotif() {
     var numnotif = $("#num_notifications").val();
 
@@ -820,12 +775,12 @@ function addDocs2(id_str,type,idInput){
 }
 
 function addDocG(id,type,idInput,typeauto,idcolon){
-	if(id==0){
-		 var id=$("#"+idcolon).val();
-	}
-	else{
-		id=id;
-	}
+    if(id==0){
+        var id=$("#"+idcolon).val();
+    }
+    else{
+        id=id;
+    }
     var data = new FormData();
 
     var ins = document.getElementById(idInput).files.length;
@@ -858,15 +813,15 @@ function addDocG(id,type,idInput,typeauto,idcolon){
 
 $('form .emailValide').blur(function () {
     var email = $(this).val();
-var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
-if (re.test(email)) {
-	$(".checkmarktitle").text(" ");
-   
-} else {
-	$(this).val("");
-	$(this).after('<span class="checkmarktitle" style="color:red;">Ajouter un email valide</span></label>');
-    
-}
+    var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
+    if (re.test(email)) {
+        $(".checkmarktitle").text(" ");
+
+    } else {
+        $(this).val("");
+        $(this).after('<span class="checkmarktitle" style="color:red;">Ajouter un email valide</span></label>');
+
+    }
 
 });
 

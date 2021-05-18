@@ -8,6 +8,44 @@
 <%@ page session="false" %>
 
 <jsp:include page="../includes/head.jsp"/>
+<style type="text/css" media="screen">
+    .badge {
+        display: inline-block;
+        background-color: lighten(red, 20%);
+        border-radius: 50%;
+        color: #fff;
+        padding: 0.5em 0.75em;
+        position: relative;
+    }
+
+    .pulsate::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation: pulse 1s ease infinite;
+        border-radius: 50%;
+        border: 4px double lighten(red, 20%);
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        60% {
+            transform: scale(1.3);
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(1.35);
+            opacity: 0;
+        }
+    }
+</style>
 <style>
     .select2-results__option{
         text-align: left;
@@ -758,6 +796,7 @@ margin-bottom: 10px;">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
+                                                <div class="badge pulsate">Nouveau</div>
                                                 <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
