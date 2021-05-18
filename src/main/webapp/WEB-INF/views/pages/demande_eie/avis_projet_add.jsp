@@ -394,7 +394,7 @@
                                                 <div>
                                                     <label style="width: 100%;"> ${dc.nom_fr } </label> <input
                                                         required
-                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','EIE','id_demande_information')"
+                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','EE','id_demande_information')"
                                                         accept=".pdf" type="file" id="doc${dc.id_docImport }"
                                                         class="form-control mydoc">
                                                 </div>
