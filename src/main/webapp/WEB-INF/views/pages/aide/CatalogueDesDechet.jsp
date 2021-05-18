@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div id="mydata">
-                <table class="table mytable table-striped table-hover table-bordered" id="example">
+                    <table class="table mytable table-striped table-hover table-bordered" id="example">
                     <thead>
                     <tr>
                         <th class="text-center"><spring:message code="label.typededechet"/></th>
