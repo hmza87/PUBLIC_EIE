@@ -2732,7 +2732,7 @@ margin-bottom: 10px;">
 <div class="col-md-2">
 </div>
 
-<div class="row p-0 m-0 bg-dark" style=" position: absolute;width: 100%; bottom: 0;">
+<div class="row p-0 m-0 bg-dark" style=" position: fixed;width: 100%; bottom: 0;">
     <div class="col-12 p-0 m-0 text-center pt-2 pb-2">
         <footer>Twins &copy; Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de l'energie,
             des mines et de l'environement Département de l'environnement </footer>
