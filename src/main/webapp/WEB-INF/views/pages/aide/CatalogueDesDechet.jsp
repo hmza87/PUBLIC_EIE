@@ -7,7 +7,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false" %>
 <jsp:include page="../../includes/head.jsp"/>
-
+<style>
+    mark, .mark{
+        padding: 0.2em;
+        background-color: #ffdc05 !important;
+    }
+</style>
 <style>
         body {
             color: #566787;
@@ -83,33 +88,35 @@
                             </div>--%>
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" id="txtsearch" onkeyup="search()"  placeholder="Search&hellip;">
+                                <input type="text" class="form-control" id="txtsearch" placeholder="Rechercher&hellip;">
                             </div>
 
                     </div>
                 </div>
             </div>
             <div id="mydata">
-                    <table class="table mytable table-striped table-hover table-bordered" id="example">
+                    <table class="table my_table table-striped table-hover table-bordered" id="exemple_table">
                     <thead>
                     <tr>
+                        <th class="text-center"><spring:message code="label.transporteur"/></th>
                         <th class="text-center"><spring:message code="label.typededechet"/></th>
                         <th class="text-center"><spring:message code="label.code"/></th>
-                        <th class="text-center"><spring:message code="label.transporteur"/></th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${listF}" var="f">
                         <tr>
+                            <td>${f.nom}</td>
                             <td><c:forEach items="${f.code}" var="p">
-                                - ${p.nom_ar}<br/>
+                                 ${p.nom_ar}<br/>
                             </c:forEach>
                             </td>
                             <td style="width:20%"><c:forEach items="${f.code}" var="p">
-                                - ${p.nom_fr}<br/>
+                                 ${p.nom_fr}<br/>
                             </c:forEach>
                             </td>
-                            <td>${f.nom}</td>
+
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -118,12 +125,34 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>
+<script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+
 <jsp:include page="../../includes/footer1.jsp"/>
 <script>
-  /*  $(document).ready(function() {
-        $('.table').DataTable().destroy();
-    });*/
- /* $(document).ready(function (){
+    $(document).ready(function() {
+
+        var table = $('#exemple_table').DataTable({
+            "bPaginate": true,//pagination
+            "bLengthChange": false,
+            "bFilter": true,//recherche
+            "bInfo": false,
+            "bAutoWidth": false,
+            "mark": true
+        });
+        $.extend(true, $.fn.dataTable.defaults, {
+            mark: true
+        });
+        $("#exemple_table_filter").addClass("d-none");
+
+        $("#txtsearch").on("input", function (e) {
+            e.preventDefault();
+            table.search($(this).val()).draw();
+        });
+
+    });
+  $(document).ready(function (){
       $('[type=search]').css({
           'height': '34px',
           'border-radius': '20px',
@@ -131,25 +160,8 @@
           'border-color': '#ddd',
           'box-shadow': 'none'
       });
-  });*/
+  });
 
 
-        function search() {
-            var search = $("#txtsearch").val();
-            if(search.length>=3){
-                $.ajax({
-                    type: "GET"
-                    , url: "/api/search/" + search
-                    , data: {}
-                    , contentType: 'application/json;'
-                    , success: function (result) {
-                        $("#mydata").html(result);
-                    }
-                });
-            }
-            else{
-                return false;
-            }
-        }
 
 </script>
