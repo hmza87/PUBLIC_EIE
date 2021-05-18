@@ -607,6 +607,22 @@ public class Notification_Controler {
 		return rdrct;
 	}
 
+	@RequestMapping(value = "/api/checknotif2/{val}", method = RequestMethod.GET)
+	public @ResponseBody String checknotif2(@PathVariable String val) {
+		String rdrct;
+		Map<String, Object> mdl = new HashMap<String, Object>();
+
+		Notification notif = web.getNotiifcationByNum(val);
+//        EntrepriseValOuTrait entrprs = entrepriseValOuTraitRepo.findbynotif(val);
+		if (notif == null) {
+			rdrct = "0";
+		} else {
+			rdrct = notif.getId_notification() + "";
+		}
+
+		return rdrct;
+	}
+
 	@RequestMapping(value = "/api/getNotificationByNum/{Num}", method = RequestMethod.GET)
 	public ModelAndView getNotificationByNum(@PathVariable String num) {
 		Compte ct = web.getCompteConnected();

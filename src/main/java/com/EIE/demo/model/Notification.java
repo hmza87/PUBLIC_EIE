@@ -37,7 +37,7 @@ public class Notification implements Serializable {
 		this.id_notification = id_notification;
 	}
 
-	@Column(name = "num_notification", nullable = true, columnDefinition = "NVARCHAR(255)")
+	@Column(name = "num_notification", nullable = true, columnDefinition = "NVARCHAR(255)",unique = true)
 	private String num_notification;
 	@Column(name = "premier", nullable = true)
 	private String premier;
@@ -576,6 +576,7 @@ public class Notification implements Serializable {
 	private List<TransporteurParam> transporteur = new ArrayList<TransporteurParam>();
 
 
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
 	@JoinTable(name = "notification_transporteur_etranger", joinColumns = { @JoinColumn(name = "idNotification") }, inverseJoinColumns = {
@@ -608,6 +609,22 @@ public class Notification implements Serializable {
 
 	@Column(name = "url_quantite_justificatif", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String url_quantite_justificatif;
+
+	public String getUrl_certicat_elimination() {
+		return url_certicat_elimination;
+	}
+
+	public void setUrl_certicat_elimination(String url_certicat_elimination) {
+		this.url_certicat_elimination = url_certicat_elimination;
+	}
+
+	public String getUrl_quantite_justificatif() {
+		return url_quantite_justificatif;
+	}
+
+	public void setUrl_quantite_justificatif(String url_quantite_justificatif) {
+		this.url_quantite_justificatif = url_quantite_justificatif;
+	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
@@ -689,24 +706,11 @@ public class Notification implements Serializable {
 	public void setTransporteur_etranger(List<TransporteurEtranger> transporteur_etranger) {
 		this.transporteur_etranger = transporteur_etranger;
 	}
-
 	public List<DetailDocumentMouvement> getDocMouvement() {
 		return docMouvement;
 	}
 	public void setDocMouvement(List<DetailDocumentMouvement> docMouvement) {
 		this.docMouvement = docMouvement;
-	}
-	public String getUrl_certicat_elimination() {
-		return url_certicat_elimination;
-	}
-	public void setUrl_certicat_elimination(String url_certicat_elimination) {
-		this.url_certicat_elimination = url_certicat_elimination;
-	}
-	public String getUrl_quantite_justificatif() {
-		return url_quantite_justificatif;
-	}
-	public void setUrl_quantite_justificatif(String url_quantite_justificatif) {
-		this.url_quantite_justificatif = url_quantite_justificatif;
 	}
 
 }

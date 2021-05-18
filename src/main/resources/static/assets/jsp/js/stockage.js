@@ -477,7 +477,52 @@ function checkNumNotif(type) {
         }
     });
 }
+function checkNumNotif2(val) {
+    if(event!=null)
+        event.preventDefault();
 
+    var numnotif = $(val).val();
+    if ($.trim(numnotif)=== "" || numnotif==null) {
+        return false;
+    }
+
+    $.ajax({
+        type: "GET",
+        url :"/api/checknotif2/"+numnotif,
+        success : function(response) {
+            if(response!='0'){
+                swal({
+                    title: 'Avertissement ! ',
+                    text: "Le numéro de notification n'est pas disponible",
+                    icon: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#00695c',
+
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        $(val).val("");
+                    }
+                });
+            }
+        },
+        error : function(response) {
+            swal({
+                title: 'Demande de numero de notification ?',
+                text: "Vous devez Créer une demande de numero de notification!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#00695c',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, Rediriger !',
+
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href="/api/addNumNotification/"+type;
+                }
+            });
+        }
+    });
+}
 function checknotif() {
     var numnotif = $("#num_notifications").val();
 

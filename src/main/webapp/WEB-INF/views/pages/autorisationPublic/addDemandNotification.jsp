@@ -246,7 +246,17 @@
                                             <c:when test="${typeRenouv=='N'}">
                                                 <input class="form-control" name="num_notification" id="num_notifications"
                                                        value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
-                                                       onchange="checkNumNotif('${type }')" ${disabled}>
+
+                                                <c:choose>
+                                                    <c:when test="${type=='ET' || type=='TR'}">
+                                                       onchange="checkNumNotif2(this)"
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                           onchange="checkNumNotif('${type }')"
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                                    ${disabled}>
                                             </c:when>
                                             <c:when test="${typeRenouv=='R'}">
                                                 <input class="form-control" name="num_notification" id="num_notifications"
