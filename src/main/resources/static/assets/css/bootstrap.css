@@ -18,3 +18,9 @@
 	.text-success {
     color: #036 !important;
 }
+body{
+	background:#f8f9fa !important;
+}
+.rounded{
+	background:white;
+}

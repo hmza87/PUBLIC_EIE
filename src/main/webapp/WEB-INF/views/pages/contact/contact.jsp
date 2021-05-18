@@ -45,7 +45,10 @@ text-align:right !important;
         }
     }
 </style>
-<div class="container-fluid mt_cont">
+<div class="container-fluid mt_cont mt-2 row" style="margin-top:183px !important">
+<div class="col-md-2 col-sm-2 col-lg-2">
+ </div>
+ <div class="col-md-8 col-sm-8 col-lg-8 ">
     <div class="card">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10 text-center">
@@ -127,7 +130,9 @@ text-align:right !important;
 
         </div>
 
-    </div>
+    </div>  </div>
+    <div class="col-md-2 col-sm-2 col-lg-2">
+ </div>
 
 </div>
 
