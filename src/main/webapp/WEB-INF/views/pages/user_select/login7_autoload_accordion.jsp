@@ -10,52 +10,103 @@
 
 <c:choose>
     <c:when test="${show=='accordion'}">
-        <c:forEach items="${doc}" var="d">
-            <h3 class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
-            <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
-                <c:if test="${d.nom_fr=='Garantie financière'}">
-                    <p style="padding-left: 1%;border: 2px solid black;">
-                        <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
-                    </p>
+        <c:if test="${type=='ZF' || type=='XD'}">
+            <c:forEach items="${doc}" var="d">
+                <h3 class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
+                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
+                        </p>
 
-                    <p style="padding-left: 1%;border: 2px solid black;">
-                        <strong style="color: green">CS</strong><spring:message code="label.CS"/> : <spring:message code="label.coutdestockage"/>
-                    </p>
-                    <p style="padding-left: 1%;border: 2px solid black;">
-                        <strong style="color: green">Q</strong> : <spring:message code="label.Quantitededechetstransferes"/>
-                        <spring:message code="label.quantitededechetalaquantitetotale"/>
-                    </p>
-                    <br>
-                    <div style="background-color: red;color: white;padding-left: 1%;border: 1px solid black;">
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">CS</strong><spring:message code="label.CS"/> : <spring:message code="label.coutdestockage"/>
+                        </p>
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">Q</strong> : <spring:message code="label.Quantitededechetstransferes"/>
+                            <spring:message code="label.quantitededechetalaquantitetotale"/>
+                        </p>
+                        <br>
+                        <div style="background-color: red;color: white;padding-left: 1%;border: 1px solid black;">
 
-                        <div class="row-fluid justify-content-center mb-1 mt-3" >
-                            <div class="col-sm-12 pl-0 ">
-                                <strong style="color: #eaeaea">CT</strong> = <input value="0" min="0" class="frm_cal" type="number" placeholder="Cu" id="inp_cu">
-                                * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q2">
-                                * <input value="0" min="0" class="frm_cal" type="number" placeholder="D" id="inp_d">
-                                &nbsp; <button class="btn btn-sm btn-success" onclick="calculer2()" ><spring:message code="button.Calculer"/></button>
-                                <br>
-                                <span id="resultat_calcul2" class="disp_none"><strong style="color: #eaeaea;">CT</strong> = <p class="res2 d-inline" id="res2">  </p></span>
+                            <div class="row-fluid justify-content-center mb-1 mt-3" >
+                                <div class="col-sm-12 pl-0 ">
+                                    <strong style="color: #eaeaea">CT</strong> = <input value="0" min="0" class="frm_cal" type="number" placeholder="Cu" id="inp_cu">
+                                    * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q2">
+                                    * <input value="0" min="0" class="frm_cal" type="number" placeholder="D" id="inp_d">
+                                    &nbsp; <button class="btn btn-sm btn-success" onclick="calculer2()" ><spring:message code="button.Calculer"/></button>
+                                    <br>
+                                    <span id="resultat_calcul2" class="disp_none"><strong style="color: #eaeaea;">CT</strong> = <p class="res2 d-inline" id="res2">  </p></span>
+                                </div>
+                            </div>
+
+                            <div class="row-fluid justify-content-center mb-5 mt-3">
+                                <div class="col-sm-12 pl-0">
+                                    <strong style="color: #eaeaea">GF</strong> = <input value="0" min="0" class="frm_cal" width="20%" type="number" placeholder="CT" id="inp_ct">
+                                    + <input class="frm_cal" value="0" min="0" type="number" placeholder="CTR" id="inp_ctr"> + <input value="0" min="0" class="frm_cal" type="number" placeholder="Cs" id="inp_cs">
+                                    * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q"> * 1,2 &nbsp; <button class="btn btn-sm btn-success" onclick="calculer()" style="margin-top: 10px"><spring:message code="button.Calculer"/></button>
+                                    <br>
+                                    <span id="resultat_calcul" class="disp_none"><strong style="color: #eaeaea">GF</strong> = <p class="res d-inline" id="res">  </p></span>
+                                </div>
                             </div>
                         </div>
+                    </c:if>
+                        ${(not empty d.description)?d.description:"Aucune Descritpion"}
+                    <c:if test="${not empty d.uri}">
+                        <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                    </c:if>
+                </div>
+            </c:forEach>
+        </c:if>
+        <c:if test="${type!='ZF' && type!='XD'}">
+            <c:forEach items="${doc}" var="d">
+                <h3 >${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                <div>
+                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
+                        </p>
 
-                        <div class="row-fluid justify-content-center mb-5 mt-3">
-                            <div class="col-sm-12 pl-0">
-                                <strong style="color: #eaeaea">GF</strong> = <input value="0" min="0" class="frm_cal" width="20%" type="number" placeholder="CT" id="inp_ct">
-                                + <input class="frm_cal" value="0" min="0" type="number" placeholder="CTR" id="inp_ctr"> + <input value="0" min="0" class="frm_cal" type="number" placeholder="Cs" id="inp_cs">
-                                * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q"> * 1,2 &nbsp; <button class="btn btn-sm btn-success" onclick="calculer()" style="margin-top: 10px"><spring:message code="button.Calculer"/></button>
-                                <br>
-                                <span id="resultat_calcul" class="disp_none"><strong style="color: #eaeaea">GF</strong> = <p class="res d-inline" id="res">  </p></span>
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">CS</strong><spring:message code="label.CS"/> : <spring:message code="label.coutdestockage"/>
+                        </p>
+                        <p style="padding-left: 1%;border: 2px solid black;">
+                            <strong style="color: green">Q</strong> : <spring:message code="label.Quantitededechetstransferes"/>
+                            <spring:message code="label.quantitededechetalaquantitetotale"/>
+                        </p>
+                        <br>
+                        <div style="background-color: red;color: white;padding-left: 1%;border: 1px solid black;">
+
+                            <div class="row-fluid justify-content-center mb-1 mt-3" >
+                                <div class="col-sm-12 pl-0 ">
+                                    <strong style="color: #eaeaea">CT</strong> = <input value="0" min="0" class="frm_cal" type="number" placeholder="Cu" id="inp_cu">
+                                    * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q2">
+                                    * <input value="0" min="0" class="frm_cal" type="number" placeholder="D" id="inp_d">
+                                    &nbsp; <button class="btn btn-sm btn-success" onclick="calculer2()" ><spring:message code="button.Calculer"/></button>
+                                    <br>
+                                    <span id="resultat_calcul2" class="disp_none"><strong style="color: #eaeaea;">CT</strong> = <p class="res2 d-inline" id="res2">  </p></span>
+                                </div>
+                            </div>
+
+                            <div class="row-fluid justify-content-center mb-5 mt-3">
+                                <div class="col-sm-12 pl-0">
+                                    <strong style="color: #eaeaea">GF</strong> = <input value="0" min="0" class="frm_cal" width="20%" type="number" placeholder="CT" id="inp_ct">
+                                    + <input class="frm_cal" value="0" min="0" type="number" placeholder="CTR" id="inp_ctr"> + <input value="0" min="0" class="frm_cal" type="number" placeholder="Cs" id="inp_cs">
+                                    * <input class="frm_cal" value="0" min="0" type="number" placeholder="Q" id="inp_q"> * 1,2 &nbsp; <button class="btn btn-sm btn-success" onclick="calculer()" style="margin-top: 10px"><spring:message code="button.Calculer"/></button>
+                                    <br>
+                                    <span id="resultat_calcul" class="disp_none"><strong style="color: #eaeaea">GF</strong> = <p class="res d-inline" id="res">  </p></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:if>
-                    ${(not empty d.description)?d.description:"Aucune Descritpion"}
-                <c:if test="${not empty d.uri}">
-                    <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
-                </c:if>
-            </div>
-        </c:forEach>
+                    </c:if>
+                        ${(not empty d.description)?d.description:"Aucune Descritpion"}
+                    <c:if test="${not empty d.uri}">
+                        <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                    </c:if>
+                </div>
+            </c:forEach>
+        </c:if>
+
     </c:when>
     <c:when test="${show=='procedure'}">
         <div class="row-fluid d-none border p-2" id="dev_step">

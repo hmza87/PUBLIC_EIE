@@ -11,7 +11,7 @@
 <style type="text/css" media="screen">
     .badge {
         display: inline-block;
-        background-color: lighten(red, 20%);
+        background-color: #ff5c5c;
         border-radius: 50%;
         color: #fff;
         padding: 0.5em 0.75em;
@@ -28,7 +28,7 @@
         bottom: 0;
         animation: pulse 1s ease infinite;
         border-radius: 50%;
-        border: 4px double lighten(red, 20%);
+        border: 4px double #ff5c5c;
     }
 
     @keyframes pulse {
@@ -795,8 +795,12 @@ margin-bottom: 10px;">
                                         <div class="card w-100">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
-                                                    <spring:message code="label.Importationdechetszonefranche"/></h6>
-                                                <div class="badge pulsate">Nouveau</div>
+                                                    <spring:message code="label.Importationdechetszonefranche"/> </h6>
+                                                <div class="dddd" style="position: absolute;top: 60px;">
+                                                    <div class="badge pulsate">Nouveau</div>
+                                                </div>
+
+
                                                 <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
                                                     <spring:message code="label.Acceder"/>
                                                 </button>
