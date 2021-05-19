@@ -121,7 +121,7 @@
                 </tbody>
 </table>                  
 
-<a href="/api/getnotifById1/${type}/${id}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
+<a href="/api/getnotifById2/${type}/${id}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
 
                                 </div>
                             </div>

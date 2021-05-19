@@ -816,6 +816,19 @@ public class Hatim {
 		model.put("doc",l);
 		model.put("url_Admin",urlRest);
 		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
+		return new ModelAndView("user_select/recap_ZF",model);
+	}
+	@RequestMapping(value = "/api/getnotifById2/{type}/{id}", method = RequestMethod.GET)
+	public ModelAndView getnotifById2(@PathVariable String type,@PathVariable int id) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("user",webt.getCompteConnected());
+		model.put("type",type);
+		Notification n = webt.getNotiifcationById(id);
+		model.put("notification",n);
+		ListDocNotif[] l = webt.listDocNotif(n.getId_notification(),type);
+		model.put("doc",l);
+		model.put("url_Admin",urlRest);
+		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
 		webt.changerEtat(n.getId_notification(),"ZF");
 		return new ModelAndView("user_select/recap_ZF",model);
 	}
