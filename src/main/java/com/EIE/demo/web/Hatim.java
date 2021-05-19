@@ -770,6 +770,7 @@ public class Hatim {
 		model.put("doc",l);
 		model.put("url_Admin",urlRest);
 		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
+		webt.changerEtat(n.getId_notification());
 		return new ModelAndView("user_select/recap_ZF",model);
 	}
 

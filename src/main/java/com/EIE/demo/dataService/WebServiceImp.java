@@ -16,8 +16,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,11 +23,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //
 @Service
@@ -1170,6 +1165,13 @@ class WebServiceImp implements WebService {
 		DeclarationTransporteur  result = restTemplate.getForObject(uri, DeclarationTransporteur.class);
 		return result;
 	}
+
+	@Override
+	public Notification changerEtat(int id_notification) {
+		final String uri = urlRest+"/changerEtat/"+id_notification ;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification  result = restTemplate.getForObject(uri, Notification.class);
+		return result;	}
 
 	@Override
 	public List<TransporteurParam> getListTransporteurParamByCodeNotInNotif(int id_notification) {
