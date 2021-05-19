@@ -560,9 +560,9 @@ public class Hatim {
 		}else if(type.equals("IT")){
 			Installation ins = webt.getInstallById_v2(webt.getCompteConnected().getCompteId());
 			webt.changerEtat(ins.getId_installation(),"IT");
+			model.put("installation",ins);
 			ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),type);
 			model.put("doc",l);
-			model.put("installation",ins);
 			model.put("url_Admin",urlRest);
 			return new ModelAndView("user_select/recap_IT",model);
 		}

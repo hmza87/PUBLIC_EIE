@@ -505,14 +505,8 @@ public class Notification_Controler {
 	@RequestMapping(value = "/api/add_notification/{table}/{id_notif}", method = RequestMethod.POST)
 	public @ResponseBody String add_notification(@RequestBody Object se, @PathVariable String table,
 			@PathVariable String id_notif) {
-
 		String id = id_notif+"";
-
-
 		id = web.addObject(se, table);
-
-
-
 		if (!id_notif.equals("0")) {
 			Object notif = new Object();
 			HashMap<String, String> o = new HashMap<String, String>();
@@ -521,12 +515,9 @@ public class Notification_Controler {
 			}else{
 				o.put("idimportateur_notifiant", id + "");
 			}
-
 			notif = o;
-
 			String idd = web.updateObject(notif, "notification", "id_notification = " + id_notif + "  ");
 		}
-
 		// return new ModelAndView("notification/notification", model);
 		return id;
 	}

@@ -138,7 +138,7 @@
                                                     <a download href="${url_Admin}${fn:replace(dc.url, "/assets/myFile/", "/dowload_uploaded/")}"><i class="fa fa-upload " title="Télécharger le document" style="margin:0 !important"></i> </a>
                                                     <div class="${dc.nom_ar=='oui'?'hidden':'' }">
                                                         
-                                                        <input required onchange="addDocs(${dc.notif.id_notification},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport }')" accept=".pdf" type="file" id="doc${dc.docImport.id_docImport }" class="form-control mydoc">
+                                                        <input required onchange="addDocG(${dc.install.id_installation},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport }','IT','')" accept=".pdf" type="file" id="doc${dc.docImport.id_docImport }" class="form-control mydoc">
                                                     </div>
 
 
@@ -153,7 +153,7 @@
                 </tbody>
 </table>                  
                                     
-<a href="/api/checkUserHasCollectee/IT" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
+<a href="/api/checkUserHasCollecte/IT" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
        
                                 </div>
                             </div>

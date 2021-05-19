@@ -253,7 +253,6 @@ class WebServiceImp implements WebService {
 	public String updateObject(Object nt, String table,String id) {
 		final String uris = urlRest + "/update_object/"+table+"/"+id;
 		RestTemplate restTemplate = new RestTemplate();
-
 		URI test = restTemplate.postForLocation(uris, nt, Object.class);
 		String tt = test.getPath().split("/")[1];
 		tt = test.getPath().split("/")[2];
