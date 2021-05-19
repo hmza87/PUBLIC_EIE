@@ -153,7 +153,7 @@
                 </tbody>
 </table>                  
                                     
-<a href="/api/checkUserHasCollecte/IT" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
+<a href="/api/checkUserHasCollectee/IT" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
        
                                 </div>
                             </div>

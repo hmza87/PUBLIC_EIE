@@ -530,6 +530,52 @@ public class Hatim {
 		return new ModelAndView("user_select/card_ZF_choix",model);
 	}
 
+	@RequestMapping(value = "/api/checkUserHasCollectee/{type}", method = RequestMethod.GET)
+	public ModelAndView checkUserHasCollectee(@PathVariable String type)
+			throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> model = new HashMap<>();
+		Integer nbr = 0;
+		if(type.equals("CT")){
+			nbr = webt.getNombreCollecteByUser(webt.getCompteConnected().getCompteId(),"renouv");
+		}else if(type.equals("IT")){
+			nbr = webt.getNombreInstaByUser(webt.getCompteConnected().getCompteId(),"renouv");
+		}
+
+		if(nbr>0){
+			model.put("renouv","oui");
+		}else{
+			model.put("renouv","non");
+		}
+		model.put("url_admin",urlRest);
+		model.put("user",webt.getCompteConnected());
+		model.put("type",type);
+		if(type.equals("CT")){
+			CollecteTransporteur v = webt.getCollecteById_v2(webt.getCompteConnected().getCompteId());
+			webt.changerEtat(v.getId_collecte(),"CT");
+			model.put("collect",v);
+			ListDocNotif[] l = webt.listDocNotif(v.getId_collecte(),type);
+			model.put("doc",l);
+			model.put("url_Admin",urlRest);
+			return new ModelAndView("user_select/recap_CT",model);
+		}else if(type.equals("IT")){
+			Installation ins = webt.getInstallById_v2(webt.getCompteConnected().getCompteId());
+			webt.changerEtat(ins.getId_installation(),"IT");
+			ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),type);
+			model.put("doc",l);
+			model.put("installation",ins);
+			model.put("url_Admin",urlRest);
+			return new ModelAndView("user_select/recap_IT",model);
+		}
+		Notification[] n=null;
+		n = webt.getNotificationNotDepo(webt.getCompteConnected().getCompteId(),type);
+		model.put("notif",n);
+
+		Notification[] n1=null;
+		n1 = webt.getNotificationAll(webt.getCompteConnected().getCompteId(),type);
+		model.put("notifall",n1);
+		return new ModelAndView("user_select/card_ZF_choix",model);
+	}
+
 	@RequestMapping(value = "/api/checkUserDispatch/{type}", method = RequestMethod.GET)
 	public  String checkUserDispatch(@PathVariable String type) {
 		Map<String,Object> model = new HashMap<>();
@@ -770,7 +816,7 @@ public class Hatim {
 		model.put("doc",l);
 		model.put("url_Admin",urlRest);
 		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
-		webt.changerEtat(n.getId_notification());
+		webt.changerEtat(n.getId_notification(),"ZF");
 		return new ModelAndView("user_select/recap_ZF",model);
 	}
 

@@ -1167,11 +1167,12 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public Notification changerEtat(int id_notification) {
-		final String uri = urlRest+"/changerEtat/"+id_notification ;
+	public Notification changerEtat(int id_notification,String Type) {
+		final String uri = urlRest+"/changerEtat/"+id_notification+"/"+Type ;
 		RestTemplate restTemplate = new RestTemplate();
 		Notification  result = restTemplate.getForObject(uri, Notification.class);
-		return result;	}
+		return result;
+	}
 
 	@Override
 	public List<TransporteurParam> getListTransporteurParamByCodeNotInNotif(int id_notification) {

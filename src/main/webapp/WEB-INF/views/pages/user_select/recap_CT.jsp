@@ -256,7 +256,6 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
@@ -264,7 +263,6 @@
                 <input disabled type="text" class="form-control" value="${collect.nombre_vehicule}">
               </div>
             </div>
-
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label><spring:message code="label.NombredeconteneursA"/></label>
@@ -324,9 +322,6 @@
               </table>
             </div>
           </div>
-
-
-
         </div>
         <h2>4. <spring:message code="label.mespieces" /></h2>
         <div>
