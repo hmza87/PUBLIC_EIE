@@ -108,12 +108,13 @@
                     <c:forEach items="${listF}" var="f">
                         <tr>
                             <td>${f.nom}</td>
-                            <td><c:forEach items="${f.code}" var="p">
-                                 ${p.nom_ar}<br/>
-                            </c:forEach>
+                            <td class="">
+                                <c:forEach items="${f.code}" var="p">
+                                   ${p.nom_ar}<br>
+                                </c:forEach>
                             </td>
-                            <td style="width:20%"><c:forEach items="${f.code}" var="p">
-                                 ${p.nom_fr}<br/>
+                            <td width="20%"><c:forEach items="${f.code}" var="p">
+                                 ${p.nom_fr}<br>
                             </c:forEach>
                             </td>
 
@@ -139,11 +140,11 @@
             "bFilter": true,//recherche
             "bInfo": false,
             "bAutoWidth": false,
-            "mark": true
+            "mark": false
         });
-        $.extend(true, $.fn.dataTable.defaults, {
+        /*$.extend(true, $.fn.dataTable.defaults, {
             mark: true
-        });
+        });*/
         $("#exemple_table_filter").addClass("d-none");
 
         $("#txtsearch").on("input", function (e) {

@@ -244,7 +244,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label >Population</label>
+                                            <label >Population / éléments impactés par le projets</label>
                                             <select id="id_population"  name="id_poplation"
                                                     class="form-control select2"
                                                     data-width="100%">
