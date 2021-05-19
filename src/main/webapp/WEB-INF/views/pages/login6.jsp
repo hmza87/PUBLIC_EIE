@@ -3106,7 +3106,7 @@ margin-bottom: 10px;">
     </div><!-- /.modal-dalog -->
 </div>
 
-<div class="row p-0 m-0 bg-dark">
+<div class="row p-0 m-0 bg-dark bg_footer_1" style=" position: fixed;width: 100%; bottom: 0;"">
     <div class="col-12 p-0 m-0 text-center pt-2 pb-2">
         <footer>Twins &copy; Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de
             l'energie,
