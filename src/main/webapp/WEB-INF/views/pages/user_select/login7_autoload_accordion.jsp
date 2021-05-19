@@ -109,6 +109,11 @@
 
     </c:when>
     <c:when test="${show=='procedure'}">
+        <style>
+            .select2-results__option{
+                text-align: left;
+            }
+        </style>
         <div class="row-fluid d-none border p-2" id="dev_step">
             <p class="text-center h4 w-100 font_bold">
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>

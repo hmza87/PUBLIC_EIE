@@ -1078,8 +1078,8 @@ class WebServiceImp implements WebService {
 	public List<TransporteurParam> getTransporteurParamByCode(int code) {
 		final String uri = urlRest+"/getTransporteurParamByCodeRest/"+code;
 		RestTemplate restTemplate = new RestTemplate();
-		TransporteurParam[] result = restTemplate.getForObject(uri,TransporteurParam[].class);
-		return Arrays.asList(result);
+		ResponseEntity<TransporteurParam[]> result = restTemplate.getForEntity(uri,TransporteurParam[].class);
+		return result.getBody()!=null?Arrays.asList(result.getBody()):null;
 	}
 	@Override
 	public Notification saveDocumentMouvement(int id_notif, int id_detail, int qte, MultipartFile file) {

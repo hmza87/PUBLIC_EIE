@@ -46,11 +46,7 @@
         }
     }
 </style>
-<style>
-    .select2-results__option{
-        text-align: left;
-    }
-</style>
+
 <style>
     .stCaroussel{
         color: white;
