@@ -60,6 +60,13 @@ function addObject_step(from,table,tap,id_notif) {
         id_notif = $("#"+id_notif).val();
         Notchange=false;
     }
+    var prefecture = $("#prefecture_id").val();
+    var region = $("#region_id").val();
+
+    if( prefecture==="0" || region==="0"){
+        swal('Champs vide',"merci de saisir le champs region et prefecture","warning");
+        return false;
+    }
 
     $.ajax({
         type: "POST",
