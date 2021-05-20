@@ -99,7 +99,7 @@
                     <thead>
                     <tr>
                         <th class="text-center"><spring:message code="label.transporteur"/></th>
-                        <th class="text-center"><spring:message code="label.typededechet"/></th>
+                        <th class="text-center pl-0 pr-0" width="750px"><spring:message code="label.typededechet"/></th>
                         <th class="text-center"><spring:message code="label.code"/></th>
 
                     </tr>
@@ -108,18 +108,26 @@
                     <c:forEach items="${listF}" var="f">
                         <tr>
                             <td>${f.nom}</td>
-                            <td class="">
-                                <c:forEach items="${f.code}" var="p">
-                                   ${p.nom_ar}<br>
-                                </c:forEach>
+                            <td class="p-0" colspan="2">
+                                <table class="my_table p-0">
+                                    <c:forEach items="${f.code}" var="p">
+                                        <tr>
+                                            <td width="750px" class="pr-0 pl-0">
+                                                    ${p.nom_ar}
+                                            </td>
+                                            <td >
+                                                    ${p.nom_fr}
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
                             </td>
-                            <td width="20%"><c:forEach items="${f.code}" var="p">
-                                 ${p.nom_fr}<br>
-                            </c:forEach>
-                            </td>
+                            <td class="d-none w-0">
 
+                            </td>
                         </tr>
                     </c:forEach>
+
                     </tbody>
                 </table>
             </div>
@@ -142,9 +150,9 @@
             "bAutoWidth": false,
             "mark": false
         });
-        /*$.extend(true, $.fn.dataTable.defaults, {
-            mark: true
-        });*/
+        $.extend(true, $.fn.dataTable.defaults, {
+            mark: false
+        });
         $("#exemple_table_filter").addClass("d-none");
 
         $("#txtsearch").on("input", function (e) {

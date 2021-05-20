@@ -237,12 +237,14 @@
 
                                     <li  class="dropdown"><a href="/index#ressources"  class="at"><spring:message code="label.Ressources"/></a>
                                         <ul>
-                                            <li><a href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a></li>
-                                            <li><a href="/guide" >Guide et Procédure</a>
-                                            <li><a href="/videoList" >Vidéos</a>
-                                            <li><a href="/faq" ><spring:message code="label.FA"/></a>
-                                            <li><a href="/CatalogueDesDechet1" >Catalogue Des Déchets</a>
-                                            <li><a href="/Actualite" >Actualite</a>
+                                            <li>
+                                                <a href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
+                                            </li>
+                                            <li><a href="/guide" >Guide et Procédure</a></li>
+                                            <li><a href="/videoList" >Vidéos</a></li>
+                                            <li><a href="/faq" ><spring:message code="label.FA"/></a></li>
+                                            <li><a href="/CatalogueDesDechet1" >Catalogue Des Déchet</a></li>
+                                            <li><a href="/Actualite" >Actualite</a></li>
                                         </ul>
                                     </li>
                                     <li class=""><a href="/contact/0" class="at"><spring:message code="label.contact"/></a>

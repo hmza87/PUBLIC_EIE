@@ -50,6 +50,92 @@
 
 <!--End pagewrapper-->
 <!--Scroll to top-->
+
+<footer class="text-center text-lg-start bg-light text-muted w-100 d-inline-block" id="footer_footer">
+    <!-- Section: Social media -->
+    <section
+            class="d-flex justify-content-center justify-content-lg-between pl-4 pt-1 pb-1 border-bottom"
+    >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Restez connectez avec nous sur les réseaux sociaux:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class="me-4 text-reset pr-1">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset pr-1">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset pr-3">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-3">
+            <!-- Grid row -->
+            <div class="row justify-content-center">
+
+
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-2 font-weight-bold">
+                        <spring:message code="label.Ressources"/>
+                    </h6>
+                    <div class="row justify-content-center p-0">
+                        <div class="col-auto border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <p class="mb-1">
+                                <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/guide" >Guide et Procédure</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/videoList" >Vidéos</a>
+                            </p>
+                        </div>
+                        <div class="col-auto">
+
+                            <p class="mb-1">
+                                <a class="text-white" href="/CatalogueDesDechet" >Catalogue Des Déchet</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/Actualite" >Actualite</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/faq" ><spring:message code="label.FA"/></a>
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); font-size: 11px">
+      Twins © Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de l'energie, des mines et de l'environement Département de l'environnement
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<!-- Footer -->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon flaticon-up-arrow-angle"></span></div>
 
 
@@ -188,3 +274,5 @@ $(document).ready(function() {
 
 </body>
 </html>
+
+

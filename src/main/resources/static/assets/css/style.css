@@ -859,7 +859,7 @@ img{
 }
 
 .header-style-one .header-upper .nav-outer{
-	width: calc(100% - 550px);
+	/*width: calc(100% - 550px);*/
 	text-align: center;
 }
 
@@ -14849,5 +14849,10 @@ img.lazy-image.loaded{
 
 .bg_disabled{
 	background-color: #eee;
+}
+
+#footer_footer{
+	background-color: #0080c0 !important;
+	color: white !important;
 }
 /* */
