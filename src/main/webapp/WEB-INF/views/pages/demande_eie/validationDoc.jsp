@@ -138,7 +138,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                <a href="/api/ListeEie/${type}" class="btn "
+                                                <a href="/api/ListeEiee/${type}/${id}" class="btn "
                                                    style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
 
                                             </div>

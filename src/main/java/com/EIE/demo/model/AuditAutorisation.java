@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @org.hibernate.annotations.Proxy(lazy = true)
@@ -26,7 +27,7 @@ public class AuditAutorisation implements Serializable{
     private Date deleteDateTime;
 
     @Column(name = "dateAction")
-    private Date dateAction;
+    private LocalDateTime dateAction;
 
     @Column(name = "num_aut", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String num_aut;
@@ -70,11 +71,11 @@ public class AuditAutorisation implements Serializable{
         this.deleteDateTime = deleteDateTime;
     }
 
-    public Date getDateAction() {
+    public LocalDateTime getDateAction() {
         return dateAction;
     }
 
-    public void setDateAction(Date dateAction) {
+    public void setDateAction(LocalDateTime dateAction) {
         this.dateAction = dateAction;
     }
 

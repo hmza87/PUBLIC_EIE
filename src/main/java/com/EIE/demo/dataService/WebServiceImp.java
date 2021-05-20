@@ -844,6 +844,15 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public DemandeInformation getDemandeByUser(int compteId) {
+		final String uri = urlRest+"/getDemandeByUserRest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		DemandeInformation result = restTemplate.getForObject(uri, DemandeInformation.class);
+		return result;
+	}
+
+
+	@Override
 	public Installation getInstallById_v2(int compteId) {
 		final String uri = urlRest+"/getInstallById_v2Rest/"+compteId;
 		RestTemplate restTemplate = new RestTemplate();

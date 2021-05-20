@@ -58,6 +58,34 @@ public class Eie_Controler {
 		} else {
 			model.put("totalPage", 0);
 		}
+		model.put("user", ct);
+		return new ModelAndView("demande_eie/ListeDemande", model);
+	}
+
+	@RequestMapping(value = "/api/ListeEiee/{type}/{id}", method = RequestMethod.GET)
+	public ModelAndView stockage_affiche(@PathVariable String type,@PathVariable int id) {
+		Compte ct = web.getCompteConnected();
+
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("type", type);
+		ResponseEntity<RestResponsePage<DemandeInformation>> h = web
+				.getListDemandeInformationByCompte(new PageRequest(0, 100), ct.getCompteId(), type);
+
+		if (h.getBody() != null) {
+			List<DemandeInformation> searchResult = h.getBody().getContent();
+			model.put("notif", searchResult);
+			model.put("total", h.getBody().getTotalElements());
+			model.put("number", h.getBody().getNumber());
+			model.put("page", 0);
+			model.put("totalPage", h.getBody().getTotalPages());
+			model.put("size", h.getBody().getSize());
+			model.put("url_Admin",urlRest);
+		} else {
+			model.put("totalPage", 0);
+		}
+
+		DemandeInformation ins = web.getDemandeInfoById(id);
+		web.changerEtat(id,ins.getType());
 
 		model.put("user", ct);
 		return new ModelAndView("demande_eie/ListeDemande", model);
@@ -140,6 +168,7 @@ public class Eie_Controler {
 
 		List<Prefecture> lp = new ArrayList<Prefecture>();
 		List<Commune> lc = new ArrayList<Commune>();
+
 		if(id!=0){
 			demande = web.getDemandeInfoById(id);
 			if(demande.getDetailRegion()!=null){
@@ -162,8 +191,6 @@ public class Eie_Controler {
 				if(!id_pref.equals(""))
 					lc = web.getAllCommuneByPrefecture(id_pref);
 			}
-
-
 			model.put("lp",lp);
 			model.put("lc",lc);
 			model.put("disabled",demande.getStatut().getId_statut_projet()==13?"disabled":"");

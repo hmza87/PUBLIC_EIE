@@ -138,6 +138,8 @@ public interface WebService {
 
 	CollecteTransporteur getCollecteById_v2(int compteId);
 
+	DemandeInformation getDemandeByUser(int compteId);
+
 	Installation getInstallById_v2(int compteId);
 
 	Notification[] getNotificationNotDepo(int compteId, String type);
