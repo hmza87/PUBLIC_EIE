@@ -214,6 +214,16 @@ public class Hatim {
 		map.put("code",webt.getListCodeTabByClassif(1));
 		return new ModelAndView("aide/CatalogueDesDechet",map);
 	}
+	//**************
+	@RequestMapping(value = "/CatalogueDesDechet1",method = RequestMethod.GET)
+	public ModelAndView CatalogueDesDechet1() throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("user",webt.getCompteConnected());
+		//map.put("listF",webt.getListAllTransporteurParam());
+		map.put("listC",webt.getListAllCode());
+		return new ModelAndView("aide/CatalogueDesDechet1",map);
+	}
+	//**************
 	
 
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)

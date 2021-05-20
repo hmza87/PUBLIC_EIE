@@ -241,7 +241,7 @@
                                             <li><a href="/guide" >Guide et Procédure</a>
                                             <li><a href="/videoList" >Vidéos</a>
                                             <li><a href="/faq" ><spring:message code="label.FA"/></a>
-                                            <li><a href="/CatalogueDesDechet" >Catalogue Des Déchet</a>
+                                            <li><a href="/CatalogueDesDechet1" >Catalogue Des Déchets</a>
                                             <li><a href="/Actualite" >Actualite</a>
                                         </ul>
                                     </li>

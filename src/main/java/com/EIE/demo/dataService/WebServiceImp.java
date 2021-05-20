@@ -605,6 +605,15 @@ class WebServiceImp implements WebService {
 		TransporteurParam[] result= restTemplate.getForObject(uri, TransporteurParam[].class);
 		return Arrays.asList(result);
 	}
+	//*********
+	@Override
+	public List<Code> getListAllCode() {
+		final String uri = urlRest+"/getListAllCode/";
+		RestTemplate restTemplate = new RestTemplate();
+		Code[] result= restTemplate.getForObject(uri, Code[].class);
+		return Arrays.asList(result);
+	}
+	//*********
 
 
 	public String saveVehicule(MultipartFile[] fileToUpload,MultipartFile[] equipementsecurite, int id_collecte, String v) {

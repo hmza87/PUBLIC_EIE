@@ -70,6 +70,7 @@ public interface WebService {
 	List<EvaluationParam> getListEvaParam();
 
 	List<TransporteurParam> getListAllTransporteurParam();
+	List<Code> getListAllCode();
 	ResponseEntity<RestResponsePage<Questions>> getListQuestionsByAuto(String type, PageRequest pageRequest);
 
 	List<Code> getListcodeTab();
