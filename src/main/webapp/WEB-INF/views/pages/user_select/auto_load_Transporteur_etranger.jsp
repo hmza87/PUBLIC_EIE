@@ -138,6 +138,7 @@
     </div>
   </div>
 </div>
+<div id="education_fields"></div>
 <div class="row mt-3 justify-content-center p-0">
   <div class="col-sm-8 nopadding">
     <div class="form-group">
@@ -151,7 +152,6 @@
   </div>
   <div class="clear"></div>
 </div>
-<div id="education_fields"></div>
 <div class="row justify-content-center">
   <div class="col-sm-6 col-md-3">
     <input type="hidden" value="${(not empty one)?one.id_TransporteurEtranger:'0'}" id="id_trans">

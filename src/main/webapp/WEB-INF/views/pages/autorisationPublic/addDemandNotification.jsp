@@ -1268,7 +1268,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3 justify-content-center p-0">
+                              <div id="education_fields"></div>
+                              <div class="row mt-3 justify-content-center p-0">
                                 <div class="col-sm-8 nopadding">
                                     <div class="form-group">
                                         <div class="input-group">
