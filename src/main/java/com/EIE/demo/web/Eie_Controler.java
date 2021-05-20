@@ -62,34 +62,34 @@ public class Eie_Controler {
 		return new ModelAndView("demande_eie/ListeDemande", model);
 	}
 
-	@RequestMapping(value = "/api/ListeEiee/{type}/{id}", method = RequestMethod.GET)
-	public ModelAndView stockage_affiche(@PathVariable String type,@PathVariable int id) {
+	@RequestMapping(value = "/api/recapEiee/{id}/{type}", method = RequestMethod.GET)
+	public ModelAndView recapEiee(@PathVariable int id, @PathVariable String type) {
 		Compte ct = web.getCompteConnected();
-
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("type", type);
-		ResponseEntity<RestResponsePage<DemandeInformation>> h = web
-				.getListDemandeInformationByCompte(new PageRequest(0, 100), ct.getCompteId(), type);
 
-		if (h.getBody() != null) {
-			List<DemandeInformation> searchResult = h.getBody().getContent();
-			model.put("notif", searchResult);
-			model.put("total", h.getBody().getTotalElements());
-			model.put("number", h.getBody().getNumber());
-			model.put("page", 0);
-			model.put("totalPage", h.getBody().getTotalPages());
-			model.put("size", h.getBody().getSize());
-			model.put("url_Admin",urlRest);
-		} else {
-			model.put("totalPage", 0);
+		DemandeInformation demande=web.getDemandeInfoById(id);
+
+		ListDocNotif[] l = web.listDocNotif(demande.getId_demande_information(),type);
+
+		model.put("doc",l);
+		model.put("demande", demande);
+		model.put("user",web.getCompteConnected());
+		model.put("url_Admin",urlRest);
+		model.put("type",type);
+		if(type.equals("RS")){
+			model.put("titre_dyn","Renseignements préalables ");
+		}else if(type.equals("NT")){
+			model.put("titre_dyn","Notice d'Impact sur l'Environnement");
+		}else if(type.equals("EE")){
+			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
+		}else{
+			model.put("titre_dyn","Audit Environnemental");
 		}
-
-		DemandeInformation ins = web.getDemandeInfoById(id);
-		web.changerEtat(id,ins.getType());
-
-		model.put("user", ct);
-		return new ModelAndView("demande_eie/ListeDemande", model);
+		web.changerEtat(id,demande.getType());
+		return new ModelAndView("user_select/recap_EIE", model);
 	}
+
+
 
 	@RequestMapping(value = "/api/ListeEieRe", method = RequestMethod.GET)
 	public ModelAndView stockage_affichRe() {
