@@ -628,7 +628,7 @@
   </div>
 
   <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
-  <jsp:include page="../../includes/footer1.jsp"/>
+
 </c:if>
 <c:if test="${(empty notification ) }"><spring:message code="label.Aucunresultat"/></c:if>
 <jsp:include page="../../includes/footer1.jsp" />
