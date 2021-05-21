@@ -224,6 +224,13 @@ public class Hatim {
 		return new ModelAndView("aide/CatalogueDesDechet1",map);
 	}
 	//**************
+
+	@RequestMapping(value = "/codebyclassification/{id}",method = RequestMethod.GET)
+	public ModelAndView codebyclassification(@PathVariable  int id) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("listC",webt.getListAllCode1(id));
+		return new ModelAndView("aide/table",map);
+	}
 	
 
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)

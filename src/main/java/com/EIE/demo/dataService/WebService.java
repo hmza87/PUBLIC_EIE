@@ -71,6 +71,7 @@ public interface WebService {
 
 	List<TransporteurParam> getListAllTransporteurParam();
 	List<Code> getListAllCode();
+	List<Code> getListAllCode1(int id);
 	ResponseEntity<RestResponsePage<Questions>> getListQuestionsByAuto(String type, PageRequest pageRequest);
 
 	List<Code> getListcodeTab();

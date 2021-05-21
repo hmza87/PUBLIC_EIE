@@ -81,8 +81,18 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6"><h2>Catalogue Des Déchets</h2></div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4"><h2>Catalogue Des Déchets</h2></div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Classification</label>
+                            <select id="classification" name="classification" class="form-select bg-light" required style="height: 40px" onchange="getcla(this.value)">
+                                <option value="1">Dangereux</option>
+                                <option value="2">Non Dangereux</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
                             <%--<div>
                                 <button class="btn btn-primary float-right" onkeyup="search()" id="search" style="margin-left: 10px">Search</button>
                             </div>--%>
@@ -123,7 +133,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </div>
+             </div>
     </div>
 </div>
 </div>
@@ -164,6 +174,21 @@ $(document).ready(function (){
   });
 });
 
+function getcla(id) {
 
 
+
+    $
+        .ajax({
+            type : "GET",
+            url : "/codebyclassification/"+id,
+            data :{},
+            contentType : false,
+            success : function(response) {
+                $("#mydata").html(response);
+            },
+            error : function() {
+            }
+        });
+}
 </script>
