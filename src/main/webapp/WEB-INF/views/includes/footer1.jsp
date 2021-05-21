@@ -206,13 +206,13 @@ function onAcceptTerms() {
         $('#msgValidationStep3').show();
     }
 }
+
 function fin() {
 
 
     window.location.href = "/notifi_affich";
 
 }
-
 
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();

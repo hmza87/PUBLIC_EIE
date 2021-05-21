@@ -14854,5 +14854,9 @@ img.lazy-image.loaded{
 #footer_footer{
 	background-color: #0080c0 !important;
 	color: white !important;
+	height: 220px;
 }
-/* */
+	.main-panel {
+		min-height: calc(100vh - 70px);
+	}
+

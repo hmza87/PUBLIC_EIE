@@ -1286,7 +1286,6 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
-                            <div id="education_fields"></div>
                             <div class="row justify-content-center">
                                 <div class="col-sm-6 col-md-3">
                                     <input type="hidden" value="0" id="id_trans">
