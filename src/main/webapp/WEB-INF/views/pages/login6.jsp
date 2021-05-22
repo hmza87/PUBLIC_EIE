@@ -1368,7 +1368,7 @@ margin-bottom: 10px;">
                                                             <br>
                                                             <span id="resultat_calcul2" class="disp_none"><strong
                                                                     style="color: #eaeaea;">CT</strong> = <p
-                                                                    class="res2 d-inline" id="res2">  </p></span>
+                                                                    class="res2_ct d-inline" id="res2">  </p></span>
                                                         </div>
                                                     </div>
 
@@ -1592,7 +1592,7 @@ margin-bottom: 10px;">
                                                         <br>
                                                         <span id="resultat_calcul2" class="disp_none"><strong
                                                                 style="color: #eaeaea;">CT</strong> = <p
-                                                                class="res2 d-inline" id="res2">  </p></span>
+                                                                class="res2_ct d-inline" id="res2">  </p></span>
                                                     </div>
                                                 </div>
 
@@ -3342,10 +3342,10 @@ margin-bottom: 10px;">
     }
 
     function calculer() {
-        var ct = $("#inp_ct").val();
-        var ctr = $("#inp_ctr").val();
-        var cs = $("#inp_cs").val();
-        var q = $("#inp_q").val();
+        var ct = $(".inp_ct_gf:visible").val();
+        var ctr = $(".inp_ctr_gf:visible").val();
+        var cs = $(".inp_cs_gf:visible").val();
+        var q = $(".inp_q_gf:visible").val();
 
         if ((!ct && ct === "") || (!ctr && ctr === "") || (!cs && cs === "") || (!q && q === "")) {
             swal("un ou plusieurs champs sont vides");
@@ -3356,16 +3356,15 @@ margin-bottom: 10px;">
         var sum = parseFloat(ct) + parseFloat(ctr) + parseFloat(cs);
         total = parseFloat(sum) * parseFloat(q) * 1.2;
 
-        $("#resultat_calcul").removeClass("disp_none");
-        $("#res.res").html("").append(total.toFixed(2));
-
+        $(".zone_resul_2 .disp_none").removeClass("disp_none");
+        $(".zone_resul_2 .res2_gf").html("").append(total.toFixed(2));
     }
 
 
     function calculer2() {
-        var cu = $("#inp_cu").val();
-        var d = $("#inp_d").val();
-        var q = $("#inp_q2").val();
+        var cu = $(".inp_cu_ct:visible").val();
+        var d = $(".inp_d_ct:visible").val();
+        var q = $(".inp_q2_ct:visible").val();
 
         if ((!cu && cu === "") || (!d && d === "") || (!q && q === "")) {
             swal("un ou plusieurs champs sont vides");
@@ -3375,8 +3374,8 @@ margin-bottom: 10px;">
 
         total = parseFloat(cu) * parseFloat(q) * parseFloat(d);
 
-        $("#resultat_calcul2").removeClass("disp_none");
-        $("#res2.res2").html("").append(total.toFixed(2));
+        $(".zone_resul:visible .disp_none").removeClass("disp_none");
+        $(".res2_ct:visible").html("").append(total.toFixed(2));
 
     }
 

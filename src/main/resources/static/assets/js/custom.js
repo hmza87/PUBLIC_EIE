@@ -1385,5 +1385,9 @@ function afficher_accord(val){
         $(".Grp_simpl").removeClass('d-none');
         $(".Grp_dang").addClass('d-none');
     }
+    $(".zone_resul_2 > span").addClass("disp_none");
+    $(".zone_resul > span").addClass("disp_none");
+    $(".ct_calcule input").val("0");
+    $(".gf_calcule input").val("0");
 }
 

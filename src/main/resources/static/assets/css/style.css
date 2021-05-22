@@ -14854,11 +14854,32 @@ img.lazy-image.loaded{
 }
 
 #footer_footer{
-	background-color: #0080c0 !important;
+	background-color: #607adf96 !important;
 	color: white !important;
 	height:220px;
 
 }
-	.container-fluid {
-		min-height: calc(100vh - 200px);
-	}
+.container-fluid {
+	min-height: calc(100vh - 200px);
+}
+.font_time_serif{
+	font-family: "Times New Roman", Times, serif;
+}
+.size_14{
+	font-size: 14px;
+}
+.size_12{
+	font-size: 12px;
+}
+
+#table_acteur tbody tr:hover{
+	background-color: rgba(61, 255, 21, 0.31) !important;
+}
+
+ul.list_disque, ul.list_disque li{
+	list-style-type: disc;
+	font-size: 14px;
+}
+ul.list_disque, ul.list_disque li::marker{
+	font-size: 17px;
+}
