@@ -23,11 +23,12 @@
             margin: 30px 0;
         }
         .table-wrapper {
-            min-width: 1000px;
+            //min-width: 1000px;
             background: #fff;
-            padding: 20px;
+            padding: 40px;
             box-shadow: 0 1px 1px rgba(0,0,0,.05);
         }
+
         .table-title {
             padding-bottom: 10px;
             margin: 0 0 10px;
@@ -77,24 +78,29 @@
         }
     </style>
 <div class="container">
-    <div class="table-responsive">
         <div class="table-wrapper">
-            <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-4"><h2>Catalogue Des Déchets</h2> </div>
-                    <div class="col-sm-4">
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                    <div class="" style="height: 50px; display: flex; justify-content: center; background-color: #2b9683">
+                        <div class="col-md-12 my-3 text-center">
+                            <strong class="profil text-white">Catalogue Des Déchets</strong><br>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 mt-2">
                         <div class="form-group">
-                            <label>Classification</label>
-                            <select id="classification" name="classification" class="form-select bg-light" required style="height: 40px" onchange="getcla(this.value)">
+                            <b>Veuillez séléctionner un type</b>
+                            <select id="classification" name="classification" class="form-control select-2 bg-light" required style="height: 40px;" onchange="getcla(this.value)">
                                 <option value="1">Dangereux</option>
                                 <option value="2">Non Dangereux</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                            <%--<div>
-                                <button class="btn btn-primary float-right" onkeyup="search()" id="search" style="margin-left: 10px">Search</button>
-                            </div>--%>
+                </div>
+            <div class="row">
+                    <div class="col-sm-12 col-lg-12">
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 <input type="text" class="form-control" id="txtsearch" placeholder="Rechercher&hellip;">
@@ -102,13 +108,12 @@
 
                     </div>
                 </div>
-            </div>
             <div id="mydata">
                     <table class="table my_table table-striped table-hover table-bordered" id="exemple_table">
-                    <thead>
+                    <thead class="text-white" style="background-color: #17a2b8 ">
                     <tr>
 <%-- <th class="text-center"><spring:message code="label.transporteur"/></th>--%>
-                        <th class="text-center"><spring:message code="label.code"/></th>
+                        <th class="text-center" width="20%"><spring:message code="label.code"/></th>
                         <th class="text-center"><spring:message code="label.typededechet"/></th>
 
 
@@ -117,23 +122,17 @@
                     <tbody>
                     <c:forEach items="${listC}" var="p">
                         <tr>
-                        <%--<td>${f.nom}</td>--%>
                         <td>
-
                                ${p.nom_fr}<br>
-
                         </td>
                         <td >
                              ${p.nom_ar}<br>
-
                         </td>
-
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
              </div>
-    </div>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>

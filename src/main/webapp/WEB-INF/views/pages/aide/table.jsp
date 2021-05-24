@@ -8,10 +8,10 @@
 
 
 <table class="table my_table table-striped table-hover table-bordered" id="exemple_table">
-    <thead>
+    <thead class="text-white" style="background-color: #17a2b8 ">
     <tr>
         <%-- <th class="text-center"><spring:message code="label.transporteur"/></th>--%>
-        <th class="text-center"><spring:message code="label.code"/></th>
+        <th class="text-center" width="20%"><spring:message code="label.code"/></th>
         <th class="text-center"><spring:message code="label.typededechet"/></th>
 
 
