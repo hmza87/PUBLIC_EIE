@@ -475,8 +475,8 @@
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
                                         <div class="mb-3">
-                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png">
-                                            <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png"></a>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" >
+                                            <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
                                         </div>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">

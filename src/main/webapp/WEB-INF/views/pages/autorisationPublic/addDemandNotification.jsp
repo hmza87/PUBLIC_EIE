@@ -587,7 +587,7 @@
                                 <c:choose>
                                     <c:when test="${type=='XD' || type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
                                         <button type="button"
-                                                onclick="openCity1('Btn3','3')"
+                                                onclick="verifier_reg_pref('Btn3','3')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
@@ -2284,7 +2284,8 @@ $(document).ready(function(){
     }
 
     function verif_champs(id_form, type, id_name) {
-        event.preventDefault();
+        if(event!=null)
+            event.preventDefault();
         var test = false;
         var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
         var id = $("#" + id_name).val();

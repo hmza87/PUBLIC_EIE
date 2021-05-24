@@ -456,7 +456,8 @@ function set_avis_projet(val_id, id_dmd) {
 }
 
 function ajouterTranporteur_Etranger(id_name) {
-    event.preventDefault();
+    if(event!=null)
+        event.preventDefault();
     var id = $("#" + id_name).val();
     var raison = $("#raison_social").val();
     var matricule = $("#num_matriule").val();
@@ -1384,5 +1385,21 @@ function afficher_accord(val){
     $(".zone_resul > span").addClass("disp_none");
     $(".ct_calcule input").val("0");
     $(".gf_calcule input").val("0");
+}
+
+function verifier_reg_pref(btn,id){
+    if(event=null)
+        event.preventDefault();
+    var reg = $("#region_id").val();
+    var pref = $("#prefecture_id").val();
+
+    if(
+        $.trim(reg)==="" || reg==null || !$.isNumeric(reg) || reg==="0" ||
+        $.trim(pref)==="" || pref==null || !$.isNumeric(pref) || pref==="0"
+    ){
+        swal('Champs vide',"merci de saisir le champs region et prefecture","warning");
+        return false;
+    }
+    openCity1(btn,id);
 }
 

@@ -58,7 +58,7 @@ public class TransporteurEtranger implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
 	@JoinTable(name = "transporteurET_Port", joinColumns = {
-			@JoinColumn(name = "id_port") }, inverseJoinColumns = { @JoinColumn(name = "id_TransporteurEtranger") })
+			@JoinColumn(name = "id_TransporteurEtranger") }, inverseJoinColumns = { @JoinColumn(name = "id_port") })
 
 	private List<Port> port = new ArrayList<Port>();
 

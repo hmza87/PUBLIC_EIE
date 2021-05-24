@@ -52,7 +52,8 @@ function schowform(blo_none, cityName) {
 }
 
 function addObject_step(from,table,tap,id_notif) {
-    event.preventDefault();
+    if(event!=null)
+        event.preventDefault();
     var se = $("#"+from).serializeObject();
     // var se = $("#formnotif").serialize();
     var Notchange = true;

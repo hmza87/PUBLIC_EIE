@@ -128,8 +128,17 @@
                                             -
                                         </c:if>
                                     </td>
-                                    <td> Date de Visite </td>
-                                    <td> ${(not empty nt.url_pv)?} </td>
+                                    <td> ${nt.visite_date} </td>
+                                    <td>
+                                        <c:if test="${(not empty nt.visite_url)}">
+                                            <a target="_blank" download="" href="${url_Admin}${fn:replace(nt.visite_url, "/assets/myFile/", "/dowload_uploaded/")}">
+                                                <span class="fa fa-eye"></span>
+                                            </a>
+                                        </c:if>
+                                        <cif test="${(empty nt.visite_url)}">
+                                            -
+                                        </cif>
+                                    </td>
                                     <c:if test="${type!='NT'}">
                                         <td>${nt.tronsfrontalier }</td>
                                     </c:if>

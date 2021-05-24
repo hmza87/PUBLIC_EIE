@@ -81,13 +81,13 @@
 
   <div class="row justify-content-center mb-2">
     <div class="col-md-10 col-sm-12">
-      <div class="row p-0 mt-2">
-        <div class="col-md-3 col-sm-6 col-mt-4" >
-          <a href="/api/generate_recap_imp/${notification.id_notification }" class="btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+      <div class="row p-0 mt-2 pl-3">
+        <div class="col-md-3 col-sm-6 col-mt-4 pr-1 pl-1" >
+          <a href="/api/generate_recap_imp/${notification.id_notification }" class="mt-1 mb-1 btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
         </div>
         <c:if test="${notification.statut.id_statut_projet==48 }">
-          <div class="col-md-2 col-sm-6 ">
-            <a href="/api/addDemandNotification/${notification.id_notification}/${type}/N" class="btn btn-primary btn-block"><i class="fa fa-pen " title="Améliorer les documents" ></i><spring:message code="label.modifier"/></a>
+          <div class="col-md-2 col-sm-6  pr-1 pl-1">
+            <a href="/api/addDemandNotification/${notification.id_notification}/${type}/N" class="mt-1 mb-1 btn btn-primary btn-block"><i class="fa fa-pen " title="Améliorer les documents" ></i><spring:message code="label.modifier"/></a>
           </div>
         </c:if>
         <c:if test="${notification.statut.id_statut_projet==37 }">
@@ -96,18 +96,18 @@
           </div>-->
         </c:if>
         <c:if test="${notification.statut.id_statut_projet==54}">
-          <div class="col-md-auto col-sm-6 ">
-            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
+          <div class="col-md-auto col-sm-6  pr-1 pl-1">
+            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
           </div>
         </c:if>
         <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
-          <div class="col-md-auto col-sm-6 ">
-            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+          <div class="col-md-auto col-sm-6  pr-1 pl-1">
+            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block mb-1 mt-1"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>
         </c:if>
-        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
-          <div class="col-md-auto col-sm-6 ">
-            <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==54|| notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
+          <div class="col-md-auto col-sm-6  pr-1 pl-1">
+            <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
           </div>
         </c:if>
 
