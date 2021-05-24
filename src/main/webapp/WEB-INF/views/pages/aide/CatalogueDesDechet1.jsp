@@ -81,7 +81,7 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-4"><h2>Catalogue Des Déchets</h2></div>
+                    <div class="col-sm-4"><h2>Catalogue Des Déchets</h2> </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Classification</label>
@@ -91,7 +91,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="col-sm-4">
                             <%--<div>
                                 <button class="btn btn-primary float-right" onkeyup="search()" id="search" style="margin-left: 10px">Search</button>
