@@ -101,7 +101,7 @@
                                         <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54) }">
                                             <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
                                         </c:if>
-                                        <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==54) && nt.classification.id_classification==1  }">
+                                        <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==54) && nt.classification.id_classification==1  }">
                                             <button onclick="load_modal_transporteur('${nt.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==48}">

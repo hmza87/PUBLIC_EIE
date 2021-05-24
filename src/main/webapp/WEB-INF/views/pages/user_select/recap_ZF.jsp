@@ -105,7 +105,7 @@
             <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block mb-1 mt-1"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>
         </c:if>
-        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==54|| notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54|| notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
             <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
           </div>
