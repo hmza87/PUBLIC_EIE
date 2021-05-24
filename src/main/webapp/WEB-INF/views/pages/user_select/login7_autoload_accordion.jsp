@@ -524,6 +524,13 @@
                                             </tbody>
                                         </table>
                                     </c:when>
+                                    <c:when test="${type=='ZF'}">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/ETAP.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/ETAP.PNG"></a>
+                                    </c:when>
+
+
+
                                     <c:otherwise>
                                         <table id="table_acteur" class="table table-striped table-bordered table-hover my_table">
                                             <thead class="bg_stat_01">
