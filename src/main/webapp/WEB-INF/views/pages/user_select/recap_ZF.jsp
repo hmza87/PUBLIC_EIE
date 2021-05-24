@@ -100,7 +100,7 @@
             <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
           </div>
         </c:if>
-        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==65) }">
+        <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54) }">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
             <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block mb-1 mt-1"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
           </div>

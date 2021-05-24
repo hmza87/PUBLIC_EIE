@@ -809,4 +809,16 @@ public class DemandeInformation implements Serializable {
         this.consistance_proj = consistance_proj;
     }
 
+    //***************************Audit demande********************************//
+    @Column(name = "url_file_AE", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String url_file_AE;
+
+    public String getUrl_file_AE() {
+        return url_file_AE;
+    }
+    public void setUrl_file_AE(String url_file_AE) {
+        this.url_file_AE = url_file_AE;
+    }
+    //***************************End Audit demande********************************//
+
 }
