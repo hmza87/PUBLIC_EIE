@@ -64,14 +64,17 @@
 
         <!-- Right -->
         <div>
-            <a href="" class="me-4 text-reset pr-1">
+            <a href="" class="me-4 text-reset pr-3">
                 <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="" class="me-4 text-reset pr-1">
-                <i class="fab fa-instagram"></i>
             </a>
             <a href="" class="me-4 text-reset pr-3">
                 <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset pr-3">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="/index" class="me-4 text-reset pr-3">
+                <i class="fa fa-globe"></i>
             </a>
         </div>
         <!-- Right -->
@@ -82,18 +85,27 @@
     <section class="">
         <div class="container text-center text-md-start mt-3">
             <!-- Grid row -->
-            <div class="row justify-content-center">
-
-
-
+            <div class="row">
                 <!-- Grid column -->
-                <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
+                <div class="col-md-12 col-lg-12 col-xl-12 mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-2 font-weight-bold">
+                    <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
                         <spring:message code="label.Ressources"/>
                     </h6>
-                    <div class="row justify-content-center p-0">
-                        <div class="col-auto border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                    <div class="row mt-2">
+                        <div class="col-2"></div>
+                        <div class="col-3 border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <p class="mb-1">
+                                <a class="text-white" href="/contact/0">Contact</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/login7" >Authentification</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="#" >Condition D'utilisation</a>
+                            </p>
+                        </div>
+                        <div class="col-3 border border-top-0 border-left-0 border-bottom-0 border-right-1">
                             <p class="mb-1">
                                 <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
                             </p>
@@ -104,8 +116,7 @@
                                 <a class="text-white" href="/videoList" >Vidéos</a>
                             </p>
                         </div>
-                        <div class="col-auto">
-
+                        <div class="col-3">
                             <p class="mb-1">
                                 <a class="text-white" href="/CatalogueDesDechet" >Catalogue Des Déchet</a>
                             </p>
@@ -118,8 +129,6 @@
 
                         </div>
                     </div>
-
-
                 </div>
                 <!-- Grid column -->
             </div>
@@ -130,7 +139,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); font-size: 11px">
-      Twins © Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de l'energie, des mines et de l'environement Département de l'environnement
+       © Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de l'energie, des mines et de l'environement Département de l'environnement | Powerded By Twins
     </div>
     <!-- Copyright -->
 </footer>
