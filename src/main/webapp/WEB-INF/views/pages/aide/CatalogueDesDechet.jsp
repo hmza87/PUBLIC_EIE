@@ -23,7 +23,7 @@
             margin: 30px 0;
         }
         .table-wrapper {
-            min-width: 1000px;
+            //min-width: 1000px;
             background: #fff;
             padding: 20px;
             box-shadow: 0 1px 1px rgba(0,0,0,.05);
@@ -77,26 +77,29 @@
         }
     </style>
 <div class="container">
-    <div class="table-responsive">
         <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6"><h2>Transporteur Autorisé</h2></div>
-                    <div class="col-sm-6">
-                            <%--<div>
-                                <button class="btn btn-primary float-right" onkeyup="search()" id="search" style="margin-left: 10px">Search</button>
-                            </div>--%>
-                            <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" id="txtsearch" placeholder="Rechercher&hellip;">
-                            </div>
-
+            <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <div class="" style="height: 50px; display: flex; justify-content: center; background: linear-gradient(to right, #b1eed9, #e3dddd)">
+                    <div class="col-md-12 my-3 text-center">
+                        <strong class="profil text-white">Transporteur Autorisé</strong><br>
                     </div>
+                </div>
+            </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="search-box">
+                        <i class="material-icons">&#xE8B6;</i>
+                        <input type="text" class="form-control" id="txtsearch" placeholder="Rechercher&hellip;">
+                    </div>
+
                 </div>
             </div>
             <div id="mydata">
                     <table class="table my_table table-striped table-hover table-bordered" id="exemple_table">
-                    <thead>
+                    <thead style="background-color: #17a2b8 ">
                     <tr>
                         <th class="text-center"><spring:message code="label.transporteur"/></th>
                         <th class="text-center pl-0 pr-0" width="750px"><spring:message code="label.typededechet"/></th>
@@ -132,7 +135,6 @@
                 </table>
             </div>
         </div>
-    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>
 <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
