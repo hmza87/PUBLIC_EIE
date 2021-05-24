@@ -609,7 +609,7 @@
                                     <c:if test="${type=='EIE'}">
                                         <li>
                                             Loi n° 12-03 relative aux études d'impact sur l'environnement
-                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/xxxx.pdf">
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
