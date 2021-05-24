@@ -16,27 +16,28 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect
 public class VisiteInstallation implements Serializable {
-	
-	
+
+
 	public VisiteInstallation() {
-		
+
 	}
 
 	@Id
-    @GeneratedValue (strategy= GenerationType. IDENTITY)
-    @Column (name="id_visite_installation")
-    private int id_visite_installation;
-	
-	
+	@GeneratedValue (strategy= GenerationType. IDENTITY)
+	@Column (name="id_visite_installation")
+	private int id_visite_installation;
+
+
 	@Column(name = "nomsite_fr", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String nomsite_fr;
-	
+
 	@Column(name = "nomsite_ar", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String nomsite_ar;
 
 	@Column(name = "raison", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String raison;
-	
+
+
 	@Column(name = "object", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String object;
 
@@ -44,7 +45,7 @@ public class VisiteInstallation implements Serializable {
 		return id_visite_installation;
 	}
 
-	
+
 
 	public void setId_visite_installation(int id_visite_installation) {
 		this.id_visite_installation = id_visite_installation;
@@ -74,7 +75,7 @@ public class VisiteInstallation implements Serializable {
 		this.object = object;
 	}
 
-	
+
 	public Date getDate_visite() {
 		return date_visite;
 	}
@@ -92,17 +93,17 @@ public class VisiteInstallation implements Serializable {
 	}
 
 	@Column(name = "date_visite", nullable = true)
-	@JsonFormat(pattern = "YYYY/MM/DD HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:MM")
 	private Date date_visite;
+
 	@Column(name = "date_transmission", nullable = true)
 	private Date date_transmission;
-	
-	
+
 
 	@Column(name = "deleteDateTime", nullable = true)
 	private Date deleteDateTime;
-	
-	
+
+
 	public Date getDeleteDateTime() {
 		return deleteDateTime;
 	}
@@ -119,4 +120,5 @@ public class VisiteInstallation implements Serializable {
 	public void setRaison(String raison) {
 		this.raison = raison;
 	}
+
 }
