@@ -53,7 +53,16 @@
                                 <th rowspan="2" ><spring:message code="label.Region"/></th>
                                 <th rowspan="2" ><spring:message code="label.Recap"/></th>
                                 <th rowspan="2" ><spring:message code="label.TypedeProjet"/></th>
-                                <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
+                                <th rowspan="2" > Date de Visite </th>
+                                <th rowspan="2" > Pv de visite </th>
+
+                                <c:if test="${type!='NT'}">
+                                    <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
+                                </c:if>
+                                <c:if test="${type=='NT'}">
+                                    <th rowspan="2" > Type du projet </th>
+                                    <th rowspan="2" > Consistance du projet </th>
+                                </c:if>
                                 <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
                                 <c:if test="${type=='EE'}">
                                     <th rowspan="2"><spring:message code="label.EtudedimpcatenvirennementaleDefinitive"/> </th>
@@ -119,8 +128,15 @@
                                             -
                                         </c:if>
                                     </td>
-                                    <td>${nt.tronsfrontalier }
-                                    </td>
+                                    <td> Date de Visite </td>
+                                    <td> ${(not empty nt.url_pv)?} </td>
+                                    <c:if test="${type!='NT'}">
+                                        <td>${nt.tronsfrontalier }</td>
+                                    </c:if>
+                                    <c:if test="${type=='NT'}">
+                                        <td>${nt.nature_projet}</td>
+                                        <td>${nt.consistance_proj}</td>
+                                    </c:if>
                                     <td>
                                         <button class="btn btn-success rounded" onclick="affiche_files('${nt.id_demande_information}')">
                                             <span class="fa fa-archive"></span>

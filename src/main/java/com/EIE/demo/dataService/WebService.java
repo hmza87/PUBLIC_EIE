@@ -177,7 +177,7 @@ public interface WebService {
 
 	List<Commune> savecommuneDetailRegion(String id, int id_dmd, int compteId);
 
-	 public void updateDemandeInformation(int id, DemandeInformation d,  int unite, int id_caracter_physique, int id_poplation );
+	 public void updateDemandeInformation(int id, DemandeInformation d );
 
 	String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier );
 

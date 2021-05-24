@@ -251,86 +251,14 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
-                      <label>Transfrontalier</label>
-                      <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Nature foncier</label>
-                      <input disabled type="text" class="form-control" value="${demande.nature_foncier}">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Caractéristiques du projet</label>
-                      <input disabled type="text" class="form-control" value="${demande.caracteristiques_projet}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Nature du projet</label>
+                      <label>Nature du Projet</label>
                       <input disabled type="text" class="form-control" value="${demande.nature_projet}">
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
-                      <label>Ressources</label>
-                      <input disabled type="text" class="form-control" value="${demande.ressource}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Source</label>
-                      <input disabled type="text" class="form-control" value="${demande.source}">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Qualitative</label>
-                      <input disabled type="text" class="form-control" value="${demande.qualitative}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Quantité estimée</label>
-                      <input disabled type="text" class="form-control" value="${demande.quantite_projet}">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Unité</label>
-                      <input disabled type="text" class="form-control" value="${demande.unite.nom_fr}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Caractéristique physique</label>
-                      <input disabled type="text" class="form-control" value="${demande.caracteristquePhysique.nom_fr}">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                      <label>Population</label>
-                      <input disabled type="text" class="form-control" value="${demande.population.nom_fr}">
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-12 mt-4">
-                    <div class="form-group">
-                      <c:if test="${not empty demande.impacts!=null }">
-                        <label>Les Impacts positifs et négatifs du projet</label>
-                        <a target="_blank" class="btn btn-success float-right" download href="${url_Admin}${fn:replace(demande.impacts, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a>
-                      </c:if>
+                      <label>Consistance du projet</label>
+                      <input disabled type="text" class="form-control" value="${demande.consistance_proj}">
                     </div>
                   </div>
                 </div>

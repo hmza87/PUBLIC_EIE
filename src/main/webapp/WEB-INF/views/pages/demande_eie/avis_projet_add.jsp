@@ -160,113 +160,36 @@
                                         <input ${disabled} required value="${demande.montant_investissement }" type="text" name="montant_investissement" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.Tronsfrontalier"/>  </label>
-                                        <select ${disabled } onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
-                                            <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
-                                            <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <c:if test="${type=='NT'}">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Nature foncier</label>
-                                            <input ${disabled} required value="${demande.nature_foncier }" type="text" name="nature_foncier" class="form-control">
+
+                                <c:choose>
+                                    <c:when test="${type!='NT'}">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.Tronsfrontalier"/>  </label>
+                                                <select ${disabled } onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
+                                                    <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
+                                                    <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Caractéristiques du projet</label>
-                                            <input ${disabled} required value="${demande.caracteristiques_projet }" type="text" name="caracteristiques_projet" class="form-control">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> Nature du Projet </label>
+                                                <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Nature du projet</label>
-                                            <input ${disabled} required value="${demande.nature_projet }" type="text" name="nature_projet" class="form-control">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> Consisitance du Projet </label>
+                                                <textarea name="consistance_proj" id="consit_proj" class="form-control" rows="3"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Ressources</label>
-                                            <textarea ${disabled} required type="text" name="ressource" class="form-control" rows="3">${demande.ressource }</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Source</label>
-                                            <textarea ${disabled} required type="text" name="source" class="form-control" rows="3">${demande.source }</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Qualitative</label>
-                                            <input ${disabled} required value="${demande.qualitative }" type="text" name="qualitative" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Quantité estimée</label>
-                                            <input ${disabled} required value="${demande.quantite_projet }" type="number" name="quantite_projet" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Unité</label>
-                                            <select  id="uniteId" required name="id_unit"
-                                                     class="form-control select2"
-                                                     data-width="100%">
-                                                <option value="0"><spring:message code="option.Choisir"/></option>
-                                                <c:forEach items="${unite_id}" var="t">
-                                                    <option  <c:if
-                                                            test="${demande.unite.unite_id== t[0]}"> selected </c:if>
-                                                            value="${t[0] }">${t[1] }</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Caractéristique physique</label>
-                                            <select id="idcaracteristquePhysique"  name="id_caracter_physique"
-                                                    class="form-control select2"
-                                                    data-width="100%">
-                                                <option value="0"><spring:message code="option.Choisir"/></option>
-                                                <c:forEach items="${caracteristiquephysique}" var="t">
-                                                    <option  <c:if
-                                                            test="${demande.caracteristquePhysique.id_classification== t[0]}"> selected </c:if>
-                                                            value="${t[0] }">${t[1] }</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label >Population / éléments impactés par le projets</label>
-                                            <select id="id_population"  name="id_poplation"
-                                                    class="form-control select2"
-                                                    data-width="100%">
-                                                <option value="0"><spring:message code="option.Choisir"/></option>
-                                                <c:forEach items="${population}" var="t">
-                                                    <option  <c:if
-                                                            test="${demande.population.id_population== t[0]}"> selected </c:if>
-                                                            value="${t[0]}">${t[1]}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Les Impacts positifs et négatifs du projet</label>
-                                            <input type="file" required id="impacts" accept=".doc,.docx,.pdf" class="form-control" onchange="fun_setimpacts()">
-                                            <c:if test="${not empty demande.impacts}">
-                                                <a href="${url_Admin}${fn:replace(demande.impacts,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success mt-2">Télécharger Impacts du projet</a>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                </c:if>
+                                    </c:otherwise>
+                                </c:choose>
+
+
                                 <c:if test="${not empty demande.categories}">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">

@@ -129,6 +129,9 @@ public class DemandeInformation implements Serializable {
     @Column(name = "nature_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String nature_projet;
 
+    @Column(name = "consistance_proj", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String consistance_proj;
+
     @Column(name = "quantite_projet", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String quantite_projet;
 
@@ -797,6 +800,13 @@ public class DemandeInformation implements Serializable {
     }
     public void setVisite_url(String visite_url) {
         this.visite_url = visite_url;
+    }
+
+    public String getConsistance_proj() {
+        return consistance_proj;
+    }
+    public void setConsistance_proj(String consistance_proj) {
+        this.consistance_proj = consistance_proj;
     }
 
 }

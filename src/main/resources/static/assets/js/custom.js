@@ -260,8 +260,6 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     if(event!=null)
         event.preventDefault();
 
-
-
     var region = ""
     var prefecture = "";
     var commune = "";
@@ -282,14 +280,14 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 
 
     var tmp = $("#id_region").val();
-    if(trans != "oui"){
+    if(trans != "oui" || type=="NT"){
         if( tmp.length<2){
             swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
             return false;
         }
     }
 
-    if(trans == "non"){
+    if(trans == "non" || type=="NT"){
         region = $("#id_region").val().join();
         prefecture = $("#id_prefecture").val().join();
         commune = $("#id_commune").val().join();
@@ -799,10 +797,7 @@ function updateDemandeInfomration(form, id_name, step, id_btn_step) {
         swal("Avertissement ! ", 'Le champs Intitulé du projet est obligatoire', 'error');
         return false;
     }
-    var unite = $("#uniteId").val();
-    if ($.trim(unite) == "" || unite == null) {
-        unite=" ";
-    }
+
     var se = $("#"+form).serialize();
 
     /*$empty = $('#'+form).find("input").filter(function() {

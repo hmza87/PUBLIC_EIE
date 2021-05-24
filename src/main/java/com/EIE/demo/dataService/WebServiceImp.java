@@ -1059,8 +1059,8 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public void updateDemandeInformation(int id, DemandeInformation d , int id_unit, int id_caracter_physique, int id_poplation) {
-		final String uri = urlRest+"/updateDemandeInformationRest/"+id+"/"+id_unit+"/"+id_caracter_physique+"/"+id_poplation;
+	public void updateDemandeInformation(int id, DemandeInformation d ) {
+		final String uri = urlRest+"/updateDemandeInformationRest/"+id;
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.postForLocation(uri, d, DemandeInformation.class);
 	}
