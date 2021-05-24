@@ -3806,7 +3806,7 @@ public class GeneratePDFDocuments {
         table3.completeRow();
         //--------------------- completeRow ---------------------
         table3.addCell( saisir_cellule("Type de véhicules: : ",font,fontbold,ns.getTypevehicule(),1));
-        table3.addCell( saisir_cellule("type de conteneurs: : ",font,fontbold,ns.getTypeConteneurs().getNom_fr(),1));
+        table3.addCell( saisir_cellule("type de conteneurs: : ",font,fontbold,(ns.getTypeConteneurs()!=null)?ns.getTypeConteneurs().getNom_fr():"-",1));
         table3.addCell( saisir_cellule("Nombre de Véhicule: : ",font,fontbold,ns.getNombre_vehicule(),1));
         table3.addCell( saisir_cellule("Nombre de conteneurs: : ",font,fontbold,ns.getNombre_conteneur(),1));
         table3.completeRow();
