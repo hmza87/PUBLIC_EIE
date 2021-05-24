@@ -526,7 +526,7 @@
                                     </c:when>
                                     <c:when test="${type=='ZF'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/ETAP.PNG">
-                                            <img src="${pageContext.request.contextPath}/assets/images/ETAP.PNG"></a>
+                                            <img src="${pageContext.request.contextPath}/assets/images/etape10.png"></a>
                                     </c:when>
 
 
