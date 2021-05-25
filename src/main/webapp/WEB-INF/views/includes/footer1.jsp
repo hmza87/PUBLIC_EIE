@@ -64,16 +64,16 @@
 
         <!-- Right -->
         <div>
-            <a href="" class="me-4 text-reset pr-3">
+            <a href="https://www.facebook.com/DENVMAROC/" target="_blank" class="me-4 text-reset pr-3">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="" class="me-4 text-reset pr-3">
+            <a href="#" class="me-4 text-reset pr-3">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="" class="me-4 text-reset pr-3">
+            <a href="https://www.youtube.com/channel/UCAXNgXbjL7LXnWgSGn-1aSA" target="_blank" class="me-4 text-reset pr-3">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="/index" class="me-4 text-reset pr-3">
+            <a href="https://www.environnement.gov.ma/fr/" target="_blank" class="me-4 text-reset pr-3">
                 <i class="fa fa-globe"></i>
             </a>
         </div>
@@ -89,23 +89,28 @@
                 <!-- Grid column -->
                 <div class="col-md-12 col-lg-12 col-xl-12 mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
-                        <spring:message code="label.Ressources"/>
-                    </h6>
                     <div class="row mt-2">
-                        <div class="col-2"></div>
-                        <div class="col-3 border border-top-0 border-left-0 border-bottom-0 border-right-1">
-                            <p class="mb-1">
-                                <a class="text-white" href="/contact/0">Contact</a>
+                        <div class="col-4 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
+                                <spring:message code="label.contact"/>
+                            </h6>
+                            <p class="mb-1 text-white">
+                                Adresse : N°9, Avenue Al Araar, 420/1 Secteur 16, Hay Riad, Rabat
                             </p>
-                            <p class="mb-1">
-                                <a class="text-white" href="/login7" >Authentification</a>
+                            <p class="mb-1 text-white">
+                                Tél : (+212) 537 576 647 / (+212) 537 576 661
                             </p>
-                            <p class="mb-1">
-                                <a class="text-white" href="#" >Condition D'utilisation</a>
+                            <p class="mb-1 text-white">
+                               Fax : (+212) 537 570 471
+                            </p>
+                            <p class="mb-1 text-white">
+                                Email : sg@environnement.gov.ma
                             </p>
                         </div>
-                        <div class="col-3 border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                        <div class="col-4 border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
+                                <spring:message code="label.Ressources"/>
+                            </h6>
                             <p class="mb-1">
                                 <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
                             </p>
@@ -115,19 +120,41 @@
                             <p class="mb-1">
                                 <a class="text-white" href="/videoList" >Vidéos</a>
                             </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/CatalogueDesDechet">Catalogue Des Déchet</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/Actualite">Actualite</a>
+                            </p>
+                            <p class="mb-1">
+                                <a class="text-white" href="/faq"><spring:message code="label.FA"/></a>
+                            </p>
                         </div>
-                        <div class="col-3">
-                            <p class="mb-1">
-                                <a class="text-white" href="/CatalogueDesDechet" >Catalogue Des Déchet</a>
-                            </p>
-                            <p class="mb-1">
-                                <a class="text-white" href="/Actualite" >Actualite</a>
-                            </p>
-                            <p class="mb-1">
-                                <a class="text-white" href="/faq" ><spring:message code="label.FA"/></a>
-                            </p>
-
+                        <div class="col-4 ">
+                            <div class="col-12 border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                                <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
+                                    <spring:message code="label.Preparezvotredemarche"/>
+                                </h6>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Importationdechetszonefranche"/></a>
+                                </p>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/guide" ><spring:message code="label.AutorisationdeCollecteettransport"/></a>
+                                </p>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/videoList" ><spring:message code="label.Installationdetraitementdesdechets"/></a>
+                                </p>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/CatalogueDesDechet"><spring:message code="label.etudeimpactenvironnemental"/></a>
+                                </p>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/Actualite"><spring:message code="label.Noticedimpact"/></a>
+                                </p>
+                                <p class="mb-1">
+                                    <a class="text-white" href="/faq"><spring:message code="label.Auditenvironnementale"/></a>
+                                </p>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <!-- Grid column -->
