@@ -41,6 +41,9 @@ public class VisiteInstallation implements Serializable {
 	@Column(name = "object", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String object;
 
+	@Column(name = "date_visite_S", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String date_visite_S;
+
 	public int getId_visite_installation() {
 		return id_visite_installation;
 	}
@@ -93,8 +96,8 @@ public class VisiteInstallation implements Serializable {
 	}
 
 	@Column(name = "date_visite", nullable = true)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:MM")
 	private Date date_visite;
+
 
 	@Column(name = "date_transmission", nullable = true)
 	private Date date_transmission;
@@ -119,6 +122,13 @@ public class VisiteInstallation implements Serializable {
 
 	public void setRaison(String raison) {
 		this.raison = raison;
+	}
+
+	public String getDate_visite_S() {
+		return date_visite_S;
+	}
+	public void setDate_visite_S(String date_visite_S) {
+		this.date_visite_S = date_visite_S;
 	}
 
 }
