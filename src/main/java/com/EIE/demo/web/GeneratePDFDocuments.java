@@ -290,7 +290,7 @@ public class GeneratePDFDocuments {
 //            adresse_transporteur =i.get(0).get();
                 tele_transporteur =i.get(0).getTel();
                 fax_transporteur =i.get(0).getFax();
-                email_transporteur =i.get(0).getEmail();
+                email_transporteur =i.get(0).getAdresse();
                 //            moyen_de_transporteur =ns.getTransporteur().get(0).getMoyenTransport().getNom_fr();
 
             }
@@ -1052,7 +1052,7 @@ public class GeneratePDFDocuments {
 //            adresse_transporteur =i.get(0).get();
                 tele_transporteur =i.get(0).getTel();
                 fax_transporteur =i.get(0).getFax();
-                email_transporteur =i.get(0).getEmail();
+                email_transporteur =i.get(0).getAdresse();
                 //            moyen_de_transporteur =ns.getTransporteur().get(0).getMoyenTransport().getNom_fr();
 
             }
@@ -3435,7 +3435,7 @@ public class GeneratePDFDocuments {
                     table3.addCell(saisir_cellule(tp.getIdentifiant(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getFax(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getEmail(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
                     table3.completeRow();
                 }
             } else {
@@ -4286,7 +4286,7 @@ public class GeneratePDFDocuments {
                     table3.addCell(saisir_cellule(tp.getIdentifiant(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getFax(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getEmail(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
                     table3.completeRow();
                 }
             } else {
