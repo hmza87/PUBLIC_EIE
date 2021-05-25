@@ -304,7 +304,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
-                                            <label> Date de Résiliation</label>
+                                            <label> Date de réalisation du projet </label>
                                             <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
                                         </div>
                                     </div>

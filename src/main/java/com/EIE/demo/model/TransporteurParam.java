@@ -25,8 +25,8 @@ public class TransporteurParam implements Serializable {
     @Column(name = "nom", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String nom;
 
-    @Column(name = "email", nullable = true, columnDefinition = "NVARCHAR(255)")
-    private String email;
+    @Column(name = "adresse", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String adresse;
 
     @Column(name = "tel", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String tel;
@@ -36,6 +36,8 @@ public class TransporteurParam implements Serializable {
 
     @Column(name = "identifiant", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String identifiant;
+    @Column(name = "numero_autorisation", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String numero_autorisation;
 
     @Column(name = "deleteDateTime", nullable = true)
     private Date deleteDateTime;
@@ -72,12 +74,12 @@ public class TransporteurParam implements Serializable {
         this.nom = nom;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public String getTel() {
@@ -131,4 +133,13 @@ public class TransporteurParam implements Serializable {
     public void setDeleteDateTime(Date deleteDateTime) {
         this.deleteDateTime = deleteDateTime;
     }
+
+	public String getNumero_autorisation() {
+		return numero_autorisation;
+	}
+
+	public void setNumero_autorisation(String numero_autorisation) {
+		this.numero_autorisation = numero_autorisation;
+	}
+	
 }
