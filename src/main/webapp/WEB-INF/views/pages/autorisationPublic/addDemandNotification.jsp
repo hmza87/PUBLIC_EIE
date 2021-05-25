@@ -389,9 +389,16 @@
                                         </c:if>
 
                                         <c:forEach items="${zonnefranche}" var="t">
-                                            <option  <c:if
-                                                    test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
-                                                    value="${t[0] }">${t[1] }</option>
+                                            <option
+                                                    <c:if test="${champ_zf_et=='Zone franche'}">
+                                                        <c:if
+                                                                test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
+                                                    </c:if>
+                                                    <c:if test="${champ_zf_et!='Zone franche'}">
+                                                        <c:if
+                                                                test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                    </c:if>
+                                                    value="${t[0]}">${t[1]}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
