@@ -44,7 +44,7 @@
     }
 
     .tabsu {
-     pl-auto    padding-left: 50px;
+        pl-auto    padding-left: 50px;
         background-color: #045ab1 !important;
     }
 
@@ -115,7 +115,7 @@
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn2"
                             onclick="openCity(this, '2')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                       2. Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}
+                        2. Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}
                     </button>
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn3"
                             onclick="openCity(this, '3')"
@@ -152,7 +152,7 @@
                             onclick="openCity(this, '7')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'} white-space: normal;">
                         <%--<spring:message code="label.installationdelimination"/>--%>
-                            Installation d’élimination / valorisation
+                        Installation d’élimination / valorisation
                     </button>
                     <%--<button style="white-space: normal;" class="tablinks btn-primary btn my_tab" ${disabledBtnTab}
                             id="Btn8" onclick="openCity(this, '8')"
@@ -199,93 +199,93 @@
 
                         <div class="row m-0 p-0 mt-5">
                             <c:if test="${!type.equals('ZF')}">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Nom de l'exportateur Notifiant</label>
-                                    <input class="form-control" type="text" name="nom" value="${notification.nom}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Télécopie</label>
-                                    <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Personne à contacter</label>
-                                    <input class="form-control" type="text" name="personne" value="${notification.personne}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Tél</label>
-                                    <input class="form-control" type="text" name="tel" value="${notification.tel}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>courrier électronique</label>
-                                    <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Adresse</label>
-                                    <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
-                                </div>
-                            </div>
-
-                            <hr class="w-100">
-                            </c:if>
-
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label><spring:message code="label.Numerodenotification"/></label>
-                                        <c:choose>
-                                            <c:when test="${typeRenouv=='N'}">
-                                                <input class="form-control" name="num_notification" id="num_notifications"
-                                                       value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
-                                                       onchange="checkNumNotif('${type }')" ${disabled}>
-                                            </c:when>
-                                            <c:when test="${typeRenouv=='R'}">
-                                                <input class="form-control" name="num_notification" id="num_notifications"
-                                                       value="${notification.num_notification}"
-                                                       onchange="checkNumNotifRenouv('${type }',this)" ${disabled}>
-                                            </c:when>
-                                        </c:choose>
-
+                                        <label>Nom de l'exportateur Notifiant</label>
+                                        <input class="form-control" type="text" name="nom" value="${notification.nom}">
                                     </div>
-
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label><spring:message code="label.Classificationdesdechets"/> </label>
-                                        <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
-                                            <select name="classification_id" id="Classification" ${disabled}
-                                                    onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
-                                                    class="form-control select2" data-width="100%">
-                                                <option value=""><spring:message code="option.Choisir"/></option>
-                                                <c:forEach items="${classification}" var="t">
-                                                    <option  <c:if
-                                                            test="${notification.classification.id_classification== t[0]}"> selected </c:if>
-                                                            value="${t[0] }">${t[1] }</option>
-                                                </c:forEach>
-                                            </select>
-                                        </c:if>
-                                        <c:if test="${type.equals('ET') }">
-                                            <select name="classification_id" id="Classification"
-                                                ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
-                                                    onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
-                                                    class="form-control select2" data-width="100%">
-                                                <option value="" selected><spring:message code="label.choisir"/></option>
-
-                                                <option ${not empty notification?'selected':''} value="2"><spring:message
-                                                        code="label.nondangereux"/></option>
-
-                                            </select>
-                                        </c:if>
+                                        <label>Télécopie</label>
+                                        <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
                                     </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Personne à contacter</label>
+                                        <input class="form-control" type="text" name="personne" value="${notification.personne}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Tél</label>
+                                        <input class="form-control" type="text" name="tel" value="${notification.tel}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>courrier électronique</label>
+                                        <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Adresse</label>
+                                        <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
+                                    </div>
+                                </div>
+
+                                <hr class="w-100">
+                            </c:if>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.Numerodenotification"/></label>
+                                    <c:choose>
+                                        <c:when test="${typeRenouv=='N'}">
+                                            <input class="form-control" name="num_notification" id="num_notifications"
+                                                   value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
+                                                   onchange="checkNumNotif('${type }')" ${disabled}>
+                                        </c:when>
+                                        <c:when test="${typeRenouv=='R'}">
+                                            <input class="form-control" name="num_notification" id="num_notifications"
+                                                   value="${notification.num_notification}"
+                                                   onchange="checkNumNotifRenouv('${type }',this)" ${disabled}>
+                                        </c:when>
+                                    </c:choose>
 
                                 </div>
+
+                                <div class="form-group">
+                                    <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                    <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
+                                        <select name="classification_id" id="Classification" ${disabled}
+                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                class="form-control select2" data-width="100%">
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                            <c:forEach items="${classification}" var="t">
+                                                <option  <c:if
+                                                        test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                                        value="${t[0] }">${t[1] }</option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${type.equals('ET') }">
+                                        <select name="classification_id" id="Classification"
+                                            ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
+                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                class="form-control select2" data-width="100%">
+                                            <option value="" selected><spring:message code="label.choisir"/></option>
+
+                                            <option ${not empty notification?'selected':''} value="2"><spring:message
+                                                    code="label.nondangereux"/></option>
+
+                                        </select>
+                                    </c:if>
+                                </div>
+
+                            </div>
 
 
                             <div class="col-6">
@@ -339,21 +339,21 @@
                         <div class="row m-0 p-0 mt-2">
 
 
-                                    <div class="col-6">
-                                        <div class="form-group">
+                            <div class="col-6">
+                                <div class="form-group">
 
-                                            <label><spring:message code="label.code"/></label>
-                                            <select name="code_id" id="code" ${disabled}
-                                                    onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
-                                                    class="form-control select2" data-width="100%">
-                                                <c:if test="${notification!= null}">
-                                                    <option value="">${notification.code.nom_fr}</option>
-                                                </c:if>
-                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                    <label><spring:message code="label.code"/></label>
+                                    <select name="code_id" id="code" ${disabled}
+                                            onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
+                                            class="form-control select2" data-width="100%">
+                                        <c:if test="${notification!= null}">
+                                            <option value="">${notification.code.nom_fr}</option>
+                                        </c:if>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
 
-                                            </select>
-                                        </div>
-                                    </div>
+                                    </select>
+                                </div>
+                            </div>
 
 
 
@@ -855,170 +855,170 @@
                 <div id="4" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.transporteurprevu"/></h4>
 
-                            <div class="row m-0 p-0 mt-3" id="divTableTranport">
-                                <div class="col-12">
-                                    <form id="formTransporteur" name="formTransporteur" class="w-100" ">
-                                        <div class="row m-0 p-0">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label> </label><input type="hidden" name="id_notification"
-                                                                           id="id_notification4"
-                                                                           value="${notification.id_notification}">
-                                                    <select name="id_transporteur" id="id_Transporteur"
-                                                            class="form-control select2"
-                                                            data-width="100%">
-                                                        <option value="">Déclarer votre transporteur</option>
-                                                        <c:forEach items="${Transporteur_liste}" var="t">
-                                                            <option value="${t[0] }">${t[1] }</option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group mt-4">
-
-                                                    <button type="button"
-                                                            onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
-                                                            class="btn btn-success">
-                                                        <spring:message code="button.ajouter"/>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <table id="tableProfils"
-                                           class="table my_table table-striped hover compact table-bordered text-md-nowrap">
-                                        <thead class="thead-bleu">
-                                        <tr>
-                                            <th class=""><spring:message code="label.nom"/></th>
-
-
-                                            <th class=""><spring:message code="label.identifiantfiscal"/></th>
-                                            <%--<th class="">Adresse</th>--%>
-                                            <th class=""><spring:message code="label.telephone"/></th>
-                                            <th class=""><spring:message code="label.Fax"/></th>
-                                            <th class=""><spring:message code="label.email"/></th>
-
-                                            <%--<th class=""><spring:message code="label.Action"/></th>--%>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="tbodyTransporteur">
-                                        <c:forEach items="${notification.transporteur}" var="Tr_l">
-
-                                            <tr>
-                                                <td>${Tr_l.nom} </td>
-
-
-                                                <td>${Tr_l.identifiant} </td>
-                                                    <%--<td>${Tr_l.adresse} </td>--%>
-                                                <td>${Tr_l.tel} </td>
-                                                <td>${Tr_l.fax} </td>
-                                                <td>${Tr_l.email} </td>
-
-                                                <%--<td class="">
-                                                    <ul class="list-inline m-0">
-                                                        <li class="list-inline-item">
-                                                            <button onclick="delete_tr(this)"
-                                                                    class="btn btn-danger btn-sm rounded-circle tab_trash"
-                                                                    type="button" data-toggle="tooltip" data-placement="top"
-                                                                    title="Supprimer">
-                                                                <div class="icon_trash_1">
-                                                                    <svg version="1.1" id="Capa_1"
-                                                                         xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                         width="20px" height="20px" viewBox="0 0 489.74 489.74"
-                                                                         style="enable-background:new 0 0 489.74 489.74;"
-                                                                         xml:space="preserve">
-                                                             <g>
-                                                                 <g>
-                                                                     <path d="M399.179,67.285l-74.794,0.033L324.356,0L166.214,0.066l0.029,67.318l-74.802,0.033l0.025,62.914h307.739L399.179,67.285z
-                                                                    M198.28,32.11l94.03-0.041l0.017,35.262l-94.03,0.041L198.28,32.11z"/>
-                                                                     <path d="M91.465,490.646h307.739V146.359H91.465V490.646z M317.461,193.372h16.028v250.259h-16.028V193.372L317.461,193.372z
-                                                                    M237.321,193.372h16.028v250.259h-16.028V193.372L237.321,193.372z M157.18,193.372h16.028v250.259H157.18V193.372z"/>
-                                                                 </g>
-                                                             </g>
-                                                           </svg>
-                                                                </div>
-                                                                <div class="icon_trash_2 d-none">
-                                                                    <svg version="1.1" id="Capa_1"
-                                                                         xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                         width="20px" height="20px" viewBox="0 0 489.74 489.74"
-                                                                         style="enable-background:new 0 0 489.74 489.74;"
-                                                                         xml:space="preserve">
-                                                             <g>
-                                                                 <g>
-                                                                     <path d="M361.051,199.929H102.01V489.74h259.041V199.929L361.051,199.929z M170.818,450.163h-13.492V239.505h13.492V450.163z
-                                                                    M238.276,450.163h-13.492V239.505h13.492V450.163z M305.734,450.163h-13.492V239.505h13.492V450.163z"/>
-                                                                     <path d="M387.73,145.959l-52.74-30.672l28.129-48.365L248.047,0l-28.127,48.362l-56.113-32.634l-26.678,45.875l223.922,130.231
-                                                                   L387.73,145.959z M257.808,36.891l68.421,39.792l-14.564,25.038L243.241,61.93L257.808,36.891z"/>
-                                                                 </g>
-                                                             </g>
-                                                           </svg>
-                                                                </div>
-                                                            </button>
-                                                        </li>
-                                                    </ul>
-                                                </td>--%>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
+                    <div class="row m-0 p-0 mt-3" id="divTableTranport">
+                        <div class="col-12">
+                            <form id="formTransporteur" name="formTransporteur" class="w-100" ">
+                            <div class="row m-0 p-0">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> </label><input type="hidden" name="id_notification"
+                                                               id="id_notification4"
+                                                               value="${notification.id_notification}">
+                                        <select name="id_transporteur" id="id_Transporteur"
+                                                class="form-control select2"
+                                                data-width="100%">
+                                            <option value="">Déclarer votre transporteur</option>
+                                            <c:forEach items="${Transporteur_liste}" var="t">
+                                                <option value="${t[0] }">${t[1] }</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-6">
+                                    <div class="form-group mt-4">
 
-                            <div class="row">
-                                <div class="col-12 p-0">
-                                    <div class="row justify-content-center mt-3 mb-5">
-                                        <div class="col-md-2 col-sm-6">
-                                            <button type="button"
-                                                    onclick="openCity1('Btn3','3')"
-                                                    class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-2 col-sm-6">
-                                            <c:choose>
-                                                <c:when test="${type.equals('ZF')}">
-                                                    <button type="button" id=""
-                                                            onclick="openCity1('Btn6','6')" class="btn btn-success btn-block">
-                                                        <spring:message code="button.Suivant"/>
-                                                    </button>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <button type="button" id=""
-                                                            onclick="openCity1('Btn55','55')" class="btn btn-success btn-block">
-                                                        <spring:message code="button.Suivant"/>
-                                                    </button>
-                                                </c:otherwise>
-                                            </c:choose>
+                                        <button type="button"
+                                                onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
+                                                class="btn btn-success">
+                                            <spring:message code="button.ajouter"/>
+                                        </button>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            </form>
+                            <table id="tableProfils"
+                                   class="table my_table table-striped hover compact table-bordered text-md-nowrap">
+                                <thead class="thead-bleu">
+                                <tr>
+                                    <th class=""><spring:message code="label.nom"/></th>
+
+
+                                    <th class=""><spring:message code="label.identifiantfiscal"/></th>
+                                    <%--<th class="">Adresse</th>--%>
+                                    <th class=""><spring:message code="label.telephone"/></th>
+                                    <th class=""><spring:message code="label.Fax"/></th>
+                                    <th class=""><spring:message code="label.email"/></th>
+
+                                    <%--<th class=""><spring:message code="label.Action"/></th>--%>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyTransporteur">
+                                <c:forEach items="${notification.transporteur}" var="Tr_l">
+
+                                    <tr>
+                                        <td>${Tr_l.nom} </td>
+
+
+                                        <td>${Tr_l.identifiant} </td>
+                                            <%--<td>${Tr_l.adresse} </td>--%>
+                                        <td>${Tr_l.tel} </td>
+                                        <td>${Tr_l.fax} </td>
+                                        <td>${Tr_l.email} </td>
+
+                                            <%--<td class="">
+                                                <ul class="list-inline m-0">
+                                                    <li class="list-inline-item">
+                                                        <button onclick="delete_tr(this)"
+                                                                class="btn btn-danger btn-sm rounded-circle tab_trash"
+                                                                type="button" data-toggle="tooltip" data-placement="top"
+                                                                title="Supprimer">
+                                                            <div class="icon_trash_1">
+                                                                <svg version="1.1" id="Capa_1"
+                                                                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                     width="20px" height="20px" viewBox="0 0 489.74 489.74"
+                                                                     style="enable-background:new 0 0 489.74 489.74;"
+                                                                     xml:space="preserve">
+                                                         <g>
+                                                             <g>
+                                                                 <path d="M399.179,67.285l-74.794,0.033L324.356,0L166.214,0.066l0.029,67.318l-74.802,0.033l0.025,62.914h307.739L399.179,67.285z
+                                                                M198.28,32.11l94.03-0.041l0.017,35.262l-94.03,0.041L198.28,32.11z"/>
+                                                                 <path d="M91.465,490.646h307.739V146.359H91.465V490.646z M317.461,193.372h16.028v250.259h-16.028V193.372L317.461,193.372z
+                                                                M237.321,193.372h16.028v250.259h-16.028V193.372L237.321,193.372z M157.18,193.372h16.028v250.259H157.18V193.372z"/>
+                                                             </g>
+                                                         </g>
+                                                       </svg>
+                                                            </div>
+                                                            <div class="icon_trash_2 d-none">
+                                                                <svg version="1.1" id="Capa_1"
+                                                                     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                     width="20px" height="20px" viewBox="0 0 489.74 489.74"
+                                                                     style="enable-background:new 0 0 489.74 489.74;"
+                                                                     xml:space="preserve">
+                                                         <g>
+                                                             <g>
+                                                                 <path d="M361.051,199.929H102.01V489.74h259.041V199.929L361.051,199.929z M170.818,450.163h-13.492V239.505h13.492V450.163z
+                                                                M238.276,450.163h-13.492V239.505h13.492V450.163z M305.734,450.163h-13.492V239.505h13.492V450.163z"/>
+                                                                 <path d="M387.73,145.959l-52.74-30.672l28.129-48.365L248.047,0l-28.127,48.362l-56.113-32.634l-26.678,45.875l223.922,130.231
+                                                               L387.73,145.959z M257.808,36.891l68.421,39.792l-14.564,25.038L243.241,61.93L257.808,36.891z"/>
+                                                             </g>
+                                                         </g>
+                                                       </svg>
+                                                            </div>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </td>--%>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <div class="row justify-content-center mt-3 mb-5">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="openCity1('Btn3','3')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <c:choose>
+                                        <c:when test="${type.equals('ZF')}">
+                                            <button type="button" id=""
+                                                    onclick="openCity1('Btn6','6')" class="btn btn-success btn-block">
+                                                <spring:message code="button.Suivant"/>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button type="button" id=""
+                                                    onclick="openCity1('Btn55','55')" class="btn btn-success btn-block">
+                                                <spring:message code="button.Suivant"/>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>
                 <%--********************Tab4_2***************************--%>
                 <div id="5" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.transporteur"/></h4>
-                        <div id="row_from_groupe" class="mb-5">
-                            <div class="row m-0 p-0">
-                                <div class="col-12 p-0 table-responsive">
-                                    <table class="table my_table table-bordered table-striped table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center"> Raison Social</th>
-                                            <th class="text-center"> Matricule</th>
-                                            <th class="text-center"> Type de transport</th>
-                                            <th class="text-center"> Assurance</th>
-                                            <th class="text-center"> Adresse</th>
-                                            <th class="text-center"> Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:if test="${not empty notification.transporteur_etranger}">
-                                            <c:forEach items="${notification.transporteur_etranger}" var="trans">
-                                                <c:if test="${trans.type=='tn'}">
+                    <div id="row_from_groupe" class="mb-5">
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0 table-responsive">
+                                <table class="table my_table table-bordered table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center"> Raison Social</th>
+                                        <th class="text-center"> Matricule</th>
+                                        <th class="text-center"> Type de transport</th>
+                                        <th class="text-center"> Assurance</th>
+                                        <th class="text-center"> Adresse</th>
+                                        <th class="text-center"> Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:if test="${not empty notification.transporteur_etranger}">
+                                        <c:forEach items="${notification.transporteur_etranger}" var="trans">
+                                            <c:if test="${trans.type=='tn'}">
                                                 <tr id="tr_${trans.id_TransporteurEtranger}">
                                                     <td>${trans.raison_social}</td>
                                                     <td>${trans.num_matricule}</td>
@@ -1031,69 +1031,69 @@
                                                     <td class="text-center">
                                                         <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','nationale')"
                                                                 class="btn btn-danger rounded-circle"><span
-                                                                class="fa fa-trash-alt"></span></button>
+                                                                class="fas fa-trash"></span></button>
                                                         <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','nationale')"
                                                                 class="btn btn-warning rounded-circle"><span
-                                                                class="fa fa-pen"></span></button>
+                                                                class="fa fa-pencil"></span></button>
                                                     </td>
                                                 </tr>
-                                                </c:if>
-                                            </c:forEach>
-                                        </c:if>
-                                        <c:if test="${empty notification.transporteur_etranger}">
-                                            <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
-                                        </c:if>
-                                        </tbody>
-                                    </table>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${empty notification.transporteur_etranger}">
+                                        <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
+                                    </c:if>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Raison Sociale </label>
+                                    <input type="text" id="raison_social_n" class="form-control">
                                 </div>
                             </div>
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Raison Sociale </label>
-                                        <input type="text" id="raison_social_n" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Matricule </label>
-                                        <input type="text" id="num_matriule_n" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Type de transport </label>
-                                        <input type="text" id="type_vehicule_n" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12 ">
-                                    <div class="form-group">
-                                        <label> Assurance </label>
-                                        <input type="File" id="doc_assurance_n" class="form-control">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Adresse </label>
-                                        <input type="text" id="adresseTr_n" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-sm-6 col-md-3">
-                                    <input type="hidden" value="0" id="id_trans_n">
-                                    <button class="btn btn-success btn-block"
-                                            onclick="ajouterTranporteur_EtrangerNational('id_notification')">Enregistrer
-                                        transporteur
-                                    </button>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Matricule </label>
+                                    <input type="text" id="num_matriule_n" class="form-control">
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Type de transport </label>
+                                    <input type="text" id="type_vehicule_n" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 ">
+                                <div class="form-group">
+                                    <label> Assurance </label>
+                                    <input type="File" id="doc_assurance_n" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <label> Adresse </label>
+                                    <input type="text" id="adresseTr_n" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-6 col-md-3">
+                                <input type="hidden" value="0" id="id_trans_n">
+                                <button class="btn btn-success btn-block"
+                                        onclick="ajouterTranporteur_EtrangerNational('id_notification')">Enregistrer
+                                    transporteur
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="row justify-content-center mt-3 mb-5">
@@ -1136,26 +1136,26 @@
                 <%--********************Tab55***************************--%>  <%--********************Tab4_2***************************--%>
                 <div id="55" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.transporteur"/></h4>
-                          <div id="row_from_groupe_port" class="mb-5">
-                            <div class="row m-0 p-0">
-                                <div class="col-12 p-0 table-responsive">
-                                    <table class="table my_table table-bordered table-striped table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center"> Raison Social</th>
-                                            <th class="text-center"> Matricule</th>
-                                            <th class="text-center"> Type de transport</th>
-                                            <th class="text-center"> Assurance</th>
-                                            <th class="text-center"> Adresse</th>
-                                            <th class="text-center"> Port</th>
-                                            <th class="text-center"> Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:if test="${not empty notification.transporteur_etranger}">
-                                            <c:forEach items="${notification.transporteur_etranger}" var="trans">
-                                                <c:if test="${trans.type=='ti'}">
-                                                <tr id="trr_${trans.id_TransporteurEtranger}">
+                    <div id="row_from_groupe_port" class="mb-5">
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0 table-responsive">
+                                <table class="table my_table table-bordered table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center"> Raison Social</th>
+                                        <th class="text-center"> Matricule</th>
+                                        <th class="text-center"> Type de transport</th>
+                                        <th class="text-center"> Assurance</th>
+                                        <th class="text-center"> Adresse</th>
+                                        <th class="text-center"> Port</th>
+                                        <th class="text-center"> Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:if test="${not empty notification.transporteur_etranger}">
+                                        <c:forEach items="${notification.transporteur_etranger}" var="trans">
+                                            <c:if test="${trans.type=='ti'}">
+                                                <tr>
                                                     <td>${trans.raison_social}</td>
                                                     <td>${trans.num_matricule}</td>
                                                     <td>${trans.typeVehicule}</td>
@@ -1164,19 +1164,23 @@
                                                            class="btn btn-primary btn-sm"> <span
                                                             class="fa fa-download"></span> Assurance</a></td>
                                                     <td>${trans.adresse}</td>
-                                                    <td>
+                                                    <td><c:if test="${empty trans.port}">
+                                                        Aucun port
+                                                    </c:if>
+                                            <c:if test="${not empty trans.port}">
                                                         <button class="btn btn-primary  btn-sm"
                                                                 onclick="fun_affiche_modal('#modal_DetailPort','${trans.id_TransporteurEtranger}')">
                                                             Detail Port
                                                         </button>
+                                            </c:if>
                                                     </td>
                                                     <td class="text-center">
                                                         <button onclick="delete_transp_etrang2('${trans.id_TransporteurEtranger}','id_notification','etranger')"
                                                                 class="btn btn-danger rounded-circle"><span
-                                                                class="fa fa-trash-alt"></span></button>
+                                                                class="fas fa-trash"></span></button>
                                                         <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','etranger')"
                                                                 class="btn btn-warning rounded-circle"><span
-                                                                class="fa fa-pen"></span></button>
+                                                                class="fa fa-pencil"></span></button>
                                                     </td>
                                                 </tr>
                                                 <div class="modal fade"
@@ -1231,82 +1235,82 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                </c:if>
-                                            </c:forEach>
-                                        </c:if>
-                                        <c:if test="${empty notification.transporteur_etranger}">
-                                            <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
-                                        </c:if>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${empty notification.transporteur_etranger}">
+                                        <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
+                                    </c:if>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
 
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Raison Social </label>
-                                        <input type="text" id="raison_social" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Matricule </label>
-                                        <input type="text" id="num_matriule" class="form-control">
-                                    </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Raison Social </label>
+                                    <input type="text" id="raison_social" class="form-control">
                                 </div>
                             </div>
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Type de transport </label>
-                                        <input type="text" id="type_vehicule" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12 ">
-                                    <div class="form-group">
-                                        <label> Assurance </label>
-                                        <input type="file" class="form-control" id="doc_assurance">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="form-group">
-                                        <label> Adresse </label>
-                                        <input type="text" id="adresseTr" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                              <div id="education_fields"></div>
-                              <div class="row mt-3 justify-content-center p-0">
-                                <div class="col-sm-8 nopadding">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="port[]"
-                                                   placeholder="Entrez Un Port">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success" type="button"
-                                                        onclick="education_fields();"><span class="fa fa-plus"
-                                                                                            aria-hidden="true"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-sm-6 col-md-3">
-                                    <input type="hidden" value="0" id="id_trans">
-                                    <button class="btn btn-success btn-block"
-                                            onclick="ajouterTranporteur_Etranger('id_notification')">Enregistrer
-                                        transporteur
-                                    </button>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Matricule </label>
+                                    <input type="text" id="num_matriule" class="form-control">
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label> Type de transport </label>
+                                    <input type="text" id="type_vehicule" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 ">
+                                <div class="form-group">
+                                    <label> Assurance </label>
+                                    <input type="file" class="form-control" id="doc_assurance">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <label> Adresse </label>
+                                    <input type="text" id="adresseTr" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="education_fields"></div>
+                        <div class="row mt-3 justify-content-center p-0">
+                            <div class="col-sm-8 nopadding">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="port[]"
+                                               placeholder="Entrez Un Port">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success" type="button"
+                                                    onclick="education_fields();"><span class="fa fa-plus"
+                                                                                        aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-6 col-md-3">
+                                <input type="hidden" value="0" id="id_trans">
+                                <button class="btn btn-success btn-block"
+                                        onclick="ajouterTranporteur_Etranger('id_notification')">Enregistrer
+                                    transporteur
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="row justify-content-center mt-3 mb-5">
@@ -1477,7 +1481,7 @@
 
                     <h4 class="titre_abs ">
                         Installation d’élimination / valorisation
-                       <%-- <spring:message code="label.installationdelimination"/>--%>
+                        <%-- <spring:message code="label.installationdelimination"/>--%>
                     </h4>
 
                     <form id="formeliminateur" name="formeliminateur">
@@ -2140,28 +2144,28 @@
 
 <script>
     function updateRegion(value) {
-    event.preventDefault();
-    if(value!=0){
-        $.ajax({
-            url: '/api/UpdateRegion',
-            type: 'post',
-            data: {
-                "id": $("#id_notification").val(),
-                "regionId": value
-            },
-        })
-            .done(function (response) {
-                console.log(response);
+        event.preventDefault();
+        if(value!=0){
+            $.ajax({
+                url: '/api/UpdateRegion',
+                type: 'post',
+                data: {
+                    "id": $("#id_notification").val(),
+                    "regionId": value
+                },
             })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
-    }
+                .done(function (response) {
+                    console.log(response);
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+        }
 
-}
+    }
 
     function updatePrefecture(value) {
         event.preventDefault();
@@ -2187,7 +2191,7 @@
     }
 
 
-$(document).ready(function(){
+    $(document).ready(function(){
         $("#defaultOpen").click();
     });
     function checkNumNotifRenouv(type, val) {

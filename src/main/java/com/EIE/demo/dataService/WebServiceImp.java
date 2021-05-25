@@ -1027,6 +1027,13 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void deletePort(int id, int id_trans) {
+		final String uri = urlRest+"/deletePortRest/"+id +"/"+id_trans;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uri,String.class);
+	}
+
+	@Override
 	public TransporteurEtranger getTransporteurEtrangerById(int id_trans) {
 		final String uri = urlRest+"/getTransporteurEtrangerByIdRest/"+id_trans ;
 		RestTemplate restTemplate = new RestTemplate();

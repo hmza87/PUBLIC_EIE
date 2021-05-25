@@ -512,7 +512,21 @@ function ajouterTranporteur_Etranger(id_name) {
         });
 
 }
+function removePort(btn,id,id_trans){
+    $.ajax({
+        url: '/api/deletePort/' + id +'/'+id_trans,
+        type: 'POST',
+        data: {},
+    })
+        .success(function (data) {
+            console.log(data);
+            $("#"+btn).hide();
+        })
+        .error(function () {
+            console.log("error");
+        })
 
+}
 function ajouterTranporteur_EtrangerNational(id_name) {
 
     event.preventDefault();

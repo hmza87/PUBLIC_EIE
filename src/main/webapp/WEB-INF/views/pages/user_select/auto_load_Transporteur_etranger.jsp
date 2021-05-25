@@ -24,61 +24,64 @@
       <c:if test="${not empty transporteur_etranger}">
         <c:forEach items="${transporteur_etranger}" var="trans">
           <c:if test="${trans.type=='ti'}">
-          <tr id="trr_${trans.id_TransporteurEtranger}">
-            <td>${trans.raison_social}</td>
-            <td>${trans.num_matricule}</td>
-            <td>${trans.typeVehicule}</td>
-            <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span> <spring:message code="label.Assurance"/> </a> </td>
-            <td>${trans.adresse}</td>
-            <td> <button class="btn btn-primary  btn-sm"
-                         onclick="fun_affiche_modal('#modal_DetailPort','${trans.id_TransporteurEtranger}')">
-              <spring:message code="label.DetailPort"/>
-            </button> </td>
-            <td class="text-center">
-              <button  onclick="delete_transp_etrang2('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-danger rounded-circle"><span class="fa fa-trash-alt"></span></button>
-              <button  onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-warning rounded-circle"><span class="fa fa-pen"></span></button>
-            </td>
-          </tr>
-          <div class="modal fade" id="modal_DetailPort_${trans.id_TransporteurEtranger}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: none">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title"><spring:message code="label.DetailPort"/></h5>
-                  <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="row justify-content-center">
-                    <div class="col-10">
-                      <div class="row " style="background: gray;color: white;border-color: #737373;" >
-                        <div class="col-6 border p-2 font_bold  btn-gris">
-                          #
+            <tr id="trr_${trans.id_TransporteurEtranger}">
+              <td>${trans.raison_social}</td>
+              <td>${trans.num_matricule}</td>
+              <td>${trans.typeVehicule}</td>
+              <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span> <spring:message code="label.Assurance"/> </a> </td>
+              <td>${trans.adresse}</td>
+              <td><c:if test="${empty trans.port}">
+                Aucun port
+              </c:if>
+              <c:if test="${ not empty trans.port}"><button class="btn btn-primary  btn-sm"
+                           onclick="fun_affiche_modal('#modal_DetailPort','${trans.id_TransporteurEtranger}')">
+                <spring:message code="label.DetailPort"/>
+              </button> </c:if></td>
+              <td class="text-center">
+                <button  onclick="delete_transp_etrang2('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-danger rounded-circle"><span class="fas fa-trash"></span></button>
+                <button  onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-warning rounded-circle"><span class="fa fa-pencil"></span></button>
+              </td>
+            </tr>
+            <div class="modal fade" id="modal_DetailPort_${trans.id_TransporteurEtranger}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: none">
+              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title"><spring:message code="label.DetailPort"/></h5>
+                    <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row justify-content-center">
+                      <div class="col-10">
+                        <div class="row " style="background: gray;color: white;border-color: #737373;" >
+                          <div class="col-6 border p-2 font_bold  btn-gris">
+                            #
+                          </div>
+                          <div class="col-6 border p-2 font_bold  btn-gris">
+                            <spring:message code="label.Port"/>
+                          </div>
                         </div>
-                        <div class="col-6 border p-2 font_bold  btn-gris">
-                          <spring:message code="label.Port"/>
-                        </div>
-                      </div>
 
-                      <c:forEach items="${trans.port}" var="xx" varStatus="loopp">
-                        <div class="row">
-                          <div class="col-6 border p-2">
-                              ${loopp.index+1}
+                        <c:forEach items="${trans.port}" var="xx" varStatus="loopp">
+                          <div class="row">
+                            <div class="col-6 border p-2">
+                                ${loopp.index+1}
+                            </div>
+                            <div class="col-6 border p-2">
+                                ${xx.nom_fr}
+                            </div>
                           </div>
-                          <div class="col-6 border p-2">
-                              ${xx.nom_fr}
-                          </div>
-                        </div>
-                      </c:forEach>
+                        </c:forEach>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button onclick="close_modal(this)" type="button" class="btn btn-secondary" data-dismiss="modal"> <spring:message code="label.Fermer"/> </button>
+                  <div class="modal-footer">
+                    <button onclick="close_modal(this)" type="button" class="btn btn-secondary" data-dismiss="modal"> <spring:message code="label.Fermer"/> </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </c:if>
         </c:forEach>
       </c:if>
@@ -143,14 +146,34 @@
 <div id="education_fields"></div>
 <div class="row mt-3 justify-content-center p-0">
   <div class="col-sm-8 nopadding">
-    <div class="form-group">
+    <c:if test="${empty one.port}">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" name="port[]"  placeholder="Entrez Un Port">
+          <div class="input-group-btn">
+            <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="fa fa-plus" aria-hidden="true"></span> </button>
+          </div>
+        </div>
+      </div>
+    </c:if>
+    <c:if test="${not empty one.port}">
+      <c:forEach items="${one.port}" var="p">
+        <div class="form-group" id="btn_${p.id_port}">
+          <div class="input-group">
+            <input type="text" class="form-control" name="port[]" value="${p.nom_fr}">
+            <div class="input-group-btn">
+              <button class="btn btn-danger" type="button"  onclick="removePort('btn_${p.id_port}','${p.id_port}', '${one.id_TransporteurEtranger}')"> <span class="fa fa-minus" aria-hidden="true"></span> </button>
+            </div>
+          </div>
+        </div>
+      </c:forEach>
       <div class="input-group">
         <input type="text" class="form-control" name="port[]"  placeholder="Entrez Un Port">
         <div class="input-group-btn">
           <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="fa fa-plus" aria-hidden="true"></span> </button>
         </div>
       </div>
-    </div>
+    </c:if>
   </div>
   <div class="clear"></div>
 </div>

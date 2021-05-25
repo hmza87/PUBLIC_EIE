@@ -30,8 +30,8 @@
             <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span>Assurance </a> </td>
             <td>${trans.adresse}</td>
             <td class="text-center">
-              <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-danger rounded-circle"><span class="fa fa-trash-alt"></span></button>
-              <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-warning rounded-circle"><span class="fa fa-pen"></span></button>
+              <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-danger rounded-circle"><span class="fas fa-trash"></span></button>
+              <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-warning rounded-circle"><span class="fa fa-pencil"></span></button>
             </td>
           </tr>
           </c:if>
@@ -48,6 +48,7 @@
   <div class="col-md-4 col-sm-12">
     <div class="form-group">
       <label> <spring:message code="label.Raisonsocial"/> </label>
+      <input type="hidden" id="id_TransporteurEtranger" class="form-control" value="${one.id_TransporteurEtranger}">
       <input type="text" id="raison_social_n" class="form-control" value="${one.raison_social}">
     </div>
   </div>

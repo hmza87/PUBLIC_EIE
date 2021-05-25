@@ -29,7 +29,7 @@ public class TransporteurParam implements Serializable {
     private String adresse;
 
     @Column(name = "tel", nullable = true, columnDefinition = "NVARCHAR(255)")
-    private String tel; 
+    private String tel;
 
     @Column(name = "fax", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String fax;
