@@ -3427,7 +3427,7 @@ public class GeneratePDFDocuments {
             table3.addCell(saisir_cellule_transporteur_titre("Identifiant fiscale ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("teléphone", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Fax", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Email", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
             table3.completeRow();
             if (ns.getTransporteur() != null && ns.getTransporteur().size() > 0) {
                 for (TransporteurParam tp : ns.getTransporteur()) {
@@ -4278,7 +4278,7 @@ public class GeneratePDFDocuments {
             table3.addCell(saisir_cellule_transporteur_titre("Identifiant fiscale ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("teléphone", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Fax", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Email", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
             table3.completeRow();
             if (ns.getTransporteur() != null && ns.getTransporteur().size() > 0) {
                 for (TransporteurParam tp : ns.getTransporteur()) {
