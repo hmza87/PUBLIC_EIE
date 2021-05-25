@@ -1018,7 +1018,8 @@
                                         <tbody>
                                         <c:if test="${not empty notification.transporteur_etranger}">
                                             <c:forEach items="${notification.transporteur_etranger}" var="trans">
-                                                <tr>
+                                                <c:if test="${trans.type=='tn'}">
+                                                <tr id="tr_${trans.id_TransporteurEtranger}">
                                                     <td>${trans.raison_social}</td>
                                                     <td>${trans.num_matricule}</td>
                                                     <td>${trans.typeVehicule}</td>
@@ -1036,6 +1037,7 @@
                                                                 class="fa fa-pen"></span></button>
                                                     </td>
                                                 </tr>
+                                                </c:if>
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty notification.transporteur_etranger}">
@@ -1152,7 +1154,8 @@
                                         <tbody>
                                         <c:if test="${not empty notification.transporteur_etranger}">
                                             <c:forEach items="${notification.transporteur_etranger}" var="trans">
-                                                <tr>
+                                                <c:if test="${trans.type=='ti'}">
+                                                <tr id="trr_${trans.id_TransporteurEtranger}">
                                                     <td>${trans.raison_social}</td>
                                                     <td>${trans.num_matricule}</td>
                                                     <td>${trans.typeVehicule}</td>
@@ -1168,7 +1171,7 @@
                                                         </button>
                                                     </td>
                                                     <td class="text-center">
-                                                        <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','etranger')"
+                                                        <button onclick="delete_transp_etrang2('${trans.id_TransporteurEtranger}','id_notification','etranger')"
                                                                 class="btn btn-danger rounded-circle"><span
                                                                 class="fa fa-trash-alt"></span></button>
                                                         <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','etranger')"
@@ -1228,6 +1231,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </c:if>
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty notification.transporteur_etranger}">

@@ -23,7 +23,8 @@
       <tbody>
       <c:if test="${not empty transporteur_etranger}">
         <c:forEach items="${transporteur_etranger}" var="trans">
-          <tr>
+          <c:if test="${trans.type=='ti'}">
+          <tr id="trr_${trans.id_TransporteurEtranger}">
             <td>${trans.raison_social}</td>
             <td>${trans.num_matricule}</td>
             <td>${trans.typeVehicule}</td>
@@ -34,7 +35,7 @@
               <spring:message code="label.DetailPort"/>
             </button> </td>
             <td class="text-center">
-              <button  onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-danger rounded-circle"><span class="fa fa-trash-alt"></span></button>
+              <button  onclick="delete_transp_etrang2('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-danger rounded-circle"><span class="fa fa-trash-alt"></span></button>
               <button  onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','etranger')" class="btn btn-warning rounded-circle"><span class="fa fa-pen"></span></button>
             </td>
           </tr>
@@ -78,6 +79,7 @@
               </div>
             </div>
           </div>
+          </c:if>
         </c:forEach>
       </c:if>
       <c:if test="${empty transporteur_etranger}">
@@ -120,7 +122,7 @@
             <input type="File" id="doc_assurance" class="form-control">
           </div>
           <div class="col-2 pr-1">
-            <a href="${url_Admin}${fn:replace(one.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary rounded "><span class="fa fa-download"></span></a>
+            <a id="btn_downolad2" href="${url_Admin}${fn:replace(one.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary rounded "><span class="fa fa-download"></span></a>
           </div>
         </div>
       </c:if>

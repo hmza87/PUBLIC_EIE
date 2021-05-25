@@ -478,7 +478,7 @@ function ajouterTranporteur_Etranger(id_name) {
     data.append("port", port);
 
     var ins = document.getElementById("doc_assurance").files.length;
-    if (ins == 0) {
+    if (ins == 0 && !$("#btn_downolad2").is(":visible")) {
         swal("Avertissement ! ", "Le fichier est obligatoire", 'error');
         return false;
     }
@@ -486,7 +486,7 @@ function ajouterTranporteur_Etranger(id_name) {
     for (var x = 0; x < ins; x++) {
         var file = document.getElementById("doc_assurance").files[x];
         if (file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-            swal("Alert", "Type de ficier non pris en charge", "error");
+            swal("Alert", "Type de fichier non pris en charge", "error");
             return false;
         }
         data.append("fileToUpload", file);
@@ -569,7 +569,7 @@ function ajouterTranporteur_EtrangerNational(id_name) {
 
 }
 
-function delete_transp_etrang(id, id_name, type) {
+function delete_transp_etrang(id, id_name, type){
     var id_notif = $("#" + id_name).val();
     $.ajax({
         url: '/api/deleteTransporteuretranger/' + id_notif + '/' + id + "/" + type,
@@ -584,6 +584,7 @@ function delete_transp_etrang(id, id_name, type) {
                 },
                 function () {
                     $("#row_from_groupe").html(data);
+                    $("#tr_"+id).hide();
                 });
 
         })
@@ -595,6 +596,34 @@ function delete_transp_etrang(id, id_name, type) {
         });
 
 }
+function delete_transp_etrang2(id, id_name, type) {
+    var id_notif = $("#" + id_name).val();
+    $.ajax({
+        url: '/api/deleteTransporteuretranger/' + id_notif + '/' + id + "/" + type,
+        type: 'POST',
+        data: {},
+    })
+        .done(function (data) {
+            swal({
+                    title: "Suppression ",
+                    text: "Le transporteurs à été supprimer avec succès",
+                    type: "success",
+                },
+                function () {
+                    $("#row_from_groupe_port").html(data);
+                    $("#trr_"+id).hide();
+                });
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
+}
+
 
 function edit_transp_trang(id, id_name, type) {
     var id_notif = $("#" + id_name).val();

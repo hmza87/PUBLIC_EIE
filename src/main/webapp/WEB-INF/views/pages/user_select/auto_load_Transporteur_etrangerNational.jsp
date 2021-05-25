@@ -22,7 +22,8 @@
       <tbody>
       <c:if test="${not empty transporteur_etranger}">
         <c:forEach items="${transporteur_etranger}" var="trans">
-          <tr>
+          <c:if test="${trans.type=='tn'}">
+          <tr id="tr_${trans.id_TransporteurEtranger}">
             <td>${trans.raison_social}</td>
             <td>${trans.num_matricule}</td>
             <td>${trans.typeVehicule}</td>
@@ -33,6 +34,7 @@
               <button onclick="edit_transp_trang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-warning rounded-circle"><span class="fa fa-pen"></span></button>
             </td>
           </tr>
+          </c:if>
         </c:forEach>
       </c:if>
       <c:if test="${empty transporteur_etranger}">
