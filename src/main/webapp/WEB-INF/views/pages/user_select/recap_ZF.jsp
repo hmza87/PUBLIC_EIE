@@ -74,7 +74,7 @@
   <div class="row justify-content-center pl-3 pr-3">
     <div class="col-12">
       <div class="jumbotron p-3">
-      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68)?notification.statut.nom_fr:"en cours de traitement" } </span>
+      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68 || notification.statut.id_statut_projet==40)?notification.statut.nom_fr:"en cours de traitement" } </span>
       </div>
     </div>
   </div>
