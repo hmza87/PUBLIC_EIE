@@ -1215,4 +1215,23 @@ class WebServiceImp implements WebService {
 		return Arrays.asList(result);
 	}
 
+	@Override
+	public String saveDemandeAE(String id, MultipartFile[] fileToUpload, int compteId) {
+		final String uris = urlRest + "/saveDemandeAERest/"+id+"/"+compteId;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		if(fileToUpload.length>0)
+			bodyMapw.add("file",new FileSystemResource(convert(fileToUpload[0])));
+		else
+			bodyMapw.add("file",null);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
 }

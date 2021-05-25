@@ -1138,6 +1138,14 @@ public class Hatim {
 		return new ModelAndView("user_select/login7_autoload_accordion",model);
 	}
 
+	@RequestMapping(value = "/api/save_DemandeAE/{id}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public @ResponseBody String getProcedureAuto2(@PathVariable String id,@RequestParam MultipartFile[] fileToUpload) {
+		String s = webt.saveDemandeAE(id,fileToUpload,webt.getCompteConnected().getCompteId());
+		return s;
+	}
+
+
+
 
 
 

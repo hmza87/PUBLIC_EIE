@@ -813,11 +813,21 @@ public class DemandeInformation implements Serializable {
     @Column(name = "url_file_AE", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String url_file_AE;
 
+    @Column(name = "commentaire_url_file_AE", nullable = true, columnDefinition = "nText")
+    private String commentaire_url_file_AE;
+
     public String getUrl_file_AE() {
         return url_file_AE;
     }
     public void setUrl_file_AE(String url_file_AE) {
         this.url_file_AE = url_file_AE;
+    }
+
+    public String getCommentaire_url_file_AE() {
+        return commentaire_url_file_AE;
+    }
+    public void setCommentaire_url_file_AE(String commentaire_url_file_AE) {
+        this.commentaire_url_file_AE = commentaire_url_file_AE;
     }
     //***************************End Audit demande********************************//
 

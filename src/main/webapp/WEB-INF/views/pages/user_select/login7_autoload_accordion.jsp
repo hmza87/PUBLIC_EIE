@@ -55,9 +55,10 @@
                             </div>
                         </div>
                     </c:if>
+
                         ${(not empty d.description)?d.description:"Aucune Descritpion"}
                     <c:if test="${not empty d.uri}">
-                        <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                        <p>Liens pour télécharger le modèle: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                     </c:if>
                 </div>
             </c:forEach>

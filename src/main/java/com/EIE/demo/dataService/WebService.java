@@ -207,4 +207,6 @@ void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,Multi
 	List<TransporteurParam> search(String txt);
 
 	Notification changerEtat(int id_notification,String Type);
+    String saveDemandeAE(String id, MultipartFile[] fileToUpload, int compteId);
+
 }

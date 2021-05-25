@@ -171,66 +171,19 @@
                                         <%--information demandeur--%>
                                     <div class="row">
 
-                                        <div class=" col-md-6 col-sm-12">
+                                        <div class=" col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label ><spring:message code="label.Raisonsocial"/>   </label>
-                                                <input  value="${demande.raison_social}" required ${disabled} type="text" name="raison_social" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                            <div class="form-group">
-                                                <label><spring:message code="label.Representant"/> </label>
-                                                <input type="text" required value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
+                                                <label >Formulaire de la Demande </label>
+                                                <input required ${disabled} type="file" id="file_frm" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" row">
-                                        <div class=" col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Email"/></label>
-                                                <input value="${demande.email }" required ${disabled} type="text" name="email" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-4 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.tel"/>  </label>
-                                                <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Fax"/></label>
-                                                <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Adresse"/></label>
-                                                <input ${disabled} required value="${demande.adresse }" type="text" name="adresse" class="form-control" >
-                                            </div>
-                                        </div>
-                                    </div>
                                         <%--information Projet--%>
-                                    <c:if test="${demande.statut.id_statut_projet==13}">
-                                        <hr>
-                                        <div class="row">
-                                            <div class=" col form-group">
-                                                <label >Avis de projet </label>
-                                                <input required ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
-                                            </div>
-                                        </div>
-                                    </c:if>
+
                                     <div class="row justify-content-center p-0 mb-3">
                                         <div class="col-md-3 col-sm-12">
-                                            <c:if test="${demande.statut.id_statut_projet!=13}">
-                                                <button class="btn btn-success btn_suiv btn-block" onclick="addDemandeInfomration('formAvisProjet','${type}','${id}','#step1_2','#step_id1_2')">  <spring:message code="button.Suivant"/> </button>
-                                            </c:if>
-                                            <c:if test="${demande.statut.id_statut_projet==13}">
-                                                <button class="btn btn-success btn_suiv btn-block" onclick="set_avis_projet('#avis_projet','#id_demande_information')">  <spring:message code="button.Enregistrer"/> </button>
-                                            </c:if>
+                                            <button class="btn btn-success btn_suiv btn-block" onclick="Add_new_AE('${(not empty demande)?demande.id_demande_information:"0"}')">  <spring:message code="button.Enregistrer"/> </button>
                                         </div>
                                     </div>
                                 </form>

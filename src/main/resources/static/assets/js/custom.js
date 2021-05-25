@@ -1432,3 +1432,43 @@ function verifier_reg_pref(btn,id){
     openCity1(btn,id);
 }
 
+function Add_new_AE(id_dmd){
+    if(event!=null)
+        event.preventDefault();
+    var data = new FormData();
+    var ins = document.getElementById("file_frm").files.length;
+    if(ins==0){
+        swal("Avertissement ! ","le fichier est obligatoire","error");
+        return false;
+    }
+    for (var x = 0; x < ins; x++) {
+        data.append("fileToUpload", document.getElementById("file_frm").files[x]);
+    }
+
+    $.ajax({
+
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/save_DemandeAE/" + id_dmd,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+
+            swal({
+                    title: "Document envoyé ! ",
+                    text: "le document à été envoyé avec succès",
+                    type: "success",
+                },
+                function () {
+                    window.location.href = '/api/ListeEie/AE';
+                });
+
+        },
+        error: function () {
+
+        }
+    });
+}
+

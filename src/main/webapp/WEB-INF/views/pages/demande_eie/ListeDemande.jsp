@@ -41,318 +41,366 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                        <table style="width:100% !important; " id="tableProfils" class="table table-striped hover compact table-bordered text-md-nowrap">
-                            <thead class="">
-                            <tr>
-                                <th rowspan="2" ><spring:message code="label.NDemande"/> </th>
-                                <th rowspan="2" ><spring:message code="label.datedepot"/>  </th>
-                                <th rowspan="2" ><spring:message code="label.Statut"/></th>
-                                <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
-                                <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
-                                <th rowspan="2" ><spring:message code="label.Region"/></th>
-                                <th rowspan="2" ><spring:message code="label.Recap"/></th>
-                                <th rowspan="2" ><spring:message code="label.TypedeProjet"/></th>
-                                <th rowspan="2" > Date de Visite </th>
-                                <th rowspan="2" > Pv de visite </th>
-
-                                <c:if test="${type!='NT'}">
-                                    <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
-                                </c:if>
-                                <c:if test="${type=='NT'}">
-                                    <th rowspan="2" > Type du projet </th>
-                                    <th rowspan="2" > Consistance du projet </th>
-                                </c:if>
-                                <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
-                                <c:if test="${type=='EE'}">
-                                    <th rowspan="2"><spring:message code="label.EtudedimpcatenvirennementaleDefinitive"/> </th>
-                                    <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
-                                </c:if>
-                                <c:if test="${type=='NT'}">
-                                    <th rowspan="2">Notice d'impact environnementale définitive </th>
-                                </c:if>
-                                <c:if test="${type=='AE'}">
-                                    <th rowspan="2">Audit environnemental définitif </th>
-                                </c:if>
-
-
-                                <%--<th rowspan="2" ><spring:message code="label.Informationcomplementaire"/></th>--%>
-                                <th rowspan="2" ><spring:message code="label.Action"/></th>
-                            </tr>
-                            <tr>
-                                <th><spring:message code="label.Raisonsocial"/>  </th>
-                                <th><spring:message code="label.Representant"/>  </th>
-                                <th><spring:message code="label.Tel"/> </th>
-                                <th> <spring:message code="label.Fax"/> </th>
-                                <th><spring:message code="label.Email"/>  </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${notif}" var="nt">
+                    <c:if test="${type!='AE'}">
+                        <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                            <table style="width:100% !important; " id="tableProfils" class="table table-striped hover compact table-bordered text-md-nowrap">
+                                <thead class="">
                                 <tr>
-                                    <td class="font-weight-semibold">${nt.num_demande}</td>
-                                    <td>
-                                        <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
-                                    </td>
-                                    <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
-                                            nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 ||
-                                            nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 ||
-                                            nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 ||
-                                            nt.statut.id_statut_projet==60 )?nt.statut.nom_fr:'En cours de traitement'}</span>
-                                    </td>
-                                    <td> ${nt.intitule_projet}  </td>
-                                    <td>${nt.raison_social}</td>
-                                    <td>${nt.represantant}</td>
-                                    <td>${nt.tel}</td>
-                                    <td>${nt.fax}</td>
-                                    <td>${nt.email}</td>
-                                    <td>
-                                        <c:if test="${not empty nt.detailRegion}">
-                                            <button  onclick="fun_affiche_modal('#modal_DetailRegion','${nt.id_demande_information}')" class="btn btn-success btn-sm">Details Region</button>
-                                        </c:if>
-                                        <c:if test="${empty nt.detailRegion}">
-                                            -
-                                        </c:if>
-                                            <%-- <c:forEach items="${nt.regions}" var="rg">${rg.nom_fr}</c:forEach>--%>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-3 col-sm-6">
-                                            <a href="/api/recapEie/${nt.id_demande_information}/${nt.type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <c:if test="${not empty nt.categories}">
-                                            <button class="btn btn-success btn-sm" onclick="fun_affiche_modal('#modal_categorie','${nt.id_demande_information}')">Catégories</button>
-                                        </c:if>
-                                        <c:if test="${empty nt.categories}">
-                                            -
-                                        </c:if>
-                                    </td>
-                                    <td> ${nt.visite_date} </td>
-                                    <td>
-                                        <c:if test="${(not empty nt.visite_url)}">
-                                            <a target="_blank" download="" href="${url_Admin}${fn:replace(nt.visite_url, "/assets/myFile/", "/dowload_uploaded/")}">
-                                                <span class="fa fa-eye"></span>
-                                            </a>
-                                        </c:if>
-                                        <cif test="${(empty nt.visite_url)}">
-                                            -
-                                        </cif>
-                                    </td>
-                                    <c:if test="${type!='NT'}">
-                                        <td>${nt.tronsfrontalier }</td>
-                                    </c:if>
-                                    <c:if test="${type=='NT'}">
-                                        <td>${nt.nature_projet}</td>
-                                        <td>${nt.consistance_proj}</td>
-                                    </c:if>
-                                    <td>
-                                        <button class="btn btn-success rounded" onclick="affiche_files('${nt.id_demande_information}')">
-                                            <span class="fa fa-archive"></span>
-                                        </button>
-                                    </td>
+                                    <th rowspan="2" ><spring:message code="label.NDemande"/> </th>
+                                    <th rowspan="2" ><spring:message code="label.datedepot"/>  </th>
+                                    <th rowspan="2" ><spring:message code="label.Statut"/></th>
+                                    <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
+                                    <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
+                                    <th rowspan="2" ><spring:message code="label.Region"/></th>
+                                    <th rowspan="2" ><spring:message code="label.Recap"/></th>
+                                    <th rowspan="2" ><spring:message code="label.TypedeProjet"/></th>
+                                    <th rowspan="2" > Date de Visite </th>
+                                    <th rowspan="2" > Pv de visite </th>
 
-                                    <c:if test="${type=='EE'}">
-                                        <td>
-                                            <c:if test="${not empty nt.url_enquette_defenitive }">
-                                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
-                                        </td>
-                                        <td>
-                                            <c:if test="${not empty nt.url_cachier_defenitive }">
-                                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${empty nt.url_cachier_defenitive}">-</c:if>
-                                        </td>
+                                    <c:if test="${type!='NT'}">
+                                        <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
                                     </c:if>
                                     <c:if test="${type=='NT'}">
-                                        <td>
-                                            <c:if test="${not empty nt.url_enquette_defenitive }">
-                                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
-                                        </td>
+                                        <th rowspan="2" > Type du projet </th>
+                                        <th rowspan="2" > Consistance du projet </th>
+                                    </c:if>
+                                    <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
+                                    <c:if test="${type=='EE'}">
+                                        <th rowspan="2"><spring:message code="label.EtudedimpcatenvirennementaleDefinitive"/> </th>
+                                        <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
+                                    </c:if>
+                                    <c:if test="${type=='NT'}">
+                                        <th rowspan="2">Notice d'impact environnementale définitive </th>
                                     </c:if>
                                     <c:if test="${type=='AE'}">
-                                        <td>
-                                            <c:if test="${not empty nt.url_enquette_defenitive }">
-                                                <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
-                                                    <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
-                                        </td>
+                                        <th rowspan="2">Audit environnemental définitif </th>
                                     </c:if>
 
 
-                                    <td>
-                                        <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
-                                            <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i> Attacher les documents définitifs</a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==6}">
-                                            <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==1}">
-                                            <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==60}">
-                                            <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" >Compléter le Dossier</button>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==13 }">
-                                            <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
-                                               class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
-                                        </c:if>
-
-                                        <c:if test="${nt.statut.id_statut_projet==59 }">
-                                            <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
-                                               class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
-                                            <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
-                                               class="btn btn-primary" title="Attacher les documents définitive"><i
-                                                    class="fa fa-pencil"></i> Déposer la demande</a>
-                                        </c:if>
-
-                                    </td>
+                                        <%--<th rowspan="2" ><spring:message code="label.Informationcomplementaire"/></th>--%>
+                                    <th rowspan="2" ><spring:message code="label.Action"/></th>
                                 </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_categorie_${nt.id_demande_information}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog " role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Type de projet</h5>
-                                                <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                <tr>
+                                    <th><spring:message code="label.Raisonsocial"/>  </th>
+                                    <th><spring:message code="label.Representant"/>  </th>
+                                    <th><spring:message code="label.Tel"/> </th>
+                                    <th> <spring:message code="label.Fax"/> </th>
+                                    <th><spring:message code="label.Email"/>  </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${notif}" var="nt">
+                                    <tr>
+                                        <td class="font-weight-semibold">${nt.num_demande}</td>
+                                        <td>
+                                            <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
+                                        </td>
+                                        <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
+                                                nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 ||
+                                                nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 ||
+                                                nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 ||
+                                                nt.statut.id_statut_projet==60 )?nt.statut.nom_fr:'En cours de traitement'}</span>
+                                        </td>
+                                        <td> ${nt.intitule_projet}  </td>
+                                        <td>${nt.raison_social}</td>
+                                        <td>${nt.represantant}</td>
+                                        <td>${nt.tel}</td>
+                                        <td>${nt.fax}</td>
+                                        <td>${nt.email}</td>
+                                        <td>
+                                            <c:if test="${not empty nt.detailRegion}">
+                                                <button  onclick="fun_affiche_modal('#modal_DetailRegion','${nt.id_demande_information}')" class="btn btn-success btn-sm">Details Region</button>
+                                            </c:if>
+                                            <c:if test="${empty nt.detailRegion}">
+                                                -
+                                            </c:if>
+                                                <%-- <c:forEach items="${nt.regions}" var="rg">${rg.nom_fr}</c:forEach>--%>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-3 col-sm-6">
+                                                <a href="/api/recapEie/${nt.id_demande_information}/${nt.type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-10">
-                                                        <div class="row "
-                                                             style="background: gray;color: white;border-color: #737373;">
-                                                            <div class="col-2 border p-2 font_bold  btn-gris">
-                                                                #
+                                        </td>
+                                        <td>
+                                            <c:if test="${not empty nt.categories}">
+                                                <button class="btn btn-success btn-sm" onclick="fun_affiche_modal('#modal_categorie','${nt.id_demande_information}')">Catégories</button>
+                                            </c:if>
+                                            <c:if test="${empty nt.categories}">
+                                                -
+                                            </c:if>
+                                        </td>
+                                        <td> ${nt.visite_date} </td>
+                                        <td>
+                                            <c:if test="${(not empty nt.visite_url)}">
+                                                <a target="_blank" download="" href="${url_Admin}${fn:replace(nt.visite_url, "/assets/myFile/", "/dowload_uploaded/")}">
+                                                    <span class="fa fa-eye"></span>
+                                                </a>
+                                            </c:if>
+                                            <cif test="${(empty nt.visite_url)}">
+                                                -
+                                            </cif>
+                                        </td>
+                                        <c:if test="${type!='NT'}">
+                                            <td>${nt.tronsfrontalier }</td>
+                                        </c:if>
+                                        <c:if test="${type=='NT'}">
+                                            <td>${nt.nature_projet}</td>
+                                            <td>${nt.consistance_proj}</td>
+                                        </c:if>
+                                        <td>
+                                            <button class="btn btn-success rounded" onclick="affiche_files('${nt.id_demande_information}')">
+                                                <span class="fa fa-archive"></span>
+                                            </button>
+                                        </td>
+
+                                        <c:if test="${type=='EE'}">
+                                            <td>
+                                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                                            </td>
+                                            <td>
+                                                <c:if test="${not empty nt.url_cachier_defenitive }">
+                                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_cachier_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${empty nt.url_cachier_defenitive}">-</c:if>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${type=='NT'}">
+                                            <td>
+                                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${type=='AE'}">
+                                            <td>
+                                                <c:if test="${not empty nt.url_enquette_defenitive }">
+                                                    <a class="removeStyle" download href="${url_Admin}${fn:replace(nt.url_enquette_defenitive, "/assets/myFile/", "/dowload_uploaded/")}" >
+                                                        <span class="fa fa-eye" style="font-size:21px;color: #33994c;" ></span>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${empty nt.url_enquette_defenitive}">-</c:if>
+                                            </td>
+                                        </c:if>
+
+
+                                        <td>
+                                            <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
+                                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i> Attacher les documents définitifs</a>
+                                            </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==6}">
+                                                <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
+                                            </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==1}">
+                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
+                                            </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==60}">
+                                                <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" >Compléter le Dossier</button>
+                                            </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==13 }">
+                                                <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
+                                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
+                                            </c:if>
+
+                                            <c:if test="${nt.statut.id_statut_projet==59 }">
+                                                <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
+                                                   class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
+                                            </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
+                                                <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
+                                                   class="btn btn-primary" title="Attacher les documents définitive"><i
+                                                        class="fa fa-pencil"></i> Déposer la demande</a>
+                                            </c:if>
+
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal_categorie_${nt.id_demande_information}" tabindex="-1"
+                                         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Type de projet</h5>
+                                                    <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-10">
+                                                            <div class="row "
+                                                                 style="background: gray;color: white;border-color: #737373;">
+                                                                <div class="col-2 border p-2 font_bold  btn-gris">
+                                                                    #
+                                                                </div>
+                                                                <div class="col-10 border p-2 font_bold  btn-gris">
+                                                                    Nom
+                                                                </div>
                                                             </div>
-                                                            <div class="col-10 border p-2 font_bold  btn-gris">
-                                                                Nom
-                                                            </div>
+                                                            <c:forEach items="${nt.categories}" var="cat" varStatus="loopp">
+                                                                <div class="row">
+                                                                    <div class="col-2 border p-2">
+                                                                            ${loopp.index+1}
+                                                                    </div>
+                                                                    <div class="col-10 border p-2">
+                                                                            ${cat.nom_fr}
+                                                                    </div>
+                                                                </div>
+                                                            </c:forEach>
                                                         </div>
-                                                        <c:forEach items="${nt.categories}" var="cat" varStatus="loopp">
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button onclick="close_modal(this)" type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal"><spring:message code="button.fermer"/></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal_DetailRegion_${nt.id_demande_information}" tabindex="-1"
+                                         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="">Détail Région</h5>
+                                                    <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-10">
+                                                            <div class="row "
+                                                                 style="background: gray;color: white;border-color: #737373;">
+                                                                <div class="col-4 border p-2 font_bold  btn-gris">
+                                                                    Region
+                                                                </div>
+                                                                <div class="col-4 border p-2 font_bold  btn-gris">
+                                                                    Préfécture
+                                                                </div>
+                                                                <div class="col-4 border p-2 font_bold  btn-gris">
+                                                                    Commune
+                                                                </div>
+                                                            </div>
+
                                                             <div class="row">
-                                                                <div class="col-2 border p-2">
-                                                                        ${loopp.index+1}
+                                                                <div class="col-4 border p-2">
+                                                                    <c:if test="${not empty nt.detailRegion.region}">
+                                                                        <ul>
+                                                                            <c:forEach items="${nt.detailRegion.region}" var="det">
+                                                                                <li>  ${det.nom_fr}</li>
+                                                                            </c:forEach>
+                                                                        </ul>
+                                                                    </c:if>
+                                                                    <c:if test="${empty nt.detailRegion.region}">
+                                                                        -
+                                                                    </c:if>
                                                                 </div>
-                                                                <div class="col-10 border p-2">
-                                                                        ${cat.nom_fr}
+                                                                <div class="col-4 border p-2">
+                                                                    <c:if test="${not empty nt.detailRegion.prefectures}">
+                                                                        <ul>
+                                                                            <c:forEach items="${nt.detailRegion.prefectures}" var="det">
+                                                                                <li>  ${det.nom_fr}</li>
+                                                                            </c:forEach>
+                                                                        </ul>
+                                                                    </c:if>
+                                                                    <c:if test="${empty nt.detailRegion.prefectures}">
+                                                                        -
+                                                                    </c:if>
                                                                 </div>
+                                                                <div class="col-4 border p-2">
+                                                                    <c:if test="${not empty nt.detailRegion.communes}">
+                                                                        <ul>
+                                                                            <c:forEach items="${nt.detailRegion.communes}" var="det">
+                                                                                <li>  ${det.nom_fr}</li>
+                                                                            </c:forEach>
+                                                                        </ul>
+                                                                    </c:if>
+                                                                    <c:if test="${empty nt.detailRegion.communes}">
+                                                                        -
+                                                                    </c:if>
+                                                                </div>
+
+
                                                             </div>
-                                                        </c:forEach>
+
+                                                        </div>
                                                     </div>
+
+
                                                 </div>
-
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button onclick="close_modal(this)" type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal"><spring:message code="button.fermer"/></button>
+                                                <div class="modal-footer">
+                                                    <button onclick="close_modal(this)" type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal"><spring:message code="button.fermer"/></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_DetailRegion_${nt.id_demande_information}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="">Détail Région</h5>
-                                                <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-10">
-                                                        <div class="row "
-                                                             style="background: gray;color: white;border-color: #737373;">
-                                                            <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                Region
-                                                            </div>
-                                                            <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                Préfécture
-                                                            </div>
-                                                            <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                Commune
-                                                            </div>
-                                                        </div>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </c:if>
+                    <c:if test="${type=='AE'}">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped hover compact table-bordered text-md-nowrap ">
+                                <thead>
+                                <tr>
+                                    <th>N° de la demande</th>
+                                    <th>Date de dépôt </th>
+                                    <th>Statut</th>
+                                    <th>Formulaire de demande</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${notif}" var="d">
+                                    <tr>
+                                        <td>${d.num_demande}</td>
+                                        <td>
+                                            <fmt:formatDate value="${d.dateDepot}" pattern="dd/MM/YYYY" var="date" />
+                                            ${date}
+                                        </td>
+                                        <td>
+                                           <span class="badge badge-info"> ${d.statut.nom_fr}</span>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${not empty d.url_file_AE}">
+                                                    <a target="_blank" download="" href="${url_Admin}${d.url_file_AE}">
+                                                        <span class="fa fa-eye" style="font-size: 20px;color: #3bb33b"></span>
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise> - </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:if test="${d.statut.id_statut_projet==1}">
+                                               <a href="/api/demandeinformation/${d.id_demande_information}/AE" class="btn btn-primary">modifier</a>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </c:if>
 
-                                                        <div class="row">
-                                                            <div class="col-4 border p-2">
-                                                                <c:if test="${not empty nt.detailRegion.region}">
-                                                                    <ul>
-                                                                        <c:forEach items="${nt.detailRegion.region}" var="det">
-                                                                            <li>  ${det.nom_fr}</li>
-                                                                        </c:forEach>
-                                                                    </ul>
-                                                                </c:if>
-                                                                <c:if test="${empty nt.detailRegion.region}">
-                                                                    -
-                                                                </c:if>
-                                                            </div>
-                                                            <div class="col-4 border p-2">
-                                                                <c:if test="${not empty nt.detailRegion.prefectures}">
-                                                                    <ul>
-                                                                        <c:forEach items="${nt.detailRegion.prefectures}" var="det">
-                                                                            <li>  ${det.nom_fr}</li>
-                                                                        </c:forEach>
-                                                                    </ul>
-                                                                </c:if>
-                                                                <c:if test="${empty nt.detailRegion.prefectures}">
-                                                                    -
-                                                                </c:if>
-                                                            </div>
-                                                            <div class="col-4 border p-2">
-                                                                <c:if test="${not empty nt.detailRegion.communes}">
-                                                                    <ul>
-                                                                        <c:forEach items="${nt.detailRegion.communes}" var="det">
-                                                                            <li>  ${det.nom_fr}</li>
-                                                                        </c:forEach>
-                                                                    </ul>
-                                                                </c:if>
-                                                                <c:if test="${empty nt.detailRegion.communes}">
-                                                                    -
-                                                                </c:if>
-                                                            </div>
-
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button onclick="close_modal(this)" type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal"><spring:message code="button.fermer"/></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </section>
         </div>
