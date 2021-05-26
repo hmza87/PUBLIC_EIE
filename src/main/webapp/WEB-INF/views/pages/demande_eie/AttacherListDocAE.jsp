@@ -60,7 +60,7 @@
                     <div id="step1" class="col-12 z_collecteur"  >
                         <c:choose>
                             <c:when test="${type=='AE'}">
-                                <c:forEach items="${doc}" var="dc">
+                                <%--<c:forEach items="${doc}" var="dc">
                                     <div class="row justify-content-center">
                                         <div class="col mt-3  ">
                                             <div class="form-group">
@@ -85,7 +85,7 @@
                                             </div>
                                         </c:if>
                                     </div>
-                                </c:forEach>
+                                </c:forEach>--%>
                                 <div class="row">
                                     <c:forEach items="${demande.documents_AE}" var="doc">
                                         <div class="col-12">
