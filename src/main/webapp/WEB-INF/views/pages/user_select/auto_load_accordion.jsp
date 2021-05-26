@@ -360,7 +360,7 @@
                                     vous seriez notifié par email de la date
                                     à partir de laquelle vous pouvez récupérer votre demande d'autorisation
                                 </p>
-                                <c:if test="${type!='TR' || type!='ET'}">
+                                <c:if test='${type.equals("XD") || type.equals("ZF") || type.equals("IT") || type.equals("CT")}'>
                                 <p>
                                     La récupération de l’autorisation signée est tributaire de dépôt de la caution signée
                                 </p>
