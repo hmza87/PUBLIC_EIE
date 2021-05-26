@@ -77,11 +77,11 @@
             </div>
           </c:if>
 
-        <c:if test="${installation.statut.id_statut_projet==57}">
+    <!--    <c:if test="${installation.statut.id_statut_projet==57}">
           <div class="col-md-3 col-sm-6">
             <a href="${url_Admin}${fn:replace(installation.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
           </div>
-        </c:if>
+        </c:if>-->
 
       </div>
       <c:if test="${renouv=='oui'}">

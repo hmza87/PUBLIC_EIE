@@ -95,7 +95,7 @@
           <a href="/api/validateDoc/${notification.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
           </div>-->
         </c:if>
-        <c:if test="${notification.statut.id_statut_projet==54}">
+        <c:if test="${(type=='ET' || type=='TR') && (notification.statut.id_statut_projet==54)}">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
             <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
           </div>
@@ -378,7 +378,7 @@
               <th> <spring:message code="label.identifiantfiscal"/> </th>
               <th> <spring:message code="label.telephone"/> </th>
               <th> <spring:message code="label.Fax"/> </th>
-              <th> <spring:message code="label.email"/> </th>
+              <th> <spring:message code="label.Adresse"/> </th>
             </tr>
             </thead>
             <tbody>

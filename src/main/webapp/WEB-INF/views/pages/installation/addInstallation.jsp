@@ -161,7 +161,7 @@
                                     <div class="col-6">
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <label><spring:message code="label.raisonsocial"/> :</label>
+                                            <label><spring:message code="label.nomdesociete"/> :</label>
                                             <input value="${notif.raison}" type="text" name="raison"
                                                    class="form-control">
                                         </div>
@@ -793,7 +793,7 @@
             .done(function() {
                 down_load_recu();
                 Swal.fire({
-                    title: '<strong>votre demande a été effectué avec succès</strong>',
+                    title: '<strong>votre demande a été effectué avec succèse</strong>',
                     icon: 'success',
                     html:
                         '<a href="'+link_recap+'" class="btn btn-success ml-2 ">Recapitulation</a>',

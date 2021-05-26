@@ -25,7 +25,7 @@
                 <c:choose>
 
                     <c:when test="${type=='ZF'}">
-                        <spring:message code="label.Importationdechetszonefranche" var="p_page"/>
+                        <spring:message code="label.Importationdesdechetsdunezonefranche" var="p_page"/>
                     </c:when>
                     <c:when test="${type=='ET'}">
                         <spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger" var="p_page"/>
@@ -77,7 +77,7 @@
                                         <p class="text-success font_bold text-left pl-2"><spring:message
                                                 code="label.Deposerundossier"/></p>
                                         <hr>
-                                        <p class="pl-2 text-justify"><spring:message code="label.Pourdeposer"/></p>
+                                        <p class="pl-2 text-justify"><spring:message code="label.cliquezsurleboutonconcerne"/></p>
                                     </div>
                                     <div class="col-12">
                                         <c:choose>
@@ -123,7 +123,7 @@
                                                 code="label.Suivremondossier"/></p>
                                         <hr>
                                         <p class="pl-2 text-justify"><spring:message
-                                                code="label.Poursuivreletatdavancement"/></p>
+                                                code="label.Poursuivreletatdavancementdundossierdejadepose"/></p>
                                     </div>
                                     <div class="col-12">
 

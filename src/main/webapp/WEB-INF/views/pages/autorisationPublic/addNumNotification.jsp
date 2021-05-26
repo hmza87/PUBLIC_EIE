@@ -150,7 +150,7 @@
                     <div class="row m-0 p-0 mt-5">
                         <div class="col-6">
                             <div class="form-group select_test" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                                <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.classification"/> <sup class="text-danger">*</sup>  </label>
+                                <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"><spring:message code="label.Classificationdesdechet"/> <sup class="text-danger">*</sup>  </label>
 
                                 <select name="classification_id" id="Classification" required
                                         onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
@@ -348,14 +348,14 @@
                         <input type="hidden" id="notification_id" name="notification_id" value="${notif.importateur.notification_id}">
                         <div class="col-6 ">
                             <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                                <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"> <spring:message code="label.nom"/> </label>
+                                <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"> <spring:message code="label.nomdesociete"/> </label>
                                 <input value="${notif.importateur.nom_fr}" type="text" name="Nom_fr" id="Nom_fr" class="form-control">
                             </div>
                         </div>
 
                         <div class="col-6 ">
                             <div class="form-group" style="text-align: right;">
-                                <label dir="rtl"> الإسم : </label>
+                                <label dir="rtl">إسم الشركة : </label>
                                 <input value="${notif.importateur.nom_ar}" type="text" name="Nom_ar" id="Nom_ar" class="form-control" dir="rtl">
                             </div>
                         </div>

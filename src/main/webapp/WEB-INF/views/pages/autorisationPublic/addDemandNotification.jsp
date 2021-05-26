@@ -152,7 +152,7 @@
                             onclick="openCity(this, '7')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'} white-space: normal;">
                         <%--<spring:message code="label.installationdelimination"/>--%>
-                        Installation d’élimination / valorisation
+                        <spring:message code="label.Installationdevalorisationelimination"/>
                     </button>
                     <%--<button style="white-space: normal;" class="tablinks btn-primary btn my_tab" ${disabledBtnTab}
                             id="Btn8" onclick="openCity(this, '8')"
@@ -479,7 +479,7 @@
                                    value="${notification.id_notification}">
                             <div class="col-6 ">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.nom"/> </label>
+                                    <label> <spring:message code="label.nomdesociete"/> </label>
                                     <input value="${notification.importateur.nom_fr}"  ${disabled} type="text"
                                            name="Nom_fr"
                                            id="Nom_fr" class="form-control">
@@ -487,7 +487,7 @@
                             </div>
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> الإسم : </label>
+                                    <label dir="rtl"> إسم الشركة : </label>
                                     <input dir="rtl" value="${notification.importateur.nom_ar}"  ${disabled} type="text"
                                            name="Nom_ar"
                                            id="Nom_ar" class="form-control">
@@ -1361,14 +1361,14 @@
 
                             <div class="col-6 ">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.nom"/> </label>
+                                    <label> <spring:message code="label.nomdesociete"/> </label>
                                     <input value="${notification.producteur.nom_fr}" type="text"
                                            name="Nom_fr" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> الإسم : </label>
+                                    <label dir="rtl"> إسم الشركة : </label>
                                     <input dir="rtl" value="${notification.producteur.nom_ar}"
                                            type="text"
                                            name="Nom_ar" class="form-control">
@@ -1479,9 +1479,8 @@
                 <%--********************Tab6***************************--%>
                 <div id="7" class="tabcontent pr-0">
 
-                    <h4 class="titre_abs ">
-                        Installation d’élimination / valorisation
-                        <%-- <spring:message code="label.installationdelimination"/>--%>
+                    <h4 class="titre_abs">
+                        <spring:message code="label.Installationdevalorisationelimination"/>
                     </h4>
 
                     <form id="formeliminateur" name="formeliminateur">
@@ -2331,7 +2330,7 @@
         })
             .done(function () {
                 Swal.fire({
-                    title: '<strong>votre demande a été effectué avec succès</strong>',
+                    title: '<strong>votre demande a été effectué avec succèse</strong>',
                     icon: 'success',
                     html:
                         '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',

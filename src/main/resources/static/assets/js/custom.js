@@ -1202,7 +1202,7 @@ function changer_Statut_zf_auth(id_notif, id_statut, type) {
     })
         .done(function () {
             Swal.fire({
-                title: '<strong>votre demande a été effectué avec succès</strong>',
+                title: '<strong>votre demande a été effectué avec succèse</strong>',
                 icon: 'success',
                 html:
                     '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
