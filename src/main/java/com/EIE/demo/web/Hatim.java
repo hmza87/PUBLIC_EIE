@@ -1193,14 +1193,26 @@ public class Hatim {
 		Map<String,Object> map = new HashMap<String,Object>();
 		DemandeInformation d = webt.getDemandeInformationByCompteId(id,webt.getCompteConnected().getCompteId());
 		map.put("user",webt.getCompteConnected());
-		SimpleDateFormat sm = new SimpleDateFormat("YYYY-MM-dd");
+		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		String show = "oui";
-		if(d.getRapports_AE().size()>0){
-			Date dt = sm.parse(d.getDate_debut_AE());
+		if(d.getRapports_AE().size()>0 && d.getReunions().size()>0){
+
+			RapportsAE rap = d.getRapports_AE().get(d.getRapports_AE().size()-1);
+			Date dt_dt_dt = sm.parse(rap.getDate());
 			Date dt_now = new Date();
-			RapportsAE r = d.getRapports_AE().get(d.getRapports_AE().size()-1);
-			Date dt_tmp = sm.parse(r.getDate());
+
+			Calendar c2 = Calendar.getInstance();
+			Calendar c3 = Calendar.getInstance();
+
+			c2.setTime(dt_now);
+			c3.setTime(dt_dt_dt);
+
 			//si on est dans la periode et on dispose du fichier on fait rien
+			c3.add(Calendar.MONTH,Integer.parseInt(d.getReunions().get(d.getReunions().size()-1).getPeriode_send_rapport()));
+			if(c3.after(c2)){
+				if(!rap.getUrl_file().isEmpty())
+					show ="non";
+			}
 		}
 
 		map.put("demande",d);
