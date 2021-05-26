@@ -270,11 +270,11 @@
                 <input type="text" class="form-control" disabled value="${installation.formation}">
               </div>
             </div>
-            <div class="col-md-6 col-sm-12">
+            <!--<div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <a href="${url_admin}${fn:replace(installation.qualification,"/assets/myFile/","/dowload_uploaded/")}" download target="_blank" class="btn btn-success btn-block">Télécharger fichier Qualification</a>
               </div>
-            </div>
+            </div>-->
 
           </div>
 

@@ -361,6 +361,9 @@
                                     à partir de laquelle vous pouvez récupérer votre demande d'autorisation
                                 </p>
                                 <p>
+                                    La récupération de l’autorisation signée est tributaire de dépôt de la caution signée
+                                </p>
+                                <p>
                                     L'autorisation ${l_ph1} doit être retiré personnellement par son titulaire
                                 </p>
                                 <p>

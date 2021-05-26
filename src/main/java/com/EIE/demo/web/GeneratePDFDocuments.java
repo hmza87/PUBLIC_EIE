@@ -470,7 +470,7 @@ public class GeneratePDFDocuments {
         }
 
         if(isElimination){
-            par12.add(new Phrase("9. Installation d'élimination ",fontbold));
+            par12.add(new Phrase("9. Installation de valorisation / élimination ",fontbold));
             //AddCondition to check or no
             par12.add(checkedChunk);
             par12.add(Chunk.NEWLINE);
@@ -480,7 +480,7 @@ public class GeneratePDFDocuments {
             par12.add(uncheckedChunk);
             par12.add(Chunk.NEWLINE);
         }else{
-            par12.add(new Phrase("9. Installation d'élimination ",fontbold));
+            par12.add(new Phrase("9. Installation de valorisation / élimination ",fontbold));
             //AddCondition to check or no
             par12.add(uncheckedChunk);
             par12.add(Chunk.NEWLINE);
@@ -1245,7 +1245,7 @@ public class GeneratePDFDocuments {
         }
 
         if(isElimination){
-            par12.add(new Phrase("10. Installation d'élimination ",fontbold));
+            par12.add(new Phrase("10. Installation de valorisation / élimination ",fontbold));
             //AddCondition to check or no
             par12.add(checkedChunk);
             par12.add(Chunk.NEWLINE);
@@ -1255,7 +1255,7 @@ public class GeneratePDFDocuments {
             par12.add(uncheckedChunk);
             par12.add(Chunk.NEWLINE);
         }else{
-            par12.add(new Phrase("10. Installation d'élimination ",fontbold));
+            par12.add(new Phrase("10. Installation de valorisation / élimination ",fontbold));
             //AddCondition to check or no
             par12.add(uncheckedChunk);
             par12.add(Chunk.NEWLINE);
@@ -2091,7 +2091,7 @@ public class GeneratePDFDocuments {
         par16.setFont(font);
         par16.setSpacingAfter(5);
 
-        par16.add(new Phrase("9. Installation d'élimination :  ",fontbold));
+        par16.add(new Phrase("9. Installation de valorisation / élimination :  ",fontbold));
         par16.add(ns.getEliminateur()!=null?checkedChunk:uncheckedChunk);
         par16.add(Chunk.TABBING);
         par16.add(new Phrase("ou",fontbold));
@@ -2224,7 +2224,7 @@ public class GeneratePDFDocuments {
         par21.setSpacingAfter(4);
         cell.setPaddingTop(-10.0f);
         par21.setAlignment(Element.ALIGN_CENTER);
-        par21.add(new Phrase("A REMPLIR PAR L'INSTALLATION D'ELIMINATION / VALORISATION",fontbold));
+        par21.add(new Phrase("A REMPLIR PAR L'INSTALLATION DE VALORISATION / ELIMINATION",fontbold));
 
         cell = new PdfPCell();
         cell.addElement(par21);
@@ -2237,7 +2237,7 @@ public class GeneratePDFDocuments {
         par22.setFont(font);
         par22.setSpacingAfter(4);
 
-        par22.add(new Phrase("16. Expédition reçue à l'installation d'élimination ",fontbold));
+        par22.add(new Phrase("16. Expédition reçue à l'Installation de valorisation / élimination ",fontbold));
         par22.add(checkedChunk);
         par22.add(Chunk.TABBING);
         par22.add(new Phrase("ou",fontbold));
@@ -2807,7 +2807,7 @@ public class GeneratePDFDocuments {
         par16.setFont(font);
         par16.setSpacingAfter(5);
 
-        par16.add(new Phrase("10. Installation d'élimination :  ",fontbold));
+        par16.add(new Phrase("10. Installation de valorisation / élimination :  ",fontbold));
         par16.add(ns.getEliminateur()!=null?checkedChunk:uncheckedChunk);
         par16.add(Chunk.TABBING);
         par16.add(new Phrase("ou",fontbold));
@@ -2966,7 +2966,7 @@ public class GeneratePDFDocuments {
         Paragraph par22=new Paragraph(12);
         par22.setFont(font);
         par22.setSpacingAfter(4);
-        par22.add(new Phrase("17. Transfert reçu à l'installation d'élimination ",fontbold));
+        par22.add(new Phrase("17. Transfert reçu à l'Installation de valorisation / élimination ",fontbold));
         par22.add(checkedChunk);
         par22.add(Chunk.TABBING);
         par22.add(new Phrase("ou de valorisation :   ",fontbold));
@@ -3204,7 +3204,7 @@ public class GeneratePDFDocuments {
         table5.addCell(cell5);
         table5.addCell(cell5);
 
-        table5.addCell("Raison sociale / Forme de la société");
+        table5.addCell("Nom de la société / Forme de la société");
         table5.addCell(is.getRaison());
 
         table5.addCell("IF");
@@ -3319,12 +3319,16 @@ public class GeneratePDFDocuments {
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
         String title_type = "...";
-        if(ns.getZf_et().equals("ZF")){
-            title_type = "d'importation des déchets d'une zone franche";
+        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1){
+            title_type = "d'importation des déchets d'une zone franche dangereux";
+        }else if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==2){
+            title_type = "d'importation des déchets d'une zone franche non dangereux";
         }else if(ns.getZf_et().equals("ET")){
             title_type = "d'importation des déchets non dangereux d'un pays étranger";
-        }else if(ns.getZf_et().equals("XD")){
-            title_type = "d'exportation des déchets ";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
+            title_type = "d'exportation des déchets dangereux";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==2){
+            title_type = "d'exportation des déchets non dangereux";
         }else if(ns.getZf_et().equals("TR")){
             title_type = "Transit des déchets";
         }
@@ -3443,7 +3447,7 @@ public class GeneratePDFDocuments {
             table3.addCell(saisir_cellule_titre("Transporteur Etranger", 5));
             table3.completeRow();
             //--------------------- completeRow ---------------------
-            table3.addCell(saisir_cellule_transporteur_titre("Raison Social", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Type véhicule", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Assurance", 1));
@@ -3495,7 +3499,7 @@ public class GeneratePDFDocuments {
         table5.setSpacingAfter(12);
 
         //--------------------- Row Title ---------------------
-        table5.addCell(saisir_cellule_titre("Installation d’élimination",4));
+        table5.addCell(saisir_cellule_titre("Installation de valorisation / élimination",4));
         table5.completeRow();
         //--------------------- completeRow ---------------------
         table5.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
@@ -3515,7 +3519,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3660,7 +3664,7 @@ public class GeneratePDFDocuments {
         table1.completeRow();
         //--------------------- completeRow ---------------------
 
-        table1.addCell( saisir_cellule("Raison Social : ",font,fontbold,ns.getRaison()!=null?ns.getRaison():"-",1));
+        table1.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getRaison()!=null?ns.getRaison():"-",1));
         table1.addCell( saisir_cellule("Identifiant : ",font,fontbold,ns.getEmail()!=null?ns.getEmail():"-",1));
         table1.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getTel()!=null?ns.getTel():"-",1));
         table1.completeRow();
@@ -3692,7 +3696,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3780,7 +3784,7 @@ public class GeneratePDFDocuments {
         table0.completeRow();
         //--------------------- completeRow ---------------------
         table0.addCell( saisir_cellule("N° de la demande : ",font,fontbold,ns.getNum_demande(),1));
-        table0.addCell( saisir_cellule("Raison Sociale: ",font,fontbold,ns.getRaison(),1));
+        table0.addCell( saisir_cellule("Nom de la société: ",font,fontbold,ns.getRaison(),1));
         table0.addCell( saisir_cellule("Identifiant Fiscale : ",font,fontbold,ns.getIdfiscale(),1));
         table0.addCell( saisir_cellule("Represantant : ",font,fontbold,ns.getDemandeur_Nom(),1));
         table0.completeRow();
@@ -3855,7 +3859,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces Jointe",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3959,7 +3963,7 @@ public class GeneratePDFDocuments {
         table0.completeRow();
         //--------------------- completeRow ---------------------
         table0.addCell( saisir_cellule("N° de la demande : ",font,fontbold,ns.getNum_demande(),2));
-        table0.addCell( saisir_cellule("Raison Sociale: ",font,fontbold,ns.getRaison_social(),1));
+        table0.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getRaison_social(),1));
         table0.addCell( saisir_cellule("Represantant : ",font,fontbold,ns.getRepresantant(),1));
         table0.completeRow();
 
@@ -4077,7 +4081,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("4. Pièces Jointe",3));
+        table7.addCell(saisir_cellule_titre("4. Pièces accompagne à la demande",3));
         table7.completeRow();
         if(!ns.getType().equals("RS")){
             //--------------------- Row Title ---------------------
@@ -4209,12 +4213,16 @@ public class GeneratePDFDocuments {
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
         String title_type = "...";
-        if(ns.getZf_et().equals("ZF")){
-            title_type = "d'importation des déchets d'une zone franche";
+        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1){
+            title_type = "d'importation des déchets d'une zone franche dangereux";
+        }else if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==2){
+            title_type = "d'importation des déchets d'une zone franche non dangereux";
         }else if(ns.getZf_et().equals("ET")){
             title_type = "d'importation des déchets non dangereux d'un pays étranger";
-        }else if(ns.getZf_et().equals("XD")){
-            title_type = "d'exportation des déchets ";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
+            title_type = "d'exportation des déchets dangereux";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==2){
+            title_type = "d'exportation des déchets non dangereux";
         }else if(ns.getZf_et().equals("TR")){
             title_type = "Transit des déchets";
         }
@@ -4332,7 +4340,7 @@ public class GeneratePDFDocuments {
             table3.addCell(saisir_cellule_titre("Transporteur Etranger", 5));
             table3.completeRow();
             //--------------------- completeRow ---------------------
-            table3.addCell(saisir_cellule_transporteur_titre("Raison Social", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Type véhicule", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Assurance", 2));

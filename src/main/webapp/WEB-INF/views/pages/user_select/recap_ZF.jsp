@@ -210,7 +210,7 @@
           <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group" ${pageContext.response.locale=='ar'?'rtl':'ltr'}>
-                <label> <spring:message code="label.nom"/>  </label>
+                <label> <spring:message code="label.nomdesociete"/>  </label>
                 <c:choose>
                   <c:when test="${pageContext.response.locale=='ar'}">
                     <input value="${notif.importateur.nom_ar}" type="text" name="Nom_ar" id="Nom_ar" class="form-control" dir="rtl">
@@ -374,7 +374,7 @@
             <table class="table my_table table-striped table-bordered table-hover">
             <thead>
             <tr>
-              <th> <spring:message code="label.nom"/> </th>
+              <th> <spring:message code="label.nomdesociete"/> </th>
               <th> <spring:message code="label.identifiantfiscal"/> </th>
               <th> <spring:message code="label.telephone"/> </th>
               <th> <spring:message code="label.Fax"/> </th>
@@ -507,7 +507,7 @@
           </div>
 
         </div>
-        <h2><spring:message code="label.installationdelimination"/></h2>
+        <h2><spring:message code="label.Installationdevalorisationelimination"/></h2>
         <div>
           <div class="row">
             <div class="col-12">

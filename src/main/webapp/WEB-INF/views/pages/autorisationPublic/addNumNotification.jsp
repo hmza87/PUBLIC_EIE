@@ -72,7 +72,7 @@
                             <c:set var="p_page" value="استيراد منطقة خالية من النفايات"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="p_page" value="Importation Déchets Zone Franche"/>
+                            <c:set var="p_page" value="Importation des déchets d'une zone franche"/>
                         </c:otherwise>
                     </c:choose>
                 </c:when>

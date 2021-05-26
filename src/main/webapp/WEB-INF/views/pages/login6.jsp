@@ -805,6 +805,8 @@ margin-bottom: 10px;">
                                                         code="label.Alafinduprocessusdutraitementdevotredemande"/>
                                                 </p>
                                                 <p><spring:message
+                                                        code="label.Larecuperationdelautorisationsigneeesttributairededepotdelacautionsignee"/></p>
+                                                <p><spring:message
                                                         code="label.Lautorisationdimportationdesdechetsdunezone"/></p>
                                                 <p><spring:message
                                                         code="label.Lesautorisationsdimportationdesdechetsdunezonefranchenonret"/>.</p>

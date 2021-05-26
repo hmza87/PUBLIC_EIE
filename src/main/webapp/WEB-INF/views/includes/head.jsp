@@ -20,7 +20,7 @@
     </style>
 
     <meta charset="utf-8">
-    <title>Autorisation et ajouter acte </title>
+    <title>DE</title>
     <!-- Stylesheets -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">

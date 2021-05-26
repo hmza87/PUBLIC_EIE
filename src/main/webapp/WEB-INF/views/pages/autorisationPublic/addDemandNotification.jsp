@@ -1007,7 +1007,7 @@
                                 <table class="table my_table table-bordered table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Raison Social</th>
+                                        <th class="text-center"> Nom de la société</th>
                                         <th class="text-center"> Matricule</th>
                                         <th class="text-center"> Type de transport</th>
                                         <th class="text-center"> Assurance</th>
@@ -1050,7 +1050,7 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Raison Sociale </label>
+                                    <label> Nom de la société </label>
                                     <input type="text" id="raison_social_n" class="form-control">
                                 </div>
                             </div>
@@ -1142,13 +1142,13 @@
                                 <table class="table my_table table-bordered table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Raison Social</th>
-                                        <th class="text-center"> Matricule</th>
+                                        <th class="text-center"> <spring:message code="label.raisonsocial"/></th>
+                                        <th class="text-center"> <spring:message code="label.Matricule"/></th>
                                         <th class="text-center"> Type de transport</th>
-                                        <th class="text-center"> Assurance</th>
-                                        <th class="text-center"> Adresse</th>
-                                        <th class="text-center"> Port</th>
-                                        <th class="text-center"> Action</th>
+                                        <th class="text-center"> <spring:message code="label.Assurance"/></th>
+                                        <th class="text-center"> <spring:message code="label.Adresse"/></th>
+                                        <th class="text-center"> <spring:message code="label.Port"/></th>
+                                        <th class="text-center"> <spring:message code="label.Action"/></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -1249,7 +1249,7 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Raison Social </label>
+                                    <label> Nom de la société</label>
                                     <input type="text" id="raison_social" class="form-control">
                                 </div>
                             </div>
@@ -1361,14 +1361,14 @@
 
                             <div class="col-6 ">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.nomdesociete"/> </label>
+                                    <label> <spring:message code="label.nom"/> </label>
                                     <input value="${notification.producteur.nom_fr}" type="text"
                                            name="Nom_fr" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> إسم الشركة : </label>
+                                    <label dir="rtl"> الإسم : </label>
                                     <input dir="rtl" value="${notification.producteur.nom_ar}"
                                            type="text"
                                            name="Nom_ar" class="form-control">
@@ -1495,6 +1495,7 @@
                             </div>
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
+                                <div class="form-group" style="text-align: right;">
                                     <label dir="rtl"> الإسم : </label>
                                     <input dir="rtl" value="${notification.eliminateur.nom_ar}"
                                            type="text"
@@ -1502,6 +1503,7 @@
                                 </div>
                             </div>
 
+                        </div>
                         </div>
                         <div class="row m-0 p-0 ">
                             <div class="col-6">
@@ -2330,7 +2332,7 @@
         })
             .done(function () {
                 Swal.fire({
-                    title: '<strong>votre demande a été effectué avec succèse</strong>',
+                    title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
                         '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
