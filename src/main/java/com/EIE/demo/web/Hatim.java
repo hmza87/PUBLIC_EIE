@@ -998,13 +998,15 @@ public class Hatim {
 		return new ModelAndView("user_select/auto_load_Transporteur_etranger",map);
 	}
 
-	@RequestMapping(value = "/api/deletePort/{id}/{id_trans}", method = RequestMethod.POST)
-	public @ResponseBody String deletePort(@PathVariable int id, @PathVariable int id_trans)
+	@RequestMapping(value = "/api/deletePort/{id_notif}/{id}/{id_trans}", method = RequestMethod.POST)
+	public ModelAndView deletePort(@PathVariable int id_notif,@PathVariable int id, @PathVariable int id_trans)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
 		webt.deletePort(id, id_trans);
+		Notification notif = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
+		map.put("transporteur_etranger",notif.getTransporteur_etranger());
 		map.put("url_Admin",urlRest);
-		return "ok";
+		return new ModelAndView("user_select/auto_load_Transporteur_etranger",map);
 	}
 
 @RequestMapping(value = "/api/getoneTransporteuretranger/{id_trans}/{id_notif}/{type}", method = RequestMethod.POST)

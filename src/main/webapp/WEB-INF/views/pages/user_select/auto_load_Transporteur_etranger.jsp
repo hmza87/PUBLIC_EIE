@@ -162,7 +162,7 @@
           <div class="input-group">
             <input type="text" class="form-control" name="port[]" value="${p.nom_fr}">
             <div class="input-group-btn">
-              <button class="btn btn-danger" type="button"  onclick="removePort('btn_${p.id_port}','${p.id_port}', '${one.id_TransporteurEtranger}')"> <span class="fa fa-minus" aria-hidden="true"></span> </button>
+              <button class="btn btn-danger" type="button"  onclick="removePort('btn_${p.id_port}','${p.id_port}','id_notification','${one.id_TransporteurEtranger}')"> <span class="fa fa-minus" aria-hidden="true"></span> </button>
             </div>
           </div>
         </div>

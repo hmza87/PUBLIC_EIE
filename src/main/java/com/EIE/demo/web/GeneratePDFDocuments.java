@@ -3770,6 +3770,7 @@ public class GeneratePDFDocuments {
         headerPar.setSpacingBefore(20);
 
         //--------------------- Table numero de Collecte  ---------------------
+
         PdfPTable table0 = new PdfPTable(new float[]{1,1,1,1});
         table0.setWidthPercentage(100);
         table0.setSpacingBefore(12);

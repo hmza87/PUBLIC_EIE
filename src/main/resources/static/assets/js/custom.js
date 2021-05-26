@@ -512,14 +512,17 @@ function ajouterTranporteur_Etranger(id_name) {
         });
 
 }
-function removePort(btn,id,id_trans){
+function removePort(btn,id,id_name,id_trans){
+    if(event!=null)
+        event.preventDefault();
+    var id_notif = $("#" + id_name).val();
     $.ajax({
-        url: '/api/deletePort/' + id +'/'+id_trans,
+        url: '/api/deletePort/' + id_notif +'/'+ id +'/'+id_trans,
         type: 'POST',
         data: {},
     })
         .success(function (data) {
-            console.log(data);
+            $("#row_from_groupe_port").html(data);
             $("#"+btn).hide();
         })
         .error(function () {
