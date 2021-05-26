@@ -1681,7 +1681,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateDocumentDeMouvement2(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -2344,7 +2343,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateDocumentDeMouvement(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -3088,7 +3086,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generate9arar() throws DocumentException {
 
         String IMAGE = "resources/images/berlin2013.jpg";
@@ -3119,7 +3116,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateDocumentDInstallation(Installation is) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -3279,7 +3275,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateRecapNotification(Notification ns,ListDocNotif[] l,DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -3548,6 +3543,16 @@ public class GeneratePDFDocuments {
         table6.completeRow();
         table6.setSpacingAfter(12);
 
+        String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_notification() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+        Paragraph cell13 = new Paragraph();
+        cell13.setAlignment(Element.ALIGN_RIGHT);
+        cell13.add(codeQrImage);
+
 
         document.add(headerPar);
         document.add(table0);
@@ -3558,11 +3563,11 @@ public class GeneratePDFDocuments {
         document.add(table5);
         document.add(table6);
         document.add(table7);
+        document.add(cell13);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateRecapInstalation(Installation ns,ListDocNotif[] l, DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -3696,16 +3701,27 @@ public class GeneratePDFDocuments {
             i++;
             table7.completeRow();
         }
+
+        String num_notification = ns.getNum_demande()!=null?ns.getNum_demande():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_installation() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+        Paragraph cell13 = new Paragraph();
+        cell13.setAlignment(Element.ALIGN_RIGHT);
+        cell13.add(codeQrImage);
+
         document.add(headerPar);
         document.add(table0);
         document.add(table1);
         document.add(table2);
         document.add(table7);
+        document.add(cell13);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static ByteArrayInputStream generateRecapCollecte(CollecteTransporteur ns,ListDocNotif[] l, DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -3855,6 +3871,16 @@ public class GeneratePDFDocuments {
         table7.addCell(cell2);
         table7.completeRow();
 
+        String num_notification = ns.getNum_demande()!=null?ns.getNum_demande():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_collecte() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+        Paragraph cell13 = new Paragraph();
+        cell13.setAlignment(Element.ALIGN_RIGHT);
+        cell13.add(codeQrImage);
+
 
 
         document.add(headerPar);
@@ -3862,11 +3888,11 @@ public class GeneratePDFDocuments {
         document.add(table01);
         document.add(table3);
         document.add(table7);
+        document.add(cell13);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
 	public static ByteArrayInputStream generateRecapEie(DemandeInformation ns,ListDocNotif[] l) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -4065,17 +4091,26 @@ public class GeneratePDFDocuments {
         }
 
 
+        String num_notification = ns.getNum_demande()!=null?ns.getNum_demande():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_demande_information() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+        Paragraph cell13 = new Paragraph();
+        cell13.setAlignment(Element.ALIGN_RIGHT);
+        cell13.add(codeQrImage);
 
         document.add(headerPar);
         document.add(table0);
         document.add(table01);
         document.add(table3);
         document.add(table7);
+        document.add(cell13);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static PdfPCell saisir_cellule(String label,Font font_label,Font font_var,String var, int collspan){
 
         Phrase ph1 = new Phrase(label,font_label);
@@ -4095,7 +4130,6 @@ public class GeneratePDFDocuments {
 
         return cell1;
     }
-
     public static PdfPCell saisir_cellule_titre(String label,int collspan){
         Font whiteText = new Font(Font.FontFamily.TIMES_ROMAN,16.0f,Font.BOLD,BaseColor.WHITE);
         Paragraph para = new Paragraph(label,whiteText);
@@ -4108,7 +4142,6 @@ public class GeneratePDFDocuments {
         cell0.setBackgroundColor(new BaseColor(125, 199, 189));
         return cell0;
     }
-
     public static PdfPCell saisir_cellule_transporteur_titre(String label,int collspan){
         Font BlackText = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.BOLD,BaseColor.BLACK);
         Paragraph para = new Paragraph(label,BlackText);
@@ -4131,7 +4164,6 @@ public class GeneratePDFDocuments {
         cell0.setPaddingTop(2.5f);
         return cell0;
     }
-
     public static ByteArrayInputStream generateDocumentGeneraleDemandeNum(Notification ns) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -4413,7 +4445,7 @@ public class GeneratePDFDocuments {
         table9.setSpacingBefore(12);
         table9.setSpacingAfter(12);
         String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
-        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:85/downloadRecuDepo/"
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
                 + ns.getId_notification() + "\n Numero de notification : " + num_notification, 300,
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
@@ -4468,7 +4500,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-
     public static String convertDate(String type, Date date) {
         String strDate = "";
         if (date == null) {
