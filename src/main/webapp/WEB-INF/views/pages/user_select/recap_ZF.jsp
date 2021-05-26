@@ -389,7 +389,7 @@
                   <td>${tr.identifiant}</td>
                   <td>${tr.tel}</td>
                   <td>${tr.fax}</td>
-                  <td>${tr.email}</td>
+                  <td>${tr.adresse}</td>
                 </tr>
               </c:forEach>
             </c:if>
@@ -399,7 +399,7 @@
                 <td>${declarationTrans.transporteurParam.identifiant}</td>
                 <td>${declarationTrans.transporteurParam.tel}</td>
                 <td>${declarationTrans.transporteurParam.fax}</td>
-                <td>${declarationTrans.transporteurParam.email}</td>
+                <td>${declarationTrans.transporteurParam.adresse}</td>
               </tr>
             </c:if>
             <c:if test="${(empty notification.transporteur && empty declarationTrans)}">

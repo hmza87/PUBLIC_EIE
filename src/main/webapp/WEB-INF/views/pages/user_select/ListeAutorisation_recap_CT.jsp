@@ -757,7 +757,7 @@
                   <td>${tr.identifiant}</td>
                   <td>${tr.tel}</td>
                   <td>${tr.fax}</td>
-                  <td>${tr.email}</td>
+                  <td>${tr.adresse}</td>
                 </tr>
               </c:forEach>
             </c:if>
