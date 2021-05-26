@@ -60,65 +60,71 @@
                     <div id="step1" class="col-12 z_collecteur"  >
                         <c:choose>
                             <c:when test="${type=='AE'}">
-                                <%--<c:forEach items="${doc}" var="dc">
-                                    <div class="row justify-content-center">
-                                        <div class="col mt-3  ">
-                                            <div class="form-group">
-                                                <div>
-                                                    <label style="width: 100%;"> ${dc.nom_fr } </label> <input
-                                                        required
-                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
-                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                        class="form-control mydoc">
+                                <c:if test="${demande.statut.id_statut_projet==58}">
+                                    <c:forEach items="${doc}" var="dc">
+                                        <div class="row justify-content-center">
+                                            <div class="col mt-3  ">
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label style="width: 100%;"> ${dc.nom_fr } </label> <input
+                                                            required
+                                                            onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
+                                                            accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                            class="form-control mydoc">
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <c:if test="${not empty docNotify}">
+                                                <div class="col-2 mt-5">
+                                                    <c:forEach items="${docNotify}" var="d">
+                                                        <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
+                                                            <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
+                                                               class="btn btn-success rounded file_existe"><span
+                                                                    class="fa fa-download"></span></a>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </div>
+                                            </c:if>
                                         </div>
-                                        <c:if test="${not empty docNotify}">
-                                            <div class="col-2 mt-5">
-                                                <c:forEach items="${docNotify}" var="d">
-                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
-                                                        <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
-                                                           class="btn btn-success rounded file_existe"><span
-                                                                class="fa fa-download"></span></a>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                </c:forEach>--%>
-                                <div class="row">
-                                    <c:forEach items="${demande.documents_AE}" var="doc">
-                                        <div class="col-12">
-                                            <div class="form-group mt-3">
-                                                <label> ${doc.nom_fr} </label>
-                                                <c:choose>
-                                                    <c:when test="${empty doc.url_file}">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <input type="file" class="form-control" onchange="set_doc_AE('${demande.id_demande_information}','${doc.id_documents_ae}',this)">
+                                    </c:forEach>
+                                </c:if>
+
+                                <c:if test="${demande.statut.id_statut_projet==59}">
+                                    <div class="row">
+                                        <c:forEach items="${demande.documents_AE}" var="doc">
+                                            <div class="col-12">
+                                                <div class="form-group mt-3">
+                                                    <label> ${doc.nom_fr} </label>
+                                                    <c:choose>
+                                                        <c:when test="${empty doc.url_file}">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <input type="file" class="form-control" onchange="set_doc_AE('${demande.id_demande_information}','${doc.id_documents_ae}',this)">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="row">
-                                                            <div class="col-11">
-                                                                <input type="file" class="form-control" onchange="set_doc_AE('${demande.id_demande_information}','${doc.id_documents_ae}',this)">
-                                                            </div>
-                                                            <div class="col-1">
-                                                                <a class="btn btn-primary" target="_blank" download href="${Admin_url}${doc.url_file}">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <input type="file" class="form-control" onchange="set_doc_AE('${demande.id_demande_information}','${doc.id_documents_ae}',this)">
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <a class="btn btn-primary" target="_blank" download href="${Admin_url}${doc.url_file}">
                                                                         <span class="fa fa-download">
                                                                         </span>
-                                                                </a>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </c:otherwise>
-                                                </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </c:forEach>
-                                </div>
+                                        </c:forEach>
+                                    </div>
+                                </c:if>
+
                             </c:when>
                         </c:choose>
                     </div>
