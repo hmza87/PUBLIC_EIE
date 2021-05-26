@@ -891,7 +891,7 @@
                                    class="table my_table table-striped hover compact table-bordered text-md-nowrap">
                                 <thead class="thead-bleu">
                                 <tr>
-                                    <th class=""><spring:message code="label.nom"/></th>
+                                    <th class=""><spring:message code="label.nomdesociete"/></th>
 
 
                                     <th class=""><spring:message code="label.identifiantfiscal"/></th>
@@ -1361,14 +1361,14 @@
 
                             <div class="col-6 ">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.nom"/> </label>
+                                    <label> <spring:message code="label.nomdesociete"/> </label>
                                     <input value="${notification.producteur.nom_fr}" type="text"
                                            name="Nom_fr" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> الإسم : </label>
+                                    <label dir="rtl"> إسم الشركة : </label>
                                     <input dir="rtl" value="${notification.producteur.nom_ar}"
                                            type="text"
                                            name="Nom_ar" class="form-control">
@@ -1488,7 +1488,7 @@
 
                             <div class="col-6 ">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.nom"/> </label>
+                                    <label> <spring:message code="label.nomdesociete"/> </label>
                                     <input value="${notification.eliminateur.nom_fr}" type="text"
                                            name="Nom_fr" class="form-control">
                                 </div>
@@ -1496,7 +1496,7 @@
                             <div class="col-6 ">
                                 <div class="form-group" style="text-align: right;">
                                 <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> الإسم : </label>
+                                    <label dir="rtl"> إسم الشركة : </label>
                                     <input dir="rtl" value="${notification.eliminateur.nom_ar}"
                                            type="text"
                                            name="Nom_ar" class="form-control">

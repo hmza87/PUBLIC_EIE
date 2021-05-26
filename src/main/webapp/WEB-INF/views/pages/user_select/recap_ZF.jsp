@@ -445,7 +445,7 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label><spring:message code="label.nom"/></label>
+                <label><spring:message code="label.nomdesociete"/></label>
                 <c:choose>
                   <c:when test="">
                     <input disabled class="form-control" value="${notification.producteur.nom_ar}" type="text">
@@ -512,7 +512,7 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label><spring:message code="label.nom"/></label>
+                <label><spring:message code="label.nomdesociete"/></label>
                 <c:choose>
                   <c:when test="">
                     <input disabled class="form-control" value="${notification.eliminateur.nom_ar}" type="text">

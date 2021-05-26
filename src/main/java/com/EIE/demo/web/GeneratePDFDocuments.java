@@ -98,7 +98,7 @@ public class GeneratePDFDocuments {
             email_importateur =ww.getMail();
         }
 
-        par1.add("Nom : ");
+        par1.add("Nom de la société : ");
 //        par1.add("NOM");
         par1.add(nom_importateur);
         par1.add(Chunk.NEWLINE);
@@ -303,7 +303,7 @@ public class GeneratePDFDocuments {
         par7.add(new Phrase("7.Transporteur(s) prévu :",fontbold));
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Nom : ");
+        par7.add("Nom de la société : ");
         par7.add(nom_transporteur);
         par7.add(Chunk.NEWLINE);
 
@@ -402,7 +402,7 @@ public class GeneratePDFDocuments {
         par10.add(new Phrase("8.Producteur(s) des déchets",fontbold));
         par10.add(Chunk.NEWLINE);
 
-        par10.add("Nom : ");
+        par10.add("Nom de la société : ");
         par10.add(nom_producteur);
         par10.add(Chunk.NEWLINE);
 
@@ -492,7 +492,7 @@ public class GeneratePDFDocuments {
         }
 
 
-        par12.add("Nom : ");
+        par12.add("Nom de la société : ");
         par12.add(nom_entreprise);
         par12.add(Chunk.NEWLINE);
 
@@ -606,7 +606,7 @@ public class GeneratePDFDocuments {
                 "garanties financières éventuellement requises notamment l'assurance de transport des déchets dangereuses.");
         par20.add(Chunk.NEWLINE);
 
-        par20.add("Nom : ");
+        par20.add("Nom de la société : ");
         par20.add(nom_importateur);
         par20.add(new Chunk(glue));
         par20.add("Date : ");
@@ -786,7 +786,7 @@ public class GeneratePDFDocuments {
         par1.add(Chunk.NEWLINE);
         //========
 
-        par1.add("Nom : ");
+        par1.add("Nom de la société : ");
 //        par1.add("NOM");
         par1.add(ns.getNom());
         par1.add(Chunk.NEWLINE);
@@ -937,7 +937,7 @@ public class GeneratePDFDocuments {
             email_importateur =ww.getMail();
         }
 
-        par01.add("Nom : ");
+        par01.add("Nom de la société : ");
 //        par1.add("NOM");
         par01.add(nom_importateur);
         par01.add(Chunk.NEWLINE);
@@ -1066,7 +1066,7 @@ public class GeneratePDFDocuments {
         par7.add("N° d'enregistrement :");
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Nom : ");
+        par7.add("Nom de la société : ");
         par7.add(nom_transporteur);
         par7.add(Chunk.NEWLINE);
 
@@ -1175,7 +1175,7 @@ public class GeneratePDFDocuments {
         par10.add("N° d'enregistrement:");
         par10.add(Chunk.NEWLINE);
 
-        par10.add("Nom : ");
+        par10.add("Nom de la société : ");
         par10.add(nom_producteur);
         par10.add(Chunk.NEWLINE);
 
@@ -1267,7 +1267,7 @@ public class GeneratePDFDocuments {
         }
 
 
-        par12.add("Nom : ");
+        par12.add("Nom de la société : ");
         par12.add(nom_entreprise);
         par12.add(Chunk.NEWLINE);
 
@@ -1769,7 +1769,7 @@ public class GeneratePDFDocuments {
         par2.add(new Phrase("3. Importateur – Notifiant :  ",fontbold));
         par2.add(Chunk.NEWLINE);
 
-        par2.add("Nom : ");
+        par2.add("Nom de la société : ");
         par2.add(nom_importateur);
         par2.add(Chunk.NEWLINE);
 
@@ -1868,7 +1868,7 @@ public class GeneratePDFDocuments {
         par6.add(new Phrase("7. a) 1er transporteur  : ",fontbold));
         par6.add(Chunk.NEWLINE);
 
-        par6.add("Nom : ");
+        par6.add("Nom de la société : ");
         par6.add(Chunk.NEWLINE);
 
         par6.add("Adresse : ");
@@ -1899,7 +1899,7 @@ public class GeneratePDFDocuments {
         par7.add(new Phrase("7. b) 2ème transporteur : ",fontbold));
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Nom : ");
+        par7.add("Nom de la société : ");
         par7.add(Chunk.NEWLINE);
 
         par7.add("Adresse : ");
@@ -1931,7 +1931,7 @@ public class GeneratePDFDocuments {
         par8.add(new Phrase("7. c) Dernier transporteur : ",fontbold));
         par8.add(Chunk.NEWLINE);
 
-        par8.add("Nom : ");
+        par8.add("Nom de la société : ");
         par8.add(Chunk.NEWLINE);
 
         par8.add("Adresse : ");
@@ -2029,7 +2029,7 @@ public class GeneratePDFDocuments {
         par13.add(new Phrase("8. Producteur(s) des déchets : ",fontbold));
         par13.add(Chunk.NEWLINE);
 
-        par13.add("Nom : ");
+        par13.add("Nom de la société : ");
         par13.add(Chunk.NEWLINE);
 
         par13.add("Adresse : ");
@@ -2100,7 +2100,7 @@ public class GeneratePDFDocuments {
         par16.add(ns.getEliminateur()==null?checkedChunk:uncheckedChunk);
         par16.add(Chunk.NEWLINE);
 
-        par16.add("Nom : ");
+        par16.add("Nom de la société : ");
         par16.add(Chunk.NEWLINE);
 
         par16.add("Adresse : ");
@@ -2185,7 +2185,7 @@ public class GeneratePDFDocuments {
                 "garanties financières éventuellement requises notamment l'assurance de transport des déchets dangereuses.");
         par19.add(Chunk.NEWLINE);
 
-        par19.add("Nom : ");
+        par19.add("Nom de la société : ");
         par19.add(new Chunk(glue));
         par19.add("Date : ");
         par19.add(new Chunk(glue));
@@ -2206,7 +2206,7 @@ public class GeneratePDFDocuments {
         par20.add(new Phrase("15. Expédition reçue l’installation de valorisation/élimination : ",fontbold));
         par20.add(Chunk.NEWLINE);
 
-        par20.add("Nom : ");
+        par20.add("Nom de la société : ");
         par20.add(new Chunk(glue));
         par20.add("Date : ");
         par20.add(new Chunk(glue));
@@ -2267,7 +2267,7 @@ public class GeneratePDFDocuments {
         par22.add("Opération d'élimination/valorisation (1 et 2) :");
         par22.add(Chunk.NEWLINE);
 
-        par22.add("Nom : ");
+        par22.add("Nom de la société : ");
         par22.add(Chunk.NEWLINE);
 
         par22.add("Date : ");
@@ -2289,7 +2289,7 @@ public class GeneratePDFDocuments {
         par23.add(new Phrase("17. Je soussigné certifie que l'élimination/la valorisation des déchets décrits ci-dessus a été effectuée.",fontbold));
         par23.add(Chunk.NEWLINE);
 
-        par23.add("Nom : ");
+        par23.add("Nom de la société : ");
         par23.add(Chunk.NEWLINE);
 
         par23.add("Date : ");
@@ -2431,7 +2431,7 @@ public class GeneratePDFDocuments {
         par02.add("N° d'enregistrement :  ");
         par02.add(Chunk.NEWLINE);
 
-        par02.add("Nom : ");
+        par02.add("Nom de la société : ");
         par02.add(ns.getNom());
         par02.add(Chunk.NEWLINE);
 
@@ -2471,7 +2471,7 @@ public class GeneratePDFDocuments {
         par2.add("N° d'enregistrement :  ");
         par2.add(Chunk.NEWLINE);
 
-        par2.add("Nom : ");
+        par2.add("Nom de la société : ");
         par2.add(nom_importateur);
         par2.add(Chunk.NEWLINE);
 
@@ -2572,7 +2572,7 @@ public class GeneratePDFDocuments {
         par6.add("");
         par6.add(Chunk.NEWLINE);
 
-        par6.add("Nom : ");
+        par6.add("Nom de la société : ");
         par6.add(Chunk.NEWLINE);
 
         par6.add("Adresse : ");
@@ -2605,7 +2605,7 @@ public class GeneratePDFDocuments {
         par7.add("");
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Nom : ");
+        par7.add("Nom de la société : ");
         par7.add(Chunk.NEWLINE);
 
         par7.add("Adresse : ");
@@ -2643,7 +2643,7 @@ public class GeneratePDFDocuments {
         par8.add("");
         par8.add(Chunk.NEWLINE);
 
-        par8.add("Nom : ");
+        par8.add("Nom de la société : ");
         par8.add(Chunk.NEWLINE);
 
         par8.add("Adresse : ");
@@ -2743,7 +2743,7 @@ public class GeneratePDFDocuments {
         par13.add("");
         par13.add(Chunk.NEWLINE);
 
-        par13.add("Nom : ");
+        par13.add("Nom de la société : ");
         par13.add(Chunk.NEWLINE);
 
         par13.add("Adresse : ");
@@ -2820,7 +2820,7 @@ public class GeneratePDFDocuments {
         par16.add("");
         par16.add(Chunk.NEWLINE);
 
-        par16.add("Nom : ");
+        par16.add("Nom de la société : ");
         par16.add(Chunk.NEWLINE);
 
         par16.add("Adresse : ");
@@ -2914,7 +2914,7 @@ public class GeneratePDFDocuments {
                 "garanties financières éventuellement requises et que toutes les autorisation requises ont été recues des autorités compétentes des pays concernés.");
         par19.add(Chunk.NEWLINE);
 
-        par19.add("Nom : ");
+        par19.add("Nom de la société : ");
         par19.add(new Chunk(glue));
         par19.add("Date : ");
         par19.add(new Chunk(glue));
@@ -2936,7 +2936,7 @@ public class GeneratePDFDocuments {
         par20.add(new Phrase("16. Transfet reçu par l'importateur - le destinataire (autre qu'une installation): ",fontbold));
         par20.add(Chunk.NEWLINE);
 
-        par20.add("Nom : ");
+        par20.add("Nom de la société : ");
         par20.add(new Chunk(glue));
         par20.add("Date : ");
         par20.add(new Chunk(glue));
@@ -2994,7 +2994,7 @@ public class GeneratePDFDocuments {
         par22.add("Opération d'élimination - valorisation (1) :");
         par22.add(Chunk.NEWLINE);
 
-        par22.add("Nom : ");
+        par22.add("Nom de la société : ");
         par22.add(Chunk.NEWLINE);
 
         par22.add("Date : ");
@@ -3015,7 +3015,7 @@ public class GeneratePDFDocuments {
         par23.add(new Phrase("18. Je soussigné certifie que l'élimination/la valorisation des déchets décrits ci-dessus a été effectuée.",fontbold));
         par23.add(Chunk.NEWLINE);
 
-        par23.add("Nom : ");
+        par23.add("Nom de la société : ");
         par23.add(Chunk.NEWLINE);
 
         par23.add("Date : ");
@@ -3374,7 +3374,7 @@ public class GeneratePDFDocuments {
         table1.completeRow();
         //--------------------- completeRow ---------------------
 
-        table1.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
+        table1.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
         table1.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
         table1.addCell( saisir_cellule("Tél : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
         table1.completeRow();
@@ -3478,7 +3478,7 @@ public class GeneratePDFDocuments {
         table4.addCell(saisir_cellule_titre("Producteur(s)",4));
         table4.completeRow();
         //--------------------- completeRow ---------------------
-        table4.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
+        table4.addCell( saisir_cellule("Nom de la société: ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
         table4.addCell( saisir_cellule("teléphone : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getTel():"-",1));
         table4.addCell( saisir_cellule("Email : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getMail():"-",1));
         table4.completeRow();
@@ -3502,7 +3502,7 @@ public class GeneratePDFDocuments {
         table5.addCell(saisir_cellule_titre("Installation de valorisation / élimination",4));
         table5.completeRow();
         //--------------------- completeRow ---------------------
-        table5.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
+        table5.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
         table5.addCell( saisir_cellule("teléphone : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getTel():"-",1));
         table5.addCell( saisir_cellule("Email : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getMail():"-",1));
         table5.completeRow();
@@ -4267,7 +4267,7 @@ public class GeneratePDFDocuments {
         table1.completeRow();
         //--------------------- completeRow ---------------------
 
-        table1.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
+        table1.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
         table1.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
         table1.addCell( saisir_cellule("Tél : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
         table1.completeRow();
@@ -4371,7 +4371,7 @@ public class GeneratePDFDocuments {
         table4.addCell(saisir_cellule_titre("Producteur(s)",4));
         table4.completeRow();
         //--------------------- completeRow ---------------------
-        table4.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
+        table4.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
         table4.addCell( saisir_cellule("teléphone : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getTel():"-",1));
         table4.addCell( saisir_cellule("Email : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getMail():"-",1));
         table4.completeRow();
@@ -4395,7 +4395,7 @@ public class GeneratePDFDocuments {
         table5.addCell(saisir_cellule_titre("Installation d’élimination",4));
         table5.completeRow();
         //--------------------- completeRow ---------------------
-        table5.addCell( saisir_cellule("Nom : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
+        table5.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
         table5.addCell( saisir_cellule("teléphone : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getTel():"-",1));
         table5.addCell( saisir_cellule("Email : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getMail():"-",1));
         table5.completeRow();
