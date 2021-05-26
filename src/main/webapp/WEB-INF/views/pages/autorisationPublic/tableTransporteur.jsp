@@ -63,7 +63,7 @@
                 <%--<td>${Tr_l.adresse} </td>--%>
             <td>${Tr_l.tel} </td>
             <td>${Tr_l.fax} </td>
-            <td>${Tr_l.email} </td>
+            <td>${Tr_l.adresse} </td>
            <%-- <td class="">
                 <ul class="list-inline m-0">
                     <li class="list-inline-item">

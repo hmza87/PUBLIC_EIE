@@ -898,7 +898,7 @@
                                     <%--<th class="">Adresse</th>--%>
                                     <th class=""><spring:message code="label.telephone"/></th>
                                     <th class=""><spring:message code="label.Fax"/></th>
-                                    <th class=""><spring:message code="label.email"/></th>
+                                    <th class=""><spring:message code="label.Adresse"/></th>
 
                                     <%--<th class=""><spring:message code="label.Action"/></th>--%>
                                 </tr>
@@ -914,7 +914,7 @@
                                             <%--<td>${Tr_l.adresse} </td>--%>
                                         <td>${Tr_l.tel} </td>
                                         <td>${Tr_l.fax} </td>
-                                        <td>${Tr_l.email} </td>
+                                        <td>${Tr_l.adresse} </td>
 
                                             <%--<td class="">
                                                 <ul class="list-inline m-0">
