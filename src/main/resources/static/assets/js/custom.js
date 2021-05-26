@@ -1446,9 +1446,15 @@ function verifier_reg_pref(btn,id){
     openCity1(btn,id);
 }
 
-function Add_new_AE(id_dmd){
+function update_new_AE(){
     if(event!=null)
         event.preventDefault();
+
+    var id_dmd = $("#id_demande_information").val();
+    if($.trim(id_dmd)==="" || id_dmd==null){
+        return false;
+    }
+
     var data = new FormData();
     var ins = document.getElementById("file_frm").files.length;
     if(ins==0){
@@ -1470,14 +1476,34 @@ function Add_new_AE(id_dmd){
         cache: false,
         success: function (response) {
 
-            swal({
-                    title: "Document envoyé ! ",
-                    text: "le document à été envoyé avec succès",
-                    type: "success",
-                },
-                function () {
-                    window.location.href = '/api/ListeEie/AE';
-                });
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function set_doc_AE(id_dmd,id_ae,val){
+    if(event!=null)
+        event.preventDefault();
+    var data = new FormData();
+    var files = $(val)[0].files.length;
+    if(files==0){
+        swal("Avertissement !","Le fichier est obligatoire","error");
+        return false;
+    }
+
+    data.append("file",$(val)[0].files[0]);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setDocument_ae/" + id_dmd+"/"+id_ae,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
 
         },
         error: function () {
@@ -1486,3 +1512,83 @@ function Add_new_AE(id_dmd){
     });
 }
 
+function changer_statut1_AE(id_name, code_statut, msg_alert,type) {
+    if(event!=null)
+        event.preventDefault();
+    var id = $("#" + id_name).val();
+    var link_recap = "/api/ListeEie/"+type;
+    if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
+        swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
+        return false;
+    }
+
+    $.ajax({
+        url: "/api/changerStatuts/" + id + "/" + code_statut,
+        type: 'GET',
+        data: {},
+    })
+        .done(function (data) {
+            Swal.fire({
+                title: '<strong>' + msg_alert + '</strong>',
+                icon: 'success',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                focusConfirm: false,
+            })
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+}
+
+function ajouter_rapport_ae(id){
+    if(event!=null)
+        event.preventDefault();
+    $("#modal_AE").modal("show");
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/affiche_FRM_Add_rapport_ae/" + id,
+        data:{},
+        success: function (response) {
+            $("#zone_AE_fichier").html(response);
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function setfileRapport_AE(id,val,id_rapport){
+    if(event!=null)
+        event.preventDefault();
+    var data = new FormData();
+    var files = $(val)[0].files.length;
+    if(files==0){
+        swal("Avertissement !","Le fichier est obligatoire","error");
+        return false;
+    }
+
+    data.append("file",$(val)[0].files[0]);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/setRapport_ae/"+id+"/"+id_rapport,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+
+        },
+        error: function () {
+
+        }
+    });
+}

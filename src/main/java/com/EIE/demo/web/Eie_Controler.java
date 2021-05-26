@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.mail.MessagingException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,7 @@ public class Eie_Controler {
 			model.put("totalPage", 0);
 		}
 		model.put("user", ct);
+
 		return new ModelAndView("demande_eie/ListeDemande", model);
 	}
 

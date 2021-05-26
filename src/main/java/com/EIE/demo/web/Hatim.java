@@ -26,6 +26,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -1152,8 +1154,61 @@ public class Hatim {
 		return s;
 	}
 
+	@RequestMapping(value = "/api/getListdocument/{id}", method = RequestMethod.GET)
+	public ModelAndView getProcedureAuto2(@PathVariable int id) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		DemandeInformation d = webt.getDemandeInformationByCompteId(id,webt.getCompteConnected().getCompteId());
+		map.put("user",webt.getCompteConnected());
+		map.put("demande",d);
+		map.put("type",d.getType());
+		map.put("Admin_url",urlRest);
+		return new ModelAndView("demande_eie/completerDoc_AE",map);
+	}
 
+	@RequestMapping(value = "/api/setDocument_ae/{id_dmd}/{id_ae}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public @ResponseBody String getProcedureAuto2(@PathVariable int id_dmd,@PathVariable int id_ae,@RequestParam MultipartFile file) {
+		String s = webt.saveFile_complementaire(id_dmd,id_ae,file,webt.getCompteConnected().getCompteId());
+		return s;
+	}
+	@RequestMapping(value = "/api/setRapport_ae/{id_dmd}/{id_rapport}", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public @ResponseBody String setRapport_ae(@PathVariable int id_dmd,@PathVariable int id_rapport,@RequestParam MultipartFile file) {
+		String s = webt.saveFile_Rapport_ae(id_dmd,id_rapport,file,webt.getCompteConnected().getCompteId());
+		return s;
+	}
 
+	@RequestMapping(value = "/api/AttacherListDocAE/{id}", method = RequestMethod.GET)
+	public ModelAndView AttacherListDocAE(@PathVariable int id) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		DemandeInformation d = webt.getDemandeInformationByCompteId(id,webt.getCompteConnected().getCompteId());
+		map.put("user",webt.getCompteConnected());
+		map.put("demande",d);
+		map.put("type",d.getType());
+		map.put("doc",webt.getDocImportByType("AE"));
+		map.put("Admin_url",urlRest);
+		return new ModelAndView("demande_eie/AttacherListDocAE",map);
+	}
+
+	@RequestMapping(value = "/api/affiche_FRM_Add_rapport_ae/{id}", method = RequestMethod.POST)
+	public ModelAndView affiche_FRM_Add_rapport_ae(@PathVariable int id) throws ParseException {
+		Map<String,Object> map = new HashMap<String,Object>();
+		DemandeInformation d = webt.getDemandeInformationByCompteId(id,webt.getCompteConnected().getCompteId());
+		map.put("user",webt.getCompteConnected());
+		SimpleDateFormat sm = new SimpleDateFormat("YYYY-MM-dd");
+		String show = "oui";
+		if(d.getRapports_AE().size()>0){
+			Date dt = sm.parse(d.getDate_debut_AE());
+			Date dt_now = new Date();
+			RapportsAE r = d.getRapports_AE().get(d.getRapports_AE().size()-1);
+			Date dt_tmp = sm.parse(r.getDate());
+			//si on est dans la periode et on dispose du fichier on fait rien
+		}
+
+		map.put("demande",d);
+		map.put("show",show);
+		map.put("type","Rapport_AE");
+		map.put("Admin_url",urlRest);
+		return new ModelAndView("user_select/auto_load_filesModal",map);
+	}
 
 
 

@@ -44,6 +44,15 @@ public class Reunion implements Serializable {
 	@Column(name = "url_presence", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String url_presence;
 
+	@Column(name = "periode_send_rapport", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String periode_send_rapport;
+
+	public String getPeriode_send_rapport() {
+		return periode_send_rapport;
+	}
+	public void setPeriode_send_rapport(String periode_send_rapport) {
+		this.periode_send_rapport = periode_send_rapport;
+	}
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_statut_projet")
 	private StatutProjet statut;

@@ -41,8 +41,7 @@
                 </div>
 
                 <div class="row">
-                    <c:if test="${type!='AE'}">
-                        <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                    <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                             <table style="width:100% !important; " id="tableProfils" class="table table-striped hover compact table-bordered text-md-nowrap">
                                 <thead class="">
                                 <tr>
@@ -97,8 +96,8 @@
                                         </td>
                                         <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
                                                 nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 ||
-                                                nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 ||
-                                                nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 ||
+                                                nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 || (nt.statut.id_statut_projet==71 && nt.type=='AE') ||
+                                                nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 || (type=='AE' && nt.statut.id_statut_projet==58) ||
                                                 nt.statut.id_statut_projet==60 )?nt.statut.nom_fr:'En cours de traitement'}</span>
                                         </td>
                                         <td> ${nt.intitule_projet}  </td>
@@ -211,14 +210,29 @@
                                                    class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
                                             </c:if>
 
-                                            <c:if test="${nt.statut.id_statut_projet==59 }">
+                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type!='AE' }">
                                                 <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
                                                    class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
                                             </c:if>
+                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' }">
+                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i> Compléter mon dossier</a>
+                                            </c:if>
+
+                                            <c:if test="${nt.statut.id_statut_projet==71 && nt.type=='AE' }">
+                                                <button onclick="ajouter_rapport_ae('${nt.id_demande_information}')" class="btn btn-primary">Ajouter le rapport d'audit</button>
+                                            </c:if>
+
                                             <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
                                                 <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
                                                    class="btn btn-primary" title="Attacher les documents définitive"><i
                                                         class="fa fa-pencil"></i> Déposer la demande</a>
+                                            </c:if>
+
+                                            <c:if test="${nt.statut.id_statut_projet==58 && type=='AE'}">
+                                                <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Valider les documents">
+                                                    <i class="fa fa-check"></i>
+                                                    Attacher les documents
+                                                </a>
                                             </c:if>
 
                                         </td>
@@ -354,53 +368,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </c:if>
-                    <c:if test="${type=='AE'}">
-                        <div class="col-12 table-responsive">
-                            <table class="table table-striped hover compact table-bordered text-md-nowrap ">
-                                <thead>
-                                <tr>
-                                    <th>N° de la demande</th>
-                                    <th>Date de dépôt </th>
-                                    <th>Statut</th>
-                                    <th>Formulaire de demande</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${notif}" var="d">
-                                    <tr>
-                                        <td>${d.num_demande}</td>
-                                        <td>
-                                            <fmt:formatDate value="${d.dateDepot}" pattern="dd/MM/YYYY" var="date" />
-                                            ${date}
-                                        </td>
-                                        <td>
-                                           <span class="badge badge-info"> ${d.statut.nom_fr}</span>
-                                        </td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${not empty d.url_file_AE}">
-                                                    <a target="_blank" download="" href="${url_Admin}${d.url_file_AE}">
-                                                        <span class="fa fa-eye" style="font-size: 20px;color: #3bb33b"></span>
-                                                    </a>
-                                                </c:when>
-                                                <c:otherwise> - </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td>
-                                            <c:if test="${d.statut.id_statut_projet==1}">
-                                               <a href="/api/demandeinformation/${d.id_demande_information}/AE" class="btn btn-primary">modifier</a>
-                                            </c:if>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                
-                                </tbody>
-                            </table>
-                        </div>
-                    </c:if>
-
                 </div>
             </section>
         </div>
@@ -408,7 +375,25 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="modal_AE" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitleAE">Envoyer le rapport d'audit </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="zone_AE_fichier">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><spring:message code="button.Enregistrer"/></button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="modal_fichiers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">

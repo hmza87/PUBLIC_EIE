@@ -51,21 +51,16 @@
 
         <div class="row" style="text-align: ${pageContext.response.locale=='ar'?'right':'left'}">
             <div class="col-md-3 col-sm-12">
-                <c:choose>
-                    <c:when test="${type!='AE'}">
-                        <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. informations sur le pétitionnaire </button>
-                        <c:if test="${demande.statut.id_statut_projet!=13}">
-                            <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">2. informations sur le projet </button>
-                            <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >3. Localisation du projet </button>
-                        </c:if>
-                        <c:if test="${type=='EE'|| type=='NT'}">
-                            <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')">4. Pièce à fournir </button>
-                        </c:if>
-                    </c:when>
-                    <c:when test="${type=='AE'}">
-                        <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. Demande d'Audit </button>
-                    </c:when>
-                </c:choose>
+
+                <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. informations sur le pétitionnaire </button>
+                <c:if test="${demande.statut.id_statut_projet!=13}">
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">2. informations sur le projet </button>
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >3. Localisation du projet </button>
+                </c:if>
+                <c:if test="${type=='EE'|| type=='NT'}">
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')">4. Pièce à fournir </button>
+                </c:if>
+
 
             </div>
             <div class="col-lg-6 col-sm-8 col-md-8 mx-4">
@@ -74,9 +69,7 @@
                         <h4 class="titre_abs " style="text-align:center">${titre_dyn} </h4>
                     </div>
                     <div id="step1" class="col-12 z_collecteur"  >
-                        <c:choose>
-                            <c:when test="${type!='AE'}">
-                                <form class="mt-3"  id="formAvisProjet" name="formAvisProjet" >
+                        <form class="mt-3"  id="formAvisProjet" name="formAvisProjet" >
                                     <input type="hidden" value="${(not empty demande)?demande.id_demande_information:'0'}" name="id_demande_information" id="id_demande_information">
                                     <c:if test="${not empty demande}">
                                         <div class="row">
@@ -154,42 +147,6 @@
                                         </div>
                                     </div>
                                 </form>
-                            </c:when>
-                            <c:when test="${type=='AE'}">
-                                <form class="mt-3"  id="formAvisProjet" name="formAvisProjet" >
-                                    <input type="hidden" value="${(not empty demande)?demande.id_demande_information:'0'}" name="id_demande_information" id="id_demande_information">
-                                    <c:if test="${not empty demande}">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label ><spring:message code="label.NumeroDemande"/></label>
-                                                    <input  disabled value="${demande.num_demande }" type="text" name="num_demande" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:if>
-                                        <%--information demandeur--%>
-                                    <div class="row">
-
-                                        <div class=" col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label >Formulaire de la Demande </label>
-                                                <input required ${disabled} type="file" id="file_frm" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                        <%--information Projet--%>
-
-                                    <div class="row justify-content-center p-0 mb-3">
-                                        <div class="col-md-3 col-sm-12">
-                                            <button class="btn btn-success btn_suiv btn-block" onclick="Add_new_AE('${(not empty demande)?demande.id_demande_information:"0"}')">  <spring:message code="button.Enregistrer"/> </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </c:when>
-                        </c:choose>
-
                     </div>
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
                         <form class="mt-3"  id="formProjet" name="formProjet" >
@@ -250,6 +207,13 @@
                                 </c:if>
                                 <c:if test="${type=='AE'}">
                                     <div class="col-md-6 col-sm-12">
+
+                                        <div class="form-group">
+                                            <label> Date de réalisation du projet </label>
+                                            <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
                                             <label> Date de Démarrage</label>
                                             <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="${demande.dateDemarage}" required >
@@ -257,8 +221,8 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
-                                            <label> Date de réalisation du projet </label>
-                                            <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
+                                            <label >Formulaire de la Demande </label>
+                                            <input type="file" id="file_frm" class="form-control" onchange="update_new_AE()">
                                         </div>
                                     </div>
                                 </c:if>
@@ -340,9 +304,14 @@
                                 <div class="col-sm-12 col-md-3">
                                     <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="button.Precedent"/> </button>
                                 </div>
-                                <c:if test="${type=='EE' || type=='AE' || type=='NT'}">
+                                <c:if test="${type=='EE' || type=='NT'}">
                                     <div class="col-sm-12 col-md-3">
                                         <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','#step3','#step_id3')" >  <spring:message code="button.Suivant"/> </button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${type=='AE'}">
+                                    <div class="col-sm-12 col-md-3">
+                                        <button onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='RS'}">

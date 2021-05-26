@@ -1241,4 +1241,32 @@ class WebServiceImp implements WebService {
 		return nn;
 	}
 
+	@Override
+	public String saveFile_complementaire(int id_dmd, int id_ae, MultipartFile file, int compteId) {
+		final String uris = urlRest + "/saveFile_complementaireRest/"+id_dmd+"/"+id_ae+"/"+compteId;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file",new FileSystemResource(convert(file)));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+	}
+
+	@Override
+	public String saveFile_Rapport_ae(int id_dmd,int id_rapport, MultipartFile file, int compteId) {
+		final String uris = urlRest + "/saveFile_Rapport_aeRest/"+id_dmd+"/"+id_rapport+"/"+compteId;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+		bodyMapw.add("file",new FileSystemResource(convert(file)));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		return response.getBody();
+	}
+
 }

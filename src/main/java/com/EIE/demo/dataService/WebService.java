@@ -209,4 +209,8 @@ void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,Multi
 	Notification changerEtat(int id_notification,String Type);
     String saveDemandeAE(String id, MultipartFile[] fileToUpload, int compteId);
 	void deletePort(int id, int id_trans);
+    String saveFile_complementaire(int id_dmd, int id_ae, MultipartFile file, int compteId);
+
+    String saveFile_Rapport_ae(int id_dmd,int id_rapport, MultipartFile file, int compteId);
+
 }

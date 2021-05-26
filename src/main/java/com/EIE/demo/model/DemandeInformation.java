@@ -816,6 +816,25 @@ public class DemandeInformation implements Serializable {
     @Column(name = "commentaire_url_file_AE", nullable = true, columnDefinition = "nText")
     private String commentaire_url_file_AE;
 
+    @Column(name = "date_debut_AE", nullable = true, columnDefinition = "nText")
+    private String date_debut_AE;
+
+    @Column(name = "date_fin_AE", nullable = true, columnDefinition = "nText")
+    private String date_fin_AE;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(name = "AE_documents", joinColumns = {
+            @JoinColumn(name = "id_demande_information") }, inverseJoinColumns = { @JoinColumn(name = "id_documents_ae") })
+    private List<DocumentsAE> documents_AE = new ArrayList<DocumentsAE>();
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(name = "AE_Repport", joinColumns = {
+            @JoinColumn(name = "id_demande_information") }, inverseJoinColumns = { @JoinColumn(name = "id_rapports_ae") })
+    private List<RapportsAE> rapports_AE = new ArrayList<RapportsAE>();
+
     public String getUrl_file_AE() {
         return url_file_AE;
     }
@@ -828,6 +847,30 @@ public class DemandeInformation implements Serializable {
     }
     public void setCommentaire_url_file_AE(String commentaire_url_file_AE) {
         this.commentaire_url_file_AE = commentaire_url_file_AE;
+    }
+    public String getDate_debut_AE() {
+        return date_debut_AE;
+    }
+    public void setDate_debut_AE(String date_debut_AE) {
+        this.date_debut_AE = date_debut_AE;
+    }
+    public String getDate_fin_AE() {
+        return date_fin_AE;
+    }
+    public void setDate_fin_AE(String date_fin_AE) {
+        this.date_fin_AE = date_fin_AE;
+    }
+    public List<RapportsAE> getRapports_AE() {
+        return rapports_AE;
+    }
+    public void setRapports_AE(List<RapportsAE> rapports_AE) {
+        this.rapports_AE = rapports_AE;
+    }
+    public List<DocumentsAE> getDocuments_AE() {
+        return documents_AE;
+    }
+    public void setDocuments_AE(List<DocumentsAE> documents_AE) {
+        this.documents_AE = documents_AE;
     }
     //***************************End Audit demande********************************//
 

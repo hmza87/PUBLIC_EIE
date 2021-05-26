@@ -54,5 +54,31 @@
         </div>
 
     </c:when>
+    <c:when test="${type=='Rapport_AE'}">
+        <c:if test="${show=='oui'}">
+            <div class="row justify-content-center">
+                <div class="col-10 mt-3">
+                    <label>Rapport d'audit</label>
+                    <input id="file_to_complete" onchange="setfileRapport_AE('${demande.id_demande_information}',this,'0')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${show=='non'}">
+            <div class="row justify-content-center">
+                <div class="col-10 mt-3">
+                    <label>Rapport d'audit</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <input id="file_to_complete" onchange="setfileRapport_AE('${demande.id_demande_information}',this,'${demande.rapports_AE.get(demande.rapports_AE.size()-1).id_rapports_ae}')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-primary" target="_blank" href="${Admin_url}${demande.rapports_AE.get(demande.rapports_AE.size()-1).url_file}"> <span class="fa fa-download"></span> </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </c:if>
+    </c:when>
 </c:choose>
 
