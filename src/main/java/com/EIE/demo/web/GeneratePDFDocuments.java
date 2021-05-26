@@ -3611,7 +3611,7 @@ public class GeneratePDFDocuments {
 
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Récapitulation de la demande d'autorisation d'installation");
+        headerPar.add("Récapitulation de la demande d'autorisation d'installation de traitement des déchets");
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
@@ -3765,7 +3765,7 @@ public class GeneratePDFDocuments {
 
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Récapitulation de la demande d'autorisation Collecte Transport");
+        headerPar.add("Récapitulation de la demande d'autorisation Collecte Transport Des déchets");
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
