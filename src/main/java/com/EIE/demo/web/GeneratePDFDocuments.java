@@ -107,7 +107,7 @@ public class GeneratePDFDocuments {
         par1.add(adresse_importateur);
 //        par1.add("ADRESSE");
         par1.add(Chunk.NEWLINE);
-        
+
         par1.add("Tel : ");
         par1.add(tele_importateur);
 //        par1.add("TELEPHONE");
@@ -485,8 +485,6 @@ public class GeneratePDFDocuments {
         par13.setFont(font);
         par13.setSpacingAfter(7);
         //========
-        String code_National=ns.getCode().getId_code()==0?"":String.valueOf(ns.getCode().getId_code());
-        //========
 
         par13.add(new Phrase("13.Identifications des déchets",fontbold));
         par13.add(Chunk.NEWLINE);
@@ -494,7 +492,7 @@ public class GeneratePDFDocuments {
         par13.add("CONV. BALE");
         par13.add(Chunk.NEWLINE);
         par13.add("Code National(Catalogue Marocain des déchets) : ");
-        par13.add(code_National);
+        par13.add(ns.getCode().getNom_fr());
         par13.add(Chunk.NEWLINE);
         par13.add("Code H : ");
         par13.add("CODE H");
