@@ -3702,7 +3702,7 @@ public class GeneratePDFDocuments {
 
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Récapitulation de la demande d'autorisation Collecte Transport Des déchets");
+        headerPar.add("Récapitulation de la demande d'autorisation Collecte Transport Des déchets dangereux");
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
