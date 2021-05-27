@@ -101,7 +101,7 @@
             <a href="${url_Admin}${fn:replace(collect.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
           </div>
         </c:if>-->
-        <c:if test="${collect.statut.id_statut_projet==50 && (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
+        <c:if test="${collect.statut.id_statut_projet==56 || (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
           <%-- non conforme - dmd_complement - favorable--%>
           <div class="col-md-3 col-sm-6">
             <a class="btn btn-success btn-block"

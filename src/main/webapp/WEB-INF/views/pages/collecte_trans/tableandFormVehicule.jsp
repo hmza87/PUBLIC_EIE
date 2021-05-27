@@ -16,8 +16,8 @@
             <th> <spring:message code="label.NChassis"/> </th>
             <th> <spring:message code="label.Poidstotalencharge"/> </th>
             <th> <spring:message code="label.Poidsnetduvehicule"/> </th>
-            <th> <spring:message code="label.Equipementdesecurite"/> </th>
-            <th> <spring:message code="label.Attestationdassurance"/></th>
+            <!-- <th> <spring:message code="label.Equipementdesecurite"/> </th>
+            <th> <spring:message code="label.Attestationdassurance"/></th>-->
             <th style="min-width: 120px"> <spring:message code="label.Action"/> </th>
         </tr>
         </thead>
@@ -30,7 +30,7 @@
                         <td>${v.num_chassis}</td>
                         <td>${v.poit_totale_charge}</td>
                         <td>${v.point_net}</td>
-                        <td>
+                       <!--  <td>
                             <c:if test="${not empty v.equipementSecurite}">
                                 <a href="${url_admin}${fn:replace(v.equipementSecurite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle secur"><span class="fa fa-download"></span></a>
                             </c:if>
@@ -39,7 +39,7 @@
                             <c:if test="${not empty v.doc_assurance}">
                                 <a href="${url_admin}${fn:replace(v.doc_assurance, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a>
                             </c:if>
-                        </td>
+                        </td>-->
                         <td class="">
                             <button class="btn btn-danger rounded-circle" onclick="deleteVehicule('${v.id_vehicule}')">
                                 <span class="fas fa-trash-alt"></span>
@@ -111,6 +111,9 @@
                     <input type="text" class="form-control" id="poidsNet" value="${vehicules.point_net}" name="point_net">
                 </div>
             </div>
+             <input type="hidden" id="securiteEquip">
+             <input type="hidden" id="file">
+            <!-- 
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
                     <label class="f-14">
@@ -138,6 +141,7 @@
                     </c:if>
                 </div>
             </div>
+        -->
         </div>
         <div class="row justify-content-center">
             <div class="col-md-3">

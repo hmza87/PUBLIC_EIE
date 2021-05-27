@@ -542,6 +542,8 @@
                                                             <input type="text" class="form-control" id="poidsNet" value="${vehicules.point_net}" name="point_net">
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" id="securiteEquip">
+                                                    <input type="hidden" id="file">
                                                     <!-- 
                                                     <div class="col-md-4 col-sm-12">
                                                         <div class="form-group">
@@ -878,8 +880,8 @@
         var data = new FormData();
         var id_collect = $("#id_collecte").val();
         var form = $("#add_vehicules").serializeObject();
-        var ins = document.getElementById(idInput).files.length;
-        for (var x = 0; x < ins; x++) {
+        //var ins = document.getElementById(idInput).files.length;
+        /*for (var x = 0; x < ins; x++) {
             var file = document.getElementById(idInput).files[x];
             if (file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
                 swal("Alert", "Type de Fichier non pris en charge", "error");
@@ -887,7 +889,6 @@
             }
             data.append("fileToUpload", file);
         }
-
         var ins1 = document.getElementById(idequipement).files.length;
         for (var x1 = 0; x1 < ins1; x1++) {
             var file1 = document.getElementById(idequipement).files[x1];
@@ -897,6 +898,7 @@
             }
             data.append("equipementsecurite", file1);
         }
+        */
 
         data.append("id_collect", parseInt(id_collect));
         data.append("v", JSON.stringify(form));
