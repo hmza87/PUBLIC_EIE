@@ -1246,7 +1246,7 @@ public class GeneratePDFDocuments {
         Paragraph par13=new Paragraph(13);
         par13.setFont(font);
         par13.setSpacingAfter(7);
-       
+
         par13.add(new Phrase("14. Identification des déchets (indiquer les codes correspondants)",fontbold));
         par13.add(Chunk.NEWLINE);
         par13.add("i) Convention de Bale.Annex 8(ou 9 s'il y a lieu) : B3140");
@@ -1448,7 +1448,6 @@ public class GeneratePDFDocuments {
         par20.add(dateFormat.format(new Date()));
         par20.add(new Chunk(glue));
         par20.add("Signature : ");
-        par20.add("SIGNATURE");
         par20.add(new Chunk(glue));
         par20.add(Chunk.NEWLINE);
 
@@ -1527,7 +1526,6 @@ public class GeneratePDFDocuments {
         par23.add(Chunk.NEWLINE);
 
         par23.add("Consentement accordé le : ");
-        par23.add("DATE ------");
         par23.add(Chunk.NEWLINE);
 
         par23.add("Consentement valable du :                            ");
