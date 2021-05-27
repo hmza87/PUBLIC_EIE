@@ -1246,9 +1246,7 @@ public class GeneratePDFDocuments {
         Paragraph par13=new Paragraph(13);
         par13.setFont(font);
         par13.setSpacingAfter(7);
-        //========
-        String code_National=ns.getCode().getId_code()==0?"":String.valueOf(ns.getCode().getId_code());
-        //========
+       
         par13.add(new Phrase("14. Identification des déchets (indiquer les codes correspondants)",fontbold));
         par13.add(Chunk.NEWLINE);
         par13.add("i) Convention de Bale.Annex 8(ou 9 s'il y a lieu) : B3140");
@@ -1262,7 +1260,7 @@ public class GeneratePDFDocuments {
         par13.add("iv) Code national dans le pays d'importation : 16 01 03");
         par13.add(Chunk.NEWLINE);
         par13.add("v) Code National(Catalogue Marocain des déchets) : ");
-        par13.add(code_National);
+        par13.add(ns.getCode().getNom_fr());
         par13.add(Chunk.NEWLINE);
         par13.add("vi) Autres(préciser) : ");
         par13.add(Chunk.NEWLINE);
