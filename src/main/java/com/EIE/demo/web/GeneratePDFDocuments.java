@@ -82,12 +82,12 @@ public class GeneratePDFDocuments {
         par1.add(Chunk.NEWLINE);
         //========
 
-        String nom_importateur ="nom importateur";
-        String adresse_importateur ="adresse importateur";
-        String persone_a_contacte_importateur = "PERSONNE A CONTACTER Importateur";
-        String tele_importateur ="tel importateur";
-        String fax_importateur ="fex importateur";
-        String email_importateur ="email importateur";
+        String nom_importateur ="";
+        String adresse_importateur ="";
+        String persone_a_contacte_importateur = "";
+        String tele_importateur ="";
+        String fax_importateur ="";
+        String email_importateur ="";
 
         if(ns.getImportateur()!=null){
             ImportateurNotifiant ww = ns.getImportateur();
@@ -107,11 +107,7 @@ public class GeneratePDFDocuments {
         par1.add(adresse_importateur);
 //        par1.add("ADRESSE");
         par1.add(Chunk.NEWLINE);
-
-        par1.add("Personne a contacter : ");
-        par1.add(persone_a_contacte_importateur);
-        par1.add(Chunk.NEWLINE);
-
+        
         par1.add("Tel : ");
         par1.add(tele_importateur);
 //        par1.add("TELEPHONE");
@@ -183,11 +179,11 @@ public class GeneratePDFDocuments {
         //Paragraph ==========================
         Paragraph par3=new Paragraph(13);
         //========
-        String nombre_expedition_prevu="66";
+        String nombre_expedition_prevu="";
         //========
 
         par3.add(new Phrase("3.Nombre total d'éxpeditions prévues : ",fontbold));
-        par3.add(nombre_expedition_prevu);
+        par3.add(ns.getExpedition());
 
         par3.setSpacingAfter(7);
 
@@ -201,17 +197,10 @@ public class GeneratePDFDocuments {
         par4.setFont(font);
         par4.setSpacingAfter(7);
         //========
-        String quantite_en_tonne="1500";
-        String quantite_en_m2="5900";
-        //========
 
-        par4.add(new Phrase("4.Quantité total prévue : ",fontbold));
+        par4.add(new Phrase("4.Quantité total prévue : "+ns.getQuantite()+" "+ns.getUnite().getNom_fr(),fontbold));
         par4.add(Chunk.NEWLINE);
-        par4.add("Mg/Tonnes : ");
-        par4.add(quantite_en_tonne);
-        par4.add(Chunk.NEWLINE);
-        par4.add("m3 : ");
-        par4.add(quantite_en_m2);
+
 
         cell = new PdfPCell();
         cell.addElement(par4);
@@ -229,8 +218,7 @@ public class GeneratePDFDocuments {
         par5.add(new Phrase("5.Période prévue des expéditions",fontbold));
         par5.add(Chunk.NEWLINE);
         par5.add("premier départ : ");
-        par5.add(premier_depart);
-        par5.add("    ");
+        par5.add(premier_depart+"                      ");
         par5.add("Dernier départ : ");
         par5.add(dernier_depart);
 
@@ -244,13 +232,13 @@ public class GeneratePDFDocuments {
         par6.setFont(font);
         par6.setSpacingAfter(7);
         //========
-        String type_conditionnement ="type conditionnement";
+        String type_conditionnement ="";
 
         if(ns.getTypeconditionnement()!=null){
             TypeConditionnement t = ns.getTypeconditionnement();
             type_conditionnement = t.getNom_fr();
         }
-        String prescription="prescription";
+        String prescription="";
         boolean isPrescription=prescription.equalsIgnoreCase("oui");
 
         //========
@@ -275,23 +263,23 @@ public class GeneratePDFDocuments {
         par7.setSpacingAfter(7);
         //========
 
-        String nom_transporteur ="nom transporteur";
-        String adresse_transporteur ="adresse transporteur";
-        String persone_a_contacte_transporteur = "PERSONNE A CONTACTER transporteur";
-        String tele_transporteur ="tel transporteur";
-        String fax_transporteur ="fex transporteur";
-        String email_transporteur ="email transporteur";
-        String moyen_de_transporteur = "moyen de transporteur";
+        String nom_transporteur ="";
+        String adresse_transporteur ="";
+        String persone_a_contacte_transporteur = "";
+        String tele_transporteur ="";
+        String fax_transporteur ="";
+        String email_transporteur ="";
+        String moyen_de_transporteur = "";
 
         if(ns.getTransporteur()!=null){
             List<TransporteurParam> i = ns.getTransporteur();
             if(i.size()>0){
                 nom_transporteur = i.get(0).getNom();
-//            adresse_transporteur =i.get(0).get();
+                adresse_transporteur =i.get(0).getAdresse();
                 tele_transporteur =i.get(0).getTel();
                 fax_transporteur =i.get(0).getFax();
-                email_transporteur =i.get(0).getAdresse();
-                //            moyen_de_transporteur =ns.getTransporteur().get(0).getMoyenTransport().getNom_fr();
+                 // email_transporteur =i.get(0).getAdresse();
+                // moyen_de_transporteur =ns.getTransporteur().get(0).getMoyenTransport().getNom_fr();
 
             }
 
@@ -311,10 +299,6 @@ public class GeneratePDFDocuments {
         par7.add(adresse_transporteur);
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Personne a contacter : ");
-        par7.add(persone_a_contacte_transporteur);
-        par7.add(Chunk.NEWLINE);
-
         par7.add("Tel : ");
         par7.add(tele_transporteur);
         par7.add(Chunk.NEWLINE);
@@ -323,9 +307,6 @@ public class GeneratePDFDocuments {
         par7.add(fax_transporteur);
         par7.add(Chunk.NEWLINE);
 
-        par7.add("Mail : ");
-        par7.add(email_transporteur);
-        par7.add(Chunk.NEWLINE);
 
         par7.add("Moyen de transport (5) : ");
         par7.add(moyen_de_transporteur);
@@ -378,13 +359,12 @@ public class GeneratePDFDocuments {
         par10.setSpacingAfter(7);
         //========
 
-        String nom_producteur ="NOM producteur";
-        String adresse_producteur ="ADRESSE producteur";
-        String persone_a_contacte_producteur ="PERSONNE A CONTACTER Producteur";
-        String tele_producteur ="TELE producteur";
-        String fax_producteur ="FAX producteur";
-        String mail_producteur ="EMAIL producteur";
-        String lieu_procede_producteur ="Lieu procede producteur";
+        String nom_producteur ="";
+        String adresse_producteur ="";
+        String tele_producteur ="";
+        String fax_producteur ="";
+        String mail_producteur ="";
+        String lieu_procede_producteur ="";
 
         if(ns.getProducteur()!=null){
             Producteur p = ns.getProducteur();
@@ -408,10 +388,6 @@ public class GeneratePDFDocuments {
 
         par10.add("Adresse : ");
         par10.add(adresse_producteur);
-        par10.add(Chunk.NEWLINE);
-
-        par10.add("Personne a contacter : ");
-        par10.add(persone_a_contacte_producteur);
         par10.add(Chunk.NEWLINE);
 
         par10.add("Tel : ");
@@ -439,7 +415,7 @@ public class GeneratePDFDocuments {
         par11.setFont(font);
         par11.setSpacingAfter(7);
         //========
-        String carateristiques_physique = "carateristiques physique";
+        String carateristiques_physique = "";
         if(ns.getCaracteristquePhysique() != null){
             CaracteristquePhysique c = ns.getCaracteristquePhysique();
             carateristiques_physique = c.getNom_fr();
@@ -459,8 +435,8 @@ public class GeneratePDFDocuments {
         par12.setFont(font);
         par12.setSpacingAfter(7);
 
-        String nom_entreprise ="nom entreprise";
-        String address_entreprise ="adresse entreprise";
+        String nom_entreprise ="";
+        String address_entreprise ="";
 
         if(ns.getImportateur()!=null){
             ImportateurNotifiant i = ns.getImportateur();
@@ -498,10 +474,6 @@ public class GeneratePDFDocuments {
 
         par12.add("Adresse : ");
         par12.add(address_entreprise);
-        par12.add(Chunk.NEWLINE);
-
-        par12.add("Personne a contacter : ");
-        par12.add("PERSONNE A CONTACTER Entreprise Val Ou trait");
         par12.add(Chunk.NEWLINE);
 
         cell = new PdfPCell();
@@ -612,8 +584,7 @@ public class GeneratePDFDocuments {
         par20.add("Date : ");
         par20.add(dateFormat.format(new Date()));
         par20.add(new Chunk(glue));
-        par20.add("Signature : ");
-        par20.add("SIGNATURE");
+        par20.add("Signature :  ");
         par20.add(new Chunk(glue));
 
         cellMerged = new PdfPCell();
@@ -653,11 +624,9 @@ public class GeneratePDFDocuments {
         par22.add(Chunk.NEWLINE);
 
         par22.add("Accusé de réception transmis le : ");
-        par22.add(" ------------- ");
         par22.add(Chunk.NEWLINE);
 
         par22.add("Nom de l'autorité compétente  : ");
-        par22.add(" ------------- ");
         par22.add(Chunk.NEWLINE);
         par22.add("cachet et/ou signature  : ");
         par22.add(Chunk.NEWLINE);
@@ -676,14 +645,11 @@ public class GeneratePDFDocuments {
         par23.add(new Phrase("17.Consentement écrit au mouvement accorde par le departement de l'environement",fontbold));
         par23.add(Chunk.NEWLINE);
 
-        par23.add("Consentement accordé le : ");
-        par23.add("DATE ------");
+        par23.add("Consentement accordé le :                          ");
         par23.add(Chunk.NEWLINE);
 
-        par23.add("Consentement valable du : ");
-        par23.add("DATE1 ");
-        par23.add("au : ");
-        par23.add("DATE2 ");
+        par23.add("Consentement valable du :                                 ");
+        par23.add("au :                                  ");
         par23.add(Chunk.NEWLINE);
 
         par23.add("Conditions particulières : ");
@@ -696,7 +662,6 @@ public class GeneratePDFDocuments {
         par23.add(uncheckedChunk);
         par23.add(Chunk.NEWLINE);
         par23.add("Nom de l'autorité compétente  : ");
-        par23.add(" ------------- ");
         par23.add(Chunk.NEWLINE);
         par23.add("cachet et/ou signature  : ");
         par23.add(Chunk.NEWLINE);
@@ -796,10 +761,6 @@ public class GeneratePDFDocuments {
 //        par1.add("ADRESSE");
         par1.add(Chunk.NEWLINE);
 
-        par1.add("Personne a contacter : ");
-        par1.add(ns.getPersonne());
-        par1.add(Chunk.NEWLINE);
-
         par1.add("Tél : ");
         par1.add(ns.getTel());
 //        par1.add("TELEPHONE");
@@ -883,12 +844,9 @@ public class GeneratePDFDocuments {
 
         //Paragraph ==========================
         Paragraph par3=new Paragraph(13);
-        //========
-        String nombre_expedition_prevu="66";
-        //========
 
         par3.add(new Phrase("4.Nombre total de transfert prévues : ",fontbold));
-        par3.add(nombre_expedition_prevu);
+        par3.add(ns.getExpedition());
 
         par3.setSpacingAfter(7);
 
@@ -923,7 +881,6 @@ public class GeneratePDFDocuments {
 
         String nom_importateur ="";
         String adresse_importateur ="";
-        String persone_a_contacte_importateur = "";
         String tele_importateur ="";
         String fax_importateur ="";
         String email_importateur ="";
@@ -945,10 +902,6 @@ public class GeneratePDFDocuments {
         par01.add("Adresse : ");
         par01.add(adresse_importateur);
 //        par1.add("ADRESSE");
-        par01.add(Chunk.NEWLINE);
-
-        par01.add("Personne a contacter : ");
-        par01.add(persone_a_contacte_importateur);
         par01.add(Chunk.NEWLINE);
 
         par01.add("Tél : ");
@@ -989,8 +942,7 @@ public class GeneratePDFDocuments {
         par5.add(new Phrase("6.Période prévue pour le(s) transfert(s)",fontbold));
         par5.add(Chunk.NEWLINE);
         par5.add("premier départ : ");
-        par5.add(premier_depart);
-        par5.add("    ");
+        par5.add(premier_depart+"                      ");
         par5.add("Dernier départ : ");
         par5.add(dernier_depart);
 
@@ -1005,7 +957,7 @@ public class GeneratePDFDocuments {
         par6.setFont(font);
         par6.setSpacingAfter(7);
         //========
-        String type_conditionnement ="type conditionnement";
+        String type_conditionnement ="";
 
         if(ns.getTypeconditionnement()!=null){
             TypeConditionnement t = ns.getTypeconditionnement();
@@ -1049,7 +1001,7 @@ public class GeneratePDFDocuments {
             List<TransporteurParam> i = ns.getTransporteur();
             if(i.size()>0){
                 nom_transporteur = i.get(0).getNom();
-//            adresse_transporteur =i.get(0).get();
+                adresse_transporteur =i.get(0).getAdresse();
                 tele_transporteur =i.get(0).getTel();
                 fax_transporteur =i.get(0).getFax();
                 email_transporteur =i.get(0).getAdresse();
@@ -1072,10 +1024,6 @@ public class GeneratePDFDocuments {
 
         par7.add("Adresse : ");
         par7.add(adresse_transporteur);
-        par7.add(Chunk.NEWLINE);
-
-        par7.add("Personne a contacter : ");
-        par7.add(persone_a_contacte_transporteur);
         par7.add(Chunk.NEWLINE);
 
         par7.add("Tél : ");
@@ -1183,9 +1131,6 @@ public class GeneratePDFDocuments {
         par10.add(adresse_producteur);
         par10.add(Chunk.NEWLINE);
 
-        par10.add("Personne a contacter : ");
-        par10.add(persone_a_contacte_producteur);
-        par10.add(Chunk.NEWLINE);
 
         par10.add("Tél : ");
         par10.add(tele_producteur);
@@ -1213,7 +1158,7 @@ public class GeneratePDFDocuments {
         par11.setFont(font);
         par11.setSpacingAfter(7);
         //========
-        String carateristiques_physique = "carateristiques physique";
+        String carateristiques_physique = "";
         if(ns.getCaracteristquePhysique() != null){
             CaracteristquePhysique c = ns.getCaracteristquePhysique();
             carateristiques_physique = c.getNom_fr();
@@ -1273,9 +1218,6 @@ public class GeneratePDFDocuments {
 
         par12.add("Adresse : ");
         par12.add(address_entreprise);
-        par12.add(Chunk.NEWLINE);
-
-        par12.add("Personne a contacter : ");
         par12.add(Chunk.NEWLINE);
 
         par12.add("Tél : ");
@@ -1521,7 +1463,6 @@ public class GeneratePDFDocuments {
         par20.add(dateFormat.format(new Date()));
         par20.add(new Chunk(glue));
         par20.add("Signature : ");
-        par20.add("SIGNATURE");
         par20.add(new Chunk(glue));
 
         cellMerged = new PdfPCell();
@@ -1593,10 +1534,8 @@ public class GeneratePDFDocuments {
         par23.add("DATE ------");
         par23.add(Chunk.NEWLINE);
 
-        par23.add("Consentement valable du : ");
-        par23.add("DATE1 ");
-        par23.add("au : ");
-        par23.add("DATE2 ");
+        par23.add("Consentement valable du :                            ");
+        par23.add("au :                                     ");
         par23.add(Chunk.NEWLINE);
 
         par23.add("Conditions particulières : ");
