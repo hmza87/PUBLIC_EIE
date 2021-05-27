@@ -60,7 +60,7 @@
                     <div id="step1" class="col-12 z_collecteur"  >
                         <c:choose>
                             <c:when test="${type=='AE'}">
-                                <c:if test="${demande.statut.id_statut_projet==58}">
+                                <c:if test="${demande.statut.id_statut_projet==73}">
                                     <c:forEach items="${doc}" var="dc">
                                         <div class="row justify-content-center">
                                             <div class="col mt-3  ">
@@ -68,7 +68,7 @@
                                                     <div>
                                                         <label style="width: 100%;"> ${dc.nom_fr } </label> <input
                                                             required
-                                                            onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
+                                                            onchange="addDocG('${demande.id_demande_information}',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
                                                             accept=".pdf" type="file" id="doc${dc.id_docImport }"
                                                             class="form-control mydoc">
                                                     </div>
@@ -132,7 +132,7 @@
                         <div class="row justify-content-end">
                             <div class="col-md-4 col-sm-12">
                                 <input type="hidden" id="id_demande" value="${demande.id_demande_information}">
-                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','12','Demande est enregistrer','AE')" >
+                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','72','Bien Enregistrer','AE')" >
                                     Enregistrer
                                 </button>
                             </div>

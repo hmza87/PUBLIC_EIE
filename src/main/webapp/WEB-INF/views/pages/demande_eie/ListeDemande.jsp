@@ -95,7 +95,7 @@
                                             <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
                                         </td>
                                         <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
-                                                nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 ||
+                                                nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 || (nt.statut.id_statut_projet==73 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 || (nt.statut.id_statut_projet==71 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 || (type=='AE' && nt.statut.id_statut_projet==58) ||
                                                 nt.statut.id_statut_projet==60 )?nt.statut.nom_fr:'En cours de traitement'}</span>
@@ -210,12 +210,12 @@
                                                    class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
                                             </c:if>
 
-                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type!='AE' }">
+                                            <c:if test="${(nt.statut.id_statut_projet==59 && nt.documents_AE.size()==0) }">
                                                 <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
                                                    class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
                                             </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' }">
-                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i> Compléter mon dossier</a>
+                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' && nt.documents_AE.size()>0}">
+                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i> compléter les documents</a>
                                             </c:if>
 
                                             <c:if test="${nt.statut.id_statut_projet==71 && nt.type=='AE' }">
@@ -228,8 +228,8 @@
                                                         class="fa fa-pencil"></i> Déposer la demande</a>
                                             </c:if>
 
-                                            <c:if test="${nt.statut.id_statut_projet==58 && type=='AE'}">
-                                                <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Valider les documents">
+                                            <c:if test="${nt.statut.id_statut_projet==73 && type=='AE'}">
+                                                <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Attacher les documents">
                                                     <i class="fa fa-check"></i>
                                                     Attacher les documents
                                                 </a>

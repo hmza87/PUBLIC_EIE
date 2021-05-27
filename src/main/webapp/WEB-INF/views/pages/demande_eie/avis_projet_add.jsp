@@ -165,7 +165,7 @@
                                 </div>
 
                                 <c:choose>
-                                    <c:when test="${type!='NT'}">
+                                    <c:when test="${type!='NT' && type!='AE'}">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label> <spring:message code="label.Tronsfrontalier"/>  </label>
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
-                                            <label >Formulaire de la Demande </label>
+                                            <label >Déscription du projet</label>
                                             <input type="file" id="file_frm" class="form-control" onchange="update_new_AE()">
                                         </div>
                                     </div>

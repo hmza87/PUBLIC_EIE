@@ -1054,9 +1054,9 @@ public class Hatim {
 	}
 
 	@RequestMapping(value = "/api/updateDemandeInfomrationAE/{id}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomrationAE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier,@RequestParam String dateDemarage,@RequestParam String dateResiliation)
+	public @ResponseBody String updateDemandeInfomrationAE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String dateDemarage,@RequestParam String dateResiliation)
 			throws JsonParseException {
-		String xd= webt.updateDemandeInformationAE(id, intitule_projet, montant_investissement, tronsfrontalier,dateDemarage,dateResiliation);
+		String xd= webt.updateDemandeInformationAE(id, intitule_projet, montant_investissement,dateDemarage,dateResiliation);
 		return xd;
 	}
 

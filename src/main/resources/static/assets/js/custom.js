@@ -280,14 +280,14 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 
 
     var tmp = $("#id_region").val();
-    if(trans != "oui" || type=="NT"){
-        if( tmp.length<2){
+    if(trans != "oui" && type!="NT" && type!='AE' ){
+        if( tmp.length<2 ){
             swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
             return false;
         }
     }
 
-    if(trans == "non" || type=="NT"){
+    if(trans == "non" || type=="AE" || type=="NT" ){
         region = $("#id_region").val().join();
         prefecture = $("#id_prefecture").val().join();
         commune = $("#id_commune").val().join();
@@ -1518,6 +1518,22 @@ function set_doc_AE(id_dmd,id_ae,val){
 function changer_statut1_AE(id_name, code_statut, msg_alert,type) {
     if(event!=null)
         event.preventDefault();
+
+    var find = false;
+    $("input[type=file]").each(function(idx,el){
+        if(!find &&($.trim($(el).val())==="" || el==null)  ) {
+            find = true
+            $(el).addClass("bg_error")
+        }else if($(el).hasClass("bg_error")){
+            $(el).removeClass("bg_error")
+        }
+    });
+
+    if(find){
+        swal("Avertissement ! ","Le fichier est obligatoire","error");
+        return false;
+    }
+
     var id = $("#" + id_name).val();
     var link_recap = "/api/ListeEie/"+type;
     if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {

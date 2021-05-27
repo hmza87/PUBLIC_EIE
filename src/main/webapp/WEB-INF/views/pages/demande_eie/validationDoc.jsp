@@ -9,7 +9,8 @@
 <%@ page session="false" %>
 
 <jsp:include page="../../includes/head.jsp"/>
-
+<link href="${pageContext.request.contextPath}/assets/css/sweet-alert.css">
+<script src="${pageContext.request.contextPath}/assets/js/swwtAlert2.js"></script>
 
 <style>
     * {
@@ -138,8 +139,17 @@
                                                     </tbody>
                                                 </table>
 
-                                                <a href="/api/recapEiee/${id}/${type}" class="btn "
-                                                   style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+                                                    <c:if test="${type!='AE'}">
+                                                        <a href="/api/recapEiee/${id}/${type}" class="btn "
+                                                           style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+                                                    </c:if>
+                                                    <c:if test="${type=='AE'}">
+                                                        <input type="hidden" value="${id}" class="form-control" id="id_name_id">
+                                                        <button class="btn btn-primary" onclick="changer_statut1_AE('id_name_id','72','Bien enregistrer','${type}')">
+                                                            Enregistrer
+                                                        </button>
+                                                    </c:if>
+
                                             </div>
                                         </div>
 
@@ -153,5 +163,6 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>
 

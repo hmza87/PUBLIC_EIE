@@ -24,6 +24,12 @@ public class DocumentsAE implements Serializable {
     @Column(name = "url_file", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String url_file;
 
+    @Column(name = "commentaire", nullable = true, columnDefinition = "nText")
+    private String commentaire;
+
+    @Column(name = "statut", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String statut;
+
     public DocumentsAE() {
     }
 
@@ -41,6 +47,18 @@ public class DocumentsAE implements Serializable {
     }
     public String getNom_fr() {
         return nom_fr;
+    }
+    public String getCommentaire() {
+        return commentaire;
+    }
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+    public String getStatut() {
+        return statut;
+    }
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
     public void setNom_fr(String nom_fr) {
         this.nom_fr = nom_fr;

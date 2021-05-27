@@ -46,7 +46,6 @@
         <div class="row" style="text-align: ${pageContext.response.locale=='ar'?'right':'left'}">
             <div class="col-md-3 col-sm-12">
                 <c:choose>
-
                     <c:when test="${type=='AE'}">
                         <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. compléter le dossier </button>
                     </c:when>
@@ -102,7 +101,7 @@
                         <div class="row justify-content-end">
                             <div class="col-md-4 col-sm-12">
                                 <input type="hidden" id="id_demande" value="${demande.id_demande_information}">
-                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','12','Demande est enregistrer','AE')" >
+                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','72','Bien Enregistrer','AE')" >
                                     Enregistrer
                                 </button>
                             </div>
