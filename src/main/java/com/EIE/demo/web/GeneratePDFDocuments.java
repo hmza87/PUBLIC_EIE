@@ -3452,7 +3452,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3619,7 +3619,7 @@ public class GeneratePDFDocuments {
         //--------------------- completeRow ---------------------
         table2.addCell( saisir_cellule("Nombre d'equipe : ",font,fontbold,ns.getNbr_equipe_travail(),1));
         table2.addCell( saisir_cellule("Horaire Début d'exploitation : ",font,fontbold,ns.getHoraire_exploitation(),1));
-        table2.addCell( saisir_cellule("Nombre d'effectif : ",font,fontbold,"",1));
+        table2.addCell( saisir_cellule("Nombre d'effectif : ",font,fontbold,ns.getFormation(),1));
         table2.completeRow();
         table2.setSpacingAfter(12);
 
@@ -3629,7 +3629,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3792,7 +3792,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagne à la demande",3));
+        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -4014,7 +4014,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("4. Pièces accompagne à la demande",3));
+        table7.addCell(saisir_cellule_titre("4. Pièces accompagnées à la demande",3));
         table7.completeRow();
         if(!ns.getType().equals("RS")){
             //--------------------- Row Title ---------------------
