@@ -3734,7 +3734,7 @@ public class GeneratePDFDocuments {
         table01.setSpacingAfter(12);
 
         //--------------------- Row Title ---------------------
-        table01.addCell(saisir_cellule_titre("Catalogue",2));
+        table01.addCell(saisir_cellule_titre("Listes des déchets choisis",2));
         table01.completeRow();
         table01.addCell(saisir_cellule("",fontBox,font,"",4));
 
@@ -3772,7 +3772,7 @@ public class GeneratePDFDocuments {
         table3.completeRow();
         if(ns.getVehicules()!=null && ns.getVehicules().size()>0){
             for (Vehicules tp:ns.getVehicules()) {
-                table3.addCell( saisir_cellule(tp.getNum_mat_id_prefect()+"-"+tp.getNum_mat_enrg_voit()+"-"+tp.getNum_mat_enrg_auto(),font,font,"",1));
+                table3.addCell( saisir_cellule(tp.getNum_mat_enrg_voit()+"-"+tp.getNum_mat_enrg_auto()+"-"+tp.getNum_mat_id_prefect(),font,font,"",1));
                 table3.addCell( saisir_cellule(tp.getNum_chassis(),font,font,"",1));
                 table3.addCell( saisir_cellule(tp.getPoit_totale_charge(),font,font,"",1));
                 table3.addCell( saisir_cellule(tp.getPoint_net(),font,font,"",1));
