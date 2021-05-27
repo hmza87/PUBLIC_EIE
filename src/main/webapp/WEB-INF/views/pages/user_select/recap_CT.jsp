@@ -279,8 +279,8 @@
                   <th><spring:message code="label.NChassis"/></th>
                   <th><spring:message code="label.Poidstotalencharge"/></th>
                   <th><spring:message code="label.Poidsnetduvehicule"/></th>
-                  <th><spring:message code="label.Equipementdesecurite"/></th>
-                  <th><spring:message code="label.Attestationdassurance"/></th>
+                  <!-- <th><spring:message code="label.Equipementdesecurite"/></th>
+                  <th><spring:message code="label.Attestationdassurance"/></th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -292,7 +292,7 @@
                         <td>${v.num_chassis}</td>
                         <td>${v.poit_totale_charge}</td>
                         <td>${v.point_net}</td>
-                        <td>
+                        <!-- <td>
                           <c:choose>
                             <c:when test="${not empty v.equipementSecurite}">
                               <a href="${url_admin}${fn:replace(v.equipementSecurite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle">
@@ -308,7 +308,7 @@
                           <a href="${url_admin}${fn:replace(v.doc_assurance, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle">
                             <span class="fa fa-download"></span>
                           </a>
-                        </td>
+                        </td>-->
                       </tr>
                     </c:forEach>
                   </c:when>

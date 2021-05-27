@@ -178,8 +178,8 @@
                   <th>N° châssis</th>
                   <th>Poids total en charge</th>
                   <th>Poids net du véhicule</th>
-                  <th>Equipement de sécurité</th>
-                  <th>Attestation d'assurance</th>
+                 <!-- <th>Equipement de sécurité</th>
+                  <th>Attestation d'assurance</th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -191,7 +191,7 @@
                         <td>${v.num_chassis}</td>
                         <td>${v.poit_totale_charge}</td>
                         <td>${v.point_net}</td>
-                        <td>
+                        <!-- <td>
                           <c:choose>
                             <c:when test="${not empty v.equipementSecurite}">
                               <a href="${url_Admin}${fn:replace(v.equipementSecurite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle">
@@ -207,7 +207,7 @@
                           <a href="${url_Admin}${fn:replace(v.doc_assurance, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle">
                             <span class="fa fa-download"></span>
                           </a>
-                        </td>
+                        </td>-->
                       </tr>
                     </c:forEach>
                   </c:when>

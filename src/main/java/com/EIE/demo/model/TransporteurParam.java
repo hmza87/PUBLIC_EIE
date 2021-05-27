@@ -33,6 +33,17 @@ public class TransporteurParam implements Serializable {
 
     @Column(name = "fax", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String fax;
+    
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Column(name = "email", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String email;
 
     @Column(name = "identifiant", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String identifiant;

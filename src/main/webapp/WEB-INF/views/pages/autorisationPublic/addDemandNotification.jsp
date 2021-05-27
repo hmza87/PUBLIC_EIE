@@ -534,21 +534,7 @@
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-
-                                    <label> Ville/province </label>
-                                    <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
-                                        <option value="0"><spring:message code="option.Choisir"/></option>
-                                        <c:forEach items="${prefectures}" var="t">
-                                            <option  <c:if
-                                                    test="${notification.prefecture.id_prefecture== t[0]}"> selected </c:if>
-                                                    value="${t[0] }">${t[1] }</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
+                        <div class="col-6">
                                 <div class="form-group">
                                     <label> <spring:message code="label.Region"/> </label>
                                     <select name="region_id" id="region_id" class="form-control select2" data-width="100%" onchange="updateRegion(this.value)">
@@ -561,6 +547,21 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label> Province </label>
+                                    <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
+                                        <option value="0"><spring:message code="option.Choisir"/></option>
+                                        <c:forEach items="${prefectures}" var="t">
+                                            <option  <c:if
+                                                    test="${notification.prefecture.id_prefecture== t[0]}"> selected </c:if>
+                                                    value="${t[0] }">${t[1] }</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            
                         </div>
 
 
@@ -2011,7 +2012,7 @@
 
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
-                    <p class="h5 text-center mt-2"> <span class="bg-warning text-white p-2 pl-3 pr-3 rounded ">Les fichiers à importer doivent être scanner</span> </p>
+                    <p class="h5 text-center mt-2"> <span class=" p-2 ">Vous pouvez importer des documents scannés en formats PDF et Image dont la taille ne dépasse pas 5 Mo</span> </p>
 
                     <c:forEach items="${doc}" var="dc">
                         <c:set var="id_doc" value="${dc.id_docImport}"/>

@@ -11,8 +11,8 @@
     <thead class="bg_stat_01">
     <tr>
         <th>Nom</th>
+        <th>Adresse</th>
         <th>téléphone</th>
-        <th>Email</th>
         <th>Fax</th>
     </tr>
     </thead>
@@ -21,8 +21,8 @@
         <c:forEach items="${trans}" var="t">
             <tr>
                 <td>${t.nom}</td>
+                <td>${t.adresse}</td>
                 <td>${t.tel}</td>
-                <td>${t.email}</td>
                 <td>${t.fax}</td>
             </tr>
         </c:forEach>
