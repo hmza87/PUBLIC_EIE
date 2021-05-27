@@ -77,6 +77,9 @@ public class Reunion implements Serializable {
 	@Column(name = "examen", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String examen;
 
+	@Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String type;
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
 	@JoinTable(name = "reunion_comite",
@@ -200,4 +203,12 @@ public class Reunion implements Serializable {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+
 }

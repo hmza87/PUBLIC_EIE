@@ -53,7 +53,6 @@ public class DemandeInformation implements Serializable {
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "demande_reunion", joinColumns = {
             @JoinColumn(name = "id_demande_information") }, inverseJoinColumns = { @JoinColumn(name = "id_reunion") })
-
     private List<Reunion> reunions = new ArrayList<Reunion>();
 
 
@@ -835,6 +834,12 @@ public class DemandeInformation implements Serializable {
             @JoinColumn(name = "id_demande_information") }, inverseJoinColumns = { @JoinColumn(name = "id_rapports_ae") })
     private List<RapportsAE> rapports_AE = new ArrayList<RapportsAE>();
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(name = "AE_visites", joinColumns = {
+            @JoinColumn(name = "id_demande_information") }, inverseJoinColumns = { @JoinColumn(name = "id_visite_AE") })
+    private List<Visites_AE> visites = new ArrayList<Visites_AE>();
+
     public String getUrl_file_AE() {
         return url_file_AE;
     }
@@ -871,6 +876,12 @@ public class DemandeInformation implements Serializable {
     }
     public void setDocuments_AE(List<DocumentsAE> documents_AE) {
         this.documents_AE = documents_AE;
+    }
+    public List<Visites_AE> getVisites() {
+        return visites;
+    }
+    public void setVisites(List<Visites_AE> visites) {
+        this.visites = visites;
     }
     //***************************End Audit demande********************************//
 
