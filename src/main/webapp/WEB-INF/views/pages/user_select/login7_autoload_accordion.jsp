@@ -862,12 +862,18 @@
                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                 </h6>
                                 <c:choose>
-                                    <c:when test="${empty user}"></c:when>
-                                    <c:otherwise></c:otherwise>
+                                    <c:when test="${empty user}">
+                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-primary btn-sm" onclick="checkAut('on','/api/checkEIESelect/EE')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:otherwise>
                                 </c:choose>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
-                                    <spring:message code="label.Acceder"/>
-                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -879,9 +885,19 @@
                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                     <spring:message code="option.Auditenvironnementale"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
-                                    <spring:message code="label.Acceder"/>
-                                </button>
+                                <c:choose>
+                                    <c:when test="${empty user}">
+                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-primary btn-sm" onclick="checkAut('on','/api/checkEIESelect/AE')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                         </div>
                     </div>
@@ -892,9 +908,19 @@
                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                     <spring:message code="option.Noticedimpact"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
-                                    <spring:message code="label.Acceder"/>
-                                </button>
+                                <c:choose>
+                                    <c:when test="${empty user}">
+                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-primary btn-sm" onclick="checkAut('on','/api/checkEIESelect/NT')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                         </div>
                     </div>
