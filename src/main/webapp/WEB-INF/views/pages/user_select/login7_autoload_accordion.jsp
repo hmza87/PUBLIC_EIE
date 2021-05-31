@@ -65,7 +65,12 @@
         </c:if>
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
-                <h3 >${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                <c:if test="${empty d.description && empty d.uri}">
+               <button class="btn btn-success btn-block" disabled="disabled">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                </c:if>
+                <c:if test="${not empty d.description || not empty d.uri}">
+                    <h3>${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                </c:if>
                 <div>
                     <c:if test="${d.nom_fr=='Garantie financière'}">
                         <p style="padding-left: 1%;border: 2px solid black;">
@@ -109,9 +114,11 @@
                             </div>
                         </div>
                     </c:if>
-                        ${(not empty d.description)?d.description:"Aucune Descritpion"}
+                    <c:if test="${not empty d.description}">
+                        <p>Description: ${d.description}</p>
+                    </c:if>
                     <c:if test="${not empty d.uri}">
-                        <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                    <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                     </c:if>
                 </div>
             </c:forEach>
@@ -129,36 +136,34 @@
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
                 <c:choose>
                     <c:when test="${type=='ZF'}">
-                        <c:set var="l_ph1" value=" d'importation des déchets d'une zone franche "/>
+                        <c:set var="l_ph1" value=" d'autorisation d'importation des déchets d'une zone franche "/>
                     </c:when>
                     <c:when test="${type=='ET'}">
-                        <c:set var="l_ph1" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                        <c:set var="l_ph1" value=" d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
                     </c:when>
                     <c:when test="${type=='CT'}">
-                        <c:set var="l_ph1" value=" de collecte - transport des déchets dangereux "/>
+                        <c:set var="l_ph1" value=" d'autorisation de collecte - transport des déchets dangereux "/>
                     </c:when>
                     <c:when test="${type=='IT'}">
-                        <c:set var="l_ph1" value=" d'installation de traitement des déchets "/>
+                        <c:set var="l_ph1" value=" d'autorisation d'installation de traitement des déchets "/>
                     </c:when>
                     <c:when test="${type=='XD'}">
-                        <c:set var="l_ph1" value=" d'exportation des déchets "/>
+                        <c:set var="l_ph1" value=" d'autorisation d'exportation des déchets "/>
                     </c:when>
                     <c:when test="${type=='TR'}">
-                        <c:set var="l_ph1" value=" de transit des déchets "/>
+                        <c:set var="l_ph1" value=" d'autorisation de transit des déchets "/>
                     </c:when>
                     <c:when test="${type=='EIE'}">
-                        <c:set var="l_ph1" value=" d'étude d'Impact sur l’Environnement "/>
+                        <c:set var="l_ph1" value=" de l'obtention de l'acceptabilité environnementale "/>
                     </c:when>
                     <c:when test="${type=='EIE1'}">
-                        <c:set var="l_ph1" value=" de transit des déchets "/>
-                        <spring:message code="option.Noticedimpact" var="l_ph1"/>
+                        <c:set var="l_ph1" value=" de notice d'impact sur l'environnement "/>
                     </c:when>
                     <c:when test="${type=='EIE2'}">
-                        <c:set var="l_ph1" value=" de transit des déchets "/>
-                        <spring:message code="option.Auditenvironnementale" var="l_ph1"/>
+                        <c:set var="l_ph1" value=" d'audit environnemental "/>
                     </c:when>
                 </c:choose>
-                Procédure à suivre pour obtenir votre demande d'autorisation ${l_ph1}
+                Procédure à suivre pour obtenir votre demande  ${l_ph1}
 
             </p>
             <div class="col-2 p-0">
@@ -254,7 +259,7 @@
                                             Je dépose ma demande d’obtention de l’acceptabilité environnementale
                                         </c:when>
                                         <c:otherwise>
-                                            Je dépose ma demande d'autorisation ${l_ph1}
+                                            Je dépose ma demande ${l_ph1}
                                         </c:otherwise>
                                     </c:choose>
 
@@ -287,8 +292,7 @@
                                     </ul>
                                     <p class="mb-3">Le formulaire de renseignement préalable vous permettra de vérifier si votre projet est assujetti ou non à la procédure des EIE. Il vous permettra également de prendre connaissance du niveau d’examen de ladite EIE (Comité National des Etudes d’Impacts ou Commission Régionale Unifiée d’Investissement). </p>
                                     <p><i>*La demande de renseignement préalable est facultative dans le cas d'une nouvelle demande d’obtention de l’acceptabilité environnementale. </i></p>
-                                    <p>Le formulaire de renseignement préalable vous permettra de vérifier si votre projet est assujetti ou non à la procédure des EIE. Il vous permettra également de prendre connaissance du niveau d’examen de ladite EIE (Comité National des Etudes d’Impacts ou Commission Régionale Unifiée d’Investissement). </p>
-                                </c:if>
+                                    </c:if>
                                 <c:if test="${type!='EIE'}">
                                     <p>
                                         <c:if test="${type=='ZF' || type=='XD'}">
@@ -382,7 +386,7 @@
                             <div class="col-12">
 
                                 <p class="text-underline text-success font_bold">
-                                    Les pièce à scanner :
+                                    Les pièces à scanner :
                                 </p>
 
                                 <p>

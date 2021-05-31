@@ -3452,7 +3452,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
+        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3629,7 +3629,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
+        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3792,7 +3792,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Pièces accompagnées à la demande",3));
+        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
         table7.completeRow();
         //--------------------- Row Title ---------------------
         int i=1;
@@ -3968,7 +3968,7 @@ public class GeneratePDFDocuments {
         table3.addCell(saisir_cellule_titre(" 3. Localisation du projet  ",4));
         table3.completeRow();
         //--------------------- completeRow ---------------------
-        table3.addCell(saisir_cellule_transporteur_titre("Région",2));
+        table3.addCell(saisir_cellule_transporteur_titre("Régions",2));
         table3.addCell(saisir_cellule_transporteur_titre("Prefectures",1));
         table3.addCell(saisir_cellule_transporteur_titre("Communes",1));
         table3.completeRow();
@@ -4014,7 +4014,7 @@ public class GeneratePDFDocuments {
         table7.setWidthPercentage(100);
         table7.setSpacingBefore(12);
         table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("4. Pièces accompagnées à la demande",3));
+        table7.addCell(saisir_cellule_titre("4. Piéces accompagnant la demande",3));
         table7.completeRow();
         if(!ns.getType().equals("RS")){
             //--------------------- Row Title ---------------------
@@ -4025,7 +4025,7 @@ public class GeneratePDFDocuments {
                 table7.completeRow();
             }
         }else{
-            table7.addCell(saisir_cellule_transporteur_titre("Aucun Documents ",3));
+            table7.addCell(saisir_cellule_transporteur_titre("Aucun Document ",3));
         }
 
 

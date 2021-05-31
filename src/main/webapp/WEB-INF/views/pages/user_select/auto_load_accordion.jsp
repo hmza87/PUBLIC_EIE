@@ -62,37 +62,35 @@
                 <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
                     <c:choose>
                         <c:when test="${type=='ZF'}">
-                            <c:set var="l_ph1" value=" d'importation des déchets d'une zone franche "/>
+                            <c:set var="l_ph1" value=" d'autorisation d'importation des déchets d'une zone franche "/>
                         </c:when>
                         <c:when test="${type=='ET'}">
-                            <c:set var="l_ph1" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                            <c:set var="l_ph1" value=" d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
                         </c:when>
                         <c:when test="${type=='CT'}">
-                            <c:set var="l_ph1" value=" de collecte - transport des déchets dangereux "/>
+                            <c:set var="l_ph1" value=" d'autorisation de collecte - transport des déchets dangereux "/>
                         </c:when>
                         <c:when test="${type=='IT'}">
-                            <c:set var="l_ph1" value=" d'installation de traitement des déchets "/>
+                            <c:set var="l_ph1" value=" d'autorisation d'installation de traitement des déchets "/>
 
                         </c:when>
                         <c:when test="${type=='XD'}">
-                            <c:set var="l_ph1" value=" d'exportation des déchets "/>
+                            <c:set var="l_ph1" value=" d'autorisation d'exportation des déchets "/>
                         </c:when>
                         <c:when test="${type=='TR'}">
-                            <c:set var="l_ph1" value=" de transit des déchets "/>
+                            <c:set var="l_ph1" value=" d'autorisation de transit des déchets "/>
                         </c:when>
                         <c:when test="${type=='EIE'}">
-                            <c:set var="l_ph1" value=" d'étude d'Impact sur l’Environnement "/>
+                            <c:set var="l_ph1" value=" de l'obtention de l'acceptabilité environnementale "/>
                         </c:when>
                         <c:when test="${type=='EIE1'}">
-                            <c:set var="l_ph1" value=" de transit des déchets "/>
-                            <spring:message code="option.Noticedimpact" var="l_ph1"/>
+                            <c:set var="l_ph1" value=" de notice d'impact sur l'environnement "/>
                         </c:when>
                         <c:when test="${type=='EIE2'}">
-                            <c:set var="l_ph1" value=" de transit des déchets "/>
-                            <spring:message code="option.Auditenvironnementale" var="l_ph1"/>
+                            <c:set var="l_ph1" value=" d'audit environnemental "/>
                         </c:when>
                     </c:choose>
-                Procédure à suivre pour obtenir votre demande d'autorisation ${l_ph1}
+                Procédure à suivre pour obtenir votre demande ${l_ph1}
 
             </p>
             <div class="col-2 p-0">
@@ -204,7 +202,7 @@
                         <div class="row clss_hide mt-5 attache collapse">
                             <div class="col-12">
                                 <p class="text-success h-4 font_bold">
-                                    Je dépose ma demande d'autorisation ${l_ph1}
+                                    Je dépose ma demande ${l_ph1}
                                 </p>
 
                                 <p>
