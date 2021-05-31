@@ -557,6 +557,7 @@
                                 <div class="col-2"></div>
 
                             </div>
+
                             <div class="row m-0 p-0 text-center mt-5 mb-5" id="sectmain">
                                 <div class="col-6 d-block block_vert hvr-float-shadow" onclick="sectautoris_table_select(1)">
                                     <div class="div_shadow rounded" style="border-top-right-radius: 3px !important; border-bottom-left-radius: 3px !important; border:1px solid gray;">
@@ -579,7 +580,7 @@ margin-bottom: 10px;">
                                     </div>
                                 </div>
                             </div>
-
+                           
 
                             <div class="row justify-content-center mt-4" id="zone_select">
                                 <div class="col-md-8 col-sm-12 mt-4">
@@ -845,11 +846,19 @@ margin-bottom: 10px;">
                                                 <div class="dddd" style="position: absolute;top: 60px;">
                                                     <div class="badge pulsate">Nouveau</div>
                                                 </div>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/ZF')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
 
-
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -860,9 +869,19 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ET')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ET')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/ET')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
@@ -873,9 +892,19 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message
                                                             code="label.Collectetransportdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('CT')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('CT')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/CT')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
@@ -887,9 +916,19 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('IT')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('IT')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/IT')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
@@ -899,9 +938,19 @@ margin-bottom: 10px;">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('XD')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('XD')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/XD')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
@@ -911,9 +960,19 @@ margin-bottom: 10px;">
                                             <div class="card-body text-center">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
-                                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('TR')">
-                                                    <spring:message code="label.Acceder"/>
-                                                </button>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('TR')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/TR')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
