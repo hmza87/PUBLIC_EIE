@@ -58,7 +58,7 @@
     >
         <!-- Left -->
         <div class="me-5 d-none d-lg-block">
-            <span>Restez connectez avec nous sur les réseaux sociaux:</span>
+           <!-- <span>Restez connectez avec nous sur les réseaux sociaux:</span> -->
         </div>
         <!-- Left -->
 
@@ -107,32 +107,32 @@
                                 Email : sg@environnement.gov.ma
                             </p>
                         </div>
-                        <div class="col-4 border border-top-0 border-left-0 border-bottom-0 border-right-1">
-                            <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
+                        <div class="col-4 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
                                 <spring:message code="label.Ressources"/>
                             </h6>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
                             </p>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/guide" >Guide et Procédure</a>
                             </p>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/videoList" >Vidéos</a>
                             </p>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/CatalogueDesDechet">Catalogue Des Déchet</a>
                             </p>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/Actualite">Actualite</a>
                             </p>
-                            <p class="mb-1">
+                            <p class="mb-1 ml-4">
                                 <a class="text-white" href="/faq"><spring:message code="label.FA"/></a>
                             </p>
                         </div>
                         <div class="col-4 ">
-                            <div class="col-12 border border-top-0 border-left-0 border-bottom-0 border-right-1">
-                                <h6 class="text-uppercase fw-bold mb-4 font-weight-bold">
+                            <div class="col-12 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                                <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
                                     <spring:message code="label.Preparezvotredemarche"/>
                                 </h6>
                                 <p class="mb-1">
@@ -166,7 +166,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); font-size: 11px">
-       © Copyright 2021 Systeme de dématérialisation des autorisations délivrées par le ministère de l'energie, des mines et de l'environement Département de l'environnement | Powerded By Twins
+       © Copyright 2021 Département de l'environnement | Powerded By Twins
     </div>
     <!-- Copyright -->
 </footer>
