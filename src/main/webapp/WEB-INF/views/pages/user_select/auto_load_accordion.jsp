@@ -10,7 +10,13 @@
 <c:choose>
     <c:when test="${show=='accordion'}">
         <c:forEach items="${doc}" var="d">
-            <h3>${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+            <c:if test="${empty d.description && empty d.uri}">
+                <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+            </c:if>
+
+            <c:if test="${not empty d.description || not empty d.uri}">
+                <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+            </c:if>
             <div>
                 <c:if test="${d.nom_fr=='Garantie financière'}">
                     <p style="padding-left: 1%;border: 2px solid black;">
@@ -49,7 +55,9 @@
                         </div>
                     </div>
                 </c:if>
-                   ${(not empty d.description)?d.description:"Aucune Descritpion"}
+                <c:if test="${not empty d.description}">
+                    <p>Description: ${d.description}</p>
+                </c:if>
                 <c:if test="${not empty d.uri}">
                     <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                 </c:if>

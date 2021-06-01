@@ -12,13 +12,17 @@
     <c:when test="${show=='accordion'}">
         <c:if test="${type=='ZF' || type=='XD'}">
             <c:forEach items="${doc}" var="d">
-                <h3 class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                <c:if test="${not empty d.description || not empty d.uri}">
+                    <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                </c:if>
+                <c:if test="${empty d.description && empty d.uri}">
+                   <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                </c:if>
                 <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
                     <c:if test="${d.nom_fr=='Garantie financière'}">
                         <p style="padding-left: 1%;border: 2px solid black;">
                             <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
                         </p>
-
                         <p style="padding-left: 1%;border: 2px solid black;">
                             <strong style="color: green">CS</strong><spring:message code="label.CS"/> : <spring:message code="label.coutdestockage"/>
                         </p>
@@ -28,7 +32,6 @@
                         </p>
                         <br>
                         <div style="background-color:#eee;color: black;padding-left: 1%;border: 1px solid black;">
-
                             <div class="row-fluid justify-content-center mb-1 mt-3" >
                                 <div class="col-sm-12 pl-0 ct_calcule ">
                                     <strong style="color: black">CT</strong> = <input value="0" min="0" class="frm_cal inp_cu_ct" type="number" placeholder="Cu" >
@@ -55,8 +58,9 @@
                             </div>
                         </div>
                     </c:if>
-
-                        ${(not empty d.description)?d.description:"Aucune Descritpion"}
+                        <c:if test="${not empty d.description}">
+                           <p>Description: ${d.description}</p>
+                        </c:if>
                     <c:if test="${not empty d.uri}">
                         <p>Liens pour télécharger le modèle: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                     </c:if>
@@ -66,10 +70,11 @@
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${empty d.description && empty d.uri}">
-               <button class="btn btn-success btn-block" disabled="disabled">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                   <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
+
                 <c:if test="${not empty d.description || not empty d.uri}">
-                    <h3>${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                    <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
                 <div>
                     <c:if test="${d.nom_fr=='Garantie financière'}">
@@ -136,34 +141,63 @@
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
                 <c:choose>
                     <c:when test="${type=='ZF'}">
-                        <c:set var="l_ph1" value=" d'autorisation d'importation des déchets d'une zone franche "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets d'une zone franche "/>
                     </c:when>
                     <c:when test="${type=='ET'}">
-                        <c:set var="l_ph1" value=" d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
                     </c:when>
                     <c:when test="${type=='CT'}">
-                        <c:set var="l_ph1" value=" d'autorisation de collecte - transport des déchets dangereux "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de collecte - transport des déchets dangereux "/>
                     </c:when>
                     <c:when test="${type=='IT'}">
-                        <c:set var="l_ph1" value=" d'autorisation d'installation de traitement des déchets "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'installation de traitement des déchets "/>
                     </c:when>
                     <c:when test="${type=='XD'}">
-                        <c:set var="l_ph1" value=" d'autorisation d'exportation des déchets "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'exportation des déchets "/>
                     </c:when>
                     <c:when test="${type=='TR'}">
-                        <c:set var="l_ph1" value=" d'autorisation de transit des déchets "/>
+                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de transit des déchets "/>
                     </c:when>
                     <c:when test="${type=='EIE'}">
-                        <c:set var="l_ph1" value=" de l'obtention de l'acceptabilité environnementale "/>
+                        <c:set var="l_ph1" value=" l'obtention de l'acceptabilité environnementale "/>
                     </c:when>
                     <c:when test="${type=='EIE1'}">
-                        <c:set var="l_ph1" value=" de notice d'impact sur l'environnement "/>
+                        <c:set var="l_ph1" value=" l'obtention de notice d'impact sur l'environnement "/>
                     </c:when>
                     <c:when test="${type=='EIE2'}">
-                        <c:set var="l_ph1" value=" d'audit environnemental "/>
+                        <c:set var="l_ph1" value=" l'obtention d'audit environnemental "/>
                     </c:when>
                 </c:choose>
-                Procédure à suivre pour obtenir votre demande  ${l_ph1}
+                        <c:choose>
+                            <c:when test="${type=='ZF'}">
+                                <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
+                            </c:when>
+                            <c:when test="${type=='ET'}">
+                                <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                            </c:when>
+                            <c:when test="${type=='CT'}">
+                                <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
+                            </c:when>
+                            <c:when test="${type=='IT'}">
+                                <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
+                            </c:when>
+                            <c:when test="${type=='XD'}">
+                                <c:set var="l_ph2" value=" d'exportation des déchets "/>
+                            </c:when>
+                            <c:when test="${type=='TR'}">
+                                <c:set var="l_ph2" value=" de transit des déchets "/>
+                            </c:when>
+                            <c:when test="${type=='EIE'}">
+                                <c:set var="l_ph2" value=" l'obtention de l'acceptabilité environnementale "/>
+                            </c:when>
+                            <c:when test="${type=='EIE1'}">
+                                <c:set var="l_ph2" value=" l'obtention de notice d'impact sur l'environnement "/>
+                            </c:when>
+                            <c:when test="${type=='EIE2'}">
+                                <c:set var="l_ph2" value=" l'obtention d'audit environnemental "/>
+                            </c:when>
+                        </c:choose>
+                Procédure à suivre pour ${l_ph1}
 
             </p>
             <div class="col-2 p-0">
@@ -234,6 +268,20 @@
                                         <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
                                         <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
                                     </c:when>
+                                    <c:when test="${type=='EIE1'}">
+                                        <p>Pour déposer votre demande d’obtention de notice d'impact sur l'environnement de votre projet, vous êtes invités à créer un compte en remplissant le formulaire <a
+                                                href="/demandez_compte" class="h5 text-primary font_bold">
+                                            <spring:message code="label.SuivantA"/></a></p>
+                                        <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
+                                        <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
+                                    </c:when>
+                                    <c:when test="${type=='EIE2'}">
+                                        <p>Pour déposer votre demande d’obtention de l’audit environnemental de votre projet, vous êtes invités à créer un compte en remplissant le formulaire <a
+                                                href="/demandez_compte" class="h5 text-primary font_bold">
+                                            <spring:message code="label.SuivantA"/></a></p>
+                                        <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
+                                        <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
+                                    </c:when>
                                     <c:otherwise>
                                         <p><spring:message code="label.IlvousfautauprealableCreerun"/> <a
                                                 href="/demandez_compte" class="h5 text-primary font_bold">
@@ -259,7 +307,7 @@
                                             Je dépose ma demande d’obtention de l’acceptabilité environnementale
                                         </c:when>
                                         <c:otherwise>
-                                            Je dépose ma demande ${l_ph1}
+                                            Je dépose ma demande ${l_ph2}
                                         </c:otherwise>
                                     </c:choose>
 
@@ -268,7 +316,7 @@
                                     <p>
                                         <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                              style="width: 40px;margin-left: 10px">
-                                        Pour déposer une demande d'autorisation ${l_ph1},
+                                        Pour déposer une demande d'autorisation ${l_ph2},
                                         il faut disposer au préalable d'un numéro de notification
                                     </p>
                                     <p>
@@ -278,9 +326,9 @@
                                     <p>
                                         A la fin vous avez la possibilité soit de déposer votre demande en cliquant sur le
                                         bouton "Continuer !" du message de confirmation de la création de votre demande,
-                                        qui vas vous rediriger vers un nouveau formulaire de dépos des demandes d'autorisation ${l_ph1},
+                                        qui vas vous rediriger vers un nouveau formulaire de dépôt des demandes d'autorisation ${l_ph2},
                                         ou bien vous avez la possibilité de terminer l'enregistrement de votre demande de numeros de notification
-                                        pour ainsi déposé votre demande de d'autorisation ${l_ph1} dans une date ultérieure.
+                                        pour ainsi déposé votre demande de d'autorisation ${l_ph2} dans une date ultérieure.
                                     </p>
                                 </c:if>
                                 <c:if test="${type=='EIE'}">
@@ -298,7 +346,7 @@
                                         <c:if test="${type=='ZF' || type=='XD'}">
                                             après l'obtention du numéro de notification
                                         </c:if>
-                                        Ainsi vous pouvez déposer une nouvelle demande d'autorisation ${l_ph1}, en replissant le formulaire de dépôt de la demande en veillant
+                                        Ainsi vous pouvez déposer une nouvelle demande d'autorisation ${l_ph2}, en replissant le formulaire de dépôt de la demande en veillant
                                         à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à les envoyer au niveau du système:
                                     </p>
                                 </c:if>
@@ -386,18 +434,18 @@
                             <div class="col-12">
 
                                 <p class="text-underline text-success font_bold">
-                                    Les pièces à scanner :
+                                    Les pièces accompagnant la demande :
                                 </p>
 
                                 <p>
                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                          style="width: 40px;margin-left: 10px">
-                                    les Documents à scanner et envoyer au niveau du système doivents être obligatoirement au format d'un fichier Word ou PDF
+                                    les pièces accompagnant la demande doivent être scannées et importer au niveau du système en format Word ou PDF
                                 </p>
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <div class="row mb-3">
                                         <div class="col-auto pt-1 pr-0">
-                                            List des pièces a fournir pour les de déchets
+                                            Liste des pièces à fournir pour les déchets
                                         </div>
                                         <div class="col-3">
                                             <select class="form-control" onchange="afficher_accord(this)">
@@ -420,11 +468,11 @@
                                         Nombre de Demande Déposé :
                                     </p>
                                     <p>
-                                        Chaque compte peux déposé une seule demande d'autorisation ${l_ph1} renouvlable
+                                        Chaque compte peux déposer une seule demande d'autorisation ${l_ph2} renouvlable
                                         uniquement si la date de validation de la demande est proche de la date de péremption
                                     </p>
                                     <c:if test="${type=='CT'}">
-                                        <p>Dans le cas demande d'autorisation ${l_ph1} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
+                                        <p>Dans le cas demande d'autorisation ${l_ph2} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
                                     </c:if>
                                 </c:if>
 
@@ -440,20 +488,34 @@
                                         <c:when test="${type=='EIE'}">
                                             Je récupère ma demande d’obtention de l’acceptabilité environnementale
                                         </c:when>
+                                        <c:when test="${type=='EIE1'}">
+                                            Je récupère ma demande d’obtention de notice d'impact sur l'environnement
+                                        </c:when>
+                                        <c:when test="${type=='EIE2'}">
+                                            Je récupère ma demande d’obtention de l'audit environnemental
+                                        </c:when>
                                         <c:otherwise>
-                                            Je récupère mon autorisation ${l_ph1}
+                                            Je récupère mon autorisation ${l_ph2}
                                         </c:otherwise>
                                     </c:choose>
                                 </p>
 
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
-                                        <p>A la fin du processus de traitement de votre demande d’obtention de l’acceptabilité environnementale, une notification vous sera envoyé, vous invitant à retirer l’acceptabilité environnementale de votre projet.</p>
+                                        <p>A la fin du processus de traitement de votre demande d’obtention de l’acceptabilité environnementale, une notification vous sera envoyée, vous invitant à retirer l’acceptabilité environnementale de votre projet.</p>
                                         <p style="font-size: 11px"><b>L’acceptabilité environnementale doit être retirée par son demandeur.</b></p>
                                     </c:when>
+                                    <c:when test="${type=='EIE1'}">
+                                        <p>A la fin du processus de traitement de votre demande d’obtention de notice d'impact sur l'environnement, une notification vous sera envoyée, vous invitant à retirer la notice d'impact sur l'environnement de votre projet.</p>
+                                        <p>La récupération de la notice d'impact sur l'environnement signée est tributaire de <b style="font-size: 14px">Cahier de charge</b> et de <b style="font-size: 14px">Notice d’impact sur l’environnement</b></p>
+                                        <p style="font-size: 14px"><b>La notice d'impact sur l'environnement doit être retirée par son demandeur.</b></p>
+                                    </c:when>
+                                    <c:when test="${type=='EIE2'}">
+                                        <p>à renseigner par <b>DE</b></p>
+                                       </c:when>
                                     <c:otherwise>
                                         <p>
-                                            A la fin du processus de traitement de votre demande ${l_ph1},
+                                            A la fin du processus de traitement de votre demande ${l_ph2},
                                             vous seriez notifié par email de la date
                                             à partir de laquelle vous pouvez récupérer votre demande d'autorisation
                                         </p>
@@ -463,10 +525,10 @@
                                             </p>
                                         </c:if>
                                         <p>
-                                            L'autorisation ${l_ph1} doit être retiré personnellement par son titulaire
+                                            L'autorisation ${l_ph2} doit être retiré personnellement par son titulaire
                                         </p>
                                         <p>
-                                            Les autorisations ${l_ph1} non retirées par
+                                            Les autorisations ${l_ph2} non retirées par
                                             leurs propriétaires dans un délai de deux mois à compter de leur date de notification
                                             sont annulées et détruites.
                                         </p>
@@ -479,11 +541,11 @@
                             <div class="col-12">
 
                                 <p class="text-underline text-success font_bold mt-3">
-                                    Les etapes et les acteurs impliqués dans le traitement de mon dossier
+                                    En fonction d'avancement sur votre dossier, le système affiche les étapes ci-après:
                                 </p>
 
                                 <c:choose>
-                                    <c:when test="${type=='EIE'}">
+                                    <c:when test="${type=='EIE' || type=='EIE1' || type=='EIE2'}">
                                         <div class="mb-3">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png.png" >
                                             <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
@@ -498,31 +560,31 @@
                                             <tbody>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">En attente de vérification </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du Comité National des Etudes d’Impact (CNEI) vérifie les informations fournies dans le formulaire du « renseignement préalable ».</td>
+                                                <td class="font_time_serif size_12">Le Secrétariat du Comité National des Etudes d’Impact (CNEE) vérifie les informations fournies dans le formulaire du « renseignement préalable ».</td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> En attente du dépôt de l’EIE et du PSSE </td>
-                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer l’EIE et le CC de son projet pour examen par le CNEI. </td>
+                                                <td class="font_time_serif font_bold size_12"> En attente du dépôt de l’EIE et du cahier des charges </td>
+                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer l’EIE et le CC de son projet pour examen par le CNEE. </td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> En attente des conclusions de l’EP  </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du CNEI ne programme la réunion d’examen de l’EIE qu’après réception des fichiers demandés au pétionnaire et les conclusions de l’enquête publique transmises par les autorités locales des régions concernées par le projet. </td>
+                                                <td class="font_time_serif size_12">Le Secrétariat du CNEE ne programme la réunion d’examen de l’EIE qu’après réception des fichiers demandés au pétionnaire et les conclusions de l’enquête publique transmises par les autorités locales des régions concernées par le projet. </td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> Réunion programmée </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du CNEI informe les membres du CNEI et le pétitionaire et/ou son bureau d’études de la date, de l’heure et de l’objet de la réunion d’examen de l’EIE.</td>
+                                                <td class="font_time_serif size_12">Le Secrétariat du CNEE informe les membres du CNEE et le pétitionaire et/ou son bureau d’études de la date, de l’heure et de l’objet de la réunion d’examen de l’EIE.</td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> En attente du complément d’étude de l’EIE</td>
-                                                <td class="font_time_serif size_12">Le pétitionnaire est invité à déposer le complément de l’EIE et le CC pour réexamen par le CNEI , en se basant sur les remarques soulevées lors de la réunion d’examen de son projet.</td>
+                                                <td class="font_time_serif size_12">Le pétitionnaire est invité à déposer le complément de l’EIE et le CC pour réexamen par le CNEE , en se basant sur les remarques soulevées lors de la réunion d’examen de son projet.</td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> En attente des versions définitives de l’EIE  </td>
-                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer la version définitive de l’EIE et du PSSE de son projet acceptable de point de vue environnementale. </td>
+                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer la version définitive de l’EIE et du cahier des charges de son projet acceptable de point de vue environnementale. </td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> Arrêt d’examen </td>
-                                                <td class="font_time_serif size_12"> Les conditions d’examen de l’EIE par le CNEI ne sont pas réunies. </td>
+                                                <td class="font_time_serif size_12"> Les conditions d’examen de l’EIE par le CNEE ne sont pas réunies. </td>
                                             </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"> Délivranfce de l’Acceptabilité ou de la Non Acceptabilité Environnementale  </td>
@@ -594,14 +656,17 @@
                                     <c:when test="${type=='EIE'}">
                                         <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de l’acceptabilité environnementale. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
                                     </c:when>
+                                    <c:when test="${type=='EIE1'}">
+                                        <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de la notice d'impact sur l'environnement. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
+                                    </c:when>
                                     <c:otherwise>
                                         <p>
-                                            Vous pouvez suivre l’évolution du traitement de votre ${l_ph1} à partir de la rubrique «Statut
-                                            du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph1}
+                                            Vous pouvez suivre l’évolution du traitement de votre ${l_ph2} à partir de la rubrique «Statut
+                                            du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph2}
                                         </p>
                                         <p>
                                             Aussi vous recevrez également un email lors d'évolution d'état de votre
-                                            dossier de demande d'autorisation ${l_ph1}
+                                            dossier de demande d'autorisation ${l_ph2}
                                         </p>
                                     </c:otherwise>
                                 </c:choose>
@@ -643,7 +708,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            Décret n°2-04-563 relatif aux attributions et au fonctionnement du CNEI et des CREI
+                                            Décret n°2-04-563 relatif aux attributions et au fonctionnement du CNEE et des CREI
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_563.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
@@ -690,6 +755,11 @@
                                             </a><br>
 
                                         </div>
+                                    </c:if>
+                                    <c:if test="${type=='EIE1'}">
+                                        <li>
+                                            Directives
+                                        </li>
                                     </c:if>
                                 </ul>
 

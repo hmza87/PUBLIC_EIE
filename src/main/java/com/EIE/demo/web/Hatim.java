@@ -1134,7 +1134,15 @@ public class Hatim {
 	@RequestMapping(value = "/getAccordionDoc2/{type}", method = RequestMethod.POST)
 	public ModelAndView getAccordionDoc2(@PathVariable String type) {
 		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("doc",webt.getDocImportByType(type.equals("EIE")?"EE":type));
+		if(type.equals("EIE")){
+			model.put("doc",webt.getDocImportByType("EE"));
+		}else if(type.equals("EIE1")){
+			model.put("doc",webt.getDocImportByType("NT"));
+		}else if(type.equals("EIE2")){
+			model.put("doc",webt.getDocImportByType("AE"));
+		}else{
+			model.put("doc",webt.getDocImportByType(type));
+		}
 		model.put("Admin_url",urlRest);
 		model.put("show","accordion");
 		return new ModelAndView("user_select/login7_autoload_accordion",model);
