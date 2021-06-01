@@ -6,6 +6,12 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
+
+<style>
+    h6{
+        color:#036;
+    }
+</style>
 <!-- Main Footer -->
 <%--<footer class="main-footer">--%>
 
@@ -79,35 +85,14 @@
         </div>
         <!-- Right -->
     </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="container text-center text-md-start mt-3">
+    <section class="d-sm-none d-md-block" style="margin: 0 15rem 0 15rem">
+        <div class="mt-3 mx-auto">
             <!-- Grid row -->
-            <div class="row">
+            <div class="row ">
                 <!-- Grid column -->
                 <div class="col-md-12 col-lg-12 col-xl-12 mb-4">
-                    <!-- Links -->
                     <div class="row mt-2">
-                        <div class="col-4 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
-                            <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
-                                <spring:message code="label.contact"/>
-                            </h6>
-                            <p class="mb-1 text-white">
-                                Adresse : N°9, Avenue Al Araar, 420/1 Secteur 16, Hay Riad, Rabat
-                            </p>
-                            <p class="mb-1 text-white">
-                                Tél : (+212) 537 576 647 / (+212) 537 576 661
-                            </p>
-                            <p class="mb-1 text-white">
-                               Fax : (+212) 537 570 471
-                            </p>
-                            <p class="mb-1 text-white">
-                                Email : sg@environnement.gov.ma
-                            </p>
-                        </div>
-                        <div class="col-4 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                        <div class="col-lg-3 col-sm-12 text-sm-center p-2 text-lg-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
                             <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
                                 <spring:message code="label.Ressources"/>
                             </h6>
@@ -130,31 +115,59 @@
                                 <a class="text-white" href="/faq"><spring:message code="label.FA"/></a>
                             </p>
                         </div>
-                        <div class="col-4 ">
-                            <div class="col-12 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
-                                <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
+                        <div class="col-lg-6 col-sm-12 text-sm-center  p-2 text-lg-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <div class="col-12">
+                                <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold" >
                                     <spring:message code="label.Preparezvotredemarche"/>
                                 </h6>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Importationdechetszonefranche"/></a>
-                                </p>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/guide" ><spring:message code="label.AutorisationdeCollecteettransport"/></a>
-                                </p>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/videoList" ><spring:message code="label.Installationdetraitementdesdechets"/></a>
-                                </p>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/CatalogueDesDechet"><spring:message code="label.etudeimpactenvironnemental"/></a>
-                                </p>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/Actualite"><spring:message code="label.Noticedimpact"/></a>
-                                </p>
-                                <p class="mb-1">
-                                    <a class="text-white" href="/faq"><spring:message code="label.Auditenvironnementale"/></a>
-                                </p>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12 text-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                                        <h6 class="text-uppercase text-dark text-center fw-bold mb-4">
+                                            <u style="font-style:italic"><spring:message code="label.Autorisationdesdechets"/></u>
+                                        </h6>
+                                        <p><a class="text-white" href="/api/checkUserDispatch/ZF"><spring:message code="label.Importationdechetszonefranche"/></a></p>
+                                        <p><a class="text-white" href="/api/checkUserDispatch/ET"><spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></a></p>
+                                        <p><a class="text-white" href="/api/checkUserDispatch/CT"><spring:message code="label.Collectetransportdesdechetsdangereux"/></a></p>
+                                        <p><a class="text-white" href="/api/checkUserDispatch/IT"><spring:message code="label.Installationdetraitementdesdechets"/></a></p>
+                                        <p><a class="text-white" href=/api/checkUserDispatch/XD"><spring:message code="label.Exportationdesdechetsdangereux"/> </a></p>
+                                        <p><a class="text-white" href="/api/checkUserDispatch/TR"><spring:message code="label.Transitdesdechets"/></a></p>
+
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <h6 class="text-uppercase text-dark text-center fw-bold mb-4 ">
+                                            <u style="font-style:italic"><spring:message code="label.EvaluationEnvironnementale"/></u>
+                                        </h6>
+                                       <p class="mb-1 ">
+                                           <a class="text-white" href="/api/checkEIESelect/EE"><spring:message code="label.Etudedimpactenvironnementale"/></a>                                       </p>
+                                       <p class="mb-1 ">
+                                           <a class="text-white" href="/api/checkEIESelect/NT"><spring:message code="label.Noticedimpact"/></a>
+                                       </p>
+                                       <p class="mb-1">
+                                           <a class="text-white" href="/api/checkEIESelect/AE"><spring:message code="label.Auditenvironnementale"/></a></a>
+                                       </p>
+                                   </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-lg-2 col-sm-12 text-sm-center  p-2 text-lg-left border border-top-0 border-left-0 border-bottom-0 border-right-1">
+                            <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
+                                Authentification
+                            </h6>
+                            <p class="mb-1 mx-3">
+                                <a class="text-white" href="/demandez_compte"><spring:message code="label.Senregistrer"/></a>
+                            </p>
+                            <p class="mb-1 mx-3">
+                                <a class="text-white" href="/connexion"><spring:message code="button.Seconnecter"/></a>
+                            </p>
+                        </div>
+                        <div class="col-lg-1 col-sm-12 text-sm-center p-2 text-lg-left">
+                            <h6 class="text-uppercase text-center fw-bold mb-4 font-weight-bold">
+                                <spring:message code="label.contact"/>
+                            </h6>
+                            <p class="mb-1 mx-3">
+                                <a class="text-white" href="/contact"><spring:message code="label.contact"/></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <!-- Grid column -->

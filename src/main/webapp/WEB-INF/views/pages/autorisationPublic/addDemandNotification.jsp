@@ -159,7 +159,6 @@
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         4. <spring:message code="label.Documentdemouvementsdesdechets"/>
                     </button>--%>
-
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn9"
                             onclick="openCity(this, '9')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -168,7 +167,6 @@
 
 
                 </div>
-
                 <%--********************Tab1***************************--%>
                 <div id="1" class="tabcontent pr-0">
                     <h4 class="titre_abs ">${type.equals("ZF")?numNot:"Exportateur - Notifiant"}</h4>
@@ -235,8 +233,41 @@
                                         <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
                                     </div>
                                 </div>
-
                                 <hr class="w-100">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Code National dans le pays d'exportation</label>
+                                        <input class="form-control" type="text" name="code_nationalxd" value="${notification.codeNationalXD}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Code National dans le pays d'importation</label>
+                                        <input class="form-control" type="text" name="code_national_im" value="${notification.codeNationalIm}">
+                                    </div>
+                                </div>
+                                <div class="col-6 ">
+                                    <div class="form-group">
+                                        <label>Liste Des déchets de le CE</label>
+                                        <input class="form-control" type="text" name="codece" value="${notification.CodeCE}">
+                                    </div>
+                                </div>
+                                <div class="col-6 ">
+                                    <div class="form-group">
+                                            <c:choose>
+                                                <c:when test="${notification.zf_et.equals('XD')}">
+                                                    <label>Etat d'exportation/d'éxpédition</label>
+                                                </c:when>
+                                                <c:when test="${notification.zf_et.equals('TR')}">
+                                                    <label>Etat(s) de transit (entrée et sortie)</label>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <label>Etat d'importation/ de destination</label>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <input class="form-control" type="text" name="etat" value="${notification.etat}">
+                                        </div>
+                                    </div>
                             </c:if>
 
                             <div class="col-6">

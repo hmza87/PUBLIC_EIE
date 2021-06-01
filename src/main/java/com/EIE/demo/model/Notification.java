@@ -56,6 +56,47 @@ public class Notification implements Serializable {
 	@Column(name = "telecopie", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String telecopie;
 
+	@Column(name = "codeNationalXD", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String codeNationalXD;
+	@Column(name = "codeNationalIm", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String codeNationalIm;
+	@Column(name = "CodeCE", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String CodeCE;
+	@Column(name = "etat", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String etat;
+
+	public String getCodeNationalXD() {
+		return codeNationalXD;
+	}
+
+	public void setCodeNationalXD(String codeNationalXD) {
+		this.codeNationalXD = codeNationalXD;
+	}
+
+	public String getCodeNationalIm() {
+		return codeNationalIm;
+	}
+
+	public void setCodeNationalIm(String codeNationalIm) {
+		this.codeNationalIm = codeNationalIm;
+	}
+
+	public String getCodeCE() {
+		return CodeCE;
+	}
+
+	public void setCodeCE(String codeCE) {
+		CodeCE = codeCE;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
 	public String getNom() {
 		return nom;
 	}

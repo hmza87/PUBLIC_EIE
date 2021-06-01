@@ -1082,8 +1082,8 @@ public class GeneratePDFDocuments {
         //========
 
 
-        par9.add(new Phrase("12.Dénomination et composition des déchets (6)",fontbold));
-
+        par9.add(new Phrase("12.Dénomination et composition des déchets (6) : ",fontbold));
+        par9.add(new Phrase(ns.getCode().getNom_ar(),font));
         cell = new PdfPCell();
         cell.setColspan(5);
         cell.addElement(par9);
@@ -1253,11 +1253,11 @@ public class GeneratePDFDocuments {
         par13.add(Chunk.NEWLINE);
         par13.add("ii) CODE. OCDE [si différent fe i)]");
         par13.add(Chunk.NEWLINE);
-        par13.add("iii) Liste des déchets de la CE : 16 01 03");
+        par13.add("iii) Liste des déchets de la CE :"+ns.getCodeCE());
         par13.add(Chunk.NEWLINE);
-        par13.add("iv) Code national dans le pays d'éxportation : 16 01 03");
+        par13.add("iv) Code national dans le pays d'éxportation :"+ns.getCodeNationalXD());
         par13.add(Chunk.NEWLINE);
-        par13.add("iv) Code national dans le pays d'importation : 16 01 03");
+        par13.add("iv) Code national dans le pays d'importation :"+ns.getCodeNationalIm());
         par13.add(Chunk.NEWLINE);
         par13.add("v) Code National(Catalogue Marocain des déchets) : ");
         par13.add(ns.getCode().getNom_fr());
@@ -1274,7 +1274,7 @@ public class GeneratePDFDocuments {
         par13.add(Chunk.NEWLINE);
         par13.add("xi) Dénomination ONU : ");
         par13.add(Chunk.NEWLINE);
-        par13.add("xii) Code(s) des douane(s) (SH) : 40004 00 00");
+        par13.add("xii) Code(s) des douane(s) (SH) : ");
 
         cell = new PdfPCell();
         cell.addElement(par13);
@@ -1309,8 +1309,14 @@ public class GeneratePDFDocuments {
         table.addCell(cell);
 
         cell = new PdfPCell();
-        cell.addElement(new Phrase("a)",font));
+        String etatXD= ns.getZf_et().equals("XD")?ns.getEtat():"";
+        cell.addElement(new Phrase("a)  "+etatXD,font));
         cell.setColspan(2);
+        table.addCell(cell);
+
+        cell = new PdfPCell();
+        String etatTr= ns.getZf_et().equals("TR")?ns.getEtat():"";
+        cell.addElement(new Phrase("  "+etatTr,font));        cell.setColspan(2);
         table.addCell(cell);
 
         cell = new PdfPCell();
@@ -1318,11 +1324,6 @@ public class GeneratePDFDocuments {
         cell.setColspan(2);
         table.addCell(cell);
 
-        cell = new PdfPCell();
-        cell.addElement(new Phrase("",font));
-        cell.setColspan(2);
-        table.addCell(cell);
-
 
         cell = new PdfPCell();
         cell.addElement(new Phrase("",font));
@@ -1331,8 +1332,8 @@ public class GeneratePDFDocuments {
 
 
         cell = new PdfPCell();
-        cell.addElement(new Phrase("",font));
-        cell.setColspan(2);
+        String etatEt= ns.getZf_et().equals("ET")?ns.getEtat():"";
+        cell.addElement(new Phrase("  "+etatEt,font));        cell.setColspan(2);
         table.addCell(cell);
 
         cell = new PdfPCell();
@@ -4049,6 +4050,7 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
+
     public static PdfPCell saisir_cellule(String label,Font font_label,Font font_var,String var, int collspan){
 
         Phrase ph1 = new Phrase(label,font_label);
