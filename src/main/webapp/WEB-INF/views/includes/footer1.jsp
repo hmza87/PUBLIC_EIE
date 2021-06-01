@@ -165,7 +165,7 @@
                                 <spring:message code="label.contact"/>
                             </h6>
                             <p class="mb-1 mx-3">
-                                <a class="text-white" href="/contact"><spring:message code="label.contact"/></a>
+                                <a class="text-white" href="/contact/0"><spring:message code="label.contact"/></a>
                             </p>
                         </div>
                     </div>
