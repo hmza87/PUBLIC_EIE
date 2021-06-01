@@ -128,8 +128,9 @@ function show_zone(hideClass, val) {
                 $(val).attr("data_type","");
                 $("#accordion").html(response);
                 $("#accordion").accordion({
-                    collapsible: true,
+                    collapsible: false,
                     heightStyle: "content",
+                    active:false,
                 });
             })
             .fail(function() {
@@ -218,6 +219,7 @@ $(function () {
     $("#accordion").accordion({
         collapsible: true,
         heightStyle: "content",
+        active : false,
     });
 });
 
@@ -1375,6 +1377,7 @@ function show_zone2(hideClass, val) {
                 $("#accordion").accordion({
                     collapsible: true,
                     heightStyle: "content",
+                    active : false,
                 });
             })
             .fail(function() {

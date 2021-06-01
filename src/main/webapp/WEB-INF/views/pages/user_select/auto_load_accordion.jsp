@@ -11,7 +11,7 @@
     <c:when test="${show=='accordion'}">
         <c:forEach items="${doc}" var="d">
             <c:if test="${empty d.description && empty d.uri}">
-                <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
             </c:if>
 
             <c:if test="${not empty d.description || not empty d.uri}">
@@ -528,6 +528,13 @@
         </div>
     </c:when>
 </c:choose>
+
+<script>
+    $(document).ready(function (){
+        $('.Grp_dang .ui-accordion-content .ui-accordion-content-active').eq(0).hide();
+        $('.Grp_dang .ui-accordion-content .ui-accordion-content-active').css("background-color","red");
+    });
+</script>
 
 
 

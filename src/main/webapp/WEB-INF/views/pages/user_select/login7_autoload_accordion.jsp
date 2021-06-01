@@ -13,7 +13,7 @@
         <c:if test="${type=='ZF' || type=='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${not empty d.description || not empty d.uri}">
-                    <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
                 <c:if test="${empty d.description && empty d.uri}">
                    <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
@@ -70,9 +70,8 @@
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${empty d.description && empty d.uri}">
-                   <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                   <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
-
                 <c:if test="${not empty d.description || not empty d.uri}">
                     <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
@@ -1012,6 +1011,8 @@
                     $("#dechet_code").removeClass("d-none");
                 }
             });
+
+
         </script>
     </c:when>
 </c:choose>
