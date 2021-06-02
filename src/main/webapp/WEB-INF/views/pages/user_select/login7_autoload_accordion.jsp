@@ -20,7 +20,7 @@
                         <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                     <c:if test="${d.nom_fr!='Garantie financière'}">
-                        <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                        <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
                 <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
@@ -75,18 +75,18 @@
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${empty d.description && empty d.uri}">
-                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                    <c:if test="${d.nom_fr=='Garantie financière '}">
                         <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                     </c:if>
-                    <c:if test="${d.nom_fr!='Garantie financière'}">
-                        <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    <c:if test="${d.nom_fr!='Garantie financière '}">
+                        <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
                 <c:if test="${not empty d.description || not empty d.uri}">
                     <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
                 <div>
-                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                    <c:if test="${d.nom_fr=='Garantie financière '}">
                         <p style="padding-left: 1%;border: 2px solid black;">
                             <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
                         </p>
@@ -197,13 +197,13 @@
                                 <c:set var="l_ph2" value=" de transit des déchets "/>
                             </c:when>
                             <c:when test="${type=='EIE'}">
-                                <c:set var="l_ph2" value=" l'obtention de l'acceptabilité environnementale "/>
+                                <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
                             </c:when>
                             <c:when test="${type=='EIE1'}">
-                                <c:set var="l_ph2" value=" l'obtention de notice d'impact sur l'environnement "/>
+                                <c:set var="l_ph2" value=" d'obtention de notice d'impact sur l'environnement "/>
                             </c:when>
                             <c:when test="${type=='EIE2'}">
-                                <c:set var="l_ph2" value=" l'obtention d'audit environnemental "/>
+                                <c:set var="l_ph2" value=" d'obtention d'audit environnemental "/>
                             </c:when>
                         </c:choose>
                 Procédure à suivre pour ${l_ph1}
@@ -315,6 +315,12 @@
                                         <c:when test="${type=='EIE'}">
                                             Je dépose ma demande d’obtention de l’acceptabilité environnementale
                                         </c:when>
+                                        <c:when test="${type=='EIE2'}">
+                                            Je dépose ma demande d’obtention de l’audit environnemental
+                                        </c:when>
+                                        <c:when test="${type=='EIE1'}">
+                                            Je dépose ma demande d’obtention de la notice d'impact environnementale
+                                        </c:when>
                                         <c:otherwise>
                                             Je dépose ma demande ${l_ph2}
                                         </c:otherwise>
@@ -355,7 +361,7 @@
                                         <c:if test="${type=='ZF' || type=='XD'}">
                                             après l'obtention du numéro de notification
                                         </c:if>
-                                        Ainsi vous pouvez déposer une nouvelle demande d'autorisation ${l_ph2}, en replissant le formulaire de dépôt de la demande en veillant
+                                        Ainsi vous pouvez déposer une nouvelle demande ${l_ph2}, en replissant le formulaire de dépôt de la demande en veillant
                                         à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à les envoyer au niveau du système:
                                     </p>
                                 </c:if>
@@ -512,7 +518,7 @@
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
                                         <p>A la fin du processus de traitement de votre demande d’obtention de l’acceptabilité environnementale, une notification vous sera envoyée, vous invitant à retirer l’acceptabilité environnementale de votre projet.</p>
-                                        <p style="font-size: 11px"><b>L’acceptabilité environnementale doit être retirée par son demandeur.</b></p>
+                                        <p style="font-size: 14px"><b>L’acceptabilité environnementale doit être retirée par son demandeur.</b></p>
                                     </c:when>
                                     <c:when test="${type=='EIE1'}">
                                         <p>A la fin du processus de traitement de votre demande d’obtention de notice d'impact sur l'environnement, une notification vous sera envoyée, vous invitant à retirer la notice d'impact sur l'environnement de votre projet.</p>
@@ -668,9 +674,12 @@
                                     <c:when test="${type=='EIE1'}">
                                         <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de la notice d'impact sur l'environnement. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
                                     </c:when>
+                                    <c:when test="${type=='EIE2'}">
+                                        <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de l'audit environnemental. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
+                                    </c:when>
                                     <c:otherwise>
                                         <p>
-                                            Vous pouvez suivre l’évolution du traitement de votre ${l_ph2} à partir de la rubrique «Statut
+                                            Vous pouvez suivre l’évolution du traitement de votre demande ${l_ph2} à partir de la rubrique «Statut
                                             du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph2}
                                         </p>
                                         <p>
