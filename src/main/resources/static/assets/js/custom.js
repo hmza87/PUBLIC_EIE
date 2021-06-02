@@ -1614,3 +1614,11 @@ function setfileRapport_AE(id,val,id_rapport){
         }
     });
 }
+
+function show_footer_action(val){
+    if($(val).is(":visible")){
+        $(val).hide();
+    }else{
+        $(val).show();
+    }
+}
