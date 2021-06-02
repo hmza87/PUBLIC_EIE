@@ -235,7 +235,7 @@
                                         </li>
                                     </c:if>
 
-                                    <li  class="dropdown"><a href="/index#ressources"  class="at"><spring:message code="label.Ressources"/></a>
+                                    <li  class="dropdown"><a href="/index"  class="at"><spring:message code="label.Ressources"/></a>
                                         <ul>
                                             <li>
                                                 <a href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
@@ -263,10 +263,10 @@
 
                             <div class="lang-btn">
                                 <span class="icon flaticon-worldwide-1"></span>
-                                <c:if test="${pageContext.response.locale=='ar'}">
+                                <c:if test="${pageContext.response.locale=='fr'}">
                                     <span class="txt" id="curntlng"><spring:message code="label.Francais"/></span>
                                 </c:if>
-                                <c:if test="${pageContext.response.locale=='fr'}">
+                                <c:if test="${pageContext.response.locale=='ar'}">
                                     <span class="txt" id="curntlng"><spring:message code="label.Arabic"/></span>
                                 </c:if>
                                 <span class="arrow fa fa-angle-down"></span>
