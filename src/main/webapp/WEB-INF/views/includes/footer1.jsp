@@ -99,9 +99,13 @@
                                 </h6>
                                 <div class="row">
                                     <div class="col-12">
-                                        <h6 class="text-uppercase  text-white fw-bold mb-4" onclick="show_footer_action('#autorisation_footer')">
-                                            <span class="fa fa-caret-right" style="font-size: 22px !important;"></span> <spring:message code="label.Autorisationdesdechets"/>
+                                        <h6 class="text-uppercase   fw-bold mb-4" >
+
                                         </h6>
+                                        <p class="text-white" onclick="show_footer_action('#autorisation_footer')">
+                                            <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
+                                            <spring:message code="label.Autorisationdesdechets"/>
+                                        </p>
                                         <div id="autorisation_footer" class="collapse">
                                             <p><a class="text-white"  href="/api/checkUserDispatch/ZF"><spring:message code="label.Importationdechetszonefranche"/></a></p>
                                             <p><a class="text-white" style=" font-size: 14px;" href="/api/checkUserDispatch/ET"><spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></a></p>
@@ -111,9 +115,11 @@
                                             <p><a class="text-white" href="/api/checkUserDispatch/TR"><spring:message code="label.Transitdesdechets"/></a></p>
                                         </div>
 
-                                        <h6 class="text-uppercase text-white text-left fw-bold mb-4 " onclick="show_footer_action('#eie_footer')">
-                                            <span class="fa fa-caret-right" style="font-size: 22px !important;"></span> <spring:message code="label.EvaluationEnvironnementale"/>
-                                        </h6>
+                                        
+                                        <p class="text-white" onclick="show_footer_action('#eie_footer')">
+                                            <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
+                                            <spring:message code="label.EvaluationEnvironnementale"/>
+                                        </p>
                                         <div id="eie_footer" class="collapse">
                                             <p class="mb-1 ">
                                                 <a class="text-white" href="/api/checkEIESelect/EE"><spring:message code="label.Etudedimpactenvironnementale"/></a>                                       </p>
