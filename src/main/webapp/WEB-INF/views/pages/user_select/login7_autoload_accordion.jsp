@@ -13,13 +13,13 @@
         <c:if test="${type=='ZF' || type=='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${not empty d.description || not empty d.uri}">
-                    <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #b3b3b3!important;color: white !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
                 <c:if test="${empty d.description && empty d.uri}">
-                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                    <c:if test="${d.nom_fr=='Cahier des charges' && d.nom_fr=='Garantie financière' && d.nom_fr=='Attestation d'/'acceptation des déchets de l'/'installation de valorisation'}">
                         <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
-                    <c:if test="${d.nom_fr!='Garantie financière'}">
+                    <c:if test="${d.nom_fr!='Cahier des charges' || d.nom_fr!='Garantie financière' || d.nom_fr!='Attestation d'/'acceptation des déchets de l'/'installation de valorisation'}">
                         <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
@@ -452,11 +452,6 @@
                                     Les pièces accompagnant la demande :
                                 </p>
 
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/assets/images/warning.png"
-                                         style="width: 40px;margin-left: 10px">
-                                    les pièces accompagnant la demande doivent être scannées et importer au niveau du système en format Word ou PDF
-                                </p>
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <div class="row mb-3">
                                         <div class="col-auto pt-1 pr-0">
@@ -471,13 +466,18 @@
                                     </div>
                                 </c:if>
 
-
                                 <div id="accordion">
                                     <h3>Test</h3>
                                     <div>
                                         desciption
                                     </div>
                                 </div>
+                                <br>
+                                <p>
+                                    <img src="${pageContext.request.contextPath}/assets/images/warning.png"
+                                         style="width: 40px;margin-left: 10px">
+                                    les pièces accompagnant la demande doivent être scannées et importer au niveau du système en format Image ou PDF
+                                </p>
                                 <c:if test="${type=='CT' || type=='IT'}">
                                     <p class="text-underline text-success font_bold mt-3">
                                         Nombre de Demande Déposé :
@@ -568,7 +568,7 @@
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
-                                                <th class="text-underline bold text-center font_time_serif">Statuts du dossie</th>
+                                                <th class="text-underline bold text-center font_time_serif">Statut du dossier</th>
                                                 <th class="text-underline bold text-center font_time_serif">Détails</th>
                                             </tr>
                                             </thead>
@@ -612,11 +612,42 @@
                                         </table>
                                     </c:when>
                                     <c:when test="${type=='ZF'}">
-                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/ETAP.PNG">
-                                            <img src="${pageContext.request.contextPath}/assets/images/etape10.png"></a>
+                                        <div class="row">
+                                            <div class="col-4"></div>
+                                            <div class="col-4">
+                                                <select class="form-control" id="shema" onchange="etapeshema(this.value)">
+                                                    <option value="1" selected>Dangereux</option>
+                                                    <option value="2">Non Dangereux</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4"></div>
+                                        </div>
+
+
+<br/>
+                                            <div id="shema1">
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_zf.PNG">
+                                                <img src="${pageContext.request.contextPath}/assets/images/shema_zf.PNG"></a>
+                                            </div>
+                                            <div id="shema2" style="display: none">
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG">
+                                                <img src="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG"></a>
+                                            </div>
+                                                </c:when>
+
+                                    <c:when test="${type=='CT'}">
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG">
+                                                <img src="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG"></a>
                                     </c:when>
 
-
+                                    <c:when test="${type=='IT'}">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_it.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_it.PNG"></a>
+                                    </c:when>
+                                    <c:when test="${type=='XD'}">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_xd.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_xd.PNG"></a>
+                                    </c:when>
 
                                     <c:otherwise>
                                         <table id="table_acteur" class="table table-striped table-bordered table-hover my_table">
@@ -1031,7 +1062,15 @@
                 }
             });
 
-
+        function etapeshema(val){
+            if(val=='1'){
+                $("#shema1").show();
+                $("#shema2").hide();
+            }else{
+                $("#shema2").show();
+                $("#shema1").hide();
+            }
+        }
         </script>
     </c:when>
 </c:choose>
