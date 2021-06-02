@@ -16,8 +16,13 @@
                     <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
                 <c:if test="${empty d.description && empty d.uri}">
-                   <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
-                </c:if>
+                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                        <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    </c:if>
+                    <c:if test="${d.nom_fr!='Garantie financière'}">
+                        <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    </c:if>
+                   </c:if>
                 <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
                     <c:if test="${d.nom_fr=='Garantie financière'}">
                         <p style="padding-left: 1%;border: 2px solid black;">
@@ -59,7 +64,7 @@
                         </div>
                     </c:if>
                         <c:if test="${not empty d.description}">
-                           <p>Description: ${d.description}</p>
+                           <p>${d.description}</p>
                         </c:if>
                     <c:if test="${not empty d.uri}">
                         <p>Liens pour télécharger le modèle: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
@@ -70,8 +75,13 @@
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${empty d.description && empty d.uri}">
-                   <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
-                </c:if>
+                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                        <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                    </c:if>
+                    <c:if test="${d.nom_fr!='Garantie financière'}">
+                        <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: not-allowed;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    </c:if>
+                   </c:if>
                 <c:if test="${not empty d.description || not empty d.uri}">
                     <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
@@ -119,7 +129,7 @@
                         </div>
                     </c:if>
                     <c:if test="${not empty d.description}">
-                        <p>Description: ${d.description}</p>
+                        <p>${d.description}</p>
                     </c:if>
                     <c:if test="${not empty d.uri}">
                     <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>

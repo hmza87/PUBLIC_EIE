@@ -56,7 +56,7 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty d.description}">
-                    <p>Description: ${d.description}</p>
+                    <p>${d.description}</p>
                 </c:if>
                 <c:if test="${not empty d.uri}">
                     <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
