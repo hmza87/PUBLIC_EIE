@@ -99,9 +99,7 @@
                                 </h6>
                                 <div class="row">
                                     <div class="col-12">
-                                        <h6 class="text-uppercase   fw-bold mb-4" >
-
-                                        </h6>
+                                       
                                         <p class="text-white" onclick="show_footer_action('#autorisation_footer')">
                                             <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
                                             <spring:message code="label.Autorisationdesdechets"/>
@@ -115,7 +113,7 @@
                                             <p><a class="text-white" href="/api/checkUserDispatch/TR"><spring:message code="label.Transitdesdechets"/></a></p>
                                         </div>
 
-                                        
+
                                         <p class="text-white" onclick="show_footer_action('#eie_footer')">
                                             <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
                                             <spring:message code="label.EvaluationEnvironnementale"/>
