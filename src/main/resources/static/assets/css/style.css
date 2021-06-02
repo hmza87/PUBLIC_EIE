@@ -14856,8 +14856,7 @@ img.lazy-image.loaded{
 #footer_footer{
 	background-color: #7dc7bd !important;
 	color: white !important;
-
-
+	margin-top: 300px !important;
 }
 .container-fluid {
 	min-height: calc(100vh - 200px);

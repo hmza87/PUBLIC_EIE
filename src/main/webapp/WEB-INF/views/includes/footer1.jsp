@@ -57,17 +57,17 @@
 <!--End pagewrapper-->
 <!--Scroll to top-->
 
-<footer class="text-center text-lg-start bg-light text-muted w-100 d-inline-block" id="footer_footer">
+<footer class="text-center text-lg-start bg-light text-muted w-100 d-inline-block mt-5" id="footer_footer">
     <!-- Section: Social media -->
 
     <section class="d-sm-none d-md-block" style="margin: 0 1rem 0 1rem">
         <div class="mt-3 mx-auto">
             <!-- Grid row -->
-            <div class="row ">
+            <div class="row pl-5 ">
                 <!-- Grid column -->
                 <div class="col-md-12 col-lg-12 col-xl-12 mb-4">
-                    <div class="row mt-2">
-                        <div class="col-md-2 pr-3 text-sm-center p-2 text-lg-left ml-5">
+                    <div class="row mt-2 justify-content-start">
+                        <div class="col-md-auto col-sm-12 pr-3 text-sm-center p-2 text-lg-left pl-auto">
                             <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold">
                                 <spring:message code="label.Ressources"/>
                             </h6>
@@ -91,16 +91,15 @@
                             </p>
                         </div>
 
-
-                        <div class="col-md-4 col-sm-12 text-sm-center  p-2 text-lg-left ">
+                        <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12">
                                 <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold" >
                                     <spring:message code="label.Preparezvotredemarche"/>
                                 </h6>
                                 <div class="row">
                                     <div class="col-12">
-                                       
-                                        <p class="text-white" onclick="show_footer_action('#autorisation_footer')">
+
+                                        <p class="text-white" onclick="show_footer_action('#autorisation_footer',this)">
                                             <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
                                             <spring:message code="label.Autorisationdesdechets"/>
                                         </p>
@@ -114,7 +113,7 @@
                                         </div>
 
 
-                                        <p class="text-white" onclick="show_footer_action('#eie_footer')">
+                                        <p class="text-white" onclick="show_footer_action('#eie_footer',this)">
                                             <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
                                             <spring:message code="label.EvaluationEnvironnementale"/>
                                         </p>
@@ -133,7 +132,30 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2 col-sm-12 text-sm-center  p-2 text-lg-left ">
+                        <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
+                            <div class="col-12 pl-0">
+                                <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold" >
+                                    Réseau sociaux
+                                </h6>
+                                <div class="row">
+                                    <div class="col-sm-12 pl-0  ">
+                                        <p>
+                                            <a href="https://www.facebook.com/DENVMAROC/" target="_blank" class="me-4 text-reset pr-3 ml-3">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="https://www.youtube.com/channel/UCAXNgXbjL7LXnWgSGn-1aSA" target="_blank" class="me-4 text-reset pr-3">
+                                                <i class="fab fa-youtube"></i>
+                                            </a>
+                                            <a href="https://www.environnement.gov.ma/fr/" target="_blank" class="me-4 text-reset pr-3">
+                                                <i class="fa fa-globe"></i>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12 pl-0">
                                 <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold" >
                                    Authentification
@@ -141,8 +163,8 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-md-6 col-lg-6 col-sm-12 pl-0">
-                                            <div id="autorisation_footer">
-                                                <p > <a class="text-white" href="/connexion">Se connecter</a></p>
+                                            <div>
+                                                <p > <a class="text-white text-nowrap" href="/connexion">Se connecter</a></p>
                                                 <p> <a class="text-white" href="/demandez_compte">S'enregistrer</a></p>
                                             </div>
                                         </div>
@@ -151,13 +173,11 @@
                             </div>
                         </div>
 
-
-
-                        <div class="col-lg-3 col-sm-12 text-sm-center p-2 text-lg-left">
-                            <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold mx-3">
+                        <div class="col-md-3 col-sm-12 text-sm-center p-2 text-lg-left ">
+                            <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold">
                                 <spring:message code="label.contact"/>
                             </h6>
-                            <p class="mb-1 mx-3" style=" font-size: 14px;">
+                            <p class="mb-1" style=" font-size: 14px;">
                                 Adresse : N°9, Avenue Al Araar, 420/1 Secteur 16, Hay Riad, Rabat <br>
 
 Tél : (+212) 537 576 647 / (+212) 537 576 661 <br>
@@ -167,22 +187,7 @@ Fax : (+212) 537 570 471 <br>
 Email : sg@environnement.gov.ma
                             </p>
 
-                            <p class="mb-1 mx-3" >Reseaux Sociaux :
-                                <a href="https://www.facebook.com/DENVMAROC/" target="_blank" class="me-4 text-reset pr-3 ml-3">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="me-4 text-reset pr-3">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://www.youtube.com/channel/UCAXNgXbjL7LXnWgSGn-1aSA" target="_blank" class="me-4 text-reset pr-3">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a href="https://www.environnement.gov.ma/fr/" target="_blank" class="me-4 text-reset pr-3">
-                                    <i class="fa fa-globe"></i>
-                                </a>
-
-                            </p>
-                            <p class="mb-1 mx-3">
+                            <p class="mb-1 ">
                                 <a class="text-white" href="/contact/0">Contactez nous</a>
                             </p>
 
@@ -336,11 +341,15 @@ $(document).ready(function() {
     });
 } );
 
-function show_footer_action(val){
+function show_footer_action(val,that){
     if($(val).is(":visible")){
         $(val).hide();
+        $(that).find(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+
     }else{
         $(val).show();
+        $(that).find(".fa-caret-right").removeClass("fa-caret-right").addClass("fa-caret-down");
+
     }
 }
 </script>
