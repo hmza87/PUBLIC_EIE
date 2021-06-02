@@ -332,6 +332,13 @@ $(document).ready(function() {
     });
 } );
 
+function show_footer_action(val){
+    if($(val).is(":visible")){
+        $(val).hide();
+    }else{
+        $(val).show();
+    }
+}
 </script>
 
 </div>
