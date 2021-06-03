@@ -16,15 +16,15 @@
                     <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #b3b3b3!important;color: white !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
                 <c:if test="${empty d.description && empty d.uri}">
-                    <c:if test="${d.nom_fr=='Cahier des charges' && d.nom_fr=='Garantie financière' && d.nom_fr=='Attestation d'/'acceptation des déchets de l'/'installation de valorisation'}">
-                        <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #7dc7bd!important;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    <c:if test="${d.nom_fr.contains('Cahier des charges') || d.nom_fr.contains('Garantie financière') || d.id_docImport==1495}">
+                        <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #b3b3b3!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
-                    <c:if test="${d.nom_fr!='Cahier des charges' || d.nom_fr!='Garantie financière' || d.nom_fr!='Attestation d'/'acceptation des déchets de l'/'installation de valorisation'}">
-                        <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
+                    <c:if test="${d.nom_fr!='Cahier des charges' && d.nom_fr!='Garantie financière' && d.id_docImport!=1495}">
+                        <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-black" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
                 <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
-                    <c:if test="${d.nom_fr=='Garantie financière'}">
+                    <c:if test="${d.nom_fr.contains('Garantie financière')}">
                         <p style="padding-left: 1%;border: 2px solid black;">
                             <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
                         </p>
@@ -75,18 +75,18 @@
         <c:if test="${type!='ZF' && type!='XD'}">
             <c:forEach items="${doc}" var="d">
                 <c:if test="${empty d.description && empty d.uri}">
-                    <c:if test="${d.nom_fr=='Garantie financière '}">
-                        <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                    <c:if test="${d.nom_fr.contains('Garantie financière')}">
+                        <h3 class="text-white" style="background-color: #b3b3b3!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                     </c:if>
-                    <c:if test="${d.nom_fr!='Garantie financière '}">
+                    <c:if test="${!d.nom_fr.contains('Garantie financière')}">
                         <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
                 <c:if test="${not empty d.description || not empty d.uri}">
-                    <h3 class="text-white" style="background-color: #7dc7bd">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
+                    <h3 class="text-white" style="background-color: #b3b3b3!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
                 <div>
-                    <c:if test="${d.nom_fr=='Garantie financière '}">
+                    <c:if test="${d.nom_fr.contains('Garantie financière')}">
                         <p style="padding-left: 1%;border: 2px solid black;">
                             <strong style="color: green">CTR</strong><spring:message code="label.CTR"/>
                         </p>
