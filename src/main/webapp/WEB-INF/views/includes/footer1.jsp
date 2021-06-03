@@ -72,8 +72,9 @@
                                 <spring:message code="label.Ressources"/>
                             </h6>
                             <p class="mb-1">
-                                <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Preparezvotredemarche"/></a>
+                                <a class="text-white" href="/Actualite">Actualite</a>
                             </p>
+
                             <p class="mb-1">
                                 <a class="text-white" href="/guide" >Guide et Procédure</a>
                             </p>
@@ -83,9 +84,7 @@
                             <p class="mb-1">
                                 <a class="text-white" href="/CatalogueDesDechet">Catalogue Des Déchet</a>
                             </p>
-                            <p class="mb-1">
-                                <a class="text-white" href="/Actualite">Actualite</a>
-                            </p>
+
                             <p class="mb-1">
                                 <a class="text-white" href="/faq"><spring:message code="label.FA"/></a>
                             </p>
