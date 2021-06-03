@@ -842,6 +842,9 @@
                             <div class="card-body text-center">
                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
+                                <div class="dddd" style="position: absolute;top: 110px;right: 10px;cursor: pointer">
+                                    <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')">Nouveau</div>
+                                </div>
                                <c:choose>
                                    <c:when test="${empty user}">
                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
