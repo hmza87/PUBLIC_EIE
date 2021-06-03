@@ -14870,6 +14870,9 @@ img.lazy-image.loaded{
 .size_12{
 	font-size: 12px;
 }
+.size_24{
+	font-size: 24px;
+}
 
 #table_acteur tbody tr:hover{
 	background-color: rgba(61, 255, 21, 0.31) !important;

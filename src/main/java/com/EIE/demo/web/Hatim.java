@@ -1233,6 +1233,16 @@ public class Hatim {
 	}
 
 
+	@RequestMapping(value = "/new_procedure/{type}",method = RequestMethod.GET)
+	public ModelAndView new_procedure(@PathVariable String type) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("type",type);
+		map.put("user",webt.getCompteConnected());
+		map.put("doc",webt.getDocImportByType(type));
+		map.put("Admin_url",urlRest);
+		return new ModelAndView("user_select/page_new_procedure",map);
+	}
+
 
 }
 	
