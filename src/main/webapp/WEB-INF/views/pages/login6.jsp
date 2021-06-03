@@ -988,7 +988,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="">
+                                                    <c:when test="${empty user}">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -1012,7 +1012,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Auditenvironnementale"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="">
+                                                    <c:when test="${empty user}">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -1035,7 +1035,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Noticedimpact"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="">
+                                                    <c:when test="${empty user}">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
