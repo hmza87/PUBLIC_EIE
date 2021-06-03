@@ -16,10 +16,10 @@
                     <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #b3b3b3!important;color: white !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                 </c:if>
                 <c:if test="${empty d.description && empty d.uri}">
-                    <c:if test="${d.nom_fr.contains('Cahier des charges') || d.nom_fr.contains('Garantie financière') || d.id_docImport==1495}">
+                    <c:if test="${d.nom_fr.contains('Garantie financière')}">
                         <button class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-white" style="background-color: #b3b3b3!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
-                    <c:if test="${d.nom_fr!='Cahier des charges' && d.nom_fr!='Garantie financière' && d.id_docImport!=1495}">
+                    <c:if test="${d.nom_fr!='Garantie financière'}">
                         <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-black" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
                    </c:if>
