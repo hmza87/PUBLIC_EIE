@@ -106,7 +106,7 @@
                         <option value="3">Installation de traitement des déchets</option>
                         <option value="4">Importation des déchets non dangereux d’une zone franche</option>
                         <option value="5">Exportation des déchets dangereux </option>
-                        <option value="6">Transit des Déchets </option>
+                        <option value="6">Transit des déchets </option>
                         <option value="7">Demande de  licence d’importation des déchets non ferreux </option>
                     </select>
                 </div>

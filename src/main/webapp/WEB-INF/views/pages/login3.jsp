@@ -587,7 +587,7 @@
 
                     <section id="sectmain"  style="height: 497px;border-style: groove;text-align: center;margin-top: 2.3%;">
 
-                        <h3 style="margin-top: 10%;text-decoration: underline;"> Préparez votre démarche </h3>
+                        <h3 style="margin-top: 10%;text-decoration: underline;"> Préparer votre démarche </h3>
 
                         <div style="margin-top: 5%;">
                             <button onclick="sectautoris()" style="width: 45%;font-size: 25px;padding-bottom: 10%;padding-top: 15px;background-color: #edf4e4;color:#7dc7bd"  class="btn"> <br/><i style="font-size: 40px" class="fa fa-check-circle" ></i><br/> Autorisations</button>

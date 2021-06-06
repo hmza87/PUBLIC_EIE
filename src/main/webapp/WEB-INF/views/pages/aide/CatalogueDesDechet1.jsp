@@ -83,7 +83,7 @@
                     <div class="col-md-12 col-sm-12 col-lg-12">
                     <div class="" style="height: 50px; display: flex; justify-content: center; background: linear-gradient(to right, #b1eed9, #e3dddd)">
                         <div class="col-md-12 my-3 text-center">
-                            <strong class="profil text-white">Catalogue Des Déchets</strong><br>
+                            <strong class="profil text-white">Catalogue des déchets</strong><br>
                         </div>
                     </div>
                     </div>
