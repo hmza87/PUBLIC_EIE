@@ -913,7 +913,7 @@ img{
 	font-size:15px;
 	line-height:30px;
 	font-weight:600;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 	color:#222222;
 	padding:15px 0px;
 	opacity:1;
