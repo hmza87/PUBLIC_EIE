@@ -344,7 +344,7 @@
                                     <div class="col-6">
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <label> <spring:message code="label.Quantiteestime"/> de déchêt :</label>
+                                            <label> <spring:message code="label.Quantiteestime"/> du déchêt :</label>
                                             <input type="text" required name="quantite" value="${notif.quantite}"
                                                    id="quantite"
                                                    class="form-control">

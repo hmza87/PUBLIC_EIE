@@ -82,7 +82,7 @@
                                 <a class="text-white" href="/videoList" >Vidéos</a>
                             </p>
                             <p class="mb-1">
-                                <a class="text-white" href="/CatalogueDesDechet">Catalogue Des Déchet</a>
+                                <a class="text-white" href="/CatalogueDesDechet">Catalogue des déchets</a>
                             </p>
 
                             <p class="mb-1">

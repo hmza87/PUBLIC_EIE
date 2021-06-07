@@ -751,7 +751,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            Loi n°49-17 relative à l’Evaluation Environnementale
+                                            Loi n°49-17 relative à l’Evaluation environnementale
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N49_17.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>

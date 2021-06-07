@@ -616,7 +616,7 @@
 
                         <div style="margin-top: 5%;">
                             <button onclick="sectautoris()" style="width: 45%;font-size: 25px;padding-bottom: 10%;padding-top: 15px;background-color: #edf4e4;color:#7dc7bd"  class="btn"> <br/><i style="font-size: 40px" class="fa fa-check-circle" ></i><br/> Autorisations</button>
-                            <button onclick="sectevaluation()" style="width: 45%;font-size: 25px;padding-bottom: 10%;padding-top: 15px;background-color: #edf4e4;color: #7dc7bd"  class="btn"> <br/><i style="font-size: 40px"  class="fa fa-user-plus" ></i><br/> Evaluation Environnementale</button>
+                            <button onclick="sectevaluation()" style="width: 45%;font-size: 25px;padding-bottom: 10%;padding-top: 15px;background-color: #edf4e4;color: #7dc7bd"  class="btn"> <br/><i style="font-size: 40px"  class="fa fa-user-plus" ></i><br/> Evaluation environnementale</button>
 
                         </div>
 
@@ -643,7 +643,7 @@
 
 
                         <div id="slct2"  style="margin-top: 18%;margin-bottom: 5%;">
-                            <h4><i class="fa fa-user-plus"></i> Evaluation Environnementale</h4>
+                            <h4><i class="fa fa-user-plus"></i> Evaluation environnementale</h4>
                             <select onchange="slct2()" id="slct2change" class="form-control select2" style="margin-top: 5%;width: 90%;margin-left: 5%;">
                                 <option>Choisir...</option>
                                 <option value="0">Étude environnementale stratégique (EES)</option>

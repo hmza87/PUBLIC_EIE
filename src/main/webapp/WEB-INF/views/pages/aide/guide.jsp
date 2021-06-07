@@ -53,10 +53,10 @@
         <div id="presentation">
             <div class="row justify-content-center  pl-4 pr-4 pb-0">
                 <div class="col-sm-12 col-md-6 text-center">
-                    <h2 class="titre_1 pt-5">Autorisation des déchet</h2>
+                    <h2 class="titre_1 pt-5">Autorisation des déchets</h2>
                     <p class="text-justify pt-3">
                         Dans cette section vous trouvez l'ensemble des informations
-                        pour vous aidez à l'obtention de votre Autorisation des déchets
+                        pour vous aider à l'obtention de votre Autorisation des déchets
                     </p>
                     <div class="text-center bat_pos">
                         <button onclick="affiche_select_autoris()" class="btn btn-success"> <span class="fa fa-plus"></span> lire plus </button>
@@ -72,10 +72,10 @@
                 <img src="../../assets/images/imgez.jpg">
             </div>
             <div class="col-sm-12 col-md-6 text-center">
-                <h2 class="titre_1 pt-5">Evaluation Environnementale</h2>
+                <h2 class="titre_1 pt-5">Evaluation environnementale</h2>
                 <p class="text-justify pt-3">
                     Dans cette section vous trouvez l'ensemble des informations et ressources
-                    pour vous aidez à réaliser de votre évaluation environnementale
+                    pour vous aider à réaliser de votre évaluation environnementale
                 </p>
                 <div class="text-center bat_pos">
                     <button onclick="affiche_select_eval()" class="btn btn-success"> <span class="fa fa-plus"></span> lire plus </button>
@@ -90,7 +90,7 @@
                     <button class="btn btn-success" onclick="affiche_presentation()"><span class="fas fa-chevron-circle-left"></span> Retour</button>
                 </div>
                 <div class="col-sm-8 col-md-4">
-                    <h2 class="titre_1 pt-5">Autorisation des déchet</h2>
+                    <h2 class="titre_1 pt-5">Autorisation des déchets</h2>
                 </div>
                 <div class="col-sm-2 col-md-4 text-left"></div>
 
@@ -124,7 +124,7 @@
                     <button class="btn btn-success" onclick="affiche_presentation2()"><span class="fas fa-chevron-circle-left"></span> Retour</button>
                 </div>
                 <div class="col-sm-8 col-md-4">
-                    <h2 class="titre_1 pt-5">Autorisation des déchet</h2>
+                    <h2 class="titre_1 pt-5">Autorisation des déchets</h2>
                 </div>
                 <div class="col-sm-2 col-md-4 text-left"></div>
 
