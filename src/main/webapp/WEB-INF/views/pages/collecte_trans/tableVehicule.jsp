@@ -27,7 +27,7 @@
             <c:when test="${not empty collect.vehicules}">
                 <c:forEach items="${collect.vehicules}" var="v">
                     <tr id="tr${v.id_vehicule}">
-                        <td>${v.num_mat_enrg_auto} - ${v.num_mat_enrg_voit} - ${v.num_mat_id_prefect}</td>
+                        <td>${v.num_mat_enrg_voit} - ${v.num_mat_enrg_auto} - ${v.num_mat_id_prefect}</td>
                         <td>${v.num_chassis}</td>
                         <td>${v.poit_totale_charge}</td>
                         <td>${v.point_net}</td>
