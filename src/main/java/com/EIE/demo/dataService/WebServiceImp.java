@@ -676,10 +676,11 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public void updateRegion(int id, int regionId) {
+	public List<Prefecture> updateRegion(int id, int regionId) {
 		final String uris = urlRest + "/updateRegionRest/"+id+"/"+regionId;
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.put(uris,Code.class);
+		Prefecture[]  result = restTemplate.getForObject(uris,Prefecture[].class);
+		return Arrays.asList(result);
 	}
 
 	@Override

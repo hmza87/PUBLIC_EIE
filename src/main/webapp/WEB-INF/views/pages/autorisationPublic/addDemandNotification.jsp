@@ -249,7 +249,7 @@
                                 <div class="col-6 ">
                                     <div class="form-group">
                                         <label>Liste Des déchets de le CE</label>
-                                        <input class="form-control" type="text" name="codece" value="${notification.CodeCE}">
+                                        <input class="form-control" type="text" name="codece" value="${notification.codeCE}">
                                     </div>
                                 </div>
                                 <div class="col-6 ">
@@ -584,11 +584,6 @@
                                     <label> Province </label>
                                     <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
                                         <option value="0"><spring:message code="option.Choisir"/></option>
-                                        <c:forEach items="${prefectures}" var="t">
-                                            <option  <c:if
-                                                    test="${notification.prefecture.id_prefecture== t[0]}"> selected </c:if>
-                                                    value="${t[0] }">${t[1] }</option>
-                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -2188,7 +2183,8 @@
                 },
             })
                 .done(function (response) {
-                    console.log(response);
+                    $("#prefecture_id").empty();
+                    $("#prefecture_id").html(response);
                 })
                 .fail(function () {
                     console.log("error");

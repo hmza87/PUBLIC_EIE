@@ -467,10 +467,12 @@ public class Hatim {
 
 
 	@RequestMapping(value = "/api/UpdateRegion", method = RequestMethod.POST)
-	public @ResponseBody String updateRegion(@RequestParam int id,@RequestParam int regionId)
+	public ModelAndView updateRegion(@RequestParam int id,@RequestParam int regionId)
 			throws JsonParseException, IOException, MessagingException {
-			webt.updateRegion(id,regionId);
-			return String.valueOf(0);
+		    List<Prefecture> prefecture=webt.updateRegion(id,regionId);
+		    Map<String,Object> model = new HashMap<>();
+		    model.put("prefectures",prefecture);
+		return new ModelAndView("user_select/auto_load_options",model);
 	}
 
 	@RequestMapping(value = "/api/UpdatePrefecture", method = RequestMethod.POST)
