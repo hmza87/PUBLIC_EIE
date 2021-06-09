@@ -149,64 +149,119 @@
             <p class="text-center h4 w-100 font_bold">
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
                 <c:choose>
-                    <c:when test="${type=='ZF'}">
+                    <c:when test="${type=='ZF' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets d'une zone franche "/>
                     </c:when>
-                    <c:when test="${type=='ET'}">
+                    <c:when test="${type=='ZF' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن لاستيراد نفايات من منطقة حرة "/>
+                    </c:when>
+                    <c:when test="${type=='ET' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
                     </c:when>
-                    <c:when test="${type=='CT'}">
+                    <c:when test="${type=='ET' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن لاستيراد نفايات غير خطرة من بلد أجنبي "/>
+                    </c:when>
+                    <c:when test="${type=='CT' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de collecte - transport des déchets dangereux "/>
                     </c:when>
-                    <c:when test="${type=='IT'}">
+                    <c:when test="${type=='CT' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن تجميع - نقل نفايات خطرة "/>
+                    </c:when>
+                    <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'installation de traitement des déchets "/>
                     </c:when>
-                    <c:when test="${type=='XD'}">
+                    <c:when test="${type=='IT' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على تصريح لمنشأة معالجة النفايات "/>
+                    </c:when>
+                    <c:when test="${type=='XD' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'exportation des déchets "/>
                     </c:when>
-                    <c:when test="${type=='TR'}">
+                    <c:when test="${type=='XD' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلب تصريح تصدير النفايات الخاص بك "/>
+                    </c:when>
+                    <c:when test="${type=='TR' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de transit des déchets "/>
                     </c:when>
-                    <c:when test="${type=='EIE'}">
+                    <c:when test="${type=='TR' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على طلب تصريح نقل النفايات الخاص بك "/>
+                    </c:when>
+                    <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" l'obtention de l'acceptabilité environnementale "/>
                     </c:when>
-                    <c:when test="${type=='EIE1'}">
+                    <c:when test="${type=='EIE' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على القبول البيئي "/>
+                    </c:when>
+                    <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" l'obtention de notice d'impact sur l'environnement "/>
                     </c:when>
-                    <c:when test="${type=='EIE2'}">
+                    <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على إشعار الأثر البيئي "/>
+                    </c:when>
+                    <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
                         <c:set var="l_ph1" value=" l'obtention d'audit environnemental "/>
+                    </c:when>
+                    <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
+                        <c:set var="l_ph1" value=" الحصول على تدقيق بيئي "/>
                     </c:when>
                 </c:choose>
                         <c:choose>
-                            <c:when test="${type=='ZF'}">
+                            <c:when test="${type=='ZF' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
                             </c:when>
-                            <c:when test="${type=='ET'}">
+                            <c:when test="${type=='ZF' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" استيراد النفايات من منطقة حرة "/>
+                            </c:when>
+                            <c:when test="${type=='ET' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
                             </c:when>
-                            <c:when test="${type=='CT'}">
+                            <c:when test="${type=='ET' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" استيراد النفايات غير الخطرة من بلد أجنبي"/>
+                            </c:when>
+                            <c:when test="${type=='CT' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
                             </c:when>
-                            <c:when test="${type=='IT'}">
+                            <c:when test="${type=='CT' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الجمع - نقل النفايات الخطرة "/>
+                            </c:when>
+                            <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
                             </c:when>
-                            <c:when test="${type=='XD'}">
+                            <c:when test="${type=='IT' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" مرفق معالجة النفايات "/>
+                            </c:when>
+                            <c:when test="${type=='XD' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'exportation des déchets "/>
                             </c:when>
-                            <c:when test="${type=='TR'}">
+                            <c:when test="${type=='XD' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" تصدير النفايات"/>
+                            </c:when>
+                            <c:when test="${type=='TR' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" de transit des déchets "/>
                             </c:when>
-                            <c:when test="${type=='EIE'}">
+                            <c:when test="${type=='TR' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" عبور النفايات "/>
+                            </c:when>
+                            <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
                             </c:when>
-                            <c:when test="${type=='EIE1'}">
+                            <c:when test="${type=='EIE' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على القبول البيئي "/>
+                            </c:when>
+                            <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'obtention de notice d'impact sur l'environnement "/>
                             </c:when>
-                            <c:when test="${type=='EIE2'}">
+                            <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
+                            </c:when>
+                            <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
                                 <c:set var="l_ph2" value=" d'obtention d'audit environnemental "/>
                             </c:when>
+                            <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
+                            </c:when>
+
                         </c:choose>
-                Procédure à suivre pour ${l_ph1}
+                        <spring:message code="label.Procedureasuivrepour"/>  ${l_ph1}
 
             </p>
             <div class="col-2 p-0">
@@ -264,32 +319,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         <div class="row clss_hide mt-5 z_compt">
                             <div class="col-12">
                                 <p class="text-success h-4 font_bold"><spring:message
                                         code="label.jecreemoncompte"/></p>
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
-                                       <p>Pour déposer votre demande d’obtention de l’acceptabilité environnementale de votre projet, vous êtes invités à créer un compte en remplissant le formulaire <a
+                                       <p><spring:message code="label.Pourdeposervotredemandedobtention"/> <a
                                                href="/demandez_compte" class="h5 text-primary font_bold">
                                            <spring:message code="label.SuivantA"/></a></p>
-                                        <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
-                                        <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
+                                        <p><spring:message code="label.Votreidentifiantetvotremotdepasse"/></p>
+                                        <p><spring:message code="label.Votrecomptevavouspermettreenplus"/></p>
                                     </c:when>
                                     <c:when test="${type=='EIE1'}">
-                                        <p>Pour déposer votre demande d’obtention de notice d'impact sur l'environnement de votre projet, vous êtes invités à créer un compte en remplissant le formulaire <a
+                                        <p><spring:message code="label.demandedobtentiondenoticedimpact"/> <a
                                                 href="/demandez_compte" class="h5 text-primary font_bold">
                                             <spring:message code="label.SuivantA"/></a></p>
-                                        <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
-                                        <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
+                                        <p><spring:message code="label.Votreidentifiantetvotremotdepasse"/></p>
+                                        <p><spring:message code="label.Votrecomptevavouspermettreenplus"/></p>
                                     </c:when>
                                     <c:when test="${type=='EIE2'}">
-                                        <p>Pour déposer votre demande d’obtention de l’audit environnemental de votre projet, vous êtes invités à créer un compte en remplissant le formulaire <a
+                                        <p><spring:message code="label.demandedobtentiondelauditenvironnemental"/> <a
                                                 href="/demandez_compte" class="h5 text-primary font_bold">
                                             <spring:message code="label.SuivantA"/></a></p>
-                                        <p>Votre identifiant et votre mot de passe seront générés automatiquement par le système et vous seront communiqués via l’email que vous avez fourni dans le formulaire d'inscription.</p>
-                                        <p>Votre compte va vous permettre, en plus de déposer vos demandes, de bénéficier le leur suivi en temps réel.</p>
+                                        <p><spring:message code="label.Votreidentifiantetvotremotdepasse"/></p>
+                                        <p><spring:message code="label.Votrecomptevavouspermettreenplus"/></p>
                                     </c:when>
                                     <c:otherwise>
                                         <p><spring:message code="label.IlvousfautauprealableCreerun"/> <a
@@ -312,17 +367,26 @@
 
                                 <p class="text-success h-4 font_bold">
                                     <c:choose>
-                                        <c:when test="${type=='EIE'}">
+                                        <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
                                             Je dépose ma demande d’obtention de l’acceptabilité environnementale
                                         </c:when>
-                                        <c:when test="${type=='EIE2'}">
+                                        <c:when test="${type=='EIE'  && pageContext.response.locale=='ar'}">
+                                            أقدم طلبي للقبول البيئي
+                                        </c:when>
+                                        <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
                                             Je dépose ma demande d’obtention de l’audit environnemental
                                         </c:when>
-                                        <c:when test="${type=='EIE1'}">
+                                        <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
+                                            أقدم طلبي للتدقيق البيئي
+                                        </c:when>
+                                        <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
                                             Je dépose ma demande d’obtention de la notice d'impact environnementale
                                         </c:when>
+                                        <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
+                                            أقدم طلبي لإشعار التأثير البيئي
+                                        </c:when>
                                         <c:otherwise>
-                                            Je dépose ma demande ${l_ph2}
+                                            <spring:message code="label.Jedeposemademande"/> ${l_ph2}
                                         </c:otherwise>
                                     </c:choose>
 
@@ -331,70 +395,64 @@
                                     <p>
                                         <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                              style="width: 40px;margin-left: 10px">
-                                        Pour déposer une demande d'autorisation ${l_ph2},
-                                        il faut disposer au préalable d'un numéro de notification
+                                        <spring:message code="label.Pourdeposerunedemandedautorisation"/> ${l_ph2},
+                                        <spring:message code="label.ilfautdisposerauprealabledunnumerodenotification"/>
                                     </p>
                                     <p>
-                                        Après la création de votre compte, vous pouvez faire la demande d'un numéro
-                                        de notification en replissant le formulaire cette demande en veillant à renseigner tous les champs du formulaire
+                                        <spring:message code="label.Apreslacreationdevotrecomptevouspouvezfaire"/>
                                     </p>
                                     <p>
-                                        A la fin vous avez la possibilité soit de déposer votre demande en cliquant sur le
-                                        bouton "Continuer !" du message de confirmation de la création de votre demande,
-                                        qui vas vous rediriger vers un nouveau formulaire de dépôt des demandes d'autorisation ${l_ph2},
-                                        ou bien vous avez la possibilité de terminer l'enregistrement de votre demande de numeros de notification
-                                        pour ainsi déposé votre demande de d'autorisation ${l_ph2} dans une date ultérieure.
+                                        <spring:message code="label.Alafinvousavezlapossibilitesoitdedeposervotre"/>${l_ph2},
+                                        <spring:message code="label.oubienvousavezlapossibilitedeterminerlenregistrementdevotredemande"/> ${l_ph2} <spring:message code="label.dansunedateulterieure"/>
                                     </p>
                                 </c:if>
                                 <c:if test="${type=='EIE'}">
-                                    <p>Vous pouvez déposer votre demande d’obtention de l’acceptabilité environnementale :</p>
+                                    <p><spring:message code="label.Vouspouvezdeposervotredemandedobtentiondelacceptabilitenvironnementale"/></p>
 
                                     <ul class="mt-3">
-                                        <li class="pl-2"> - Soit en remplissant le formulaire de renseignement préalable. Ce formulaire une fois validé, vous permettra de déposer votre demande d’obtention de l’acceptabilité environnementale ;</li>
-                                        <li class="pl-2"> - Ou en déposant directement votre demande sans remplir le formulaire de renseignement préalable *. </li>
+                                        <li class="pl-2">  <spring:message code="label.Soitenremplissantleformulairederenseignement"/></li>
+                                        <li class="pl-2"><spring:message code="label.Ouendeposantdirectementvotredemandesansremplirleformulaire"/>  </li>
                                     </ul>
-                                    <p class="mb-3">Le formulaire de renseignement préalable vous permettra de vérifier si votre projet est assujetti ou non à la procédure des EIE. Il vous permettra également de prendre connaissance du niveau d’examen de ladite EIE (Comité National des Etudes d’Impacts ou Commission Régionale Unifiée d’Investissement). </p>
-                                    <p><i>*La demande de renseignement préalable est facultative dans le cas d'une nouvelle demande d’obtention de l’acceptabilité environnementale. </i></p>
+                                    <p class="mb-3"><spring:message code="label.Leformulairederenseignementprealablevouspermettradeverifier"/> </p>
+                                    <p><i><spring:message code="label.Lademandederenseignementprealableest"/> </i></p>
                                     </c:if>
                                 <c:if test="${type!='EIE'}">
                                     <p>
                                         <c:if test="${type=='ZF' || type=='XD'}">
-                                            après l'obtention du numéro de notification
+                                            <spring:message code="label.apreslobtentiondunumero"/>
                                         </c:if>
-                                        Ainsi vous pouvez déposer une nouvelle demande ${l_ph2}, en replissant le formulaire de dépôt de la demande en veillant
-                                        à renseigner tous les champs du formulaire, et aussi les pièces à scanner et à les envoyer au niveau du système:
+                                        <spring:message code="label.Ainsivouspouvezdeposerunenouvelledemande"/>${l_ph2}, <spring:message code="label.enreplissantleformulairededepot"/>
                                     </p>
                                 </c:if>
 
 
                                 <c:if test="${type=='ZF'|| type=='XD'}">
                                     <p class="text-underline text-success font_bold mt-3">
-                                        Le choix du transporteur :
+                                        <spring:message code="label.Lechoixdutransporteur"/>
                                     </p>
                                     <p>
-                                        Dans le cas des déchets Dangereux, vous pouvez Déclarer votre transporteurs
-                                        depuis une liste mise a votre disposition.
+                                        <spring:message code="label.DanslecasdesdechetsDangereux"/>
                                     </p>
                                     <p>
-                                        Si vous disposez d'un code de déchets ou du type de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets voulu.
+                                        <spring:message code="label.Sivousdisposezduncodededechets"/>
                                     </p>
                                     <div class="row justify-content-start">
                                         <div class="col-md-3 col-sm-12">
-                                            <p>Rechercher le déchets par :</p>
+                                            <p><spring:message code="label.Rechercherledehetspar"/> </p>
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <input type="radio" value="code" name="code" checked> Code de déchets
+                                                <input type="radio" value="code" name="code" checked><spring:message code="label.Codededechets"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <input type="radio" value="type" name="code" > Type de déchets
+                                                <input type="radio" value="type" name="code" > <spring:message code="label.Typededechets"/>
                                             </div>
                                         </div>
 
                                         <div class="col-4 text-left" id="dechet_code">
-                                            <label>Code de déchets </label>
+                                            <label><spring:message code="label.Codededechets"/> </label>
                                             <select dir="ltr" class="select2 form-control" onchange="rech_transporteur(this)">
                                                 <option> Choisir...</option>
                                                 <c:forEach items="${codes}" var="c">
@@ -404,9 +462,9 @@
                                         </div>
 
                                         <div class="col-12 text-left d-none" id="dechet_type">
-                                            <label>Type de déchets </label>
+                                            <label><spring:message code="label.Typededechets"/> </label>
                                             <select class="select2 form-control " onchange="rech_transporteur(this)">
-                                                <option> Choisir...</option>
+                                                <option><spring:message code="label.choisir"/></option>
                                                 <c:forEach items="${codes}" var="c">
                                                     <option value="${c.id_code}"> ${c.nom_ar}</option>
                                                 </c:forEach>
@@ -417,17 +475,17 @@
                                             <table class="table table-striped table-bordered d-none">
                                                 <thead class="bg_stat_01">
                                                 <tr>
-                                                    <th>Nom</th>
-                                                    <th>téléphone</th>
-                                                    <th>Email</th>
-                                                    <th>Fax</th>
+                                                    <th><spring:message code="label.nom"/></th>
+                                                    <th><spring:message code="label.telephone"/></th>
+                                                    <th><spring:message code="label.Email"/></th>
+                                                    <th><spring:message code="label.Fax"/></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
 
 
                                                 <tr class="text-center">
-                                                    <td colspan="4">Aucun transporteur</td>
+                                                    <td colspan="4"><spring:message code="label.Aucuntransporteur"/></td>
                                                 </tr>
 
 
@@ -437,7 +495,7 @@
                                     </div>
 
                                     <p>
-                                        Et si vous n'avez pas un code de déchets, vous pouvez vérifier les transporteurs qui prennent en charge le type de déchets dans la liste suivante <a href="/CatalogueDesDechet" class="btn btn-primary rounded-circle btn-sm"> <span class="fa fa-arrow-right"></span></a>.
+                                        <spring:message code="label.Etsivousnavezpasuncodededechets"/>    <a href="/CatalogueDesDechet" class="btn btn-primary rounded-circle btn-sm"> <span class="fa fa-arrow-right"></span></a>.
                                     </p>
 
 
@@ -449,45 +507,44 @@
                             <div class="col-12">
 
                                 <p class="text-underline text-success font_bold">
-                                    Les pièces accompagnant la demande :
+                                    <spring:message code="label.Lespiecesaccompagnantlademande"/>
                                 </p>
 
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <div class="row mb-3">
                                         <div class="col-auto pt-1 pr-0">
-                                            Liste des pièces à fournir pour les déchets
+                                            <spring:message code="label.Listedespiecesafournirpourlesdechets"/>
                                         </div>
                                         <div class="col-3">
                                             <select class="form-control" onchange="afficher_accord(this)">
-                                                <option selected value="1">Dangereux</option>
-                                                <option value="2">Non Dangereux</option>
+                                                <option selected value="1"> <spring:message code="label.dangereux"/></option>
+                                                <option value="2"><spring:message code="label.nondangereux"/></option>
                                             </select>
                                         </div>
                                     </div>
                                 </c:if>
 
                                 <div id="accordion">
-                                    <h3>Test</h3>
+                                    <h3><spring:message code="label.Test"/></h3>
                                     <div>
-                                        desciption
+                                        <spring:message code="label.desciption"/>
                                     </div>
                                 </div>
                                 <br>
                                 <p>
                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                          style="width: 40px;margin-left: 10px">
-                                    les pièces accompagnant la demande doivent être scannées et importer au niveau du système en format Image ou PDF
+                                    <spring:message code="label.lespiecesaccompagnantlademandedoiventetre"/>
                                 </p>
                                 <c:if test="${type=='CT' || type=='IT'}">
                                     <p class="text-underline text-success font_bold mt-3">
-                                        Nombre de Demande Déposé :
+                                        <spring:message code="label.NombredeDemandeDepose"/>
                                     </p>
                                     <p>
-                                        Chaque compte peux déposer une seule demande d'autorisation ${l_ph2} renouvlable
-                                        uniquement si la date de validation de la demande est proche de la date de péremption
+                                        <spring:message code="label.Chaquecomptepeuxdeposeruneseule"/>  ${l_ph2} <spring:message code="label.renouvlableuniquementsiladatedevalidationde"/>
                                     </p>
                                     <c:if test="${type=='CT'}">
-                                        <p>Dans le cas demande d'autorisation ${l_ph2} vous avez la possibilité d'ajouter ou de modifer un ou plusieurs déchets/Vehicules</p>
+                                        <p><spring:message code="label.Danslecasdemandedautorisation"/> ${l_ph2} <spring:message code="label.vousavezlapossibilitedajouter"/></p>
                                     </c:if>
                                 </c:if>
 
@@ -501,51 +558,48 @@
                                 <p class="text-success h-4 font_bold">
                                     <c:choose>
                                         <c:when test="${type=='EIE'}">
-                                            Je récupère ma demande d’obtention de l’acceptabilité environnementale
+                                            <spring:message code="label.Jerecuperemademandedobtention"/>
                                         </c:when>
                                         <c:when test="${type=='EIE1'}">
-                                            Je récupère ma demande d’obtention de notice d'impact sur l'environnement
+                                            <spring:message code="label.Jerecuperemademandedobtentiondenoticedimpactsurlenvironnement"/>
                                         </c:when>
                                         <c:when test="${type=='EIE2'}">
-                                            Je récupère ma demande d’obtention de l'audit environnemental
+                                            <spring:message code="label.Jerecuperemademandedobtentiondelauditenvironnemental"/>
                                         </c:when>
                                         <c:otherwise>
-                                            Je récupère mon autorisation ${l_ph2}
+                                            <spring:message code="label.Jerecupremonautorisation"/> ${l_ph2}
                                         </c:otherwise>
                                     </c:choose>
                                 </p>
 
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
-                                        <p>A la fin du processus de traitement de votre demande d’obtention de l’acceptabilité environnementale, une notification vous sera envoyée, vous invitant à retirer l’acceptabilité environnementale de votre projet.</p>
-                                        <p style="font-size: 14px"><b>L’acceptabilité environnementale doit être retirée par son demandeur.</b></p>
+                                        <p><spring:message code="label.Alafinduprocessusdetraitementdevotredemandedobtention"/></p>
+                                        <p style="font-size: 14px"><b><spring:message code="label.Lacceptabiliteenvironnementaledoitetre"/></b></p>
                                     </c:when>
                                     <c:when test="${type=='EIE1'}">
-                                        <p>A la fin du processus de traitement de votre demande d’obtention de notice d'impact sur l'environnement, une notification vous sera envoyée, vous invitant à retirer la notice d'impact sur l'environnement de votre projet.</p>
-                                        <p>La récupération de la notice d'impact sur l'environnement signée est tributaire de <b style="font-size: 14px">Cahier de charge</b> et de <b style="font-size: 14px">Notice d’impact sur l’environnement</b></p>
-                                        <p style="font-size: 14px"><b>La notice d'impact sur l'environnement doit être retirée par son demandeur.</b></p>
+                                        <p><spring:message code="label.Alafinduprocessusdetraitementdevotredemandedobtentionimpact"/></p>
+                                        <p><spring:message code="label.LarEcuperationdelanoticedimpactsurlenvironnementsigneeesttributairede"/> <b style="font-size: 14px"><spring:message code="label.Cahierdecharge"/></b> <spring:message code="label.etde"/> <b style="font-size: 14px"><spring:message code="label.Noticedimpactsurlenvironnement"/></b></p>
+                                        <p style="font-size: 14px"><b><spring:message code="label.Lanoticedimpactsurlenvironnementdoitetreretireeparsondemandeur"/></b></p>
                                     </c:when>
                                     <c:when test="${type=='EIE2'}">
-                                        <p>à renseigner par <b>DE</b></p>
+                                        <p><spring:message code="label.arenseignerpar"/> <b>DE</b></p>
                                        </c:when>
                                     <c:otherwise>
                                         <p>
-                                            A la fin du processus de traitement de votre demande ${l_ph2},
-                                            vous seriez notifié par email de la date
-                                            à partir de laquelle vous pouvez récupérer votre demande d'autorisation
+                                            <spring:message code="label.Alafinduprocessusdetraitementdevotredemande"/> ${l_ph2},
+                                            <spring:message code="label.vousserieznotifieparemaildeladate"/>
                                         </p>
                                         <c:if test='${type.equals("XD") || type.equals("ZF") || type.equals("IT") || type.equals("CT")}'>
                                             <p>
-                                                La récupération de l’autorisation signée est tributaire de dépôt de la caution signée
+                                                <spring:message code="label.Larecupérationdelautorisationsigneeesttributaire"/>
                                             </p>
                                         </c:if>
                                         <p>
-                                            L'autorisation ${l_ph2} doit être retiré personnellement par son titulaire
+                                            <spring:message code="label.Lautorisation"/> ${l_ph2} <spring:message code="label.doitetreretirepersonnellementparsontitulaire"/>
                                         </p>
                                         <p>
-                                            Les autorisations ${l_ph2} non retirées par
-                                            leurs propriétaires dans un délai de deux mois à compter de leur date de notification
-                                            sont annulées et détruites.
+                                            <spring:message code="label.Lesautorisation"/> ${l_ph2} <spring:message code="label.nonretireesparleursproprietairesdansundelaidedeuxmois"/>
                                         </p>
                                     </c:otherwise>
                                 </c:choose>
@@ -556,7 +610,7 @@
                             <div class="col-12">
 
                                 <p class="text-underline text-success font_bold mt-3">
-                                    En fonction d'avancement sur votre dossier, le système affiche les étapes ci-après:
+                                    <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesetapesciapres"/>
                                 </p>
 
                                 <c:choose>
@@ -568,13 +622,13 @@
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
-                                                <th class="text-underline bold text-center font_time_serif">Statut du dossier</th>
-                                                <th class="text-underline bold text-center font_time_serif">Détails</th>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12">En attente de vérification </td>
+                                                <td class="font_time_serif font_bold size_12"><spring:message code="label.Enattentedeverification"/> </td>
                                                 <td class="font_time_serif size_12">Le Secrétariat du Comité National des Etudes d’Impact (CNEE) vérifie les informations fournies dans le formulaire du « renseignement préalable ».</td>
                                             </tr>
                                             <tr>
