@@ -245,7 +245,7 @@
             success : function(response) {
                 swal({
                     title: "Message",
-                    text: "Votre modification a été enregistré avec succès",
+                    text: "Votre modification a été enregistrée avec succès",
                     type: "success"
                 }, function() {
                     // window.location="/index"
@@ -258,7 +258,7 @@
             error : function() {
                 swal({
                     title: "Erreur",
-                    text: "Erreur ajout non effectue",
+                    text: "Erreur ajout non effectué",
                     type: "error"
                 }, function() {
                     window.location="/index"

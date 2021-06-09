@@ -132,7 +132,7 @@
                         <div class="row justify-content-end">
                             <div class="col-md-4 col-sm-12">
                                 <input type="hidden" id="id_demande" value="${demande.id_demande_information}">
-                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','72','Bien Enregistrer','AE')" >
+                                <button class="btn btn-primary btn-block" onclick="changer_statut1_AE('id_demande','72','Bien Enregistrée','AE')" >
                                     Enregistrer
                                 </button>
                             </div>
