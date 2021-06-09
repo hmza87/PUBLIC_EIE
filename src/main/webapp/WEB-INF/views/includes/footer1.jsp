@@ -130,6 +130,47 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
+                            <div class="col-12">
+                                <h6 class="text-uppercase text-white text-left fw-bold mb-4 size_12 font-weight-bold" >
+                                    E-services
+                                </h6>
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <p class="text-white" onclick="show_footer_action('#autorisation_footer_E',this)">
+                                            <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
+                                            <spring:message code="label.Autorisationdesdechets"/>
+                                        </p>
+                                        <div id="autorisation_footer_E" class="collapse">
+                                            <p><a class="text-white"  href="/api/checkUserDispatch/ZF"><spring:message code="label.Importationdechetszonefranche"/></a></p>
+                                            <p><a class="text-white" style=" font-size: 14px;" href="/api/checkUserDispatch/ET"><spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></a></p>
+                                            <p><a class="text-white" href="/api/checkUserDispatch/CT"><spring:message code="label.Collectetransportdesdechetsdangereux"/></a></p>
+                                            <p><a class="text-white" href="/api/checkUserDispatch/IT"><spring:message code="label.Installationdetraitementdesdechets"/></a></p>
+                                            <p><a class="text-white" href=/api/checkUserDispatch/XD"><spring:message code="label.Exportationdesdechetsdangereux"/> </a></p>
+                                            <p><a class="text-white" href="/api/checkUserDispatch/TR"><spring:message code="label.Transitdesdechets"/></a></p>
+                                        </div>
+
+
+                                        <p class="text-white" onclick="show_footer_action('#eie_footer_E',this)">
+                                            <span class="fa fa-caret-right" style="font-size: 18px !important;"></span>
+                                            <spring:message code="label.EvaluationEnvironnementale"/>
+                                        </p>
+                                        <div id="eie_footer_E" class="collapse">
+                                            <p class="mb-1 ">
+                                                <a class="text-white" href="/api/checkEIESelect/EE"><spring:message code="label.Etudedimpactenvironnementale"/></a>                                       </p>
+                                            <p class="mb-1 ">
+                                                <a class="text-white" href="/api/checkEIESelect/NT"><spring:message code="label.Noticedimpact"/></a>
+                                            </p>
+                                            <p class="mb-1">
+                                                <a class="text-white" href="/api/checkEIESelect/AE"><spring:message code="label.Auditenvironnementale"/></a></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 

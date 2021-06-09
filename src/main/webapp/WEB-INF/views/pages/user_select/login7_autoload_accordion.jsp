@@ -614,9 +614,15 @@
                                 </p>
 
                                 <c:choose>
-                                    <c:when test="${type=='EIE' || type=='EIE1' || type=='EIE2'}">
+                                    <c:when test="${ type=='EIE1' || type=='EIE2'}">
                                         <div class="mb-3">
-                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png.png" >
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" >
+                                            <img src="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" width="100%"></a>
+                                        </div>
+                                        </c:when>
+                                        <c:when test="${type=='EIE' }">
+                                        <div class="mb-3">
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" >
                                             <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
                                         </div>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
