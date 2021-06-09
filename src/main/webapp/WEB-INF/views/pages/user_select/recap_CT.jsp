@@ -105,7 +105,7 @@
           <%-- non conforme - dmd_complement - favorable--%>
           <div class="col-md-3 col-sm-6">
             <a class="btn btn-success btn-block"
-               href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span>
+               href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-edit"></span>
               <spring:message code="label.Ajouter_Vehicules" />
             </a>
           </div>
@@ -347,69 +347,6 @@
         </div>
       </div>
     </div>
-    <%-- <div class="col-md-10 col-sm-12">
-      <div class="row p-0 mt-3">
-
-          <c:choose>
-            <c:when test="${collect.statut.id_statut_projet==20 || collect.statut.id_statut_projet==41}">
-            <div class="col-auto">
-              <a href="/api/validateDocCt/${collect.id_collecte }"
-                 class="btn btn-primary"><i class="fa fa-upload "
-                                            title="Améliorer les documents" style="margin: 0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
-            </div>
-            </c:when>
-            <c:otherwise>
-              <c:choose>
-                <c:when test="${collect.statut.id_statut_projet==22}">
-                <div class="col-auto">
-                      <a class="btn btn-warning rounded"
-                         href="${url_admin}/generate_pdf_collecte/${collect.id_collecte}">
-                        <span class="fa fa-download"></span>
-                      </a>
-                </div>
-                </c:when>
-                <c:when test="${collect.statut.id_statut_projet==25}">
-                <div class="col-auto">
-                      <a class="btn btn-warning rounded"
-                         href="${url_admin}/generate_word_collecte/${collect.id_collecte}">
-                        <span class="fa fa-download"><spring:message code="label.Telechargerlarrete"/> </span>
-                      </a>
-                </div>
-                </c:when>
-              </c:choose>
-            </c:otherwise>
-          </c:choose>
-        <c:if test="${collect.statut.id_statut_projet==56}">
-        <div class="col-md-3 col-sm-6">
-          <a href="${url_Admin}${fn:replace(collect.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
-        </div>
-        </c:if>
-          <c:if test="${collect.statut.id_statut_projet==50 && (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
-            non conforme - dmd_complement - favorable
-          <div class="col-md-3 col-sm-6">
-              <a class="btn btn-success btn-block"
-                 href="/api/addCollectTrans/${collect.id_collecte}/N"> <span class="fa fa-pencil-alt"></span> <spring:message
-                      code="label.Ajouter_Vehicules" /> </a>
-          </div>
-          </c:if>
-        <c:if test="${collect.statut.id_statut_projet==50}">
-          <div class="col-md-3 col-sm-6">
-            <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pen mr-2"></i><spring:message code="label.deposerDossier"/></a>
-          </div>
-        </c:if>
-        <div class="col-md-3 col-sm-6">
-          <a href="/api/generate_recap_collecte/${collect.id_collecte}" class="btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
-        </div>
-
-      </div>
-      <c:if test="${renouv=='oui'}">
-        <div class="row mt-2 mb-3">
-          <div class="col-2">
-            <a class="btn btn-success btn-block" href="/api/newCollecteRenouv/${collect.num_demande}"> <spring:message code="label.Renouvellement"/></a>
-          </div>
-        </div>
-      </c:if>
-    </div> --%>
   </div>
 </c:if>
 <c:if test="${(empty collect ) && (empty installation) && (empty notification)}"><spring:message code="label.Aucunresultat"/></c:if>

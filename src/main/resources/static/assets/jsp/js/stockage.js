@@ -33,7 +33,50 @@ function openCity1(idBtn, cityName) {
     }
 }
 
+function searchByDate1(id,type) {
 
+    $.ajax({
+        url: "/api/getnotifByIdEdit/"+type+"/"+id,
+        type: "GET",
+        data: {},
+        success: function (response) {
+            $("#recap").html(response);
+        },
+        error: function (response) {
+            alert('Erreur ajout non effectué');
+        }
+    });
+}
+
+function searchByRecap(type) {
+
+    $.ajax({
+        url: "/api/checkUserHasRecap/"+type,
+        type: "GET",
+        data: {},
+        success: function (response) {
+            $("#recap_install").html(response);
+        },
+        error: function (response) {
+            alert('Erreur ajout non effectué');
+        }
+    });
+}
+
+function searchByRecapCT(type) {
+
+    $.ajax({
+        url: "/api/checkUserHasRecap/"+type,
+        type: "GET",
+        data: {},
+        success: function (response) {
+            $("#recap_ct").html(response);
+        },
+        error: function (response) {
+            alert('Erreur ajout non effectué');
+        }
+    });
+}
 
 function openCityValidate(idBtn, cityName,form,url) {
 

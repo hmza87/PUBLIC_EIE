@@ -103,6 +103,11 @@
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
                                 4. <spring:message code="button.mespieces"/></button>
                             </button>
+                            <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn5"
+                                    onclick="verif_champs_recap('4','IT','id_installation','5')"
+                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd"">
+                                5. Récapitulation
+                            </button>
 
                         </div>
 
@@ -566,11 +571,32 @@
                                     </button>
                                 </div>
                                 <div class="col-md-2 col-sm-6">
-                                    <a href="#!" class="btn btn-info btn-block "
-                                       onclick="verif_champs('4')"><spring:message code="button.Enregistrer"/></a>
+                                    <a class="btn btn-success btn-block "
+                                       onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="button.Suivant"/></a>
                                 </div>
                             </div>
 
+                        </div>
+
+                        <div id="5" class="tabcontent">
+
+                            <h4 class="titre_abs ">Récapitulation</h4>
+                            <div id="recap_install"></div>
+                            <div class="row justify-content-center mt-2 mb-4">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="openCity2('btn4','4')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+
+                                    <button type="button"
+                                            onclick="verif_recap_it('5','IT','id_installation')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    </button>
+                                </div>
+                            </div>
 
                         </div>
                         <!-- TAB 3 FINs -->
@@ -754,10 +780,10 @@
         ;
     }
 
-    function verif_champs(id_form) {
+    function verif_champs_it(id_form, type, id_name, tap) {
         var test = false;
         var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
-
+        var id = $("#" + id_name).val();
         $(tr).each(function (idx, el) {
             var input = $(el).find("input[type=file]");
             var files = $(input).prop('files');
@@ -775,10 +801,31 @@
                 swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
             }
         } else {
-            changer_statut_install('id_installation',14);
+            searchByRecap(type);
+            openCity2('Btn'+tap,tap);
         }
     }
 
+
+    function verif_recap_it(id_form, type, id_name) {
+        if(event!=null)
+            event.preventDefault();
+        // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+        changer_statut_install('id_installation',14);
+
+    }
+    function verif_champs_recap(id_form, type, id_name, tap) {
+        if(event!=null)
+            event.preventDefault();
+        var test = false;
+        var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+
+        searchByRecap(type);
+        openCity2('Btn'+tap,tap);
+
+    }
     function changer_statut_install(id_name,id_statut){
 
         var id_install = $("#"+id_name).val();
@@ -791,17 +838,29 @@
             data: {"id_notif":parseInt(id_install),"id_statut":parseInt(id_statut),"type":type},
         })
             .done(function() {
-                down_load_recu();
                 Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="'+link_recap+'" class="btn btn-success ml-2 ">Recapitulation</a>',
-                    showCloseButton: false,
+                    title: 'Si vous cliquer sur enregistrer vous ne pouvez pas modifier votre demande',
+                    showDenyButton: true,
                     showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
+                    confirmButtonText: `Enregistrer`,
+                    denyButtonText: `Annuler`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+
+                    if (result.isConfirmed) {
+                        down_load_recu();
+                        Swal.fire({
+                            title: '<strong>votre demande a été effectuée avec succès</strong>',
+                            icon: 'success',
+                            html:
+                                '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            focusConfirm: false,
+                            allowOutsideClick: false
+                        });
+                    }
                 });
             })
             .fail(function() {

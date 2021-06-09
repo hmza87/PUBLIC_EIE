@@ -42,18 +42,19 @@
       </nav>
     </div>
   </div>
-  <div class="row justify-content-center"  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+  <div class="row justify-content-center "  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-10 col-sm-12">
-      <div class="jumbotron p-3">
+      <div class="jumbotron p-3 mb-2">
        <spring:message code="label.Statutdelademande"/>: <span class="text-success h4 font-weight-bold">${installation.statut[lng]}</span>
       </div>
     </div>
   </div>
-  <div class="row mb-5 justify-content-center">
-    <div class="col-md-10 col-sm-12">
-      <div class="row p-0 mt-2">
 
-          <c:if test="${installation.statut.id_statut_projet==14 || installation.statut.id_statut_projet==51}">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-sm-12">
+      <div class="row p-0 mb-2">
+
+          <c:if test="${installation.statut.id_statut_projet==51}">
             <div class="col-md-3">
               <a href="/api/addInstallation/${installation.id_installation }/N" class="btn btn-primary btn-block"><i class="fa fa-pencil-alt " title="Modifier" style="margin:0 !important"></i> <spring:message code="label.Editer"/></a>
             </div>

@@ -165,6 +165,12 @@
                         4. <spring:message code="label.mespieces"/>
                     </button>
 
+                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn10"
+                            onclick="verif_champs_recap('9','${type}','id_notification','10')"
+                            style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                        5. Récapitulation
+                    </button>
+
 
                 </div>
                 <%--********************Tab1***************************--%>
@@ -308,7 +314,6 @@
                                                 onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
                                                 class="form-control select2" data-width="100%">
                                             <option value="" selected><spring:message code="label.choisir"/></option>
-
                                             <option ${not empty notification?'selected':''} value="2"><spring:message
                                                     code="label.nondangereux"/></option>
 
@@ -2037,6 +2042,7 @@
                 <div id="9" class="tabcontent">
 
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
+                    <form id="document" name="document">
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
                     <p class="h5 text-center mt-2"> <span class=" p-2 ">Vous pouvez importer des documents scannés en formats PDF et Image dont la taille ne dépasse pas 5 Mo</span> </p>
 
@@ -2044,7 +2050,7 @@
                         <c:set var="id_doc" value="${dc.id_docImport}"/>
                         <div class="row justify-content-center">
                             <div class="col-6 mt-3  ">
-                                <div class="form-group">
+                                <div class="form-group document">
                                     <div>
                                         <c:if test="${(type!='ET') && (type!='TR') }">
                                             <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
@@ -2090,58 +2096,37 @@
                             </button>
                         </div>
                         <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="verif_champs('9','${type}','id_notification','10')"
+                                            class="btn btn-success btn-block"><spring:message
+                                            code="button.Suivant"/>
+                                    </button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+
+                <div id="10" class="tabcontent">
+
+                    <h4 class="titre_abs ">Récapitulation</h4>
+                        <div id="recap"></div>
+                    <div class="row justify-content-center mt-2 mb-4">
+                        <div class="col-md-2 col-sm-6">
                             <button type="button"
-                                    onclick="verif_champs('9','${type}','id_notification')"
-                            <%--onclick="openCityValidate('Btn9','9','formcompos','/api/ListeAutorisationDemande/${type}/d')"--%>
-                                    class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    onclick="openCity1('Btn9','9')"
+                                    class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                            </button>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+
+                            <button type="button"
+                                    onclick="verif_recap('10','${type}','id_notification')"
+                                   class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
                             </button>
                         </div>
                     </div>
 
-                    <%-- <form enctype="multipart/form-data" class="form-horizontal "
-                           id="formcompos" name="formcompos" method="post">
-
-                         <div class="row m-0 p-0 mt-5">
-                             <c:forEach items="${doc }" var="doc" varStatus="status">
-                                 <div class="col-6">
-                                     <div class="form-group">
-                                         <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
-                                         <label>${doc.nom_fr} </label>
-                                         <c:if test="${docExiste[status.index].docImport.id_docImport ==doc.id_docImport}">
-                                             <a class="removeStyle" download
-                                                href="${url_Admin}${fn:replace(docExiste[status.index].url, "/assets/myFile/", "/dowload_uploaded/")}">
-                                                 <span class="fa fa-eye" style="font-size:21px;color: #33994c;"></span> </a>
-                                         </c:if>
-                                         <input required
-                                                onchange="addDocs(${notification.id_notification},${doc.id_docImport},'doc${doc.id_docImport }')"
-                                                accept=".pdf" type="file" class="custom-file-input" id="doc${doc.id_docImport }"
-                                                class="form-control mydoc">
-                                     </div>
-                                 </div>
-                             </c:forEach>
-                         </div>
-
-
-                         <div class="row m-0 p-0 mt-2">
-                             <div class="col-3">
-                             </div>
-                             <div class="col-12" style="text-align: center">
-                                 <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
-                                        onclick="openCity1('Btn7','7')"
-                                        class="btn btn-success">Précédent
-                                 </button>
-
-                                     <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
-                                             onclick="openCityValidate('Btn9','9','formcompos','/api/ListeAutorisationDemande/${type}/d')"
-                                             class="btn btn-success">Suivant
-                                     </button>
-
-                             </div>
-                             <div class="col-3">
-                             </div>
-
-                         </div>
-                     </form>--%>
                 </div>
             </div>
         </section>
@@ -2327,7 +2312,7 @@
 
     }
 
-    function verif_champs(id_form, type, id_name) {
+    function verif_champs(id_form, type, id_name, tap) {
         if(event!=null)
             event.preventDefault();
         var test = false;
@@ -2347,9 +2332,36 @@
         if (test) {
             swal("Avertisement!", "un ou plusieur champs sont vide", "error");
         } else {
-            changer_Statut(id, 33, type);
+            searchByDate1(id, type);
+            openCity1('Btn'+tap,tap);
         }
     }
+
+
+    function verif_champs_recap(id_form, type, id_name, tap) {
+        if(event!=null)
+            event.preventDefault();
+        var test = false;
+        var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+
+            searchByDate1(id, type);
+            openCity1('Btn'+tap,tap);
+
+    }
+
+    function verif_recap(id_form, type, id_name) {
+        debugger;
+        if(event!=null)
+            event.preventDefault();
+       // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+        verif_champs(id_form, type, id_name, '10')
+            changer_Statut(id, 33, type);
+
+    }
+
+
 
     function changer_Statut(id_notif, id_statut, type) {
         var link_recap = "/api/getnotifById1/" + type + "/" + id_notif;
@@ -2360,17 +2372,29 @@
         })
             .done(function () {
                 Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
-                    showCloseButton: false,
+                    title: 'Si vous cliquer sur enregistrer vous ne pouvez pas modifier votre demande',
+                    showDenyButton: true,
                     showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
+                    confirmButtonText: `Enregistrer`,
+                    denyButtonText: `Annuler`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: '<strong>votre demande a été effectuée avec succès</strong>',
+                            icon: 'success',
+                            html:
+                                '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            focusConfirm: false,
+                            allowOutsideClick: false
+                        });
+                        window.location.href = '/api/downloadRecuDepo/' + id_notif;
+                    }
                 });
-                window.location.href = '/api/downloadRecuDepo/' + id_notif;
+
             })
             .fail(function () {
                 console.log("error");

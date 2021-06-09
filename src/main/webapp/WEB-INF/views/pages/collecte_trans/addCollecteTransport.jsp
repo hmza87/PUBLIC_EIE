@@ -106,7 +106,8 @@
                                 <button class="tablinks btn-primary btn my_tab" id="Btn4" <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '4')"><spring:message
                                         code="label.MespiecesA"/></button>
-
+                                <button class="tablinks btn-primary btn my_tab" id="Btn5" <c:if test="${id==0}"> ${disabled}</c:if>
+                                        onclick="verif_champs_recap('4','CT','id_collecte','5')">5. Récapitulation</button>
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-12 pl-sm-3 pl-0  pr-sm-3 pr-0">
@@ -677,10 +678,32 @@
                                         <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
                                                id="url_file_pdf">
                                         <button class="btn btn-success btn-block "
-                                                onclick="verif_champs('4')"><spring:message
-                                                code="button.Enregistrers"/></button>
+                                                onclick="verif_champs_ct('4','CT','id_collecte','5')"><spring:message
+                                                code="button.Suivant"/></button>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div id="5" class="tabcontent">
+
+                                <h4 class="titre_abs ">Récapitulation</h4>
+                                <div id="recap_ct"></div>
+                                <div class="row justify-content-center mt-2 mb-4">
+                                    <div class="col-md-2 col-sm-6">
+                                        <button type="button"
+                                                onclick="openCity2('btn4','4')"
+                                                class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+
+                                        <button type="button"
+                                                onclick="verif_recap_ct('5','CT','id_collecte')"
+                                                class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -971,6 +994,53 @@
         }
     }
 
+    function verif_recap_ct(id_form, type, id_name) {
+        if(event!=null)
+            event.preventDefault();
+        // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+        changer_status_collecte('id_collecte',19);
+
+    }
+
+    function verif_champs_ct(id_form, type, id_name, tap) {
+        var test = false;
+        var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+        $(tr).each(function (idx, el) {
+            var input = $(el).find("input[type=file]");
+            var files = $(input).prop('files');
+            var btn = $(el).find(".file_existe");
+            if ($(btn).length == 0 && files.length == 0 && !test) {
+                $(input).addClass("bg_error");
+                test = true;
+            }
+        });
+
+        if (test) {
+            if (${pageContext.response.locale=='fr'}) {
+                swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+            } else if (${pageContext.response.locale=='ar'}) {
+                swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
+            }
+        } else {
+            searchByRecapCT(type);
+            openCity2('Btn'+tap,tap);
+        }
+    }
+
+    function verif_champs_recap(id_form, type, id_name, tap) {
+        if(event!=null)
+            event.preventDefault();
+        var test = false;
+        var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
+        var id = $("#" + id_name).val();
+
+        searchByRecapCT(type);
+        openCity2('Btn'+tap,tap);
+
+    }
+
     function changer_status_collecte(id_name,id_statut){
         var id_col = $("#"+id_name).val();
         var type="CT";
@@ -981,18 +1051,30 @@
             data: {"id_notif":parseInt(id_col),"id_statut":parseInt(id_statut),"type":type},
         })
             .done(function() {
-                down_load_recu();
                 Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="'+link_recap+'" class="btn btn-success ml-2 ">Recapitulation</a>',
-                    showCloseButton: false,
+                    title: 'Si vous cliquer sur enregistrer vous ne pouvez pas modifier votre demande',
+                    showDenyButton: true,
                     showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
-                });
+                    confirmButtonText: `Enregistrer`,
+                    denyButtonText: `Annuler`,
+                }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+
+                        if (result.isConfirmed) {
+                            down_load_recu();
+                            Swal.fire({
+                                title: '<strong>votre demande a été effectuée avec succès</strong>',
+                                icon: 'success',
+                                html:
+                                    '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                                showCloseButton: false,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                focusConfirm: false,
+                                allowOutsideClick: false
+                            });
+                            }
+                    });
             })
             .fail(function() {
                 console.log("error");

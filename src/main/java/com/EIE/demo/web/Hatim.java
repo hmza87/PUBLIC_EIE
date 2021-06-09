@@ -551,6 +551,51 @@ public class Hatim {
 		return new ModelAndView("user_select/card_ZF_choix",model);
 	}
 
+	@RequestMapping(value = "/api/checkUserHasRecap/{type}", method = RequestMethod.GET)
+	public ModelAndView checkUserHasRecap(@PathVariable String type)
+			throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> model = new HashMap<>();
+		Integer nbr = 0;
+		if(type.equals("CT")){
+			nbr = webt.getNombreCollecteByUser(webt.getCompteConnected().getCompteId(),"renouv");
+		}else if(type.equals("IT")){
+			nbr = webt.getNombreInstaByUser(webt.getCompteConnected().getCompteId(),"renouv");
+		}
+
+		if(nbr>0){
+			model.put("renouv","oui");
+		}else{
+			model.put("renouv","non");
+		}
+		model.put("url_admin",urlRest);
+		model.put("user",webt.getCompteConnected());
+		model.put("type",type);
+		if(type.equals("CT")){
+			CollecteTransporteur v = webt.getCollecteById_v2(webt.getCompteConnected().getCompteId());
+			model.put("collect",v);
+			ListDocNotif[] l = webt.listDocNotif(v.getId_collecte(),type);
+			model.put("doc",l);
+			model.put("url_Admin",urlRest);
+			return new ModelAndView("user_select/recap_CT_edit",model);
+		}else if(type.equals("IT")){
+			Installation ins = webt.getInstallById_v2(webt.getCompteConnected().getCompteId());
+			ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),type);
+			model.put("doc",l);
+			model.put("installation",ins);
+			model.put("url_Admin",urlRest);
+			return new ModelAndView("user_select/recap_IT_edit",model);
+		}
+		Notification[] n=null;
+		n = webt.getNotificationNotDepo(webt.getCompteConnected().getCompteId(),type);
+		model.put("notif",n);
+
+		Notification[] n1=null;
+		n1 = webt.getNotificationAll(webt.getCompteConnected().getCompteId(),type);
+		model.put("notifall",n1);
+		return new ModelAndView("user_select/card_ZF_choix",model);
+	}
+
+
 	@RequestMapping(value = "/api/checkUserHasCollectee/{type}", method = RequestMethod.GET)
 	public ModelAndView checkUserHasCollectee(@PathVariable String type)
 			throws JsonParseException, IOException, MessagingException {
@@ -839,6 +884,21 @@ public class Hatim {
 		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
 		return new ModelAndView("user_select/recap_ZF",model);
 	}
+
+	@RequestMapping(value = "/api/getnotifByIdEdit/{type}/{id}", method = RequestMethod.GET)
+	public ModelAndView getnotifByIdEdit(@PathVariable String type,@PathVariable int id) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		model.put("user",webt.getCompteConnected());
+		model.put("type",type);
+		Notification n = webt.getNotiifcationById(id);
+		model.put("notification",n);
+		ListDocNotif[] l = webt.listDocNotif(n.getId_notification(),type);
+		model.put("doc",l);
+		model.put("url_Admin",urlRest);
+		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
+		return new ModelAndView("user_select/recap_ZF_edit",model);
+	}
+
 	@RequestMapping(value = "/api/getnotifById2/{type}/{id}", method = RequestMethod.GET)
 	public ModelAndView getnotifById2(@PathVariable String type,@PathVariable int id) {
 		Map<String,Object> model = new HashMap<String,Object>();
