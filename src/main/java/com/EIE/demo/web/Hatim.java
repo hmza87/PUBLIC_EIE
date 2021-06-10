@@ -472,6 +472,7 @@ public class Hatim {
 		    List<Prefecture> prefecture=webt.updateRegion(id,regionId);
 		    Map<String,Object> model = new HashMap<>();
 		    model.put("prefectures",prefecture);
+		    model.put("notification",webt.getNotificationByIdComptId(id,webt.getCompteConnected().getCompteId()));
 		return new ModelAndView("user_select/auto_load_options",model);
 	}
 

@@ -589,13 +589,14 @@
                                     <label> Province </label>
                                     <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
                                         <option value="0"><spring:message code="option.Choisir"/></option>
+                                        <c:if test="${notification.prefecture!=null }">
+                                            <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
+                                        </c:if>
                                     </select>
                                 </div>
                             </div>
                             
                         </div>
-
-
                         <div class="row m-0 p-0">
                             <div class="col-6">
                                 <div class="form-group">
@@ -2360,7 +2361,19 @@
 
     }
 
-
+    function searchByDate1(id,type) {
+        $.ajax({
+            url: "/api/getnotifByIdEdit/"+type+"/"+id,
+            type: "GET",
+            data: {},
+            success: function (response) {
+                $("#recap").html(response);
+            },
+            error: function (response) {
+                alert('Erreur ajout non effectué');
+            }
+        });
+    }
 
     function changer_Statut(id_notif, id_statut, type) {
         var link_recap = "/api/getnotifById1/" + type + "/" + id_notif;

@@ -9,7 +9,8 @@
     <c:if test="${not empty prefectures}">
         <option value="" selected>Choisir......</option>
         <c:forEach items="${prefectures}" var="p">
-          <option value="${p.id_prefecture}">${pageContext.response.locale=='ar'?p.nom_ar:p.nom_fr}</option>
+          <option <c:if test="${notification.prefecture.id_prefecture== p.id_prefecture}"> selected </c:if>
+                  value="${p.id_prefecture}">${pageContext.response.locale=='ar'?p.nom_ar:p.nom_fr}</option>
         </c:forEach>
   </c:if>
 
