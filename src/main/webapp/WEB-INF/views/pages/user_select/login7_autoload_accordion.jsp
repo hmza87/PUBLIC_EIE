@@ -635,35 +635,35 @@
                                             <tbody>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12"><spring:message code="label.Enattentedeverification"/> </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du Comité National des Etudes d’Impact (CNEE) vérifie les informations fournies dans le formulaire du « renseignement préalable ».</td>
+                                                <td class="font_time_serif size_12"><spring:message code="label.LeSecrétariatduComiteNationaldesEtudesdImpacCNEE"/></td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> En attente du dépôt de l’EIE et du cahier des charges </td>
-                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer l’EIE et le CC de son projet pour examen par le CNEE. </td>
+                                                <td class="font_time_serif font_bold size_12"><spring:message code="label.EnattentedudepotdelEIEetducahierdescharges"/>  </td>
+                                                <td class="font_time_serif size_12"> <spring:message code="label.LepetitionnaireestinviteadeposerlEIEetleCC"/>  </td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> En attente des conclusions de l’EP  </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du CNEE ne programme la réunion d’examen de l’EIE qu’après réception des fichiers demandés au pétionnaire et les conclusions de l’enquête publique transmises par les autorités locales des régions concernées par le projet. </td>
+                                                <td class="font_time_serif font_bold size_12"><spring:message code="label.EnattentedesconclusionsdelEP"/>  </td>
+                                                <td class="font_time_serif size_12"><spring:message code="label.LeSecretariatduCNEEneprogrammelareuniondexamendelEIE"/> </td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> Réunion programmée </td>
-                                                <td class="font_time_serif size_12">Le Secrétariat du CNEE informe les membres du CNEE et le pétitionaire et/ou son bureau d’études de la date, de l’heure et de l’objet de la réunion d’examen de l’EIE.</td>
+                                                <td class="font_time_serif font_bold size_12"> <spring:message code="label.Reunionprogrammee"/>  </td>
+                                                <td class="font_time_serif size_12"><spring:message code="label.LeSecretariatduCNEEinformelesmembresduCNEEet"/></td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> En attente du complément d’étude de l’EIE</td>
-                                                <td class="font_time_serif size_12">Le pétitionnaire est invité à déposer le complément de l’EIE et le CC pour réexamen par le CNEE , en se basant sur les remarques soulevées lors de la réunion d’examen de son projet.</td>
+                                                <td class="font_time_serif font_bold size_12"> <spring:message code="label.EnattenteducomplementdetudedelEIE"/></td>
+                                                <td class="font_time_serif size_12"><spring:message code="label.LepetitionnaireestinviteadeposerlecomplementdelEIEetleCCpour"/></td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> En attente des versions définitives de l’EIE  </td>
-                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à déposer la version définitive de l’EIE et du cahier des charges de son projet acceptable de point de vue environnementale. </td>
+                                                <td class="font_time_serif font_bold size_12"><spring:message code="label.EnattentedesversionsdefinitivesdelEIE"/>   </td>
+                                                <td class="font_time_serif size_12"> <spring:message code="label.LepetitionnaireestinviteadeposerlaversiondefinitivedelEIEetdu"/> </td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> Arrêt d’examen </td>
-                                                <td class="font_time_serif size_12"> Les conditions d’examen de l’EIE par le CNEE ne sont pas réunies. </td>
+                                                <td class="font_time_serif font_bold size_12"> <spring:message code="label.Arretdexamen"/> </td>
+                                                <td class="font_time_serif size_12"><spring:message code="label.LesconditionsdexamendelEIEparleCNEEnesontpasreunies"/>  </td>
                                             </tr>
                                             <tr>
-                                                <td class="font_time_serif font_bold size_12"> Délivranfce de l’Acceptabilité ou de la Non Acceptabilité Environnementale  </td>
-                                                <td class="font_time_serif size_12"> Le pétitionnaire est invité à retirer la Décision d’Acceptabilité ou de la Non Acceptabilité Environnementale de son projet. </td>
+                                                <td class="font_time_serif font_bold size_12"> <spring:message code="label.DelivranfcedelAcceptabiliteoudelaNonAcceptabiliteEnvironnementale"/>   </td>
+                                                <td class="font_time_serif size_12"> <spring:message code="label.LepetitionnaireestinvitearetirerlaDecisiondAcceptabiliteoudelaNonAcceptabiliteEnvironnementaledesonprojet"/> </td>
                                             </tr>
 
 
@@ -676,8 +676,8 @@
                                             <div class="col-4"></div>
                                             <div class="col-4">
                                                 <select class="form-control" id="shema" onchange="etapeshema(this.value)">
-                                                    <option value="1" selected>Dangereux</option>
-                                                    <option value="2">Non Dangereux</option>
+                                                    <option value="1" selected><spring:message code="label.dangereux"/> </option>
+                                                    <option value="2"><spring:message code="label.nondangereux"/></option>
                                                 </select>
                                             </div>
                                             <div class="col-4"></div>
@@ -755,27 +755,25 @@
                                 </c:choose>
 
                                 <p class="text-success h-4 font_bold mt-3">
-                                    Suivre mon dossier
+                                    <spring:message code="label.Suivremondossier"/>
                                         <%-- <spring:message code="label.Jefaislesuividemademandeenligne"/>--%>
                                 </p>
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
-                                        <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de l’acceptabilité environnementale. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
+                                        <p><spring:message code="label.Vouspouvezsuivreletatdavancementlarubrique"/></p>
                                     </c:when>
                                     <c:when test="${type=='EIE1'}">
-                                        <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de la notice d'impact sur l'environnement. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
+                                        <p><spring:message code="label.Vouspouvezsuivreletatdavancementlarubriquelanotice"/></p>
                                     </c:when>
                                     <c:when test="${type=='EIE2'}">
-                                        <p>Vous pouvez suivre l’état d’avancement de votre demande à partir de la rubrique « Statut du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d’obtention de l'audit environnemental. Vous recevrez également un email sur l’état d’avancement de votre demande.</p>
+                                        <p><spring:message code="label.Vouspouvezsuivreletatdavancementdevotredemandeapartirdelarubriqueavancement"/></p>
                                     </c:when>
                                     <c:otherwise>
                                         <p>
-                                            Vous pouvez suivre l’évolution du traitement de votre demande ${l_ph2} à partir de la rubrique «Statut
-                                            du Dossier». Pour cela, vous devez saisir le numéro de votre dossier de demande d'autorisation ${l_ph2}
+                                            <spring:message code="label.Vouspouvezsuivrelevolutiondutraitementdevotredemande"/> ${l_ph2}<spring:message code="label.partirdelarubriqueStatut"/>  ${l_ph2}
                                         </p>
                                         <p>
-                                            Aussi vous recevrez également un email lors d'évolution d'état de votre
-                                            dossier de demande d'autorisation ${l_ph2}
+                                            <spring:message code="label.Aussivousrecevrezegalementunemaillorsdevolutiondetatdevotre"/> ${l_ph2}
                                         </p>
                                     </c:otherwise>
                                 </c:choose>
@@ -786,12 +784,12 @@
                         <div class="row clss_hide mt-3 suivre collapse">
                             <div class="col-12">
                                 <p class="text-success h-4 font_bold">
-                                    Base juridique
+                                    <spring:message code="label.BaseJuridique"/>
                                 </p>
                                 <ul class="list_disque ml-5">
                                     <c:if test="${type=='XD' || type=='ZF'}">
                                         <li>
-                                            Décret n° 2-14-85 du 20 janvier 2015 relatif à la gestion des déchets dangereux
+                                            <spring:message code="label.Decretndujanvierrelatifalagestiondesdechetsdangereux"/>
                                             <a target="_blank" download="Décret.docx" href="${pageContext.request.contextPath}/assets/file/decret.docx">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_word.png" width="40px">
                                             </a>
@@ -799,66 +797,66 @@
                                     </c:if>
                                     <c:if test="${type=='EIE'}">
                                         <li>
-                                            Loi n° 12-03 relative aux études d'impact sur l'environnement
+                                            <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Loi n°47-18 portant réforme des Centres Régionaux d'Investissement
+                                            <spring:message code="label.LoinportantreformedesCentresRegionauxdInvestissement"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N47_18.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Loi n°49-17 relative à l’Evaluation environnementale
+                                            <spring:message code="label.LoinrelativealEvaluationenvironnementale"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N49_17.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Décret n°2-04-563 relatif aux attributions et au fonctionnement du CNEE et des CREI
+                                            <spring:message code="label.DecretnrelatifauxattributionsetaufonctionnementducNEEetdesCREI"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_563.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Décret n°2-04-564 fixant les modalités d’organisation et de déroulement de l’enquête publique
+                                            <spring:message code="label.Decretnfixantlesmodalitesdorganisationetdederoulementdelenquetepublique"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_564.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Référentiel des études d’impact sur l’environnement
+                                            <spring:message code="label.Refrentieldesetudesdimpactsurlenvironnement"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Referentiel_EIE.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
                                         <li>
-                                            Directives
+                                            <spring:message code="label.Directives"/>
                                         </li>
                                         <div class="ml-4 size_12">
-                                            1.	Projet de création des unités industrielles
+                                            <spring:message code="label.Projetdecreationdesunitesindustrielles"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Unites_Industrielles.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-                                            2.	Projet d’aménagement des zones industrielles
+                                            <spring:message code="label.Projetdamenagementdeszonesindustrielles"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Zones_Industrielles.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-                                            3.	Projet de décharge contrôlée
+                                            <spring:message code="label.Projetdedechargecontrolee"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_Decharges_controlees.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-                                            4.	Projet aquacole
+                                            <spring:message code="label.Projetaquacole"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Projets_aquacoles.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-                                            5.	Projet d’une Station d’Epuration des Eaux Usées
+                                            <spring:message code="label.ProjetduneStationdEpurationdesEauxUsees"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_epuration_eau_usees.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-                                            6.	Projet d’extraction de matériaux de construction
+                                            <spring:message code="label.Projetdextractiondemateriauxdeconstruction"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Extraction_materiaux_construction.pdf">
                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
@@ -867,7 +865,7 @@
                                     </c:if>
                                     <c:if test="${type=='EIE1'}">
                                         <li>
-                                            Directives
+                                            <spring:message code="label.Directives"/>
                                         </li>
                                     </c:if>
                                 </ul>
@@ -903,7 +901,7 @@
                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                     <spring:message code="label.Importationdechetszonefranche"/></h6>
                                 <div class="dddd" style="position: absolute;top: 110px;right: 10px;cursor: pointer">
-                                    <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')">Nouveau</div>
+                                    <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')"><spring:message code="label.Nouveau"/></div>
                                 </div>
                                <c:choose>
                                    <c:when test="${empty user}">
