@@ -159,13 +159,13 @@
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         4. <spring:message code="label.Documentdemouvementsdesdechets"/>
                     </button>--%>
-                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn9"
+                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn9"
                             onclick="openCity(this, '9')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         4. <spring:message code="label.mespieces"/>
                     </button>
 
-                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn10"
+                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} disabled id="Btn10"
                             onclick="verif_champs_recap('9','${type}','id_notification','10')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         5. Récapitulation
@@ -2332,6 +2332,7 @@
         if (test) {
             swal("Avertisement!", "un ou plusieur champs sont vide", "error");
         } else {
+            $("#Btn10").removeAttr("disabled");
             searchByDate1(id, type);
             openCity1('Btn'+tap,tap);
         }
