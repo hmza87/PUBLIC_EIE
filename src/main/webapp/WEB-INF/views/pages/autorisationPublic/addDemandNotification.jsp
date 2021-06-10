@@ -2095,11 +2095,10 @@
                                     class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
                             </button>
                         </div>
-                        <div class="col-md-2 col-sm-6">
+                        <div class="col-md-3 col-sm-6">
                                     <button type="button"
                                             onclick="verif_champs('9','${type}','id_notification','10')"
-                                            class="btn btn-success btn-block"><spring:message
-                                            code="button.Suivant"/>
+                                            class="btn btn-success btn-block">Afficher le récapitulatif
                                     </button>
                         </div>
                     </div>

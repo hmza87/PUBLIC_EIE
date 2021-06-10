@@ -570,9 +570,9 @@
                                             class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
                                     </button>
                                 </div>
-                                <div class="col-md-2 col-sm-6">
+                                <div class="col-md-3 col-sm-6">
                                     <a class="btn btn-success btn-block "
-                                       onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="button.Suivant"/></a>
+                                       onclick="verif_champs_it('4','IT','id_installation','5')">Afficher le récapitulatif</a>
                                 </div>
                             </div>
 

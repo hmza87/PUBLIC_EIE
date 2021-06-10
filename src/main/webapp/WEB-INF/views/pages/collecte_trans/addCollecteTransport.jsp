@@ -674,12 +674,12 @@
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Precedent"/></button>
                                     </div>
-                                    <div class="col-md-2 col-sm-4">
+                                    <div class="col-md-3 col-sm-4">
                                         <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
                                                id="url_file_pdf">
                                         <button class="btn btn-success btn-block "
-                                                onclick="verif_champs_ct('4','CT','id_collecte','5')"><spring:message
-                                                code="button.Suivant"/></button>
+                                                onclick="verif_champs_ct('4','CT','id_collecte','5')">Afficher le récapitulatif
+                                        </button>
                                     </div>
                                 </div>
                             </div>
