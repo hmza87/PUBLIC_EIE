@@ -106,7 +106,7 @@ function addObject_step(from,table,tap,id_notif) {
             if(Notchange)
                 $("#id_notification").val(response);
             openCity1('Btn'+tap,tap);
-            $('.my_tab').removeAttr('disabled');
+            $(".my_tab:not(.montab)").removeAttr('disabled');
         },
         error: function (response) {
 
@@ -162,7 +162,7 @@ function addObjectGeneral(from,table,url,nameId,btn) {
             {
                 $("#"+nameId).val(response);
                 $("#Btn"+btn).addClass('active');
-                $(".my_tab").removeAttr("disabled");
+                $(".my_tab:not(.montab)").removeAttr("disabled");
                 openCity1('Btn'+btn,btn)
             }else {
                 window.location = url;
@@ -190,7 +190,7 @@ function updateGeneral(from,table,tap,id_notif,nameId,returns) {
         success: function (response) {
             $("#"+nameId).val(response);
             if(returns=="non"){
-                $(".my_tab").removeAttr("disabled");
+                $(".my_tab:not(.montab)").removeAttr("disabled");
                 openCity1('Btn'+tap,tap)
             }
             else{

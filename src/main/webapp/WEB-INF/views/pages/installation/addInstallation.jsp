@@ -103,7 +103,7 @@
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
                                 4. <spring:message code="button.mespieces"/></button>
                             </button>
-                            <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn5"
+                            <button class="tablinks btn-primary btn my_tab montab"  disabled ${disabledBtnTab} id="Btn5"
                                     onclick="verif_champs_recap('4','IT','id_installation','5')"
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd"">
                                 5. Récapitulation
@@ -801,6 +801,7 @@
                 swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
             }
         } else {
+            $("#Btn5").removeAttr("disabled");
             searchByRecap(type);
             openCity2('Btn'+tap,tap);
         }

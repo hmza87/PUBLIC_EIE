@@ -106,7 +106,7 @@
                                 <button class="tablinks btn-primary btn my_tab" id="Btn4" <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '4')"><spring:message
                                         code="label.MespiecesA"/></button>
-                                <button class="tablinks btn-primary btn my_tab" id="Btn5" <c:if test="${id==0}"> ${disabled}</c:if>
+                                <button class="tablinks btn-primary btn my_tab montab" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="verif_champs_recap('4','CT','id_collecte','5')">5. Récapitulation</button>
                             </div>
                         </div>
@@ -1024,6 +1024,7 @@
                 swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
             }
         } else {
+            $("#Btn5").removeAttr("disabled");
             searchByRecapCT(type);
             openCity2('Btn'+tap,tap);
         }

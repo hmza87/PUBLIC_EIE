@@ -165,7 +165,7 @@
                         4. <spring:message code="label.mespieces"/>
                     </button>
 
-                    <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} disabled id="Btn10"
+                    <button class="tablinks btn-primary btn my_tab montab" ${disabledBtnTab} disabled id="Btn10"
                             onclick="verif_champs_recap('9','${type}','id_notification','10')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         5. Récapitulation
