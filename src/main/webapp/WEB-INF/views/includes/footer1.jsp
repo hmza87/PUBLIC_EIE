@@ -72,17 +72,17 @@
                                 <spring:message code="label.Ressources"/>
                             </h6>
                             <p class="mb-1">
-                                <a class="text-white" href="/Actualite">Actualite</a>
+                                <a class="text-white" href="/Actualite"><spring:message code="label.Acualite"/></a>
                             </p>
 
                             <p class="mb-1">
-                                <a class="text-white" href="/guide" >Guide et Procédure</a>
+                                <a class="text-white" href="/guide" ><spring:message code="label.GuideetProcedure"/></a>
                             </p>
                             <p class="mb-1">
-                                <a class="text-white" href="/videoList" >Vidéos</a>
+                                <a class="text-white" href="/videoList" ><spring:message code="label.Videos"/></a>
                             </p>
                             <p class="mb-1">
-                                <a class="text-white" href="/CatalogueDesDechet">Catalogue des déchets</a>
+                                <a class="text-white" href="/CatalogueDesDechet"><spring:message code="label.Cataloguedesdechets"/></a>
                             </p>
 
                             <p class="mb-1">
@@ -134,7 +134,7 @@
                         <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12">
                                 <h6 class="text-uppercase text-white text-left fw-bold mb-4 size_12 font-weight-bold" >
-                                    E-services
+                                    <spring:message code="label.Eservices"/>
                                 </h6>
                                 <div class="row">
                                     <div class="col-12">
@@ -177,14 +177,14 @@
                         <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12 pl-0">
                                 <h6 class="text-uppercase text-white text-left fw-bold mb-4 size_12 font-weight-bold" >
-                                   Authentification
+                                    <spring:message code="label.Authentification"/>
                                 </h6>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-md-6 col-lg-6 col-sm-12 pl-0">
                                             <div>
-                                                <p > <a class="text-white text-nowrap" href="/connexion">Se connecter</a></p>
-                                                <p> <a class="text-white" href="/demandez_compte">S'enregistrer</a></p>
+                                                <p > <a class="text-white text-nowrap" href="/connexion"><spring:message code="label.sedeconnecter"/></a></p>
+                                                <p> <a class="text-white" href="/demandez_compte"><spring:message code="label.Senregistrer"/></a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -194,12 +194,12 @@
                         <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12 pl-0">
                                 <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12" >
-                                    Mention légale
+                                    <spring:message code="label.Mentionlegale"/>
                                 </h6>
                                 <div class="row">
                                     <div class="col-sm-12 pl-0  ">
                                         <p class="pl-3">
-                                            <a class="text-white" href="#">Condition d'utilisation</a>
+                                            <a class="text-white" href="#"><spring:message code="label.Conditiondutilisation"/></a>
                                         </p>
                                     </div>
                                 </div>
@@ -211,14 +211,14 @@
                                 <spring:message code="label.contact"/>
                             </h6>
                             <p class="mb-1" style=" font-size: 14px;">
-                                Adresse : N°9, Avenue Al Araar, 420/1 Secteur 16, Hay Riad, Rabat <br>
+                                <spring:message code="label.AdresseNAvenueAlAraarSecteurHayRiadRabat"/>  <br>
 
-Tél : (+212) 537 576 647 / (+212) 537 576 661 <br>
+                                <spring:message code="label.Tele"/>  (+212) 537 576 647 / (+212) 537 576 661 <br>
 
-Fax : (+212) 537 570 471 <br>
+                                <spring:message code="label.Faxi"/>  (+212) 537 570 471 <br>
 
-Email : sg@environnement.gov.ma<br>
-                                Le Département en ligne :
+                                <spring:message code="label.Emaili"/> sg@environnement.gov.ma<br>
+                                <spring:message code="label.LeDepartementenligne"/>
                             <a href="https://www.facebook.com/DENVMAROC/" target="_blank" class="me-4 text-reset pr-3 ml-3">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
@@ -232,7 +232,7 @@ Email : sg@environnement.gov.ma<br>
                             </p>
 
                             <p class="mb-1 ">
-                                <a class="text-white" href="/contact/0">Contactez nous</a>
+                                <a class="text-white" href="/contact/0"><spring:message code="label.Contacteznous"/></a>
                             </p>
 
 

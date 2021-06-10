@@ -25,9 +25,9 @@
     }
 </style>
 
-<div class="container-fluid mt_cont" style="overflow:hidden">
-    <div class="pt-4 page_content">
-        <div class="row justify-content-center">
+<div class="container-fluid mt_cont" style="overflow:hidden" >
+    <div class="pt-4 page_content" >
+        <div class="row justify-content-center" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
 
             <div class="col-10">
 
@@ -99,13 +99,13 @@
                             </div>
 
                         <div class="infor-supl" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                            <div class="form-group" style="width: 100%;margin-bottom: 15px;display: inline-block">
+                            <div class="form-group" style="width: 100%;margin-bottom: 15px;display: inline-block" >
                                 <div class="col2 select" style="position: relative;box-sizing: border-box;">
                                     <label style="display: block;font-size: 120%;margin-bottom: 7px;"><spring:message code="label.jesouhaiteformulermademandede"/> </label>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" >
                                             <div class="custom-control custom-checkbox incsc rounded">
-                                                <input name="environnement" ${societe.st.environnement.equals('on')?'checked':''} type="checkbox" data-name="EIE1" class="custom-control-input" id="EIE">
+                                                <input  name="environnement" ${societe.st.environnement.equals('on')?'checked':''} type="checkbox" data-name="EIE1" class="custom-control-input" id="EIE">
                                                 <label class="custom-control-label" for="EIE"><spring:message code="label.EvaluationEnvironnementale"/></label>
                                             </div>
                                         </div>
