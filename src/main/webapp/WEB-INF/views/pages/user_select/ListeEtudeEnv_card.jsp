@@ -67,7 +67,7 @@ text-align:right !important;
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-lg-6">
+                <div class="col-md-6 col-sm-6 col-lg-6" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                   <div class="card w-100" style="min-height: 210px">
                     <div class="card-body"  id="Row_Nouvelle_EIE_1" style="min-height: 295px;">
                       <div class="row">
@@ -81,15 +81,15 @@ text-align:right !important;
                           <p class="text-success font_bold text-left pl-2"><spring:message code="label.Deposerundossier"/></p>
                          <hr>
                             <p class="pl-2 text-justify margin10" >
-                              Pour déposer le dossier d'une nouvelle demande de ${(type=="EE" || type=="RS")?"l\'EIE":(type=="NT"?"Notice d'Impact sur l'Environnement":"Audit Environnemental")} , cliquez sur  <b>${titre_dyn} :</b><br>
+                              <spring:message code="label.Pourdeposerledossierdunenouvelledemandede"/>  ${(type=="EE" || type=="RS")?"l\'EIE":(type=="NT"?"Notice d'Impact sur l'Environnement":"Audit Environnemental")} <spring:message code="label.cliquezsur"/>  <b>${titre_dyn} :</b><br>
                             </p>
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/${type}')" class="btn btn-sm btn-success margin10" >${titre_dyn} <span class="fa fa-angle-double-right"></span></button>
                           </div>
                         <c:if test="${type=='EE'}">
-                          <p class="pl-2 text-justify margin10" >Pour toutes autres informations, cliquez sur <b> Renseignements préalables :</b></p>
+                          <p class="pl-2 text-justify margin10" ><spring:message code="label.Pourtoutesautresinformations"/><spring:message code="label.cliquezsur"/> <b><spring:message code="label.Renseignementsprealables"/> </b></p>
                           <div class="text-left">
-                            <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > Renseignements préalables <span class="fa fa-angle-double-right"></span></button>
+                            <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > <spring:message code="label.RenseignementsprealablesA"/> <span class="fa fa-angle-double-right"></span></button>
                           </div>
                         </c:if>
                         </div>
@@ -102,7 +102,7 @@ text-align:right !important;
 
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-lg-6">
+                <div class="col-md-6 col-sm-6 col-lg-6" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                   <div class="card w-100" style="min-height: 210px">
                     <div class="card-body" style="min-height: 295px;">
 
@@ -117,10 +117,10 @@ text-align:right !important;
                                   code="label.Suivremondossier"/></p>
                           <hr>
                           <p class="pl-2 text-justify margin10" >
-                            Vous pouvez suivre l'état de vos dossiers à l'aide du numéro généré par le système, ou vous pouvez afficher tous mes dossiers en cliquant sur : <b><spring:message code="label.Affichermesdossiers"/> </b></p>
+                            <spring:message code="label.Vouspouvezsuivreletatdevosdossiers"/>  <b><spring:message code="label.Affichermesdossiers"/> </b></p>
                         </div>
-                        <div class="col-12">
-                            <input placeholder="Entrer N° de la demande" type="text" class="form-control mb-2 margin10" id="num_demande23" style=" width: 201px; display: inline;height: 32px;">
+                        <div class="col-12" >
+                            <input placeholder="<spring:message code="label.EntrerNdelademande"/>" type="text" class="form-control mb-2 margin10" id="num_demande23" style=" width: 201px; display: inline;height: 32px;">
 
                             <button ${RS==0?'disabled':''} onclick="fun_affiche_modal_recap()" class="btn btn-sm btn-success" style="margin: 10px 10px 17px -10px;">  <span class="fa fa-search"></span></button>
 

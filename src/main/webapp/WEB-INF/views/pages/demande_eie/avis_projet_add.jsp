@@ -10,6 +10,20 @@
 <link href="${pageContext.request.contextPath}/assets/css/sweet-alert.css">
 <script src="${pageContext.request.contextPath}/assets/js/swwtAlert2.js"></script>
 <%--<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>--%>
+<c:if test="${pageContext.response.locale=='ar' }">
+    <style>
+        .select2_option {
+           text-align: right;
+        }
+    </style>
+</c:if>
+<c:if test="${pageContext.response.locale=='fr' }">
+    <style>
+        .select2_option {
+          text-align: left;
+        }
+    </style>
+</c:if>
 <style>
     .select2-container--default .select2-selection--multiple {
         padding: 0px;
@@ -52,13 +66,13 @@
         <div class="row" style="text-align: ${pageContext.response.locale=='ar'?'right':'left'}">
             <div class="col-md-3 col-sm-12">
 
-                <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. informations sur le pétitionnaire </button>
+                <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')"><spring:message code="label.informationssurlepetitionnaire"/></button>
                 <c:if test="${demande.statut.id_statut_projet!=13}">
-                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">2. informations sur le projet </button>
-                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >3. Localisation du projet </button>
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="label.informationssurleprojet"/> </button>
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" ><spring:message code="label.Localisationduprojet"/></button>
                 </c:if>
                 <c:if test="${type=='EE'|| type=='NT'}">
-                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')">4. Pièce à fournir </button>
+                    <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')"><spring:message code="label.Piecefournir"/> </button>
                 </c:if>
 
 
@@ -179,13 +193,13 @@
                                     <c:otherwise>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label> Nature du Projet </label>
+                                                <label> <spring:message code="label.NatureduProjet"/></label>
                                                 <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label> Consisitance du Projet </label>
+                                                <label><spring:message code="label.ConsisitanceduProjet"/></label>
                                                 <textarea name="consistance_proj" id="consit_proj" class="form-control" rows="3"></textarea>
                                             </div>
                                         </div>
@@ -209,19 +223,19 @@
                                     <div class="col-md-6 col-sm-12">
 
                                         <div class="form-group">
-                                            <label> Date de réalisation du projet </label>
+                                            <label> <spring:message code="label.Datederealisationduprojet"/> </label>
                                             <input ${disabled } type="date" name="dateResiliation" class="form-control" id="dateResiliation" value="${demande.dateResiliation}" required >
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
-                                            <label> Date de Démarrage</label>
+                                            <label><spring:message code="label.DatedeDemarrage"/> </label>
                                             <input ${disabled } type="date" name="dateDemarage" id="dateDemarage" class="form-control" value="${demande.dateDemarage}" required >
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-2">
                                         <div class="form-group">
-                                            <label >Déscription du projet</label>
+                                            <label ><spring:message code="label.Descriptionduprojet"/> </label>
                                             <input type="file" id="file_frm" class="form-control" onchange="update_new_AE()">
                                         </div>
                                     </div>
@@ -256,8 +270,8 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label>Régions</label>
-                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
+                                            <label><spring:message code="label.Regions"/></label>
+                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)" dir="rtl">
                                                 <c:forEach items="${regions}" var="reg" varStatus="loop">
                                                     <option
                                                             <c:forEach items="${demande.detailRegion.region}" var="rr">
