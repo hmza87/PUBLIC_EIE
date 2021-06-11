@@ -30,7 +30,6 @@
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
-
               });
 
     }
@@ -360,7 +359,7 @@
 
 
         </div>
-        <h2>Document de mouvement
+        <h2><spring:message code="label.documentdemouvement"/>
           <button onclick="go_link('/api/okPDF/${notification.id_notification}')" style="font-size: 12px !important;" class="btn btn-warning text-white btn-sm">
             <spring:message code="label.documentdemouvement"/>
           </button>
@@ -606,7 +605,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Déclaration du transporteur</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle"> <spring:message code="label.Declarationdutransporteur"/></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -614,14 +613,14 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12" id="groupe_select" >
-              Aucun Transporteur n'est compatible avec le type de déchets de votre autorisation
+              <spring:message code="label.AucunTransporteurnestcompatibleavecletypededechetsdevotreautorisation"/>
             </div>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-          <button type="button" id="btn_valide_trans" class="btn btn-primary" onclick="saveDeclarationTransporteur()">Enregistrer</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message code="label.Annuler"/></button>
+          <button type="button" id="btn_valide_trans" class="btn btn-primary" onclick="saveDeclarationTransporteur()"><spring:message code="button.Enregistrer"/></button>
         </div>
       </div>
     </div>

@@ -115,7 +115,7 @@
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn2"
                             onclick="openCity(this, '2')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        2. Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}
+                        <spring:message code="label.Importateur"/>${type.equals("ZF")?"Notifiant":"Destinataire"}
                     </button>
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn3"
                             onclick="openCity(this, '3')"
@@ -126,21 +126,21 @@
                         <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn4"
                                 onclick="openCity(this, '4')"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                            Transporteur National
+                            <spring:message code="label.TransporteurNational"/>
                         </button>
                     </c:if>
                     <c:if test="${((type.equals('ZF' ) || type.equals('XD'))  && notification.classification.id_classification==2) || (type.equals('ET'))}">
                         <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn5"
                                 onclick="openCity(this, '5')"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                            Transporteur National
+                            <spring:message code="label.TransporteurNational"/>
                         </button>
                     </c:if>
                     <c:if test="${(type.equals('ET')|| type.equals( 'XD' ) || type.equals( 'TR'))}">
                         <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn55"
                                 onclick="openCity(this, '55')"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                            Transporteur International
+                            <spring:message code="label.TransporteurInternational"/>
                         </button>
                     </c:if>
                     <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn6"
@@ -168,7 +168,7 @@
                     <button class="tablinks btn-primary btn my_tab montab" ${disabledBtnTab} disabled id="Btn10"
                             onclick="verif_champs_recap('9','${type}','id_notification','10')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        5. Récapitulation
+                        5. <spring:message code="label.Recapitulation"/>
                     </button>
 
 
@@ -205,56 +205,56 @@
                             <c:if test="${!type.equals('ZF')}">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Nom de l'exportateur Notifiant</label>
+                                        <label><spring:message code="label.NomdelexportateurNotifiant"/></label>
                                         <input class="form-control" type="text" name="nom" value="${notification.nom}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Télécopie</label>
+                                        <label><spring:message code="label.Telecopie"/></label>
                                         <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Personne à contacter</label>
+                                        <label><spring:message code="label.personneacontacter"/></label>
                                         <input class="form-control" type="text" name="personne" value="${notification.personne}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Tél</label>
+                                        <label><spring:message code="label.Tel"/></label>
                                         <input class="form-control" type="text" name="tel" value="${notification.tel}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>courrier électronique</label>
+                                        <label><spring:message code="label.courrierelectronique"/></label>
                                         <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Adresse</label>
+                                        <label><spring:message code="label.Adresse"/></label>
                                         <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
                                     </div>
                                 </div>
                                 <hr class="w-100">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Code National dans le pays d'exportation</label>
+                                        <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
                                         <input class="form-control" type="text" name="code_nationalxd" value="${notification.codeNationalXD}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Code National dans le pays d'importation</label>
+                                        <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
                                         <input class="form-control" type="text" name="code_national_im" value="${notification.codeNationalIm}">
                                     </div>
                                 </div>
                                 <div class="col-6 ">
                                     <div class="form-group">
-                                        <label>Liste Des déchets de le CE</label>
+                                        <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
                                         <input class="form-control" type="text" name="codece" value="${notification.codeCE}">
                                     </div>
                                 </div>
@@ -262,13 +262,13 @@
                                     <div class="form-group">
                                             <c:choose>
                                                 <c:when test="${notification.zf_et.equals('XD')}">
-                                                    <label>Etat d'exportation/d'éxpédition</label>
+                                                    <label><spring:message code="label.Etatdexportationdexpedition"/></label>
                                                 </c:when>
                                                 <c:when test="${notification.zf_et.equals('TR')}">
-                                                    <label>Etat(s) de transit (entrée et sortie)</label>
+                                                    <label><spring:message code="label.Etatsdetransitentreeetsortie"/></label>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <label>Etat d'importation/ de destination</label>
+                                                    <label><spring:message code="label.Etatdimportationdedestination"/></label>
                                                 </c:otherwise>
                                             </c:choose>
                                             <input class="form-control" type="text" name="etat" value="${notification.etat}">
@@ -586,7 +586,7 @@
                             <div class="col-6">
                                 <div class="form-group">
 
-                                    <label> Province </label>
+                                    <label> <spring:message code="label.Province"/> </label>
                                     <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
                                         <option value="0"><spring:message code="option.Choisir"/></option>
                                         <c:if test="${notification.prefecture!=null }">
@@ -900,7 +900,7 @@
                                         <select name="id_transporteur" id="id_Transporteur"
                                                 class="form-control select2"
                                                 data-width="100%">
-                                            <option value="">Déclarer votre transporteur</option>
+                                            <option value=""><spring:message code="label.Declarervotretransporteur"/></option>
                                             <c:forEach items="${Transporteur_liste}" var="t">
                                                 <option value="${t[0] }">${t[1] }</option>
                                             </c:forEach>
@@ -1040,12 +1040,12 @@
                                 <table class="table my_table table-bordered table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Nom de la société</th>
-                                        <th class="text-center"> Matricule</th>
-                                        <th class="text-center"> Type de transport</th>
-                                        <th class="text-center"> Assurance</th>
-                                        <th class="text-center"> Adresse</th>
-                                        <th class="text-center"> Action</th>
+                                        <th class="text-center"><spring:message code="label.Nomdelasociete"/> </th>
+                                        <th class="text-center"> <spring:message code="label.Matricule"/> </th>
+                                        <th class="text-center"> <spring:message code="label.Typedetransport"/> </th>
+                                        <th class="text-center"><spring:message code="label.Assurance"/>  </th>
+                                        <th class="text-center"><spring:message code="label.Adresse"/>  </th>
+                                        <th class="text-center"> <spring:message code="label.Action"/></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -1059,7 +1059,7 @@
                                                     <td><a target="_blank" download="assurance"
                                                            href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}"
                                                            class="btn btn-primary btn-sm"> <span
-                                                            class="fa fa-download"></span> Assurance</a></td>
+                                                            class="fa fa-download"></span><spring:message code="label.Assurance"/>   </a></td>
                                                     <td>${trans.adresse}</td>
                                                     <td class="text-center">
                                                         <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','nationale')"
@@ -1074,7 +1074,7 @@
                                         </c:forEach>
                                     </c:if>
                                     <c:if test="${empty notification.transporteur_etranger}">
-                                        <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
+                                        <td colspan="7" class="bg-primary text-center"><spring:message code="label.Aucuntransporteur"/>  </td>
                                     </c:if>
                                     </tbody>
                                 </table>
@@ -1083,13 +1083,13 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Nom de la société </label>
+                                    <label> <spring:message code="label.Nomdelasociete"/>  </label>
                                     <input type="text" id="raison_social_n" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Matricule </label>
+                                    <label> <spring:message code="label.Matricule"/>   </label>
                                     <input type="text" id="num_matriule_n" class="form-control">
                                 </div>
                             </div>
@@ -1097,13 +1097,13 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Type de transport </label>
+                                    <label><spring:message code="label.Typedetransport"/> </label>
                                     <input type="text" id="type_vehicule_n" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12 ">
                                 <div class="form-group">
-                                    <label> Assurance </label>
+                                    <label><spring:message code="label.Assurance"/>  </label>
                                     <input type="File" id="doc_assurance_n" class="form-control">
                                 </div>
                             </div>
@@ -1112,7 +1112,7 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
-                                    <label> Adresse </label>
+                                    <label><spring:message code="label.Adresse"/>   </label>
                                     <input type="text" id="adresseTr_n" class="form-control">
                                 </div>
                             </div>
@@ -1121,8 +1121,8 @@
                             <div class="col-sm-6 col-md-3">
                                 <input type="hidden" value="0" id="id_trans_n">
                                 <button class="btn btn-success btn-block"
-                                        onclick="ajouterTranporteur_EtrangerNational('id_notification')">Enregistrer
-                                    transporteur
+                                        onclick="ajouterTranporteur_EtrangerNational('id_notification')"><spring:message code="button.Enregistrer"/>
+                                    <spring:message code="label.transporteur"/>
                                 </button>
                             </div>
                         </div>
@@ -1177,7 +1177,7 @@
                                     <tr>
                                         <th class="text-center"> <spring:message code="label.raisonsocial"/></th>
                                         <th class="text-center"> <spring:message code="label.Matricule"/></th>
-                                        <th class="text-center"> Type de transport</th>
+                                        <th class="text-center"> <spring:message code="label.Typedetransport"/></th>
                                         <th class="text-center"> <spring:message code="label.Assurance"/></th>
                                         <th class="text-center"> <spring:message code="label.Adresse"/></th>
                                         <th class="text-center"> <spring:message code="label.Port"/></th>
@@ -1195,15 +1195,15 @@
                                                     <td><a target="_blank" download="assurance"
                                                            href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}"
                                                            class="btn btn-primary btn-sm"> <span
-                                                            class="fa fa-download"></span> Assurance</a></td>
+                                                            class="fa fa-download"></span> <spring:message code="label.Assurance"/></a></td>
                                                     <td>${trans.adresse}</td>
                                                     <td><c:if test="${empty trans.port}">
-                                                        Aucun port
+                                                        <spring:message code="label.Aucunport"/>
                                                     </c:if>
                                             <c:if test="${not empty trans.port}">
                                                         <button class="btn btn-primary  btn-sm"
                                                                 onclick="fun_affiche_modal('#modal_DetailPort','${trans.id_TransporteurEtranger}')">
-                                                            Detail Port
+                                                            <spring:message code="label.DetailPort"/>
                                                         </button>
                                             </c:if>
                                                     </td>
@@ -1225,7 +1225,7 @@
                                                          role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Détail Port</h5>
+                                                                <h5 class="modal-title"><spring:message code="label.DetailPort"/></h5>
                                                                 <button onclick="close_modal(this)" type="button"
                                                                         class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -1241,7 +1241,7 @@
                                                                                 #
                                                                             </div>
                                                                             <div class="col-6 border p-2 font_bold  btn-gris">
-                                                                                Port
+                                                                                <spring:message code="label.Port"/>
                                                                             </div>
                                                                         </div>
 
@@ -1262,7 +1262,7 @@
                                                             <div class="modal-footer">
                                                                 <button onclick="close_modal(this)" type="button"
                                                                         class="btn btn-secondary" data-dismiss="modal">
-                                                                    Fermer
+                                                                    <spring:message code="label.Fermer"/>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -1272,7 +1272,7 @@
                                         </c:forEach>
                                     </c:if>
                                     <c:if test="${empty notification.transporteur_etranger}">
-                                        <td colspan="7" class="bg-primary text-center"> Aucun transporteur</td>
+                                        <td colspan="7" class="bg-primary text-center"><spring:message code="label.Aucuntransporteur"/>   </td>
                                     </c:if>
                                     </tbody>
                                 </table>
@@ -1282,13 +1282,13 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Nom de la société</label>
+                                    <label><spring:message code="label.Nomdelasociete"/></label>
                                     <input type="text" id="raison_social" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Matricule </label>
+                                    <label> <spring:message code="label.Matricule"/> </label>
                                     <input type="text" id="num_matriule" class="form-control">
                                 </div>
                             </div>
@@ -1296,13 +1296,13 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-                                    <label> Type de transport </label>
+                                    <label><spring:message code="label.Typedetransport"/>  </label>
                                     <input type="text" id="type_vehicule" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12 ">
                                 <div class="form-group">
-                                    <label> Assurance </label>
+                                    <label> <spring:message code="label.Assurance"/> </label>
                                     <input type="file" class="form-control" id="doc_assurance">
                                 </div>
                             </div>
@@ -1311,7 +1311,7 @@
                         <div class="row mt-3 justify-content-center p-0">
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
-                                    <label> Adresse </label>
+                                    <label><spring:message code="label.Adresse"/>  </label>
                                     <input type="text" id="adresseTr" class="form-control">
                                 </div>
                             </div>
@@ -1338,8 +1338,8 @@
                             <div class="col-sm-6 col-md-3">
                                 <input type="hidden" value="0" id="id_trans">
                                 <button class="btn btn-success btn-block"
-                                        onclick="ajouterTranporteur_Etranger('id_notification')">Enregistrer
-                                    transporteur
+                                        onclick="ajouterTranporteur_Etranger('id_notification')"><spring:message code="button.Enregistrer"/>
+                                    <spring:message code="label.transporteur"/>
                                 </button>
                             </div>
                         </div>
@@ -2045,7 +2045,7 @@
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                     <form id="document" name="document">
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
-                    <p class="h5 text-center mt-2"> <span class=" p-2 ">Vous pouvez importer des documents scannés en formats PDF et Image dont la taille ne dépasse pas 5 Mo</span> </p>
+                    <p class="h5 text-center mt-2"> <span class=" p-2 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
 
                     <c:forEach items="${doc}" var="dc">
                         <c:set var="id_doc" value="${dc.id_docImport}"/>
@@ -2099,7 +2099,7 @@
                         <div class="col-md-3 col-sm-6">
                                     <button type="button"
                                             onclick="verif_champs('9','${type}','id_notification','10')"
-                                            class="btn btn-success btn-block">Afficher le récapitulatif
+                                            class="btn btn-success btn-block"><spring:message code="label.Afficherlerecapitulatif"/>
                                     </button>
                         </div>
                     </div>
@@ -2109,7 +2109,7 @@
 
                 <div id="10" class="tabcontent">
 
-                    <h4 class="titre_abs ">Récapitulation</h4>
+                    <h4 class="titre_abs "><spring:message code="label.Recapitulation"/></h4>
                         <div id="recap"></div>
                     <div class="row justify-content-center mt-2 mb-4">
                         <div class="col-md-2 col-sm-6">
