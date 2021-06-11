@@ -112,7 +112,7 @@
         </c:if>
         <c:if test="${collect.statut.id_statut_projet==50}">
           <div class="col-md-3 col-sm-6">
-            <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pen mr-2"></i><spring:message code="label.deposerDossier"/></a>
+            <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pencil mr-2"></i><spring:message code="label.deposerDossier"/></a>
           </div>
         </c:if>
         <div class="col-md-3 col-sm-6">

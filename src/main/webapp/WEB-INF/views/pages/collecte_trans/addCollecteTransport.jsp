@@ -1046,44 +1046,33 @@
         var id_col = $("#"+id_name).val();
         var type="CT";
         var link_recap = "/api/checkUserHasCollecte/CT";
-        $.ajax({
-            url: '/api/changerStatus',
-            type: 'POST',
-            data: {"id_notif":parseInt(id_col),"id_statut":parseInt(id_statut),"type":type},
-        })
-            .done(function() {
+        Swal.fire({
+            title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Enregistrer`,
+            denyButtonText: `Annuler`,
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '/api/changerStatus',
+                    type: 'POST',
+                    data: {"id_notif":parseInt(id_col),"id_statut":parseInt(id_statut),"type":type},
+                })
+                down_load_recu();
                 Swal.fire({
-                    title: 'Si vous cliquer sur enregistrer vous ne pouvez pas modifier votre demande',
-                    showDenyButton: true,
+                    title: '<strong>votre demande a été effectuée avec succès</strong>',
+                    icon: 'success',
+                    html:
+                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    showCloseButton: false,
                     showCancelButton: false,
-                    confirmButtonText: `Enregistrer`,
-                    denyButtonText: `Annuler`,
-                }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-
-                        if (result.isConfirmed) {
-                            down_load_recu();
-                            Swal.fire({
-                                title: '<strong>votre demande a été effectuée avec succès</strong>',
-                                icon: 'success',
-                                html:
-                                    '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
-                                showCloseButton: false,
-                                showCancelButton: false,
-                                showConfirmButton: false,
-                                focusConfirm: false,
-                                allowOutsideClick: false
-                            });
-                            }
-                    });
-            })
-            .fail(function() {
-                console.log("error");
-            })
-            .always(function() {
-                console.log("complete");
-            });
-
+                    showConfirmButton: false,
+                    focusConfirm: false,
+                    allowOutsideClick: false
+                });
+            }
+        })
     }
 
     function addCodeCT(id_collect, id_code, type) {

@@ -588,7 +588,7 @@
             swal("Avertisement!", "un ou plusieur champs sont vide", "error");
         } else {
                 Swal.fire({
-                    title: 'Vous ne pouvez pas modifier votre demande',
+                    title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
                     showDenyButton: true,
                     showCancelButton: false,
                     confirmButtonText: `Enregistrer`,
@@ -695,7 +695,7 @@
             return false;
         }
         Swal.fire({
-            title: 'Vous ne pouvez pas modifier votre demande',
+            title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: `Enregistrer`,

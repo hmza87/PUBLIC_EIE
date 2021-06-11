@@ -500,5 +500,23 @@
             heightStyle: "content",
         });
     } );
+    function updatePdf(id) {
+
+        fetch('/api/test/'+id)
+            .then(resp => resp.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                // the filename you want
+                a.download = 'Notification.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+
+            });
+
+    }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
