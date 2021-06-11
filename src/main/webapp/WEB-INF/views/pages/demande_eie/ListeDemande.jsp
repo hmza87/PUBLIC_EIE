@@ -116,9 +116,11 @@
                                                 <%-- <c:forEach items="${nt.regions}" var="rg">${rg.nom_fr}</c:forEach>--%>
                                         </td>
                                         <td>
+                                            <c:if test="${nt.statut.id_statut_projet!=47}">
                                             <div class="col-md-3 col-sm-6">
                                                 <a href="/api/recapEie/${nt.id_demande_information}/${nt.type}" class="btn btn-primary"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.Recap"/></a>
                                             </div>
+                                            </c:if>
                                         </td>
                                         <td>
                                             <c:if test="${not empty nt.categories}">
@@ -199,8 +201,8 @@
                                             <c:if test="${nt.statut.id_statut_projet==6}">
                                                 <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
                                             </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==1}">
-                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${type}" >Modifier</a>
+                                            <c:if test="${nt.statut.id_statut_projet==47}">
+                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${nt.type}" >Modifier</a>
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==60}">
                                                 <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" >Compléter le Dossier</button>

@@ -283,7 +283,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
 
     var tmp = $("#id_region").val();
     if(trans != "oui" && type!="NT" && type!='AE' ){
-        if( tmp.length<2 ){
+        if( tmp.length < 2 ){
             swal("Avertissement ! ","Merci de choisir aux moins deux régions","error");
             return false;
         }
@@ -1242,30 +1242,6 @@ function changer_Statut_zf_auth_test(id_notif, id_statut, type){
 
 function go_link(url){
     window.location.href=url;
-}
-
-function updatePdf(id) {
-
-    fetch('/api/test/'+id)
-        .then(resp => resp.blob())
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            // the filename you want
-            a.download = 'Notification.pdf';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-
-        });
-
-}
-
-function slideToggle(el) {
-    var elem = document.getElementById(el);
-    elem.classList.toggle("open");
 }
 
 function fun_setimpacts() {

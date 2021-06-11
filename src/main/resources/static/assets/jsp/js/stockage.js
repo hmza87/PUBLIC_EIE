@@ -287,7 +287,7 @@ function addDemandeInfomration(from,type,id,next_step,id_btn){
         contentType: 'application/json; charset=utf-8',
         data:JSON.stringify(se),
         success: function (response) {
-            $(".cls_step").prop("disabled",false);
+            $(".cls_step:not(.montab)").prop("disabled",false);
             $(".cls_step").removeClass('active')
             $(id_btn).addClass('active');
             $(".z_collecteur").hide();

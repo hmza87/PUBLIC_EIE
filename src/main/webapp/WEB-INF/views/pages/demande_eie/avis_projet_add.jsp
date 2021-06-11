@@ -39,8 +39,11 @@
             <div class="col-12">
 
                 <c:choose>
-                    <c:when test="${type=='EE' || type=='RS'}">
+                    <c:when test="${type=='EE'}">
                         <spring:message code="option.Etudedimpactenvironnementale" var="p_page" />
+                    </c:when>
+                    <c:when test="${type=='RS'}">
+                        <spring:message code="label.Renseignementprealable" var="p_page" />
                     </c:when>
                     <c:when test="${type=='NT'}">
                         <spring:message code="option.Noticedimpact" var="p_page" />
@@ -74,93 +77,93 @@
                 <c:if test="${type=='EE'|| type=='NT'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')"><spring:message code="label.Piecefournir"/> </button>
                 </c:if>
-
+                <button class="btn btn-success btn-block text-left pl-5 cls_step montab" id="step_id4" onclick="affiche_eie_zone('#step4','#step_id4')" disabled>5. Récapitulation </button>
 
             </div>
-            <div class="col-lg-6 col-sm-8 col-md-8 mx-4">
+            <div class="col-lg-8 col-sm-8 col-md-8 mx-4">
                 <div class="row pb-2 mt-3">
                     <div class="col-12 pl-0 pr-0">
                         <h4 class="titre_abs " style="text-align:center">${titre_dyn} </h4>
                     </div>
                     <div id="step1" class="col-12 z_collecteur"  >
                         <form class="mt-3"  id="formAvisProjet" name="formAvisProjet" >
-                                    <input type="hidden" value="${(not empty demande)?demande.id_demande_information:'0'}" name="id_demande_information" id="id_demande_information">
-                                    <c:if test="${not empty demande}">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label ><spring:message code="label.NumeroDemande"/></label>
-                                                    <input onchange="checkUpdate(this.value)" disabled value="${demande.num_demande }" type="text" name="num_demande" class="form-control">
-                                                </div>
-                                            </div>
+                            <input type="hidden" value="${(not empty demande)?demande.id_demande_information:'0'}" name="id_demande_information" id="id_demande_information">
+                            <c:if test="${not empty demande}">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label ><spring:message code="label.NumeroDemande"/></label>
+                                            <input onchange="checkUpdate(this.value)" disabled value="${demande.num_demande }" type="text" name="num_demande" class="form-control">
                                         </div>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <%--information demandeur--%>
+                            <div class="row">
+
+                                <div class=" col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.Raisonsocial"/>   </label>
+                                        <input  value="${demande.raison_social}" required ${disabled} type="text" name="raison_social" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+
+                                    <div class="form-group">
+                                        <label><spring:message code="label.Representant"/> </label>
+                                        <input type="text" required value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" row">
+                                <div class=" col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.Email"/></label>
+                                        <input value="${demande.email }" required ${disabled} type="text" name="email" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class=" col-md-4 col-sm-12 ">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.tel"/>  </label>
+                                        <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-12 ">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.Fax"/></label>
+                                        <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 ">
+                                    <div class="form-group">
+                                        <label ><spring:message code="label.Adresse"/></label>
+                                        <input ${disabled} required value="${demande.adresse }" type="text" name="adresse" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <%--information Projet--%>
+                            <c:if test="${demande.statut.id_statut_projet==13}">
+                                <hr>
+                                <div class="row">
+                                    <div class=" col form-group">
+                                        <label >Avis de projet </label>
+                                        <input required ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
+                                    </div>
+                                </div>
+                            </c:if>
+                            <div class="row justify-content-center p-0 mb-3">
+                                <div class="col-md-3 col-sm-12">
+                                    <c:if test="${demande.statut.id_statut_projet!=13}">
+                                        <button class="btn btn-success btn_suiv btn-block" onclick="addDemandeInfomration('formAvisProjet','${type}','${id}','#step1_2','#step_id1_2')">  <spring:message code="button.Suivant"/> </button>
                                     </c:if>
-                                        <%--information demandeur--%>
-                                    <div class="row">
-
-                                        <div class=" col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Raisonsocial"/>   </label>
-                                                <input  value="${demande.raison_social}" required ${disabled} type="text" name="raison_social" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                            <div class="form-group">
-                                                <label><spring:message code="label.Representant"/> </label>
-                                                <input type="text" required value="${demande.represantant }" ${disabled} name="represantant" class="form-control" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" row">
-                                        <div class=" col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Email"/></label>
-                                                <input value="${demande.email }" required ${disabled} type="text" name="email" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-4 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.tel"/>  </label>
-                                                <input value="${demande.tel }" required type="text" ${disabled} name="tel" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Fax"/></label>
-                                                <input ${disabled} required value="${demande.fax }" type="text" name="fax" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 ">
-                                            <div class="form-group">
-                                                <label ><spring:message code="label.Adresse"/></label>
-                                                <input ${disabled} required value="${demande.adresse }" type="text" name="adresse" class="form-control" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                        <%--information Projet--%>
                                     <c:if test="${demande.statut.id_statut_projet==13}">
-                                        <hr>
-                                        <div class="row">
-                                            <div class=" col form-group">
-                                                <label >Avis de projet </label>
-                                                <input required ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
-                                            </div>
-                                        </div>
+                                        <button class="btn btn-success btn_suiv btn-block" onclick="set_avis_projet('#avis_projet','#id_demande_information')">  <spring:message code="button.Enregistrer"/> </button>
                                     </c:if>
-                                    <div class="row justify-content-center p-0 mb-3">
-                                        <div class="col-md-3 col-sm-12">
-                                            <c:if test="${demande.statut.id_statut_projet!=13}">
-                                                <button class="btn btn-success btn_suiv btn-block" onclick="addDemandeInfomration('formAvisProjet','${type}','${id}','#step1_2','#step_id1_2')">  <spring:message code="button.Suivant"/> </button>
-                                            </c:if>
-                                            <c:if test="${demande.statut.id_statut_projet==13}">
-                                                <button class="btn btn-success btn_suiv btn-block" onclick="set_avis_projet('#avis_projet','#id_demande_information')">  <spring:message code="button.Enregistrer"/> </button>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
                         <form class="mt-3"  id="formProjet" name="formProjet" >
@@ -325,12 +328,12 @@
                                 </c:if>
                                 <c:if test="${type=='AE'}">
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                        <button onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='RS'}">
                                     <div class="col-sm-12 col-md-3">
-                                        <button class="btn btn-success btn-block" onclick="updateRegionDemandeInfomration('${type}','#id_demande_information','end','end')" >  <spring:message code="button.Enregistrer"/> </button>
+                                        <button class="btn btn-success btn-block" onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" >Afficher le récapitulatif</button>
                                     </div>
                                 </c:if>
                             </div>
@@ -373,7 +376,7 @@
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="changer_statut1('id_demande_information',1,'Votre demande est déposée avec succès','${type}')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
                                     </div>
                                 </div>
 
@@ -391,61 +394,45 @@
                                 </div>
                             </form>
                         </div>
+                        <div id="step4" class="col-12 z_collecteur collapse">
+                            <div id="recap_ee"></div>
+                            <div class="row justify-content-center mt-2 mb-4">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="affiche_eie_zone('#step3','#step_id3')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+
+                                    <button type="button"
+                                            onclick="changer_statut1('id_demande_information',1,'Votre demande est déposée avec succès','${type}')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </c:if>
-                    <c:if test="${type=='AE'}">
-                        <div id="step3" class="col-12 z_collecteur collapse" >
-                            <form  class="form-horizontal mt-3" >
-                                <c:forEach items="${doc}" var="dc">
-                                    <div class="row justify-content-center">
-                                        <div class="col mt-3  ">
-                                            <div class="form-group">
-                                                <div>
-                                                    <label style="width: 100%;"> ${dc.nom_fr } </label> <input
-                                                        required
-                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','AE','id_demande_information')"
-                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                        class="form-control mydoc">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <c:if test="${not empty docNotify}">
-                                            <div class="col-2 mt-5">
-                                                <c:forEach items="${docNotify}" var="d">
-                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
-                                                        <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
-                                                           class="btn btn-success rounded file_existe"><span
-                                                                class="fa fa-download"></span></a>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                </c:forEach>
-
-
-
-                                <div class="row p-0 justify-content-center mb-3 mt-4">
-                                    <div class="col-sm-12 col-md-3">
-                                        <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
-                                    </div>
-                                    <div class="col-sm-12 col-md-3">
-                                        <button onclick="changer_statut2('${type}','id_demande_information',1,'Votre demande est déposée avec succès')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
-                                    </div>
+                    <c:if test="${type=='AE' || type=='RS'}">
+                        <div id="step4" class="col-12 z_collecteur collapse">
+                            <div id="recap_ee"></div>
+                            <div class="row justify-content-center mt-2 mb-4">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="affiche_eie_zone('#step2','#step_id2')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
                                 </div>
+                                <div class="col-md-3 col-sm-6">
 
-
-
-                                <div class="row m-0 p-0 mt-5">
-                                    <div class="col-3">
-                                    </div>
-                                    <div class="col-6" style="text-align: center">
-
-
-                                    </div>
-                                    <div class="col-3">
-                                    </div>
+                                    <button type="button"
+                                            onclick="changer_statut2('${type}','id_demande_information',1,'Votre demande est déposée avec succès')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    </button>
                                 </div>
-                            </form>
+                            </div>
+
                         </div>
                     </c:if>
                     <c:if test="${type=='NT'}">
@@ -485,7 +472,7 @@
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="changer_statut2('${type}','id_demande_information',1,'Votre demande est déposée avec succès')" class="btn btn-success btn-block" ><spring:message code="button.Enregistrer"/> </button>
+                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
                                     </div>
                                 </div>
 
@@ -503,9 +490,30 @@
                                 </div>
                             </form>
                         </div>
+                        <div id="step4" class="col-12 z_collecteur collapse">
+                            <div id="recap_ee"></div>
+                            <div class="row justify-content-center mt-2 mb-4">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="affiche_eie_zone('#step3','#step_id3')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+
+                                    <button type="button"
+                                            onclick="changer_statut2('${type}','id_demande_information',1,'Votre demande est déposée avec succès')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </c:if>
+
                 </div>
             </div>
+
             <div class="col-md-3 col-sm-12"></div>
         </div>
     </section>
@@ -557,10 +565,10 @@
         }
     }
     function changer_statut2(type,id_name, code_statut, msg_alert) {
-        if(event!=null)
+        if (event != null)
             event.preventDefault();
         var id = $("#" + id_name).val();
-        var link_recap = "/api/recapEie/" + id+"/"+type;
+        var link_recap = "/api/recapEie/" + id + "/" + type;
         var test = false;
         var tr = $("#formdoc").find("input[type=file]").closest(".row.justify-content-center");
         $(tr).each(function (idx, el) {
@@ -579,63 +587,137 @@
         if (test) {
             swal("Avertisement!", "un ou plusieur champs sont vide", "error");
         } else {
-            $.ajax({
-                url: "/api/changerStatuts2/" + id + "/" + code_statut,
-                type: 'GET',
-                data: {},
-            })
-                .done(function (data) {
-                    Swal.fire({
-                        title: '<strong>' + msg_alert + '</strong>',
-                        icon: 'success',
-                        html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
-                        showCloseButton: false,
-                        showCancelButton: false,
-                        showConfirmButton: false,
-                        focusConfirm: false,
-                    })
+                Swal.fire({
+                    title: 'Vous ne pouvez pas modifier votre demande',
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: `Enregistrer`,
+                    denyButtonText: `Annuler`,
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "/api/changerStatuts2/" + id + "/" + code_statut,
+                            type: 'GET',
+                            data: {},
+                        })
+                        Swal.fire({
+                            title: '<strong>' + msg_alert + '</strong>',
+                            icon: 'success',
+                            html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            focusConfirm: false,
+                        })
+                    }
                 })
-                .fail(function () {
-                    console.log("error");
-                })
-                .always(function () {
-                    console.log("complete");
-                });
-        }
+            }
+
     }
-    function changer_statut1(id_name, code_statut, msg_alert,type) {
+
+    function searchByEE(id,type) {
+
+        $.ajax({
+            url: "/api/recapEieEdit/"+id+"/"+type,
+            type: "GET",
+            data: {},
+            success: function (response) {
+                $("#recap_ee").html(response);
+            },
+            error: function (response) {
+                alert('Erreur ajout non effectué');
+            }
+        });
+    }
+    function verif_champs(id_form, type, id_name, next_step, tap) {
         if(event!=null)
             event.preventDefault();
+        var test = false;
+        var tr = $("#" + id_form).find("input[type=file]").closest(".row.justify-content-center");
         var id = $("#" + id_name).val();
-        var link_recap = "/api/recapEie/" + id+"/"+type;
+        $(tr).each(function (idx, el) {
+            var input = $(el).find("input[type=file]");
+            var files = $(input).prop('files');
+            var btn = $(el).find(".file_existe");
+            if ($(btn).length == 0 && files.length == 0 && !test) {
+                $(input).addClass("bg_error");
+                test = true
+            }
+        });
+        //$(".cls_step").removeClass('active')
+        //$(tap).addClass('active');
+        //$(".z_collecteur").hide();
+        //$(next_step).show();
+
+        if (test) {
+            swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+        } else {
+            $("#step_id4").removeAttr("disabled");
+            searchByEE(id, type);
+            affiche_eie_zone(next_step,tap);
+        }
+    }
+    function verif_champs1(id_form, type, id_name, next_step, tap) {
+        if(event!=null)
+            event.preventDefault();
+
+        var region = ""
+        var prefecture = "";
+        var commune = "";
+
+        var test = false;
+        var id = $("#" + id_name).val();
+        var trans = $("#tron").val();
+        var tmp = $("#id_region").val();
+
+        if(trans == "non" || type=="AE"){
+            region = $("#id_region").val().join();
+            prefecture = $("#id_prefecture").val().join();
+            commune = $("#id_commune").val().join();
+        }else if(trans=="oui"){
+            region = "0";
+            prefecture = "0";
+            commune = "0";
+        }
+
+        $("#step_id4").removeAttr("disabled");
+        searchByEE(id, type);
+        affiche_eie_zone(next_step,tap);
+    }
+
+    function changer_statut1(id_name, code_statut, msg_alert,type) {
+        if (event != null)
+            event.preventDefault();
+        var id = $("#" + id_name).val();
+        var link_recap = "/api/recapEie/" + id + "/" + type;
         if ($.trim(id) == "" || !$.isNumeric(id) || id == null) {
             swal("Avertissement !", "le numero de EIE n'est pas valide", "error");
             return false;
         }
-
-        $.ajax({
-            url: "/api/changerStatuts/" + id + "/" + code_statut,
-            type: 'GET',
-            data: {},
-        })
-            .done(function (data) {
+        Swal.fire({
+            title: 'Vous ne pouvez pas modifier votre demande',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Enregistrer`,
+            denyButtonText: `Annuler`,
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "/api/changerStatuts/" + id + "/" + code_statut,
+                    type: 'GET',
+                    data: {},
+                })
                 Swal.fire({
                     title: '<strong>' + msg_alert + '</strong>',
                     icon: 'success',
-                    html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
                     focusConfirm: false,
                 })
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
+            }
+        })
     }
-
 
 </script>

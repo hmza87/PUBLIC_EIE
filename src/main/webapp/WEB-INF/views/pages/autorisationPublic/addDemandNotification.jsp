@@ -2378,45 +2378,33 @@
 
     function changer_Statut(id_notif, id_statut, type) {
         var link_recap = "/api/getnotifById1/" + type + "/" + id_notif;
-        $.ajax({
-            url: '/api/changerStatus',
-            type: 'POST',
-            data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
-        })
-            .done(function () {
+        Swal.fire({
+            title: 'Vous ne pouvez pas modifier votre demande',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Enregistrer`,
+            denyButtonText: `Annuler`,
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '/api/changerStatus',
+                    type: 'POST',
+                    data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
+                })
                 Swal.fire({
-                    title: 'Si vous cliquer sur enregistrer vous ne pouvez pas modifier votre demande',
-                    showDenyButton: true,
+                    title: '<strong>votre demande a été effectuée avec succès</strong>',
+                    icon: 'success',
+                    html:
+                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    showCloseButton: false,
                     showCancelButton: false,
-                    confirmButtonText: `Enregistrer`,
-                    denyButtonText: `Annuler`,
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: '<strong>votre demande a été effectuée avec succès</strong>',
-                            icon: 'success',
-                            html:
-                                '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
-                            showCloseButton: false,
-                            showCancelButton: false,
-                            showConfirmButton: false,
-                            focusConfirm: false,
-                            allowOutsideClick: false
-                        });
-                        window.location.href = '/api/downloadRecuDepo/' + id_notif;
-                    }
+                    showConfirmButton: false,
+                    focusConfirm: false,
+                    allowOutsideClick: false
                 });
-
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
-
-
+                window.location.href = '/api/downloadRecuDepo/' + id_notif;
+            }
+        })
     }
 
     var room = 1;

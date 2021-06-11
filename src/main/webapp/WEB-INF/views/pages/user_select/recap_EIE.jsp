@@ -326,7 +326,7 @@
                 </div>
               </div>
             </div>
-            <c:if test="${type!='RS'}">
+            <c:if test="${type=='NT' || type=='EE'}">
             <h2>4. <spring:message code="label.mespieces" /></h2>
             <div>
               <table class="table my_table table-striped table-bordered table-hover">
