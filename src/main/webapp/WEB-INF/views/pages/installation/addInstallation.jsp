@@ -103,7 +103,7 @@
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
                                 4. <spring:message code="button.mespieces"/></button>
                             </button>
-                            <button class="tablinks btn-primary btn my_tab montab"  disabled ${disabledBtnTab} id="Btn5"
+                            <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn5"
                                     onclick="verif_champs_recap('4','IT','id_installation','5')"
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd"">
                                 5. Récapitulation
@@ -376,15 +376,84 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="form-group"
+                                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+
+                                            <label><spring:message code="label.Operation"/> :</label>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-4 border-right">
+                                                            <div class="form-check">
+                                                                <input checked class="form-check-input" type="radio"
+                                                                       id="saufque"
+                                                                <c:if test="${notif.type== '1'}">
+                                                                       checked  </c:if> name="type"
+                                                                       value="1" onchange="my_function('1')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    الكل باستثناء
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-4 border-left">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                       id="tous"
+                                                                <c:if test="${notif.type== '2'}">
+                                                                       checked  </c:if> name="type"
+                                                                       value="2" onchange="my_function('2')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    اختيار من اللائحة
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-4 border-left">
+                                                            <div class="form-check">
+                                                                <input  class="form-check-input" type="radio"
+                                                                       id="parType"
+                                                                <c:if test="${notif.type== '0'}">
+                                                                       checked  </c:if> name="type"
+                                                                       value="0" onchange="my_function('0')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    حسب النوع
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-                                <div class="row p-0">
+                                <div class="row m-0 p-0 mt-2" id="DivCat" style="display: none">
+                                    <div class="col-6">
+                                        <div class="form-group"
+                                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                            <label> <spring:message code="label.Categorie"/> :</label>
+                                            <select name="categorie" required id="cat" class="form-control"
+                                                    data-width="100%">
+                                                <option value=""><spring:message code="option.Choisir"/>...</option>
+                                                <c:forEach items="${categories}" var="c">
+                                                    <option  <c:if
+                                                            test="${notif.categorie== c.nom_fr}"> selected </c:if>
+                                                            value="${c.nom_fr }">${c.nom_fr }
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-0" id="listCode">
                                     <div class="col-sm-8">
                                         <table class="table table-striped" data-page-length="15">
                                             <thead>
                                             <tr>
-
                                                 <th scope="col" style="min-width: 100px"><spring:message
                                                         code="label.CodeA"/></th>
                                                 <th scope="col"><spring:message code="label.TypeA"/></th>
@@ -434,7 +503,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row justify-content-center mb-4">
                                     <div class="col-md-2 col-sm-6">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="prec1"
@@ -449,9 +517,7 @@
                                         </button>
                                     </div>
                                 </div>
-
                             </form>
-
 
                         </div>
 
@@ -635,6 +701,16 @@
 
 <script>
 
+    function my_function(val){
+        if(val==='0'){
+            $("#DivCat").show()
+            $("#listCode").hide()
+        }
+        else{
+            $("#DivCat").hide()
+            $("#listCode").show()
+        }
+    }
     function addCodeIT(id_installation, id_code, type) {
         event.preventDefault();
         var id_ins = $("#" + id_installation).val();
@@ -682,7 +758,6 @@
             });
 
     }
-
     function fun_affiche_modal_recap() {
         event.preventDefault();
         Swal.close();
@@ -722,7 +797,6 @@
                 console.log("complete");
             });
     }
-
     function getInstallRenouveller(val) {
         event.preventDefault();
         var num = $(val).val();
@@ -748,7 +822,6 @@
             });
 
     }
-
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -801,7 +874,6 @@
                 swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
             }
         } else {
-            $("#Btn5").removeAttr("disabled");
             searchByRecap(type);
             openCity2('Btn'+tap,tap);
         }

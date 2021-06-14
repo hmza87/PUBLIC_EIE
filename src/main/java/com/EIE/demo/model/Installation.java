@@ -429,6 +429,28 @@ public class Installation implements Serializable {
 	@Column(name = "dateValidation", nullable = true)
 	private Date dateValidation;
 
+	@Column(name = "categorie", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String categorie;
+
+	@Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
 	public Date getDeleteDateTime() {
 		return deleteDateTime;
 	}
@@ -492,4 +514,6 @@ public class Installation implements Serializable {
 	public void setUrl_doc_signer(String url_doc_signer) {
 		this.url_doc_signer = url_doc_signer;
 	}
+
+
 }

@@ -75,6 +75,8 @@ public interface WebService {
 	ResponseEntity<RestResponsePage<Questions>> getListQuestionsByAuto(String type, PageRequest pageRequest);
 
 	List<Code> getListcodeTab();
+	List<CategorieDechet> getListCategorieDechet();
+
 
 	List<Code> getListCodeTabByClassif(int classification);
 

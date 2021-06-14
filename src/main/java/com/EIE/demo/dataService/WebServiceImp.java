@@ -474,7 +474,15 @@ class WebServiceImp implements WebService {
 		return Arrays.asList(result);
 	}
 
-	@Override
+    @Override
+    public List<CategorieDechet> getListCategorieDechet() {
+		final String uri = urlRest+"/getListCategorieDechet";
+		RestTemplate restTemplate = new RestTemplate();
+		CategorieDechet[] result= restTemplate.getForObject(uri,CategorieDechet[].class);
+		return Arrays.asList(result);
+    }
+
+    @Override
 	public List<Code> getListCodeTabByClassif(int classification) {
 		final String uri = urlRest+"/getListCodeTabByClassif/"+classification;
 		RestTemplate restTemplate = new RestTemplate();

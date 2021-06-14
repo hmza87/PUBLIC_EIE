@@ -97,6 +97,7 @@ public class Notification_Controler {
 	public ModelAndView addInstallation(@PathVariable int id,@PathVariable String typeRenv) {
 		Compte ct = web.getCompteConnected();
 		Map<String, Object> model = new HashMap<String, Object>();
+		List<CategorieDechet> categories = web.getListCategorieDechet();
 		model.put("doc", web.listDocImportByType(1,"IT"));
 		model.put("typeRenv",typeRenv);
 		if(id!=0) {
@@ -107,6 +108,7 @@ public class Notification_Controler {
 		else {
 			model.put("id", id);
 		}
+		model.put("categories", categories);
 		model.put("user", ct);
 		model.put("url_admin",urlRest);
 		Object[] activite = web.tronsaction("select", "  id_nature_activite, nom_fr, nom_ar FROM nature_activite",
@@ -208,7 +210,6 @@ public class Notification_Controler {
 			model.put("doc", web
 					.listDocImportByType(web.getNotiifcationById(id).getClassification().getId_classification(), type));
 		}
-
 
 		model.put("notification", notif);
 
