@@ -335,6 +335,22 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void addCategorieDechet(int id_notif, String categories) {
+
+		final String uris = urlRest+"/addCategoriesDechetRest/"+id_notif;
+
+		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+		bodyMap.add("categories",categories);
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+
+
+	}
+
+	@Override
 	public CollecteTransporteur getCollecteByNum(String num) {
 
 		final String uri = urlRest+"/getCollByNum/"+num;

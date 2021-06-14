@@ -349,7 +349,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('table:not(.my_table)').DataTable({
-        "searching": false,
+        "searching": true,
         "bLengthChange": false,
         "pageLength":4,
         "responsive":true,

@@ -429,8 +429,12 @@ public class Installation implements Serializable {
 	@Column(name = "dateValidation", nullable = true)
 	private Date dateValidation;
 
-	@Column(name = "categorie", nullable = true, columnDefinition = "NVARCHAR(255)")
-	private String categorie;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	@JoinTable(name = "catagorie_instalation", joinColumns = {
+			@JoinColumn(name = "id_installationn") }, inverseJoinColumns = { @JoinColumn(name = "id_categoriedechets") })
+
+	private List<CategorieDechet> categorie = new ArrayList<>();
 
 	@Column(name = "type", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String type;
@@ -439,16 +443,16 @@ public class Installation implements Serializable {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getCategorie() {
+	public List<CategorieDechet> getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(String categorie) {
+	public void setCategorie(List<CategorieDechet> categorie) {
 		this.categorie = categorie;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Date getDeleteDateTime() {

@@ -436,13 +436,13 @@
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                             <label> <spring:message code="label.Categorie"/> :</label>
-                                            <select name="categorie" required id="cat" class="form-control"
+                                            <select multiple required id="cat" class="form-control select2"
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/>...</option>
                                                 <c:forEach items="${categories}" var="c">
                                                     <option  <c:if
                                                             test="${notif.categorie== c.nom_fr}"> selected </c:if>
-                                                            value="${c.nom_fr }">${c.nom_fr }
+                                                            value="${c.id_categorie}">${c.nom_fr }
                                                     </option>
                                                 </c:forEach>
                                             </select>
@@ -512,7 +512,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-6">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Enregistrer"
-                                                onclick="updateGeneral('formimportateur1','installation','3',${id},'id_installation','non')"
+                                                onclick="updateGeneral_installation('formimportateur1','installation','3',${id},'id_installation','non')"
                                                 class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
                                         </button>
                                     </div>

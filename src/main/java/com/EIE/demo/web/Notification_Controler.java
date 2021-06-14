@@ -542,6 +542,15 @@ public class Notification_Controler {
 		return id_notif;
 	}
 
+	@RequestMapping(value = "/api/addCategorieDechet/{id_notif}", method = RequestMethod.POST)
+	public @ResponseBody String addCategoriesDechet(@RequestParam String categories, @PathVariable int id_notif) {
+
+
+			web.addCategorieDechet(id_notif,categories);
+
+			return "ok";
+	}
+
 	@RequestMapping(value = "/api/add_object_page/{table}/{page}/{id_t}", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView add_object_page(@RequestBody Object se, @PathVariable String table,
 			@PathVariable String page, @PathVariable int id_t) {

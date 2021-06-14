@@ -862,3 +862,61 @@ $('form .emailValide').blur(function () {
 });
 
 
+// UPDATE ALL
+function updateGeneral_installation(from,table,tap,id_notif,nameId,returns) {
+    var se = $("#"+from).serializeObject();
+
+    var type=$("input[name='type']:checked").val();
+    // var se = $("#formnotif").serialize();
+    if(id_notif==0){
+        id_notif=$('#'+nameId).val();
+    }
+
+    if (type==="0") {
+        var categories = $("#cat").val();
+        console.log(categories);
+        if(categories!==0){
+            var formdata = new FormData();
+            formdata.append('categories', categories);
+            $.ajax({
+                type: "POST",
+                url: "/api/addCategorieDechet/"+id_notif,
+                contentType: false,
+                processData: false,
+                data:formdata,
+                success: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: "/api/updateInstal/"+table+"/"+ id_notif+"/"+ nameId,
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(se),
+        success: function (response) {
+            $("#"+nameId).val(response);
+            if(returns=="non"){
+                $(".my_tab:not(.montab)").removeAttr("disabled");
+                openCity1('Btn'+tap,tap)
+            }
+            else{
+
+                window.location=returns;
+            }
+
+        },
+        error: function (response) {
+
+        }
+    });
+}
+
+//
+
+
+
