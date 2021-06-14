@@ -86,7 +86,7 @@
                             <button class="tablinks btn-info btn" onclick="openCity(event, '1')" id="defaultOpen"
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
                                 1.<%--<spring:message code="label.InformationdepEtitionnaire"/>--%>
-                                Information sur le pétitionnaire
+                                <spring:message code="label.informationssurlepetitionnaire"/>
                             </button>
                             <button class="tablinks btn-info btn my_tab " ${disabled} id="Btn2"
                                     onclick="openCity(event, '2')"
@@ -115,7 +115,7 @@
                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                             <h4 class="titre_abs ">
                                 <%--<spring:message code="label.InformationdepEtitionnaire"/>--%>
-                                Information sur le pétitionnaire
+                                    <spring:message code="label.informationssurlepetitionnaire"/>
                             </h4>
                             <input type="hidden" name="id_installation" value="${notif.id_installation}"
                                    id="id_installation">
@@ -250,7 +250,7 @@
 
                             <h4 class="titre_abs"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                Installation de traitement des déchets</h4>
+                                <spring:message code="label.Installationdetraitementdesdechets"/></h4>
                             <form id="formimportateur1" name="formimportateur">
 
 
@@ -349,7 +349,7 @@
                                     <div class="col-6">
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <label> <spring:message code="label.Quantiteestime"/> du déchêt :</label>
+                                            <label> <spring:message code="label.Quantiteestime"/><spring:message code="label.dudechet"/>  :</label>
                                             <input type="text" required name="quantite" value="${notif.quantite}"
                                                    id="quantite"
                                                    class="form-control">
@@ -638,7 +638,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <a class="btn btn-success btn-block "
-                                       onclick="verif_champs_it('4','IT','id_installation','5')">Afficher le récapitulatif</a>
+                                       onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="label.Afficherlerecapitulatif"/></a>
                                 </div>
                             </div>
 
@@ -646,7 +646,7 @@
 
                         <div id="5" class="tabcontent">
 
-                            <h4 class="titre_abs ">Récapitulation</h4>
+                            <h4 class="titre_abs "><spring:message code="label.Recapitulation"/></h4>
                             <div id="recap_install"></div>
                             <div class="row justify-content-center mt-2 mb-4">
                                 <div class="col-md-2 col-sm-6">

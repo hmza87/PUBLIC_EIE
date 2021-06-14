@@ -16,10 +16,10 @@
         <div class="ow-vl-inner">
             <div class="ow-html">
                 <div class="container">
-                    <i class="fa fa-folder-open"></i> Rechercher une notification
+                    <i class="fa fa-folder-open"></i><spring:message code="label.Rechercherunenotification"/>
                     <hr>
                     <input type="search" class="form-control" name="searchDossier_eie">
-                    <button style="margin-bottom: 2%;" class="btn btn-primary mt-2 text-center" onclick="searchdemandesuivieie()"><i class="fa fa-search"></i> Search</button>
+                    <button style="margin-bottom: 2%;" class="btn btn-primary mt-2 text-center" onclick="searchdemandesuivieie()"><i class="fa fa-search"></i> <spring:message code="label.Search"/></button>
                 </div>
             </div>
         </div>

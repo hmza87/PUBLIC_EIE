@@ -38,7 +38,7 @@
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="inner">
                     <div style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        <h2 style="margin-top: 16%">Mon profil</h2>
+                        <h2 style="margin-top: 16%"><spring:message code="label.Monprofil"/></h2>
                     </div>
                     <form class="form-horizontal" id="registration" name="registration">
                         <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">

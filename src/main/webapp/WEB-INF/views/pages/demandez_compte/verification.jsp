@@ -19,7 +19,7 @@
 
 
                     <h2> <i style="color:${color}" class="fa fa-${icon}" aria-hidden="true"></i> ${verif}</h2>
-                    <a href="/index" class="btn btn-success">Accueil</a>
+                    <a href="/index" class="btn btn-success"><spring:message code="label.Accueil"/></a>
                 </div>
             </div>
         </div>

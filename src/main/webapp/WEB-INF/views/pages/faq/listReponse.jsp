@@ -38,7 +38,7 @@
     <div class="card">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10 text-center">
-                <h1 class="text-success mt-4 mb-4">Questions fréquentes</h1>
+                <h1 class="text-success mt-4 mb-4"><spring:message code="label.Questionsfrequentes"/></h1>
             </div>
         </div>
 
@@ -48,8 +48,8 @@
                 <div class="col-10">
                     <div class="row mb-4">
                         <div class="col-auto">
-                            <a class="btn btn-success" href="/faq">Retour aux questions</a>
-                            <button class="btn btn-success" onclick="scroll_form()">Ajouter une réponse</button>
+                            <a class="btn btn-success" href="/faq"><spring:message code="label.Retourauxquestions"/></a>
+                            <button class="btn btn-success" onclick="scroll_form()"><spring:message code="label.Ajouterunereponse"/></button>
                         </div>
                     </div>
                     <div class="row p-0 m-0 bg-light rounded">
@@ -71,8 +71,8 @@
                             <div class="col-11 bg_reponse rounded p-3">
                                 <div class="row p-0 m-0">
                                     <div class="col-sm-6 col-md-6 text-left m-0 p-0">
-                                        <h6><i>Date : ${rep.date_pub}</i></h6>
-                                        <h6><i>Heure : ${rep.heur_pub}</i></h6>
+                                        <h6><i><spring:message code="label.Date"/> : ${rep.date_pub}</i></h6>
+                                        <h6><i><spring:message code="label.Heure"/> : ${rep.heur_pub}</i></h6>
                                     </div>
                                     <div class="col-sm-6 col-md-6 text-right p-0 m-0">
                                         <%--<c:if test="${q.compte.compteId==user.compteId}">
@@ -119,13 +119,13 @@
                     <div class="row justify-content-end">
                         <div class="col-11">
                             <div class="form-group">
-                                <label for="reponse">Reponse </label>
+                                <label for="reponse"><spring:message code="label.Reponse"/> </label>
                                 <input type="hidden" id="id_question" value="${q.id_question}">
                                 <input type="hidden" id="id_rep" value="">
                                 <textarea name="reponse" id="reponse" rows="4" class="form-control"></textarea>
                             </div>
                             <div class="text-right">
-                                <button class="btn btn-success" onclick="ajouter_reponse()">Ajouter</button>
+                                <button class="btn btn-success" onclick="ajouter_reponse()"><spring:message code="label.Ajouter"/></button>
                             </div>
                         </div>
                     </div>

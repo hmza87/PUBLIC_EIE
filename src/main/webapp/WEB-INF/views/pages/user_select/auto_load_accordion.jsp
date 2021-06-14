@@ -59,7 +59,7 @@
                     <p>${d.description}</p>
                 </c:if>
                 <c:if test="${not empty d.uri}">
-                    <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                    <p><spring:message code="label.Liensdelexemplaire"/>: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                 </c:if>
             </div>
         </c:forEach>
@@ -98,7 +98,7 @@
                             <c:set var="l_ph1" value=" d'audit environnemental "/>
                         </c:when>
                     </c:choose>
-                Procédure à suivre pour obtenir votre demande ${l_ph1}
+                    <spring:message code="label.Procedureasuivrepourobtenirvotredemande"/> ${l_ph1}
 
             </p>
             <div class="col-2 p-0">
@@ -178,27 +178,26 @@
                                         <spring:message code="label.Jeremplisleformulairededemandedunumerodenotificationenligne"/>
                                     </c:if>
                                     <c:if test="${type=='EIE'}">
-                                        Je remplis le formulaire de demande du renseignement préalable en ligne
+                                        <spring:message code="label.Jeremplisleformulairededemandedurenseignementprealableenligne"/>
                                     </c:if>
                                 </p>
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <p>
                                         <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                              style="width: 40px;margin-left: 10px">
-                                        Pour déposer une demande d'autorisation ${l_ph1},
-                                        il faut disposer au préalable d'un numéro de notification
+                                        <spring:message code="label.Pourdeposerunedemandedautorisation"/>  ${l_ph1},
+                                        <spring:message code="label.ilfautdisposerauprealabledunnumerodenotification"/>
                                     </p>
                                     <p>
                                         <spring:message code="label.Apreslacreationdevotrecompte"/>
                                     </p>
                                     <p>
-                                        A la fin vous avez la possibilité de déposer votre demande en cliquant sur le
-                                        bouton "Continuer !" du message de confirmation de la création du numéro de notification
+                                        <spring:message code="label.Alafinvousavezlapossibilitededeposervotredemandeencliquantsurle"/>
                                     </p>
                                 </c:if>
 
                                 <c:if test="${type=='EIE'}">
-                                    Vous pouvez déposer une demande d'autorisation ${l_ph1} de deux façon :
+                                    <spring:message code="label.Vouspouvezdeposerunedemandedautorisation"/>Vous pouvez déposer une demande d'autorisation ${l_ph1} de deux façon :
                                     <ul>
                                         <li> soit en remplissant le formulaire de renseignement préalable qui une fois validé va vous permetre de déposé votre demande d'autorisation ${l_ph1}</li>
                                         <li> ou bien vous pouvez passez cette etape qui est une étape facultatife et remplir directement votre demande d'autorisation ${l_ph1}  </li>

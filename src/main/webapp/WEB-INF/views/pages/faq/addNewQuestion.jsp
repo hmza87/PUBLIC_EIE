@@ -29,7 +29,7 @@
     <div class="card">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10 text-center">
-                <h1 class="text-success mt-4 mb-4">Ajouter une Question</h1>
+                <h1 class="text-success mt-4 mb-4"><spring:message code="label.AjouteruneQuestion"/></h1>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                 <div class="col-6">
                    <div class="form-group">
                        <label>
-                           Titre de la Question
+                           <spring:message code="label.TitredelaQuestion"/>
                        </label>
                        <input type="hidden" class="form-control" name="id_question" id="id_question" value="${question.id_question}">
                        <input type="text" class="form-control" name="titre" id="titre" value="${question.titre}">
@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         <label>
-                            Description de la question
+                            <spring:message code="label.Descriptiondelaquestion"/>
                         </label>
                         <textarea rows="4" class="form-control" id="desc" name="desc">${question.description}</textarea>
                     </div>
@@ -56,8 +56,8 @@
             </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-6 text-right">
-                <a href="/faq" class="btn btn-danger">annuler</a>
-                <button class="btn btn-success" onclick="add_faq.()">Sauvegarder</button>
+                <a href="/faq" class="btn btn-danger"><spring:message code="label.Annuler"/></a>
+                <button class="btn btn-success" onclick="add_faq()"><spring:message code="label.Sauvegarder"/></button>
             </div>
         </div>
 

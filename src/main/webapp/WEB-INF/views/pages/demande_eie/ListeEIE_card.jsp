@@ -89,8 +89,8 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-3 col-sm-12">
-                                <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','/api/checkEIESelect/AE')"><spring:message code="button.consulter"/></a>
-                            </div>
+                                <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','/api/checkEIE')"><spring:message code="button.consulter"/></a>
+                            </div>Select/AE
                         </div>
 
 
@@ -110,13 +110,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body justify-content-center">
-                <h4 class="text-center">Voulez-vous ajouter cette demande à votre profil ?</h4>
+                <h4 class="text-center"><spring:message code="label.Voulezvousajoutercettedemandeavotreprofil"/></h4>
                 <i class="fa fa-info-circle" style="font-size: 80px; justify-content: center; display: flex; color: #f1c40f"></i>
             </div>
             <div class="modal-footer justify-content-center">
                 <div class="btn-group">
-                    <button class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span> Non</button>
-                    <a class="btn btn-primary" type="button" href="/Mon_profil#comptes"> Oui <span class="fa fa-check"></span></a>
+                    <button class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span><spring:message code="label.non"/> </button>
+                    <a class="btn btn-primary" type="button" href="/Mon_profil#comptes"> <spring:message code="label.oui"/> <span class="fa fa-check"></span></a>
                 </div>
             </div>
 

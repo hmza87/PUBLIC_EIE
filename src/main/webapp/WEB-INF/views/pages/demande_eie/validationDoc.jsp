@@ -80,7 +80,7 @@
 
                                                 <%--<h5 style="float:right;color:black">Validation du documents</h5>--%>
 
-                                                <h4>Compléter les documents</h4>
+                                                <h4><spring:message code="label.Completerlesdocuments"/></h4>
                                                 <div class="row p-0 m-0 mt-5">
 
 
@@ -90,8 +90,8 @@
                                                     <thead>
                                                     <tr>
 
-                                                        <th scope="col">Piéces a fournir</th>
-                                                        <th scope="col">Commentaitre</th>
+                                                        <th scope="col"><spring:message code="label.Piecesafournir"/></th>
+                                                        <th scope="col"><spring:message code="label.Commentaire"/></th>
 
                                                     </tr>
                                                     </thead>
@@ -141,12 +141,12 @@
 
                                                     <c:if test="${type!='AE'}">
                                                         <a href="/api/recapEiee/${id}/${type}" class="btn "
-                                                           style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+                                                           style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;"><spring:message code="button.Enregistrer"/></a>
                                                     </c:if>
                                                     <c:if test="${type=='AE'}">
                                                         <input type="hidden" value="${id}" class="form-control" id="id_name_id">
                                                         <button class="btn btn-primary" onclick="changer_statut1_AE('id_name_id','72','Bien enregistrer','${type}')">
-                                                            Enregistrer
+                                                            <spring:message code="button.Enregistrer"/>
                                                         </button>
                                                     </c:if>
 

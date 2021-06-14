@@ -65,10 +65,10 @@
     <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
      
        
-        <a href="/api/ListInstallation" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Liste des demandes</a>
+        <a href="/api/ListInstallation" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;"><spring:message code="label.Listedesdemandes"/></a>
        
        
-        <a href="/api/addInstallation/0/N" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;">Nouvelle demande</a>
+        <a href="/api/addInstallation/0/N" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;"><spring:message code="label.Nouvelledemande"/></a>
 
 <section class="services-section" style="background-color: white;margin-top: 2%">
     <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload">
@@ -87,7 +87,7 @@
 
                                     <%--<h5 style="float:right;color:black">Validation du documents</h5>--%>
 
-                                    <h4>Améliorer les documents</h4>
+                                    <h4><spring:message code="label.Ameliorerlesdocuments"/></h4>
                                     <div class="row p-0 m-0 mt-5">
 
 
@@ -121,7 +121,7 @@
                                         </div>
                                     </c:forEach>
 
-<a href="/api/ListInstallation" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+<a href="/api/ListInstallation" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;"><spring:message code="button.Enregistrer"/></a>
        
                                 </div>
                             </div>

@@ -23,12 +23,12 @@
 
 
                     <form class="form-horizontal mt-3" action="">
-                        <h4 class="titre_abs "> Attacher les documents définitifs</h4>
+                        <h4 class="titre_abs "> <spring:message code="label.Attacherlesdocumentsdefinitifs"/></h4>
                         <input type="hidden" id="id_dmd" value="${iddemande}">
                         <div class="row m-0 p-0 mt-5">
                             <c:if test="${type=='EE'}">
                                 <div class="col-6">
-                                    <label>Etude d’Impact sur l’Environnement définitive: </label>
+                                    <label><spring:message code="label.EtudedImpactsurlEnvironnementdefinitive"/>: </label>
                                     <input multiple onchange="addDoc_eie('id_dmd','7','docr')" type="file"
                                            class="form-control" id="docr"></input>
 
@@ -36,7 +36,7 @@
                             </c:if>
                             <c:if test="${type=='NT'}">
                                 <div class="col-6">
-                                    <label>Notice d’Impact sur l’Environnement définitive: </label>
+                                    <label><spring:message code="label.NoticedImpactsurlEnvironnementdefinitive"/>: </label>
                                     <input multiple onchange="addDoc_eie('id_dmd','7','docr1')" type="file"
                                            class="form-control" id="docr1"></input>
 
@@ -44,14 +44,14 @@
                             </c:if>
                             <c:if test="${type=='AE'}">
                                 <div class="col-6">
-                                    <label>Audit Environnemental définitif: </label>
+                                    <label><spring:message code="label.Auditenvironnementaldefinitif"/>: </label>
                                     <input multiple onchange="addDoc_eie('id_dmd','7','docr2')" type="file"
                                            class="form-control" id="docr2"></input>
 
                                 </div>
                             </c:if>
                             <div class="col-6">
-                                <label> Cahier des charges définitif: </label><br/>
+                                <label><spring:message code="label.Cahierdeschargesdefinitif"/> : </label><br/>
                                 <input multiple onchange="addDoc_eie('id_dmd','6','docp')" type="file"
                                        class="form-control" id="docp"></input>
                             </div>

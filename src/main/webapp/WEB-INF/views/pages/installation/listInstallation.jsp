@@ -74,7 +74,7 @@
                             <th class="" rowspan="2"><spring:message code="label.descriptiondinstallation"/></th>
                             <th class="" rowspan="2"><spring:message code="label.structuredinstallation"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Horairedexploitation"/></th>
-                            <th class="" rowspan="2">Récépissé</th>
+                            <th class="" rowspan="2"><spring:message code="label.Recepisse"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Rapportdeconformite"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Action"/></th>
                         </tr>
@@ -111,7 +111,7 @@
                                     </c:if>
                                     <c:if test="${empty nt.code}">
 								<span class="f-12">
-									Pas de code
+									<spring:message code="label.Pasdecode"/>
 								</span>
                                     </c:if>
 
@@ -144,7 +144,7 @@
                                 <td> <c:if test="${nt.statut.id_statut_projet == 17}">
                                     <a class="removeStyle" download
                                        href="/api/generate_pdf_installation/${nt.id_installation }">
-                                        Télécharger</a> </c:if></td>
+                                        <spring:message code="button.Telecharger"/> </a> </c:if></td>
                                 <td><c:if test="${nt.statut.id_statut_projet ==15 || nt.statut.id_statut_projet == 18 }">
 
                                     <a class="removeStyle" download
@@ -256,7 +256,7 @@
 <%--                </table>--%>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"><spring:message code="label.Fermer"/> </button>
             </div>
         </div>
 

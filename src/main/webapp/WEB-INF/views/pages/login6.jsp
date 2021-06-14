@@ -550,8 +550,7 @@
                                 <div class="col-8 text-center text-underline">
 
                                     <h2 class="font-weight-700">
-                                        <spring:message
-                                                code="label.Preparezvotredemarche"/></h2>
+                                        <spring:message code="label.Preparezvotredemarche"/></h2>
 
                                 </div>
                                 <div class="col-2"></div>
@@ -734,9 +733,9 @@ margin-bottom: 10px;">
                                                         code="label.Lespieceafournir"/> :</p>
 
                                                 <div id="accordion">
-                                                    <h3>Test</h3>
+                                                    <h3><spring:message code="label.Test"/></h3>
                                                     <div>
-                                                        desciption
+                                                        <spring:message code="label.desciption"/>
                                                     </div>
                                                 </div>
 
@@ -791,7 +790,7 @@ margin-bottom: 10px;">
                                                 <p class="text-success h-4 font_bold">
                                                     <%--<spring:message
                                                         code="label.Jefaislesuividemademandeenligne"/>--%>
-                                                    Traitement de la demande
+                                                        <spring:message code="label.Traitementdelademande"/>
                                                 </p>
                                                 <p><spring:message code="label.Vouspouvezsuivrelevolution"/></p>
                                                 <p><spring:message code="label.Aussivousrecevrezegalement"/></p>
@@ -844,7 +843,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Importationdechetszonefranche"/> </h6>
                                                 <div class="dddd" style="position: absolute;top: 110px;right: 10px;cursor: pointer">
-                                                    <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')">Nouveau</div>
+                                                    <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')"><spring:message code="label.Nouveau"/></div>
                                                 </div>
                                                 <c:choose>
                                                     <c:when test="${empty user}">

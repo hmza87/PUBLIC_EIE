@@ -644,9 +644,9 @@ margin-bottom: 10px;">
                                                         code="label.Lespieceafournir"/> :</p>
 
                                                 <div id="accordion">
-                                                    <h3>Test</h3>
+                                                    <h3><spring:message code="label.Test"/></h3>
                                                     <div>
-                                                        desciption
+                                                        <spring:message code="label.desciption"/>
                                                     </div>
                                                 </div>
 
