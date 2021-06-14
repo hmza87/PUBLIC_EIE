@@ -12,13 +12,13 @@
     <table class="table table-bordered " >
         <thead>
         <tr>
-            <th> N° matriculation </th>
-            <th> N° châssis </th>
-            <th> Poids total en charge </th>
-            <th> Poids net du véhicule </th>
-            <th> Equipement de sécurité </th>
-            <th> Attestation d'assurance</th>
-            <th> Action </th>
+            <th> <spring:message code="label.Nmatriculation"/></th>
+            <th> <spring:message code="label.NChassis"/> </th>
+            <th> <spring:message code="label.Poidstotalencharge"/> </th>
+            <th> <spring:message code="label.Poidsnetduvehicule"/> </th>
+            <th> <spring:message code="label.Equipementdesecurite"/></th>
+            <th> <spring:message code="label.Attestationdassurance"/></th>
+            <th> <spring:message code="label.Action"/> </th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
             </c:when>
             <c:otherwise>
                 <tr>
-                    <td colspan="7" class="bg-primary text-center"> Aucun véhicule dans cette demande</td>
+                    <td colspan="7" class="bg-primary text-center"> <spring:message code="label.Aucunvehiculedanscettedemande"/></td>
                 </tr>
             </c:otherwise>
         </c:choose>

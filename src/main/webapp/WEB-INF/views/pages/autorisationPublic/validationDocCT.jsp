@@ -74,7 +74,7 @@
 
                                     <%--<h5 style="float:right;color:black">Validation du documents</h5>--%>
 
-                                    <h4>Améliorer les documents</h4>
+                                    <h4><spring:message code="label.Ameliorerlesdocuments"/></h4>
                                     <div class="row p-0 m-0 mt-5">
 
 
@@ -108,7 +108,7 @@
                                         </div>
                                     </c:forEach>
 
-<a href="/api/getListCollectTrans" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Enregistrer</a>
+<a href="/api/getListCollectTrans" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;"><spring:message code="button.Enregistrer"/></a>
        
                                 </div>
                             </div>

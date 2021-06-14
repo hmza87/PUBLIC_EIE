@@ -55,7 +55,7 @@
                     <th rowspan="2"><spring:message code="label.piecefournie"/></th>
                     <%--<th rowspan="2"><spring:message code="label.Etudedimpact"/></th>
                     <th rowspan="2"><spring:message code="label.Enquettepublic"/></th>--%>
-                    <th rowspan="2">Cahier de charge Définitive</th>
+                    <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/></th>
                     <th rowspan="2"><spring:message code="label.Avisdeprojet"/></th>
                     <%--<th rowspan="2"><spring:message code="label.Informationcomplementaire"/></th>--%>
                     <th rowspan="2"><spring:message code="label.Action"/></th>
@@ -92,7 +92,7 @@
                         <td>
                             <c:if test="${not empty nt.detailRegion}">
                                 <button onclick="fun_affiche_modal('#modal_DetailRegion','${nt.id_demande_information}')"
-                                        class="btn btn-success btn-sm">Details Region
+                                        class="btn btn-success btn-sm"><spring:message code="label.DetailRegion"/>
                                 </button>
                             </c:if>
                             <c:if test="${empty nt.detailRegion}">
@@ -104,7 +104,7 @@
                             <c:if test="${not empty nt.categories}">
                                 <button class="btn btn-success btn-sm"
                                         onclick="fun_affiche_modal('#modal_categorie','${nt.id_demande_information}')">
-                                    Catégories
+                                    <spring:message code="label.Categories"/>
                                 </button>
                             </c:if>
                             <c:if test="${empty nt.categories}">
@@ -145,7 +145,7 @@
                             <c:if test="${nt.statut.id_statut_projet==13 }">
                                 <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
                                    class="btn btn-primary" title="Attacher Avis de projet"><i
-                                        class="fa fa-check"></i> Attacher Avis de projet</a>
+                                        class="fa fa-check"></i><spring:message code="label.AttacherAvisdeprojet"/> </a>
 
                             </c:if>
 
@@ -158,7 +158,7 @@
                             <c:if test="${nt.statut.id_statut_projet==12}">
                                 <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
                                    class="btn btn-primary" title="Attacher les documents définitive"><i
-                                        class="fa fa-pencil"></i> Déposer la demande</a>
+                                        class="fa fa-pencil"></i><spring:message code="label.Deposerlademande"/>  </a>
                             </c:if>
 
                         </td>
@@ -169,7 +169,7 @@
                         <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Catégories</h5>
+                                    <h5 class="modal-title"><spring:message code="label.Categories"/></h5>
                                     <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -184,7 +184,7 @@
                                                     #
                                                 </div>
                                                 <div class="col-10 border p-2 font_bold  btn-gris">
-                                                    Nom
+                                                    <spring:message code="label.nom"/>
                                                 </div>
                                             </div>
                                             <c:forEach items="${nt.categories}" var="cat" varStatus="loopp">
@@ -217,7 +217,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="">Détail Région</h5>
+                                    <h5 class="modal-title" id=""><spring:message code="label.DetailRegion"/></h5>
                                     <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -229,13 +229,13 @@
                                             <div class="row "
                                                  style="background: gray;color: white;border-color: #737373;">
                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                    Region
+                                                    <spring:message code="label.Region"/>
                                                 </div>
                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                    Préfécture
+                                                    <spring:message code="label.prefecture"/>
                                                 </div>
                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                    Commune
+                                                    <spring:message code="label.commune"/>
                                                 </div>
                                             </div>
 

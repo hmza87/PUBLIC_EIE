@@ -63,10 +63,10 @@
     <section class="d-sm-none d-md-block" style="margin: 0 1rem 0 1rem">
         <div class="mt-3 mx-auto">
             <!-- Grid row -->
-            <div class="row pl-5 ">
+            <div class="row pl-5 "  >
                 <!-- Grid column -->
-                <div class="col-md-12 col-lg-12 col-xl-12 mb-4">
-                    <div class="row mt-2 justify-content-start">
+                <div class="col-md-12 col-lg-12 col-xl-12 mb-4" >
+                    <div class="row mt-2 justify-content-start" >
                         <div class="col-md-auto col-sm-12 pr-3 text-sm-center p-2 text-lg-left pl-auto">
                             <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12">
                                 <spring:message code="label.Ressources"/>

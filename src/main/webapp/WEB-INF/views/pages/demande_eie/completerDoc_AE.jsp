@@ -36,7 +36,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
                         <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Compléter le Dossier </li>
+                        <li class="breadcrumb-item active" aria-current="page"><spring:message code="label.CompleterleDossier"/>  </li>
 
                     </ol>
                 </nav>
@@ -47,7 +47,7 @@
             <div class="col-md-3 col-sm-12">
                 <c:choose>
                     <c:when test="${type=='AE'}">
-                        <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. compléter le dossier </button>
+                        <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1.<spring:message code="label.CompleterleDossier"/>   </button>
                     </c:when>
                 </c:choose>
 
@@ -55,7 +55,7 @@
             <div class="col-lg-6 col-sm-8 col-md-8 mx-4">
                 <div class="row pb-2 mt-3">
                     <div class="col-12 pl-0 pr-0">
-                        <h4 class="titre_abs " style="text-align:center"> Compléter le dossier </h4>
+                        <h4 class="titre_abs " style="text-align:center"><spring:message code="label.CompleterleDossier"/> </h4>
                     </div>
                     <div id="step1" class="col-12 z_collecteur"  >
                         <c:choose>

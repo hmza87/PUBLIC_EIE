@@ -11,7 +11,7 @@
 <div class="row mb-5" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-12 col-sm-12">
         <div id="accordion">
-            <h2>1. informations sur le pétitionnaire</h2>
+            <h2>1.<spring:message code="label.informationssurlepetitionnaire"/> </h2>
             <div>
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-12">
@@ -65,7 +65,7 @@
                 </div>
 
             </div>
-            <h2>2. informations sur le projet </h2>
+            <h2>2.<spring:message code="label.informationssurleprojet"/>  </h2>
             <div>
                 <c:if test="${type=='EE' || type=='RS'}">
                     <div class="row">
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Montant d'investissement en MDH</label>
+                                <label><spring:message code="label.MontantdinvestissementenMDH"/> </label>
                                 <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Transfrontalier</label>
+                                <label><spring:message code="label.Transfrontalier"/> </label>
                                 <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Montant d'investissement en MDH</label>
+                                <label><spring:message code="label.MontantdinvestissementenMDH"/> </label>
                                 <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
                             </div>
                         </div>
@@ -109,13 +109,13 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Transfrontalier</label>
+                                <label><spring:message code="label.Transfrontalier"/> </label>
                                 <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Date démarrage</label>
+                                <label><spring:message code="label.DatedeDemarrage"/></label>
                                 <c:set value="${fn:split(demande.dateDemarage, ' ')}" var="dt" />
                                 <input disabled type="text" class="form-control" value="${dt[0]}">
                             </div>
@@ -124,7 +124,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Date Résiliation</label>
+                                <label><spring:message code="label.DateResiliation"/></label>
                                 <c:set value="${fn:split(demande.dateResiliation, ' ')}" var="dt2" />
                                 <input disabled type="text" class="form-control" value="${dt2[0]}">
                             </div>
@@ -141,7 +141,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Montant d'investissement en MDH</label>
+                                <label><spring:message code="label.MontantdinvestissementenMDH"/></label>
                                 <input disabled type="text" class="form-control" value="${demande.montant_investissement}">
                             </div>
                         </div>
@@ -149,20 +149,20 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Nature du Projet</label>
+                                <label><spring:message code="label.NatureduProjet"/></label>
                                 <input disabled type="text" class="form-control" value="${demande.nature_projet}">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Consistance du projet</label>
+                                <label><spring:message code="label.Consistanceduprojet"/></label>
                                 <input disabled type="text" class="form-control" value="${demande.consistance_proj}">
                             </div>
                         </div>
                     </div>
                 </c:if>
             </div>
-            <h2>3. localisation du projet </h2>
+            <h2>3.<spring:message code="label.localisationduprojet"/>  </h2>
             <div>
                 <div class="row">
                     <div class="col-sm-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
@@ -171,13 +171,13 @@
                                 <div class="row "
                                      style="background: gray;color: white;border-color: #737373;">
                                     <div class="col-4 border p-2 font_bold  btn-gris">
-                                        Region
+                                        <spring:message code="label.Region"/>
                                     </div>
                                     <div class="col-4 border p-2 font_bold  btn-gris">
-                                        Préfécture
+                                        <spring:message code="label.prefecture"/>
                                     </div>
                                     <div class="col-4 border p-2 font_bold  btn-gris">
-                                        Commune
+                                        <spring:message code="label.commune"/>
                                     </div>
                                 </div>
 

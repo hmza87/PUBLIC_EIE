@@ -96,7 +96,7 @@
 
                                 <button class="tablinks btn-primary btn"
                                         onclick="openCity(event, '1')" id="defaultOpen">1.
-                                    <%--<spring:message code="label.InformationdemandeurA"/>--%> Information du demandeur</button>
+                                    <%--<spring:message code="label.InformationdemandeurA"/>--%><spring:message code="label.Informationdudemandeur"/> </button>
                                 <button class="tablinks btn-primary btn my_tab" id="Btn2" <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '2')"><spring:message
                                         code="label.CatalogueA"/></button>
@@ -107,14 +107,14 @@
                                         onclick="openCity(event, '4')"><spring:message
                                         code="label.MespiecesA"/></button>
                                 <button class="tablinks btn-primary btn my_tab montab" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="verif_champs_recap('4','CT','id_collecte','5')">5. Récapitulation</button>
+                                        onclick="verif_champs_recap('4','CT','id_collecte','5')">5. <spring:message code="label.Recapitulation"/></button>
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-12 pl-sm-3 pl-0  pr-sm-3 pr-0">
                             <div id="1" class="tabcontent">
                                 <div class="row m-0 p-0 ">
                                     <div class="col-auto  pl-sm-3 pl-0">
-                                        <h4 class="titre_abs "><%--<spring:message code="label.InformationDemandeurA"/>--%> Information du demandeur</h4>
+                                        <h4 class="titre_abs "><%--<spring:message code="label.InformationDemandeurA"/>--%><spring:message code="label.Informationdudemandeur"/> </h4>
                                     </div>
                                 </div>
 
@@ -678,7 +678,7 @@
                                         <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
                                                id="url_file_pdf">
                                         <button class="btn btn-success btn-block "
-                                                onclick="verif_champs_ct('4','CT','id_collecte','5')">Afficher le récapitulatif
+                                                onclick="verif_champs_ct('4','CT','id_collecte','5')"><spring:message code="label.Afficherlerecapitulatif"/>
                                         </button>
                                     </div>
                                 </div>
@@ -686,7 +686,7 @@
 
                             <div id="5" class="tabcontent">
 
-                                <h4 class="titre_abs ">Récapitulation</h4>
+                                <h4 class="titre_abs "><spring:message code="label.Recapitulation"/></h4>
                                 <div id="recap_ct"></div>
                                 <div class="row justify-content-center mt-2 mb-4">
                                     <div class="col-md-2 col-sm-6">

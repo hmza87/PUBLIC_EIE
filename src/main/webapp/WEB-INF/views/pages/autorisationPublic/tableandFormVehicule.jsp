@@ -12,13 +12,13 @@
     <table class="table table-bordered " >
         <thead>
         <tr>
-            <th> N° matriculation </th>
-            <th> N° châssis </th>
-            <th> Poids total en charge </th>
-            <th> Poids net du véhicule </th>
-            <th> Equipement de sécurité </th>
-            <th> Attestation d'assurance</th>
-            <th> Action </th>
+            <th> <spring:message code="label.Nmatriculation"/> </th>
+            <th> <spring:message code="label.NChassis"/> </th>
+            <th> <spring:message code="label.Poidstotalencharge"/> </th>
+            <th> <spring:message code="label.Poidsnetduvehicule"/></th>
+            <th> <spring:message code="label.Equipementdesecurite"/></th>
+            <th> <spring:message code="label.Attestationdassurance"/></th>
+            <th> <spring:message code="label.Action"/> </th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
             </c:when>
             <c:otherwise>
                 <tr>
-                    <td colspan="7" class="bg-primary text-center"> Aucun véhicule dans cette demande</td>
+                    <td colspan="7" class="bg-primary text-center"><spring:message code="label.Aucunvehiculedanscettedemande"/></td>
                 </tr>
             </c:otherwise>
         </c:choose>
@@ -68,7 +68,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        N° d'immatricule
+                        <spring:message code="label.Nmatriculation"/>
                     </label>
                     <input type="text" class="form-control" id="matricule" value="${vehicules.num_matricule}" name="num_matricule">
                     <input type="hidden" class="form-control" id="id_vehicule" value="${vehicules.id_vehicule}" name="id_vehicule">
@@ -77,7 +77,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        N° Châssis
+                        <spring:message code="label.NChassis"/>
                     </label>
                     <input type="text" class="form-control" id="chassis" value="${vehicules.num_chassis}" name="num_chassis">
                 </div>
@@ -85,7 +85,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        Poids total en charge
+                        <spring:message code="label.Poidstotalencharge"/>
                     </label>
                     <input type="text" class="form-control" id="poidsTotal" value="${vehicules.poit_totale_charge}" name="poit_totale_charge">
                 </div>
@@ -93,7 +93,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        Poids net du véhicule
+                        <spring:message code="label.Poidsnetduvehicule"/>
                     </label>
                     <input type="text" class="form-control" id="poidsNet" value="${vehicules.point_net}" name="point_net">
                 </div>
@@ -101,7 +101,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        Equipement de sécurité
+                        <spring:message code="label.Equipementdesecurite"/>
                     </label>
                    <input type="file" id="securiteEquip" class="form-control">
 
@@ -110,7 +110,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="f-14">
-                        Attestation d'assurance
+                        <spring:message code="label.Attestationdassurance"/>
                     </label>
                     <input type="file" class="form-control" id="file">
                 </div>
@@ -118,7 +118,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-3">
-                <button onclick="Save_vehicule('file','securiteEquip')" class="btn btn-primary btn-block">Enregistrer le Vehicule</button>
+                <button onclick="Save_vehicule('file','securiteEquip')" class="btn btn-primary btn-block"><spring:message code="label.EnregistrerleVehicule"/> </button>
             </div>
         </div>
     </form>

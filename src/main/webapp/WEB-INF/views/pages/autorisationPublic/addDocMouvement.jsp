@@ -35,7 +35,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
                         <li class="breadcrumb-item"><a href="/api/checkEIESelect">${p_page} </a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Ajouter le sertificat d'élimination </li>
+                        <li class="breadcrumb-item active" aria-current="page"><spring:message code="label.Ajouterlesertificatdelimination"/>  </li>
 
                     </ol>
                 </nav>
@@ -44,13 +44,13 @@
 
         <div class="row" style="text-align: ${pageContext.response.locale=='ar'?'right':'left'}">
             <div class="col-md-3 col-sm-12">
-                <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. Certificat d'élimination </button>
+                <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')">1. <spring:message code="label.Certificatdelimination"/> </button>
 
             </div>
             <div class="col-lg-6 col-sm-8 col-md-9 mx-4">
                 <div class="row pb-2 mt-3">
                     <div class="col-12 pl-0 pr-0">
-                        <h4 class="titre_abs " style="text-align:center">Certificat d'élimination</h4>
+                        <h4 class="titre_abs " style="text-align:center"><spring:message code="label.Certificatdelimination"/></h4>
                     </div>
 
                     <div id="step1" class="col-12 z_collecteur"  >
@@ -60,7 +60,7 @@
                                 <c:if test="${empty notification.url_certicat_elimination}">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label>Certificat d'élimination</label>
+                                            <label><spring:message code="label.Certificatdelimination"/></label>
                                             <input type="file" class="form-control" onchange="updateFile('${notification.id_notification}',this,1)">
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                 <c:if test="${not empty notification.url_certicat_elimination}">
                                     <div class="col-md-11 col-sm-11">
                                         <div class="form-group">
-                                            <label>Certificat d'élimination</label>
+                                            <label><spring:message code="label.Certificatdelimination"/></label>
                                             <input type="file" class="form-control" onchange="updateFile('${notification.id_notification}',this,1)">
                                         </div>
                                     </div>
@@ -81,13 +81,13 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label>Nombre de colis</label>
+                                        <label><spring:message code="label.Nombredecolis"/></label>
                                         <input id="nbr_colis" type="text" class="form-control" value="${notification.nbr_colis}" onchange="setnbrColis(this,'${notification.id_notification}')">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label>Quantité prévue</label>
+                                        <label><spring:message code="label.Quantiteprevue"/></label>
                                         <input type="text" class="form-control" disabled value="${notification.quantite}" id="qte_prevue">
                                     </div>
                                 </div>
@@ -98,16 +98,16 @@
                                 <table class="table-striped table-bordered table my_table">
                                     <thead>
                                         <tr>
-                                            <th>Quantité</th>
-                                            <th>Fichier</th>
-                                            <th>Action</th>
+                                            <th><spring:message code="label.Quantite"/></th>
+                                            <th><spring:message code="label.Fichier"/></th>
+                                            <th><spring:message code="label.Action"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <c:set var="qteTotal" value="0"/>
                                     <c:if test="${empty notification.docMouvement}">
                                         <tr class="text-center">
-                                            <td colspan="3">Aucune Quantité</td>
+                                            <td colspan="3"><spring:message code="label.AucuneQuantite"/></td>
                                         </tr>
                                     </c:if>
                                     <c:if test="${not empty notification.docMouvement}">
@@ -134,17 +134,17 @@
                                 </table>
                                 <input type="hidden" value="0" id="id_detail_unit">
                                <div class="col-md-6">
-                                   <label>Quantité</label>
+                                   <label><spring:message code="label.Quantite"/></label>
                                    <input type="text" value="" class="form-control" id="qte_unit">
                                </div>
                                 <div class="col-md-6">
-                                    <label>Document de mouvement</label>
+                                    <label><spring:message code="label.Documentdemouvement"/></label>
                                     <input type="file" value="" class="form-control" id="file_unit">
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row justify-content-end">
                                         <div class="col-auto">
-                                            <button id="btn_add_detail" onclick="add_detail_mouvement('${notification.id_notification}')" class="btn btn-primary"> <span class="fa fa-plus"></span> Ajouter</button>
+                                            <button id="btn_add_detail" onclick="add_detail_mouvement('${notification.id_notification}')" class="btn btn-primary"> <span class="fa fa-plus"></span> <spring:message code="label.Ajouter"/></button>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                     <c:if test="${empty notification.url_quantite_justificatif}">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label>Justificatif </label>
+                                                <label><spring:message code="label.Justificatif"/> </label>
                                                 <input type="file" class="form-control"  onchange="updateFile('${notification.id_notification}',this,2)">
                                             </div>
                                         </div>
@@ -161,7 +161,7 @@
                                     <c:if test="${not empty notification.url_quantite_justificatif}">
                                         <div class="col-11">
                                             <div class="form-group">
-                                                <label>Justificatif </label>
+                                                <label><spring:message code="label.Justificatif"/> </label>
                                                 <input type="file" class="form-control" onchange="updateFile('${notification.id_notification}',this,2)">
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@
                                 <c:if test="${notification.statut.id_statut_projet==65}">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>Commentaire </label>
+                                            <label><spring:message code="label.Commentaire"/>) </label>
                                             <textarea disabled class="form-control" rows="3">${notification.commentaire}</textarea>
                                         </div>
                                     </div>

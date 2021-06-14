@@ -14,7 +14,7 @@
         <div id="accordion">
             <h2>
                 <%--<spring:message code="button.informationdinstallation"/>--%>
-                Installation de traitement des déchets
+                    <spring:message code="label.Installationdetraitementdesdechets"/>
             </h2>
             <div>
 
@@ -112,7 +112,7 @@
             </div>
             <h2>
                 <%--<spring:message code="button.informationdemandeur"/>--%>
-                Information sur le pétitionnaire
+                    <spring:message code="label.informationssurlepetitionnaire"/>
             </h2>
             <div>
                 <div class="row mb-2">

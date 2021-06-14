@@ -252,7 +252,7 @@
 
 
             </div>
-            <h2>Document de mouvement
+            <h2><spring:message code="label.documentdemouvement"/>
                 <button onclick="go_link('/api/okPDF/${notification.id_notification}')" style="font-size: 12px !important;" class="btn btn-warning text-white btn-sm">
                     <spring:message code="label.documentdemouvement"/>
                 </button>

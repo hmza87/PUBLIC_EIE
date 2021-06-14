@@ -12,13 +12,13 @@
     <div class="row m-0 p-0">
         <div class="col-6">
             <div class="form-group">
-                <label>Transporteur : </label><input type="hidden" name="id_notification"
+                <label><spring:message code="label.Transporteur"/>  : </label><input type="hidden" name="id_notification"
                                                      id="id_notification4"
                                                      value="${notification.id_notification}">
                 <select name="id_transporteur" id="id_Transporteur"
                         class="form-control select2"
                         data-width="100%">
-                    <option value="">Choisir...</option>
+                    <option value=""><spring:message code="label.choisir"/></option>
                     <c:forEach items="${Transporteur_liste}" var="t">
                         <option value="${t.id_transporteurParam }">${t.nom }</option>
                     </c:forEach>
@@ -30,7 +30,7 @@
                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
                         onclick="addObject_TR('formTransporteur','notif_tranport','divTableTranport')"
                         class="btn btn-success">
-                    Ajouter
+                    <spring:message code="label.Ajouter"/>
                 </button>
             </div>
         </div>
@@ -40,14 +40,14 @@
        class="table table-striped hover compact table-bordered text-md-nowrap">
     <thead class="thead-bleu">
     <tr>
-        <th class="">Nom</th>
+        <th class=""><spring:message code="label.nom"/></th>
 
 
-        <th class="">Identifiant fiscale</th>
+        <th class=""><spring:message code="label.Identifiantfiscale"/></th>
         <%--<th class="">Adresse</th>--%>
-        <th class="">Téléphone</th>
-        <th class="">Fax</th>
-        <th class="">Email</th>
+        <th class=""><spring:message code="label.Telephone"/></th>
+        <th class=""><spring:message code="label.Fax"/></th>
+        <th class=""><spring:message code="label.Email"/></th>
 
        <%-- <th class="">Action</th>--%>
     </tr>

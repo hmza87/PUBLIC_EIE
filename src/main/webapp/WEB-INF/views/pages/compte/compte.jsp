@@ -12,11 +12,11 @@
 <form style="margin-left:12px;" id="loginForm" name="loginForm">
 <div class="row">
   <div class="col">
-    <label class="cls">Représantant</label>
+    <label class="cls"><spring:message code="label.RepresantantA"/></label>
     <input type="text" class="form-control" id="nom"  placeholder="nom" value="${cpt.nom}">
     </div>
     <div class="col">
-    <label class="cls">Email</label>
+    <label class="cls"><spring:message code="label.Email"/></label>
     <input type="text" onChange="checkCode(this.value)" class="form-control" id="email"  placeholder="email" value="${cpt.email}">
     </div>
     </div>
@@ -25,28 +25,28 @@
     
   <div class="row">
   <div class="col">
-    <label class="cls">Mot de passe</label>
+    <label class="cls"><spring:message code="label.Motdepasse"/></label>
     <input type="password" class="form-control" id="password" placeholder="Mot de passe" value="${cpt.password}">
   </div>
   <div class="col">
-    <label class="cls">Confirmation</label>
+    <label class="cls"><spring:message code="label.Confirmation"/></label>
     <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" value="${cpt.password}" placeholder="Mot de passe">
   </div>
   </div>
   <div class="row">
    <div class="col">
-    <label class="cls">Tél</label>
+    <label class="cls"><spring:message code="label.Tel"/></label>
     <input type="text" class="form-control" id="tel"  placeholder="Tél" value="${cpt.tel}">
     </div>
   <div class="col">
-    <label class="cls">commission</label>
+    <label class="cls"><spring:message code="label.commission"/></label>
     <input type="text" class="form-control" id="commission" placeholder="commission" value="${cpt.commission}">
   </div></div>
   <input type="hidden" class="form-control" id="compteId" placeholder="commission" value="${cpt.compteId}">
   
   <div class="row">
    <div class="col">
-    <label class="cls">magazin</label>
+    <label class="cls"><spring:message code="label.commission"/></label>
     <select class="form-control" id="magasin">
       <c:forEach items="${magasin}" var="a">
       <option ${cpt.magasin.magasinId==a.magasinId?"selected":"" } value="${a.magasinId}">${a.nom}</option>

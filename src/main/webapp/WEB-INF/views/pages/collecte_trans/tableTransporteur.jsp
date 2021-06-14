@@ -18,7 +18,7 @@
                 <select name="id_transporteur" id="id_Transporteur"
                         class="form-control select2"
                         data-width="100%">
-                    <option value="">Choisir...</option>
+                    <option value=""><spring:message code="label.choisir"/></option>
                     <c:forEach items="${Transporteur_liste}" var="t">
                         <option value="${t[0] }">${t[1] }</option>
                     </c:forEach>

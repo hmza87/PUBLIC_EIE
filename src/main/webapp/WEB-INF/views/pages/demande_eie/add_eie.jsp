@@ -105,7 +105,7 @@
                                  <div class="col form-group">
                                 <label> <spring:message code="label.Regions"/> </label>
                                 <select  ${disabled } name="" id="id_region" required class="form-control select2" data-width="100%" multiple>
-                                    <option value="">Choisir...</option>
+                                    <option value=""><spring:message code="label.choisir"/></option>
                                    <c:forEach items="${regions}"  var="region">
                                         <option  value="${region.regionId}" > ${pageContext.response.locale=='ar'? region.nom_ar:region.nom_fr}</option>
                                     </c:forEach>

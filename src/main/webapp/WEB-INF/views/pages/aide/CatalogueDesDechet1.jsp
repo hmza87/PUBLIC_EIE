@@ -83,7 +83,7 @@
                     <div class="col-md-12 col-sm-12 col-lg-12">
                     <div class="" style="height: 50px; display: flex; justify-content: center; background: linear-gradient(to right, #b1eed9, #e3dddd)">
                         <div class="col-md-12 my-3 text-center">
-                            <strong class="profil text-white">Catalogue des déchets</strong><br>
+                            <strong class="profil text-white"><spring:message code="label.Cataloguedesdechets"/></strong><br>
                         </div>
                     </div>
                     </div>
@@ -91,10 +91,10 @@
                 <div class="row">
                     <div class="col-sm-12 col-lg-4 mt-2">
                         <div class="form-group">
-                            <b>Veuillez séléctionner un type</b>
+                            <b><spring:message code="label.Veuillezselectionneruntype"/></b>
                             <select id="classification" name="classification" class="form-control select-2 bg-light" required style="height: 40px;" onchange="getcla(this.value)">
-                                <option value="1">Dangereux</option>
-                                <option value="2">Non Dangereux</option>
+                                <option value="1"><spring:message code="label.dangereux"/></option>
+                                <option value="2"><spring:message code="label.nondangereux"/></option>
                             </select>
                         </div>
                     </div>

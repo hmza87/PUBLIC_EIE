@@ -80,7 +80,7 @@
 
                                                 <%--<h5 style="float:right;color:black">Validation du documents</h5>--%>
 
-                                                <h4>Compléter les documents</h4>
+                                                <h4><spring:message code="label.Completerlesdocuments"/></h4>
                                                 <div class="row p-0 m-0 mt-5">
 
 
@@ -89,8 +89,8 @@
                                                     <thead>
                                                     <tr>
 
-                                                        <th scope="col">Piéces a fournir</th>
-                                                        <th scope="col">Commentaitre</th>
+                                                        <th scope="col"><spring:message code="label.Piecesafournir"/></th>
+                                                        <th scope="col"><spring:message code="label.Commentaire"/></th>
 
                                                     </tr>
                                                     </thead>
@@ -125,7 +125,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                <a href="/api/getnotifById2/${type}/${id}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;">Valider</a>
+                                                <a href="/api/getnotifById2/${type}/${id}" class="btn " style="background-color: #7dc7bd;margin-bottom:12px;color:white;margin-top: 12px;"><th scope="col"><spring:message code="label.Valider"/></th></a>
 
                                             </div>
                                         </div>

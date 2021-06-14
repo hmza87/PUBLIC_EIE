@@ -34,7 +34,7 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="/">Acceuil</a></li>
+				<li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
 				<li class="breadcrumb-item active" aria-current="page">${p_page}</li>
 			</ol>
 		</nav>
@@ -49,7 +49,7 @@
 			class="table table-striped hover compact table-bordered text-md-nowrap">
 			<thead class="thead-bleu">
 				<tr>
-<th class="">N demande</th>
+<th class=""><spring:message code="label.Ndemande"/></th>
 
 					<th class=""><spring:message code="label.Raisonsociale" /></th>
 					<th class="">IF</th>

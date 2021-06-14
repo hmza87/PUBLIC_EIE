@@ -20,7 +20,7 @@
 
             <div class="col-md-12" style="text-align: center; margin-bottom: 22px;">
 
-                <h3 > Dossiers </h3>
+                <h3 ><spring:message code="label.Dossiers" />  </h3>
             </div>
 
 

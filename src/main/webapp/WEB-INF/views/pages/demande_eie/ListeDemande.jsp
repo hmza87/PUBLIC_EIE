@@ -53,15 +53,15 @@
                                     <th rowspan="2" ><spring:message code="label.Region"/></th>
                                     <th rowspan="2" ><spring:message code="label.Recap"/></th>
                                     <th rowspan="2" ><spring:message code="label.TypedeProjet"/></th>
-                                    <th rowspan="2" > Date de Visite </th>
-                                    <th rowspan="2" > Pv de visite </th>
+                                    <th rowspan="2" > <spring:message code="label.DatedeVisite"/> </th>
+                                    <th rowspan="2" > <spring:message code="label.Pvdevisite"/> </th>
 
                                     <c:if test="${type!='NT'}">
                                         <th rowspan="2" ><spring:message code="label.Caracteretransfrontalier"/> </th>
                                     </c:if>
                                     <c:if test="${type=='NT'}">
-                                        <th rowspan="2" > Type du projet </th>
-                                        <th rowspan="2" > Consistance du projet </th>
+                                        <th rowspan="2" > <spring:message code="label.Pvdevisite"/><spring:message code="label.Typeduprojet"/> </th>
+                                        <th rowspan="2" > <spring:message code="label.Consistanceduprojet"/> </th>
                                     </c:if>
                                     <th rowspan="2" ><spring:message code="label.piecefournie"/></th>
                                     <c:if test="${type=='EE'}">
@@ -69,10 +69,10 @@
                                         <th rowspan="2"><spring:message code="label.CahierdechargeDefinitive"/> </th>
                                     </c:if>
                                     <c:if test="${type=='NT'}">
-                                        <th rowspan="2">Notice d'impact environnementale définitive </th>
+                                        <th rowspan="2"><spring:message code="label.Noticedimpactenvironnementaledefinitive"/> </th>
                                     </c:if>
                                     <c:if test="${type=='AE'}">
-                                        <th rowspan="2">Audit environnemental définitif </th>
+                                        <th rowspan="2"><spring:message code="label.Auditenvironnementaldefinitif"/> </th>
                                     </c:if>
 
 
@@ -124,7 +124,7 @@
                                         </td>
                                         <td>
                                             <c:if test="${not empty nt.categories}">
-                                                <button class="btn btn-success btn-sm" onclick="fun_affiche_modal('#modal_categorie','${nt.id_demande_information}')">Catégories</button>
+                                                <button class="btn btn-success btn-sm" onclick="fun_affiche_modal('#modal_categorie','${nt.id_demande_information}')"><spring:message code="label.Categories"/></button>
                                             </c:if>
                                             <c:if test="${empty nt.categories}">
                                                 -
@@ -196,44 +196,45 @@
 
                                         <td>
                                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
-                                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i> Attacher les documents définitifs</a>
+                                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i><spring:message code="label.Attacherlesdocumentsdefinitifs"/> </a>
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==6}">
-                                                <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" >Télécharger l'autorisation</a>
+                                                <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" ><spring:message code="label.Telechargerlautorisation"/> </a>
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==47}">
-                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${nt.type}" >Modifier</a>
+                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${nt.type}" ><spring:message code="label.Modifier"/> </a>
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==60}">
-                                                <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" >Compléter le Dossier</button>
+                                                <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" ><spring:message code="label.CompleterleDossier"/></button>
+
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==13 }">
                                                 <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
-                                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i> Attacher l'avis de projet</a>
+                                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i><spring:message code="label.Attacherlavisdeprojet"/> </a>
                                             </c:if>
 
                                             <c:if test="${(nt.statut.id_statut_projet==59 && nt.documents_AE.size()==0) }">
                                                 <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
-                                                   class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i> Valider les documents</a>
+                                                   class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i><spring:message code="label.Validerlesdocuments"/> </a>
                                             </c:if>
                                             <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' && nt.documents_AE.size()>0}">
-                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i> compléter les documents</a>
+                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i><spring:message code="label.Completerlesdocuments"/> </a>
                                             </c:if>
 
                                             <c:if test="${nt.statut.id_statut_projet==71 && nt.type=='AE' }">
-                                                <button onclick="ajouter_rapport_ae('${nt.id_demande_information}')" class="btn btn-primary">Ajouter le rapport d'audit</button>
+                                                <button onclick="ajouter_rapport_ae('${nt.id_demande_information}')" class="btn btn-primary"><spring:message code="label.Ajouterlerapportdaudit"/></button>
                                             </c:if>
 
                                             <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
                                                 <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
                                                    class="btn btn-primary" title="Attacher les documents définitive"><i
-                                                        class="fa fa-pencil"></i> Déposer la demande</a>
+                                                        class="fa fa-pencil"></i> <spring:message code="label.Deposerlademande"/></a>
                                             </c:if>
 
                                             <c:if test="${nt.statut.id_statut_projet==73 && type=='AE'}">
                                                 <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Attacher les documents">
                                                     <i class="fa fa-check"></i>
-                                                    Attacher les documents
+                                                    <spring:message code="label.Attacherlesdocuments"/>
                                                 </a>
                                             </c:if>
 
@@ -245,7 +246,7 @@
                                         <div class="modal-dialog " role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Type de projet</h5>
+                                                    <h5 class="modal-title"><spring:message code="label.TypedeProjet"/></h5>
                                                     <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -260,7 +261,7 @@
                                                                     #
                                                                 </div>
                                                                 <div class="col-10 border p-2 font_bold  btn-gris">
-                                                                    Nom
+                                                                    <spring:message code="label.nom"/>
                                                                 </div>
                                                             </div>
                                                             <c:forEach items="${nt.categories}" var="cat" varStatus="loopp">
@@ -291,7 +292,7 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="">Détail Région</h5>
+                                                    <h5 class="modal-title" id=""><spring:message code="label.DetailRegion"/></h5>
                                                     <button onclick="close_modal(this)" type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -303,13 +304,13 @@
                                                             <div class="row "
                                                                  style="background: gray;color: white;border-color: #737373;">
                                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                    Region
+                                                                    <spring:message code="label.Region"/>
                                                                 </div>
                                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                    Préfécture
+                                                                    <spring:message code="label.prefecture"/>
                                                                 </div>
                                                                 <div class="col-4 border p-2 font_bold  btn-gris">
-                                                                    Commune
+                                                                    <spring:message code="label.commune"/>
                                                                 </div>
                                                             </div>
 
@@ -382,7 +383,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitleAE">Envoyer le rapport d'audit </h5>
+                <h5 class="modal-title" id="exampleModalLongTitleAE"><spring:message code="label.Envoyerlerapportdaudit"/> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -420,7 +421,7 @@
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Compléter le Dossier</h5>
+                <h5 class="modal-title" ><spring:message code="label.CompleterleDossier"/></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

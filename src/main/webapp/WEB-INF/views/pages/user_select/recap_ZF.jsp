@@ -96,17 +96,17 @@
         </c:if>
         <c:if test="${(type=='ET' || type=='TR') && (notification.statut.id_statut_projet==54)}">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
-            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-upload " ></i> Télécharger l'autorisation signée</a>
+            <a href="${url_Admin}${fn:replace(notification.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-upload " ></i><spring:message code="label.Telechargerlautorisationsignee"/> </a>
           </div>
         </c:if>
         <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54) }">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
-            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block mb-1 mt-1"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+            <a href="/api/addDocmouvement/${notification.id_notification}" class="btn btn-primary btn-block mb-1 mt-1"><i class="fa fa-plus " ></i> ${notification.statut.id_statut_projet==54?'Ajouter':'Modifier'}<spring:message code="label.lecertificatdelimination"/> </a>
           </div>
         </c:if>
         <c:if test="${(type=='ZF' || type=='XD') && (notification.statut.id_statut_projet==54|| notification.statut.id_statut_projet==68 ) && notification.classification.id_classification==1 }">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
-            <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
+            <button onclick="load_modal_transporteur('${notification.id_notification}')" class="btn btn-primary btn-block mt-1 mb-1"><i class="fa fa-plus " ></i><spring:message code="label.Declarerunnouveautransporteur"/>  </button>
           </div>
         </c:if>
 

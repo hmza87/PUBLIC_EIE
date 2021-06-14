@@ -252,7 +252,7 @@
                                             <spring:message code="label.Zonnefranche"/> <sup class="text-danger">*</sup>
                                         </c:when>
                                         <c:otherwise>
-                                            <spring:message code="label.pays"/> étranger
+                                            <spring:message code="label.pays"/>
                                         </c:otherwise>
                                     </c:choose>
 

@@ -99,7 +99,7 @@
       <div id="accordion">
         <h2>
           <%--<spring:message code="button.informationdinstallation"/>--%>
-            Installation de traitement des déchets
+            <spring:message code="label.Installationdetraitementdesdechets"/>
         </h2>
         <div>
 
@@ -115,7 +115,7 @@
           <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
-                <label> <spring:message code="label.Site"/>  de l'installation </label>
+                <label> <spring:message code="label.Site"/> <spring:message code="label.delinstallation"/>  </label>
                 <input type="text" disabled value="${installation.site}" class="form-control">
               </div>
             </div>
@@ -197,7 +197,7 @@
         </div>
         <h2>
           <%--<spring:message code="button.informationdemandeur"/>--%>
-          Information sur le pétitionnaire
+            <spring:message code="label.informationssurlepetitionnaire"/>
         </h2>
         <div>
           <div class="row mb-2">

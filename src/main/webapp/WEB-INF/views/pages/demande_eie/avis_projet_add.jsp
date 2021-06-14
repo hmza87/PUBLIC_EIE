@@ -77,7 +77,7 @@
                 <c:if test="${type=='EE'|| type=='NT'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')"><spring:message code="label.Piecefournir"/> </button>
                 </c:if>
-                <button class="btn btn-success btn-block text-left pl-5 cls_step montab" id="step_id4" onclick="affiche_eie_zone('#step4','#step_id4')" disabled>5. Récapitulation </button>
+                <button class="btn btn-success btn-block text-left pl-5 cls_step montab" id="step_id4" onclick="affiche_eie_zone('#step4','#step_id4')" disabled>5. <spring:message code="label.Recapitulation"/> </button>
 
             </div>
             <div class="col-lg-8 col-sm-8 col-md-8 mx-4">
@@ -148,7 +148,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class=" col form-group">
-                                        <label >Avis de projet </label>
+                                        <label ><spring:message code="label.Avisdeprojet"/> </label>
                                         <input required ${demande.statut.id_statut_projet==13?"":"disabled" } id="avis_projet" accept=".doc,.docx,.pdf"  type="file"  class="form-control" >
                                     </div>
                                 </div>
@@ -287,7 +287,7 @@
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label>Préféctures / Provinces</label>
+                                            <label><spring:message code="label.PrefecturesProvinces"/></label>
                                             <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lp}" var="p">
@@ -302,7 +302,7 @@
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label>Communes</label>
+                                            <label><spring:message code="label.communes"/></label>
                                             <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lc}" var="c" varStatus="loopp">
@@ -328,12 +328,12 @@
                                 </c:if>
                                 <c:if test="${type=='AE'}">
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
+                                        <button onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" ><spring:message code="label.Afficherlerecapitulatif"/></button>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='RS'}">
                                     <div class="col-sm-12 col-md-3">
-                                        <button class="btn btn-success btn-block" onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" >Afficher le récapitulatif</button>
+                                        <button class="btn btn-success btn-block" onclick="verif_champs1('step3','${type}','id_demande_information','#step4','#step_id4')" ><spring:message code="label.Afficherlerecapitulatif"/></button>
                                     </div>
                                 </c:if>
                             </div>
@@ -376,7 +376,7 @@
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
+                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" ><spring:message code="label.Afficherlerecapitulatif"/></button>
                                     </div>
                                 </div>
 
@@ -472,7 +472,7 @@
                                         <button class="btn btn-success btn-block" onclick="affiche_eie_zone('#step2','#step_id2')"><spring:message code="button.Precedent"/> </button>
                                     </div>
                                     <div class="col-sm-12 col-md-3">
-                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" >Afficher le récapitulatif</button>
+                                        <button onclick="verif_champs('step3','${type}','id_demande_information','#step4','#step_id4')" class="btn btn-success btn-block" ><spring:message code="label.Afficherlerecapitulatif"/></button>
                                     </div>
                                 </div>
 
