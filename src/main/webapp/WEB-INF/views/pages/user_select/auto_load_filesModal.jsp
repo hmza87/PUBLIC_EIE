@@ -12,8 +12,8 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Nom documents</th>
-                <th>Documents</th>
+                <th><spring:message code="label.Nomdocuments"/></th>
+                <th><spring:message code="label.Documents"/></th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
             </c:if>
             <c:if test="${empty doc}">
                 <tr>
-                    <td class="text-center" colspan="3">Aucun fichier</td>
+                    <td class="text-center" colspan="3"><spring:message code="label.AucunFichier"/></td>
                 </tr>
             </c:if>
 
@@ -58,7 +58,7 @@
         <c:if test="${show=='oui'}">
             <div class="row justify-content-center">
                 <div class="col-10 mt-3">
-                    <label>Rapport d'audit</label>
+                    <label><spring:message code="label.Rapportdaudit"/></label>
                     <input id="file_to_complete" onchange="setfileRapport_AE('${demande.id_demande_information}',this,'0')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                 </div>
             </div>
@@ -66,7 +66,7 @@
         <c:if test="${show=='non'}">
             <div class="row justify-content-center">
                 <div class="col-10 mt-3">
-                    <label>Rapport d'audit</label>
+                    <label><spring:message code="label.Rapportdaudit"/></label>
                     <div class="row">
                         <div class="col-9">
                             <input id="file_to_complete" onchange="setfileRapport_AE('${demande.id_demande_information}',this,'${demande.rapports_AE.get(demande.rapports_AE.size()-1).id_rapports_ae}')" type="file" class="form-control" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">

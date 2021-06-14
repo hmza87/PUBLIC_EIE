@@ -197,7 +197,7 @@
                                 </c:if>
 
                                 <c:if test="${type=='EIE'}">
-                                    <spring:message code="label.Vouspouvezdeposerunedemandedautorisation"/>Vous pouvez déposer une demande d'autorisation ${l_ph1} de deux façon :
+                                    <spring:message code="label.Vouspouvezdeposerunedemandedautorisation"/> ${l_ph1} de deux façon :
                                     <ul>
                                         <li> soit en remplissant le formulaire de renseignement préalable qui une fois validé va vous permetre de déposé votre demande d'autorisation ${l_ph1}</li>
                                         <li> ou bien vous pouvez passez cette etape qui est une étape facultatife et remplir directement votre demande d'autorisation ${l_ph1}  </li>
