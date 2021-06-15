@@ -445,9 +445,9 @@
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio"
                                                                            id="saufque"
-                                                                    <c:if test="${notif.type== '0'}">
+                                                                    <c:if test="${notif.type== '3'}">
                                                                            checked  </c:if> name="type"
-                                                                           value="0" onchange="my_function('0')">
+                                                                           value="3" onchange="my_function('3')">
                                                                     <label class="form-check-label"
                                                                            style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
                                                                         Tout
@@ -706,7 +706,7 @@
 
 <script>
     function my_function(val){
-        if(val==='0'){
+        if(val==='3'){
             $("#msg").show()
             $(".listCode").hide()
         }
