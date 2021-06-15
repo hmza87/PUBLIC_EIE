@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 
-<h2 style="text-align: center; margin-top: 10px"><spring:message code="label.mespieces"/></h2>
+<h2 style="text-align: center; margin-top: 10px">Les documents accompagnant la demande</h2>
 <div class="row justify-content-center">
     <div class="col-8 justify-content-center">
     <table class="table my_table table-striped table-bordered table-hover">
