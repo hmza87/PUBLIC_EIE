@@ -892,6 +892,10 @@ function updateGeneral_installation(from,table,tap,id_notif,nameId,returns) {
         }
     }
 
+    if(type!=="0"){
+        $("#cat").val("");
+    }
+
 
     $.ajax({
         type: "POST",

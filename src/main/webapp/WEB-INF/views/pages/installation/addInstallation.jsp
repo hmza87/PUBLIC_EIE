@@ -431,7 +431,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row m-0 p-0 mt-2" id="DivCat" style="display: none">
+                                <div class="row m-0 p-0 mt-2" id="DivCat" style="display:${notif.type== '0'?'block':'none'} ">
                                     <div class="col-6">
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -440,16 +440,18 @@
                                                     data-width="100%">
                                                 <option value=""><spring:message code="option.Choisir"/>...</option>
                                                 <c:forEach items="${categories}" var="c">
-                                                    <option  <c:if
-                                                            test="${notif.categorie== c.nom_fr}"> selected </c:if>
-                                                            value="${c.id_categorie}">${c.nom_fr }
-                                                    </option>
+                                                    <c:forEach items="${notif.categorie}" var="x">
+                                                        <option  <c:if
+                                                                test="${x.nom_fr== c.nom_fr}"> selected </c:if>
+                                                                value="${c.id_categorie}">${c.nom_fr }
+                                                        </option>
+                                                    </c:forEach>
                                                 </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row p-0" id="listCode">
+                                <div class="row p-0" id="listCode" style="display:${notif.type!= '0'?'block':'none'}">
                                     <div class="col-sm-8">
                                         <table class="table table-striped" data-page-length="15">
                                             <thead>
