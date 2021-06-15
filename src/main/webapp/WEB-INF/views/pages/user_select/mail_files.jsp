@@ -13,6 +13,10 @@
 <div class="row justify-content-center">
     <div class="col-8 justify-content-center">
     <table class="table my_table table-striped table-bordered table-hover">
+        <tr>
+            <td>Lettre</td>
+            <td><a target="_blank" class="btn btn-success" href="${Admin_url}${fn:replace(notif.url_doc_signer, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a></td>
+        </tr>
         <c:if test="${not empty doc}">
             <c:forEach items="${doc}" var="file">
                 <tr>

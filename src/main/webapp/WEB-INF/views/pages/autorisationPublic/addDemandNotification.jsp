@@ -633,24 +633,21 @@
                                 </button>
                             </div>
                             <div class="col-md-2 col-sm-6">
+                                <c:set var="etapexdtr" value="3" ></c:set>
+                                <c:if test="${type.equals('XD') || type.equals('TR')}" >
+                                    <c:set var="etapexdtr" value="12" ></c:set>
+                                </c:if>
                                 <c:choose>
-                                    <c:when test="${type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
+                                    <c:when test="${type.equals('XD') ||type.equals('ZF') || (not empty notification && notification.statut.id_statut_projet!=48)}">
                                         <button type="button"
-                                                onclick="verifier_reg_pref('Btn3','3')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="button.Suivant"/>
-                                        </button>
-                                    </c:when>
-                                    <c:when test="${type.equals('XD') || type.equals('TR')}">
-                                        <button type="button" id="Enregistrer"
-                                                onclick="addObject_step('formimportateur','importateurnotifiant','12','id_notification')"
+                                                onclick="verifier_reg_pref('Btn${etapexdtr}',${etapexdtr})"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
                                     </c:when>
                                     <c:otherwise>
                                         <button type="button" id="Enregistrer"
-                                                onclick="addObject_step('formimportateur','importateurnotifiant','3','id_notification')"
+                                                onclick="addObject_step('formimportateur','importateurnotifiant',${etapexdtr},'id_notification')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
@@ -760,7 +757,8 @@
                                                   </label>
                                                   <select id="pays" name="pays" class="custom-select">
                                                       <c:forEach items="${pays}" var="t">
-                                                          <option
+                                                          <option <c:if
+                                                                  test="${notification.pays.paysId== t[0]}"> selected </c:if>
                                                                   value="${t[0]}">${t[1]}</option>
                                                       </c:forEach>
                                                   </select>
@@ -2529,9 +2527,8 @@
     }
 
     function verif_recap(id_form, type, id_name) {
-        //if(event!=null)
-           // event.preventDefault();
-       // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
+        if(event!=null)
+            event.preventDefault();
         var id = $("#" + id_name).val();
         verif_champs(id_form, type, id_name, '10')
             changer_Statut(id, 33, type);
@@ -2643,12 +2640,12 @@
             success: function (response) {
 
                 swal({
-                        title: "Pays autorite enregistrer avec success",
-                        text: "Voulez-vous Ajouter un nouveau autorité?",
+                        title: "L'autorité enregistrer avec success",
+                        text: "Voulez-vous Ajouter un nouvelle autorité ?",
                         type: "success",
                         showCancelButton: true,
                         confirmButtonClass: "btn-success",
-                        confirmButtonText: "Oui, Ajouter un véhicule",
+                        confirmButtonText: "Oui, Ajouter",
                         cancelButtonText: "Non",
                         closeOnConfirm: true,
                         closeOnCancel: true
@@ -2657,7 +2654,7 @@
                         if (isConfirm) {
                             getPaysautorite('0');
                         } else {
-                            updateGeneral('formvehicule','collectetransporteur','4',parseInt(id_collect),'id_collecte','non');
+
                         }
                     });
             },
