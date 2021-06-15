@@ -311,7 +311,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- add type -->
                                 <div class="row m-0 p-0 mt-2">
                                     <div class="col-6">
@@ -334,7 +333,6 @@
                                     </div>
                                 </div>
                                 <!-- fin -->
-
                                 <div class="row m-0 p-0 mt-2">
 
                                     <div class="col-6">
@@ -357,8 +355,6 @@
                                     </div>
 
                                 </div>
-
-
                                 <div class="row m-0 p-0 mt-2">
 
                                     <div class="col-6">
@@ -376,62 +372,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-group"
-                                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-
-                                            <label><spring:message code="label.Operation"/> :</label>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-4 border-right">
-                                                            <div class="form-check">
-                                                                <input checked class="form-check-input" type="radio"
-                                                                       id="saufque"
-                                                                <c:if test="${notif.type== '1'}">
-                                                                       checked  </c:if> name="type"
-                                                                       value="1" onchange="my_function('1')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    الكل باستثناء
-                                                                </label>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-4 border-left">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio"
-                                                                       id="tous"
-                                                                <c:if test="${notif.type== '2'}">
-                                                                       checked  </c:if> name="type"
-                                                                       value="2" onchange="my_function('2')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    اختيار من اللائحة
-                                                                </label>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-4 border-left">
-                                                            <div class="form-check">
-                                                                <input  class="form-check-input" type="radio"
-                                                                       id="parType"
-                                                                <c:if test="${notif.type== '0'}">
-                                                                       checked  </c:if> name="type"
-                                                                       value="0" onchange="my_function('0')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    حسب النوع
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row m-0 p-0 mt-2" id="DivCat" style="display:${notif.type== '0'?'block':'none'} ">
+                               <%-- <div class="row m-0 p-0 mt-2" id="DivCat" style="display:${notif.type== '0'?'block':'none'} ">
                                     <div class="col-6">
                                         <div class="form-group"
                                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -450,58 +392,120 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-0" id="listCode" style="display:${notif.type!= '0'?'block':'none'}">
-                                    <div class="col-sm-8">
-                                        <table class="table table-striped" data-page-length="15">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col" style="min-width: 100px"><spring:message
-                                                        code="label.CodeA"/></th>
-                                                <th scope="col"><spring:message code="label.TypeA"/></th>
-                                                <th scope="col"><spring:message code="label.ValiderA"/></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                                </div>--%>
+                                <div class="row m-0 p-0 mt-2">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-sm-8" style="display: none;" id="msg">
+                                                <h1>Vous avez choisissez tous les codes</h1>
+                                            </div>
+                                            <div class="col-sm-8 listCode">
+                                                <h3 class="pt-5" style="text-align: left">La liste des codes</h3>
+                                                <table class="table MonTable table-striped" data-page-length="15">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col" style="min-width: 100px"><spring:message
+                                                                code="label.CodeA"/></th>
+                                                        <th scope="col"><spring:message code="label.TypeA"/></th>
+                                                        <th scope="col">Sélectionner</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
 
-                                            <c:forEach items="${code}" var="c">
+                                                    <c:forEach items="${code}" var="c">
 
-                                                <c:set var="checked" value=""/>
-                                                <c:forEach items="${notif.code}" var="code_colle">
-                                                    <c:if test="${code_colle.id_code==c.id_code}">
-                                                        <c:set var="checked" value="checked disabled"/>
-                                                    </c:if>
-                                                </c:forEach>
+                                                        <c:set var="checked" value=""/>
+                                                        <c:forEach items="${notif.code}" var="code_colle">
+                                                            <c:if test="${code_colle.id_code==c.id_code}">
+                                                                <c:set var="checked" value="checked disabled"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <tr>
+                                                            <td>${c.nom_fr } -</td>
+                                                            <td>${c.nom_ar }</td>
+                                                            <td>
+                                                                <input ${checked} class="h-15" type="checkbox"
+                                                                                  id="id-${c.id_code }"
+                                                                                  onchange="addCodeIT('id_installation','${c.id_code}','add')">
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
 
 
-                                                <tr>
-                                                    <td>${c.nom_fr } -</td>
-                                                    <td>${c.nom_ar }</td>
-                                                    <td><input ${checked} class="h-15" type="checkbox"
-                                                                          id="id-${c.id_code }"
-                                                                          onchange="addCodeIT('id_installation','${c.id_code}','add')">
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-4 mt-5" style="display: block;">
+                                            <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                                <label><spring:message code="label.type"/> :</label>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                           id="saufque"
+                                                                    <c:if test="${notif.type== '0'}">
+                                                                           checked  </c:if> name="type"
+                                                                           value="0" onchange="my_function('0')">
+                                                                    <label class="form-check-label"
+                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                        Tout
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="">
+                                                                <div class="form-check">
+                                                                    <input checked class="form-check-input" type="radio"
+                                                                           id="tous"
+                                                                    <c:if test="${notif.type== '2'}">
+                                                                           checked  </c:if> name="type"
+                                                                           value="2" onchange="my_function('2')">
+                                                                    <label class="form-check-label"
+                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                        De la liste
+                                                                    </label>
+                                                                </div>
 
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="d-block h-100 my_rows" id="my_rows">
-
-                                            <c:forEach items="${notif.code}" var="code_colle" varStatus="index">
-                                                <div class="row p-0 m-0 ${index.index%2==0?'bg-light':''} ">
-                                                    <div class="col-8"> ${code_colle.nom_ar} </div>
-                                                    <div class="col-4 p-2 text-center">
-                                                        <button class="btn btn-success rounded-circle"
-                                                                onclick="addCodeIT('id_installation','${code_colle.id_code}','delete')">
-                                                            <span class="fa fa-times"></span></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="">
+                                                                <div class="form-check">
+                                                                    <input  class="form-check-input" type="radio"
+                                                                            id="parType"
+                                                                    <c:if test="${notif.type== '1'}">
+                                                                            checked  </c:if> name="type"
+                                                                            value="1" onchange="my_function('1')">
+                                                                    <label class="form-check-label"
+                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                        la liste sauf
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </c:forEach>
+                                            </div>
+                                        </div>
+                                            <div class="col-sm-4 listCode">
+                                                <div class="d-block h-100 my_rows" id="my_rows">
 
+                                                    <c:forEach items="${notif.code}" var="code_colle" varStatus="index">
+                                                        <div class="row p-0 m-0">
+                                                            <div class="col-8"> ${code_colle.nom_ar} </div>
+                                                            <div class="col-4 p-2 text-center">
+                                                                <button class="btn btn-success rounded-circle"
+                                                                        onclick="addCodeIT('id_installation','${code_colle.id_code}','delete')">
+                                                                    <span class="fa fa-times"></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -514,8 +518,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-6">
                                         <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Enregistrer"
-                                                onclick="updateGeneral_installation('formimportateur1','installation','3',${id},'id_installation','non')"
-                                                class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
+                                                onclick="updateGeneral_installation('formimportateur1','installation','3',${id},'id_installation','non')" class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
                                         </button>
                                     </div>
                                 </div>
@@ -702,15 +705,19 @@
 </div>
 
 <script>
-
     function my_function(val){
         if(val==='0'){
-            $("#DivCat").show()
-            $("#listCode").hide()
+            $("#msg").show()
+            $(".listCode").hide()
         }
         else{
-            $("#DivCat").hide()
-            $("#listCode").show()
+            var table1 = $(".MonTable").dataTable();
+            var checkbox = table1.$("input[type=checkbox]");
+            $(checkbox).removeAttr("disabled");
+            $(checkbox).prop("checked", false);
+            $("#msg").hide()
+            $(".listCode").show();
+
         }
     }
     function addCodeIT(id_installation, id_code, type) {

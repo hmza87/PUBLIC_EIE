@@ -544,10 +544,10 @@ public class Notification_Controler {
 	}
 
 	@RequestMapping(value = "/api/addCategorieDechet/{id_notif}", method = RequestMethod.POST)
-	public @ResponseBody String addCategoriesDechet(@RequestParam String categories, @PathVariable int id_notif) {
+	public @ResponseBody String addCategoriesDechet(@PathVariable int id_notif) {
 
 
-			web.addCategorieDechet(id_notif,categories);
+			web.addCategorieDechet(id_notif);
 
 			return "ok";
 	}
