@@ -1345,9 +1345,10 @@ public class Hatim {
 	@RequestMapping(value = "/mail_files/{id}/{type}", method = RequestMethod.GET)
 	public ModelAndView email_files(@PathVariable int id, @PathVariable String type) throws Exception{
 		Map<String,Object> map = new HashMap<>();
-		//Notification ns = webt.getNotificationByIdComptId(id,webt.getCompteConnected().getCompteId());
+		Notification ns = webt.getNotificationByIdComptId(id,webt.getCompteConnected().getCompteId());
 		map.put("Admin_url",urlRest);
 		map.put("doc",webt.listDocNotif(id, type));
+		map.put("notif",ns);
 		return  new ModelAndView("user_select/mail_files", map);
 	}
 
