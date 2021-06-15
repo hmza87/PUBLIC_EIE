@@ -108,7 +108,7 @@
                      style="${pageContext.response.locale=='ar'?'float:right;':'float:left;'}">
 
                     <button class="tablinks btn-primary btn my_tab" onclick="openCity(this, '1')" id="defaultOpen"
-                            style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">1.
+                            style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         <spring:message code="label.Numerodenotification" var="numNot"/>
                         ${type.equals("ZF")?numNot:"Exportateur - Notifiant"}
                     </button>
@@ -117,10 +117,19 @@
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                         <spring:message code="label.Importateur"/>${type.equals("ZF")?"Notifiant":"Destinataire"}
                     </button>
+                    <c:if test="${type.equals('TR') || type.equals('XD')}">
+                        <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn12"
+                                onclick="openCity(this, '12')"
+                                style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                            Autorité
+                        </button>
+                    </c:if>
+
+
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn3"
                             onclick="openCity(this, '3')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        3. <spring:message code="label.Documentdenotification"/>
+                         <spring:message code="label.Documentdenotification"/>
                     </button>
                     <c:if test="${((type.equals('ZF' ) || type.equals('XD'))  && notification.classification.id_classification==1)}">
                         <button class="tablinks btn-primary btn tabsu my_tab pl-auto" ${disabledBtnTab} id="Btn4"
@@ -162,13 +171,13 @@
                     <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab}  id="Btn9"
                             onclick="openCity(this, '9')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        4. <spring:message code="label.mespieces"/>
+                         <spring:message code="label.mespieces"/>
                     </button>
 
                     <button class="tablinks btn-primary btn my_tab montab" ${disabledBtnTab} disabled id="Btn10"
                             onclick="verif_champs_recap('9','${type}','id_notification','10')"
                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        5. <spring:message code="label.Recapitulation"/>
+                        <spring:message code="label.Recapitulation"/>
                     </button>
 
 
@@ -625,9 +634,16 @@
                             </div>
                             <div class="col-md-2 col-sm-6">
                                 <c:choose>
-                                    <c:when test="${type=='XD' || type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
+                                    <c:when test="${type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
                                         <button type="button"
                                                 onclick="verifier_reg_pref('Btn3','3')"
+                                                class="btn btn-success btn-block"><spring:message
+                                                code="button.Suivant"/>
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${type.equals('XD') || type.equals('TR')}">
+                                        <button type="button" id="Enregistrer"
+                                                onclick="addObject_step('formimportateur','importateurnotifiant','12','id_notification')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
@@ -648,6 +664,160 @@
                     </form>
 
                 </div>
+                <c:if test="${type=='TR' || type=='XD'}">
+                  <div id="12" class="tabcontent pr-0">
+
+                    <h4 class="titre_abs ">Autorité</h4>
+
+                    <form id="formautorite" name="formautorite">
+                        <div class="row m-0 p-0">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> <spring:message code="label.email"/> </label>
+                                    <input value="${notification.autorite.email}" type="text"
+                                           name="email"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> <spring:message code="label.Adresse"/> </label>
+                                    <input value="${notification.autorite.adresse}" type="text"
+                                           name="adresse" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> <spring:message code="label.telephone"/> </label>
+                                    <input value="${notification.autorite.tel}" type="text"
+                                           name="tel"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> <spring:message code="label.Fax"/> </label>
+                                    <input value="${notification.autorite.fax}" type="text"
+                                           name="fax"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                      <c:if test="${type=='TR'}">
+                        <div class="row p-0 m-0">
+                          <div class="col-12 p-0 m-0" id="pays_table">
+
+                              <div class="table-responsive">
+                                  <table class="table table-bordered pays_table">
+                                      <thead>
+                                      <tr>
+                                          <th>Autorité</th>
+                                          <th>Autorisation</th>
+                                          <th style="min-width: 120px"><spring:message code="label.Action"/></th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <c:choose>
+                                          <c:when test="${(not empty notification.paysAutorites)}">
+                                              <c:forEach items="${notification.paysAutorites}" var="p">
+                                                  <tr id="tr${p.id_paysautorite}">
+                                                      <td> ${p.pays.nom_fr}</td>
+                                                      <td><a href="${url_admin}${fn:replace(p.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a></td>
+                                                      <td class="">
+                                                          <button class="btn btn-danger rounded-circle"
+                                                                  onclick="deletePaysautorite('${p.id_paysautorite}')">
+                                                              <span class="fas fa-trash-alt"></span>
+                                                          </button>
+
+                                                          <button class="btn btn-warning rounded-circle"
+                                                                  onclick="getPaysautorite('${p.id_paysautorite}',this)">
+                                                              <span class="fas fa-pencil-alt"></span>
+                                                          </button>
+                                                      </td>
+                                                  </tr>
+                                              </c:forEach>
+                                          </c:when>
+                                          <c:otherwise>
+                                              <tr>
+                                                  <td colspan="7" class="bg-primary text-center">
+                                                      Aucune autorité dans cette demande</td>
+                                              </tr>
+                                          </c:otherwise>
+                                      </c:choose>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <div id="zone_form" class=" col-12 p-0 m-0">
+                                  <form id="add_vehicules">
+                                      <div class="row m-0 p-0">
+                                          <div class="col-6">
+                                              <div class="form-group">
+                                                  <label class="f-14">
+                                                      Autorité
+                                                  </label>
+                                                  <select id="pays" name="pays" class="custom-select">
+                                                      <c:forEach items="${pays}" var="t">
+                                                          <option
+                                                                  value="${t[0]}">${t[1]}</option>
+                                                      </c:forEach>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class="form-group">
+                                                  <label class="f-14">
+                                                      Autorisation
+                                                  </label>
+                                                  <input type="file" class="form-control" id="url_autorite" name="url_autorite">
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="row justify-content-center">
+                                          <div class="col-md-3">
+                                              <button onclick="Save_paysautorite()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+
+                      </div>
+                      </c:if>
+                      <div class="row justify-content-center mt-3 mb-5">
+                          <div class="col-md-2 col-sm-6">
+                              <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
+                                      onclick="openCity1('Btn2','2')"
+                                      class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                              </button>
+                          </div>
+                          <div class="col-md-2 col-sm-6">
+                              <c:choose>
+                                  <c:when test="${notification.autorite.id_autorite == null}">
+                                      <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                              onclick="addObject_step('formautorite','autorite','3','id_notification')"
+                                              class="btn btn-success btn-block">
+                                          <spring:message code="button.Suivant"/>
+                                      </button>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                              onclick="updateObject('formautorite','autorite','','3',' id_autorite = '+${notification.autorite.id_autorite})"
+                                              class="btn btn-success btn-block">
+                                          <spring:message code="button.Suivant"/>
+                                      </button>
+                                  </c:otherwise>
+                              </c:choose>
+                          </div>
+                      </div>
+
+
+                </div>
+                </c:if>
+
                 <%--********************Tab3***************************--%>
                 <div id="3" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.Notification"/></h4>
@@ -846,10 +1016,18 @@
 
                         <div class="row justify-content-center mt-3 mb-5">
                             <div class="col-md-2 col-sm-6">
+                                <c:if test="${type.equals('TR') || type.equals('XD')}">
+                                <button type="button"
+                                        onclick="openCity1('Btn12','12')"
+                                        class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                </button>
+                                </c:if>
+                                <c:if test="${type.equals('ZF') || type.equals('ET')}">
                                 <button type="button"
                                         onclick="openCity1('Btn2','2')"
                                         class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
                                 </button>
+                                </c:if>
                             </div>
                             <div class="col-md-2 col-sm-6">
 
@@ -887,10 +1065,9 @@
                 <%--********************Tab4***************************--%>
                 <div id="4" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.transporteurprevu"/></h4>
-
                     <div class="row m-0 p-0 mt-3" id="divTableTranport">
                         <div class="col-12">
-                            <form id="formTransporteur" name="formTransporteur" class="w-100" ">
+                            <form id="formTransporteur" name="formTransporteur" class="w-100">
                             <div class="row m-0 p-0">
                                 <div class="col-6">
                                     <div class="form-group">
@@ -2352,9 +2529,8 @@
     }
 
     function verif_recap(id_form, type, id_name) {
-        debugger;
-        if(event!=null)
-            event.preventDefault();
+        //if(event!=null)
+           // event.preventDefault();
        // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
         var id = $("#" + id_name).val();
         verif_champs(id_form, type, id_name, '10')
@@ -2424,8 +2600,79 @@
         $('.removeclass' + rid).remove();
     }
 
+
+
     function fun_affiche_modal(id_modal, id_dmd) {
         $(id_modal + "_" + id_dmd).modal("toggle");
+    }
+
+    function getPaysautorite(id) {
+        $("#add_new").prop("disabled", true);
+        var id_notif = $("#id_notification").val();
+        if (id_notif == "") {
+            swal("Avertissement!", "Merci de saisir les informations du demandeur", "error");
+            return false;
+        }
+        event.preventDefault();
+        $.get('/api/getPaysAutoriteById/' + id + "/" + id_notif, function (data) {
+            $("#pays_table").html(data);
+            $("#add_new").prop("disabled",true);
+        });
+
+    }
+
+    function Save_paysautorite() {
+        event.preventDefault();
+
+        var data = new FormData();
+        var id_notif = $("#id_notification").val();
+        var pays = $("#pays").val();
+
+        data.append("file",$("#url_autorite")[0].files[0]);
+        data.append("pays",pays);
+
+        $.ajax({
+
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/api/savePaysAutorite/"+id_notif,
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+
+                swal({
+                        title: "Pays autorite enregistrer avec success",
+                        text: "Voulez-vous Ajouter un nouveau autorité?",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-success",
+                        confirmButtonText: "Oui, Ajouter un véhicule",
+                        cancelButtonText: "Non",
+                        closeOnConfirm: true,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            getPaysautorite('0');
+                        } else {
+                            updateGeneral('formvehicule','collectetransporteur','4',parseInt(id_collect),'id_collecte','non');
+                        }
+                    });
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function deletePaysautorite(id) {
+        event.preventDefault();
+        var id_notif = $("#id_notification").val();
+        $.get("/api/deletePaysautorite/" + id + "/" + id_notif, function (rep) {
+            $("#pays_table").html(rep);
+        });
     }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>

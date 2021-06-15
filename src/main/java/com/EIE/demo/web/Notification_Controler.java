@@ -145,6 +145,7 @@ public class Notification_Controler {
 			model.put("champ_zf_et", "Zone franche");
 		} else {
 			model.put("zonnefranche", pays);
+			model.put("pays", pays);
 			model.put("champ_zf_et", "Pays Etranger");
 		}
 

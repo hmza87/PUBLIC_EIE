@@ -8,7 +8,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<form id="recap">
 <div  class="row mb-5">
     <div class="col-md-12 col-lg-12 col-sm-12">
         <div id="accordion">
@@ -162,6 +161,43 @@
                 </div>
 
             </div>
+            <c:if test="${type.equals('TR') || type.equals('XD')}">
+            <h2>Autorité</h2>
+            <div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><spring:message code="label.Adresse"/></label>
+                            <input disabled class="form-control" value="${notification.autorite.adresse}" type="text">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><spring:message code="label.telephone"/></label>
+                            <input disabled class="form-control" value="${notification.autorite.tel}" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><spring:message code="label.Fax"/></label>
+                            <input disabled class="form-control" value="${notification.autorite.fax}" type="text">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><spring:message code="label.email"/></label>
+                            <input disabled class="form-control" value="${notification.autorite.email}" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </c:if>
             <h2>
                 <spring:message code="label.Documentdenotification"/>
                 <button style="font-size: 12px !important;" type="button" id="Suivante" onclick="updatePdf(${notification.id_notification })" class="btn btn-warning btn-sm text-white">
@@ -491,7 +527,6 @@
     </div>
 
 </div>
-</form>
 
 <script>
     $( function() {

@@ -390,6 +390,10 @@ public class Notification implements Serializable {
 	private ImportateurNotifiant importateur;
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idautorite")
+	private Autorite autorite;
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "unite_id")
 	private Unite unite;
 
@@ -637,7 +641,12 @@ public class Notification implements Serializable {
 	@JoinColumn(name = "lieux_elimination")
 	private LieuElimination lieux_elimination;
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	@JoinTable(name = "notification_paysautorite", joinColumns = {
+			@JoinColumn(name = "id_notiff") }, inverseJoinColumns = { @JoinColumn(name = "id_paysaut") })
 
+	private List<PaysAutorite> paysAutorites = new ArrayList<>();
 
 	@Column(name = "dateConteur", nullable = true)
 	private Date dateConteur;
@@ -754,4 +763,19 @@ public class Notification implements Serializable {
 		this.docMouvement = docMouvement;
 	}
 
+	public Autorite getAutorite() {
+		return autorite;
+	}
+
+	public void setAutorite(Autorite autorite) {
+		this.autorite = autorite;
+	}
+
+	public List<PaysAutorite> getPaysAutorites() {
+		return paysAutorites;
+	}
+
+	public void setPaysAutorites(List<PaysAutorite> paysAutorites) {
+		this.paysAutorites = paysAutorites;
+	}
 }

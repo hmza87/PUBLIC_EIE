@@ -677,6 +677,24 @@ class WebServiceImp implements WebService {
 		return nn;
 	}
 
+	public String savePaysAutorite(MultipartFile fileToUpload, int id_notif, int v) {
+		final String uris = urlRest + "/savePaysautoriteRest/"+id_notif;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+
+		bodyMapw.add("fileToUpload", new FileSystemResource(convert(fileToUpload)));
+		bodyMapw.add("pays", v);
+
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
 	@Override
 	public Vehicules getVehiculeById(int parseInt) {
 		final String uri = urlRest+"/getVehiculeByIdRest/"+parseInt;
@@ -686,10 +704,25 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public PaysAutorite getPaysAutoriteById(int parseInt) {
+		final String uri = urlRest+"/getPaysAutoriteByIdRest/"+parseInt;
+		RestTemplate restTemplate = new RestTemplate();
+		PaysAutorite  result = restTemplate.getForObject(uri, PaysAutorite.class);
+		return result;
+	}
+
+	@Override
 	public void deleteVehiculeById(int id, int id_coll, int id_user) {
 		final String uris = urlRest + "/deleteVehiculeRest/"+id+"/"+id_coll + "/"+ id_user;
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.put(uris,Vehicules.class);
+	}
+
+	@Override
+	public void deletePaysautoriteById(int id, int id_notif, int id_user) {
+		final String uris = urlRest + "/deletePaysautoriteRest/"+id+"/"+id_notif + "/"+ id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,PaysAutorite.class);
 	}
 
 	@Override

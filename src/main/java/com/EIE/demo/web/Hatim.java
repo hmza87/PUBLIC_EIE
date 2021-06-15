@@ -333,6 +333,19 @@ public class Hatim {
 		return new ModelAndView("collecte_trans/tableandFormVehicule",map);
 	}
 
+	@RequestMapping(value = "/api/getPaysAutoriteById/{id}/{id_notif}",method = RequestMethod.GET)
+	public ModelAndView getPaysAutoriteById(@PathVariable int id,@PathVariable int id_notif) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		Compte ct = webt.getCompteConnected();
+		map.put("user",ct);
+		map.put("notif",webt.getNotificationByIdComptId(id_notif,ct.getCompteId()));
+		Object[] pays = webt.tronsaction("select", " pays_id,nom_fr,nom_ar from pays ", " delete_date_time is null ");
+		map.put("pays",pays);
+		map.put("paysautorites",webt.getPaysAutoriteById(id));
+		map.put("url_admin",urlRest);
+		return new ModelAndView("autorisationPublic/tableFormPaysAutorite",map);
+	}
+
 
 	@RequestMapping(value = "/api/saveVehicule", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ModelAndView saveVehicule(@RequestParam String v,@RequestParam int id_collect,
@@ -347,6 +360,18 @@ public class Hatim {
 		return new ModelAndView("collecte_trans/tableVehicule",map);
 	}
 
+	@RequestMapping(value = "/api/savePaysAutorite/{id_notif}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelAndView savePaysAutorite(@RequestParam("file") MultipartFile file,@PathVariable int id_notif,@RequestParam int pays)
+			throws JsonParseException, JsonMappingException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+
+		webt.savePaysAutorite(file,id_notif,pays);
+		Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
+		map.put("notif",not);
+		map.put("url_Admin",urlRest);
+		return new ModelAndView("autorisationPublic/tablePaysautorite",map);
+	}
+
 	@RequestMapping(value = "/api/deleteVehicule/{id}/{id_collect}", method = RequestMethod.GET)
 	public ModelAndView deleteVehicule(@PathVariable int id,@PathVariable int id_collect) throws JsonParseException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
@@ -355,6 +380,16 @@ public class Hatim {
 		map.put("collect",v);
 		map.put("url_Admin",urlRest);
 		return new ModelAndView("collecte_trans/tableandFormVehicule",map);
+	}
+
+	@RequestMapping(value = "/api/deletePaysautorite/{id}/{id_notif}", method = RequestMethod.GET)
+	public ModelAndView deletePaysautorite(@PathVariable int id,@PathVariable int id_notif) throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+		webt.deletePaysautoriteById(id,id_notif,webt.getCompteConnected().getCompteId());
+		Notification n = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
+		map.put("notif",n);
+		map.put("url_Admin",urlRest);
+		return new ModelAndView("autorisationPublic/tableFormPaysAutorite",map);
 	}
 
 	@RequestMapping(value = "/api/getVehiculeOne", method = RequestMethod.POST)
@@ -668,6 +703,7 @@ public class Hatim {
 			if((nbr==0 && type.equals("ZF")) ||(nbr==0 && type.equals("XD"))){
 				return "redirect:/api/addNumNotification/"+type+"/0";
 			}else if(nbr==0 && (!type.equals("ZF") || !type.equals("XD"))){
+
 				return "redirect:/api/addDemandNotification/0/"+type+"/N";
 			}
 		}
@@ -1304,6 +1340,15 @@ public class Hatim {
 		map.put("doc",webt.getDocImportByType(type));
 		map.put("Admin_url",urlRest);
 		return new ModelAndView("user_select/page_new_procedure",map);
+	}
+
+	@RequestMapping(value = "/mail_files/{id}/{type}", method = RequestMethod.GET)
+	public ModelAndView email_files(@PathVariable int id, @PathVariable String type) throws Exception{
+		Map<String,Object> map = new HashMap<>();
+		//Notification ns = webt.getNotificationByIdComptId(id,webt.getCompteConnected().getCompteId());
+		map.put("Admin_url",urlRest);
+		map.put("doc",webt.listDocNotif(id, type));
+		return  new ModelAndView("user_select/mail_files", map);
 	}
 
 
