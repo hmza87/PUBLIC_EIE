@@ -7,7 +7,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
     <c:if test="${not empty prefectures}">
-        <option value="" selected>Choisir......</option>
+        <option value="" selected><spring:message code="label.choisir"/></option>
         <c:forEach items="${prefectures}" var="p">
           <option <c:if test="${notification.prefecture.id_prefecture== p.id_prefecture}"> selected </c:if>
                   value="${p.id_prefecture}">${pageContext.response.locale=='ar'?p.nom_ar:p.nom_fr}</option>

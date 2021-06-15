@@ -27,7 +27,7 @@
             <td>${trans.raison_social}</td>
             <td>${trans.num_matricule}</td>
             <td>${trans.typeVehicule}</td>
-            <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span>Assurance </a> </td>
+            <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span><spring:message code="label.Assurance"/> </a> </td>
             <td>${trans.adresse}</td>
             <td class="text-center">
               <button onclick="delete_transp_etrang('${trans.id_TransporteurEtranger}','id_notification','nationale')" class="btn btn-danger rounded-circle"><span class="fas fa-trash"></span></button>

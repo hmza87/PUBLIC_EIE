@@ -6,7 +6,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
 
-  <p>Pour renouveller une autorisation veuillez, cliquer sur le bouton Renouveller</p>
+  <p><spring:message code="label.PourrenouvelleruneautorisationveuillezcliquersurleboutonRenouveller"/></p>
   <table class="table table-hover table-striped table-bordered my_table">
     <tbody>
     <c:choose>
@@ -14,7 +14,7 @@
         <c:forEach items="${collects}" var="coll">
           <tr>
             <td> ${coll.num_demande} </td>
-            <td class="text-center"> <a href="/api/newCollecteRenouv/${coll.num_demande}" class="btn btn-success">Renouveler</a> </td>
+            <td class="text-center"> <a href="/api/newCollecteRenouv/${coll.num_demande}" class="btn btn-success"><spring:message code="label.Renouveler"/></a> </td>
           </tr>
         </c:forEach>
       </c:when>
@@ -22,7 +22,7 @@
         <c:forEach items="${installation}" var="inst">
           <tr>
             <td> ${inst.num_demande} </td>
-            <td class="text-center"> <a href="/api/newInstallRenouv/${inst.num_demande}" class="btn btn-success">Renouveler</a> </td>
+            <td class="text-center"> <a href="/api/newInstallRenouv/${inst.num_demande}" class="btn btn-success"><spring:message code="label.Renouveler"/></a> </td>
           </tr>
         </c:forEach>
       </c:when>
@@ -30,7 +30,7 @@
     <c:forEach items="${collects}" var="coll">
       <tr>
         <td> ${coll.num_demande} </td>
-        <td class="text-center"> <a href="/api/newCollecteRenouv/${coll.num_demande}" class="btn btn-success">Renouveler</a> </td>
+        <td class="text-center"> <a href="/api/newCollecteRenouv/${coll.num_demande}" class="btn btn-success"><spring:message code="label.Renouveler"/></a> </td>
       </tr>
     </c:forEach>
     </tbody>

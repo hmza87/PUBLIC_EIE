@@ -31,7 +31,7 @@
               <td> <a target="_blank" download="assurance" href="${url_Admin}${fn:replace(trans.url_assurance,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary btn-sm"> <span class=""></span> <spring:message code="label.Assurance"/> </a> </td>
               <td>${trans.adresse}</td>
               <td><c:if test="${empty trans.port}">
-                Aucun port
+                <spring:message code="label.Aucunport"/>
               </c:if>
               <c:if test="${ not empty trans.port}"><button class="btn btn-primary  btn-sm"
                            onclick="fun_affiche_modal('#modal_DetailPort','${trans.id_TransporteurEtranger}')">

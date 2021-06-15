@@ -10,10 +10,10 @@
 <table class="table table-striped table-bordered">
     <thead class="bg_stat_01">
     <tr>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>téléphone</th>
-        <th>Fax</th>
+        <th><spring:message code="label.nom"/></th>
+        <th><spring:message code="label.Adresse"/></th>
+        <th><spring:message code="label.telephone"/></th>
+        <th><spring:message code="label.Fax"/></th>
     </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
     </c:if>
    <c:if test="${empty trans}">
        <tr class="text-center">
-           <td colspan="4">Aucun transporteur</td>
+           <td colspan="4"><spring:message code="label.Aucuntransporteur"/></td>
        </tr>
    </c:if>
 

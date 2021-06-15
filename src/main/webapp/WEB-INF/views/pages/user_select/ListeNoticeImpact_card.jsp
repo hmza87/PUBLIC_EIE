@@ -77,18 +77,18 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-9 col-sm-12 pr-0 pl-0">
-                                                <p class="text-success font_bold text-left pl-2"><spring:message code="label.Deposerundossier"/></p>
+                                                <p class="text-success font_bold text-left pl-2"></p>
                                                 <hr>
                                                 <p class="pl-2 text-justify margin10" >
-                                                    Pour déposer le dossier d'une nouvelle demande de NT, cliquez sur  <b>Notice d'impact :</b><br>
+                                                    <spring:message code="label.PourdeposerledossierdunenouvelledemandedeNT"/>   <b><spring:message code="label.cliquezsur"/><spring:message code="label.Noticedimpact"/> :</b><br>
                                                 </p>
                                                 <div class="text-left">
-                                                    <button onclick="go_to_l('/api/demandeinformation/0/NT')" class="btn btn-sm btn-success margin10" >Notice d'impact sur l'environnement <span class="fa fa-angle-double-right"></span></button>
+                                                    <button onclick="go_to_l('/api/demandeinformation/0/NT')" class="btn btn-sm btn-success margin10" ><spring:message code="label.Noticedimpactsurlenvironnement"/> <span class="fa fa-angle-double-right"></span></button>
                                                 </div>
 
-                                                <p class="pl-2 text-justify margin10" >Pour toutes autres informations, cliquez sur <b> Renseignements préalables :</b></p>
+                                                <p class="pl-2 text-justify margin10" ><spring:message code="label.Pourtoutesautresinformations"/><spring:message code="label.cliquezsur"/> <b><spring:message code="label.Renseignementsprealables"/>  :</b></p>
                                                 <div class="text-left">
-                                                    <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > Renseignements préalables <span class="fa fa-angle-double-right"></span></button>
+                                                    <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > <spring:message code="label.Renseignementsprealables"/><span class="fa fa-angle-double-right"></span></button>
                                                 </div>
 
                                             </div>
@@ -137,7 +137,7 @@
                                                         code="label.Suivremondossier"/></p>
                                                 <hr>
                                                 <p class="pl-2 text-justify margin10" >
-                                                    Vous pouvez suivre l'état de vos dossiers à l'aide du numéro généré par le système, ou vous pouvez afficher tous mes dossiers en cliquant sur : <b><spring:message code="label.Affichermesdossiers"/> </b></p>
+                                                   <spring:message code="label.Vouspouvezsuivreletatdevosdossiers"/> <b><spring:message code="label.Affichermesdossiers"/> </b></p>
                                             </div>
                                             <div class="col-12">
                                                 <input placeholder="Entrer N° de la demande" type="text" class="form-control mb-2 margin10" id="num_demande23" style=" width: 201px; display: inline;height: 32px;">

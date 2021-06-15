@@ -171,7 +171,7 @@
                             <td scope="col">${n.code.nom_fr}</td>
                             <td scope="col">${n.code.nom_ar}</td>
                             <td scope="col"><a href="/api/addDemandNotification/${n.id_notification}/${type}/N"
-                                               class="btn btn-success">Déposer la demande</a></td>
+                                               class="btn btn-success"><spring:message code="label.Deposerlademande"/></a></td>
                         </tr>
 
 
@@ -205,7 +205,7 @@
                             <td scope="col">${n.code.nom_fr}</td>
                             <td scope="col">${n.code.nom_ar}</td>
                             <td><a href="/api/getnotifById1/${type}/${n.id_notification}"
-                                   class="btn btn-success">Recapitulation</a></td>
+                                   class="btn btn-success"><spring:message code="label.Recapitulation"/></a></td>
                         </tr>
 
 

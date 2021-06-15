@@ -38,7 +38,7 @@
     </c:if>
     <c:if test="${empty listF}">
         <tr class="text-center">
-            <td colspan="3">Aucun Résultat</td>
+            <td colspan="3"><spring:message code="label.Aucunresultat"/></td>
         </tr>
     </c:if>
     </tbody>

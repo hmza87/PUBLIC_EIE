@@ -31,7 +31,7 @@
                 <c:if test="${notification.statut.id_statut_projet==68}">
                     <textarea class="form-control" disabled rows="2">${declaration.commentaire}</textarea>
                 </c:if>
-                <label>Déclarer le nouveau Transporteur </label>
+                <label><spring:message code="label.DeclarerlenouveauTransporteur"/></label>
                 <select class="form-control select2" id="id_transp">
                     <option value=""><spring:message code="label.choisir"/> </option>
                     <c:forEach items="${transporteur}" var="t">
@@ -47,12 +47,12 @@
                 <input class="from-control" type="hidden" value="${declaration.declarationId}" id="id_declaration">
                 <input class="from-control" type="hidden" value="${notification.id_notification}" id="id_notif">
                 <div class="mt-3">
-                    <label>Assurance</label>
+                    <label><spring:message code="label.Assurance"/></label>
                     <input type="file" class="form-control" id="file_declaration">
                 </div>
             </c:when>
             <c:otherwise>
-                <p> Aucun Transporteur n'est compatible avec le type de déchets de votre autorisation </p>
+                <p><spring:message code="label.AucunTransporteurnestcompatibleavecletypededechetsdevotreautorisation"/>  </p>
             </c:otherwise>
         </c:choose>
 

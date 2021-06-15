@@ -115,8 +115,8 @@
               <table class="table table-bordered table-striped table-hover my_table">
                 <thead>
                 <tr>
-                  <th>Code</th>
-                  <th>Type</th>
+                  <th><spring:message code="label.code"/></th>
+                  <th><spring:message code="label.type"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -174,10 +174,10 @@
               <table class="table table-bordered my_table">
                 <thead>
                 <tr>
-                  <th>N° immatriculation</th>
-                  <th>N° châssis</th>
-                  <th>Poids total en charge</th>
-                  <th>Poids net du véhicule</th>
+                  <th><spring:message code="label.Nimmatriculation"/></th>
+                  <th><spring:message code="label.NChassis"/></th>
+                  <th><spring:message code="label.Poidstotalencharge"/></th>
+                  <th><spring:message code="label.Poidsnetduvehicule"/></th>
                  <!-- <th>Equipement de sécurité</th>
                   <th>Attestation d'assurance</th>-->
                 </tr>
@@ -213,8 +213,7 @@
                   </c:when>
                   <c:otherwise>
                     <tr>
-                      <td colspan="7" class="bg-primary text-center">Aucun
-                        véhicule</td>
+                      <td colspan="7" class="bg-primary text-center"><spring:message code="label.Aucunvehicule"/></td>
                     </tr>
                   </c:otherwise>
                 </c:choose>
@@ -242,7 +241,7 @@
 
             <c:if test="${empty doc}">
               <tr>
-                <td colspan="2"> Aucun Fichier </td>
+                <td colspan="2"><spring:message code="label.AucunFichier"/>  </td>
               </tr>
             </c:if>
 
@@ -270,7 +269,7 @@
   <div class="row">
     <div class="col-12">
       <div class="jumbotron p-3">
-        Statut de l'autorisation : <span class="text-success h4 font-weight-bold">${installation.statut.nom_fr}</span>
+        <spring:message code="label.Statutdelautorisation"/>  : <span class="text-success h4 font-weight-bold">${installation.statut.nom_fr}</span>
       </div>
     </div>
   </div>
@@ -470,7 +469,7 @@
 
             <c:if test="${empty doc}">
               <tr>
-                <td colspan="2"> Aucun Fichier </td>
+                <td colspan="2"><spring:message code="label.AucunFichier"/>  </td>
               </tr>
             </c:if>
 
@@ -498,7 +497,7 @@
   <div class="row">
     <div class="col-12">
       <div class="jumbotron p-3">
-        Statut de l'autorisation : <span class="text-success h4 font-weight-bold">${notification.statut.nom_fr}</span>
+        <spring:message code="label.Statutdelautorisation"/> : <span class="text-success h4 font-weight-bold">${notification.statut.nom_fr}</span>
       </div>
     </div>
   </div>
@@ -551,7 +550,7 @@
                 <label>
                   <c:choose>
                     <c:when test="${type=='ZF'}">
-                      Zone Franche
+                      <spring:message code="label.ZoneFranche"/>
                     </c:when>
                     <c:otherwise>
                       <spring:message code="label.pays"/>
@@ -763,7 +762,7 @@
             </c:if>
               <c:if test="${empty notification.transporteur}">
                 <tr>
-                  <td class="text-center" colspan="5"> Aucun Transporteur </td>
+                  <td class="text-center" colspan="5"><spring:message code="label.AucunTransporteur"/>  </td>
                 </tr>
               </c:if>
             </tbody>

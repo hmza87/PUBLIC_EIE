@@ -65,7 +65,7 @@ text-align:center !important;}
           <img src="${pageContext.request.contextPath}/assets/images/depos.png" class="w-100">
           <div class="row justify-content-center mt-3">
             <div class="col-auto">
-              <a href="/api/newCollecteRenouv/${collecte.num_demande}" class="btn btn-success btn-block text-white" >Renouveller la demande</a>
+              <a href="/api/newCollecteRenouv/${collecte.num_demande}" class="btn btn-success btn-block text-white" ><spring:message code="label.Renouvellerlademande"/></a>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ text-align:center !important;}
           <img src="${pageContext.request.contextPath}/assets/images/view.png" class="w-100">
           <div class="row justify-content-center mt-3">
             <div class="col-auto">
-              <a class="btn btn-success btn-block text-white" onclick="fun_affiche_modal_recap('${collecte.id_collecte}')">Récapitulation</a>
+              <a class="btn btn-success btn-block text-white" onclick="fun_affiche_modal_recap('${collecte.id_collecte}')"><spring:message code="label.Recapitulation"/></a>
             </div>
           </div>
         </div>

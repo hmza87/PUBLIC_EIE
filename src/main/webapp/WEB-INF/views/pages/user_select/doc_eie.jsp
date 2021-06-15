@@ -29,7 +29,7 @@
 
 <div class="row justify-content-center">
   <div class="col-3">
-    <button onclick="fun_save_alert()" class="btn btn-success btn-block">Enregistrer</button>
+    <button onclick="fun_save_alert()" class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/></button>
   </div>
 </div>
 
