@@ -149,116 +149,206 @@
             <p class="text-center h4 w-100 font_bold">
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
                 <c:choose>
-                    <c:when test="${type=='ZF' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets d'une zone franche "/>
+
+                    <c:when test="${type=='ZF' }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value="الحصول على طلبك للحصول على إذن لاستيراد نفايات من منطقة حرة"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value="obtenir votre demande d'autorisation d'importation des déchets d'une zone franche"/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='ZF' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن لاستيراد نفايات من منطقة حرة "/>
+
+                    <c:when test="${type=='ET'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value="الحصول على طلبك للحصول على إذن لاستيراد نفايات غير خطرة من بلد أجنبي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='ET' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'importation des déchets non dangereux d'un pays étranger "/>
+
+                    <c:when test="${type=='CT'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن تجميع - نقل نفايات خطرة "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de collecte - transport des déchets dangereux "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='ET' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن لاستيراد نفايات غير خطرة من بلد أجنبي "/>
+
+                    <c:when test="${type=='IT' }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على طلبك للحصول على تصريح لمنشأة معالجة النفايات "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'installation de traitement des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='CT' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de collecte - transport des déchets dangereux "/>
+
+                    <c:when test="${type=='XD'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على طلب تصريح تصدير النفايات الخاص بك "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'exportation des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='CT' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على إذن تجميع - نقل نفايات خطرة "/>
+
+                    <c:when test="${type=='TR'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على طلب تصريح نقل النفايات الخاص بك "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de transit des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'installation de traitement des déchets "/>
+
+                    <c:when test="${type=='EIE'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على القبول البيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" l'obtention de l'acceptabilité environnementale "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='IT' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلبك للحصول على تصريح لمنشأة معالجة النفايات "/>
+
+                    <c:when test="${type=='EIE1'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على إشعار الأثر البيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" l'obtention de notice d'impact sur l'environnement "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
-                    <c:when test="${type=='XD' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation d'exportation des déchets "/>
-                    </c:when>
-                    <c:when test="${type=='XD' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلب تصريح تصدير النفايات الخاص بك "/>
-                    </c:when>
-                    <c:when test="${type=='TR' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" obtenir votre demande d'autorisation de transit des déchets "/>
-                    </c:when>
-                    <c:when test="${type=='TR' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على طلب تصريح نقل النفايات الخاص بك "/>
-                    </c:when>
-                    <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" l'obtention de l'acceptabilité environnementale "/>
-                    </c:when>
-                    <c:when test="${type=='EIE' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على القبول البيئي "/>
-                    </c:when>
-                    <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" l'obtention de notice d'impact sur l'environnement "/>
-                    </c:when>
-                    <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على إشعار الأثر البيئي "/>
-                    </c:when>
-                    <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
-                        <c:set var="l_ph1" value=" l'obtention d'audit environnemental "/>
-                    </c:when>
-                    <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
-                        <c:set var="l_ph1" value=" الحصول على تدقيق بيئي "/>
+
+                    <c:when test="${type=='EIE2'  }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph1" value=" الحصول على تدقيق بيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph1" value=" l'obtention d'audit environnemental "/>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                 </c:choose>
                         <c:choose>
-                            <c:when test="${type=='ZF' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
+                            <c:when test="${type=='ZF' }">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" استيراد النفايات من منطقة حرة "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='ZF' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" استيراد النفايات من منطقة حرة "/>
+
+                            <c:when test="${type=='ET' }">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" استيراد النفايات غير الخطرة من بلد أجنبي"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='ET' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+
+                            <c:when test="${type=='CT'}">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" الجمع - نقل النفايات الخطرة "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='ET' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" استيراد النفايات غير الخطرة من بلد أجنبي"/>
-                            </c:when>
-                            <c:when test="${type=='CT' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
-                            </c:when>
-                            <c:when test="${type=='CT' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" الجمع - نقل النفايات الخطرة "/>
-                            </c:when>
+
                             <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" مرفق معالجة النفايات "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='IT' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" مرفق معالجة النفايات "/>
+
+                            <c:when test="${type=='XD'}">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" تصدير النفايات"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'exportation des déchets "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='XD' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'exportation des déchets "/>
+
+                            <c:when test="${type=='TR' }">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" عبور النفايات "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" de transit des déchets "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='XD' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" تصدير النفايات"/>
+
+                            <c:when test="${type=='EIE' }">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" الحصول على القبول البيئي "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='TR' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" de transit des déchets "/>
+
+                            <c:when test="${type=='EIE1'}">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'obtention de notice d'impact sur l'environnement "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='TR' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" عبور النفايات "/>
+
+                            <c:when test="${type=='EIE2'}">
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale=='ar'}">
+                                        <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="l_ph2" value=" d'obtention d'audit environnemental "/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
-                            </c:when>
-                            <c:when test="${type=='EIE' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" الحصول على القبول البيئي "/>
-                            </c:when>
-                            <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'obtention de notice d'impact sur l'environnement "/>
-                            </c:when>
-                            <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
-                            </c:when>
-                            <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
-                                <c:set var="l_ph2" value=" d'obtention d'audit environnemental "/>
-                            </c:when>
-                            <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
-                                <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
-                            </c:when>
+
 
                         </c:choose>
                         <spring:message code="label.Procedureasuivrepour"/>  ${l_ph1}
