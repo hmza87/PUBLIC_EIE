@@ -28,10 +28,10 @@
                             </c:if>
                         </td>
                         <td class="">
-                            <button class="btn btn-danger rounded-circle" onclick="deletePaysautorite('${p.id_paysautorite}')">
+                            <button class="btn btn-danger rounded-circle">
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-warning rounded-circle" onclick="getPaysautorite('${p.id_paysautorite}',this)">
+                            <button class="btn btn-warning rounded-circle">
                                 <span class="fas fa-pencil-alt"></span>
                             </button>
 

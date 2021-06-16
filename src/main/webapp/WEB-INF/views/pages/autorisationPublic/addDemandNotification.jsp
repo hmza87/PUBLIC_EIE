@@ -724,13 +724,11 @@
                                                       <td> ${p.pays.nom_fr}</td>
                                                       <td><a href="${url_admin}${fn:replace(p.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a></td>
                                                       <td class="">
-                                                          <button class="btn btn-danger rounded-circle"
-                                                                  onclick="deletePaysautorite('${p.id_paysautorite}')">
+                                                          <button class="btn btn-danger rounded-circle">
                                                               <span class="fas fa-trash-alt"></span>
                                                           </button>
 
-                                                          <button class="btn btn-warning rounded-circle"
-                                                                  onclick="getPaysautorite('${p.id_paysautorite}',this)">
+                                                          <button class="btn btn-warning rounded-circle">
                                                               <span class="fas fa-pencil-alt"></span>
                                                           </button>
                                                       </td>
