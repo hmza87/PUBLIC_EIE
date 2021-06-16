@@ -82,7 +82,8 @@ public class DemandeInformation implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_detail")
     private DetailRegion detailRegion;
-
+    @Column(name = "interregion", nullable = true, columnDefinition = "NVARCHAR(255)")
+    private String interregion;
     @Column(name = "tronsfrontalier", nullable = true, columnDefinition = "NVARCHAR(255)")
     private String tronsfrontalier;
     @Column(name = "raison_social", nullable = true, columnDefinition = "NVARCHAR(255)")
@@ -885,4 +886,11 @@ public class DemandeInformation implements Serializable {
     }
     //***************************End Audit demande********************************//
 
+    public String getInterregion() {
+        return interregion;
+    }
+
+    public void setInterregion(String interregion) {
+        this.interregion = interregion;
+    }
 }

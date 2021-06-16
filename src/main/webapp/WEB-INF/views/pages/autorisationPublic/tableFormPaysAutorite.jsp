@@ -63,7 +63,8 @@
                     </label>
                     <select id="pays" name="pays" class="custom-select">
                         <c:forEach items="${pays}" var="t">
-                            <option
+                            <option <c:if
+                                    test="${paysautorites.pays.paysId== t[0]}"> selected </c:if>
                                     value="${t[0]}">${t[1]}</option>
                         </c:forEach>
                     </select>
@@ -74,7 +75,19 @@
                     <label class="f-14">
                         Autorisation
                     </label>
-                    <input type="file" class="form-control" id="url_autorite" name="url_autorite">
+                    <c:if test="${empty paysautorites.url_autorite}">
+                        <input type="file" id="doc_assurance" name="url_autorite" class="form-control">
+                    </c:if>
+                    <c:if test="${not empty paysautorites.url_autorite}">
+                        <div class="row p-0">
+                            <div class="col-10 pl-1">
+                                <input type="file" id="url_autorite" name="url_autorite" class="form-control">
+                            </div>
+                            <div class="col-2 pr-1">
+                                <a id="btn_downolad2" href="${url_Admin}${fn:replace(paysautorites.url_autorite,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary rounded "><span class="fa fa-download"></span></a>
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>

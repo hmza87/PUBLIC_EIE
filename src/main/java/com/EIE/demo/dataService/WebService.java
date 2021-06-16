@@ -184,7 +184,7 @@ public interface WebService {
 
 	 public void updateDemandeInformation(int id, DemandeInformation d );
 
-	String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier );
+	String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String interregion );
 
 	String setFileToDemande(int id, MultipartFile[] fileToUpload);
 	List<TransporteurParam> getTransporteurParamByCode(int code);

@@ -186,9 +186,18 @@
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label> <spring:message code="label.Tronsfrontalier"/>  </label>
-                                                <select ${disabled } onchange="fun_disabled_region(this)" name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
-                                                    <option ${demande.tronsfrontalier.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
-                                                    <option value="oui" ${demande.tronsfrontalier.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
+                                                <select name="tronsfrontalier" id="tron" required class="form-control select2" data-width="100%" >
+                                                    <option ${demande.tronsfrontalier.equals('no')?"selected":"" }  value="no"><spring:message code="label.non"/></option>
+                                                    <option value="yes" ${demande.tronsfrontalier.equals('yes')?"selected":"" } ><spring:message code="label.oui"/></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> Inter-région  </label>
+                                                <select ${disabled } onchange="fun_disabled_region(this)" name="interregion" id="interregion" required class="form-control select2" data-width="100%" >
+                                                    <option ${demande.interregion.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
+                                                    <option value="oui" ${demande.interregion.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -274,7 +283,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.Regions"/></label>
-                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)" dir="rtl">
+                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
                                                 <c:forEach items="${regions}" var="reg" varStatus="loop">
                                                     <option
                                                             <c:forEach items="${demande.detailRegion.region}" var="rr">
@@ -288,7 +297,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.PrefecturesProvinces"/></label>
-                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
+                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lp}" var="p">
                                                     <option
@@ -303,7 +312,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.communes"/></label>
-                                            <select ${demande.tronsfrontalier=="oui"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
+                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lc}" var="c" varStatus="loopp">
                                                     <option
@@ -667,7 +676,7 @@
 
         var test = false;
         var id = $("#" + id_name).val();
-        var trans = $("#tron").val();
+        var trans = $("#interregion").val();
         var tmp = $("#id_region").val();
 
         if(trans == "non" || type=="AE"){

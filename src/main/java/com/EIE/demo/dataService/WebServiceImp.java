@@ -1130,8 +1130,8 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
-	public String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier) {
-		final String uri = urlRest+"/updateDemandeInformationEERest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier;
+	public String updateDemandeInformationEE(int id, String intitule_projet, int montant_investissement, String tronsfrontalier, String interregion) {
+		final String uri = urlRest+"/updateDemandeInformationEERest/"+id+"/"+intitule_projet+"/"+montant_investissement+"/"+tronsfrontalier+"/"+interregion;
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(uri, String.class);
 	}

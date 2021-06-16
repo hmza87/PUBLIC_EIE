@@ -266,7 +266,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     var prefecture = "";
     var commune = "";
 
-    var trans = $("#tron").val();
+    var trans = $("#interregion").val();
     if (trans == "oui") {
         if (next_step != "end") {
             $(".cls_step").removeClass('active')

@@ -213,7 +213,6 @@ public class Notification_Controler {
 		}
 
 		model.put("notification", notif);
-
 		return new ModelAndView("autorisationPublic/addDemandNotification", model);
 	}
 

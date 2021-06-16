@@ -341,7 +341,8 @@ public class Hatim {
 		map.put("notif",webt.getNotificationByIdComptId(id_notif,ct.getCompteId()));
 		Object[] pays = webt.tronsaction("select", " pays_id,nom_fr,nom_ar from pays ", " delete_date_time is null ");
 		map.put("pays",pays);
-		map.put("paysautorites",webt.getPaysAutoriteById(id));
+		PaysAutorite p = webt.getPaysAutoriteById(id);
+		map.put("paysautorites",p);
 		map.put("url_admin",urlRest);
 		return new ModelAndView("autorisationPublic/tableFormPaysAutorite",map);
 	}
@@ -1146,9 +1147,9 @@ public class Hatim {
 	}
 
 	@RequestMapping(value = "/api/updateDemandeInfomrationEE/{id}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomrationEE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier)
+	public @ResponseBody String updateDemandeInfomrationEE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String tronsfrontalier, @RequestParam String interregion)
 			throws JsonParseException {
-		String xd= webt.updateDemandeInformationEE(id, intitule_projet, montant_investissement, tronsfrontalier);
+		String xd= webt.updateDemandeInformationEE(id, intitule_projet, montant_investissement, tronsfrontalier, interregion);
 		return xd;
 	}
 
