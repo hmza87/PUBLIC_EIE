@@ -535,7 +535,7 @@
                                     <div class="col-md-2 col-sm-4">
                                         <c:if test="${collect.statut.id_statut_projet!=42}">
                                             <button type="button"
-                                                    onclick="openCity2('#Btn2', '1')"
+                                                     onclick="openCity2('#defaultOpen', '1')"
                                                     class="btn btn-success btn-block"><spring:message
                                                     code="button.Precedent"/></button>
                                         </c:if>
@@ -650,7 +650,12 @@
                                         <div class="col-md-2 col-sm-4">
                                             <button style="margin-top: 10px; margin-bottom: 10px;"
                                                     type="button"
-                                                    onclick="openCity2('#defaultOpen', '2')"
+                                                    <c:if test="${collect.statut.id_statut_projet!=42}">
+                                                        onclick="openCity2('#Btn2', '2')"
+                                                    </c:if>
+                                                    <c:if test="${collect.statut.id_statut_projet==42}">
+                                                        onclick="openCity2('#defaultOpen', '2')"
+                                                    </c:if>
                                                     class="btn btn-success btn-block"><spring:message
                                                     code="button.Precedent"/></button>
                                         </div>
