@@ -658,7 +658,7 @@
 
                                             <button style="margin-top: 10px; margin-bottom: 10px;"
                                                     type="button"
-                                                    onclick="openCity2('#Btn3', '4')"
+                                                    onclick="openCity2('#Btn4', '4')"
                                                     class="btn btn-success btn-block"><spring:message
                                                     code="label.SuivantA"/></button>
                                         </div>
