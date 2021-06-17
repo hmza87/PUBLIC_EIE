@@ -196,8 +196,8 @@
                                             <div class="form-group">
                                                 <label> Inter-région  </label>
                                                 <select ${disabled } onchange="fun_disabled_region(this)" name="interregion" id="interregion" required class="form-control select2" data-width="100%" >
-                                                    <option ${demande.interregion.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
                                                     <option value="oui" ${demande.interregion.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
+                                                    <option ${demande.interregion.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -283,7 +283,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.Regions"/></label>
-                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
+                                            <select ${demande.interregion=="non"?"disabled":""} class="form-control select2 id_region" id="id_region" multiple onchange="load_pref_by_region(this)">
                                                 <c:forEach items="${regions}" var="reg" varStatus="loop">
                                                     <option
                                                             <c:forEach items="${demande.detailRegion.region}" var="rr">
@@ -297,7 +297,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.PrefecturesProvinces"/></label>
-                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
+                                            <select ${demande.interregion=="non"?"disabled":""} class="form-control select2 id_prefecture" id="id_prefecture" multiple onchange="load_commune_by_pref(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lp}" var="p">
                                                     <option
@@ -312,7 +312,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label><spring:message code="label.communes"/></label>
-                                            <select ${demande.interregion=="oui"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
+                                            <select ${demande.interregion=="non"?"disabled":""} class="form-control select2 id_commune" id="id_commune" multiple onchange="saveCommuneDetailregion(this)">
                                                 <%--auto load dynamique--%>
                                                 <c:forEach items="${lc}" var="c" varStatus="loopp">
                                                     <option
@@ -679,11 +679,11 @@
         var trans = $("#interregion").val();
         var tmp = $("#id_region").val();
 
-        if(trans == "non" || type=="AE"){
+        if(trans == "oui" || type=="AE"){
             region = $("#id_region").val().join();
             prefecture = $("#id_prefecture").val().join();
             commune = $("#id_commune").val().join();
-        }else if(trans=="oui"){
+        }else if(trans=="non"){
             region = "0";
             prefecture = "0";
             commune = "0";

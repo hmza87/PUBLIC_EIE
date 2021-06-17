@@ -267,7 +267,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
     var commune = "";
 
     var trans = $("#interregion").val();
-    if (trans == "oui") {
+    if (trans == "non") {
         if (next_step != "end") {
             $(".cls_step").removeClass('active')
             $(id_btn).addClass('active');
@@ -289,11 +289,11 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
         }
     }
 
-    if(trans == "non" || type=="AE" || type=="NT" ){
+    if(trans == "oui" || type=="AE" || type=="NT" ){
         region = $("#id_region").val().join();
         prefecture = $("#id_prefecture").val().join();
         commune = $("#id_commune").val().join();
-    }else if(trans=="oui"){
+    }else if(trans=="non"){
         region = "0";
         prefecture = "0";
         commune = "0";
@@ -718,11 +718,11 @@ function fun_disabled_region(val) {
     if (id === "") {
         return false;
     }
-    if (id == "oui") {
+    if (id == "non") {
         $(".id_region").attr("disabled", true);
         $(".id_commune").attr("disabled", true);
         $(".id_prefecture").attr("disabled", true);
-    } else if (id == "non") {
+    } else if (id == "oui") {
         $(".id_region").attr("disabled", false);
         $(".id_commune").attr("disabled", false);
         $(".id_prefecture").attr("disabled", false);
