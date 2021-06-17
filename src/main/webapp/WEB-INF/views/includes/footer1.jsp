@@ -57,10 +57,10 @@
 <!--End pagewrapper-->
 <!--Scroll to top-->
 
-<footer class="text-center text-lg-start bg-light text-muted w-100 d-inline-block mt-5" id="footer_footer">
+<footer dir="auto" class="text-center text-lg-start bg-light text-muted w-100 d-inline-block mt-5" id="footer_footer">
     <!-- Section: Social media -->
 
-    <section class="d-sm-none d-md-block" style="margin: 0 1rem 0 1rem">
+    <section class="d-sm-none d-md-block" style="margin: 0 3rem 0 3rem">
         <div class="mt-3 mx-auto">
             <!-- Grid row -->
             <div class="row pl-5 "  >
@@ -193,7 +193,7 @@
                         </div>
                         <div class="col-md-auto col-sm-12 text-sm-center  p-2 text-lg-left ">
                             <div class="col-12 pl-0">
-                                <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12" >
+                                <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12" style="text-align: ${pageContext.response.locale=='ar'? 'right !important;' :''}  " >
                                     <spring:message code="label.Mentionlegale"/>
                                 </h6>
                                 <div class="row">
@@ -207,10 +207,10 @@
                         </div>
 
                         <div class="col-md-3 col-sm-12 text-sm-center p-2 text-lg-left ">
-                            <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12">
+                            <h6 class="text-uppercase text-white text-left fw-bold mb-4 font-weight-bold size_12" style="text-align: ${pageContext.response.locale=='ar'? 'right !important;' :''}  ">
                                 <spring:message code="label.contact"/>
                             </h6>
-                            <p class="mb-1" style=" font-size: 14px;">
+                            <p class="mb-1" style=" font-size: 14px; text-align: ${pageContext.response.locale=='ar'? 'right !important;' :''}  ">
                                 <spring:message code="label.AdresseNAvenueAlAraarSecteurHayRiadRabat"/>  <br>
 
                                 <spring:message code="label.Tele"/>  (+212) 537 576 647 / (+212) 537 576 661 <br>
@@ -231,7 +231,7 @@
 
                             </p>
 
-                            <p class="mb-1 ">
+                            <p class="mb-1 " style="text-align: ${pageContext.response.locale=='ar'? 'right !important;' :''}  ">
                                 <a class="text-white" href="/contact/0"><spring:message code="label.Contacteznous"/></a>
                             </p>
 

@@ -145,6 +145,7 @@
                 text-align: left;
             }
         </style>
+        
         <div class="row-fluid d-none border p-2 bg-white" id="dev_step">
             <p class="text-center h4 w-100 font_bold">
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
@@ -354,8 +355,16 @@
                         <spring:message code="label.Procedureasuivrepour"/>  ${l_ph1}
 
             </p>
+            <c:choose>
+                            <c:when test="${type=='EIE'||type=='EIE2'||type=='EIE1'}">
+                                <c:set var="Param_etap" value="4"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="Param_etap" value="3"/>
+                            </c:otherwise>
+                        </c:choose>
             <div class="col-2 p-0">
-                <button class="btn btn-success btn-block" onclick="show_etape_normal()"><span
+                <button class="btn btn-success btn-block" onclick="sectautoris_table_select(${Param_etap})"><span
                         class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
             </div>
             <div class="col-sm-12 p-4 mt-4">
@@ -715,6 +724,9 @@
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" >
                                             <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
                                         </div>
+                                        <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                		</p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -783,22 +795,450 @@
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG">
                                                 <img src="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG"></a>
                                             </div>
+		                                <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                         </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente  </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                             </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Avis de département concerné   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Signée   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attante validation certificat   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de validation du Transporteur   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    
                                                 </c:when>
 
                                     <c:when test="${type=='CT'}">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG">
                                                 <img src="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG"></a>
+                                            
+		                                <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                		</p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Contrôle préliminaire</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente d'avis d'AGCDD</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente d'avis de commission</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Refus</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Favorable</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12"> Attente d'avis de département concerné</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de signature</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Favorable sous réserve</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Demande de complément</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Favorable (commission)</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non Favorable (commission)</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Signée</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Complément attachée</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                             
+                                       
+
+                                            </tbody>
+                                        </table>
+                                    
                                     </c:when>
 
                                     <c:when test="${type=='IT'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_it.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_it.PNG"></a>
+                                    <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+
+		                                </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">visite planifié</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Favorable</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de validation de département concerné</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable (comité)</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Signée</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+<tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de programmer une visite</td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+
+                                             
+                                       
+
+                                            </tbody>
+                                        </table>
+                                    
                                     </c:when>
                                     <c:when test="${type=='XD'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_xd.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_xd.PNG"></a>
-                                    </c:when>
+                                    
+		                                <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                         </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente  </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                             </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Avis de département concerné   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Signée   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attante validation certificat   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de validation du Transporteur   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
 
+
+
+                                            </tbody>
+                                        </table>
+                                    </c:when>
+                                    <c:when test="${type=='ET'}">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_ET.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_ET.PNG"></a>
+                                    
+		                                <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                         </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente  </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                             </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Avis de département concerné   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Signée   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attante validation certificat   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de validation du Transporteur   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </c:when>
+									<c:when test="${type=='TR'}">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_TR.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_TR.PNG"></a>
+                                    
+		                                <p class="text-underline text-success font_bold mt-3">
+		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                         </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                <th class="text-underline bold text-center font_time_serif"><spring:message code="label.Details"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente  </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                             </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Incomplet </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Avis de département concerné   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Non favorable   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Brouillon   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Signée   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attante validation certificat   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Certificat invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Attente de validation du Transporteur   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur valide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Transporteur invalide   </td>
+                                                <td class="font_time_serif size_12">  </td>
+                                            </tr>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </c:when>
                                     <c:otherwise>
                                         <table id="table_acteur" class="table table-striped table-bordered table-hover my_table">
                                             <thead class="bg_stat_01">
@@ -972,6 +1412,10 @@
             <div class="col-12">
                 <p class="h3 font_bold w-100 text-center p-4"><spring:message
                         code="label.Preparezvotredemarche"/></p>
+                        <div class="col-2 p-0">
+			                				<button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
+			                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
+			            				</div>
             </div>
             <div class="col-12 p-0 m-0  bg-light border">
                 <div class="row p-0 m-0">

@@ -551,7 +551,7 @@
 
                                     <h2 class="font-weight-700">
                                         <spring:message code="label.Preparezvotredemarche"/></h2>
-
+                                     
                                 </div>
                                 <div class="col-2"></div>
 
@@ -633,11 +633,13 @@ margin-bottom: 10px;">
 
 
                     <div class="col-12 pl-2 pr-2 mb-2" id="procedure_content">
+                    
                         <div class="row-fluid d-none border p-2 bg-white" id="dev_step">
+                        
                             <p class="text-center h4 w-100 font_bold"><spring:message
                                     code="option.Procedureasuivrepourobtenir"/></p>
                             <div class="col-2 p-0">
-                                <button class="btn btn-success btn-block" onclick="show_etape_normal()"><span
+                                <button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
                                         class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
                             </div>
                             <div class="col-sm-12 p-4 mt-4">
@@ -821,8 +823,13 @@ margin-bottom: 10px;">
                         </div>
                         <div class="row-fluid border d-none bg-white" id="dev_list_slc">
                             <div class="col-12">
+                            
                                 <p class="h3 font_bold w-100 text-center p-4"><spring:message
                                         code="label.Preparezvotredemarche"/></p>
+                                        <div class="col-2 p-0">
+			                				<button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
+			                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
+			            				</div>
                             </div>
                             <div class="col-12 p-0 m-0  bg-light border">
                                 <div class="row p-0 m-0">

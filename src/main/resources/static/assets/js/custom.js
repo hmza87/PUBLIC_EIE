@@ -168,6 +168,19 @@ function sectautoris_table_select(nbr) {
         $("#EIE_groupe").removeClass("d-none");
         $("#autorisation_groupe").addClass("d-none");
     }
+    if(nbr===3){
+        $("#dev_list_slc").removeClass("d-none");
+        $("#zone_rech").addClass("d-none");
+        $("#autorisation_groupe").removeClass("d-none");
+        $("#dev_step").addClass("d-none");
+        $("#EIE_groupe").addClass("d-none");
+    }else if(nbr===4){
+        $("#dev_list_slc").removeClass("d-none");
+        $("#zone_rech").addClass("d-none");
+        $("#dev_step").addClass("d-none");
+        $("#EIE_groupe").removeClass("d-none");
+        $("#autorisation_groupe").addClass("d-none");
+    }
 
 }
 

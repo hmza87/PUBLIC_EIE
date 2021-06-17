@@ -82,7 +82,7 @@
                                     <div class="col-12">
                                                 <a href="/api/addInstallation/0/N"
                                                    class="btn btn-sm btn-success"><spring:message
-                                                        code="label.Demandedenumerosdenotification"/>
+                                                        code="label.Commencerlademarche"/>
                                                     <span class="fa fa-angle-double-right"></span></a>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                             <button onclick="affiche_nume_zone('zone_tab1')"
                                             <c:if test="${empty install}">disabled</c:if>
                                                     class="btn btn-sm btn-success">
-                                                <spring:message code="label.Parnumerodenotification"/> <span
+                                                 Par numéro de dossier <span
                                                     class="fa fa-angle-double-right"></span></button>
 
 

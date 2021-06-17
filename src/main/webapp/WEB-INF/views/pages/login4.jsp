@@ -491,6 +491,10 @@
                                         <div class="col-8 text-center text-underline">
 
                                             <h2 class="font-weight-700"><spring:message code="label.Preparezvotredemarche" /></h2>
+                                            <div class="col-2 p-0">
+				                				<button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
+				                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
+				            				</div>
 
                                         </div>
                                         <div class="col-2"></div>
@@ -1038,7 +1042,7 @@
                         <div class="row d-none border p-2" id="dev_step">
                             <p class="text-center h4 w-100 font_bold"> Procédure a suivre pour obtenir votre demande d'autorisation d'importation des déchets d'une zone franche</p>
                             <div class="col-2 p-0">
-                                <button class="btn btn-success btn-block" onclick="show_etape_normal()"><span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </button>
+                                <button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/> </button>
                             </div>
                             <div class="col-sm-12 p-4 mt-4">
                                 <div class="row p-0 justify-content-center">

@@ -686,7 +686,10 @@
                                 <div class="col-8 text-center text-underline">
 
                                     <h2 class="font-weight-700"><spring:message code="label.Preparezvotredemarche" /></h2>
-
+										<div class="col-2 p-0">
+			                				<button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
+			                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
+			            				</div>
                                 </div>
                                 <div class="col-2"></div>
 
