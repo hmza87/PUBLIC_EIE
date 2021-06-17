@@ -4845,8 +4845,8 @@ input[type="button"].btn-block {
 }
 
 .badge-danger {
-  color: #fff;
-  background-color: #dc3545;
+  color: #fff !important;
+  background-color: #dc3545 !important;
 }
 
 .badge-danger[href]:hover, .badge-danger[href]:focus {

@@ -35,7 +35,6 @@ public class CollecteTransporteur implements Serializable {
   private String raison;
   @Column(name = "cin", nullable = true, columnDefinition = "NVARCHAR(255)")
   private String cin;
-
   public String getRaison() {
     return raison;
   }
@@ -136,6 +135,21 @@ public class CollecteTransporteur implements Serializable {
           @JoinColumn(name = "id_collecte") }, inverseJoinColumns = { @JoinColumn(name = "id_code") })
 
   private List<Code> code = new ArrayList<>();
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @Fetch(FetchMode.SELECT)
+  @JoinTable(name = "codelistTmp", joinColumns = {
+          @JoinColumn(name = "id_collecte") }, inverseJoinColumns = { @JoinColumn(name = "id_code_tmp") })
+
+  private List<Code> codeTmp = new ArrayList<>();
+
+  public List<Code> getCodeTmp() {
+    return codeTmp;
+  }
+
+  public void setCodeTmp(List<Code> codeTmp) {
+    this.codeTmp = codeTmp;
+  }
 
   @Column(name = "datecoll1", nullable = true)
   private Date datecoll1;

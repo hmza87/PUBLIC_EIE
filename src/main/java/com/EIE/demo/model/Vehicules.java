@@ -59,6 +59,39 @@ public class Vehicules implements Serializable {
 	@Column(name = "deleteDateTime", nullable = true)
 	private Date deleteDateTime;
 
+	@Column(name = "commantaire", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String commantaire;
+
+	@Column(name = "typeVehicule", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String typeVehicule;
+
+	@Column(name = "typeConteneur", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String typeConteneur;
+
+	public String getCommantaire() {
+		return commantaire;
+	}
+
+	public void setCommantaire(String commantaire) {
+		this.commantaire = commantaire;
+	}
+
+	public String getTypeVehicule() {
+		return typeVehicule;
+	}
+
+	public void setTypeVehicule(String typeVehicule) {
+		this.typeVehicule = typeVehicule;
+	}
+
+	public String getTypeConteneur() {
+		return typeConteneur;
+	}
+
+	public void setTypeConteneur(String typeConteneur) {
+		this.typeConteneur = typeConteneur;
+	}
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

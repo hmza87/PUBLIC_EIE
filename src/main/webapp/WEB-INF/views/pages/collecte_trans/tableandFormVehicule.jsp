@@ -16,8 +16,8 @@
             <th> <spring:message code="label.NChassis"/> </th>
             <th> <spring:message code="label.Poidstotalencharge"/> </th>
             <th> <spring:message code="label.Poidsnetduvehicule"/> </th>
-            <!-- <th> <spring:message code="label.Equipementdesecurite"/> </th>
-            <th> <spring:message code="label.Attestationdassurance"/></th>-->
+            <th> <spring:message code="label.Typevehicule"/> </th>
+            <th> <spring:message code="label.typedeconteneursA"/></th>
             <th style="min-width: 120px"> <spring:message code="label.Action"/> </th>
         </tr>
         </thead>
@@ -30,6 +30,8 @@
                         <td>${v.num_chassis}</td>
                         <td>${v.poit_totale_charge}</td>
                         <td>${v.point_net}</td>
+                        <td>${v.typeVehicule}</td>
+                        <td>${v.typeConteneur}</td>
                        <!--  <td>
                             <c:if test="${not empty v.equipementSecurite}">
                                 <a href="${url_admin}${fn:replace(v.equipementSecurite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle secur"><span class="fa fa-download"></span></a>
@@ -47,8 +49,13 @@
                             <button class="btn btn-warning rounded-circle" onclick="getVehicule('${v.id_vehicule}',this)">
                                 <span class="fas fa-pencil-alt"></span>
                             </button>
-
-
+                            <c:if test="${v.commantaire!=null}">
+                                <div class="row mt-2">
+                                    <div class="col" >
+                                        <textarea rows="2" disabled class="form-control mb-0">${v.commantaire}</textarea>
+                                    </div>
+                                </div>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>
@@ -110,6 +117,16 @@
                     </label>
                     <input type="text" class="form-control" id="poidsNet" value="${vehicules.point_net}" name="point_net">
                 </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label> <spring:message code="label.TypedevehiculesA"/> </label>
+                    <input type="text" class="form-control" name="typeVehicule" value="${vehicules.typeVehicule}">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label> <spring:message code="label.typedeconteneursA"/> </label>
+                <input type="text" class="form-control" name="typeConteneur" value="${vehicules.typeConteneur}">
             </div>
              <input type="hidden" id="securiteEquip">
              <input type="hidden" id="file">

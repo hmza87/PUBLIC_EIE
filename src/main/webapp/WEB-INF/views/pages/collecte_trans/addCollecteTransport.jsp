@@ -53,6 +53,11 @@
     .main-panel{
         margin-top:150px;
     }
+
+    .badge-danger {
+        color: #fff !important;
+        background-color: #dc3545 !important;
+    }
 </style>
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
@@ -93,19 +98,18 @@
                     <div class="row p-0 m-0">
                         <div class="col-md-3 col-sm-12 pl-0 pr-0 mb-3">
                             <div class="">
-
                                 <button class="tablinks btn-primary btn"
-                                        onclick="openCity(event, '1')" id="defaultOpen">1.
+                                        onclick="openCity(event, '1')" <c:if test="${collect.statut.id_statut_projet!=42}">id="defaultOpen"</c:if> <c:if test="${collect.statut.id_statut_projet==42}">id="Btn2"</c:if> ${collect.statut.id_statut_projet==42 || collect.statut.id_statut_projet==50 ?'disabled':''}>1.
                                     <%--<spring:message code="label.InformationdemandeurA"/>--%><spring:message code="label.Informationdudemandeur"/> </button>
-                                <button class="tablinks btn-primary btn my_tab" id="Btn2" <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '2')"><spring:message
-                                        code="label.CatalogueA"/></button>
+                                <button class="tablinks btn-primary btn my_tab"<c:if test="${collect.statut.id_statut_projet==42}">id="defaultOpen"</c:if><c:if test="${collect.statut.id_statut_projet!=42}">id="Btn2"</c:if>  <c:if test="${id==0}"> ${disabled}</c:if>
+                                        onclick="openCity(event, '2')" ${collect.codeTmp==null?'disabled':''}><spring:message
+                                        code="label.DonneesurlesvehiculesA"/><c:if test="${collect.statut.id_statut_projet==42}"><span class="text-right ml-5 badge badge-danger">Vérifier votre véhicule</span></c:if></button>
                                 <button class="tablinks btn-primary btn my_tab" id="Btn3" <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '3')"><spring:message
-                                        code="label.DonneesurlesvehiculesA"/></button>
-                                <button class="tablinks btn-primary btn my_tab" id="Btn4" <c:if test="${id==0}"> ${disabled}</c:if>
+                                        code="label.CatalogueA"/> <c:if test="${collect.statut.id_statut_projet==42}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Codes des déchets</span></c:if></button>
+                                <button class="tablinks btn-primary btn my_tab" id="Btn4" ${empty doc2?'disabled':''}  <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '4')"><spring:message
-                                        code="label.MespiecesA"/></button>
+                                        code="label.MespiecesA"/><c:if test="${collect.statut.id_statut_projet==42 && not empty doc2}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Document</span></c:if></button>
                                 <button class="tablinks btn-primary btn my_tab montab" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="verif_champs_recap('4','CT','id_collecte','5')">5. <spring:message code="label.Recapitulation"/></button>
                             </div>
@@ -297,93 +301,7 @@
                                 </form>
 
                             </div>
-
                             <div id="2" class="tabcontent">
-                                <div class="row m-0 p-0 ">
-                                    <div class="col-auto">
-                                        <h4 class="titre_abs "><spring:message code="label.CatalogueA"/></h4>
-                                    </div>
-                                </div>
-                                <form id="formnotif" name="formnotif">
-                                    <div class="row p-0">
-                                        <div class="col-sm-8" id="zone_tableau">
-                                            <table class="table table-striped" data-page-length="15">
-                                                <thead>
-                                                <tr>
-
-                                                    <th scope="col" style="min-width: 100px"><spring:message
-                                                            code="label.CodeA"/></th>
-                                                    <th scope="col"><spring:message code="label.TypeA"/></th>
-                                                    <th scope="col"><spring:message code="label.ValiderA"/></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                <c:forEach items="${code}" var="c">
-
-                                                    <c:set var="checked" value=""/>
-                                                    <c:forEach items="${collect.code}" var="code_colle">
-                                                        <c:if test="${code_colle.id_code==c.id_code}">
-                                                            <c:set var="checked" value="checked disabled"/>
-                                                        </c:if>
-                                                    </c:forEach>
-
-
-                                                    <tr>
-                                                        <td>${c.nom_fr } -</td>
-                                                        <td>${c.nom_ar }</td>
-                                                        <td><input ${checked} class="h-15" type="checkbox"
-                                                                              id="id-${c.id_code }"
-                                                                              onchange="addCodeCT('id_collecte','${c.id_code}','add')">
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-sm-4" id="zone_list_tab">
-                                            <div class="d-block h-100 my_rows" id="my_rows">
-
-                                                <c:forEach items="${collect.code}" var="code_colle" varStatus="index">
-                                                    <div class="row p-0 m-0 ${index.index%2==0?'bg-light':''} ">
-                                                        <div class="col-8"> ${code_colle.nom_ar} </div>
-                                                        <div class="col-4 p-2 text-center">
-                                                            <button class="btn btn-success rounded-circle"
-                                                                    onclick="addCodeCT('id_collecte','${code_colle.id_code}','delete')">
-                                                                <span class="fa fa-times"></span></button>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row justify-content-center  mb-5 mt-3">
-                                        <div class="col-md-2 col-sm-4">
-                                            <button style="margin-top: 10px; margin-bottom: 10px;"
-                                                    type="button"
-                                                    onclick="openCity2('#defaultOpen', '1')"
-                                                    class="btn btn-success btn-block"><spring:message
-                                                    code="button.Precedent"/></button>
-                                        </div>
-                                        <div class="col-md-2 col-sm-4">
-                                            <button style="margin-top: 10px; margin-bottom: 10px;"
-                                                    type="button"
-                                                    onclick="openCity2('#Btn3', '3')"
-                                                    class="btn btn-success btn-block"><spring:message
-                                                    code="label.SuivantA"/></button>
-                                        </div>
-
-
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div id="3" class="tabcontent">
                                 <div class="row m-0 p-0 ">
                                     <div class="col-auto">
                                         <h4 class="titre_abs "><spring:message code="label.DonneeA"/></h4>
@@ -391,25 +309,6 @@
                                 </div>
                                 <form id="formvehicule" name="formvehicule">
                                     <div class="row m-0 p-0 mt-3">
-                                        <div class="col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label> <spring:message code="label.TypedevehiculesA"/> </label>
-                                                <input type="text" class="form-control" name="typevehicule" value="${collect.typevehicule}">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-12">
-                                            <label> <spring:message code="label.typedeconteneursA"/> </label> <select
-                                                name="id_type_conteneur" class="form-control ">
-                                            <option value=""><spring:message code="label.ChoisirA"/></option>
-                                            <c:forEach items="${typeConteneurs}" var="t">
-                                                <option value="${t.id_type_conteneur}"
-                                                    ${t.id_type_conteneur==collect.typeConteneurs.id_type_conteneur?'selected':''}>
-                                                        ${t.nom_fr}</option>
-                                            </c:forEach>
-                                        </select>
-                                        </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <div class="form-group">
@@ -426,7 +325,6 @@
                                 </form>
                                 <div class="row p-0 m-0">
                                     <div class="col-12 p-0 m-0" id="my_table">
-
                                         <div class="table-responsive">
                                             <table class="table table-bordered my_table">
                                                 <thead>
@@ -435,8 +333,8 @@
                                                     <th><spring:message code="label.NChassis"/></th>
                                                     <th><spring:message code="label.Poidstotalencharge"/></th>
                                                     <th><spring:message code="label.Poidsnetduvehicule"/></th>
-                                                    <!--  <th><spring:message code="label.Equipementdesecurite"/></th>
-                                                    <th><spring:message code="label.Attestationdassurance"/></th>-->
+                                                    <th><spring:message code="label.Typevehicule"/></th>
+                                                    <th><spring:message code="label.typedeconteneursA"/></th>
                                                     <th style="min-width: 120px"><spring:message
                                                             code="label.Action"/></th>
                                                 </tr>
@@ -451,7 +349,9 @@
                                                                 <td>${v.num_chassis}</td>
                                                                 <td>${v.poit_totale_charge}</td>
                                                                 <td>${v.point_net}</td>
-                                                                <!--  
+                                                                <td>${v.typeVehicule}</td>
+                                                                <td>${v.typeConteneur}</td>
+                                                                <!--
                                                                 <td>
                                                                     <c:choose>
                                                                         <c:when test="${not empty v.equipementSecurite}">
@@ -482,6 +382,13 @@
                                                                             onclick="getVehicule('${v.id_vehicule}',this)">
                                                                         <span class="fas fa-pencil-alt"></span>
                                                                     </button>
+                                                                    <c:if test="${v.commantaire!=null}">
+                                                                        <div class="row mt-2">
+                                                                            <div class="col" >
+                                                                                <textarea rows="2" disabled class="form-control mb-0">${v.commantaire}</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:if>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
@@ -543,9 +450,20 @@
                                                             <input type="text" class="form-control" id="poidsNet" value="${vehicules.point_net}" name="point_net">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label> <spring:message code="label.TypedevehiculesA"/> </label>
+                                                            <input type="text" class="form-control" name="typeVehicule" value="${vehicules.typeVehicule}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label> <spring:message code="label.typedeconteneursA"/> </label>
+                                                        <input type="text" class="form-control" name="typeConteneur" value="${vehicules.typeConteneur}">
+                                                    </div>
                                                     <input type="hidden" id="securiteEquip">
                                                     <input type="hidden" id="file">
-                                                    <!-- 
+                                                    <!--
                                                     <div class="col-md-4 col-sm-12">
                                                         <div class="form-group">
                                                             <label class="f-14">
@@ -615,15 +533,17 @@
 
                                 <div class="row justify-content-center  mb-5 mt-3">
                                     <div class="col-md-2 col-sm-4">
-                                        <button type="button"
-                                                onclick="openCity2('#Btn2', '2')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="button.Precedent"/></button>
+                                        <c:if test="${collect.statut.id_statut_projet!=42}">
+                                            <button type="button"
+                                                    onclick="openCity2('#Btn2', '1')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                        </c:if>
                                     </div>
 
                                     <div class="col-md-2 col-sm-4">
                                         <button type="button"
-                                                onclick="check_vehicule_ok('formvehicule','collectetransporteur','4',${id},'id_collecte','non')"
+                                                onclick="check_vehicule_ok('formvehicule','collectetransporteur','3',${id},'id_collecte','non')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="label.SuivantA"/></button>
                                     </div>
@@ -633,40 +553,185 @@
                                 </div>
 
                             </div>
+                            <div id="3" class="tabcontent">
+                                <div class="row m-0 p-0 ">
+                                    <div class="col-auto">
+                                        <h4 class="titre_abs "><spring:message code="label.CatalogueA"/></h4>
+                                    </div>
+                                </div>
+                                <form id="formnotif" name="formnotif">
+                                    <div class="row p-0">
+                                        <div class="col-sm-8" id="zone_tableau">
+                                            <table class="table table-striped" data-page-length="15">
+                                                <thead>
+                                                <tr>
 
+                                                    <th scope="col" style="min-width: 100px"><spring:message
+                                                            code="label.CodeA"/></th>
+                                                    <th scope="col"><spring:message code="label.TypeA"/></th>
+                                                    <th scope="col"><spring:message code="label.ValiderA"/></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:if test="${collect.statut.id_statut_projet!=42}">
+                                                        <c:forEach items="${code}" var="c">
+
+                                                            <c:set var="checked" value=""/>
+                                                            <c:forEach items="${collect.code}" var="code_colle">
+                                                                <c:if test="${code_colle.id_code==c.id_code}">
+                                                                    <c:set var="checked" value="checked disabled"/>
+                                                                </c:if>
+                                                            </c:forEach>
+
+
+                                                            <tr>
+                                                                <td>${c.nom_fr } -</td>
+                                                                <td>${c.nom_ar }</td>
+                                                                <td><input ${checked} class="h-15" type="checkbox"
+                                                                                      id="id-${c.id_code }"
+                                                                                      onchange="addCodeCT('id_collecte','${c.id_code}','add')">
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                    <c:if test="${collect.statut.id_statut_projet==42}">
+                                                        <c:forEach items="${collect.code}" var="c">
+                                                            <c:set var="bg" value=""/>
+                                                            <c:forEach items="${collect.codeTmp}" var="code_colle">
+                                                                <c:if test="${code_colle.id_code==c.id_code}">
+                                                                    <c:set var="bg" value="bg-danger"/>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                                <tr class="${bg}" id="tr-${c.id_code}">
+                                                                    <td>${c.nom_fr }-</td>
+                                                                    <td>${c.nom_ar }</td>
+                                                                    <td>
+                                                                        <input checked disabled class="h-15" type="checkbox"
+                                                                               id="id-${c.id_code }">
+                                                                    </td>
+                                                                </tr>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-sm-4" id="zone_list_tab">
+                                            <div class="d-block h-100 my_rows" id="my_rows">
+                                                <c:if test="${collect.statut.id_statut_projet!=42}">
+                                                  <c:forEach items="${collect.code}" var="code_colle" varStatus="index">
+                                                    <div class="row p-0 m-0 ${index.index%2==0?'bg-light':''} ">
+                                                        <div class="col-8"> ${code_colle.nom_ar} </div>
+                                                        <div class="col-4 p-2 text-center">
+                                                            <button class="btn btn-success rounded-circle"
+                                                                    onclick="addCodeCT('id_collecte','${code_colle.id_code}','delete')">
+                                                                <span class="fa fa-times"></span></button>
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
+                                                </c:if>
+                                                <c:if test="${collect.statut.id_statut_projet==42}">
+                                                    <c:forEach items="${collect.codeTmp}" var="code_colle" varStatus="index">
+                                                        <div class="row p-0 m-0 ${index.index%2==0?'bg-light':''} ">
+                                                            <div class="col-8"> ${code_colle.nom_ar} </div>
+                                                            <div class="col-4 p-2 text-center">
+                                                                <button class="btn btn-success rounded-circle"
+                                                                        onclick="addCodeCT_tmp('id_collecte','${code_colle.id_code}','delete')">
+                                                                    <span class="fa fa-times"></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row justify-content-center  mb-5 mt-3">
+                                        <div class="col-md-2 col-sm-4">
+                                            <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                    type="button"
+                                                    onclick="openCity2('#defaultOpen', '2')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                        </div>
+                                        <div class="col-md-2 col-sm-4">
+
+                                            <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                    type="button"
+                                                    onclick="openCity2('#Btn3', '4')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="label.SuivantA"/></button>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
                             <div id="4" class="tabcontent">
                                 <div class="row m-0 p-0 ">
                                     <div class="col-auto">
                                         <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                                     </div>
                                 </div>
-                                <c:forEach items="${doc}" var="dc">
-                                    <div class="row justify-content-center">
-                                        <div class="col-6 mt-3  ">
-                                            <div class="form-group">
-                                                <div>
-                                                    <label style="width: 100%;"> ${dc.nom_fr } </label> <input
-                                                    ${((collect.statut.id_statut_projet==25) && (typeRenouv=='N'))?"disabled":""}
-                                                        required
-                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','CT','id_collecte')"
-                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                        class="form-control mydoc">
+                                <c:if test="${collect.statut.id_statut_projet==42}">
+                                    <c:forEach items="${doc2}" var="dc">
+                                        <c:if test="${dc.nom_ar!='oui'}">
+                                            <div class="row justify-content-center">
+                                                <div class="col-6 ml-3 mt-3  ">
+                                                    <div class="${dc.nom_ar=='oui'?'Doc_ok':'Doc_Not_ok'}">
+                                                        <div class="form-group">
+                                                            <label class=""> ${dc.docImport.nom_fr } : </label>
+                                                            <div class="${dc.nom_ar=='oui'?'hidden':'' }">
+                                                                <input required
+                                                                       onchange="addDocG(${dc.collecte.id_collecte},${dc.docImport.id_docImport},'doc${dc.docImport.id_docImport}','CT','')"
+                                                                       accept=".pdf" type="file"
+                                                                       id="doc${dc.docImport.id_docImport }"
+                                                                       class="form-control mydoc">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                            <a class="btn btn-success rounded file_existe" download href="${url_Admin}${fn:replace(dc.url, "/assets/myFile/", "/dowload_uploaded/")}">
+                                                                <i class="fa fa-upload " title="Télécharger le document"
+                                                                   style="margin:0 !important"></i> </a>
+                                                </div>
+                                                <div class="col-4" style="margin-top: 4.5rem !important;">
+                                                    <span class="bg-danger" id="id${dc.id_listDocNotif }"> ${dc.nom_fr } </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <c:if test="${not empty docNotify}">
-                                            <div class="col-2">
-                                                <c:forEach items="${docNotify}" var="d">
-                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
-                                                        <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
-                                                           class="btn btn-success rounded file_existe"><span
-                                                                class="fa fa-download"></span></a>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
                                         </c:if>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${collect.statut.id_statut_projet!=42}">
+                                    <c:forEach items="${doc}" var="dc">
+                                        <div class="row justify-content-center">
+                                    <div class="col-6 mt-3  ">
+                                        <div class="form-group">
+                                            <div>
+                                                <label style="width: 100%;"> ${dc.nom_fr } </label> <input
+                                            ${((collect.statut.id_statut_projet==25) && (typeRenouv=='N'))?"disabled":""}
+                                                    required
+                                                    onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','CT','id_collecte')"
+                                                    accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                    class="form-control mydoc">
+                                            </div>
+                                        </div>
                                     </div>
-                                </c:forEach>
+                                    <c:if test="${not empty docNotify}">
+                                        <div class="col-2">
+                                            <c:forEach items="${docNotify}" var="d">
+                                                <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
+                                                    <a href="${url_Admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
+                                                       class="btn btn-success rounded file_existe"><span
+                                                            class="fa fa-download"></span></a>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </c:if>
+                                </div>
+                                    </c:forEach>
+                                </c:if>
                                 <div class="row justify-content-center mb-5 mt-3">
                                     <div class="col-md-2 col-sm-4">
                                         <button type="button" id=""
@@ -675,15 +740,23 @@
                                                 code="button.Precedent"/></button>
                                     </div>
                                     <div class="col-md-3 col-sm-4">
-                                        <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
-                                               id="url_file_pdf">
-                                        <button class="btn btn-success btn-block "
-                                                onclick="verif_champs_ct('4','CT','id_collecte','5')"><spring:message code="label.Afficherlerecapitulatif"/>
-                                        </button>
+                                        <c:if test="${collect.statut.id_statut_projet!=42}">
+                                            <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
+                                                   id="url_file_pdf">
+                                            <button class="btn btn-success btn-block "
+                                                    onclick="verif_champs_ct('4','CT','id_collecte','5')"><spring:message code="label.Afficherlerecapitulatif"/>
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${collect.statut.id_statut_projet==42}">
+                                            <input type="hidden" value="${url_Admin}/generate_pdf_collecte/"
+                                                   id="url_file_pdf">
+                                            <a class="btn btn-success btn-block "
+                                                   href="/api/checkUserHasCollecte/CT">Enregistrer
+                                            </a>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
-
                             <div id="5" class="tabcontent">
 
                                 <h4 class="titre_abs "><spring:message code="label.Recapitulation"/></h4>
@@ -707,8 +780,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </section>
         </div>
@@ -1115,6 +1186,47 @@
                     var checkbox = table1.$("input[type=checkbox]#id-" + id_code);
                     $(checkbox).removeAttr("disabled");
                     $(checkbox).prop("checked", false);
+
+                }
+                console.log("complete");
+            });
+
+    }
+    function addCodeCT_tmp(id_collect, id_code, type) {
+        event.preventDefault();
+        var id_coll = $("#" + id_collect).val();
+        if (id_coll == "") {
+            return false;
+        }
+        $.ajax({
+            url: '/api/deleteCodeTmp/' + id_coll + '/' + id_code + '/' + type,
+            type: 'GET',
+            data: {},
+        })
+            .done(function (data) {
+                if (!data.user) {
+                    window.location.href = '/index';
+                }
+                $("#my_rows").html("");
+                $(data.codes).each(function (ind, el) {
+                    var cls = "";
+                    if (ind % 2 == 0) {
+                        cls = "bg-light";
+                    }
+                    var row = '<div class="row p-0 m-0 ' + cls + ' "> <div class="col-8"> ' + el.nom_ar + ' </div> <div class="col-4 p-2 text-center"> <button class="btn btn-success rounded-circle" onclick="addCodeCT_tmp(\'' + id_collect + '\',\'' + el.id_code + '\',\'delete\')"> <span class="fa fa-times"></span> </button> </div> </div>';
+                    $("#my_rows").append(row);
+                });
+
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                if (type == "add") {
+                    $('#id-' + id_code).attr("disabled", "true");
+                }
+                if (type == "delete") {
+                    $("#tr-"+id_code).hide();
 
                 }
                 console.log("complete");

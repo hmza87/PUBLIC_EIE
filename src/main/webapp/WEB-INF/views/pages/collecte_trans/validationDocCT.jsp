@@ -118,7 +118,7 @@
 
                                                 <td><label disabled id="id${dc.id_listDocNotif }" style="width: 100%;"> ${dc.nom_fr } </label></td>
                                             </tr></c:if><
-                                    </c:forEach>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
 

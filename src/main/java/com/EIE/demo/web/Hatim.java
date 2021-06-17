@@ -310,6 +310,7 @@ public class Hatim {
 		List<TypeVehicule> typeVehicules = webt.getListAllTypeVehicule();
 		List<TypeConteneurs> typeConteneurs = webt.getListAllTypeConteneur();
 		map.put("doc", webt.listDocImportByType(1,"CT"));
+		map.put("doc2", webt.listDocNotif(id,"CT"));
 		CollecteTransporteur collect = webt.getCollecteById(id,ct.getCompteId(),typeRenouv);
 		map.put("collect",collect);
 		map.put("id",id);
@@ -462,6 +463,16 @@ public class Hatim {
 		return map;
 	}
 
+	@RequestMapping(value = "/api/deleteCodeTmp/{id_coll}/{id_code}/{type}", method = RequestMethod.GET)
+	public @ResponseBody Map<String,Object> deleteCodeTmp(@PathVariable int id_coll,@PathVariable int id_code,@PathVariable String type)
+			throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+		webt.deleteCodeTmp(id_coll,id_code,webt.getCompteConnected().getCompteId(),type);
+		CollecteTransporteur v =  webt.getCollecteById(id_coll,webt.getCompteConnected().getCompteId());
+		map.put("user",webt.getCompteConnected());
+		map.put("codes",v.getCodeTmp());
+		return map;
+	}
 
 	@RequestMapping(value = "/api/setcodeInstall/{id_inst}/{id_code}/{type}", method = RequestMethod.GET)
 	public @ResponseBody Map<String,Object> setcodeinstall(@PathVariable int id_inst,@PathVariable int id_code,@PathVariable String type)

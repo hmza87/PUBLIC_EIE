@@ -101,7 +101,7 @@
             <a href="${url_Admin}${fn:replace(collect.url_doc_signer,"/assets/myFile/","/dowload_uploaded/")}" class="btn btn-primary"><i class="fa fa-download"></i> Télécharger l'autorisation </a>
           </div>
         </c:if>-->
-        <c:if test="${collect.statut.id_statut_projet==56 || (collect.statut.id_statut_projet==20) ||(collect.statut.id_statut_projet==42)  ||(collect.statut.id_statut_projet==25) || (collect.statut.id_statut_projet==19) }">
+        <c:if test="${collect.statut.id_statut_projet==56}">
           <%-- non conforme - dmd_complement - favorable--%>
           <div class="col-md-3 col-sm-6">
             <a class="btn btn-success btn-block"
@@ -113,6 +113,11 @@
         <c:if test="${collect.statut.id_statut_projet==50}">
           <div class="col-md-3 col-sm-6">
             <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pencil mr-2"></i><spring:message code="label.deposerDossier"/></a>
+          </div>
+        </c:if>
+        <c:if test="${collect.statut.id_statut_projet==42}">
+          <div class="col-md-3 col-sm-6">
+            <a href="/api/addCollectTrans/${collect.id_collecte}/N" class="btn btn-primary btn-block"><i class="fa fa-pencil mr-2"></i><spring:message code="label.Completerlesdocuments"/></a>
           </div>
         </c:if>
         <div class="col-md-3 col-sm-6">
@@ -135,7 +140,6 @@
       <div id="accordion">
         <h2>1. <spring:message code="label.InformationdemandeurA" /></h2>
         <div>
-
           <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
@@ -143,9 +147,7 @@
                 <input type="text" disabled value="${collect.num_demande}" class="form-control">
               </div>
             </div>
-
           </div>
-
           <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">

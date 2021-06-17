@@ -732,6 +732,13 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void deleteCodeTmp(int id_coll, int id_code, int id_user,String type) {
+		final String uris = urlRest + "/deleteCodeTmpRest/"+id_coll+"/"+id_code + "/"+ type+"/"+id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
 	public List<Prefecture> updateRegion(int id, int regionId) {
 		final String uris = urlRest + "/updateRegionRest/"+id+"/"+regionId;
 		RestTemplate restTemplate = new RestTemplate();

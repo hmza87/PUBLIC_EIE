@@ -219,4 +219,6 @@ void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,Multi
     String saveFile_Rapport_ae(int id_dmd,int id_rapport, MultipartFile file, int compteId);
 
 	void  addCategorieDechet(int id_notif);
+
+	void deleteCodeTmp(int id_coll, int id_code, int id_user, String type);
 }
