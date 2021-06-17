@@ -960,6 +960,15 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public Installation[] getInstallationAll(int compteId) {
+		final String uri = urlRest+"/getInstallationAllRest/"+compteId;
+		RestTemplate restTemplate = new RestTemplate();
+		Installation[] result = restTemplate.getForObject(uri, Installation[].class);
+
+		return result;
+	}
+
+	@Override
 	public LieuElimination[] getLieuEliminationArr() {
 		final String uri = urlRest+"/getLieuEliminationArrRest";
 		RestTemplate restTemplate = new RestTemplate();

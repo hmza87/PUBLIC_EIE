@@ -154,6 +154,8 @@ public interface WebService {
 
 	Notification[] getNotificationAll(int compteId, String type);
 
+	Installation[] getInstallationAll(int compteId);
+
 	LieuElimination[] getLieuEliminationArr();
 
 	String setFilQualifToInstall(int id, MultipartFile[] fileToUpload);

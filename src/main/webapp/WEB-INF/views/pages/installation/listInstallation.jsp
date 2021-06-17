@@ -195,7 +195,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table class="table table-hover table-striped table-bordered" id="tab_code">
+                                    <table class="table table-hover table-striped table-bordered tab_vehicule" id="tab_code">
                                         <thead>
                                         <tr>
                                             <th> <spring:message code="label.code" /> </th>
@@ -302,7 +302,7 @@
                                         + el.nom_ar
                                         + "</td> </tr>";
 
-                                    $("#tab_vehicule tbody")
+                                    $(".tab_vehicule tbody")
                                         .append(tr);
                                 })
 

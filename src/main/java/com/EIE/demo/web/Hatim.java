@@ -581,13 +581,26 @@ public class Hatim {
 			model.put("doc",l);
 			model.put("url_Admin",urlRest);
 			return new ModelAndView("user_select/recap_CT",model);
-		}else if(type.equals("IT")){
+		}/*else if(type.equals("IT")){
 			Installation ins = webt.getInstallById_v2(webt.getCompteConnected().getCompteId());
 			ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),type);
 			model.put("doc",l);
 			model.put("installation",ins);
 			model.put("url_Admin",urlRest);
+			Notification[] n=null;
+			n = webt.getNotificationNotDepo(webt.getCompteConnected().getCompteId(),type);
+			model.put("notif",n);
+
+			Notification[] n1=null;
+			n1 = webt.getNotificationAll(webt.getCompteConnected().getCompteId(),type);
+			model.put("notifall",n1);
 			return new ModelAndView("user_select/recap_IT",model);
+		}*/
+		else if(type.equals("IT")){
+			Installation[] n1=null;
+			n1 = webt.getInstallationAll(webt.getCompteConnected().getCompteId());
+			model.put("install",n1);
+			return new ModelAndView("user_select/card_IT_choix",model);
 		}
 		Notification[] n=null;
 		n = webt.getNotificationNotDepo(webt.getCompteConnected().getCompteId(),type);
@@ -703,6 +716,8 @@ public class Hatim {
 
 		if(type.equals("IT")){
 			nbr = webt.getNombreInstaByUser(webt.getCompteConnected().getCompteId(),"all");
+			RestResponsePage<Installation> i = webt.getListInstallationByCompte(new PageRequest(0, 100),webt.getCompteConnected().getCompteId()).getBody();
+			nbr += (i==null)?0:i.getSize();
 			if(nbr==0){
 				return "redirect:/api/addInstallation/0/N";
 			}
@@ -932,6 +947,17 @@ public class Hatim {
 		model.put("url_Admin",urlRest);
 		model.put("declarationTrans",webt.getDeclaravionValideByNotificationId(n.getId_notification()));
 		return new ModelAndView("user_select/recap_ZF",model);
+	}
+
+	@RequestMapping(value = "/api/recapIT/{id}", method = RequestMethod.GET)
+	public ModelAndView getRecapInstallation(@PathVariable int id) {
+		Map<String,Object> model = new HashMap<String,Object>();
+		Installation ins = webt.getInstallationById(id,webt.getCompteConnected().getCompteId());
+		ListDocNotif[] l = webt.listDocNotif(ins.getId_installation(),"IT");
+		model.put("doc",l);
+		model.put("installation",ins);
+		model.put("url_Admin",urlRest);
+		return new ModelAndView("user_select/recap_IT",model);
 	}
 
 	@RequestMapping(value = "/api/getnotifByIdEdit/{type}/{id}", method = RequestMethod.GET)
