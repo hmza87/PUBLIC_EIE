@@ -704,7 +704,7 @@
                                 </p>
 
                                 <c:choose>
-                                    <c:when test="${ type=='EIE1' || type=='EIE2'}">
+                                    <c:when test="${ type=='EIE2'}">
                                         <div class="mb-3">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" >
                                             <img src="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" width="100%"></a>

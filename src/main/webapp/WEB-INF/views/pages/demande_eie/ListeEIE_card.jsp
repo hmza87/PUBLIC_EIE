@@ -89,8 +89,8 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-3 col-sm-12">
-                                <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','/api/checkEIE')"><spring:message code="button.consulter"/></a>
-                            </div>Select/AE
+                                <a class="btn btn-primary hvr-float-shadow" onclick="checkAut2('${user.st.EA}','/api/checkEIESelect/AE')"><spring:message code="button.consulter"/></a>
+                            </div>
                         </div>
 
 
