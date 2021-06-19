@@ -30,8 +30,8 @@
 		margin: 0;
 	}
 }
-
-@media only screen and (max-width: 1340px){
+/*EDH le 19/06/2021 change  max-width: 1340px par  max-width: 1140px pour rendre le menu responsive  */
+@media only screen and (max-width: 1140px){
 	.header-style-one .other-links .social-links-one,
 	.header-style-one .other-links .language{
 		display: none;
@@ -243,8 +243,8 @@
 		opacity:0;
 	}
 }
-
-@media only screen and (max-width: 991px){	
+/*EDH le 19/06/2021 change  max-width: 991px par  max-width: 1140px pour rendre le menu responsive  */
+@media only screen and (max-width: 1140px){	
 	.main-header .nav-outer .main-menu,
 	.sticky-header{
 		display: none !important;

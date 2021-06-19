@@ -37,8 +37,8 @@
             <div class="col-md-4 col-sm-4 col-lg-4 ">
 
 
-                <div class="card ${user.st.ET=="on"?"":"bg_disabled"}" style="width: 100%;">
-                    <div class="card-body">
+                <div class="card " style="width: 100%;">
+                    <div class="card-body ${user.st.ET=="on"?"":"bg_disabled"}">
                         <span class="fa fa-recycle" aria-hidden="true" style="font-size:40px"></span>
                         <h6 class="card-title"><spring:message
                                 code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
