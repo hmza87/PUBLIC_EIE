@@ -878,7 +878,7 @@
 
         if (test) {
             if (${pageContext.response.locale=='fr'}) {
-                swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+                swal("Avertisement!", "un ou plusieur champs sont vides", "error");
             } else if (${pageContext.response.locale=='ar'}) {
                 swal("تحذير!", "مجال واحد أو أكثر فارغ", "error");
             }
@@ -914,7 +914,7 @@
         var type="IT";
         var link_recap = "/api/checkUserHasCollecte/IT";
         Swal.fire({
-            title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
+            title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: `Enregistrer`,

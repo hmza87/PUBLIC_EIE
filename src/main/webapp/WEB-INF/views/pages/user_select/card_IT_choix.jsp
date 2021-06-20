@@ -22,29 +22,10 @@
     <div class="main-panel">
         <div class="row">
             <div class="col-12">
-                <c:choose>
-
-                    <c:when test="${type=='ZF'}">
-                        <spring:message code="label.Importationdesdechetsdunezonefranche" var="p_page"/>
-                    </c:when>
-                    <c:when test="${type=='ET'}">
-                        <spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger" var="p_page"/>
-                    </c:when>
-                    <c:when test="${type=='XD'}">
-                        <spring:message code="label.Exportationdesdechetsdangereux" var="p_page"/>
-                    </c:when>
-                    <c:when test="${type=='TR'}">
-                        <spring:message code="label.Transitdesdechets" var="p_page"/>
-                    </c:when>
-                    <c:otherwise>
-                        <c:set var="p_page" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-                    </c:otherwise>
-                </c:choose>
-
                 <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">${p_page}</li>
+                        <li class="breadcrumb-item active" aria-current="page">Installation de traitement des déchets</li>
                     </ol>
                 </nav>
             </div>

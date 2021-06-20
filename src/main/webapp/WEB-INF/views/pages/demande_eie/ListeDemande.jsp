@@ -95,7 +95,7 @@
                                             <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
                                         </td>
                                         <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
-                                                nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 || (nt.statut.id_statut_projet==73 && nt.type=='AE') ||
+                                                nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 || (nt.statut.id_statut_projet==73 && nt.type=='AE') || (nt.statut.id_statut_projet==12 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 || (nt.statut.id_statut_projet==71 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 || (type=='AE' && nt.statut.id_statut_projet==58) ||
                                                 nt.statut.id_statut_projet==60 || nt.statut.id_statut_projet==75 )?nt.statut.nom_fr:'En cours de traitement'}</span>

@@ -87,7 +87,15 @@
                 <a href="/api/infoInstallation/${demande.id_demande_information }" class="btn btn-primary rounded"><span class="fa fa-plus "></span> <spring:message code="label.Ameliorerlesdocuments"/></a>
               </div>
             </c:if>
-
+            <c:if test="${demande.statut.id_statut_projet==71 && demande.type=='AE' }">
+              <button onclick="ajouter_rapport_ae('${demande.id_demande_information}')" class="btn btn-primary"><spring:message code="label.Ajouterlerapportdaudit"/></button>
+            </c:if>
+            <c:if test="${demande.statut.id_statut_projet==73 && type=='AE'}">
+              <a href="/api/AttacherListDocAE/${demande.id_demande_information}" class="btn btn-primary" title="Attacher les documents">
+                <i class="fa fa-check"></i>
+                <spring:message code="label.Attacherlesdocuments"/>
+              </a>
+            </c:if>
             <c:if test="${demande.statut.id_statut_projet==17 }">
               <div class="col-md-3">
                 <a href="/api/generateDocInstallFavorable/${demande.id_demande_information}" class="btn btn-primary rounded"><span class="fa fa-file-download"></span></a>
@@ -355,6 +363,64 @@
 
 
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal_AE" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitleAE"><spring:message code="label.Envoyerlerapportdaudit"/> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="zone_AE_fichier">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"><spring:message code="button.Enregistrer"/></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modal_fichiers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"><spring:message code="label.piecefournie"/> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="zone_tab_fichier">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message code="button.fermer"/></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </c:if>
 <c:if test="${(empty demande)}"><spring:message code="label.Aucunresultat"/></c:if>
 <jsp:include page="../../includes/footer1.jsp" />
+<script>
+  function ajouter_rapport_ae(id){
+    if(event!=null)
+      event.preventDefault();
+    $("#modal_AE").modal("show");
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: "/api/affiche_FRM_Add_rapport_ae/" + id,
+      data:{},
+      success: function (response) {
+        $("#zone_AE_fichier").html(response);
+      },
+      error: function () {
+
+      }
+    });
+  }
+</script>

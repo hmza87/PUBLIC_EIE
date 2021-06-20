@@ -594,10 +594,10 @@
             return false;
         }
         if (test) {
-            swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+            swal("Avertisement!", "un ou plusieur champs sont vides", "error");
         } else {
                 Swal.fire({
-                    title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
+                    title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
                     showDenyButton: true,
                     showCancelButton: false,
                     confirmButtonText: `Enregistrer`,
@@ -659,7 +659,7 @@
         //$(next_step).show();
 
         if (test) {
-            swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+            swal("Avertisement!", "un ou plusieur champs sont vides", "error");
         } else {
             $("#step_id4").removeAttr("disabled");
             searchByEE(id, type);
@@ -704,7 +704,7 @@
             return false;
         }
         Swal.fire({
-            title: 'Si vous cliquez sur enregistrer vous ne pouvez pas modifier votre demande',
+            title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: `Enregistrer`,

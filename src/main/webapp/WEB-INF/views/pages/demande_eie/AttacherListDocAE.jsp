@@ -213,7 +213,7 @@
             return false;
         }
         if (test) {
-            swal("Avertisement!", "un ou plusieur champs sont vide", "error");
+            swal("Avertisement!", "un ou plusieur champs sont vides", "error");
         } else {
             $.ajax({
                 url: "/api/changerStatuts2/" + id + "/" + code_statut,
