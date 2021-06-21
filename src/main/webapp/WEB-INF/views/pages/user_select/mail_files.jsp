@@ -9,12 +9,12 @@
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 
-<h2 style="text-align: center; margin-top: 10px">Les documents accompagnant la demande</h2>
+<h2 style="text-align: center; margin-top: 10px"><spring:message code="label.Lesdocumentsaccompagnantlademande"/></h2>
 <div class="row justify-content-center">
     <div class="col-8 justify-content-center">
     <table class="table my_table table-striped table-bordered table-hover">
         <tr>
-            <td>Lettre</td>
+            <td><spring:message code="label.Lettre"/></td>
             <td><a target="_blank" class="btn btn-success" href="${Admin_url}${fn:replace(notif.url_doc_signer, "/assets/myFile/", "/dowload_uploaded/")}"> <span class="fa fa-download"></span></a></td>
         </tr>
         <c:if test="${not empty doc}">

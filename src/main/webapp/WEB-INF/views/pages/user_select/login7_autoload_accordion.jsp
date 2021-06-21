@@ -6,7 +6,16 @@
 <spring:url value="/resources/" var="resources" />
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
-
+<style>
+<c:if test="${pageContext.response.locale=='ar' }">
+    <c:set var="dd" value="data-dir='RTL'"/>
+    <style>.select2-results__option{text-align:right}	</style>
+</c:if>
+<c:if test="${pageContext.response.locale=='fr' }">
+    <c:set var="dd" value="data-dir='LTR'"/>
+    <style>.select2-results__option{text-align:right}	</style>
+</c:if>
+</style>
 
 <c:choose>
     <c:when test="${show=='accordion'}">
@@ -552,7 +561,7 @@
 
                                         <div class="col-4 text-left" id="dechet_code">
                                             <label><spring:message code="label.Codededechets"/> </label>
-                                            <select dir="ltr" class="select2 form-control" onchange="rech_transporteur(this)">
+                                            <select dir="ltr" class="select2 form-control" onchange="rech_transporteur(this)" ${dd}>
                                                 <option> Choisir...</option>
                                                 <c:forEach items="${codes}" var="c">
                                                     <option value="${c.id_code}"> ${c.nom_fr}</option>
@@ -562,7 +571,7 @@
 
                                         <div class="col-12 text-left d-none" id="dechet_type">
                                             <label><spring:message code="label.Typededechets"/> </label>
-                                            <select class="select2 form-control " onchange="rech_transporteur(this)">
+                                            <select class="select2 form-control " onchange="rech_transporteur(this)" ${dd}>
                                                 <option><spring:message code="label.choisir"/></option>
                                                 <c:forEach items="${codes}" var="c">
                                                     <option value="${c.id_code}"> ${c.nom_ar}</option>
@@ -615,7 +624,7 @@
                                             <spring:message code="label.Listedespiecesafournirpourlesdechets"/>
                                         </div>
                                         <div class="col-3">
-                                            <select class="form-control" onchange="afficher_accord(this)">
+                                            <select class="form-control" onchange="afficher_accord(this)" ${dd}>
                                                 <option selected value="1"> <spring:message code="label.dangereux"/></option>
                                                 <option value="2"><spring:message code="label.nondangereux"/></option>
                                             </select>
@@ -777,7 +786,7 @@
                                         <div class="row">
                                             <div class="col-4"></div>
                                             <div class="col-4">
-                                                <select class="form-control" id="shema" onchange="etapeshema(this.value)">
+                                                <select class="form-control" id="shema" onchange="etapeshema(this.value)" ${dd}>
                                                     <option value="1" selected><spring:message code="label.dangereux"/> </option>
                                                     <option value="2"><spring:message code="label.nondangereux"/></option>
                                                 </select>
@@ -1417,9 +1426,9 @@
 			                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
 			            				</div>
             </div>
-            <div class="col-12 p-0 m-0  bg-light border">
-                <div class="row p-0 m-0">
-                    <div class="col-12 ">
+            <div class="col-12 p-0 m-0  bg-light border"  >
+                <div class="row p-0 m-0" >
+                    <div class="col-12 " s>
                         <p class="font_bold p-3 mb-0"><spring:message code="label.Jesouhaitefaireunedemandedautorisation"/> : </p>
                     </div>
 
