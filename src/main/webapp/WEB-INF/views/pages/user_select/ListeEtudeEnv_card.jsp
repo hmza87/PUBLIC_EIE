@@ -81,13 +81,13 @@ text-align:right !important;
                           <p class="text-success font_bold text-left pl-2"><spring:message code="label.Deposerundossier"/></p>
                          <hr>
                             <p class="pl-2 text-justify margin10" >
-                              <spring:message code="label.Pourdeposerledossierdunenouvelledemandede"/>  ${(type=="EE" || type=="RS")?"l\'EIE":(type=="NT"?"Notice d'Impact sur l'Environnement":"conformité environnementale de votre projet")} <spring:message code="label.cliquezsur"/>  <b>${titre_dyn} :</b><br>
+                              Pour déposer  ${(type=="EE" || type=="RS")?"le dossier d'une demande de l\'EIE":(type=="NT"?"votre demande d'obtention de la Décision d'Acceptabilité Environnementale de votre projet soumis à la NIE":"votre demande de conformité environnementale de votre projet")} <spring:message code="label.cliquezsur"/>  <b>${titre_dyn} :</b><br>
                             </p>
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/${type}')" class="btn btn-sm btn-success margin10" >${titre_dyn} <span class="fa fa-angle-double-right"></span></button>
                           </div>
                         <c:if test="${type=='EE'}">
-                          <p class="pl-2 text-justify margin10" ><spring:message code="label.Pourtoutesautresinformations"/><spring:message code="label.cliquezsur"/> <b><spring:message code="label.Renseignementsprealables"/> </b></p>
+                          <p class="pl-2 text-justify margin10" >Pour vérifier si votre projet est assujetti ou non à la procédure des EIE, veuillez cliquer sur « Renseignements préalables ». Ceci vous permettra également de prendre connaissance du niveau d’examen de ladite EIE (Comité National de l’Evaluation Environnementale ou Commission Régionale Unifiée d’Investissement).<spring:message code="label.cliquezsur"/> <b><spring:message code="label.Renseignementsprealables"/> </b></p>
                           <div class="text-left">
                             <button onclick="go_to_l('/api/demandeinformation/0/RS')" class="btn btn-sm btn-success margin10" > <spring:message code="label.RenseignementsprealablesA"/> <span class="fa fa-angle-double-right"></span></button>
                           </div>

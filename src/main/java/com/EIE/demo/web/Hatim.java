@@ -233,7 +233,7 @@ public class Hatim {
 		map.put("listC",webt.getListAllCode1(id));
 		return new ModelAndView("aide/table",map);
 	}
-	
+
 
 	@RequestMapping(value = "/guide",method = RequestMethod.GET)
 	public ModelAndView guideList() throws Exception {
@@ -846,11 +846,7 @@ public class Hatim {
 		else if(type.equals("AE")){
 			model.put("titre_dyn","Audit Environnemental");
 			model.put("AE",webt.getcountEIEByType("AE",webt.getCompteConnected().getCompteId()));
-		}else if(type.equals("RS")){
-			model.put("titre_dyn","Renseingement préalable");
-			model.put("RS",webt.getcountEIEByType("RS",webt.getCompteConnected().getCompteId()));
 		}
-
 
 
 		return new ModelAndView("user_select/ListeEtudeEnv_card",model);

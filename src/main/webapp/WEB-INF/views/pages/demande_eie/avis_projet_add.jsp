@@ -71,9 +71,15 @@
 
                 <button class="btn btn-success btn-block active text-left pl-5 cls_step" id="step_id1" onclick="affiche_eie_zone('#step1','#step_id1')"><spring:message code="label.informationssurlepetitionnaire"/></button>
                 <c:if test="${demande.statut.id_statut_projet!=13}">
+                    <c:if test="${type=='AE'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')"><spring:message code="label.informationssurleprojet"/> </button>
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" ><spring:message code="label.Localisationduprojet"/></button>
-                </c:if>
+                    </c:if>
+                    <c:if test="${type!='AE'}">
+                        <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">Information sur le projet </button>
+                        <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >Localisation du projet</button>
+                    </c:if>
+                    </c:if>
                 <c:if test="${type=='EE'|| type=='NT'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')"><spring:message code="label.Piecefournir"/> </button>
                 </c:if>
@@ -168,12 +174,22 @@
                     <div id="step1_2" class="col-12 z_collecteur collapse"  >
                         <form class="mt-3"  id="formProjet" name="formProjet" >
                             <div class="row">
+                                <c:if test="${type=='AE'}">
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label ><spring:message code="label.IntituleDeProjet"/></label>
+                                        <label >Intitulé de l'activité</label>
                                         <input ${disabled} required value="${demande.intitule_projet }" type="text" name="intitule_projet" class="form-control">
                                     </div>
                                 </div>
+                                </c:if>
+                                <c:if test="${type!='AE'}">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label >Intitulé du projet</label>
+                                            <input ${disabled} required value="${demande.intitule_projet }" type="text" name="intitule_projet" class="form-control">
+                                        </div>
+                                    </div>
+                                </c:if>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label ><spring:message code="label.montantIves"/></label>
@@ -203,12 +219,22 @@
                                         </div>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label> <spring:message code="label.NatureduProjet"/></label>
-                                                <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                        <c:if test="${type=='AE'}">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Nature de l'activité</label>
+                                                    <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </c:if>
+                                        <c:if test="${type!='AE'}">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Nature de projet</label>
+                                                    <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </c:if>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label><spring:message code="label.ConsisitanceduProjet"/></label>

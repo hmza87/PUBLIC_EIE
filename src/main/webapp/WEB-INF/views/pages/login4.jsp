@@ -1061,7 +1061,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top" title="Attacher vos Fichier" class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3" onclick="show_zone('attache',this)">
+                                                <button data-toggle="tooltip" data-placement="top" title="Attacher vos Fichiers" class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3" onclick="show_zone('attache',this)">
                                                     <img src="${pageContext.request.contextPath}/assets/images/attache_file.png">
                                                 </button>
                                             </div>
@@ -1071,7 +1071,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-2 text-center">
-                                                <button data-toggle="tooltip" data-placement="top" title="Recevoir votre document E-signé" class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3" onclick="show_zone('recevoir',this)">
+                                                <button data-toggle="tooltip" data-placement="top" title="Retirer la Décision d'Acceptabilité Environnementale signée" class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3" onclick="show_zone('recevoir',this)">
                                                   <img src="${pageContext.request.contextPath}/assets/images/img_doc_ok.png">
                                                 </button>
                                             </div>

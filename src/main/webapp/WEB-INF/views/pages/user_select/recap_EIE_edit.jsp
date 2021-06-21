@@ -11,7 +11,7 @@
 <div class="row mb-5" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
     <div class="col-md-12 col-sm-12">
         <div id="accordion">
-            <h2>1.<spring:message code="label.informationssurlepetitionnaire"/> </h2>
+            <h2><spring:message code="label.informationssurlepetitionnaire"/> </h2>
             <div>
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-12">
@@ -65,13 +65,18 @@
                 </div>
 
             </div>
-            <h2>2.<spring:message code="label.informationssurleprojet"/>  </h2>
+            <c:if test="${type=='AE'}">
+                <h2><spring:message code="label.informationssurleprojet"/>  </h2>
+            </c:if>
+            <c:if test="${type!='AE'}">
+                <h2>Information sur le projet  </h2>
+            </c:if>
             <div>
                 <c:if test="${type=='EE' || type=='RS'}">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label><spring:message code="label.Intituledeprojet"/></label>
+                                <label>Intitulé du projet</label>
                                 <input disabled type="text" class="form-control" value="${demande.intitule_projet}">
                             </div>
                         </div>
@@ -109,19 +114,11 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label><spring:message code="label.Transfrontalier"/> </label>
-                                <input disabled type="text" class="form-control" value="${demande.tronsfrontalier}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
                                 <label><spring:message code="label.DatedeDemarrage"/></label>
                                 <c:set value="${fn:split(demande.dateDemarage, ' ')}" var="dt" />
                                 <input disabled type="text" class="form-control" value="${dt[0]}">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><spring:message code="label.DateResiliation"/></label>
@@ -135,7 +132,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label><spring:message code="label.Intituledeprojet"/></label>
+                                <label>Intitulé du projet</label>
                                 <input disabled type="text" class="form-control" value="${demande.intitule_projet}">
                             </div>
                         </div>
@@ -149,7 +146,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label><spring:message code="label.NatureduProjet"/></label>
+                                <label>Nature de projet</label>
                                 <input disabled type="text" class="form-control" value="${demande.nature_projet}">
                             </div>
                         </div>
@@ -162,7 +159,12 @@
                     </div>
                 </c:if>
             </div>
-            <h2>3.<spring:message code="label.localisationduprojet"/>  </h2>
+            <c:if test="${type=='AE'}">
+                <h2><spring:message code="label.localisationduprojet"/>  </h2>
+            </c:if>
+            <c:if test="${type!='AE'}">
+                <h2>Localisation du projet</h2>
+            </c:if>
             <div>
                 <div class="row">
                     <div class="col-sm-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
@@ -225,7 +227,7 @@
                 </div>
             </div>
             <c:if test="${type=='EE' || type=='NT'}">
-                <h2>4. <spring:message code="label.mespieces" /></h2>
+                <h2> <spring:message code="label.mespieces" /></h2>
                 <div>
                     <table class="table my_table table-striped table-bordered table-hover">
                         <c:if test="${not empty doc}">

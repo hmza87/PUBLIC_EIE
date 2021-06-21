@@ -243,7 +243,7 @@
                                 <c:set var="l_ph1" value=" الحصول على إشعار الأثر البيئي "/>
                             </c:when>
                             <c:otherwise>
-                                <c:set var="l_ph1" value=" l'obtention de notice d'impact sur l'environnement "/>
+                                <c:set var="l_ph1" value=" l'obtention de la Décision d'Acceptabilité Environnementale d'un projet soumis à la Notice d'Impact sur l'Environnement"/>
                             </c:otherwise>
                         </c:choose>
                     </c:when>
@@ -254,7 +254,7 @@
                                 <c:set var="l_ph1" value=" الحصول على تدقيق بيئي "/>
                             </c:when>
                             <c:otherwise>
-                                <c:set var="l_ph1" value=" l'obtention d'audit environnemental "/>
+                                <c:set var="l_ph1" value=" l'obtention du Certificat de Conformité Environnementale "/>
                             </c:otherwise>
                         </c:choose>
                     </c:when>
@@ -343,7 +343,7 @@
                                         <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'obtention de notice d'impact sur l'environnement "/>
+                                        <c:set var="l_ph2" value=" d'obtention de la Décision d'Acceptabilité Environnementale d'un projet soumis à la Notice d'Impact sur l'Environnement "/>
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
@@ -354,7 +354,7 @@
                                         <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'obtention d'audit environnemental "/>
+                                        <c:set var="l_ph2" value=" d'obtention du Certificat de Conformité Environnementale "/>
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
@@ -402,7 +402,7 @@
 
                             <div class="col-2 text-center">
                                 <button data-toggle="tooltip" data-placement="top"
-                                        title="Attacher vos Fichier"
+                                        title="Attacher vos Fichiers"
                                         data_type="${type}"
                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
                                         onclick="show_zone2('attache',this)">
@@ -411,7 +411,7 @@
                             </div>
                             <div class="col-2 text-center">
                                 <button data-toggle="tooltip" data-placement="top"
-                                        title="Traitement de ma demande"
+                                        title="Traitement de votre demande"
                                         class=" rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
                                         onclick="show_zone2('suivre',this)">
                                     <img src="${pageContext.request.contextPath}/assets/images/check_file.png">
@@ -419,7 +419,7 @@
                             </div>
                             <div class="col-2 text-center">
                                 <button data-toggle="tooltip" data-placement="top"
-                                        title="Recevoir votre document E-signé"
+                                        title="Retirer la Décision d'Acceptabilité Environnementale signée"
                                         class="rounded-circle btn btn_gris btn_step_perso btn_step_perso3"
                                         onclick="show_zone2('recevoir',this)">
                                     <img src="${pageContext.request.contextPath}/assets/images/img_doc_ok.png">
@@ -476,19 +476,19 @@
                                 <p class="text-success h-4 font_bold">
                                     <c:choose>
                                         <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
-                                            Je dépose ma demande d’obtention de l’acceptabilité environnementale
+                                            Je dépose ma demande d’obtention du Certificat de Conformité Environnementale
                                         </c:when>
                                         <c:when test="${type=='EIE'  && pageContext.response.locale=='ar'}">
                                             أقدم طلبي للقبول البيئي
                                         </c:when>
                                         <c:when test="${type=='EIE2' && pageContext.response.locale=='fr'}">
-                                            Je dépose ma demande d’obtention de l’audit environnemental
+                                            Je dépose ma demande d’obtention du Certificat de Conformité Environnementale
                                         </c:when>
                                         <c:when test="${type=='EIE2' && pageContext.response.locale=='ar'}">
                                             أقدم طلبي للتدقيق البيئي
                                         </c:when>
                                         <c:when test="${type=='EIE1' && pageContext.response.locale=='fr'}">
-                                            Je dépose ma demande d’obtention de la notice d'impact environnementale
+                                            Je dépose ma demande d’obtention de la Décision d'Acceptabilité Environnementale d'un projet soumis à la Notice d'Impact sur l'Environnement
                                         </c:when>
                                         <c:when test="${type=='EIE1' && pageContext.response.locale=='ar'}">
                                             أقدم طلبي لإشعار التأثير البيئي
@@ -522,14 +522,22 @@
                                         <li class="pl-2"><spring:message code="label.Ouendeposantdirectementvotredemandesansremplirleformulaire"/>  </li>
                                     </ul>
                                     <p class="mb-3"><spring:message code="label.Leformulairederenseignementprealablevouspermettradeverifier"/> </p>
-                                    <p><i><spring:message code="label.Lademandederenseignementprealableest"/> </i></p>
                                     </c:if>
-                                <c:if test="${type!='EIE'}">
+
+                                <c:if test="${type=='EIE2'}">
                                     <p>
                                         <c:if test="${type=='ZF' || type=='XD'}">
                                             <spring:message code="label.apreslobtentiondunumero"/>
                                         </c:if>
-                                        <spring:message code="label.Ainsivouspouvezdeposerunenouvelledemande"/>${l_ph2}, <spring:message code="label.enreplissantleformulairededepot"/>
+                                        Vous pouvez déposer votre demande d'obtention du Certificat de Conformité Environnementale, en remplissant le formulaire de dépôt de cette demande
+                                    </p>
+                                </c:if>
+                                <c:if test="${type=='EIE1'}">
+                                    <p>
+                                        <c:if test="${type=='ZF' || type=='XD'}">
+                                            <spring:message code="label.apreslobtentiondunumero"/>
+                                        </c:if>
+                                        Vous pouvez déposer votre demande d'obtention de la Décision d'Acceptabilité Environnementale de votre projet soumis à la Notice d'Impact sur l'Environnement, en remplissant le formulaire de dépôt de cette demande
                                     </p>
                                 </c:if>
 
@@ -613,10 +621,16 @@
 
                         <div class="row clss_hide mt-5 attache collapse">
                             <div class="col-12">
-
-                                <p class="text-underline text-success font_bold">
-                                    <spring:message code="label.Lespiecesaccompagnantlademande"/>
-                                </p>
+                                <c:if test="${type=='NT'}">
+                                    <p class="text-underline text-success font_bold">
+                                        La pièce accompagnant la demande:
+                                    </p>
+                                </c:if>
+                                <c:if test="${type!='NT'}">
+                                    <p class="text-underline text-success font_bold">
+                                        Les pièces accompagnant la demande:
+                                    </p>
+                                </c:if>
 
                                 <c:if test="${type=='ZF' || type=='XD'}">
                                     <div class="row mb-3">
@@ -639,11 +653,16 @@
                                     </div>
                                 </div>
                                 <br>
-                                <p>
+                                <c:if test="${type!='EIE1'}">
                                     <img src="${pageContext.request.contextPath}/assets/images/warning.png"
                                          style="width: 40px;margin-left: 10px">
                                     <spring:message code="label.lespiecesaccompagnantlademandedoiventetre"/>
-                                </p>
+                                </c:if>
+                                <c:if test="${type=='EIE1'}">
+                                    <img src="${pageContext.request.contextPath}/assets/images/warning.png"
+                                         style="width: 40px;margin-left: 10px">
+                                    la pièce accompagnant la demande doit être scannée et présentée au niveau du système en format Word ou PDF
+                                </c:if>
                                 <c:if test="${type=='CT' || type=='IT'}">
                                     <p class="text-underline text-success font_bold mt-3">
                                         <spring:message code="label.NombredeDemandeDepose"/>
@@ -687,11 +706,11 @@
                                     </c:when>
                                     <c:when test="${type=='EIE1'}">
                                         <p><spring:message code="label.Alafinduprocessusdetraitementdevotredemandedobtentionimpact"/></p>
-                                        <p><spring:message code="label.LarEcuperationdelanoticedimpactsurlenvironnementsigneeesttributairede"/> <b style="font-size: 14px"><spring:message code="label.Cahierdecharge"/></b> <spring:message code="label.etde"/> <b style="font-size: 14px"><spring:message code="label.Noticedimpactsurlenvironnement"/></b></p>
                                         <p style="font-size: 14px"><b><spring:message code="label.Lanoticedimpactsurlenvironnementdoitetreretireeparsondemandeur"/></b></p>
                                     </c:when>
                                     <c:when test="${type=='EIE2'}">
-                                        <p><spring:message code="label.arenseignerpar"/> <b>DE</b></p>
+                                        <p>A la fin du processus de traitement de votre demande, une notification vous sera envoyée, vous invitant à retirer le Certificat de Conformité Environnementale de votre activité.</p>
+                                        <p>Le Certificat de Conformité Environnementale doit être retiré par son demandeur</p>
                                        </c:when>
                                     <c:otherwise>
                                         <p>
@@ -1249,47 +1268,36 @@
                                         </table>
                                     </c:when>
                                     <c:otherwise>
-                                        <table id="table_acteur" class="table table-striped table-bordered table-hover my_table">
-                                            <thead class="bg_stat_01">
-                                            <tr>
-                                                <th><spring:message code="label.Acteur"/></th>
-                                                <th><spring:message code="label.Delais"/></th>
-                                                <th><spring:message code="label.Statut"/></th>
-                                                <th><spring:message code="label.Detail"/></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td><spring:message code="label.Ministere"/></td>
-                                                <td><spring:message code="label.jours"/></td>
-                                                <td><spring:message code="label.EnAttente"/></td>
-                                                <td>
-                                                    <spring:message code="label.Danscetteetapevotredossierestredirige"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><spring:message code="label.Demandeur"/></td>
-                                                <td> -</td>
-                                                <td><spring:message code="label.demandedecomplement"/></td>
-                                                <td>
-                                                    <spring:message code="label.Danscetteetapevotredossierestincomplet"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><spring:message code="label.Commission"/></td>
-                                                <td><spring:message code="label.jours"/></td>
-                                                <td><spring:message code="label.AvisCommission"/></td>
-                                                <td><spring:message code="label.leservicedecommission"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td><spring:message code="label.Ministere"/></td>
-                                                <td><spring:message code="label.jours"/></td>
-                                                <td><spring:message code="label.Favorable"/></td>
-                                                <td><spring:message code="label.servicespecialise"/></td>
-                                            </tr>
-                                            </tbody>
+                                            <div class="mb-3">
+                                                    <img src="${pageContext.request.contextPath}/assets/images/shema_TR.PNG" width="100%"></a>
+                                            </div>
+                                            <p class="text-underline text-success font_bold mt-3">
+                                                <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                            </p>
+                                            <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                                <thead class="bg-light">
+                                                <tr>
+                                                    <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="font_time_serif font_bold size_12"><spring:message code="label.Enattentedeverification"/> </td>
+                                                    </tr>
+                                                <tr>
+                                                    <td class="font_time_serif font_bold size_12">En attente de dépôt de NIE  </td>
+                                                  </tr>
+                                                <tr>
+                                                    <td class="font_time_serif font_bold size_12">Document valide  </td>
+                                                  </tr>
+                                                <tr>
+                                                    <td class="font_time_serif font_bold size_12"> Signée</td>
+                                                   </tr>
 
-                                        </table>
+
+
+                                                </tbody>
+                                            </table>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -1322,9 +1330,6 @@
 
                         <div class="row clss_hide mt-3 suivre collapse">
                             <div class="col-12">
-                                <p class="text-success h-4 font_bold">
-                                    <spring:message code="label.BaseJuridique"/>
-                                </p>
                                 <ul class="list_disque ml-5">
                                     <c:if test="${type=='XD' || type=='ZF'}">
                                         <li>
@@ -1399,13 +1404,89 @@
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Extraction_materiaux_construction.pdf">
                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
-
+                                            7.Projet touristique
+                                            <a target="_blank">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            8.Projet d’infrastructure linéaire
+                                            <a target="_blank">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
                                         </div>
                                     </c:if>
                                     <c:if test="${type=='EIE1'}">
                                         <li>
+                                            <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Loi n° 12-03 Relative aux études d'impact sur l'environnement
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Loi n° 47-18 portant réforme des Centres Régionaux d'investissement
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/LoisN_47_18%20.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Loi n° 49-17 relative à l'evaluation environnementale
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N49_17.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Décret n°2-04-563 relatif aux attributions et au fonctionnement du CNEE et des CREI
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_563.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Décret n° 2-04-564 fixant les modalités d’organisation et de déroulement de l’enquête publique.
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_564.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Référentiel des études d'impact sur l'environnement.
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Referentiel_EIE.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                            </a>
+                                        </li>
+                                        <li>
                                             <spring:message code="label.Directives"/>
                                         </li>
+                                        <div class="ml-4 size_12">
+                                            <spring:message code="label.Projetdecreationdesunitesindustrielles"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Unites_Industrielles.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            <spring:message code="label.Projetdamenagementdeszonesindustrielles"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Zones_Industrielles.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            <spring:message code="label.Projetdedechargecontrolee"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_Decharges_controlees.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            <spring:message code="label.Projetaquacole"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Projets_aquacoles.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            <spring:message code="label.ProjetduneStationdEpurationdesEauxUsees"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_epuration_eau_usees.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+                                            <spring:message code="label.Projetdextractiondemateriauxdeconstruction"/>
+                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Extraction_materiaux_construction.pdf">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                            </a><br>
+
+                                        </div>
                                     </c:if>
                                 </ul>
 
