@@ -615,9 +615,9 @@ margin-bottom: 10px;">
                                                 style="margin-top: 5%;width: 90%;margin-left: 5%;" ${dd}>
                                             <option><spring:message code="option.Choisir"/></option>
 
-                                            <option value="1"><spring:message code="option.Auditenvironnementale"/></option>
-                                            <option value="2"><spring:message code="option.Noticedimpact"/></option>
                                             <option value="3"><spring:message code="option.Etudedimpactenvironnementale"/></option>
+                                            <option value="2"><spring:message code="option.Noticedimpact"/></option>
+                                            <option value="1"><spring:message code="option.Auditenvironnementale"/></option>
                                         </select>
                                     </div>
 
@@ -1010,6 +1010,28 @@ margin-bottom: 10px;">
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card w-100">
+                                            <div class="card-body text-center">
+                                                <h6 style="min-height: 3.5em" class="card-title text-center">
+                                                    <spring:message code="option.Noticedimpact"/>
+                                                </h6>
+                                                <c:choose>
+                                                    <c:when test="${empty user}">
+                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('on','/api/checkEIESelect/NT')">
+                                                            <spring:message code="label.Acceder"/>
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-4 col-sm-12">
                                         <div class="card w-100">
@@ -1034,28 +1056,6 @@ margin-bottom: 10px;">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="card w-100">
-                                            <div class="card-body text-center">
-                                                <h6 style="min-height: 3.5em" class="card-title text-center">
-                                                    <spring:message code="option.Noticedimpact"/>
-                                                </h6>
-                                                <c:choose>
-                                                    <c:when test="${empty user}">
-                                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
-                                                            <spring:message code="label.Acceder"/>
-                                                        </button>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <button class="btn btn-primary btn-sm" onclick="checkAut('on','/api/checkEIESelect/NT')">
-                                                            <spring:message code="label.Acceder"/>
-                                                        </button>
-                                                    </c:otherwise>
-                                                </c:choose>
-
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -633,21 +633,31 @@
                                 </button>
                             </div>
                             <div class="col-md-2 col-sm-6">
-                                <c:set var="etapexdtr" value="3" ></c:set>
-                                <c:if test="${type.equals('XD') || type.equals('TR')}" >
-                                    <c:set var="etapexdtr" value="12" ></c:set>
-                                </c:if>
                                 <c:choose>
-                                    <c:when test="${type.equals('XD') ||type.equals('ZF') || (not empty notification && notification.statut.id_statut_projet!=48)}">
+                                    <c:when test="${type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
                                         <button type="button"
-                                                onclick="verifier_reg_pref('Btn${etapexdtr}',${etapexdtr})"
+                                                onclick="verifier_reg_pref('Btn3','3')"
+                                                class="btn btn-success btn-block"><spring:message
+                                                code="button.Suivant"/>
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${type=='TR' || type=='XD'}">
+                                        <button type="button"
+                                                onclick="verifier_reg_pref('Btn12','12')"
+                                                class="btn btn-success btn-block"><spring:message
+                                                code="button.Suivant"/>
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${type=='TR' || type=='XD'}">
+                                        <button type="button" id="Enregistrer"
+                                                onclick="addObject_step('formimportateur','importateurnotifiant','12','id_notification')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
                                     </c:when>
                                     <c:otherwise>
                                         <button type="button" id="Enregistrer"
-                                                onclick="addObject_step('formimportateur','importateurnotifiant',${etapexdtr},'id_notification')"
+                                                onclick="addObject_step('formimportateur','importateurnotifiant','3','id_notification')"
                                                 class="btn btn-success btn-block"><spring:message
                                                 code="button.Suivant"/>
                                         </button>
@@ -661,8 +671,10 @@
                     </form>
 
                 </div>
-                <c:if test="${type=='TR' || type=='XD'}">
-                  <div id="12" class="tabcontent pr-0">
+
+                <%--********************Tab12***************************--%>
+                <c:if test="${type.equals('TR') || type.equals('XD')}">
+                    <div id="12" class="tabcontent pr-0">
 
                     <h4 class="titre_abs ">Autorité</h4>
 
@@ -702,118 +714,118 @@
                                 </div>
                             </div>
                         </div>
+
                     </form>
-                      <c:if test="${type=='TR'}">
-                        <div class="row p-0 m-0">
-                          <div class="col-12 p-0 m-0" id="pays_table">
 
-                              <div class="table-responsive">
-                                  <table class="table table-bordered pays_table">
-                                      <thead>
-                                      <tr>
-                                          <th>Autorité</th>
-                                          <th>Autorisation</th>
-                                          <th style="min-width: 120px"><spring:message code="label.Action"/></th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      <c:choose>
-                                          <c:when test="${(not empty notification.paysAutorites)}">
-                                              <c:forEach items="${notification.paysAutorites}" var="p">
-                                                  <tr id="tr${p.id_paysautorite}">
-                                                      <td> ${p.pays.nom_fr}</td>
-                                                      <td><a href="${url_admin}${fn:replace(p.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a></td>
-                                                      <td class="">
-                                                          <button class="btn btn-danger rounded-circle">
-                                                              <span class="fas fa-trash-alt"></span>
-                                                          </button>
+                    <div class="row p-0 m-0">
+                        <div class="col-12 p-0 m-0" id="pays_table">
 
-                                                          <button class="btn btn-warning rounded-circle">
-                                                              <span class="fas fa-pencil-alt"></span>
-                                                          </button>
-                                                      </td>
-                                                  </tr>
-                                              </c:forEach>
-                                          </c:when>
-                                          <c:otherwise>
-                                              <tr>
-                                                  <td colspan="7" class="bg-primary text-center">
-                                                      Aucune autorité dans cette demande</td>
-                                              </tr>
-                                          </c:otherwise>
-                                      </c:choose>
-                                      </tbody>
-                                  </table>
-                              </div>
-                              <div id="zone_form" class=" col-12 p-0 m-0">
-                                  <form id="add_vehicules">
-                                      <div class="row m-0 p-0">
-                                          <div class="col-6">
-                                              <div class="form-group">
-                                                  <label class="f-14">
-                                                      Autorité
-                                                  </label>
-                                                  <select id="pays" name="pays" class="custom-select">
-                                                      <c:forEach items="${pays}" var="t">
-                                                          <option <c:if
-                                                                  test="${notification.pays.paysId== t[0]}"> selected </c:if>
-                                                                  value="${t[0]}">${t[1]}</option>
-                                                      </c:forEach>
-                                                  </select>
-                                              </div>
-                                          </div>
-                                          <div class="col-6">
-                                              <div class="form-group">
-                                                  <label class="f-14">
-                                                      Autorisation
-                                                  </label>
-                                                  <input type="file" class="form-control" id="url_autorite" name="url_autorite">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row justify-content-center">
-                                          <div class="col-md-3">
-                                              <button onclick="Save_paysautorite()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
-                                          </div>
-                                      </div>
-                                  </form>
-                              </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered pays_table">
+                                    <thead>
+                                    <tr>
+                                        <th>Pays étranger</th>
+                                        <th>Document de l'autorité</th>
+                                        <th style="min-width: 120px"><spring:message code="label.Action"/></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:choose>
+                                        <c:when test="${(not empty notification.paysAutorites)}">
+                                            <c:forEach items="${notification.paysAutorites}" var="p">
+                                                <tr id="tr${p.id_paysautorite}">
+                                                    <td> ${p.pays.nom_fr}</td>
+                                                    <td>${p.url_autorite}</td>
+                                                    <td class="">
+                                                        <button class="btn btn-danger rounded-circle"
+                                                                onclick="deleteVehicule('${p.id_paysautorite}')">
+                                                            <span class="fas fa-trash-alt"></span>
+                                                        </button>
 
-                          </div>
+                                                        <button class="btn btn-warning rounded-circle"
+                                                                onclick="getVehicule('${p.id_paysautorite}',this)">
+                                                            <span class="fas fa-pencil-alt"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <tr>
+                                                <td colspan="7" class="bg-primary text-center">
+                                                    Aucune autorité dans cette demande</td>
+                                            </tr>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="zone_form" class=" col-12 p-0 m-0">
+                                <form>
+                                    <div class="row m-0 p-0">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="f-14">
+                                                    Pays étranger
+                                                </label>
+                                                <select id="pays" name="pays" class="custom-select">
+                                                    <c:forEach items="${pays}" var="t">
+                                                        <option
+                                                                value="${t[0]}">${t[1]}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="f-14">
+                                                    Document de l'autorité
+                                                </label>
+                                                <input type="file" class="form-control" id="url_autorite" name="url_autorite">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-3">
+                                            <button onclick="Save_paysautorite()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                      </div>
-                      </c:if>
-                      <div class="row justify-content-center mt-3 mb-5">
-                          <div class="col-md-2 col-sm-6">
-                              <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
-                                      onclick="openCity1('Btn2','2')"
-                                      class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
-                              </button>
-                          </div>
-                          <div class="col-md-2 col-sm-6">
-                              <c:choose>
-                                  <c:when test="${notification.autorite.id_autorite == null}">
-                                      <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                              onclick="addObject_step('formautorite','autorite','3','id_notification')"
-                                              class="btn btn-success btn-block">
-                                          <spring:message code="button.Suivant"/>
-                                      </button>
-                                  </c:when>
-                                  <c:otherwise>
-                                      <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                              onclick="updateObject('formautorite','autorite','','3',' id_autorite = '+${notification.autorite.id_autorite})"
-                                              class="btn btn-success btn-block">
-                                          <spring:message code="button.Suivant"/>
-                                      </button>
-                                  </c:otherwise>
-                              </c:choose>
-                          </div>
-                      </div>
+                        </div>
 
+                    </div>
+
+                    <div class="row justify-content-center mt-3 mb-5">
+                        <div class="col-md-2 col-sm-6">
+                            <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
+                                    onclick="openCity1('Btn2','2')"
+                                    class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                            </button>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <c:choose>
+                                <c:when test="${notification.autorite.id_autorite == null}">
+                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                            onclick="addObject_step('formautorite','autorite','3','id_notification')"
+                                            class="btn btn-success btn-block">
+                                        <spring:message code="button.Suivant"/>
+                                    </button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                            onclick="updateObject('formautorite','autorite','','3',' id_autorite = '+${notification.autorite.id_autorite})"
+                                            class="btn btn-success btn-block">
+                                        <spring:message code="button.Suivant"/>
+                                    </button>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
 
                 </div>
                 </c:if>
-
                 <%--********************Tab3***************************--%>
                 <div id="3" class="tabcontent pr-0">
                     <h4 class="titre_abs "><spring:message code="label.Notification"/></h4>
@@ -1012,17 +1024,17 @@
 
                         <div class="row justify-content-center mt-3 mb-5">
                             <div class="col-md-2 col-sm-6">
-                                <c:if test="${type.equals('TR') || type.equals('XD')}">
+                                <c:if test="${type=='TR' || type=='XD'}">
                                 <button type="button"
                                         onclick="openCity1('Btn12','12')"
                                         class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
                                 </button>
                                 </c:if>
-                                <c:if test="${type.equals('ZF') || type.equals('ET')}">
-                                <button type="button"
-                                        onclick="openCity1('Btn2','2')"
-                                        class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
-                                </button>
+                                <c:if test="${type!='TR' || type!='XD'}">
+                                    <button type="button"
+                                            onclick="openCity1('Btn2','2')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
                                 </c:if>
                             </div>
                             <div class="col-md-2 col-sm-6">
@@ -2525,8 +2537,10 @@
     }
 
     function verif_recap(id_form, type, id_name) {
+        debugger;
         if(event!=null)
             event.preventDefault();
+       // var tr = $("#" + id_form).find(".document").closest(".row.justify-content-center");
         var id = $("#" + id_name).val();
         verif_champs(id_form, type, id_name, '10')
             changer_Statut(id, 33, type);
@@ -2617,7 +2631,7 @@
     }
 
     function Save_paysautorite() {
-        event.preventDefault();
+        // event.preventDefault();
 
         var data = new FormData();
         var id_notif = $("#id_notification").val();
@@ -2639,11 +2653,11 @@
 
                 swal({
                         title: "L'autorité enregistrer avec success",
-                        text: "Voulez-vous Ajouter un nouvelle autorité ?",
+                        text: "Voulez-vous Ajouter une nouvelle autorité?",
                         type: "success",
                         showCancelButton: true,
                         confirmButtonClass: "btn-success",
-                        confirmButtonText: "Oui, Ajouter",
+                        confirmButtonText: "Oui, Ajouter une autorité",
                         cancelButtonText: "Non",
                         closeOnConfirm: true,
                         closeOnCancel: true
@@ -2652,21 +2666,13 @@
                         if (isConfirm) {
                             getPaysautorite('0');
                         } else {
-
+                            updateGeneral('formautorite','notification','3',parseInt(id_notif),'id_notification','non');
                         }
                     });
             },
             error: function () {
 
             }
-        });
-    }
-
-    function deletePaysautorite(id) {
-        event.preventDefault();
-        var id_notif = $("#id_notification").val();
-        $.get("/api/deletePaysautorite/" + id + "/" + id_notif, function (rep) {
-            $("#pays_table").html(rep);
         });
     }
 </script>

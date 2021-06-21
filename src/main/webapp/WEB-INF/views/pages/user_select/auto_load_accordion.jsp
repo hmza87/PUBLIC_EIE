@@ -499,15 +499,13 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-4 col-sm-12">
                         <div class="card w-100">
                             <div class="card-body text-center">
                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
-                                    <spring:message code="option.Auditenvironnementale"/>
+                                    <spring:message code="option.Noticedimpact"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
+                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
                                     <spring:message code="label.Acceder"/>
                                 </button>
                             </div>
@@ -518,9 +516,9 @@
                         <div class="card w-100">
                             <div class="card-body text-center">
                                 <h6 style="min-height: 3.5em" class="card-title text-justify">
-                                    <spring:message code="option.Noticedimpact"/>
+                                    <spring:message code="option.Auditenvironnementale"/>
                                 </h6>
-                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE1')">
+                                <button class="btn btn-primary btn-sm" onclick="show_etape_perso('EIE2')">
                                     <spring:message code="label.Acceder"/>
                                 </button>
                             </div>

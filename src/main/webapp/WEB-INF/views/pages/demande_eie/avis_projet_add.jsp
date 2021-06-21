@@ -59,7 +59,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
                         <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> <spring:message code="label.Nouvelledemande"/> </li>
+                        <li class="breadcrumb-item active" aria-current="page"> Demande </li>
 
                     </ol>
                 </nav>
@@ -77,7 +77,7 @@
                 <c:if test="${type=='EE'|| type=='NT'}">
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id3" onclick="affiche_eie_zone('#step3','#step_id3')"><spring:message code="label.Piecefournir"/> </button>
                 </c:if>
-                <button class="btn btn-success btn-block text-left pl-5 cls_step montab" id="step_id4" onclick="affiche_eie_zone('#step4','#step_id4')" disabled>5. <spring:message code="label.Recapitulation"/> </button>
+                <button class="btn btn-success btn-block text-left pl-5 cls_step montab" id="step_id4" onclick="affiche_eie_zone('#step4','#step_id4')" disabled> <spring:message code="label.Recapitulation"/> </button>
 
             </div>
             <div class="col-lg-8 col-sm-8 col-md-8 mx-4">

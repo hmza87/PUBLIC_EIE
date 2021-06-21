@@ -159,7 +159,7 @@ public class Eie_Controler {
 			model.put("titre_dyn","Etude d’Impact sur l’Environnement");
 		}
 		else{
-			model.put("titre_dyn","Audit Environmental");
+			model.put("titre_dyn","Audit Environnemental");
 		}
 
 
