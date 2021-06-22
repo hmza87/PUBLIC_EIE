@@ -219,17 +219,49 @@
                                                 <div class="card rounded mb-2">
                                                     <div ${dr} class="card-header bg-light" id="heading${q.id_question}" data-toggle="collapse" data-target="#collapse${q.id_question}" aria-expanded="false" aria-controls="collapse${q.id_question}">
                                                         <h5 class="mb-0" >
+
                                                             <p class="h5" >
                                                                     ${q_quest}
                                                             </p>
+
                                                         </h5>
                                                         <span class="${badge}">${badge_msg}</span>
                                                     </div>
                                                     <div id="collapse${q.id_question}" class="collapse border-top" aria-labelledby="heading${q.id_question}" data-parent="#accordion1">
                                                         <div class="card-body bg-light ${orient}">
+                                            <c:if test="${q.id_question!=47}">
                                                             <p >
                                                                     ${(q.reponses!=null && q.reponses.size()>0)?q.reponses.get(0).description:""}
                                                             </p>
+                                            </c:if>
+                                                            <c:if test="${q.id_question==47}">
+                                                                <ul>
+                                                                    <li>
+                                                                        <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
+                                                                        <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <spring:message code="label.LoinrelativealEvaluationenvironnementale"/>
+                                                                        <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N49_17.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <spring:message code="label.DecretnrelatifauxattributionsetaufonctionnementducNEEetdesCREI"/>
+                                                                        <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_563.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <spring:message code="label.Decretnfixantlesmodalitesdorganisationetdederoulementdelenquetepublique"/>
+                                                                        <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_564.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </c:if>
                                                         </div>
                                                     </div>
                                                 </div>

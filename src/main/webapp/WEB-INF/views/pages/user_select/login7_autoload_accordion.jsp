@@ -6,16 +6,7 @@
 <spring:url value="/resources/" var="resources" />
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
-<style>
-<c:if test="${pageContext.response.locale=='ar' }">
-    <c:set var="dd" value="data-dir='RTL'"/>
-    <style>.select2-results__option{text-align:right}	</style>
-</c:if>
-<c:if test="${pageContext.response.locale=='fr' }">
-    <c:set var="dd" value="data-dir='LTR'"/>
-    <style>.select2-results__option{text-align:right}	</style>
-</c:if>
-</style>
+
 
 <c:choose>
     <c:when test="${show=='accordion'}">
@@ -31,7 +22,7 @@
                     <c:if test="${d.nom_fr!='Garantie financière'}">
                         <button disabled class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'} btn-block text-left text-black" style="background-color: #f6f6f6 !important; cursor: auto">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
-                   </c:if>
+                </c:if>
                 <div class="${d.classification.id_classification==1?'Grp_dang':'Grp_simpl d-none'}">
                     <c:if test="${d.nom_fr.contains('Garantie financière')}">
                         <p style="padding-left: 1%;border: 2px solid black;">
@@ -72,9 +63,9 @@
                             </div>
                         </div>
                     </c:if>
-                        <c:if test="${not empty d.description}">
-                           <p>${d.description}</p>
-                        </c:if>
+                    <c:if test="${not empty d.description}">
+                        <p>${d.description}</p>
+                    </c:if>
                     <c:if test="${not empty d.uri}">
                         <p>Liens pour télécharger le modèle: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                     </c:if>
@@ -90,7 +81,7 @@
                     <c:if test="${!d.nom_fr.contains('Garantie financière')}">
                         <button disabled class="btn-block text-left" style="background-color: #f6f6f6 !important; cursor: auto;color: black !important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</button>
                     </c:if>
-                   </c:if>
+                </c:if>
                 <c:if test="${not empty d.description || not empty d.uri}">
                     <h3 class="text-white" style="background-color: #b3b3b3!important;">${pageContext.response.locale=='ar'?d.nom_ar:d.nom_fr}</h3>
                 </c:if>
@@ -141,7 +132,7 @@
                         <p>${d.description}</p>
                     </c:if>
                     <c:if test="${not empty d.uri}">
-                    <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
+                        <p>Liens de l'exemplaire: <a href="${Admin_url}${fn:replace(d.uri,"/assets/myFile/","/dowload_uploaded/")}">cliquer ici</a></p>
                     </c:if>
                 </div>
             </c:forEach>
@@ -154,7 +145,7 @@
                 text-align: left;
             }
         </style>
-        
+
         <div class="row-fluid d-none border p-2 bg-white" id="dev_step">
             <p class="text-center h4 w-100 font_bold">
                     <%--<spring:message code="option.Procedureasuivrepourobtenir"/>--%>
@@ -259,119 +250,119 @@
                         </c:choose>
                     </c:when>
                 </c:choose>
+                <c:choose>
+                    <c:when test="${type=='ZF' }">
                         <c:choose>
-                            <c:when test="${type=='ZF' }">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" استيراد النفايات من منطقة حرة "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
-                                    </c:otherwise>
-                                </c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" استيراد النفايات من منطقة حرة "/>
                             </c:when>
-
-                            <c:when test="${type=='ET' }">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" استيراد النفايات غير الخطرة من بلد أجنبي"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='CT'}">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" الجمع - نقل النفايات الخطرة "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" مرفق معالجة النفايات "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='XD'}">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" تصدير النفايات"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'exportation des déchets "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='TR' }">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" عبور النفايات "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" de transit des déchets "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='EIE' }">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" الحصول على القبول البيئي "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='EIE1'}">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'obtention de la Décision d'Acceptabilité Environnementale d'un projet soumis à la Notice d'Impact sur l'Environnement "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-                            <c:when test="${type=='EIE2'}">
-                                <c:choose>
-                                    <c:when test="${pageContext.response.locale=='ar'}">
-                                        <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="l_ph2" value=" d'obtention du Certificat de Conformité Environnementale "/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-
-
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'importation des déchets d'une zone franche "/>
+                            </c:otherwise>
                         </c:choose>
-                        <spring:message code="label.Procedureasuivrepour"/>  ${l_ph1}
+                    </c:when>
+
+                    <c:when test="${type=='ET' }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" استيراد النفايات غير الخطرة من بلد أجنبي"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'importation des déchets non dangereux d'un pays étranger "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='CT'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الجمع - نقل النفايات الخطرة "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" de collecte - transport des déchets dangereux "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='IT' && pageContext.response.locale=='fr'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" مرفق معالجة النفايات "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'installation de traitement des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='XD'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" تصدير النفايات"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'exportation des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='TR' }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" عبور النفايات "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" de transit des déchets "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='EIE' }">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على القبول البيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'obtention de l'acceptabilité environnementale "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='EIE1'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على إشعار الأثر البيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'obtention de la Décision d'Acceptabilité Environnementale d'un projet soumis à la Notice d'Impact sur l'Environnement "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+                    <c:when test="${type=='EIE2'}">
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale=='ar'}">
+                                <c:set var="l_ph2" value=" الحصول على تدقيق بيئي "/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="l_ph2" value=" d'obtention du Certificat de Conformité Environnementale "/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+
+
+                </c:choose>
+                <spring:message code="label.Procedureasuivrepour"/>  ${l_ph1}
 
             </p>
             <c:choose>
-                            <c:when test="${type=='EIE'||type=='EIE2'||type=='EIE1'}">
-                                <c:set var="Param_etap" value="4"/>
-                            </c:when>
-                            <c:otherwise>
-                                <c:set var="Param_etap" value="3"/>
-                            </c:otherwise>
-                        </c:choose>
+                <c:when test="${type=='EIE'||type=='EIE2'||type=='EIE1'}">
+                    <c:set var="Param_etap" value="4"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="Param_etap" value="3"/>
+                </c:otherwise>
+            </c:choose>
             <div class="col-2 p-0">
                 <button class="btn btn-success btn-block" onclick="sectautoris_table_select(${Param_etap})"><span
                         class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
@@ -434,9 +425,9 @@
                                         code="label.jecreemoncompte"/></p>
                                 <c:choose>
                                     <c:when test="${type=='EIE'}">
-                                       <p><spring:message code="label.Pourdeposervotredemandedobtention"/> <a
-                                               href="/demandez_compte" class="h5 text-primary font_bold">
-                                           <spring:message code="label.SuivantA"/></a></p>
+                                        <p><spring:message code="label.Pourdeposervotredemandedobtention"/> <a
+                                                href="/demandez_compte" class="h5 text-primary font_bold">
+                                            <spring:message code="label.SuivantA"/></a></p>
                                         <p><spring:message code="label.Votreidentifiantetvotremotdepasse"/></p>
                                         <p><spring:message code="label.Votrecomptevavouspermettreenplus"/></p>
                                     </c:when>
@@ -476,7 +467,7 @@
                                 <p class="text-success h-4 font_bold">
                                     <c:choose>
                                         <c:when test="${type=='EIE' && pageContext.response.locale=='fr'}">
-                                            Je dépose ma demande d’obtention du Certificat de Conformité Environnementale
+                                            Je dépose ma demande d’obtention de l'Acceptabilité Environnementale
                                         </c:when>
                                         <c:when test="${type=='EIE'  && pageContext.response.locale=='ar'}">
                                             أقدم طلبي للقبول البيئي
@@ -522,7 +513,7 @@
                                         <li class="pl-2"><spring:message code="label.Ouendeposantdirectementvotredemandesansremplirleformulaire"/>  </li>
                                     </ul>
                                     <p class="mb-3"><spring:message code="label.Leformulairederenseignementprealablevouspermettradeverifier"/> </p>
-                                    </c:if>
+                                </c:if>
 
                                 <c:if test="${type=='EIE2'}">
                                     <p>
@@ -621,12 +612,12 @@
 
                         <div class="row clss_hide mt-5 attache collapse">
                             <div class="col-12">
-                                <c:if test="${type=='NT'}">
+                                <c:if test="${type.equals('EIE1')}">
                                     <p class="text-underline text-success font_bold">
                                         La pièce accompagnant la demande:
                                     </p>
                                 </c:if>
-                                <c:if test="${type!='NT'}">
+                                <c:if test="${!type.equals('EIE1')}">
                                     <p class="text-underline text-success font_bold">
                                         Les pièces accompagnant la demande:
                                     </p>
@@ -711,7 +702,7 @@
                                     <c:when test="${type=='EIE2'}">
                                         <p>A la fin du processus de traitement de votre demande, une notification vous sera envoyée, vous invitant à retirer le Certificat de Conformité Environnementale de votre activité.</p>
                                         <p>Le Certificat de Conformité Environnementale doit être retiré par son demandeur</p>
-                                       </c:when>
+                                    </c:when>
                                     <c:otherwise>
                                         <p>
                                             <spring:message code="label.Alafinduprocessusdetraitementdevotredemande"/> ${l_ph2},
@@ -744,17 +735,17 @@
                                     <c:when test="${ type=='EIE2'}">
                                         <div class="mb-3">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" >
-                                            <img src="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" width="100%"></a>
+                                                <img src="${pageContext.request.contextPath}/assets/images/audit_organigrame.png" width="100%"></a>
                                         </div>
-                                        </c:when>
-                                        <c:when test="${type=='EIE' }">
+                                    </c:when>
+                                    <c:when test="${type=='EIE' }">
                                         <div class="mb-3">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" >
-                                            <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
+                                                <img src="${pageContext.request.contextPath}/assets/images/EIE_organigrame.png" width="100%"></a>
                                         </div>
                                         <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                		</p>
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -814,18 +805,18 @@
                                         </div>
 
 
-<br/>
-                                            <div id="shema1">
+                                        <br/>
+                                        <div id="shema1">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_zf.PNG">
                                                 <img src="${pageContext.request.contextPath}/assets/images/shema_zf.PNG"></a>
-                                            </div>
-                                            <div id="shema2" style="display: none">
+                                        </div>
+                                        <div id="shema2" style="display: none">
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG">
                                                 <img src="${pageContext.request.contextPath}/assets/images/shema_zf_dnd.PNG"></a>
-                                            </div>
-		                                <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                         </p>
+                                        </div>
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -837,7 +828,7 @@
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">En attente  </td>
                                                 <td class="font_time_serif size_12">  </td>
-                                             </tr>
+                                            </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">Incomplet </td>
                                                 <td class="font_time_serif size_12">  </td>
@@ -891,16 +882,16 @@
 
                                             </tbody>
                                         </table>
-                                    
-                                                </c:when>
+
+                                    </c:when>
 
                                     <c:when test="${type=='CT'}">
-                                            <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG">
-                                                <img src="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG"></a>
-                                            
-		                                <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                		</p>
+                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_collecte.PNG"></a>
+
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -977,21 +968,21 @@
                                                 <td class="font_time_serif font_bold size_12">Complément attachée</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-                                             
-                                       
+
+
 
                                             </tbody>
                                         </table>
-                                    
+
                                     </c:when>
 
                                     <c:when test="${type=='IT'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_it.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_it.PNG"></a>
-                                    <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
 
-		                                </p>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -1004,57 +995,57 @@
                                                 <td class="font_time_serif font_bold size_12">En attente</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Incomplet</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">visite planifié</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Favorable</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Non favorable</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Attente de validation de département concerné</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Non favorable (comité)</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Brouillon</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Signée</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
-<tr>
+                                            <tr>
                                                 <td class="font_time_serif font_bold size_12">Attente de programmer une visite</td>
                                                 <td class="font_time_serif size_12">  </td>
                                             </tr>
 
-                                             
-                                       
+
+
 
                                             </tbody>
                                         </table>
-                                    
+
                                     </c:when>
                                     <c:when test="${type=='XD'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_xd.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_xd.PNG"></a>
-                                    
-		                                <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                         </p>
+
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -1066,7 +1057,7 @@
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">En attente  </td>
                                                 <td class="font_time_serif size_12">  </td>
-                                             </tr>
+                                            </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">Incomplet </td>
                                                 <td class="font_time_serif size_12">  </td>
@@ -1124,10 +1115,10 @@
                                     <c:when test="${type=='ET'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_ET.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_ET.PNG"></a>
-                                    
-		                                <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                         </p>
+
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -1139,7 +1130,7 @@
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">En attente  </td>
                                                 <td class="font_time_serif size_12">  </td>
-                                             </tr>
+                                            </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">Incomplet </td>
                                                 <td class="font_time_serif size_12">  </td>
@@ -1194,13 +1185,13 @@
                                             </tbody>
                                         </table>
                                     </c:when>
-									<c:when test="${type=='TR'}">
+                                    <c:when test="${type=='TR'}">
                                         <a target="_blank" href="${pageContext.request.contextPath}/assets/images/shema_TR.PNG">
                                             <img src="${pageContext.request.contextPath}/assets/images/shema_TR.PNG"></a>
-                                    
-		                                <p class="text-underline text-success font_bold mt-3">
-		                                   <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                         </p>
+
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
                                         <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
                                             <thead class="bg-light">
                                             <tr>
@@ -1212,7 +1203,7 @@
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">En attente  </td>
                                                 <td class="font_time_serif size_12">  </td>
-                                             </tr>
+                                            </tr>
                                             <tr>
                                                 <td class="font_time_serif font_bold size_12">Incomplet </td>
                                                 <td class="font_time_serif size_12">  </td>
@@ -1268,36 +1259,39 @@
                                         </table>
                                     </c:when>
                                     <c:otherwise>
-                                            <div class="mb-3">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/shema_TR.PNG" width="100%"></a>
-                                            </div>
-                                            <p class="text-underline text-success font_bold mt-3">
-                                                <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
-                                            </p>
-                                            <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
-                                                <thead class="bg-light">
-                                                <tr>
-                                                    <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
-                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td class="font_time_serif font_bold size_12"><spring:message code="label.Enattentedeverification"/> </td>
-                                                    </tr>
-                                                <tr>
-                                                    <td class="font_time_serif font_bold size_12">En attente de dépôt de NIE  </td>
-                                                  </tr>
-                                                <tr>
-                                                    <td class="font_time_serif font_bold size_12">Document valide  </td>
-                                                  </tr>
-                                                <tr>
-                                                    <td class="font_time_serif font_bold size_12"> Signée</td>
-                                                   </tr>
+                                        <div class="mb-3">
+                                            <img src="${pageContext.request.contextPath}/assets/images/shema_TR.PNG" width="100%"></a>
+                                        </div>
+                                        <p class="text-underline text-success font_bold mt-3">
+                                            <spring:message code="label.Enfonctiondavancementsurvotredossierlesystemeaffichelesstatutsciapres"/>
+                                        </p>
+                                        <table id="table_acteur" class="my_table table table-hover table-bordered table-striped">
+                                            <thead class="bg-light">
+                                            <tr>
+                                                <th class="text-underline bold text-center font_time_serif"> <spring:message code="label.Statutdudossier"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12"><spring:message code="label.Enattentedeverification"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">En attente de dépôt de NIE  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Document incomplet  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12">Document valide  </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font_time_serif font_bold size_12"> Signée</td>
+                                            </tr>
 
 
 
-                                                </tbody>
-                                            </table>
+                                            </tbody>
+                                        </table>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -1342,7 +1336,7 @@
                                     <c:if test="${type=='EIE'}">
                                         <li>
                                             <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
-                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf.pdf">
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
@@ -1402,7 +1396,7 @@
                                             </a><br>
                                             <spring:message code="label.Projetdextractiondemateriauxdeconstruction"/>
                                             <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Extraction_materiaux_construction.pdf">
-                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
                                             7.Projet touristique
                                             <a target="_blank">
@@ -1417,7 +1411,7 @@
                                     <c:if test="${type=='EIE1'}">
                                         <li>
                                             <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
-                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf.pdf">
+                                            <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                             </a>
                                         </li>
@@ -1502,10 +1496,10 @@
             <div class="col-12">
                 <p class="h3 font_bold w-100 text-center p-4"><spring:message
                         code="label.Preparezvotredemarche"/></p>
-                        <div class="col-2 p-0">
-			                				<button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
-			                        		class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
-			            				</div>
+                <div class="col-2 p-0">
+                    <button class="btn btn-success btn-block" onclick="show_etape_normal()" style="margin: -63px 0px 20px 0px;"><span
+                            class="fa fa-arrow-left"></span> <spring:message code="label.Retour"/></button>
+                </div>
             </div>
             <div class="col-12 p-0 m-0  bg-light border"  >
                 <div class="row p-0 m-0" >
@@ -1527,18 +1521,18 @@
                                 <div class="dddd" style="position: absolute;top: 110px;right: 10px;cursor: pointer">
                                     <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')"><spring:message code="label.Nouveau"/></div>
                                 </div>
-                               <c:choose>
-                                   <c:when test="${empty user}">
-                                       <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
-                                           <spring:message code="label.Acceder"/>
-                                       </button>
-                                   </c:when>
-                                   <c:otherwise>
-                                       <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/ZF')">
-                                           <spring:message code="label.Acceder"/>
-                                       </button>
-                                   </c:otherwise>
-                               </c:choose>
+                                <c:choose>
+                                    <c:when test="${empty user}">
+                                        <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-primary btn-sm" onclick="checkAut('${user.st.ZF}','/api/checkUserDispatch/ZF')">
+                                            <spring:message code="label.Acceder"/>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
 
                             </div>
                         </div>
@@ -1747,15 +1741,15 @@
                 }
             });
 
-        function etapeshema(val){
-            if(val=='1'){
-                $("#shema1").show();
-                $("#shema2").hide();
-            }else{
-                $("#shema2").show();
-                $("#shema1").hide();
+            function etapeshema(val){
+                if(val=='1'){
+                    $("#shema1").show();
+                    $("#shema2").hide();
+                }else{
+                    $("#shema2").show();
+                    $("#shema1").hide();
+                }
             }
-        }
         </script>
     </c:when>
 </c:choose>

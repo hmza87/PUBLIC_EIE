@@ -344,7 +344,7 @@ function updateRegionDemandeInfomration(type, id_name, next_step, id_btn) {
                 Swal.fire({
                     title: '<strong>Votre demande est déposée avec succès</strong>',
                     icon: 'success',
-                    html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
@@ -380,7 +380,7 @@ function changer_statut(id_name, code_statut, msg_alert) {
             Swal.fire({
                 title: '<strong>' + msg_alert + '</strong>',
                 icon: 'success',
-                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,
@@ -414,7 +414,7 @@ function changer_statut_type(id_name, code_statut, msg_alert, type) {
             Swal.fire({
                 title: '<strong>' + msg_alert + '</strong>',
                 icon: 'success',
-                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,
@@ -1230,7 +1230,7 @@ function changer_Statut_zf_auth(id_notif, id_statut, type) {
                 title: '<strong>votre demande a été effectuée avec succès</strong>',
                 icon: 'success',
                 html:
-                    '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,
@@ -1573,7 +1573,7 @@ function changer_statut1_AE(id_name, code_statut, msg_alert,type) {
             Swal.fire({
                 title: '<strong>' + msg_alert + '</strong>',
                 icon: 'success',
-                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                html:'<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,

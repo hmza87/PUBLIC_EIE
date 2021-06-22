@@ -111,7 +111,7 @@
 
                                         <div class="mt-2">
                                             <c:if test="${nt.statut.id_statut_projet!=48}">
-                                            <a href="/api/getnotifById1/${type}/${nt.id_notification}"  class="btn btn-success" > Recapitulation</a>
+                                            <a href="/api/getnotifById1/${type}/${nt.id_notification}"  class="btn btn-success" > Récapitulatif</a>
                                             </c:if>
                                         </div>
                                         <div class="mt-2">
