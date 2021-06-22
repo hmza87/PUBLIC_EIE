@@ -3069,12 +3069,14 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-    public static ByteArrayInputStream generateDocumentDInstallation(Installation is) throws DocumentException, IOException {
+    public static ByteArrayInputStream generateDocumentDInstallation(Installation ns) throws DocumentException, IOException {
+
+
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Document document=new Document(PageSize.A4, 40, 40, 30, 0);
-        PdfWriter writer = PdfWriter.getInstance(document,out);
+        PdfWriter writer=PdfWriter.getInstance(document,out);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
         BaseFont base = null;
@@ -3083,147 +3085,156 @@ public class GeneratePDFDocuments {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Font font=new Font(Font.FontFamily.TIMES_ROMAN,9.0f);
-        Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,9.0f,Font.BOLD);
-        Font fontBox = new Font(base, 10f);
 
-        String logo = "word_header1.png";
-        Image image = Image.getInstance(GeneratePDFDocuments.class.getClassLoader().getResource(logo));
-        image.scaleToFit(610,800);
+        //Setting up the font to be used in Paragraphs
+        Font font=new Font(Font.FontFamily.TIMES_ROMAN,10.0f);
+        Font fontTitre = new Font(Font.FontFamily.TIMES_ROMAN,16.0f,Font.BOLD);
+        Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,10.0f,Font.BOLD);
+        Font fontBox = new Font(base, 20.0f);
+
+        String logo = "/word_header1.png";
+        Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
+        image.scaleToFit(550
+
+                ,800);
+
         document.add(image);
 
-        Paragraph headerPar=new Paragraph(16);
-        headerPar.setSpacingBefore(15);
+        //GLUE CHUNK
+        Chunk glue = new Chunk(new VerticalPositionMark());
+
+//        char checked='\u00FE';
+//        char unchecked='\u00A8';
+
+        Chunk checkedChunk=new Chunk(String.valueOf('\u00FE'),fontBox);
+        Chunk uncheckedChunk=new Chunk(String.valueOf('\u00A8'),fontBox);
+//        Chunk mCube=new Chunk(String.valueOf('\u33A5'),fontBox);
+
+        Chunk oui = new Chunk("Oui : ",font);
+        Chunk non = new Chunk("Non : ",font);
+
+
+        Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Formulaire de la demande d’autorisation d'installation spécialisée \n" +
-                "de traitement des déchets dangereux\n\n");
-        headerPar.setFont(fontbold);
-        headerPar.setSpacingAfter(5);
+        headerPar.add("Récapitulation de la demande d'autorisation d'installation de traitement des déchets");
+        headerPar.setFont(fontTitre);
+        headerPar.setSpacingBefore(20);
 
-        Paragraph par1= new Paragraph();
-        par1.setAlignment(Element.ALIGN_LEFT);
-        par1.add(new Phrase("1. Référence de la demande : "));
-        par1.setSpacingAfter(5);
-        par1.add(Chunk.NEWLINE);
+        //--------------------- Table numero de Instalation ---------------------
+        PdfPTable table0 = new PdfPTable(new float[]{2,3,1,2});
+        table0.setWidthPercentage(100);
+        table0.setSpacingBefore(12);
+        table0.setSpacingAfter(12);
+        //--------------------- Row Title ---------------------
+        table0.addCell(saisir_cellule_titre("N° de la demande",4));
+        table0.completeRow();
+        //--------------------- completeRow ---------------------
+        table0.addCell( saisir_cellule("N° de la demande : ",font,fontbold,ns.getNum_demande(),1));
+        table0.addCell( saisir_cellule("Site: ",font,fontbold,ns.getSite(),1));
+        table0.addCell( saisir_cellule("Operation : ",font,fontbold,ns.getOperation(),1));
+        table0.addCell( saisir_cellule("Description d'installation : ",font,fontbold,ns.getDescription(),1));
+        table0.completeRow();
 
-        float[] columnWidths = {5, 8};
-        PdfPTable table = new PdfPTable(columnWidths);
-        table.setWidthPercentage(100);
+        table0.addCell( saisir_cellule("structure d'installation : ",font,fontbold,ns.getStructure(),1));
+        table0.addCell( saisir_cellule("Type d'appareil : ",font,fontbold,ns.getType_appareil(),1));
+        table0.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
+        table0.addCell( saisir_cellule("Quantité : ",font,fontbold,ns.getQuantite(),1));
+        table0.completeRow();
+        //--------------------- Row Title ---------------------
 
-        PdfPCell cell = new PdfPCell();
+        if(ns.getType().equals("1") || ns.getType().equals("2")){
+            if(ns.getType().equals("1")) {
+                table0.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
+                table0.completeRow();
+            }
 
-        cell.setBackgroundColor(GrayColor.GRAYBLACK);
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table0.addCell(saisir_cellule_transporteur_titre("Code",2));
+            table0.addCell(saisir_cellule_transporteur_titre("Type",2));
+            table0.completeRow();
+            table0.setSpacingAfter(5);
 
-        cell.setRowspan(2);
-        table.addCell(cell);
-        table.addCell(cell);
+            //--------------------- completeRow ---------------------
+            for (Code c:ns.getCode()){
+                table0.addCell(saisir_cellule("",font,font,c.getNom_fr()!=null?c.getNom_fr():"-",2));
+                table0.addCell(saisir_cellule("",font,font,c.getNom_ar()!=null?c.getNom_ar():"-",2));
+                table0.completeRow();
+            }
 
-        table.addCell("Date de dépôt");
-        table.addCell(is.getDateDepot()==null?"":dateFormat.format(is.getDateDepot()));
-
-        table.addCell("Lieu de dépôt");
-        table.addCell(is.getSite());
-
-        table.addCell("N° de la demande");
-        table.addCell(is.getNum_demande());
-        document.add(headerPar);
-        document.add(par1);
-        document.add(table);
-
-        document.add(Chunk.NEWLINE);
-
-
-        Paragraph par2= new Paragraph();
-        par2.setAlignment(Element.ALIGN_LEFT);
-        par2.add(new Phrase("2. Identification du demandeur : "));
-        par2.setSpacingAfter(5);
-        par2.add(Chunk.NEWLINE);
-
-        document.add(par2);
-
-
-        float[] columnWidths5 = {5, 8};
-        PdfPTable table5 = new PdfPTable(columnWidths5);
-        table5.setWidthPercentage(100);
-
-
-        PdfPCell cell5 = new PdfPCell();
-
-        cell5.setBackgroundColor(GrayColor.GRAYBLACK);
-        cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-        cell5.setRowspan(2);
-        table5.addCell(cell5);
-        table5.addCell(cell5);
-
-        table5.addCell("Nom de la société / Forme de la société");
-        table5.addCell(is.getRaison());
-
-        table5.addCell("IF");
-        table5.addCell(is.getIfe());
-
-        table5.addCell("Adresse");
-        table5.addCell(is.getAdresse());
-
-        table5.addCell("Tel");
-        table5.addCell(is.getTel());
-
-        table5.addCell("Fax/Courriel");
-        table5.addCell(is.getFax());
-
-        table5.addCell("Nom et prénom du représentant responsable");
-        table5.addCell("");
-
-        table5.addCell("N° de CIN / Carte de résident du représentant responsable");
-        table5.addCell("");
-
-        document.add(table5);
-        document.add(Chunk.NEWLINE);
-
-        Paragraph par3= new Paragraph();
-        par3.setAlignment(Element.ALIGN_RIGHT);
-        par3.add(new Phrase("Signature du demandeur"));
-        par3.setSpacingAfter(5);
-
-        document.add(par3);
-
-        Paragraph par4=new Paragraph(12);
-        par4.setFont(font);
-        par4.setSpacingAfter(5);
-        par4.setAlignment(Element.ALIGN_CENTER);
-
-        par4.add(new Phrase("RECEPISSE DE DEPOT\n" +
-                "de la demande d’autorisation d'installation spécialisée de traitement des déchets dangereux :\n",fontbold));
-        par4.setSpacingAfter(5);
-        document.add(par4);
-
-        Paragraph par5=new Paragraph(12);
-        par5.setFont(font);
-        par5.setSpacingAfter(5);
-        par5.setAlignment(Element.ALIGN_LEFT);
-        par5.add(Chunk.NEWLINE);
-        par5.add("Identification du demandeur : ");
-        par5.add("");
-        par5.add(Chunk.NEWLINE);
-        par5.add("Lieu de dépôt de la demande: ");
-        par5.add(is.getSite());
-        par5.add(Chunk.NEWLINE);
-        String date2 = "";
-        if(is.getDateDepot()!=null){
-            date2 = dateFormat.format(is.getDateDepot());
         }
-        par5.add("Date de dépôt: ");
-        par5.add(date2);
-        par5.add(Chunk.NEWLINE);
-        par5.add("N° de la demande: ");
-        par5.add(is.getNum_demande());
-        par5.add(Chunk.NEWLINE);
-        par5.add("Cachet et signature du service réceptionnaire : ");
-        par5.add("......................................................................................;.........................................................");
-        par5.add(Chunk.NEWLINE);
+        else{
+            table0.addCell(saisir_cellule_transporteur_titre("Code",2));
+            table0.addCell(saisir_cellule_transporteur_titre("Type",2));
+            table0.completeRow();
+            table0.setSpacingAfter(5);
+            table0.addCell(MonCellule("Vous avez droit à tous les codes", 4));
+            table0.completeRow();
+        }
+        //--------------------- Tableau Importateur - Notifiant ---------------------
+        PdfPTable table1 = new PdfPTable(new float[]{2,2,2});
+        table1.setWidthPercentage(100);
+        table1.setSpacingBefore(12);
+        table1.setSpacingAfter(12);
 
-        document.add(par5);
+        //--------------------- Row Title ---------------------
+        table1.addCell(saisir_cellule_titre("Information Demandeur",3));
+        table1.completeRow();
+        //--------------------- completeRow ---------------------
+
+        table1.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getRaison()!=null?ns.getRaison():"-",1));
+        table1.addCell( saisir_cellule("Identifiant : ",font,fontbold,ns.getEmail()!=null?ns.getEmail():"-",1));
+        table1.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getTel()!=null?ns.getTel():"-",1));
+        table1.completeRow();
+        table1.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getFax()!=null?ns.getFax():"-",1));
+        table1.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getIfe()!=null?ns.getIfe():"-",1));
+        table1.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse()!=null?ns.getAdresse():"-",1));
+        table1.completeRow();
+
+
+        //--------------------- Tableau Document de notification ---------------------
+        PdfPTable table2 = new PdfPTable(new float[]{1.5f,2f,2.2f});
+        table2.setWidthPercentage(100);
+        table2.setSpacingBefore(12);
+        table2.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        table2.addCell(saisir_cellule_titre("Equipe De Travail",3));
+        table2.completeRow();
+        //--------------------- completeRow ---------------------
+        table2.addCell( saisir_cellule("Nombre d'equipe : ",font,fontbold,ns.getNbr_equipe_travail(),1));
+        table2.addCell( saisir_cellule("Horaire Début d'exploitation : ",font,fontbold,ns.getHoraire_exploitation(),1));
+        table2.addCell( saisir_cellule("Nombre d'effectif : ",font,fontbold,ns.getFormation(),1));
+        table2.completeRow();
+        table2.setSpacingAfter(12);
+
+
+        PdfPTable table8 = new PdfPTable(3);
+        table8.setWidthPercentage(100);
+        table8.setSpacingBefore(12);
+        table8.setSpacingAfter(12);
+        table8.addCell(saisir_cellule_titre("reçus de dépôt." ,4));
+        table8.completeRow();
+        //--------------------- completeRow ---------------------
+        //--------------------- completeRow ---------------------
+
+        String dateTest=convertDate("dd/MM/yyyy",ns.getDateDepot());
+        table8.addCell( saisir_cellule("Date de dépôt de la demande :",font,fontbold,dateTest,4));
+        table8.completeRow();
+        table8.setSpacingAfter(12);
+
+        String num_notification = ns.getNum_demande()!=null?ns.getNum_demande():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_installation() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+
+
+        document.add(headerPar);
+        document.add(table0);
+        document.add(table1);
+        document.add(table2);
+        document.add(table8);
+        addFooter(writer,codeQrImage);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());

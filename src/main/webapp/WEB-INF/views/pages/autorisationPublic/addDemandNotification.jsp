@@ -2650,7 +2650,6 @@
     }
 
     function changer_Statut(id_notif, id_statut, type) {
-        var link_recap = "/api/getnotifById1/" + type + "/" + id_notif;
         Swal.fire({
             title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
             showDenyButton: true,
@@ -2664,18 +2663,8 @@
                     type: 'POST',
                     data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
                 })
-                Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
-                });
                 window.location.href = '/api/downloadRecuDepo/' + id_notif;
+                window.location.href ="/api/checkUserHasCollecte" + type;
             }
         })
     }

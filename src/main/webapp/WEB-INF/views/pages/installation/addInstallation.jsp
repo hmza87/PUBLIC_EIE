@@ -393,6 +393,59 @@
                                         </div>
                                     </div>
                                 </div>--%>
+                                <div class="row">
+                                    <div class="col-sm-8 mt-5" style="display: block;">
+                                        <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                            <label><label>Parmi Choisir par le type suivant :</label></label>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                       id="saufque"
+                                                                <c:if test="${notif.type== '3'}">
+                                                                       checked  </c:if> name="type"
+                                                                       value="3" onchange="my_function('3')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    Tout
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-check">
+                                                                <input checked class="form-check-input" type="radio"
+                                                                       id="tous"
+                                                                <c:if test="${notif.type== '2'}">
+                                                                       checked  </c:if> name="type"
+                                                                       value="2" onchange="my_function('2')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    De la liste
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-check">
+                                                                <input  class="form-check-input" type="radio"
+                                                                        id="parType"
+                                                                <c:if test="${notif.type== '1'}">
+                                                                        checked  </c:if> name="type"
+                                                                        value="1" onchange="my_function('1')">
+                                                                <label class="form-check-label"
+                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                    la liste sauf
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row m-0 p-0 mt-2">
                                     <div class="col-12">
                                         <div class="row">
@@ -435,61 +488,6 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-sm-4 mt-5" style="display: block;">
-                                            <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                                <label><spring:message code="label.type"/> :</label>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
-                                                                           id="saufque"
-                                                                    <c:if test="${notif.type== '3'}">
-                                                                           checked  </c:if> name="type"
-                                                                           value="3" onchange="my_function('3')">
-                                                                    <label class="form-check-label"
-                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                        Tout
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="">
-                                                                <div class="form-check">
-                                                                    <input checked class="form-check-input" type="radio"
-                                                                           id="tous"
-                                                                    <c:if test="${notif.type== '2'}">
-                                                                           checked  </c:if> name="type"
-                                                                           value="2" onchange="my_function('2')">
-                                                                    <label class="form-check-label"
-                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                        De la liste
-                                                                    </label>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="">
-                                                                <div class="form-check">
-                                                                    <input  class="form-check-input" type="radio"
-                                                                            id="parType"
-                                                                    <c:if test="${notif.type== '1'}">
-                                                                            checked  </c:if> name="type"
-                                                                            value="1" onchange="my_function('1')">
-                                                                    <label class="form-check-label"
-                                                                           style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                        la liste sauf
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                             <div class="col-sm-4 listCode">
                                                 <div class="d-block h-100 my_rows" id="my_rows">
 
@@ -912,7 +910,6 @@
 
         var id_install = $("#"+id_name).val();
         var type="IT";
-        var link_recap = "/api/recapIT/"+id_install;
         Swal.fire({
             title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
             showDenyButton: true,
@@ -927,17 +924,7 @@
                     data: {"id_notif":parseInt(id_install),"id_statut":parseInt(id_statut),"type":type},
                 })
                 down_load_recu();
-                Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
-                });
+               window.location.href="/api/checkUserHasCollecte/IT";
             }
         })
     }
