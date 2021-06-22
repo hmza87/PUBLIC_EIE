@@ -924,7 +924,7 @@
                     data: {"id_notif":parseInt(id_install),"id_statut":parseInt(id_statut),"type":type},
                 })
                 down_load_recu();
-               window.location.href="/api/checkUserHasCollecte/IT";
+                goToRecap();
             }
         })
     }
@@ -934,6 +934,10 @@
         var id = $("#id_installation").val();
         var link = url + id;
         window.location = link;
+    }
+
+    function  goToRecap(){
+        window.location.href="/api/checkUserHasCollecte/IT";
     }
 // fin de modification
 </script>

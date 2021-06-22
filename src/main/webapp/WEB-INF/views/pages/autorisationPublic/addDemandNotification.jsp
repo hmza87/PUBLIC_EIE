@@ -2669,6 +2669,7 @@
         })
     }
 
+
     var room = 1;
 
     function education_fields() {
