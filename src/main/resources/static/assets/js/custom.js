@@ -214,13 +214,20 @@ function getOptionByFilter(val, table, select_id) {
             .append('<option selected="selected" value="">Choisir...</option>');
 
         $.each(data, function (i, v) {
-            console.log("data : ", $(data));
-            console.log("v : ", $(v));
-            $("#" + select_id).prepend(new Option(v[1], v[0]));
+            //console.log("data : ", $(data));
+            //console.log("v : ", $(v));
+            //$("#" + select_id).prepend(new Option(v[1], v[0]));
+            $("#" + select_id).append('<option  value="'+v[0]+'">'+v[1]+'</option>');
         })
+        
 
         if ($(data).length == 1) {
-            $("#" + select_id + " option").eq(0).prop("selected", true);
+        	$.each(data, function (i, v) {
+                $("#" + select_id)
+                .empty()
+                .append('<option  selected="selected" value="'+v[0]+'">'+v[1]+'</option>');
+            })
+            
         }
 
         $("#" + select_id).trigger("change");
