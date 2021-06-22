@@ -79,6 +79,43 @@ function schowform(blo_none, cityName) {
     document.getElementById(cityName).style.display = blo_none;
 }
 
+function addObject_step2(from,table,tap,id_notif) {
+    if(event!=null)
+        event.preventDefault();
+    var se = $("#"+from).serializeObject();
+    // var se = $("#formnotif").serialize();
+    var Notchange = true;
+    if(!$.isNumeric(id_notif)){
+        id_notif = $("#"+id_notif).val();
+        Notchange=false;
+    }
+    var prefecture = $("#prefecture_id").val();
+    var region = $("#region_id").val();
+
+    if( prefecture==="0" || region==="0"){
+        swal('Champs vide',"merci de saisir le champs region et prefecture","warning");
+        return false;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/api/add_notification/"+table+"/"+ id_notif,
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(se),
+        success: function (response) {
+            Save_paysautorite();
+            if(Notchange)
+                $("#id_notification").val(response);
+            openCity1('Btn'+tap,tap);
+            $(".my_tab:not(.montab)").removeAttr('disabled');
+        },
+        error: function (response) {
+
+        }
+    });
+}
+
+
 function addObject_step(from,table,tap,id_notif) {
     if(event!=null)
         event.preventDefault();
@@ -103,6 +140,7 @@ function addObject_step(from,table,tap,id_notif) {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
+            Save_paysautorite()
             if(Notchange)
                 $("#id_notification").val(response);
             openCity1('Btn'+tap,tap);
@@ -113,9 +151,6 @@ function addObject_step(from,table,tap,id_notif) {
         }
     });
 }
-
-
-
 
 function addObject(from,table,url) {
     var se = $("#"+from).serializeObject();
