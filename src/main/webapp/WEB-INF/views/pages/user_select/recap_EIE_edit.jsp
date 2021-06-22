@@ -114,16 +114,8 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label><spring:message code="label.DatedeDemarrage"/></label>
-                                <c:set value="${fn:split(demande.dateDemarage, ' ')}" var="dt" />
-                                <input disabled type="text" class="form-control" value="${dt[0]}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label><spring:message code="label.DateResiliation"/></label>
-                                <c:set value="${fn:split(demande.dateResiliation, ' ')}" var="dt2" />
-                                <input disabled type="text" class="form-control" value="${dt2[0]}">
+                                <label><spring:message code="label.Naturedactivite"/></label>
+                                <textarea disabled type="text" class="form-control" rows="3">${demande.nature_projet}</textarea>
                             </div>
                         </div>
                     </div>
@@ -147,13 +139,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Nature de projet</label>
-                                <input disabled type="text" class="form-control" value="${demande.nature_projet}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label><spring:message code="label.Consistanceduprojet"/></label>
-                                <input disabled type="text" class="form-control" value="${demande.consistance_proj}">
+                                <textarea disabled type="text" class="form-control">${demande.nature_projet}</textarea>
                             </div>
                         </div>
                     </div>
@@ -226,7 +212,6 @@
                     </div>
                 </div>
             </div>
-            <c:if test="${type=='EE' || type=='NT'}">
                 <h2> <spring:message code="label.mespieces" /></h2>
                 <div>
                     <table class="table my_table table-striped table-bordered table-hover">
@@ -247,7 +232,6 @@
                         </c:if>
                     </table>
                 </div>
-            </c:if>
         </div>
     </div>
 </div>

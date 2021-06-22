@@ -2580,7 +2580,7 @@
                     title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
-                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,

@@ -1166,14 +1166,13 @@ public class Hatim {
 
 
 	@RequestMapping(value = "/api/updateDemandeInfomration/{id}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement, @RequestParam String consistance_proj, @RequestParam String nature_projet )
+	public @ResponseBody String updateDemandeInfomration(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement, @RequestParam String nature_projet )
 			throws JsonParseException {
 		DemandeInformation d = webt.getDemandeInfoById(id);
 		d.setMontant_investissement(montant_investissement);
 		d.setIntitule_projet(intitule_projet);
 		d.setNature_projet(nature_projet);
 		d.setTronsfrontalier("oui");
-		d.setConsistance_proj(consistance_proj);
 		d.setType(d.getType());
 		webt.updateDemandeInformation(id,d);
 		return "";
@@ -1187,9 +1186,9 @@ public class Hatim {
 	}
 
 	@RequestMapping(value = "/api/updateDemandeInfomrationAE/{id}", method = RequestMethod.GET)
-	public @ResponseBody String updateDemandeInfomrationAE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement,@RequestParam String dateDemarage,@RequestParam String dateResiliation)
+	public @ResponseBody String updateDemandeInfomrationAE(@PathVariable int id, @RequestParam String intitule_projet,@RequestParam int montant_investissement, @RequestParam String nature_projet)
 			throws JsonParseException {
-		String xd= webt.updateDemandeInformationAE(id, intitule_projet, montant_investissement,dateDemarage,dateResiliation);
+		String xd= webt.updateDemandeInformationAE(id, intitule_projet, montant_investissement, nature_projet);
 		return xd;
 	}
 

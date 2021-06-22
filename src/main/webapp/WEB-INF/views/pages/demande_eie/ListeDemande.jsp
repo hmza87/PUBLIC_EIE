@@ -48,7 +48,12 @@
                                     <th rowspan="2" ><spring:message code="label.NDemande"/> </th>
                                     <th rowspan="2" ><spring:message code="label.datedepot"/>  </th>
                                     <th rowspan="2" ><spring:message code="label.Statut"/></th>
+                                    <c:if test="${type=='AE'}">
                                     <th rowspan="2" ><spring:message code="label.Intituledeprojet"/></th>
+                                    </c:if>
+                                    <c:if test="${type!='AE'}">
+                                        <th rowspan="2" >Intitulé du projet</th>
+                                    </c:if>
                                     <th colspan="5" style="text-align: center;background-color: #f6f6f6"><spring:message code="label.petitionnaire"/></th>
                                     <th rowspan="2" ><spring:message code="label.Region"/></th>
                                     <th rowspan="2" ><spring:message code="label.Recap"/></th>

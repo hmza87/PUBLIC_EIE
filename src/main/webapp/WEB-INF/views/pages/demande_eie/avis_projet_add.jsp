@@ -223,7 +223,7 @@
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Nature de l'activité</label>
-                                                    <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                                    <textarea name="nature_projet" class="form-control" rows="3">${demande.nature_projet}</textarea>
                                                 </div>
                                             </div>
                                         </c:if>
@@ -231,16 +231,16 @@
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Nature de projet</label>
-                                                    <textarea name="nature_projet" id="nature_proj" class="form-control" rows="3"></textarea>
+                                                    <textarea name="nature_projet" class="form-control" rows="3">${demande.nature_projet}</textarea>
                                                 </div>
                                             </div>
                                         </c:if>
-                                        <div class="col-md-6 col-sm-12">
+                                       <!-- <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label><spring:message code="label.ConsisitanceduProjet"/></label>
                                                 <textarea name="consistance_proj" id="consit_proj" class="form-control" rows="3"></textarea>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </c:otherwise>
                                 </c:choose>
 
@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${type=='AE'}">
+                                    <!-- <c:if test="${type=='AE'}">
                                     <div class="col-md-6 col-sm-12">
 
                                         <div class="form-group">
@@ -277,7 +277,7 @@
                                             <input type="file" id="file_frm" class="form-control" onchange="update_new_AE()">
                                         </div>
                                     </div>
-                                </c:if>
+                                </c:if>-->
                             </div>
                             <div class="row justify-content-center p-0 mb-3">
                                 <div class="col-md-3 col-sm-12">
@@ -638,7 +638,7 @@
                         Swal.fire({
                             title: '<strong>' + msg_alert + '</strong>',
                             icon: 'success',
-                            html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                            html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                             showCloseButton: false,
                             showCancelButton: false,
                             showConfirmButton: false,
@@ -745,7 +745,7 @@
                 Swal.fire({
                     title: '<strong>' + msg_alert + '</strong>',
                     icon: 'success',
-                    html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Recapitulation</a>',
+                    html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
