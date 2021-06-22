@@ -166,7 +166,7 @@
                                         <c:if test="${nt.statut.id_statut_projet==51}">
                                             <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary btn-block m-2"><i class="fa fa-pencil-alt " title="Modifier" style="margin:0 !important"></i> <spring:message code="label.Editer"/></a>
                                         </c:if>
-                                            <a href="/api/generate_recap_instalation/${nt.id_installation }" class="btn btn-primary btn-block m-2"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
+                                            <a href="/api/recapIT/${nt.id_installation }" class="btn btn-primary btn-block m-2"><i class="fa fa-print mr-2" title="Récap"></i><spring:message code="label.printRecap"/></a>
                                         <c:if test="${nt.statut.id_statut_projet==15 }">
                                             <a href="/api/infoInstallation/${nt.id_installation }" class="btn btn-primary rounded m-2"><span class="fa fa-plus "></span> <spring:message code="label.Ameliorerlesdocuments"/></a>
                                         </c:if>

@@ -98,19 +98,19 @@
                     <div class="row p-0 m-0">
                         <div class="col-md-3 col-sm-12 pl-0 pr-0 mb-3">
                             <div class="">
-                                <button class="tablinks btn-primary btn"
-                                        onclick="openCity(event, '1')" <c:if test="${collect.statut.id_statut_projet!=42}">id="defaultOpen"</c:if> <c:if test="${collect.statut.id_statut_projet==42}">id="Btn2"</c:if> ${collect.statut.id_statut_projet==42 || collect.statut.id_statut_projet==50 ?'disabled':''}>1.
+                                <button class="tablinks  btn-primary btn"
+                                        onclick="openCity(event, '1')" id="${collect.statut.id_statut_projet!=42?'defaultOpen':'Btn2'}" ${collect.statut.id_statut_projet==42 ?'disabled':''}>1.
                                     <%--<spring:message code="label.InformationdemandeurA"/>--%><spring:message code="label.Informationdudemandeur"/> </button>
-                                <button class="tablinks btn-primary btn my_tab"<c:if test="${collect.statut.id_statut_projet==42}">id="defaultOpen"</c:if><c:if test="${collect.statut.id_statut_projet!=42}">id="Btn2"</c:if>  <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '2')" ${collect.codeTmp==null?'disabled':''}><spring:message
-                                        code="label.DonneesurlesvehiculesA"/><c:if test="${collect.statut.id_statut_projet==42}"><span class="text-right ml-5 badge badge-danger">Vérifier votre véhicule</span></c:if></button>
-                                <button class="tablinks btn-primary btn my_tab" id="Btn3" <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '3')"><spring:message
-                                        code="label.CatalogueA"/> <c:if test="${collect.statut.id_statut_projet==42}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Codes des déchets</span></c:if></button>
-                                <button class="tablinks btn-primary btn my_tab" id="Btn4" ${empty doc2?'disabled':''}  <c:if test="${id==0}"> ${disabled}</c:if>
+                                <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab'}" id="${collect.statut.id_statut_projet==42 && count!=0?'defaultOpen':'Btn2'}"  <c:if test="${id==0}"> ${disabled}</c:if>
+                                        onclick="openCity(event, '2')" ${count==0?'disabled':''}><spring:message
+                                        code="label.DonneesurlesvehiculesA"/><c:if test="${collect.statut.id_statut_projet==42 && count!=0}"><span class="text-right ml-5 badge badge-danger">Vérifier votre véhicule</span></c:if></button>
+                                <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab'}"  id="${collect.statut.id_statut_projet==42 && count==0 && not empty collect.codeTmp?'defaultOpen':'Btn3'}" <c:if test="${id==0}"> ${disabled}</c:if>
+                                        onclick="openCity(event, '3')" ${empty collect.codeTmp?'disabled':''}><spring:message
+                                        code="label.CatalogueA"/> <c:if test="${collect.statut.id_statut_projet==42 && not empty collect.codeTmp}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Codes des déchets</span></c:if></button>
+                                <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'active':'my_tab'}" id="${collect.statut.id_statut_projet==42 && count==0 && empty collect.codeTmp && cpt!=0?'defaultOpen':'Btn4'}" ${cpt==0?'disabled':''}  <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="openCity(event, '4')"><spring:message
-                                        code="label.MespiecesA"/><c:if test="${collect.statut.id_statut_projet==42 && not empty doc2}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Document</span></c:if></button>
-                                <button class="tablinks btn-primary btn my_tab montab" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
+                                        code="label.MespiecesA"/><c:if test="${collect.statut.id_statut_projet==42 && cpt!=0}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Document</span></c:if></button>
+                                <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab montab'}" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="verif_champs_recap('4','CT','id_collecte','5')">5. <spring:message code="label.Recapitulation"/></button>
                             </div>
                         </div>
@@ -542,10 +542,29 @@
                                     </div>
 
                                     <div class="col-md-2 col-sm-4">
-                                        <button type="button"
-                                                onclick="check_vehicule_ok('formvehicule','collectetransporteur','3',${id},'id_collecte','non')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="label.SuivantA"/></button>
+                                        <c:if  test="${collect.statut.id_statut_projet==42 && empty collect.codeTmp && cpt!=0}">
+                                            <button type="button"
+                                                    onclick="check_vehicule_ok('formvehicule','collectetransporteur','4',${id},'id_collecte','non')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="label.SuivantA"/></button>
+                                        </c:if>
+                                        <c:if  test="${collect.statut.id_statut_projet==42 && empty collect.codeTmp && cpt==0}">
+                                            <a type="button"
+                                                    onclick="changerStatutCT()";
+                                                    class="btn btn-success btn-block">Enregistrer</a>
+                                        </c:if>
+                                        <c:if  test="${collect.statut.id_statut_projet==42 && not empty collect.codeTmp && cpt!=0}">
+                                            <button type="button"
+                                                    onclick="check_vehicule_ok('formvehicule','collectetransporteur','3',${id},'id_collecte','non')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="label.SuivantA"/></button>
+                                        </c:if>
+                                        <c:if  test="${collect.statut.id_statut_projet!=42}">
+                                            <button type="button"
+                                                    onclick="check_vehicule_ok('formvehicule','collectetransporteur','3',${id},'id_collecte','non')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="label.SuivantA"/></button>
+                                        </c:if>
                                     </div>
 
 
@@ -585,7 +604,7 @@
 
 
                                                             <tr>
-                                                                <td>${c.nom_fr } -</td>
+                                                                <td>${c.nom_fr }</td>
                                                                 <td>${c.nom_ar }</td>
                                                                 <td><input ${checked} class="h-15" type="checkbox"
                                                                                       id="id-${c.id_code }"
@@ -603,7 +622,7 @@
                                                                 </c:if>
                                                             </c:forEach>
                                                                 <tr class="${bg}" id="tr-${c.id_code}">
-                                                                    <td>${c.nom_fr }-</td>
+                                                                    <td>${c.nom_fr }</td>
                                                                     <td>${c.nom_ar }</td>
                                                                     <td>
                                                                         <input checked disabled class="h-15" type="checkbox"
@@ -648,24 +667,45 @@
 
                                     <div class="row justify-content-center  mb-5 mt-3">
                                         <div class="col-md-2 col-sm-4">
-                                            <button style="margin-top: 10px; margin-bottom: 10px;"
-                                                    type="button"
+
                                                     <c:if test="${collect.statut.id_statut_projet!=42}">
+                                                        <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                                type="button"
                                                         onclick="openCity2('#Btn2', '2')"
-                                                    </c:if>
-                                                    <c:if test="${collect.statut.id_statut_projet==42}">
-                                                        onclick="openCity2('#defaultOpen', '2')"
-                                                    </c:if>
                                                     class="btn btn-success btn-block"><spring:message
                                                     code="button.Precedent"/></button>
+                                                    </c:if>
+                                                    <c:if test="${collect.statut.id_statut_projet==42 && count!=0}">
+                                                        <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                                type="button"
+                                                        onclick="openCity2('#defaultOpen', '2')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                                    </c:if>
+
                                         </div>
                                         <div class="col-md-2 col-sm-4">
 
-                                            <button style="margin-top: 10px; margin-bottom: 10px;"
-                                                    type="button"
-                                                    onclick="openCity2('#Btn4', '4')"
-                                                    class="btn btn-success btn-block"><spring:message
-                                                    code="label.SuivantA"/></button>
+                                            <c:if test="${collect.statut.id_statut_projet==42 && cpt!=0}">
+                                                <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                        type="button"
+                                                        onclick="openCity2('#Btn4', '4')"
+                                                        class="btn btn-success btn-block"><spring:message
+                                                        code="label.SuivantA"/></button>
+                                            </c:if>
+                                            <c:if test="${collect.statut.id_statut_projet!=42}">
+                                                <button style="margin-top: 10px; margin-bottom: 10px;"
+                                                        type="button"
+                                                        onclick="openCity2('#Btn4', '4')"
+                                                        class="btn btn-success btn-block"><spring:message
+                                                        code="label.SuivantA"/></button>
+                                            </c:if>
+                                            <c:if test="${collect.statut.id_statut_projet==42 && cpt==0}">
+                                                <a style="margin-top: 10px; margin-bottom: 10px;"
+                                                        type="button"
+                                                        onclick="changerStatutCT()";
+                                                        class="btn btn-success btn-block">Enregister</a>
+                                            </c:if>
                                         </div>
 
 
@@ -678,6 +718,7 @@
                                         <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                                     </div>
                                 </div>
+                                <p class="h5 text-center p-3 bg danger mt-2"> <span class=" p-2 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
                                 <c:if test="${collect.statut.id_statut_projet==42}">
                                     <c:forEach items="${doc2}" var="dc">
                                         <c:if test="${dc.nom_ar!='oui'}">
@@ -739,10 +780,24 @@
                                 </c:if>
                                 <div class="row justify-content-center mb-5 mt-3">
                                     <div class="col-md-2 col-sm-4">
-                                        <button type="button" id=""
-                                                onclick="openCity2('#Btn3', '3')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="button.Precedent"/></button>
+                                        <c:if test="${not empty collect.codeTmp}">
+                                            <button type="button" id=""
+                                                    onclick="openCity2('#Btn3', '3')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                        </c:if>
+                                        <c:if test="${count!=0}">
+                                            <button type="button" id=""
+                                                    onclick="openCity2('#defaultOpen', '2')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                        </c:if>
+                                        <c:if test="${collect.statut.id_statut_projet!=42}">
+                                            <button type="button" id=""
+                                                    onclick="openCity2('#Btn3', '3')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Precedent"/></button>
+                                        </c:if>
                                     </div>
                                     <div class="col-md-3 col-sm-4">
                                         <c:if test="${collect.statut.id_statut_projet!=42}">
@@ -1028,7 +1083,7 @@
                         if (isConfirm) {
                             getVehicule('0');
                         } else {
-                            updateGeneral('formvehicule','collectetransporteur','4',parseInt(id_collect),'id_collecte','non');
+                            updateGeneral('formvehicule','collectetransporteur','2',parseInt(id_collect),'id_collecte','non');
                         }
                     });
                 /*$("#add_new").removeAttr("disabled");*/
@@ -1238,7 +1293,21 @@
             });
 
     }
+    function changerStatutCT(){
+        var id = $("#id_collecte").val();
+        $.ajax({
 
+            type: "GET",
+            url : "/api/ChangerStatutCT/"+id,
+            data: {},
+            success : function(response) {
+                window.location.href="/api/checkUserHasCollecte/CT";
+            },
+            error : function() {
+
+            }
+        });
+    }
 
 </script>
 

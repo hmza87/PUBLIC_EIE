@@ -29,10 +29,29 @@ public class GeneratePDFDocuments {
     private static String urlRest;
     private final static String url=urlRest;
 
+    private static void addFooter(PdfWriter writer, Image img){
+        PdfPTable footer = new PdfPTable(1);
+        // set defaults
+        footer.setWidthPercentage(100);
+        footer.setTotalWidth(800);
+        footer.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+        footer.setLockedWidth(true);
+        footer.getDefaultCell().setFixedHeight(90);
+
+        // add copyright
+        footer.addCell(img);
+
+        // write page
+        PdfContentByte canvas = writer.getDirectContent();
+        canvas.beginMarkedContentSequence(PdfName.ARTIFACT);
+        footer.writeSelectedRows(0, -1, 34, 80, canvas);
+        canvas.endMarkedContentSequence();
+    }
+
     public static ByteArrayInputStream generateDocumentDeNotification(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
         PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
@@ -698,7 +717,7 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateDocumentDeNotification2(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
         PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
@@ -1618,7 +1637,7 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateDocumentDeMouvement2(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
         PdfWriter.getInstance(document,out);
         document.open();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
@@ -2280,7 +2299,7 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateDocumentDeMouvement(Notification ns) throws DocumentException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
         PdfWriter.getInstance(document,out);
         document.open();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
@@ -3026,7 +3045,7 @@ public class GeneratePDFDocuments {
         String DEST = "results/images/background_transparent.pdf";
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
         PdfWriter.getInstance(document,out);
         document.open();
 
@@ -3054,8 +3073,8 @@ public class GeneratePDFDocuments {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Document document=new Document(PageSize.A4, 10, 10, 30, 0);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
+        PdfWriter writer = PdfWriter.getInstance(document,out);
         document.open();
 
         BaseFont base = null;
@@ -3212,8 +3231,8 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateRecapNotification(Notification ns,ListDocNotif[] l,DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
+        PdfWriter writer = PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
@@ -3232,7 +3251,9 @@ public class GeneratePDFDocuments {
 
         String logo = "/word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(612,800);
+        image.scaleToFit(550
+
+,800);
 
         document.add(image);
 
@@ -3385,6 +3406,7 @@ public class GeneratePDFDocuments {
             table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Type véhicule", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Assurance", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
             table3.completeRow();
             if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
                 for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
@@ -3392,6 +3414,7 @@ public class GeneratePDFDocuments {
                     table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getUrl_assurance(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
                     table3.completeRow();
                 }
             } else {
@@ -3487,9 +3510,7 @@ public class GeneratePDFDocuments {
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
         codeQrImage.scaleAbsolute(100, 100);
-        Paragraph cell13 = new Paragraph();
-        cell13.setAlignment(Element.ALIGN_RIGHT);
-        cell13.add(codeQrImage);
+
 
 
         document.add(headerPar);
@@ -3501,7 +3522,7 @@ public class GeneratePDFDocuments {
         document.add(table5);
         document.add(table6);
         document.add(table7);
-        document.add(cell13);
+        addFooter(writer,codeQrImage);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
@@ -3509,8 +3530,8 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateRecapInstalation(Installation ns,ListDocNotif[] l, DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 40, 40, 30, 0);
+        PdfWriter writer=PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
@@ -3529,7 +3550,9 @@ public class GeneratePDFDocuments {
 
         String logo = "/word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(612,800);
+        image.scaleToFit(550
+
+,800);
 
         document.add(image);
 
@@ -3574,6 +3597,13 @@ public class GeneratePDFDocuments {
         table0.addCell( saisir_cellule("Quantité : ",font,fontbold,ns.getQuantite(),1));
         table0.completeRow();
         //--------------------- Row Title ---------------------
+
+        if(ns.getType().equals("1") || ns.getType().equals("2")){
+            if(ns.getType().equals("1")) {
+                table0.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
+                table0.completeRow();
+            }
+
         table0.addCell(saisir_cellule_transporteur_titre("Code",2));
         table0.addCell(saisir_cellule_transporteur_titre("Type",2));
         table0.completeRow();
@@ -3586,7 +3616,15 @@ public class GeneratePDFDocuments {
             table0.completeRow();
         }
 
-
+        }
+        else{
+            table0.addCell(saisir_cellule_transporteur_titre("Code",2));
+            table0.addCell(saisir_cellule_transporteur_titre("Type",2));
+            table0.completeRow();
+            table0.setSpacingAfter(5);
+            table0.addCell(MonCellule("Vous avez droit à tous les codes", 4));
+            table0.completeRow();
+        }
         //--------------------- Tableau Importateur - Notifiant ---------------------
         PdfPTable table1 = new PdfPTable(new float[]{2,2,2});
         table1.setWidthPercentage(100);
@@ -3646,16 +3684,14 @@ public class GeneratePDFDocuments {
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
         codeQrImage.scaleAbsolute(100, 100);
-        Paragraph cell13 = new Paragraph();
-        cell13.setAlignment(Element.ALIGN_RIGHT);
-        cell13.add(codeQrImage);
+
 
         document.add(headerPar);
         document.add(table0);
         document.add(table1);
         document.add(table2);
         document.add(table7);
-        document.add(cell13);
+        addFooter(writer,codeQrImage);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
@@ -3663,8 +3699,8 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateRecapCollecte(CollecteTransporteur ns,ListDocNotif[] l, DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
+        PdfWriter writer =PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
@@ -3683,7 +3719,9 @@ public class GeneratePDFDocuments {
 
         String logo = "/word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(612,800);
+        image.scaleToFit(550
+
+,800);
 
         document.add(image);
 
@@ -3816,9 +3854,7 @@ public class GeneratePDFDocuments {
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
         codeQrImage.scaleAbsolute(100, 100);
-        Paragraph cell13 = new Paragraph();
-        cell13.setAlignment(Element.ALIGN_RIGHT);
-        cell13.add(codeQrImage);
+
 
 
 
@@ -3827,7 +3863,8 @@ public class GeneratePDFDocuments {
         document.add(table01);
         document.add(table3);
         document.add(table7);
-        document.add(cell13);
+        addFooter(writer,codeQrImage);
+
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
@@ -3835,8 +3872,8 @@ public class GeneratePDFDocuments {
 	public static ByteArrayInputStream generateRecapEie(DemandeInformation ns,ListDocNotif[] l) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
+        PdfWriter writer = PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
@@ -3855,7 +3892,9 @@ public class GeneratePDFDocuments {
 
         String logo = "/word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(612,800);
+        image.scaleToFit(550
+
+,800);
 
         document.add(image);
 
@@ -4036,16 +4075,13 @@ public class GeneratePDFDocuments {
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
         codeQrImage.scaleAbsolute(100, 100);
-        Paragraph cell13 = new Paragraph();
-        cell13.setAlignment(Element.ALIGN_RIGHT);
-        cell13.add(codeQrImage);
 
         document.add(headerPar);
         document.add(table0);
         document.add(table01);
         document.add(table3);
         document.add(table7);
-        document.add(cell13);
+        addFooter(writer,codeQrImage);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());
@@ -4094,6 +4130,20 @@ public class GeneratePDFDocuments {
         cell0.setBackgroundColor(new BaseColor(222, 226, 230));
         return cell0;
     }
+
+    public static PdfPCell MonCellule(String label,int collspan){
+        Font BlackText = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.BOLD,BaseColor.WHITE);
+        Paragraph para = new Paragraph(label,BlackText);
+        PdfPCell cell0 = new PdfPCell(para);
+        cell0.setColspan(collspan);
+        cell0.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell0.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell0.setPaddingBottom(5f);
+        cell0.setPaddingTop(2.5f);
+        cell0.setBackgroundColor(BaseColor.ORANGE);
+        return cell0;
+    }
+
     public static PdfPCell saisir_cellule_2(String label,int collspan){
         Font BlackText = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
         Paragraph para = new Paragraph(label,BlackText);
@@ -4107,8 +4157,8 @@ public class GeneratePDFDocuments {
     public static ByteArrayInputStream generateDocumentGeneraleDemandeNum(Notification ns) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(document,out);
+        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
+        PdfWriter writer = PdfWriter.getInstance(document,out);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
 
@@ -4127,7 +4177,9 @@ public class GeneratePDFDocuments {
 
         String logo = "/word_header1.png";
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(612,800);
+        image.scaleToFit(550
+
+,800);
 
         document.add(image);
 
@@ -4394,11 +4446,7 @@ public class GeneratePDFDocuments {
                 300,null);
         Image codeQrImage = barcodeQRCode.getImage();
         codeQrImage.scaleAbsolute(100, 100);
-        PdfPCell cell13 = new PdfPCell();
-        cell13.addElement(codeQrImage);
-        cell13.setBorder(Rectangle.NO_BORDER);
-        cell13.setHorizontalAlignment(Element.ALIGN_LEFT);
-        cell13.setPadding(5);
+
 
 
 
@@ -4422,7 +4470,6 @@ public class GeneratePDFDocuments {
 
         table9.addCell(cell10);
         table9.addCell(cell7);
-        table9.addCell(cell13);
 
 
 
@@ -4440,6 +4487,7 @@ public class GeneratePDFDocuments {
         document.add(table6);
         document.add(table8);
         document.add(table9);
+        addFooter(writer,codeQrImage);
         document.close();
 
         return new ByteArrayInputStream(out.toByteArray());

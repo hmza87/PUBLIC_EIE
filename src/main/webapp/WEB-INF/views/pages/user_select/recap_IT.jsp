@@ -127,8 +127,6 @@
             </div>
           </div>
 
-
-
           <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
@@ -168,7 +166,8 @@
 
           <div class="row mb-2">
             <div class="col-12">
-              <table class="table table-bordered table-striped table-hover my_table">
+              <c:if test="${installation.type==2}">
+                <table class="table table-bordered table-striped table-hover my_table">
                 <thead>
                 <tr>
                   <th><spring:message code="label.code"/></th>
@@ -190,6 +189,58 @@
 
                 </tbody>
               </table>
+              </c:if>
+              <c:if test="${installation.type==1}">
+                <h3 class="text-center">Vous avez droit à tous les codes à l'exception de la liste ci-dessous</h3>
+                <table class="table table-bordered table-striped table-hover my_table">
+                  <thead>
+                  <tr>
+                    <th><spring:message code="label.code"/></th>
+                    <th><spring:message code="label.type"/></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach items="${installation.code}" var="code">
+                    <tr>
+                      <td>${code.nom_fr}</td>
+                      <td>${code.nom_ar}</td>
+                    </tr>
+                  </c:forEach>
+                  <c:if test="${empty installation.code}">
+                    <tr>
+                      <td colspan="2"><spring:message code="label.Ilnyaaucuneenregistrement"/></td>
+                    </tr>
+                  </c:if>
+
+                  </tbody>
+                </table>
+              </c:if>
+              <c:if test="${installation.type==3}">
+                <table class="table table-bordered table-striped table-hover my_table">
+                  <thead>
+                  <tr>
+                    <th><spring:message code="label.code"/></th>
+                    <th><spring:message code="label.type"/></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="2"><h3 class="text-center">Vous avez droit à tous les codes</h3></td>
+                    </tr>
+                  <c:if test="${empty installation.code}">
+                    <tr>
+                      <td colspan="2"><spring:message code="label.Ilnyaaucuneenregistrement"/></td>
+                    </tr>
+                  </c:if>
+                  </tbody>
+                </table>
+              </c:if>
+              <c:if test="${installation.type==0}">
+                <h3 class="text-center">Vous avez droit à les categories suivant :</h3>
+                <c:forEach items="${installation.categorie}" var="c">
+                  <p>- ${c.nom_fr}</p>
+                </c:forEach>
+              </c:if>
             </div>
           </div>
 

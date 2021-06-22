@@ -603,7 +603,7 @@
                             <h4 class="titre_abs "
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                 <spring:message code="label.mespieces"/></h4>
-
+                            <p class="h5 text-center p-3 bg danger mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
                             <c:forEach items="${doc}" var="dc">
                                 <div class="row justify-content-center">
                                     <div class="col-6 mt-3  ">
@@ -912,7 +912,7 @@
 
         var id_install = $("#"+id_name).val();
         var type="IT";
-        var link_recap = "/api/checkUserHasCollecte/IT";
+        var link_recap = "/api/recapIT/"+id_install;
         Swal.fire({
             title: 'Si vous cliquez sur enregistrer vous ne pouvez plus modifier votre demande',
             showDenyButton: true,

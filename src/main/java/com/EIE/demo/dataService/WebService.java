@@ -223,4 +223,6 @@ void createDeclarationTransporteur(int id_trans, int id_notif, int id_decl,Multi
 	void  addCategorieDechet(int id_notif);
 
 	void deleteCodeTmp(int id_coll, int id_code, int id_user, String type);
+
+	String changerStatutCT(int id);
 }

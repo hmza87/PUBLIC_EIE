@@ -137,6 +137,7 @@ class WebServiceImp implements WebService {
 	}
 
 
+
 	public static File convert(MultipartFile file)
 	{
 		File convFile = new File(file.getOriginalFilename());
@@ -157,9 +158,17 @@ class WebServiceImp implements WebService {
 	public void verifierCompte(int id) {
 		final String uris = urlRest + "/verifiedCompteRest/"+id;
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.postForLocation(uris,  Societe.class);
-
+		restTemplate.postForLocation(uris,  CollecteTransporteur.class);
 	}
+
+	@Override
+	public String changerStatutCT(int id) {
+		final String uris = urlRest + "/changerStatutCTRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uris,  String.class);
+		return "OK";
+	}
+
 	@Override
 	public String autologin2(String j_name, String j_pass) {
 		final String uris = urlRest + "/login2/"+j_name+"/"+j_pass;

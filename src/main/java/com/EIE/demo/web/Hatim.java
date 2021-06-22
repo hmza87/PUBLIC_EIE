@@ -310,10 +310,30 @@ public class Hatim {
 		List<TypeVehicule> typeVehicules = webt.getListAllTypeVehicule();
 		List<TypeConteneurs> typeConteneurs = webt.getListAllTypeConteneur();
 		map.put("doc", webt.listDocImportByType(1,"CT"));
-		map.put("doc2", webt.listDocNotif(id,"CT"));
+		ListDocNotif[] l = webt.listDocNotif(id,"CT");
+		map.put("doc2", l);
 		CollecteTransporteur collect = webt.getCollecteById(id,ct.getCompteId(),typeRenouv);
 		map.put("collect",collect);
+		int count = 0;
+		if(collect!=null && collect.getVehicules().size()>0){
+			for (Vehicules v: collect.getVehicules()){
+				if(v.getCommantaire()!=null){
+					count++;
+				}
+			}
+		}
+		int cpt = 0;
+		if(collect!=null && l.length>0){
+			for (ListDocNotif doc: l){
+				if(doc.getNom_ar()!=null && !doc.getNom_ar().equals("oui")){
+					cpt++;
+				}
+			}
+		}
+
 		map.put("id",id);
+		map.put("count",count);
+		map.put("cpt",cpt);
 		map.put("typeVehicules",typeVehicules);
 		map.put("typeConteneurs",typeConteneurs);
 		map.put("securite",securite);
@@ -333,6 +353,14 @@ public class Hatim {
 		map.put("url_admin",urlRest);
 		return new ModelAndView("collecte_trans/tableandFormVehicule",map);
 	}
+
+	@RequestMapping(value = "/api/ChangerStatutCT/{id}",method = RequestMethod.GET)
+	@ResponseBody
+	public String ChangerStatutCt(@PathVariable int id) throws Exception {
+		webt.changerStatutCT(id);
+		return "OK";
+	}
+
 
 	@RequestMapping(value = "/api/getPaysAutoriteById/{id}/{id_notif}",method = RequestMethod.GET)
 	public ModelAndView getPaysAutoriteById(@PathVariable int id,@PathVariable int id_notif) throws Exception {
