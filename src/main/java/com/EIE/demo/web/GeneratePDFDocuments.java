@@ -32,7 +32,7 @@ public class GeneratePDFDocuments {
     private static void addFooter(PdfWriter writer, Image img){
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        PdfPTable footer = new PdfPTable(2);
+        PdfPTable footer = new PdfPTable(1);
         // set defaults
         footer.setWidthPercentage(100);
         footer.setTotalWidth(800);
@@ -43,18 +43,18 @@ public class GeneratePDFDocuments {
         // add copyright
         footer.addCell(img);
 
-        PdfPCell cell = new PdfPCell();
+        /* PdfPCell cell = new PdfPCell();
         cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         cell.setBorder(Rectangle.NO_BORDER);
 
         cell.addElement(new Phrase("Date Impression : "+String.valueOf(dateFormat.format(new Date()))));
         cell.setPaddingRight(40);
-        footer.addCell(cell);
+        footer.addCell(cell);*/
 
         // write page
         PdfContentByte canvas = writer.getDirectContent();
         canvas.beginMarkedContentSequence(PdfName.ARTIFACT);
-        footer.writeSelectedRows(0, -1, 34, 80, canvas);
+        footer.writeSelectedRows(0, -1, 34, 95, canvas);
         canvas.endMarkedContentSequence();
     }
 

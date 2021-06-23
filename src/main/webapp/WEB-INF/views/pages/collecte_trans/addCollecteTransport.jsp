@@ -102,14 +102,14 @@
                                         onclick="openCity(event, '1')" id="${collect.statut.id_statut_projet!=42?'defaultOpen':'Btn2'}" ${collect.statut.id_statut_projet==42 ?'disabled':''}>1.
                                     <%--<spring:message code="label.InformationdemandeurA"/>--%><spring:message code="label.Informationdudemandeur"/> </button>
                                 <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab'}" id="${collect.statut.id_statut_projet==42 && count!=0?'defaultOpen':'Btn2'}"  <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '2')" ${count==0?'disabled':''}><spring:message
-                                        code="label.DonneesurlesvehiculesA"/><c:if test="${collect.statut.id_statut_projet==42 && count!=0}"><span class="text-right ml-5 badge badge-danger">Vérifier votre véhicule</span></c:if></button>
+                                        onclick="openCity(event, '2')" ${count==0?'disabled':''} <c:if test="${collect.statut.id_statut_projet==42 && count!=0}">style="background-color: #f95f5f9c !important;"</c:if>><spring:message
+                                        code="label.DonneesurlesvehiculesA"/></button>
                                 <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab'}"  id="${collect.statut.id_statut_projet==42 && count==0 && not empty collect.codeTmp?'defaultOpen':'Btn3'}" <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '3')" ${empty collect.codeTmp?'disabled':''}><spring:message
-                                        code="label.CatalogueA"/> <c:if test="${collect.statut.id_statut_projet==42 && not empty collect.codeTmp}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Codes des déchets</span></c:if></button>
+                                        onclick="openCity(event, '3')" ${empty collect.codeTmp?'disabled':''} <c:if test="${collect.statut.id_statut_projet==42 && not empty collect.codeTmp}">style="background-color: #f95f5f9c !important;" </c:if>><spring:message
+                                        code="label.CatalogueA"/></button>
                                 <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'active':'my_tab'}" id="${collect.statut.id_statut_projet==42 && count==0 && empty collect.codeTmp && cpt!=0?'defaultOpen':'Btn4'}" ${cpt==0?'disabled':''}  <c:if test="${id==0}"> ${disabled}</c:if>
-                                        onclick="openCity(event, '4')"><spring:message
-                                        code="label.MespiecesA"/><c:if test="${collect.statut.id_statut_projet==42 && cpt!=0}"><span class="text-right ml-5 badge badge-danger">Vérifier votre Document</span></c:if></button>
+                                        onclick="openCity(event, '4')" <c:if test="${collect.statut.id_statut_projet==42 && cpt!=0}">style="background-color: #f95f5f9c !important;" </c:if>><spring:message
+                                        code="label.MespiecesA"/></button>
                                 <button class="tablinks btn-primary btn ${collect.statut.id_statut_projet==42?'':'my_tab montab'}" id="Btn5" disabled <c:if test="${id==0}"> ${disabled}</c:if>
                                         onclick="verif_champs_recap('4','CT','id_collecte','5')">5. <spring:message code="label.Recapitulation"/></button>
                             </div>
