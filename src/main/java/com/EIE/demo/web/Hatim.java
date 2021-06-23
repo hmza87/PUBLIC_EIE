@@ -325,12 +325,13 @@ public class Hatim {
 		int cpt = 0;
 		if(collect!=null && l.length>0){
 			for (ListDocNotif doc: l){
-				if(doc.getNom_ar()!=null && !doc.getNom_ar().equals("oui")){
+				if(doc.getNom_ar()==null){
 					cpt++;
 				}
 			}
 		}
 
+		
 		map.put("id",id);
 		map.put("count",count);
 		map.put("cpt",cpt);

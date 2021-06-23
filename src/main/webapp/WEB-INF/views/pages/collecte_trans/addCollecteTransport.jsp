@@ -780,13 +780,13 @@
                                 </c:if>
                                 <div class="row justify-content-center mb-5 mt-3">
                                     <div class="col-md-2 col-sm-4">
-                                        <c:if test="${not empty collect.codeTmp}">
+                                        <c:if test="${collect.statut.id_statut_projet==42 && not empty collect.codeTmp}">
                                             <button type="button" id=""
                                                     onclick="openCity2('#Btn3', '3')"
                                                     class="btn btn-success btn-block"><spring:message
                                                     code="button.Precedent"/></button>
                                         </c:if>
-                                        <c:if test="${count!=0}">
+                                        <c:if test="${collect.statut.id_statut_projet==42 &&empty collect.codeTmp && count!=0}">
                                             <button type="button" id=""
                                                     onclick="openCity2('#defaultOpen', '2')"
                                                     class="btn btn-success btn-block"><spring:message
