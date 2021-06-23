@@ -390,14 +390,14 @@ public class Hatim {
 		return new ModelAndView("collecte_trans/tableVehicule",map);
 	}
 
-	@RequestMapping(value = "/api/savePaysAutorite/{id_notif}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ModelAndView savePaysAutorite(@RequestParam("file") MultipartFile file,@PathVariable int id_notif,@RequestParam int pays)
+	@RequestMapping(value = "/api/savePaysAutorite/{pays}", method = RequestMethod.GET)
+	public ModelAndView savePaysAutorite(@PathVariable int pays)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
 
-		webt.savePaysAutorite(file,id_notif,pays);
-		Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
-		map.put("notif",not);
+		webt.savePaysAutorite(pays);
+		//Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
+		//map.put("notif",not);sss
 		map.put("url_Admin",urlRest);
 		return new ModelAndView("autorisationPublic/tablePaysautorite",map);
 	}

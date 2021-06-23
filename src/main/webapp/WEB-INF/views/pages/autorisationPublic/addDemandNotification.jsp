@@ -876,7 +876,9 @@
                                                     <label class="f-14">
                                                         Pays étranger
                                                     </label>
-                                                    <input id="pays" name="pays" value="${notification.pays.nom_fr}" class="custom-select">
+                                                    <select disabled id="pays" name="pays" class="form-control">
+                                                        <option value="${notification.pays.paysId}">${notification.pays.nom_fr}</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -2663,8 +2665,8 @@
                     type: 'POST',
                     data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
                 })
-                window.location.href = '/api/downloadRecuDepo/' + id_notif;
                 window.location.href ="/api/checkUserHasCollecte" + type;
+                window.location.href = '/api/downloadRecuDepo/' + id_notif;
             }
         })
     }
@@ -2711,23 +2713,54 @@
     function Save_paysautorite() {
         // event.preventDefault();
 
-        var data = new FormData();
-        var id_notif = $("#id_notification").val();
         var pays = $("#pays").val();
-        data.append("pays",pays);
 
         $.ajax({
 
-            type: "POST",
-            enctype: 'multipart/form-data',
-            url: "/api/savePaysAutorite/"+id_notif,
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
+            type: "GET",
+            url: "/api/savePaysAutorite/"+pays,
+            data: {},
             success: function (response) {
+                alert("success");
             },
             error: function () {
+                alert("error");
+            }
+        });
+    }
+
+    function addObject_step2(from,table,tap,id_notif) {
+        if(event!=null)
+            event.preventDefault();
+        var se = $("#"+from).serializeObject();
+        // var se = $("#formnotif").serialize();
+        var Notchange = true;
+        if(!$.isNumeric(id_notif)){
+            id_notif = $("#"+id_notif).val();
+            Notchange=false;
+        }
+        var prefecture = $("#prefecture_id").val();
+        var region = $("#region_id").val();
+
+        if( prefecture==="0" || region==="0"){
+            swal('Champs vide',"merci de saisir le champs region et prefecture","warning");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/add_notification/"+table+"/"+ id_notif,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(se),
+            success: function (response) {
+                alert("Pays success")
+                Save_paysautorite();
+                if(Notchange)
+                    $("#id_notification").val(response);
+                openCity1('Btn'+tap,tap);
+                $(".my_tab:not(.montab)").removeAttr('disabled');
+            },
+            error: function (response) {
 
             }
         });

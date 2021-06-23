@@ -94,7 +94,7 @@ public interface WebService {
 
 	List<TypeConteneurs> getListAllTypeConteneur();
 	public String saveVehicule(MultipartFile[] fileToUpload,MultipartFile[] equipementsecurite, int id_collecte, String v);
-	public String savePaysAutorite(MultipartFile fileToUpload, int id_notif, int p);
+	public void savePaysAutorite(int p);
 	Vehicules getVehiculeById(int parseInt);
 	PaysAutorite getPaysAutoriteById(int parseInt);
 	void deleteVehiculeById(int id,int id_coll,int id_user);
