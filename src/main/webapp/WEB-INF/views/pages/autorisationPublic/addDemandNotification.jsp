@@ -2665,8 +2665,8 @@
                     type: 'POST',
                     data: {"id_notif": parseInt(id_notif), "id_statut": parseInt(id_statut), "type": type},
                 })
-                window.location.href ="/api/checkUserHasCollecte" + type;
                 window.location.href = '/api/downloadRecuDepo/' + id_notif;
+                window.location.href ="/api/checkUserHasCollecte/" + type;
             }
         })
     }

@@ -124,20 +124,6 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label><spring:message code="label.TypedevehiculesA"/></label>
-                            <input disabled type="text" class="form-control" value="${collect.typevehicule}">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label><spring:message code="label.typedeconteneursA"/></label>
-                            <input disabled type="text" class="form-control" value="${collect.typeConteneurs.nom_fr}">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
                             <label><spring:message code="label.NombredeVehiculeA"/></label>
                             <input disabled type="text" class="form-control" value="${collect.nombre_vehicule}">
                         </div>
@@ -158,8 +144,8 @@
                                 <th><spring:message code="label.NChassis"/></th>
                                 <th><spring:message code="label.Poidstotalencharge"/></th>
                                 <th><spring:message code="label.Poidsnetduvehicule"/></th>
-                                <!-- <th><spring:message code="label.Equipementdesecurite"/></th>
-                  <th><spring:message code="label.Attestationdassurance"/></th>-->
+                                <th><spring:message code="label.TypedevehiculesA"/></th>
+                                <th><spring:message code="label.typedeconteneursA"/></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -167,10 +153,12 @@
                                 <c:when test="${(not empty collect.vehicules)}">
                                     <c:forEach items="${collect.vehicules}" var="v">
                                         <tr id="tr${v.id_vehicule}">
-                                            <td>${v.num_mat_enrg_auto} - ${v.num_mat_enrg_voit} - ${v.num_mat_id_prefect}</td>
+                                            <td>${v.num_mat_enrg_voit} - ${v.num_mat_enrg_auto} - ${v.num_mat_id_prefect}</td>
                                             <td>${v.num_chassis}</td>
                                             <td>${v.poit_totale_charge}</td>
                                             <td>${v.point_net}</td>
+                                            <td>${v.typeVehicule}</td>
+                                            <td>${v.typeConteneur}</td>
                                             <!-- <td>
                           <c:choose>
                             <c:when test="${not empty v.equipementSecurite}">

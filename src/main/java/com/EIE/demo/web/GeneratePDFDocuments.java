@@ -30,7 +30,9 @@ public class GeneratePDFDocuments {
     private final static String url=urlRest;
 
     private static void addFooter(PdfWriter writer, Image img){
-        PdfPTable footer = new PdfPTable(1);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+        PdfPTable footer = new PdfPTable(2);
         // set defaults
         footer.setWidthPercentage(100);
         footer.setTotalWidth(800);
@@ -40,6 +42,14 @@ public class GeneratePDFDocuments {
 
         // add copyright
         footer.addCell(img);
+
+        PdfPCell cell = new PdfPCell();
+        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        cell.setBorder(Rectangle.NO_BORDER);
+
+        cell.addElement(new Phrase("Date Impression : "+String.valueOf(dateFormat.format(new Date()))));
+        cell.setPaddingRight(40);
+        footer.addCell(cell);
 
         // write page
         PdfContentByte canvas = writer.getDirectContent();
@@ -3069,6 +3079,12 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
+
+
+    //******************************************************** Récap **************************************************//
+
+
+
     public static ByteArrayInputStream generateDocumentDInstallation(Installation ns) throws DocumentException, IOException {
 
 
@@ -3116,7 +3132,7 @@ public class GeneratePDFDocuments {
 
         Paragraph headerPar=new Paragraph(10);
         headerPar.setAlignment(Element.ALIGN_CENTER);
-        headerPar.add("Récapitulation de la demande d'autorisation d'installation de traitement des déchets");
+        headerPar.add("Reçu de Dépôt de la demande d'autorisation d'installation de traitement des déchets");
         headerPar.setFont(fontTitre);
         headerPar.setSpacingBefore(20);
 
@@ -3141,27 +3157,7 @@ public class GeneratePDFDocuments {
         table0.addCell( saisir_cellule("Quantité : ",font,fontbold,ns.getQuantite(),1));
         table0.completeRow();
         //--------------------- Row Title ---------------------
-
-        if(ns.getType().equals("1") || ns.getType().equals("2")){
-            if(ns.getType().equals("1")) {
-                table0.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
-                table0.completeRow();
-            }
-
-            table0.addCell(saisir_cellule_transporteur_titre("Code",2));
-            table0.addCell(saisir_cellule_transporteur_titre("Type",2));
-            table0.completeRow();
-            table0.setSpacingAfter(5);
-
-            //--------------------- completeRow ---------------------
-            for (Code c:ns.getCode()){
-                table0.addCell(saisir_cellule("",font,font,c.getNom_fr()!=null?c.getNom_fr():"-",2));
-                table0.addCell(saisir_cellule("",font,font,c.getNom_ar()!=null?c.getNom_ar():"-",2));
-                table0.completeRow();
-            }
-
-        }
-        else{
+        if(ns.getType().equals("3")){
             table0.addCell(saisir_cellule_transporteur_titre("Code",2));
             table0.addCell(saisir_cellule_transporteur_titre("Type",2));
             table0.completeRow();
@@ -3233,6 +3229,31 @@ public class GeneratePDFDocuments {
         document.add(table0);
         document.add(table1);
         document.add(table2);
+        if(ns.getType().equals("1") || ns.getType().equals("2")){
+            PdfPTable table_x = new PdfPTable(3);
+            table_x.setWidthPercentage(100);
+            table_x.setSpacingBefore(12);
+            table_x.setSpacingAfter(12);
+            table_x.addCell(saisir_cellule_titre("Catalogue",4));
+            table_x.completeRow();
+            if(ns.getType().equals("1")) {
+                table_x.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
+                table_x.completeRow();
+            }
+            table_x.addCell(saisir_cellule_transporteur_titre("Code",2));
+            table_x.addCell(saisir_cellule_transporteur_titre("Type",2));
+            table_x.completeRow();
+            table_x.setSpacingAfter(5);
+
+            //--------------------- completeRow ---------------------
+            for (Code c:ns.getCode()){
+                table_x.addCell(saisir_cellule("",font,font,c.getNom_fr()!=null?c.getNom_fr():"-",2));
+                table_x.addCell(saisir_cellule("",font,font,c.getNom_ar()!=null?c.getNom_ar():"-",2));
+                table_x.completeRow();
+            }
+            document.add(table_x);
+
+        }
         document.add(table8);
         addFooter(writer,codeQrImage);
         document.close();
@@ -3609,26 +3630,7 @@ public class GeneratePDFDocuments {
         table0.completeRow();
         //--------------------- Row Title ---------------------
 
-        if(ns.getType().equals("1") || ns.getType().equals("2")){
-            if(ns.getType().equals("1")) {
-                table0.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
-                table0.completeRow();
-            }
-
-        table0.addCell(saisir_cellule_transporteur_titre("Code",2));
-        table0.addCell(saisir_cellule_transporteur_titre("Type",2));
-        table0.completeRow();
-        table0.setSpacingAfter(5);
-
-        //--------------------- completeRow ---------------------
-        for (Code c:ns.getCode()){
-            table0.addCell(saisir_cellule("",font,font,c.getNom_fr()!=null?c.getNom_fr():"-",2));
-            table0.addCell(saisir_cellule("",font,font,c.getNom_ar()!=null?c.getNom_ar():"-",2));
-            table0.completeRow();
-        }
-
-        }
-        else{
+        if(ns.getType().equals("3")){
             table0.addCell(saisir_cellule_transporteur_titre("Code",2));
             table0.addCell(saisir_cellule_transporteur_titre("Type",2));
             table0.completeRow();
@@ -3689,6 +3691,10 @@ public class GeneratePDFDocuments {
             table7.completeRow();
         }
 
+
+
+
+
         String num_notification = ns.getNum_demande()!=null?ns.getNum_demande():"";
         BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
                 + ns.getId_installation() + "\n Numero de notification : " + num_notification, 300,
@@ -3702,6 +3708,31 @@ public class GeneratePDFDocuments {
         document.add(table1);
         document.add(table2);
         document.add(table7);
+        if(ns.getType().equals("1") || ns.getType().equals("2")){
+            PdfPTable table_x = new PdfPTable(3);
+            table_x.setWidthPercentage(100);
+            table_x.setSpacingBefore(12);
+            table_x.setSpacingAfter(12);
+            table_x.addCell(saisir_cellule_titre("Catalogue",4));
+            table_x.completeRow();
+            if(ns.getType().equals("1")) {
+                table_x.addCell(MonCellule("Vous avez droit à tous les codes à l'exception de la liste ci-dessous", 4));
+                table_x.completeRow();
+            }
+            table_x.addCell(saisir_cellule_transporteur_titre("Code",2));
+            table_x.addCell(saisir_cellule_transporteur_titre("Type",2));
+            table_x.completeRow();
+            table_x.setSpacingAfter(5);
+
+            //--------------------- completeRow ---------------------
+            for (Code c:ns.getCode()){
+                table_x.addCell(saisir_cellule("",font,font,c.getNom_fr()!=null?c.getNom_fr():"-",2));
+                table_x.addCell(saisir_cellule("",font,font,c.getNom_ar()!=null?c.getNom_ar():"-",2));
+                table_x.completeRow();
+            }
+            document.add(table_x);
+
+        }
         addFooter(writer,codeQrImage);
         document.close();
 
@@ -3800,25 +3831,24 @@ public class GeneratePDFDocuments {
 
 
         //--------------------- Tableau Document de notification ---------------------
-        PdfPTable table3 = new PdfPTable(new float[]{4,4,4,4});
+        PdfPTable table3 = new PdfPTable(6);
         table3.setWidthPercentage(100);
         table3.setSpacingBefore(12);
         table3.setSpacingAfter(12);
 
         //--------------------- Row Title ---------------------
-        table3.addCell(saisir_cellule_titre(" Donnée sur les véhicules ",4));
+        table3.addCell(saisir_cellule_titre(" Donnée sur les véhicules ",6));
         table3.completeRow();
         //--------------------- completeRow ---------------------
-        table3.addCell( saisir_cellule("Type de véhicules: : ",font,fontbold,ns.getTypevehicule(),1));
-        table3.addCell( saisir_cellule("type de conteneurs: : ",font,fontbold,(ns.getTypeConteneurs()!=null)?ns.getTypeConteneurs().getNom_fr():"-",1));
-        table3.addCell( saisir_cellule("Nombre de Véhicule: : ",font,fontbold,ns.getNombre_vehicule(),1));
-        table3.addCell( saisir_cellule("Nombre de conteneurs: : ",font,fontbold,ns.getNombre_conteneur(),1));
+        table3.addCell( saisir_cellule("Nombre de conteneurs: : ",font,fontbold,ns.getNombre_conteneur(),3));
+        table3.addCell( saisir_cellule("Nombre de Véhicule: : ",font,fontbold,ns.getNombre_vehicule(),3));
         table3.completeRow();
-        table3.addCell(saisir_cellule("",fontBox,font,"",4));
         table3.addCell(saisir_cellule_transporteur_titre("N° d'immatriculation\t",1));
         table3.addCell(saisir_cellule_transporteur_titre("N° Châssis\t ",1));
         table3.addCell(saisir_cellule_transporteur_titre("Poids total en charge\t",1));
         table3.addCell(saisir_cellule_transporteur_titre("Poids net du véhicule\t",1));
+        table3.addCell( saisir_cellule_transporteur_titre("Type de véhicules\t",1));
+        table3.addCell( saisir_cellule_transporteur_titre("type de conteneurs\t",1));
         table3.completeRow();
         if(ns.getVehicules()!=null && ns.getVehicules().size()>0){
             for (Vehicules tp:ns.getVehicules()) {
@@ -3826,6 +3856,8 @@ public class GeneratePDFDocuments {
                 table3.addCell( saisir_cellule(tp.getNum_chassis(),font,font,"",1));
                 table3.addCell( saisir_cellule(tp.getPoit_totale_charge(),font,font,"",1));
                 table3.addCell( saisir_cellule(tp.getPoint_net(),font,font,"",1));
+                table3.addCell( saisir_cellule(tp.getTypeVehicule(),font,font,"",1));
+                table3.addCell( saisir_cellule(tp.getTypeConteneur(),font,font,"",1));
                 table3.completeRow();
             }
         }else{
@@ -3871,9 +3903,9 @@ public class GeneratePDFDocuments {
 
         document.add(headerPar);
         document.add(table0);
-        document.add(table01);
         document.add(table3);
         document.add(table7);
+        document.add(table01);
         addFooter(writer,codeQrImage);
 
         document.close();

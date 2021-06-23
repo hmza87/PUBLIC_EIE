@@ -924,7 +924,6 @@
                     data: {"id_notif":parseInt(id_install),"id_statut":parseInt(id_statut),"type":type},
                 })
                 down_load_recu();
-                goToRecap();
             }
         })
     }
@@ -934,6 +933,7 @@
         var id = $("#id_installation").val();
         var link = url + id;
         window.location = link;
+        goToRecap();
     }
 
     function  goToRecap(){

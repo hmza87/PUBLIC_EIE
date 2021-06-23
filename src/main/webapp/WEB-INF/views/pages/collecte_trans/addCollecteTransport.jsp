@@ -1190,18 +1190,7 @@
                     type: 'POST',
                     data: {"id_notif":parseInt(id_col),"id_statut":parseInt(id_statut),"type":type},
                 })
-                down_load_recu();
-                Swal.fire({
-                    title: '<strong>votre demande a été effectuée avec succès</strong>',
-                    icon: 'success',
-                    html:
-                        '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    showConfirmButton: false,
-                    focusConfirm: false,
-                    allowOutsideClick: false
-                });
+               window.location.href=link_recap;
             }
         })
     }
