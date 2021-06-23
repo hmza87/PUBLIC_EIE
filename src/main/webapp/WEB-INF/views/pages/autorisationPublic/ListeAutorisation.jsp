@@ -51,7 +51,7 @@
                             <tr>
                                 <th class=""><spring:message code="label.Numerodenotification"/> </th>
                                 <th class=""><spring:message code="label.datedepot"/>  </th>
-                                <th class=""><spring:message code="label.classification"/>  </th>
+                                <%--<th class=""><spring:message code="label.classification"/>  </th>--%>
                                 <th class=""><spring:message code="label.code"/></th>
                                 <th class=""><spring:message code="label.typededechet"/></th>
                                 <c:choose>
@@ -80,12 +80,25 @@
                                         <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
 
                                     </td>
-                                    <td> <span class="badge badge-info"> ${nt.classification.nom_fr }</span>  </td>
+                                    <%--<td> <span class="badge badge-info"> ${nt.classification.nom_fr }</span>  </td>--%>
 
                                     <td> ${nt.code.nom_fr }  </td>
                                     <td> ${nt.code.nom_ar }  </td>
                                     <td> ${nt.zonneFranche.nom_fr } ${nt.pays.nom_fr}</td>
-                                    <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==55 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==64 || nt.statut.id_statut_projet==65 || nt.statut.id_statut_projet==67 ||  nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==40)?nt.statut.nom_fr:"en cours de traitement" }</span>  </td>
+                                    <td>
+                                        <c:if test="${nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==55 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==65 || nt.statut.id_statut_projet==67 ||  nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==40}">
+                                            <span class="badge badge-info">${nt.statut.nom_fr}</span>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet!=37 && nt.statut.id_statut_projet!=54 && nt.statut.id_statut_projet!=55 && nt.statut.id_statut_projet!=48 && nt.statut.id_statut_projet!=64 && nt.statut.id_statut_projet!=65 && nt.statut.id_statut_projet!=67 &&  nt.statut.id_statut_projet!=68 && nt.statut.id_statut_projet!=40}">
+                                            <span class="badge badge-info">en cours de traitement</span>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==54}">
+                                            <a type="button" onclick="show_popup()" class="text-white"><span class="badge badge-info">${nt.statut.nom_fr}</span></a>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==64}">
+                                            <a type="button" onclick="show_popup2()" class="text-white"><span class="badge badge-info">${nt.statut.nom_fr}</span></a>
+                                        </c:if>
+                                    </td>
                                     <td>  ${nt.operation }  </td>
                                     <td> ${nt.quantite } ${nt.unite.nom_fr } </td>
 
@@ -111,7 +124,7 @@
 
                                         <div class="mt-2">
                                             <c:if test="${nt.statut.id_statut_projet!=48}">
-                                            <a href="/api/getnotifById1/${type}/${nt.id_notification}"  class="btn btn-success" > Récapitulatif</a>
+                                            <a href="/api/getnotifById1/${type}/${nt.id_notification}"  class="btn btn-success" > Afficher le récapitulatif</a>
                                             </c:if>
                                         </div>
                                         <div class="mt-2">
@@ -210,14 +223,12 @@
 </div>
 
 <script>
-
-
-    $(document).ready(function() {
-
-
-    } );
-
-
+    function show_popup(){
+        swal("","Vous pouvez vous déplacez pour l'obtention de votre autorisation","success");
+    }
+    function show_popup2(){
+        swal("","Vous pouvez vous déplacez pour l'obtention de votre garantie financière","success");
+    }
 </script>
 
 
