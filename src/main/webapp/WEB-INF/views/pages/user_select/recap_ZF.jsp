@@ -80,6 +80,12 @@
 
   <div class="row justify-content-center mb-2">
     <div class="col-md-10 col-sm-12">
+      <c:if test="${notification.statut.id_statut_projet==54}">
+        <h4 style="text-decoration: underline; color: #0d128e">Votre demande est bien validée vous pouvez déplacer pour l'obtention</h4>
+      </c:if>
+      <c:if test="${notification.statut.id_statut_projet==64}">
+        <h4 style="text-decoration: underline; color: #0d128e">Vous pouvez déplacer pour obtenir votre garantie financière </h4>
+      </c:if><br>
       <div class="row p-0 mt-2 pl-3">
         <div class="col-md-3 col-sm-6 col-mt-4 pr-1 pl-1" >
           <a href="/api/generate_recap_imp/${notification.id_notification }" class="mt-1 mb-1 btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>

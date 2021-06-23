@@ -37,11 +37,7 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body">
-                                <p class="h5 font_bold  text-left text-uppercase mt-3"><spring:message
-                                        code="label.Bienvenue"/></p>
-                                <p class="text-left font_bold"><spring:message code="label.Cette"/>
-                                    <spring:message code="label.demandesdautorisation"/> .</p>
-                                <p class="text-left"><spring:message code="label.Vouspouvez"/>.</p>
+                                <h1><spring:message code="label.Installationdetraitementdesdechets"/></h1>
                             </div>
                         </div>
                     </div>
