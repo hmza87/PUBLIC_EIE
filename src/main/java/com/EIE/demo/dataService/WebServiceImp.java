@@ -691,6 +691,25 @@ class WebServiceImp implements WebService {
 		restTemplate.getForObject(uris, PaysAutorite.class);
 	}
 
+	public String savePaysAutoriteXD(MultipartFile fileToUpload, int id_notif, int v) {
+		final String uris = urlRest + "/savePaysautoriteXDRest/"+id_notif;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+
+		bodyMapw.add("fileToUpload", new FileSystemResource(convert(fileToUpload)));
+		bodyMapw.add("pays", v);
+
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
+
 	@Override
 	public Vehicules getVehiculeById(int parseInt) {
 		final String uri = urlRest+"/getVehiculeByIdRest/"+parseInt;

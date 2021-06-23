@@ -104,7 +104,6 @@ function addObject_step(from,table,tap,id_notif) {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(se),
         success: function (response) {
-            Save_paysautorite()
             if(Notchange)
                 $("#id_notification").val(response);
             openCity1('Btn'+tap,tap);

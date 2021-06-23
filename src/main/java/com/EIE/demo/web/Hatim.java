@@ -370,8 +370,7 @@ public class Hatim {
 		map.put("notif",webt.getNotificationByIdComptId(id_notif,ct.getCompteId()));
 		Object[] pays = webt.tronsaction("select", " pays_id,nom_fr,nom_ar from pays ", " delete_date_time is null ");
 		map.put("pays",pays);
-		PaysAutorite p = webt.getPaysAutoriteById(id);
-		map.put("paysautorites",p);
+		map.put("paysautorites",webt.getPaysAutoriteById(id));
 		map.put("url_admin",urlRest);
 		return new ModelAndView("autorisationPublic/tableFormPaysAutorite",map);
 	}
@@ -398,6 +397,17 @@ public class Hatim {
 		webt.savePaysAutorite(pays);
 		//Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
 		//map.put("notif",not);sss
+		map.put("url_Admin",urlRest);
+		return new ModelAndView("autorisationPublic/tablePaysautorite",map);
+	}
+	@RequestMapping(value = "/api/savePaysAutoriteXD/{id_notif}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelAndView savePaysAutoriteXD(@RequestParam("file") MultipartFile file,@PathVariable int id_notif,@RequestParam int pays)
+			throws JsonParseException, JsonMappingException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+
+		webt.savePaysAutoriteXD(file,id_notif,pays);
+		Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
+		map.put("notif",not);
 		map.put("url_Admin",urlRest);
 		return new ModelAndView("autorisationPublic/tablePaysautorite",map);
 	}

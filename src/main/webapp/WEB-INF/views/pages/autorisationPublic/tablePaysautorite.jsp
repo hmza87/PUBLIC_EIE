@@ -5,7 +5,6 @@
 <spring:url value="/resources/" var="resources"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page session="false" %>
 
 <div class="table-responsive">
     <table class="table table-bordered my_table" >
@@ -50,10 +49,10 @@
     </table>
 </div>
 
-<div class="row m-0 p-0 mt-2">
+<%--<div class="row m-0 p-0 mt-2">
     <div class="col-md-2 col-sm-4 align-content-end display-grid pb-3">
         <button id="add_new" onclick="getPaysautorite('0')"
                 class="btn btn-success btn-block"><spring:message
                 code="label.jouterVehiculeA"/></button>
     </div>
-</div>
+</div>--%>

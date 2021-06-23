@@ -251,6 +251,9 @@
                                         <c:when test="${type=='ZF'}">
                                             <spring:message code="label.Zonnefranche"/> <sup class="text-danger">*</sup>
                                         </c:when>
+                                        <c:when test="${type=='XD'}">
+                                            Pays Destinataire <sup class="text-danger">*</sup>
+                                        </c:when>
                                         <c:otherwise>
                                             <spring:message code="label.pays"/>
                                         </c:otherwise>

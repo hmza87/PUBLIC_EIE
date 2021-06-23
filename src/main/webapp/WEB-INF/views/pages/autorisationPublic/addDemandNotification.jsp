@@ -182,646 +182,1136 @@
 
 
                 </div>
-                <%--********************Tab1***************************--%>
-                <div id="1" class="tabcontent pr-0">
-                    <h4 class="titre_abs ">${type.equals("ZF")?numNot:"Exportateur - Notifiant"}</h4>
+               <c:if test="${type!='XD'}">
+                   <div id="1" class="tabcontent pr-0">
+                       <h4 class="titre_abs ">${type.equals("ZF")?numNot:"Exportateur - Notifiant"}</h4>
 
-                    <form id="formimportateur" name="formimportateur">
-                        <div class="row m-0 p-0 mt-5">
-                            <input type="hidden" id="id_notification" name="notification_id"
-                                   value="${notification.id_notification}">
-                            <div class="col-6 ">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.nomdesociete"/> </label>
-                                    <input value="${notification.importateur.nom_fr}"  ${disabled} type="text"
-                                           name="Nom_fr"
-                                           id="Nom_fr" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6 ">
-                                <div class="form-group" style="text-align: right;">
-                                    <label dir="rtl"> إسم الشركة : </label>
-                                    <input dir="rtl" value="${notification.importateur.nom_ar}"  ${disabled} type="text"
-                                           name="Nom_ar"
-                                           id="Nom_ar" class="form-control">
-                                </div>
-                            </div>
+                       <form id="formnotif" name="formnotif">
 
-                        </div>
-                        <div class="row m-0 p-0 ">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.personneacontacter"/> </label>
-                                    <input value="${notification.importateur.contact_fr}"  ${disabled} type="text"
-                                           name="contact_fr" id="represent_entreprise" class="form-control">
-                                </div>
-                            </div>
-                            <c:if test="${type.equals('ZF')}">
-                                <div class="col-6">
+                           <input type="hidden" value="${type}" name="zf_et">
+                           <input type="hidden" name="compte_id" value="${user.compteId}">
+                           <c:choose>
+                               <c:when test="${id>0}">
+                                   <input type="hidden" name="id_notif_original" value="${notification.id_notif_original}">
+                               </c:when>
+                               <c:otherwise>
+                                   <input type="hidden" name="id_notif_original" value="0">
+                               </c:otherwise>
+                           </c:choose>
+
+                           <c:choose>
+                               <c:when test="${id>0 && notification.statut.id_statut_projet != 29}">
+                                   <input type="hidden" name="id_statut" value="${notification.statut.id_statut_projet}">
+                               </c:when>
+                               <c:otherwise>
+                                   <input type="hidden" name="id_statut" value="48">
+                               </c:otherwise>
+                           </c:choose>
+
+
+
+                           <div class="row m-0 p-0 mt-5">
+                               <c:if test="${!type.equals('ZF')}">
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.NomdelexportateurNotifiant"/></label>
+                                           <input class="form-control" type="text" name="nom" value="${notification.nom}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.Telecopie"/></label>
+                                           <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.personneacontacter"/></label>
+                                           <input class="form-control" type="text" name="personne" value="${notification.personne}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.Tel"/></label>
+                                           <input class="form-control" type="text" name="tel" value="${notification.tel}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.courrierelectronique"/></label>
+                                           <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.Adresse"/></label>
+                                           <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
+                                       </div>
+                                   </div>
+                                   <hr class="w-100">
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
+                                           <input class="form-control" type="text" name="code_nationalxd" value="${notification.codeNationalXD}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
+                                           <input class="form-control" type="text" name="code_national_im" value="${notification.codeNationalIm}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6 ">
+                                       <div class="form-group">
+                                           <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
+                                           <input class="form-control" type="text" name="codece" value="${notification.codeCE}">
+                                       </div>
+                                   </div>
+                                   <div class="col-6 ">
+                                       <div class="form-group">
+                                           <c:choose>
+                                               <c:when test="${notification.zf_et.equals('XD')}">
+                                                   <label><spring:message code="label.Etatdexportationdexpedition"/></label>
+                                               </c:when>
+                                               <c:when test="${notification.zf_et.equals('TR')}">
+                                                   <label><spring:message code="label.Etatsdetransitentreeetsortie"/></label>
+                                               </c:when>
+                                               <c:otherwise>
+                                                   <label><spring:message code="label.Etatdimportationdedestination"/></label>
+                                               </c:otherwise>
+                                           </c:choose>
+                                           <input class="form-control" type="text" name="etat" value="${notification.etat}">
+                                       </div>
+                                   </div>
+                               </c:if>
+
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label><spring:message code="label.Numerodenotification"/></label>
+                                       <c:choose>
+                                           <c:when test="${typeRenouv=='N'}">
+                                               <input class="form-control" name="num_notification" id="num_notifications"
+                                                      value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
+                                                      onchange="checkNumNotif('${type }')" ${disabled}>
+                                           </c:when>
+                                           <c:when test="${typeRenouv=='R'}">
+                                               <input class="form-control" name="num_notification" id="num_notifications"
+                                                      value="${notification.num_notification}"
+                                                      onchange="checkNumNotifRenouv('${type }',this)" ${disabled}>
+                                           </c:when>
+                                       </c:choose>
+
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                       <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
+                                           <select name="classification_id" id="Classification" ${disabled}
+                                                   onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                   class="form-control select2" data-width="100%">
+                                               <option value=""><spring:message code="option.Choisir"/></option>
+                                               <c:forEach items="${classification}" var="t">
+                                                   <option  <c:if
+                                                           test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                                           value="${t[0] }">${t[1] }</option>
+                                               </c:forEach>
+                                           </select>
+                                       </c:if>
+                                       <c:if test="${type.equals('ET') }">
+                                           <select name="classification_id" id="Classification"
+                                               ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
+                                                   onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                   class="form-control select2" data-width="100%">
+                                               <option value="" selected><spring:message code="label.choisir"/></option>
+                                               <option ${not empty notification?'selected':''} value="2"><spring:message
+                                                       code="label.nondangereux"/></option>
+
+                                           </select>
+                                       </c:if>
+                                   </div>
+
+                               </div>
+
+
+                               <div class="col-6">
+                                   <div class="form-group">
+
+                                       <label><spring:message code="label.Operation"/></label>
+                                       <div class="card">
+                                           <div class="card-body">
+                                               <div class="row">
+                                                   <div class="col-6 border-right">
+
+                                                       <div class="form-check">
+
+                                                           <input checked class="form-check-input" type="radio" ${disabled}
+                                                                  id="valorisationRadio"
+                                                           <c:if test="${notification.operation== 'valorisation'}">
+                                                                  checked  </c:if> name="Operation" value="valorisation">
+
+                                                           <label class="form-check-label"
+                                                                  style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                               <spring:message code="label.valorisation"/>
+                                                           </label>
+                                                       </div>
+
+                                                   </div>
+                                                   <div class="col-6 border-left">
+                                                       <div class="form-check">
+                                                           <input class="form-check-input" type="radio" ${disabled}
+                                                                  id="traitementRadio"
+                                                           <c:if test="${notification.operation== 'traitement'}">
+                                                                  checked  </c:if> name="Operation" value="traitement">
+
+                                                           <label class="form-check-label"
+                                                                  style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                               <spring:message code="label.traitement"/>
+                                                           </label>
+                                                       </div>
+
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+
+
+
+
+
+                           </div>
+                           <div class="row m-0 p-0 mt-2">
+
+
+                               <div class="col-6">
+                                   <div class="form-group">
+
+                                       <label><spring:message code="label.code"/></label>
+                                       <select name="code_id" id="code" ${disabled}
+                                               onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
+                                               class="form-control select2" data-width="100%">
+                                           <c:if test="${notification!= null}">
+                                               <option value="">${notification.code.nom_fr}</option>
+                                           </c:if>
+                                           <option value=""><spring:message code="option.Choisir"/></option>
+
+                                       </select>
+                                   </div>
+                               </div>
+
+
+
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label><spring:message code="label.typededechet"/></label>
+                                       <select id="id_type" class="form-control select2" data-width="100%" ${disabled}>
+                                           <c:if test="${notification!= null}">
+                                               <option value="">${notification.code.nom_ar}</option>
+                                           </c:if>
+                                           <option value=""><spring:message code="option.Choisir"/></option>
+                                       </select>
+                                   </div>
+
+                               </div>
+
+
+
+
+                           </div>
+
+                           <div class="row m-0 p-0 mt-2">
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label>${champ_zf_et }: </label>
+                                       <select name="${champ_zf_et=='Zone franche'?'idzonne_franche':'id_pays'}"
+                                               id="Zone_Franche"
+                                               class="form-control select2" ${disabled}
+                                               onchange="changer_zoneFranche(this)"
+                                               data-width="100%">
+                                           <c:if test="${type.equals('TR') || type.equals('ET') }">
+                                               <option value=""><spring:message code="option.Choisir"/></option>
+                                           </c:if>
+
+                                           <c:forEach items="${zonnefranche}" var="t">
+                                               <option
+                                                       <c:if test="${champ_zf_et=='Zone franche'}">
+                                                           <c:if
+                                                                   test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
+                                                       </c:if>
+                                                       <c:if test="${champ_zf_et!='Zone franche'}">
+                                                           <c:if
+                                                                   test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                       </c:if>
+                                                       value="${t[0]}">${t[1]}</option>
+                                           </c:forEach>
+                                       </select>
+                                   </div>
+                               </div>
+
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label><spring:message code="label.producteur"/> </label>
+                                       <input type="text" name="producteur_text" class="form-control"
+                                              value="${notification.producteur_text}"  ${disabled}>
+                                   </div>
+                               </div>
+
+
+                           </div>
+                           <div class="row m-0 p-0 mt-2">
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label><spring:message code="label.quantitetotaleprevu"/></label>
+                                       <input type="text" name="quantite" id="quantite" onchange="changer_quantite(this)"
+                                              value="${notification.quantite}"   ${disabled}
+                                              class="form-control">
+                                   </div>
+                               </div>
+
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label><spring:message code="label.unite"/></label>
+                                       <select name="unite_id" id="unite" class="form-control select2"
+                                               onchange="changer_unite(this)"
+                                               data-width="100%" ${disabled}>
+                                           <option value=""><spring:message code="option.Choisir"/></option>
+                                           <c:forEach items="${unite_id}" var="t">
+                                               <option  <c:if
+                                                       test="${notification.unite.unite_id== t[0]}"> selected </c:if>
+                                                       value="${t[0] }">${t[1] }</option>
+                                           </c:forEach>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <input type="hidden" name="val_ou_trait" id="val_ou_trait">
+                       </form>
+
+
+                       <div class="row justify-content-center mt-3 mb-5">
+                           <div class="col-md-2 col-sm-6">
+                                   <%-- <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                            id="Suivant"
+                                            onclick="openCity1('Btn2','2')" class="btn btn-success"><spring:message code="button.Suivant"/>
+                                    </button>--%>
+                               <c:if test="${id==0}">
+                                   <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
+                                       <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
+                                           onclick="addObjectGeneral('formnotif','notification','','id_notification','2')"
+                                           class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
+                                   </button>
+                               </c:if>
+                               <c:if test="${id>0}">
+                                   <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
+                                           onclick="updateGeneral('formnotif','notification',2,'${id}','id_notification','non')"
+                                           class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
+                                   </button>
+                               </c:if>
+                           </div>
+
+                       </div>
+
+
+                   </div>
+                   <%--********************Tab2***************************--%>
+                   <div id="2" class="tabcontent pr-0">
+
+                       <h4 class="titre_abs ">Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}</h4>
+                       <form id="formimportateur" name="formimportateur">
+                           <div class="row m-0 p-0 mt-5">
+                               <input type="hidden" id="id_notification" name="notification_id"
+                                      value="${notification.id_notification}">
+                               <div class="col-6 ">
+                                   <div class="form-group">
+                                       <label> <spring:message code="label.nomdesociete"/> </label>
+                                       <input value="${notification.importateur.nom_fr}"  ${disabled} type="text"
+                                              name="Nom_fr"
+                                              id="Nom_fr" class="form-control">
+                                   </div>
+                               </div>
+                               <div class="col-6 ">
+                                   <div class="form-group" style="text-align: right;">
+                                       <label dir="rtl"> إسم الشركة : </label>
+                                       <input dir="rtl" value="${notification.importateur.nom_ar}"  ${disabled} type="text"
+                                              name="Nom_ar"
+                                              id="Nom_ar" class="form-control">
+                                   </div>
+                               </div>
+
+                           </div>
+                           <div class="row m-0 p-0 ">
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> <spring:message code="label.personneacontacter"/> </label>
+                                       <input value="${notification.importateur.contact_fr}"  ${disabled} type="text"
+                                              name="contact_fr" id="represent_entreprise" class="form-control">
+                                   </div>
+                               </div>
+                               <c:if test="${type.equals('ZF')}">
+                                   <div class="col-6">
+                                       <div class="form-group">
+                                           <label> <spring:message code="label.identifiantfiscal"/> </label>
+                                           <input type="text" value="${notification.importateur.idf}"  ${disabled} name="idf"
+                                                  id="num_patente" class="form-control">
+                                       </div>
+                                   </div>
+                               </c:if>
+                           </div>
+
+                           <div class="row m-0 p-0">
+
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> <spring:message code="label.Adresse"/> </label>
+                                       <input value="${notification.importateur.adresse_fr}"  ${disabled} type="text"
+                                              name="adresse_fr" id="adresse"
+                                              class="form-control">
+                                   </div>
+                               </div>
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> <spring:message code="label.Telephone"/> </label>
+                                       <input value="${notification.importateur.tel}"  ${disabled} type="text" name="tel"
+                                              id="telephone"
+                                              class="form-control">
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row m-0 p-0">
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> <spring:message code="label.Region"/> </label>
+                                       <select name="region_id" id="region_id" class="form-control select2" data-width="100%" onchange="updateRegion(this.value)">
+                                           <option value="0"><spring:message code="option.Choisir"/></option>
+                                           <c:forEach items="${region}" var="t">
+                                               <option <c:if
+                                                       test="${notification.region.regionId== t[0]}"> selected </c:if>
+                                                       value="${t[0] }">${t[1] }</option>
+                                           </c:forEach>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-6">
+                                   <div class="form-group">
+
+                                       <label> <spring:message code="label.Province"/> </label>
+                                       <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
+                                           <option value="0"><spring:message code="option.Choisir"/></option>
+                                           <c:if test="${notification.prefecture!=null }">
+                                               <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
+                                           </c:if>
+                                       </select>
+                                   </div>
+                               </div>
+
+                           </div>
+                           <div class="row m-0 p-0">
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> ${type.equals("ZF")?"Fax":"Télécopie"} </label>
+                                       <input value="${notification.importateur.fax}"  ${disabled} type="text" name="fax"
+                                              id="fax"
+                                              class="form-control">
+                                   </div>
+                               </div>
+                               <div class="col-6">
+                                   <div class="form-group">
+                                       <label> ${type.equals("ZF")?"E-mail":"Courrier électronique"} </label>
+                                       <input value="${notification.importateur.mail}"  ${disabled} type="text" name="mail"
+                                              id="emailentrprs"
+                                              class="form-control">
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row justify-content-center mt-3 mb-5">
+                               <div class="col-md-2 col-sm-6">
+                                   <button type="button"
+                                           onclick="openCity1('defaultOpen','1')"
+                                           class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                   </button>
+                               </div>
+                               <div class="col-md-2 col-sm-6">
+                                   <c:choose>
+                                       <c:when test="${type=='ZF' || (not empty notification && notification.statut.id_statut_projet!=48)}">
+                                           <button type="button"
+                                                   onclick="verifier_reg_pref('Btn3','3')"
+                                                   class="btn btn-success btn-block"><spring:message
+                                                   code="button.Suivant"/>
+                                           </button>
+                                       </c:when>
+                                       <c:when test="${type=='TR' || type=='XD'}">
+                                           <button type="button"
+                                                   onclick="verifier_reg_pref('Btn12','12')"
+                                                   class="btn btn-success btn-block"><spring:message
+                                                   code="button.Suivant"/>
+                                           </button>
+                                       </c:when>
+                                       <c:when test="${type=='TR' || type=='XD'}">
+                                           <button type="button" id="Enregistrer"
+                                                   onclick="addObject_step('formimportateur','importateurnotifiant','12','id_notification')"
+                                                   class="btn btn-success btn-block"><spring:message
+                                                   code="button.Suivant"/>
+                                           </button>
+                                       </c:when>
+                                       <c:otherwise>
+                                           <button type="button" id="Enregistrer"
+                                                   onclick="addObject_step('formimportateur','importateurnotifiant','3','id_notification')"
+                                                   class="btn btn-success btn-block"><spring:message
+                                                   code="button.Suivant"/>
+                                           </button>
+                                       </c:otherwise>
+                                   </c:choose>
+
+
+                               </div>
+                           </div>
+
+                       </form>
+
+                   </div>
+               </c:if>
+                <c:if test="${type.equals('XD')}">
+                    <%--********************Tab1***************************--%>
+                    <div id="1" class="tabcontent pr-0">
+                        <h4 class="titre_abs ">${type.equals("ZF")?numNot:"Exportateur - Notifiant"}</h4>
+
+                        <form id="formimportateur" name="formimportateur">
+                            <div class="row m-0 p-0 mt-5">
+                                <input type="hidden" id="id_notification" name="notification_id"
+                                       value="${notification.id_notification}">
+                                <div class="col-6 ">
                                     <div class="form-group">
-                                        <label> <spring:message code="label.identifiantfiscal"/> </label>
-                                        <input type="text" value="${notification.importateur.idf}"  ${disabled} name="idf"
-                                               id="num_patente" class="form-control">
-                                    </div>
-                                </div>
-                            </c:if>
-                        </div>
-
-                        <div class="row m-0 p-0">
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Adresse"/> </label>
-                                    <input value="${notification.importateur.adresse_fr}"  ${disabled} type="text"
-                                           name="adresse_fr" id="adresse"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Telephone"/> </label>
-                                    <input value="${notification.importateur.tel}"  ${disabled} type="text" name="tel"
-                                           id="telephone"
-                                           class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Region"/> </label>
-                                    <select name="region_id" id="region_id" class="form-control select2" data-width="100%" onchange="updateRegion(this.value)">
-                                        <option value="0"><spring:message code="option.Choisir"/></option>
-                                        <c:forEach items="${region}" var="t">
-                                            <option <c:if
-                                                    test="${notification.region.regionId== t[0]}"> selected </c:if>
-                                                    value="${t[0] }">${t[1] }</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-
-                                    <label> <spring:message code="label.Province"/> </label>
-                                    <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
-                                        <option value="0"><spring:message code="option.Choisir"/></option>
-                                        <c:if test="${notification.prefecture!=null }">
-                                            <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
-                                        </c:if>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> ${type.equals("ZF")?"Fax":"Télécopie"} </label>
-                                    <input value="${notification.importateur.fax}"  ${disabled} type="text" name="fax"
-                                           id="fax"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> ${type.equals("ZF")?"E-mail":"Courrier électronique"} </label>
-                                    <input value="${notification.importateur.mail}"  ${disabled} type="text" name="mail"
-                                           id="emailentrprs"
-                                           class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center mt-3 mb-5">
-                            <div class="col-md-2 col-sm-6">
-                                <c:choose>
-                                    <c:when test="${type.equals('XD') ||type.equals('ZF') || (not empty notification && notification.statut.id_statut_projet!=48)}">
-                                        <button type="button"
-                                                onclick="verifier_reg_pref('Btn2','2')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="button.Suivant"/>
-                                        </button>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <button type="button" id="Enregistrer"
-                                                onclick="addObject_step('formimportateur','importateurnotifiant','2','id_notification')"
-                                                class="btn btn-success btn-block"><spring:message
-                                                code="button.Suivant"/>
-                                        </button>
-                                    </c:otherwise>
-                                </c:choose>
-
-
-                            </div>
-                        </div>
-
-                    </form>
-
-
-
-
-
-                </div>
-                <%--********************Tab2***************************--%>
-                <div id="2" class="tabcontent pr-0">
-
-                    <h4 class="titre_abs ">Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}</h4>
-
-                    <form id="formnotif" name="formnotif">
-
-                        <input type="hidden" value="${type}" name="zf_et">
-                        <input type="hidden" name="compte_id" value="${user.compteId}">
-                        <c:choose>
-                            <c:when test="${id>0}">
-                                <input type="hidden" name="id_notif_original" value="${notification.id_notif_original}">
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" name="id_notif_original" value="0">
-                            </c:otherwise>
-                        </c:choose>
-
-                        <c:choose>
-                            <c:when test="${id>0 && notification.statut.id_statut_projet != 29}">
-                                <input type="hidden" name="id_statut" value="${notification.statut.id_statut_projet}">
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" name="id_statut" value="48">
-                            </c:otherwise>
-                        </c:choose>
-
-
-
-                        <div class="row m-0 p-0 mt-5">
-                            <c:if test="${!type.equals('ZF')}">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.NomdelexportateurNotifiant"/></label>
-                                        <input class="form-control" type="text" name="nom" value="${notification.nom}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.Telecopie"/></label>
-                                        <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.personneacontacter"/></label>
-                                        <input class="form-control" type="text" name="personne" value="${notification.personne}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.Tel"/></label>
-                                        <input class="form-control" type="text" name="tel" value="${notification.tel}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.courrierelectronique"/></label>
-                                        <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.Adresse"/></label>
-                                        <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
-                                    </div>
-                                </div>
-                                <hr class="w-100">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
-                                        <input class="form-control" type="text" name="code_nationalxd" value="${notification.codeNationalXD}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
-                                        <input class="form-control" type="text" name="code_national_im" value="${notification.codeNationalIm}">
+                                        <label> <spring:message code="label.nomdesociete"/> </label>
+                                        <input value="${notification.importateur.nom_fr}"  ${disabled} type="text"
+                                               name="Nom_fr"
+                                               id="Nom_fr" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-6 ">
-                                    <div class="form-group">
-                                        <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
-                                        <input class="form-control" type="text" name="codece" value="${notification.codeCE}">
+                                    <div class="form-group" style="text-align: right;">
+                                        <label dir="rtl"> إسم الشركة : </label>
+                                        <input dir="rtl" value="${notification.importateur.nom_ar}"  ${disabled} type="text"
+                                               name="Nom_ar"
+                                               id="Nom_ar" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-6 ">
+
+                            </div>
+                            <div class="row m-0 p-0 ">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <c:choose>
-                                            <c:when test="${notification.zf_et.equals('XD')}">
-                                                <label><spring:message code="label.Etatdexportationdexpedition"/></label>
-                                            </c:when>
-                                            <c:when test="${notification.zf_et.equals('TR')}">
-                                                <label><spring:message code="label.Etatsdetransitentreeetsortie"/></label>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <label><spring:message code="label.Etatdimportationdedestination"/></label>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <input class="form-control" type="text" name="etat" value="${notification.etat}">
+                                        <label> <spring:message code="label.personneacontacter"/> </label>
+                                        <input value="${notification.importateur.contact_fr}"  ${disabled} type="text"
+                                               name="contact_fr" id="represent_entreprise" class="form-control">
                                     </div>
                                 </div>
-                            </c:if>
+                                <c:if test="${type.equals('ZF')}">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.identifiantfiscal"/> </label>
+                                            <input type="text" value="${notification.importateur.idf}"  ${disabled} name="idf"
+                                                   id="num_patente" class="form-control">
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </div>
 
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Numerodenotification"/></label>
-                                    <c:choose>
-                                        <c:when test="${typeRenouv=='N'}">
-                                            <input class="form-control" name="num_notification" id="num_notifications"
-                                                   value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
-                                                   onchange="checkNumNotif('${type }')" ${disabled}>
-                                        </c:when>
-                                        <c:when test="${typeRenouv=='R'}">
-                                            <input class="form-control" name="num_notification" id="num_notifications"
-                                                   value="${notification.num_notification}"
-                                                   onchange="checkNumNotifRenouv('${type }',this)" ${disabled}>
-                                        </c:when>
-                                    </c:choose>
+                            <div class="row m-0 p-0">
 
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.Adresse"/> </label>
+                                        <input value="${notification.importateur.adresse_fr}"  ${disabled} type="text"
+                                               name="adresse_fr" id="adresse"
+                                               class="form-control">
+                                    </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label><spring:message code="label.Classificationdesdechets"/> </label>
-                                    <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
-                                        <select name="classification_id" id="Classification" ${disabled}
-                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
-                                                class="form-control select2" data-width="100%">
-                                            <option value=""><spring:message code="option.Choisir"/></option>
-                                            <c:forEach items="${classification}" var="t">
-                                                <option  <c:if
-                                                        test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.Telephone"/> </label>
+                                        <input value="${notification.importateur.tel}"  ${disabled} type="text" name="tel"
+                                               id="telephone"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-0 p-0">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.Region"/> </label>
+                                        <select name="region_id" id="region_id" class="form-control select2" data-width="100%" onchange="updateRegion(this.value)">
+                                            <option value="0"><spring:message code="option.Choisir"/></option>
+                                            <c:forEach items="${region}" var="t">
+                                                <option <c:if
+                                                        test="${notification.region.regionId== t[0]}"> selected </c:if>
                                                         value="${t[0] }">${t[1] }</option>
                                             </c:forEach>
                                         </select>
-                                    </c:if>
-                                    <c:if test="${type.equals('ET') }">
-                                        <select name="classification_id" id="Classification"
-                                            ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
-                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
-                                                class="form-control select2" data-width="100%">
-                                            <option value="" selected><spring:message code="label.choisir"/></option>
-                                            <option ${not empty notification?'selected':''} value="2"><spring:message
-                                                    code="label.nondangereux"/></option>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
 
+                                        <label> <spring:message code="label.Province"/> </label>
+                                        <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
+                                            <option value="0"><spring:message code="option.Choisir"/></option>
+                                            <c:if test="${notification.prefecture!=null }">
+                                                <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
+                                            </c:if>
                                         </select>
-                                    </c:if>
+                                    </div>
                                 </div>
 
                             </div>
+                            <div class="row m-0 p-0">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> ${type.equals("ZF")?"Fax":"Télécopie"} </label>
+                                        <input value="${notification.importateur.fax}"  ${disabled} type="text" name="fax"
+                                               id="fax"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> ${type.equals("ZF")?"E-mail":"Courrier électronique"} </label>
+                                        <input value="${notification.importateur.mail}"  ${disabled} type="text" name="mail"
+                                               id="emailentrprs"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center mt-3 mb-5">
+                                <div class="col-md-2 col-sm-6">
+                                    <c:choose>
+                                        <c:when test="${type.equals('XD') ||type.equals('ZF') || (not empty notification && notification.statut.id_statut_projet!=48)}">
+                                            <button type="button"
+                                                    onclick="verifier_reg_pref('Btn2','2')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Suivant"/>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button type="button" id="Enregistrer"
+                                                    onclick="addObject_step('formimportateur','importateurnotifiant','2','id_notification')"
+                                                    class="btn btn-success btn-block"><spring:message
+                                                    code="button.Suivant"/>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
 
 
-                            <div class="col-6">
-                                <div class="form-group">
+                                </div>
+                            </div>
 
-                                    <label><spring:message code="label.Operation"/></label>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-6 border-right">
+                        </form>
 
-                                                    <div class="form-check">
 
-                                                        <input checked class="form-check-input" type="radio" ${disabled}
-                                                               id="valorisationRadio"
-                                                        <c:if test="${notification.operation== 'valorisation'}">
-                                                               checked  </c:if> name="Operation" value="valorisation">
 
-                                                        <label class="form-check-label"
-                                                               style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                            <spring:message code="label.valorisation"/>
-                                                        </label>
+
+
+                    </div>
+                    <%--********************Tab2***************************--%>
+                    <div id="2" class="tabcontent pr-0">
+
+                        <h4 class="titre_abs ">Importateur-${type.equals("ZF")?"Notifiant":"Destinataire"}</h4>
+
+                        <form id="formnotif" name="formnotif">
+
+                            <input type="hidden" value="${type}" name="zf_et">
+                            <input type="hidden" name="compte_id" value="${user.compteId}">
+                            <c:choose>
+                                <c:when test="${id>0}">
+                                    <input type="hidden" name="id_notif_original" value="${notification.id_notif_original}">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="hidden" name="id_notif_original" value="0">
+                                </c:otherwise>
+                            </c:choose>
+
+                            <c:choose>
+                                <c:when test="${id>0 && notification.statut.id_statut_projet != 29}">
+                                    <input type="hidden" name="id_statut" value="${notification.statut.id_statut_projet}">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="hidden" name="id_statut" value="48">
+                                </c:otherwise>
+                            </c:choose>
+
+
+
+                            <div class="row m-0 p-0 mt-5">
+                                <c:if test="${!type.equals('ZF')}">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Nom de l'importateur destinataire</label>
+                                            <input class="form-control" type="text" name="nom" value="${notification.nom}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Telecopie"/></label>
+                                            <input class="form-control" type="text" name="telecopie" value="${notification.telecopie}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.personneacontacter"/></label>
+                                            <input class="form-control" type="text" name="personne" value="${notification.personne}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Tel"/></label>
+                                            <input class="form-control" type="text" name="tel" value="${notification.tel}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.courrierelectronique"/></label>
+                                            <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Adresse"/></label>
+                                            <input class="form-control" type="text" name="adresse" value="${notification.adresse}">
+                                        </div>
+                                    </div>
+                                    <hr class="w-100">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
+                                            <input class="form-control" type="text" name="code_nationalxd" value="${notification.codeNationalXD}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
+                                            <input class="form-control" type="text" name="code_national_im" value="${notification.codeNationalIm}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 ">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
+                                            <input class="form-control" type="text" name="codece" value="${notification.codeCE}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 ">
+                                        <div class="form-group">
+                                            <c:choose>
+                                                <c:when test="${notification.zf_et.equals('XD')}">
+                                                    <label><spring:message code="label.Etatdexportationdexpedition"/></label>
+                                                </c:when>
+                                                <c:when test="${notification.zf_et.equals('TR')}">
+                                                    <label><spring:message code="label.Etatsdetransitentreeetsortie"/></label>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <label><spring:message code="label.Etatdimportationdedestination"/></label>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <input class="form-control" type="text" name="etat" value="${notification.etat}">
+                                        </div>
+                                    </div>
+                                </c:if>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.Numerodenotification"/></label>
+                                        <c:choose>
+                                            <c:when test="${typeRenouv=='N'}">
+                                                <input class="form-control" name="num_notification" id="num_notifications"
+                                                       value="${notification.num_notification}" ${(type=="XD" || type=="ZF")?"disabled":""}
+                                                       onchange="checkNumNotif('${type }')" ${disabled}>
+                                            </c:when>
+                                            <c:when test="${typeRenouv=='R'}">
+                                                <input class="form-control" name="num_notification" id="num_notifications"
+                                                       value="${notification.num_notification}"
+                                                       onchange="checkNumNotifRenouv('${type }',this)" ${disabled}>
+                                            </c:when>
+                                        </c:choose>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                        <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
+                                            <select name="classification_id" id="Classification" ${disabled}
+                                                    onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                    class="form-control select2" data-width="100%">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                                <c:forEach items="${classification}" var="t">
+                                                    <option  <c:if
+                                                            test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                                            value="${t[0] }">${t[1] }</option>
+                                                </c:forEach>
+                                            </select>
+                                        </c:if>
+                                        <c:if test="${type.equals('ET') }">
+                                            <select name="classification_id" id="Classification"
+                                                ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
+                                                    onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                    class="form-control select2" data-width="100%">
+                                                <option value="" selected><spring:message code="label.choisir"/></option>
+                                                <option ${not empty notification?'selected':''} value="2"><spring:message
+                                                        code="label.nondangereux"/></option>
+
+                                            </select>
+                                        </c:if>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-6">
+                                    <div class="form-group">
+
+                                        <label><spring:message code="label.Operation"/></label>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6 border-right">
+
+                                                        <div class="form-check">
+
+                                                            <input checked class="form-check-input" type="radio" ${disabled}
+                                                                   id="valorisationRadio"
+                                                            <c:if test="${notification.operation== 'valorisation'}">
+                                                                   checked  </c:if> name="Operation" value="valorisation">
+
+                                                            <label class="form-check-label"
+                                                                   style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                <spring:message code="label.valorisation"/>
+                                                            </label>
+                                                        </div>
+
                                                     </div>
+                                                    <div class="col-6 border-left">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" ${disabled}
+                                                                   id="traitementRadio"
+                                                            <c:if test="${notification.operation== 'traitement'}">
+                                                                   checked  </c:if> name="Operation" value="traitement">
 
-                                                </div>
-                                                <div class="col-6 border-left">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" ${disabled}
-                                                               id="traitementRadio"
-                                                        <c:if test="${notification.operation== 'traitement'}">
-                                                               checked  </c:if> name="Operation" value="traitement">
+                                                            <label class="form-check-label"
+                                                                   style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
+                                                                <spring:message code="label.traitement"/>
+                                                            </label>
+                                                        </div>
 
-                                                        <label class="form-check-label"
-                                                               style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                            <spring:message code="label.traitement"/>
-                                                        </label>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
 
 
 
-
-                        </div>
-                        <div class="row m-0 p-0 mt-2">
-
-
-                            <div class="col-6">
-                                <div class="form-group">
-
-                                    <label><spring:message code="label.code"/></label>
-                                    <select name="code_id" id="code" ${disabled}
-                                            onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
-                                            class="form-control select2" data-width="100%">
-                                        <c:if test="${notification!= null}">
-                                            <option value="">${notification.code.nom_fr}</option>
-                                        </c:if>
-                                        <option value=""><spring:message code="option.Choisir"/></option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.typededechet"/></label>
-                                    <select id="id_type" class="form-control select2" data-width="100%" ${disabled}>
-                                        <c:if test="${notification!= null}">
-                                            <option value="">${notification.code.nom_ar}</option>
-                                        </c:if>
-                                        <option value=""><spring:message code="option.Choisir"/></option>
-                                    </select>
-                                </div>
 
                             </div>
+                            <div class="row m-0 p-0 mt-2">
 
 
+                                <div class="col-6">
+                                    <div class="form-group">
 
-
-                        </div>
-
-                        <div class="row m-0 p-0 mt-2">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>${champ_zf_et }: </label>
-                                    <select name="${champ_zf_et=='Zone franche'?'idzonne_franche':'id_pays'}"
-                                            id="Zone_Franche"
-                                            class="form-control select2" ${disabled}
-                                            onchange="changer_zoneFranche(this)"
-                                            data-width="100%">
-                                        <c:if test="${type.equals('TR') || type.equals('ET') }">
+                                        <label><spring:message code="label.code"/></label>
+                                        <select name="code_id" id="code" ${disabled}
+                                                onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
+                                                class="form-control select2" data-width="100%">
+                                            <c:if test="${notification!= null}">
+                                                <option value="">${notification.code.nom_fr}</option>
+                                            </c:if>
                                             <option value=""><spring:message code="option.Choisir"/></option>
-                                        </c:if>
 
-                                        <c:forEach items="${zonnefranche}" var="t">
-                                            <option
-                                                    <c:if test="${champ_zf_et=='Zone franche'}">
-                                                        <c:if
-                                                                test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
-                                                    </c:if>
-                                                    <c:if test="${champ_zf_et!='Zone franche'}">
-                                                        <c:if
-                                                                test="${notification.pays.paysId== t[0]}"> selected </c:if>
-                                                    </c:if>
-                                                    value="${t[0]}">${t[1]}</option>
-                                        </c:forEach>
-                                    </select>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.typededechet"/></label>
+                                        <select id="id_type" class="form-control select2" data-width="100%" ${disabled}>
+                                            <c:if test="${notification!= null}">
+                                                <option value="">${notification.code.nom_ar}</option>
+                                            </c:if>
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="row m-0 p-0 mt-2">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>${champ_zf_et }: </label>
+                                        <select name="${champ_zf_et=='Zone franche'?'idzonne_franche':'id_pays'}"
+                                                id="Zone_Franche"
+                                                class="form-control select2" ${disabled}
+                                                onchange="changer_zoneFranche(this)"
+                                                data-width="100%">
+                                            <c:if test="${type.equals('TR') || type.equals('ET') }">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                            </c:if>
+
+                                            <c:forEach items="${zonnefranche}" var="t">
+                                                <option
+                                                        <c:if test="${champ_zf_et=='Zone franche'}">
+                                                            <c:if
+                                                                    test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
+                                                        </c:if>
+                                                        <c:if test="${champ_zf_et!='Zone franche'}">
+                                                            <c:if
+                                                                    test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                        </c:if>
+                                                        value="${t[0]}">${t[1]}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.producteur"/> </label>
+                                        <input type="text" name="producteur_text" class="form-control"
+                                               value="${notification.producteur_text}"  ${disabled}>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row m-0 p-0 mt-2">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.quantitetotaleprevu"/></label>
+                                        <input type="text" name="quantite" id="quantite" onchange="changer_quantite(this)"
+                                               value="${notification.quantite}"   ${disabled}
+                                               class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.unite"/></label>
+                                        <select name="unite_id" id="unite" class="form-control select2"
+                                                onchange="changer_unite(this)"
+                                                data-width="100%" ${disabled}>
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                            <c:forEach items="${unite_id}" var="t">
+                                                <option  <c:if
+                                                        test="${notification.unite.unite_id== t[0]}"> selected </c:if>
+                                                        value="${t[0] }">${t[1] }</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="val_ou_trait" id="val_ou_trait">
 
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.producteur"/> </label>
-                                    <input type="text" name="producteur_text" class="form-control"
-                                           value="${notification.producteur_text}"  ${disabled}>
+
+
+
+                            <div class="row justify-content-center mt-3 mb-5">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="openCity1('defaultOpen','1')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
                                 </div>
-                            </div>
-
-
-                        </div>
-                        <div class="row m-0 p-0 mt-2">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.quantitetotaleprevu"/></label>
-                                    <input type="text" name="quantite" id="quantite" onchange="changer_quantite(this)"
-                                           value="${notification.quantite}"   ${disabled}
-                                           class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.unite"/></label>
-                                    <select name="unite_id" id="unite" class="form-control select2"
-                                            onchange="changer_unite(this)"
-                                            data-width="100%" ${disabled}>
-                                        <option value=""><spring:message code="option.Choisir"/></option>
-                                        <c:forEach items="${unite_id}" var="t">
-                                            <option  <c:if
-                                                    test="${notification.unite.unite_id== t[0]}"> selected </c:if>
-                                                    value="${t[0] }">${t[1] }</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="val_ou_trait" id="val_ou_trait">
-
-
-
-
-                        <div class="row justify-content-center mt-3 mb-5">
-                            <div class="col-md-2 col-sm-6">
-                                <button type="button"
-                                        onclick="openCity1('defaultOpen','1')"
-                                        class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
-                                </button>
-                            </div>
-                            <div class="col-md-2 col-sm-6">
-                                <%-- <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                         id="Suivant"
-                                         onclick="openCity1('Btn2','2')" class="btn btn-success"><spring:message code="button.Suivant"/>
-                                 </button>--%>
+                                <div class="col-md-2 col-sm-6">
+                                        <%-- <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                                 id="Suivant"
+                                                 onclick="openCity1('Btn2','2')" class="btn btn-success"><spring:message code="button.Suivant"/>
+                                         </button>--%>
                                     <c:set var="etapexdtr" value="3" ></c:set>
                                     <c:if test="${type.equals('XD') || type.equals('TR')}" >
                                         <c:set var="etapexdtr" value="12" ></c:set>
                                     </c:if>
-                                <c:if test="${id==0}">
-                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
-                                        <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
-                                            onclick="addObjectGeneral('formnotif','notification','','id_notification','${etapexdtr}')"
-                                            class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
-                                    </button>
-                                </c:if>
-                                <c:if test="${id>0}">
-                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
-                                            onclick="updateGeneral('formnotif','notification',${etapexdtr},'${id}','id_notification','non')"
-                                            class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
-                                    </button>
-                                </c:if>
+                                    <c:if test="${id==0}">
+                                        <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
+                                            <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
+                                                onclick="addObjectGeneral('formnotif','notification','','id_notification','${etapexdtr}')"
+                                                class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
+                                        </button>
+                                    </c:if>
+                                    <c:if test="${id>0}">
+                                        <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
+                                                onclick="updateGeneral('formnotif','notification',${etapexdtr},'${id}','id_notification','non')"
+                                                class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
+                                        </button>
+                                    </c:if>
+                                </div>
+
                             </div>
-
-                        </div>
-                    </form>
+                        </form>
 
 
-                </div>
+                    </div>
+                </c:if>
 
                 <%--********************Tab12***************************--%>
                 <c:if test="${type.equals('TR')}">
                     <div id="12" class="tabcontent pr-0">
 
-                    <h4 class="titre_abs ">Autorité</h4>
+                        <h4 class="titre_abs ">Autorité</h4>
 
-                    <form id="formautorite" name="formautorite">
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.email"/> </label>
-                                    <input value="${notification.autorite.email}" type="text"
-                                           name="email"
-                                           class="form-control">
+                        <form id="formautorite" name="formautorite">
+                            <div class="row m-0 p-0">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.email"/> </label>
+                                        <input value="${notification.autorite.email}" type="text"
+                                               name="email"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.Adresse"/> </label>
+                                        <input value="${notification.autorite.adresse}" type="text"
+                                               name="adresse" class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Adresse"/> </label>
-                                    <input value="${notification.autorite.adresse}" type="text"
-                                           name="adresse" class="form-control">
+                            <div class="row m-0 p-0">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.telephone"/> </label>
+                                        <input value="${notification.autorite.tel}" type="text"
+                                               name="tel"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> <spring:message code="label.Fax"/> </label>
+                                        <input value="${notification.autorite.fax}" type="text"
+                                               name="fax"
+                                               class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.telephone"/> </label>
-                                    <input value="${notification.autorite.tel}" type="text"
-                                           name="tel"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Fax"/> </label>
-                                    <input value="${notification.autorite.fax}" type="text"
-                                           name="fax"
-                                           class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
-                    <div class="row p-0 m-0">
-                        <div class="col-12 p-0 m-0" id="pays_table">
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered pays_table">
-                                    <thead>
-                                    <tr>
-                                        <th>Pays étranger</th>
-                                        <th>Document de l'autorité</th>
-                                        <th style="min-width: 120px"><spring:message code="label.Action"/></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:choose>
-                                        <c:when test="${(not empty notification.paysAutorites)}">
-                                            <c:forEach items="${notification.paysAutorites}" var="p">
-                                                <tr id="tr${p.id_paysautorite}">
-                                                    <td> ${p.pays.nom_fr}</td>
-                                                    <td>${p.url_autorite}</td>
-                                                    <td class="">
-                                                        <button class="btn btn-danger rounded-circle"
-                                                                onclick="deleteVehicule('${p.id_paysautorite}')">
-                                                            <span class="fas fa-trash-alt"></span>
-                                                        </button>
-
-                                                        <button class="btn btn-warning rounded-circle"
-                                                                onclick="getVehicule('${p.id_paysautorite}',this)">
-                                                            <span class="fas fa-pencil-alt"></span>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
+                        </form>
+                            <div class="row p-0 m-0">
+                                <div class="col-12 p-0 m-0" id="pays_table">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered pays_table">
+                                            <thead>
                                             <tr>
-                                                <td colspan="7" class="bg-primary text-center">
-                                                    Aucune autorité dans cette demande</td>
+                                                <th>Autorité</th>
+                                                <th>Autorisation</th>
+                                                <th style="min-width: 120px"><spring:message code="label.Action"/></th>
                                             </tr>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="zone_form" class=" col-12 p-0 m-0">
-                                <form>
-                                    <div class="row m-0 p-0">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label class="f-14">
-                                                    Pays étranger
-                                                </label>
-                                                <select id="pays" name="pays" class="custom-select">
-                                                    <c:forEach items="${pays}" var="t">
-                                                        <option
-                                                                value="${t[0]}">${t[1]}</option>
+                                            </thead>
+                                            <tbody>
+                                            <c:choose>
+                                                <c:when test="${(not empty notification.paysAutorites)}">
+                                                    <c:forEach items="${notification.paysAutorites}" var="p">
+                                                        <tr id="tr${p.id_paysautorite}">
+                                                            <td> ${p.pays.nom_fr}</td>
+                                                            <td><a href="${url_Admin}${fn:replace(p.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a></td>
+                                                            <td class="">
+                                                                <button class="btn btn-danger rounded-circle"
+                                                                        onclick="deletePaysautorite('${p.id_paysautorite}')">
+                                                                    <span class="fas fa-trash-alt"></span>
+                                                                </button>
+
+                                                                <button class="btn btn-warning rounded-circle"
+                                                                        onclick="getPaysautorite('${p.id_paysautorite}',this)">
+                                                                    <span class="fas fa-pencil-alt"></span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
                                                     </c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label class="f-14">
-                                                    Document de l'autorité
-                                                </label>
-                                                <input type="file" class="form-control" id="url_autorite" name="url_autorite">
-                                            </div>
-                                        </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <tr>
+                                                        <td colspan="7" class="bg-primary text-center">
+                                                            Aucune autorité dans cette demande</td>
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-3">
-                                            <button onclick="Save_paysautorite()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
-                                        </div>
+                                    <div id="zone_form" class=" col-12 p-0 m-0">
+                                        <form id="add_autorite">
+                                            <div class="row m-0 p-0">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label class="f-14">
+                                                            Autorité
+                                                        </label>
+                                                        <select id="pays" name="pays" class="custom-select">
+                                                            <c:forEach items="${pays}" var="t">
+                                                                <option <c:if
+                                                                        test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                                        value="${t[0]}">${t[1]}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label class="f-14">
+                                                            Autorisation
+                                                        </label>
+                                                        <input type="file" class="form-control" id="url_autorite" name="url_autorite">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-3">
+                                                    <button onclick="Save_paysautorite2()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+
+                                </div>
+
                             </div>
-
+                        <div class="row justify-content-center mt-3 mb-5">
+                            <div class="col-md-2 col-sm-6">
+                                <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
+                                        onclick="openCity1('Btn2','2')"
+                                        class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <c:choose>
+                                    <c:when test="${notification.autorite.id_autorite == null}">
+                                        <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                                onclick="addObject_step('formautorite','autorite','3','id_notification')"
+                                                class="btn btn-success btn-block">
+                                            <spring:message code="button.Suivant"/>
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
+                                                onclick="updateObject('formautorite','autorite','','3',' id_autorite = '+${notification.autorite.id_autorite})"
+                                                class="btn btn-success btn-block">
+                                            <spring:message code="button.Suivant"/>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
                         </div>
+
 
                     </div>
-
-                    <div class="row justify-content-center mt-3 mb-5">
-                        <div class="col-md-2 col-sm-6">
-                            <button type="button" style="margin-top: 10px;margin-bottom: 10px;"
-                                    onclick="openCity1('Btn2','2')"
-                                    class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
-                            </button>
-                        </div>
-                        <div class="col-md-2 col-sm-6">
-                            <c:choose>
-                                <c:when test="${notification.autorite.id_autorite == null}">
-                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                            onclick="addObject_step('formautorite','autorite','3','id_notification')"
-                                            class="btn btn-success btn-block">
-                                        <spring:message code="button.Suivant"/>
-                                    </button>
-                                </c:when>
-                                <c:otherwise>
-                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                            onclick="updateObject('formautorite','autorite','','3',' id_autorite = '+${notification.autorite.id_autorite})"
-                                            class="btn btn-success btn-block">
-                                        <spring:message code="button.Suivant"/>
-                                    </button>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-
-                </div>
                 </c:if>
                 <c:if test="${type.equals('XD')}">
                     <div id="12" class="tabcontent pr-0">
@@ -2721,10 +3211,10 @@
             url: "/api/savePaysAutorite/"+pays,
             data: {},
             success: function (response) {
-                alert("success");
+
             },
             error: function () {
-                alert("error");
+
             }
         });
     }
@@ -2753,7 +3243,6 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(se),
             success: function (response) {
-                alert("Pays success")
                 Save_paysautorite();
                 if(Notchange)
                     $("#id_notification").val(response);
@@ -2765,8 +3254,8 @@
             }
         });
     }
-   /* function Save_paysautorite() {
-        // event.preventDefault();
+    function Save_paysautorite2() {
+        //event.preventDefault();
 
         var data = new FormData();
         var id_notif = $("#id_notification").val();
@@ -2779,37 +3268,18 @@
 
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "/api/savePaysAutorite/"+id_notif,
+            url: "/api/savePaysAutoriteXD/"+id_notif,
             data: data,
             processData: false,
             contentType: false,
             cache: false,
             success: function (response) {
-
-                swal({
-                        title: "L'autorité enregistrer avec success",
-                        text: "Voulez-vous Ajouter une nouvelle autorité?",
-                        type: "success",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-success",
-                        confirmButtonText: "Oui, Ajouter une autorité",
-                        cancelButtonText: "Non",
-                        closeOnConfirm: true,
-                        closeOnCancel: true
-                    },
-                    function(isConfirm) {
-                        if (isConfirm) {
-                            getPaysautorite('0');
-                        } else {
-                            updateGeneral('formautorite','notification','3',parseInt(id_notif),'id_notification','non');
-                        }
-                    });
+               $("#pays_table").html(response);
             },
             error: function () {
-
             }
         });
-    }*/
+    }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>

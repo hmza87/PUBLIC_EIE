@@ -54,7 +54,7 @@
 
 
 <div id="zone_form" class=" col-12 p-0 m-0">
-    <form id="add_vehicules" >
+    <form id="add_autorite" >
         <div class="row m-0 p-0">
             <div class="col-6">
                 <div class="form-group">
@@ -93,7 +93,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-3">
-                <button onclick="Save_paysautorite()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
+                <button onclick="Save_paysautorite2()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
             </div>
         </div>
     </form>

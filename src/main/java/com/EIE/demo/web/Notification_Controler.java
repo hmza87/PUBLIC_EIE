@@ -146,7 +146,12 @@ public class Notification_Controler {
 		} else {
 			model.put("zonnefranche", pays);
 			model.put("pays", pays);
-			model.put("champ_zf_et", "Pays Etranger");
+			if(type.equals("XD")){
+				model.put("champ_zf_et", "Pays Destinataire");
+			}
+			else{
+				model.put("champ_zf_et", "Pays Etranger");
+			}
 		}
 
 		Object[] type_conditionement = web.tronsaction("select",
