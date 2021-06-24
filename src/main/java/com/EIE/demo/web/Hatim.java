@@ -394,7 +394,6 @@ public class Hatim {
 	public ModelAndView savePaysAutorite(@PathVariable int pays)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
-
 		webt.savePaysAutorite(pays);
 		//Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
 		//map.put("notif",not);sss
@@ -405,10 +404,11 @@ public class Hatim {
 	public ModelAndView savePaysAutoriteXD(@RequestParam("file") MultipartFile file,@PathVariable int id_notif,@RequestParam int pays)
 			throws JsonParseException, JsonMappingException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
-
+		Object[] paysList = webt.tronsaction("select", " pays_id,nom_fr,nom_ar from pays ", " delete_date_time is null ");
 		webt.savePaysAutoriteXD(file,id_notif,pays);
 		Notification not = webt.getNotificationByIdComptId(id_notif,webt.getCompteConnected().getCompteId());
 		map.put("notif",not);
+		map.put("paysList",paysList);
 		map.put("url_Admin",urlRest);
 		return new ModelAndView("autorisationPublic/tablePaysautorite",map);
 	}

@@ -1239,7 +1239,8 @@
                                                 <c:otherwise>
                                                     <tr>
                                                         <td colspan="7" class="bg-primary text-center">
-                                                            Aucune autorité dans cette demande</td>
+                                                            Aucune autorité dans cette demande
+                                                        </td>
                                                     </tr>
                                                 </c:otherwise>
                                             </c:choose>
@@ -1247,7 +1248,6 @@
                                         </table>
                                     </div>
                                     <div id="zone_form" class=" col-12 p-0 m-0">
-                                        <form id="add_autorite">
                                             <div class="row m-0 p-0">
                                                 <div class="col-6">
                                                     <div class="form-group">
@@ -1277,7 +1277,6 @@
                                                     <button onclick="Save_paysautorite2()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
 
                                 </div>
@@ -3255,7 +3254,6 @@
         });
     }
     function Save_paysautorite2() {
-        //event.preventDefault();
 
         var data = new FormData();
         var id_notif = $("#id_notification").val();

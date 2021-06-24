@@ -33,8 +33,6 @@
                             <button class="btn btn-warning rounded-circle">
                                 <span class="fas fa-pencil-alt"></span>
                             </button>
-
-
                         </td>
                     </tr>
                 </c:forEach>
@@ -48,7 +46,37 @@
         </tbody>
     </table>
 </div>
-
+<div id="zone_form" class=" col-12 p-0 m-0">
+    <div class="row m-0 p-0">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="f-14">
+                    Autorité
+                </label>
+                <select id="pays" name="pays" class="custom-select">
+                    <c:forEach items="${paysList}" var="t">
+                        <option <c:if
+                                test="${notif.pays.paysId== t[0]}"> selected </c:if>
+                                value="${t[0]}">${t[1]}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label class="f-14">
+                    Autorisation
+                </label>
+                <input type="file" class="form-control" id="url_autorite" name="url_autorite">
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <button onclick="Save_paysautorite2()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
+        </div>
+    </div>
+</div>
 <%--<div class="row m-0 p-0 mt-2">
     <div class="col-md-2 col-sm-4 align-content-end display-grid pb-3">
         <button id="add_new" onclick="getPaysautorite('0')"
