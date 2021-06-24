@@ -409,7 +409,7 @@
                                                                        value="3" onchange="my_function('3')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    Tout
+                                                                    sélectionné Tout
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -422,7 +422,7 @@
                                                                        value="2" onchange="my_function('2')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    De la liste
+                                                                   sélectionné De la liste
                                                                 </label>
                                                             </div>
 
@@ -436,7 +436,7 @@
                                                                         value="1" onchange="my_function('1')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    la liste sauf
+                                                                    selectionné tout sauf
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -463,9 +463,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-
                                                     <c:forEach items="${code}" var="c">
-
                                                         <c:set var="checked" value=""/>
                                                         <c:forEach items="${notif.code}" var="code_colle">
                                                             <c:if test="${code_colle.id_code==c.id_code}">
