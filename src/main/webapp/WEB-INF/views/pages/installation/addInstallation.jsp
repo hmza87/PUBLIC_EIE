@@ -604,7 +604,7 @@
                             <h4 class="titre_abs "
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                 <spring:message code="label.mespieces"/></h4>
-                            <p class="h5 text-center p-3 bg danger mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
+                            <p class="h5 text-center p-3 mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
                             <c:forEach items="${doc}" var="dc">
                                 <div class="row justify-content-center">
                                     <div class="col-6 mt-3  ">
@@ -909,7 +909,17 @@
                     type: 'POST',
                     data: {"id_notif":parseInt(id_install),"id_statut":parseInt(id_statut),"type":type},
                 })
-                down_load_recu();
+                Swal.fire({
+                    title: '<strong>votre demande a été effectuée avec succès</strong>',
+                    icon: 'success',
+                    html:
+                        '<a href="/api/ListInstallation" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" onclick="down_load_recu()" class="btn btn-success ml-2 text-white">Download Recapitulation</a>',
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    focusConfirm: false,
+                    allowOutsideClick: false
+                });
             }
         })
     }
@@ -919,7 +929,6 @@
         var id = $("#id_installation").val();
         var link = url + id;
         window.location = link;
-        goToRecap();
     }
 
     function  goToRecap(){
