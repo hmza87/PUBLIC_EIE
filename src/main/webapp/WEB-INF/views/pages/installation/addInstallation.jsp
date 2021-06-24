@@ -396,7 +396,7 @@
                                 <div class="row">
                                     <div class="col-sm-8 mt-5" style="display: block;">
                                         <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <label><label>Parmi Choisir par le type suivant :</label></label>
+                                            <label><label>Les Types</label></label>
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -453,7 +453,6 @@
                                                 <h1>Vous avez choisissez tous les codes</h1>
                                             </div>
                                             <div class="col-sm-8 listCode">
-                                                <h3 class="pt-5" style="text-align: left">La liste des codes</h3>
                                                 <table class="table MonTable table-striped" data-page-length="15">
                                                     <thead>
                                                     <tr>
@@ -488,20 +487,24 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-sm-4 listCode">
-                                                <div class="d-block h-100 my_rows" id="my_rows">
-
-                                                    <c:forEach items="${notif.code}" var="code_colle" varStatus="index">
-                                                        <div class="row p-0 m-0">
-                                                            <div class="col-8"> ${code_colle.nom_ar} </div>
-                                                            <div class="col-4 p-2 text-center">
-                                                                <button class="btn btn-success rounded-circle"
-                                                                        onclick="addCodeIT('id_installation','${code_colle.id_code}','delete')">
-                                                                    <span class="fa fa-times"></span></button>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-
+                                            <div class="col-sm-4 listCode" style="margin-top: 4rem">
+                                                <div class="row pb-2 m-0" id="my_rows">
+                                                    <table class="table table-striped">
+                                                        <tr>
+                                                            <th>Type de déchet</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        <c:forEach items="${notif.code}" var="code_colle" varStatus="loopp" >
+                                                            <tr>
+                                                                <td class="col-8">${code_colle.nom_ar}</td>
+                                                                <td class="col-4 p-2 text-center">
+                                                                    <button class="btn btn-success rounded-circle"
+                                                                            onclick="addCodeIT('id_installation','${code_colle.id_code}','delete')">
+                                                                        <span class="fa fa-times"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
@@ -730,22 +733,7 @@
             data: {},
         })
             .done(function (data) {
-                if (!data.user) {
-                    window.location.href = '/index';
-                }
-                $("#my_rows").html("");
-                $(data.codes).each(function (ind, el) {
-                    console.log(el);
-                    var cls = "";
-                    if (ind % 2 == 0) {
-                        cls = "bg-light";
-                    }
-                    var row = '<div class="row p-0 m-0 ' + cls + ' "> <div class="col-8"> ' + el.nom_ar + ' </div> <div class="col-4 p-2 text-center"> <button class="btn btn-success rounded-circle" onclick="addCodeIT(\'' + id_installation + '\',\'' + el.id_code + '\',\'delete\')"> <span class="fa fa-times"></span> </button> </div> </div>';
-                    $("#my_rows").append(row);
-
-
-                });
-
+                $("#my_rows").html(data);
             })
             .fail(function () {
                 console.log("error");
@@ -846,7 +834,6 @@
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 
-
     function getOptionByFilter(val, table, select_id) {
         $.get('/api/tronsactionCO/select/' + table + '/delete_date_time is null and ' + val, function (data) {
 
@@ -885,7 +872,6 @@
             openCity2('Btn'+tap,tap);
         }
     }
-
 
     function verif_recap_it(id_form, type, id_name) {
         if(event!=null)

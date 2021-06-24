@@ -514,14 +514,15 @@ public class Hatim {
 	}
 
 	@RequestMapping(value = "/api/setcodeInstall/{id_inst}/{id_code}/{type}", method = RequestMethod.GET)
-	public @ResponseBody Map<String,Object> setcodeinstall(@PathVariable int id_inst,@PathVariable int id_code,@PathVariable String type)
+	public ModelAndView setcodeinstall(@PathVariable int id_inst,@PathVariable int id_code,@PathVariable String type)
 			throws JsonParseException, IOException, MessagingException {
 		Map<String,Object> map = new HashMap<>();
 		webt.setcodeinstall(id_inst,id_code,webt.getCompteConnected().getCompteId(),type);
 		Installation v =  webt.getInstallationById(id_inst,webt.getCompteConnected().getCompteId());
+		map.put("inst", v);
 		map.put("user",webt.getCompteConnected());
 		map.put("codes",v.getCode());
-		return map;
+		return new ModelAndView("installation/MesCodes",map);
 	}
 
 	@GetMapping("/api/generate_pdf_installation/{id}")
