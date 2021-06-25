@@ -88,6 +88,9 @@
                                                         <c:when test="${type=='ZF'}">
                                                             <spring:message code="label.ZoneFranche"/>
                                                         </c:when>
+                                                        <c:when test="${type=='XD'}">
+                                                            Pays Destinataire
+                                                        </c:when>
                                                         <c:otherwise>
                                                             <spring:message code="label.pays"/>
                                                         </c:otherwise>
@@ -168,6 +171,9 @@
                                                             <c:choose>
                                                                 <c:when test="${type=='ZF'}">
                                                                     <spring:message code="label.ZoneFranche"/>
+                                                                </c:when>
+                                                                <c:when test="${type=='XD'}">
+                                                                    Pays Destinataire
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <spring:message code="label.pays"/>
@@ -397,6 +403,9 @@
                                                     <c:choose>
                                                         <c:when test="${type=='ZF'}">
                                                             <spring:message code="label.ZoneFranche"/>
+                                                        </c:when>
+                                                        <c:when test="${type=='XD'}">
+                                                            Pays Destinataire
                                                         </c:when>
                                                         <c:otherwise>
                                                             <spring:message code="label.pays"/>
@@ -799,7 +808,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="form-group">
-                                                            <label><spring:message code="label.pays"/></label>
+                                                            <label>Pays Destinataire</label>
                                                             <input disabled class="form-control" value="${notification.pays.nom_fr}" type="text">
                                                         </div>
                                                     </div>

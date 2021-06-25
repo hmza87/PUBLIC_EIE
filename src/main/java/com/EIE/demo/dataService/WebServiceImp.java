@@ -1070,6 +1070,14 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public Notification getNotificationById(int id) {
+		final String uri = urlRest+"/getNotificationByIdRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		Notification result = restTemplate.getForObject(uri,Notification.class);
+		return result;
+	}
+
+	@Override
 	public String setAvisProjetDemandeInformation(int id, MultipartFile[] fileToUpload) {
 		final String uris = urlRest + "/setAvisProjetDemandeInformationRest/"+id;
 		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();

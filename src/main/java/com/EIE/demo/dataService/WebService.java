@@ -169,6 +169,8 @@ public interface WebService {
 
 	Notification getNotificationByIdComptId(int id, int compteId);
 
+	Notification getNotificationById(int id);
+
 	String setAvisProjetDemandeInformation(int id, MultipartFile[] fileToUpload);
 
 	String saveProducteurNotification(String nom_fr, String nom_ar, String contact_fr,String idf,String adresse_fr, String tel, String fax, String mail, int id_notif,int id_prod);
