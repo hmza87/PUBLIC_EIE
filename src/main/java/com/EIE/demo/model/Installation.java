@@ -371,6 +371,21 @@ public class Installation implements Serializable {
 
 	private List<Code> code = new ArrayList<>();
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	@JoinTable(name = "codelistInstalationTmp", joinColumns = {
+			@JoinColumn(name = "id_installation") }, inverseJoinColumns = { @JoinColumn(name = "id_code_tmp_inst") })
+
+	private List<Code> codeTmp = new ArrayList<>();
+
+	public List<Code> getCodeTmp() {
+		return codeTmp;
+	}
+
+	public void setCodeTmp(List<Code> codeTmp) {
+		this.codeTmp = codeTmp;
+	}
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_compte")
 	private Compte compte;

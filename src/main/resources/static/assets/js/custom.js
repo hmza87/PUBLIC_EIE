@@ -204,6 +204,8 @@ function openCity2(id_active, cityName) {
 }
 
 
+
+
 function getOptionByFilter(val, table, select_id) {
     alert_error_disabled("Select[name=classification_id]");
     alert_error_disabled("Select[name=code_id]");

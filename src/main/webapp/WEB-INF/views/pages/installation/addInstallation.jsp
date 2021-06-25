@@ -80,38 +80,54 @@
                     </c:choose>
 
                     <div class="row-fluid mt-3" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+                        <input type="hidden" name="id_installation" value="${notif.id_installation}"
+                               id="id_installation">
 
                         <div class="tab">
-
-                            <button class="tablinks btn-info btn" onclick="openCity(event, '1')" id="defaultOpen"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
-                                1.<%--<spring:message code="label.InformationdepEtitionnaire"/>--%>
-                                <spring:message code="label.informationssurlepetitionnaire"/>
-                            </button>
-                            <button class="tablinks btn-info btn my_tab " ${disabled} id="Btn2"
-                                    onclick="openCity(event, '2')"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left; background-color: #7dc7bd;'} white-space: normal;">
-                                2. <spring:message code="label.Installationdetraitementdesdechets"/></button>
-                            </button>
-                            <button class="tablinks btn-info btn my_tab" ${disabled} id="Btn3"
-                                    onclick="openCity(event, '3')"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
-                                3. <spring:message code="button.equipedetravail"/></button>
-                            </button>
-                            <button class="tablinks btn-info btn my_tab" ${disabled} id="Btn4"
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
+                                <button class="tablinks btn-info btn" onclick="openCity(event, '1')" id="defaultOpen"
+                                        style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
+                                    1.<%--<spring:message code="label.InformationdepEtitionnaire"/>--%>
+                                    <spring:message code="label.informationssurlepetitionnaire"/>
+                                </button>
+                            </c:if>
+                            <c:if test="${notif.statut.id_statut_projet==87 && not empty notif.codeTmp}">
+                                <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'} " ${disabled}
+                                        onclick="openCity(event, '2')"
+                                        style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left; background-color: #7dc7bd;'} white-space: normal;" id="${notif.statut.id_statut_projet==87 ?'defaultOpen':'Btn2'}">
+                                    2. <spring:message code="label.Installationdetraitementdesdechets"/></button>
+                                </button>
+                            </c:if>
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
+                                <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'} " ${disabled} id="Btn2"
+                                        onclick="openCity(event, '2')"
+                                        style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left; background-color: #7dc7bd;'} white-space: normal;">
+                                    2. <spring:message code="label.Installationdetraitementdesdechets"/></button>
+                                </button>
+                            </c:if>
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
+                                <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabled} id="Btn3"
+                                        onclick="openCity(event, '3')"
+                                        style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" >
+                                    3. <spring:message code="button.equipedetravail"/></button>
+                                </button>
+                            </c:if>
+                            <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabled} id="Btn4"
                                     onclick="openCity(event, '4')"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd">
+                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" id="${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'defaultOpen':'Btn4'}" ${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'':'disabled'}>
                                 4. <spring:message code="button.mespieces"/></button>
                             </button>
-                            <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} id="Btn5"
-                                    onclick="verif_champs_recap('4','IT','id_installation','5')"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd"">
-                                5. Récapitulation
-                            </button>
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
+                                <button class="tablinks btn-primary btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabledBtnTab} id="Btn5"
+                                        onclick="verif_champs_recap('4','IT','id_installation','5')" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" >
+                                    5. Récapitulation
+                                </button>
+                            </c:if>
 
                         </div>
 
-                        <div id="1" class="tabcontent"
+                        <c:if test="${notif.statut.id_statut_projet!=87}">
+                            <div id="1" class="tabcontent"
                              style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                             <h4 class="titre_abs ">
                                 <%--<spring:message code="label.InformationdepEtitionnaire"/>--%>
@@ -245,8 +261,10 @@
 
 
                         </div>
+                        </c:if>
 
-                        <div id="2" class="tabcontent">
+                        <c:if test="${notif.statut.id_statut_projet!=87}">
+                            <div id="2" class="tabcontent">
 
                             <h4 class="titre_abs"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -471,7 +489,7 @@
                                                             </c:if>
                                                         </c:forEach>
                                                         <tr>
-                                                            <td>${c.nom_fr } -</td>
+                                                            <td>${c.nom_fr }</td>
                                                             <td>${c.nom_ar }</td>
                                                             <td>
                                                                 <input ${checked} class="h-15" type="checkbox"
@@ -524,8 +542,90 @@
                             </form>
 
                         </div>
+                        </c:if>
 
-                        <div id="3" class="tabcontent">
+                        <c:if test="${notif.statut.id_statut_projet==87 && not empty notif.codeTmp}">
+                            <div id="2" class="tabcontent">
+
+                                <h4 class="titre_abs"
+                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                    <spring:message code="label.Installationdetraitementdesdechets"/></h4>
+                                <form id="formimportateur1" name="formimportateur" class="mt-5">
+                                    <div class="row m-0 p-0 mt-2">
+                                        <div class="col-12">
+                                            <div class="row" id="my_rows">
+                                                <div class="col-sm-8 listCode" >
+                                                    <table class="table MonTable table-striped" data-page-length="15">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col" style="min-width: 100px"><spring:message
+                                                                    code="label.CodeA"/></th>
+                                                            <th scope="col"><spring:message code="label.TypeA"/></th>
+                                                            <th scope="col">Sélectionner</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <c:forEach items="${notif.code}" var="c">
+                                                            <c:set var="bg" value=""/>
+                                                            <c:forEach items="${notif.codeTmp}" var="code_colle">
+                                                                <c:if test="${code_colle.id_code==c.id_code}">
+                                                                    <c:set var="bg" value="bg-danger"/>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <tr class="${bg}" id="tr-${c.id_code}">
+                                                                <td>${c.nom_fr }</td>
+                                                                <td>${c.nom_ar }</td>
+                                                                <td>
+                                                                    <input checked disabled class="h-15" type="checkbox"
+                                                                           id="id-${c.id_code }">
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <input type="hidden" id="cpt" value="${notif.codeTmp.size()}">
+                                                <input type="hidden" id="typeIT" value="${notif.type}">
+                                                <div class="col-sm-4 listCode" style="margin-top: 4rem">
+                                                    <div class="row pb-2 m-0" >
+                                                        <table class="table table-striped">
+                                                            <tr>
+                                                                <th>Type de déchet</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                            <tbody id="tbody_it">
+                                                            <c:forEach items="${notif.codeTmp}" var="code_colle" varStatus="loopp" >
+                                                                <tr style="background-color:${loopp.index%2==0?'#FA8072':'#F08080'};color: white !important;font-weight:bold" >
+                                                                    <td class="col-8">${code_colle.nom_ar}</td>
+                                                                    <td class="col-4 p-2 text-center">
+                                                                        <button class="btn btn-success rounded-circle"
+                                                                                onclick="addCodeIT_tmp('${code_colle.id_code}','delete')">
+                                                                            <span class="fa fa-times"></span></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center mb-4">
+                                            <div class="col-md-2 col-sm-6">
+                                                <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="MyBtn"
+                                                        onclick="changerEtat_IT()" disabled class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
+                                                </button>
+                                            </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${notif.statut.id_statut_projet!=87}">
+                            <div id="3" class="tabcontent">
 
                             <h4 class="titre_abs"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -539,8 +639,6 @@
                                             <label><spring:message code="label.nbequipe"/> :</label>
                                             <input value="${notif.nbr_equipe_travail}" type="number"
                                                    name="nbr_equipe_travail" id="Nom_fr" class="form-control">
-                                            <input type="hidden" id="id_installation" class="form-control" name=""
-                                                   value="${notif.id_installation}">
 
                                         </div>
                                     </div>
@@ -594,61 +692,96 @@
 
 
                         </div>
+                        </c:if>
 
                         <!-- tab3 -->
 
                         <div id="4" class="tabcontent">
 
-                            <h4 class="titre_abs "
-                                style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                <spring:message code="label.mespieces"/></h4>
-                            <p class="h5 text-center p-3 mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
-                            <c:forEach items="${doc}" var="dc">
-                                <div class="row justify-content-center">
-                                    <div class="col-6 mt-3  ">
-                                        <div class="form-group"
-                                             style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <div>
+                                <h4 class="titre_abs "
+                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                    <spring:message code="label.mespieces"/></h4>
+                                <p class="h5 text-center p-3 mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
+                                <c:forEach items="${doc}" var="dc">
+                                    <div class="row justify-content-center">
+                                        <c:if test="${notif.statut.id_statut_projet==87 && dc.id_docImport ==2770}">
+                                            <div class="col-6 mt-3  ">
+                                                <div class="form-group"
+                                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                                    <div>
+                                                        <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
+                                                        <input
+                                                                required
+                                                                onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','IT','id_installation')"
+                                                                accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                                class="form-control mydoc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <div class="col-6 mt-3  ">
+                                            <div class="form-group"
+                                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                                <div>
 
-                                                <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
-                                                <input
-                                                        required
-                                                        onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','IT','id_installation')"
-                                                        accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                        class="form-control mydoc">
-
+                                                    <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
+                                                    <input
+                                                            required
+                                                            onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','IT','id_installation')"
+                                                            accept=".pdf" type="file" id="doc${dc.id_docImport }"
+                                                            class="form-control mydoc">
+                                                </div>
                                             </div>
                                         </div>
+                                        <c:if test="${not empty docNotify}">
+                                            <div class="col-2">
+                                                <c:forEach items="${docNotify}" var="d">
+                                                    <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
+                                                        <a href="${url_admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
+                                                           class="btn btn-success rounded file_existe"><span
+                                                                class="fa fa-download"></span></a>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
                                     </div>
-                                    <c:if test="${not empty docNotify}">
-                                        <div class="col-2">
-                                            <c:forEach items="${docNotify}" var="d">
-                                                <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
-                                                    <a href="${url_admin}${fn:replace(d.url, "/assets/myFile/", "/dowload_uploaded/")}"
-                                                       class="btn btn-success rounded file_existe"><span
-                                                            class="fa fa-download"></span></a>
-                                                </c:if>
-                                            </c:forEach>
+                                </c:forEach>
+                                <div class="row justify-content-center mb-5 mt-3">
+                                    <c:if test="${notif.statut.id_statut_projet == 87}">
+                                        <div class="col-md-2 col-sm-6">
+                                            <button  type="button" id="prec2"
+                                                     onclick="openCity2('#Btn2', '2')"
+                                                     class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
+                                            </button>
                                         </div>
                                     </c:if>
+                                    <c:if test="${notif.statut.id_statut_projet != 87}">
+                                        <div class="col-md-2 col-sm-6">
+                                            <button  type="button" id="prec2"
+                                                     onclick="openCity2('#btn3', '3')"
+                                                     class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
+                                            </button>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${notif.statut.id_statut_projet !=87}">
+                                        <div class="col-md-3 col-sm-6">
+                                            <a class="btn btn-success btn-block "
+                                               onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="label.Afficherlerecapitulatif"/></a>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${notif.statut.id_statut_projet == 87}">
+                                        <div class="col-md-3 col-sm-6">
+                                            <a class="btn btn-success btn-block" href="/api/ListInstallation">Enregistrer</a>
+                                        </div>
+                                    </c:if>
+
                                 </div>
-                            </c:forEach>
-                            <div class="row justify-content-center mb-5 mt-3">
-                                <div class="col-md-2 col-sm-6">
-                                    <button  type="button" id="prec2"
-                                            onclick="openCity2('#btn3', '3')"
-                                            class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
-                                    </button>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <a class="btn btn-success btn-block "
-                                       onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="label.Afficherlerecapitulatif"/></a>
-                                </div>
+
                             </div>
 
-                        </div>
 
-                        <div id="5" class="tabcontent">
+                        <c:if test="${notif.statut.id_statut_projet!=87}">
+                           <div id="5" class="tabcontent">
 
                             <h4 class="titre_abs "><spring:message code="label.Recapitulation"/></h4>
                             <div id="recap_install"></div>
@@ -669,6 +802,7 @@
                             </div>
 
                         </div>
+                        </c:if>
                         <!-- TAB 3 FINs -->
 
 
@@ -704,6 +838,89 @@
 </div>
 
 <script>
+
+    function changerEtat_IT() {
+
+
+        var id_ins = $("#id_installation").val ();
+
+        $.ajax ({
+            type: "GET",
+            url: "/api/ChangerTypeIT/" + id_ins,
+            contentType: 'application/json; charset=utf-8',
+            data: {},
+            success: function (response) {
+                openCity2('#Btn4', '4');
+            },
+            error: function (response) {
+            }
+        });
+
+
+    }
+
+    function addCodeIT_tmp(id_code, type) {
+        event.preventDefault();
+
+        var id_ins = $("#id_installation").val();
+        var cpt = $("#cpt").val();
+        var typeIT = $("#typeIT").val();
+        var rowCount = $("#tbody_it tr").length;
+        console.log(rowCount);
+
+        if (id_ins == "") {
+            return false;
+        }
+        $.ajax({
+            url: '/api/deleteCodeTmp_inst/' + id_ins + '/' + id_code + '/' + type,
+            type: 'GET',
+            data: {},
+        })
+            .done(function (data) {
+                if(typeIT=="2"){
+                    $("#tbody_it").html(data);
+                }
+                else {
+                    $("#my_rows").html(data);
+                }
+                console.log(cpt);
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                if(rowCount===1){
+                    $("#MyBtn").removeAttr("disabled");
+                    $("#Btn4").removeAttr("disabled");
+                }
+                if (type == "add") {
+                    $('#id-' + id_code).attr("disabled", "true");
+                }
+                if (type == "delete") {
+                    $("#tr-"+id_code).hide();
+
+                }
+                console.log("complete");
+            });
+
+    }
+
+    /*function ChangerEtat() {
+
+        var id_ins = $ ("#id_installation").val ();
+
+            $.ajax ({
+                type: "POST",
+                url: "/api/ChangerEtat/" + id_ins + "/" + categories,
+                contentType: 'application/json; charset=utf-8',
+                data: {},
+                success: function (response) {
+                    window.location.href = "/api/getListeInstallation/0/6/0";
+                },
+                error: function (response) {
+                }
+            });
+    }*/
     function my_function(val){
         if(val==='3'){
             $("#msg").show()
@@ -751,6 +968,7 @@
             });
 
     }
+
     function fun_affiche_modal_recap() {
         event.preventDefault();
         Swal.close();
@@ -828,7 +1046,6 @@
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
-
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 

@@ -170,6 +170,22 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public String changerStatutIT(int id) {
+		final String uris = urlRest + "/changerStatutITRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uris,  String.class);
+		return "OK";
+	}
+
+	@Override
+	public String changerTypeIT(int id) {
+		final String uris = urlRest + "/changerTypeITRest/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uris,  String.class);
+		return "OK";
+	}
+
+	@Override
 	public String autologin2(String j_name, String j_pass) {
 		final String uris = urlRest + "/login2/"+j_name+"/"+j_pass;
 		RestTemplate restTemplate = new RestTemplate();
@@ -750,6 +766,13 @@ class WebServiceImp implements WebService {
 	@Override
 	public void deleteCodeTmp(int id_coll, int id_code, int id_user,String type) {
 		final String uris = urlRest + "/deleteCodeTmpRest/"+id_coll+"/"+id_code + "/"+ type+"/"+id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
+	public void deleteCodeTmp_inst(int id_inst, int id_code, int id_user,String type) {
+		final String uris = urlRest + "/deleteCodeTmp_instRest/"+id_inst+"/"+id_code + "/"+ type+"/"+id_user;
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.put(uris,Code.class);
 	}

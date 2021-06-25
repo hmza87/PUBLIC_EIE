@@ -361,6 +361,21 @@ public class Hatim {
 		return "OK";
 	}
 
+	@RequestMapping(value = "/api/ChangerStatutIT/{id}",method = RequestMethod.GET)
+	@ResponseBody
+	public String ChangerStatutIT(@PathVariable int id) throws Exception {
+		webt.changerStatutIT(id);
+		return "OK";
+	}
+
+	@RequestMapping(value = "/api/ChangerTypeIT/{id}",method = RequestMethod.GET)
+	@ResponseBody
+	public String ChangerTypeIT(@PathVariable int id) throws Exception {
+		webt.changerTypeIT(id);
+		return "OK";
+	}
+
+
 
 	@RequestMapping(value = "/api/saveVehicule", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ModelAndView saveVehicule(@RequestParam String v,@RequestParam int id_collect,
@@ -484,6 +499,18 @@ public class Hatim {
 		map.put("user",webt.getCompteConnected());
 		map.put("codes",v.getCodeTmp());
 		return map;
+	}
+
+	@RequestMapping(value = "/api/deleteCodeTmp_inst/{id_inst}/{id_code}/{type}", method = RequestMethod.GET)
+	public ModelAndView  deleteCodeTmp_inst(@PathVariable int id_inst,@PathVariable int id_code,@PathVariable String type)
+			throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+		webt.deleteCodeTmp_inst(id_inst,id_code,webt.getCompteConnected().getCompteId(),type);
+		Installation v =  webt.getInstallationById(id_inst,webt.getCompteConnected().getCompteId());
+		map.put("inst", v);
+		map.put("user",webt.getCompteConnected());
+		map.put("codes",v.getCode());
+		return new ModelAndView("installation/MesCodes",map);
 	}
 
 	@RequestMapping(value = "/api/setcodeInstall/{id_inst}/{id_code}/{type}", method = RequestMethod.GET)

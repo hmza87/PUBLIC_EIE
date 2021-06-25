@@ -1241,6 +1241,7 @@
             });
 
     }
+
     function addCodeCT_tmp(id_collect, id_code, type) {
         event.preventDefault();
         var id_coll = $("#" + id_collect).val();
