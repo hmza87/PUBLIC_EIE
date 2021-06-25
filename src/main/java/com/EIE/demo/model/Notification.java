@@ -65,6 +65,22 @@ public class Notification implements Serializable {
 	@Column(name = "etat", nullable = true, columnDefinition = "NVARCHAR(255)")
 	private String etat;
 
+
+	@Column(name = "url_dmd_lettre", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_dmd_lettre;
+
+	@Column(name = "url_lettre", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_lettre;
+
+	@Column(name = "url_lettre_conforme", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_lettre_conforme;
+
+	@Column(name = "url_lettre_nonconforme", nullable = true, columnDefinition = "NVARCHAR(255)")
+	private String url_lettre_nonconforme;
+
+
+
+
 	public String getCodeNationalXD() {
 		return codeNationalXD;
 	}
@@ -648,6 +664,13 @@ public class Notification implements Serializable {
 
 	private List<PaysAutorite> paysAutorites = new ArrayList<>();
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	@JoinTable(name = "notification_producteur", joinColumns = {
+			@JoinColumn(name = "id_notifs_p") }, inverseJoinColumns = { @JoinColumn(name = "id_prods") })
+
+	private List<Producteur> producteurs = new ArrayList<>();
+
 	@Column(name = "dateConteur", nullable = true)
 	private Date dateConteur;
 
@@ -777,5 +800,45 @@ public class Notification implements Serializable {
 
 	public void setPaysAutorites(List<PaysAutorite> paysAutorites) {
 		this.paysAutorites = paysAutorites;
+	}
+
+	public List<Producteur> getProducteurs() {
+		return producteurs;
+	}
+
+	public void setProducteurs(List<Producteur> producteurs) {
+		this.producteurs = producteurs;
+	}
+
+	public String getUrl_dmd_lettre() {
+		return url_dmd_lettre;
+	}
+
+	public void setUrl_dmd_lettre(String url_dmd_lettre) {
+		this.url_dmd_lettre = url_dmd_lettre;
+	}
+
+	public String getUrl_lettre() {
+		return url_lettre;
+	}
+
+	public void setUrl_lettre(String url_lettre) {
+		this.url_lettre = url_lettre;
+	}
+
+	public String getUrl_lettre_conforme() {
+		return url_lettre_conforme;
+	}
+
+	public void setUrl_lettre_conforme(String url_lettre_conforme) {
+		this.url_lettre_conforme = url_lettre_conforme;
+	}
+
+	public String getUrl_lettre_nonconforme() {
+		return url_lettre_nonconforme;
+	}
+
+	public void setUrl_lettre_nonconforme(String url_lettre_nonconforme) {
+		this.url_lettre_nonconforme = url_lettre_nonconforme;
 	}
 }

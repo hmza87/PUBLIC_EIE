@@ -6,8 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div class="table-responsive">
-    <table class="table table-bordered my_table" >
+<div class="table-responsive" id="pays_table">
+    <table class="table table-bordered pays_table">
         <thead>
         <tr>
             <th> Autorité </th>
@@ -27,10 +27,13 @@
                             </c:if>
                         </td>
                         <td class="">
-                            <button class="btn btn-danger rounded-circle">
+                            <button class="btn btn-danger rounded-circle"
+                                    >
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-warning rounded-circle">
+
+                            <button class="btn btn-warning rounded-circle"
+                                    >
                                 <span class="fas fa-pencil-alt"></span>
                             </button>
                         </td>
@@ -77,10 +80,3 @@
         </div>
     </div>
 </div>
-<%--<div class="row m-0 p-0 mt-2">
-    <div class="col-md-2 col-sm-4 align-content-end display-grid pb-3">
-        <button id="add_new" onclick="getPaysautorite('0')"
-                class="btn btn-success btn-block"><spring:message
-                code="label.jouterVehiculeA"/></button>
-    </div>
-</div>--%>

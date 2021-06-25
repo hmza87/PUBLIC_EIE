@@ -11,34 +11,363 @@
     .accordion-toggle {
         background-color: #7dc7bd;
         display: block;
-        padding: 10px;
-        margin: -10px -15px;
+        //padding: 10px;
+        margin: -11px -20px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
     }
 
     .accordion-toggle.collapsed {
-        background-color: lightgrey;
+        background-color: #f6f6f6;
+        border-top-color: #c5c5c5;
+        font-weight: normal;
+        color: #454545 !important;
     }
 </style>
 
-<div class="container-fluid bg-gray" id="accordion-style-1">
-    <div class="container">
-        <section>
-            <div class="row">
+<div class="bg-white" id="accordion-style-1">
+    <div class="row">
                 <div class="col-12">
                     <div class="accordion" id="accordionExample">
+                        <c:if test="${notification.zf_et=='XD' || notification.zf_et=='ZF'}">
                         <div class="">
+                            <div class="card-header" id="headingOne1">
+                                <h5 class="mb-0">
+                                    <a class="accordion-toggle btn text-left text-white" type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.Numerodenotification"/>
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne1" class="collapse show fade" aria-labelledby="headingOne1" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="row m-0 p-0 mt-2">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.Numerodenotification"/></label>
+                                                <input class="form-control" value="${notification.num_notification}" disabled>
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                                <input class="form-control" value="${notification.classification.nom_fr}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row m-0 p-0 mt-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.code"/> </label>
+                                                <input type="text" disabled value="${notification.code.nom_fr}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.typededechet"/> </label>
+                                                <input type="text" disabled value="${notification.code.nom_ar}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row m-0 p-0 mt-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>
+                                                    <c:choose>
+                                                        <c:when test="${type=='ZF'}">
+                                                            <spring:message code="label.ZoneFranche"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <spring:message code="label.pays"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                                <input type="text" disabled value="${notification.zonneFranche.nom_fr} ${notification.pays.nom_fr}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.producteur"/>  </label>
+                                                <input type="text" disabled value="${notification.producteur_text}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row m-0 p-0 mt-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.quantitetotaleprevu"/> </label>
+                                                <input type="text" disabled value="${notification.quantite}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.unite"/>  </label>
+                                                <input type="text" disabled value="${notification.unite.nom_fr}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                            <c:if test="${notification.zf_et != 'ZF'}">
+                            <div class="">
+                                <div class="card-header" id="headingOne2">
+                                    <h5 class="mb-0">
+                                        <a class="accordion-toggle btn text-left collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+                                            <i class="fa fa-angle-double-right mr-3"></i><c:if test="${notification.zf_et!='ZF'}">Exportateur - Notifiant</c:if>
+                                        </a>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne2" class="collapse fade" aria-labelledby="headingOne2" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <c:if test="${notification.zf_et!='TR' && notification.zf_et != 'XD'}">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Operation"/> </label>
+                                                        <input type="text" disabled value="${notification.operation}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.code"/> </label>
+                                                        <input type="text" disabled value="${notification.code.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.typededechet"/> </label>
+                                                        <input type="text" disabled value="${notification.code.nom_ar}" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            <c:choose>
+                                                                <c:when test="${type=='ZF'}">
+                                                                    <spring:message code="label.ZoneFranche"/>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <spring:message code="label.pays"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </label>
+                                                        <input type="text" disabled value="${notification.zonneFranche.nom_fr} ${notification.pays.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.producteur"/>  </label>
+                                                        <input type="text" disabled value="${notification.producteur_text}" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.quantitetotaleprevu"/> </label>
+                                                        <input type="text" disabled value="${notification.quantite}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.unite"/>  </label>
+                                                        <input type="text" disabled value="${notification.unite.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${notification.zf_et == 'XD'}">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.nomdesociete"/> </label>
+                                                        <input type="text" disabled value="${notification.importateur.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label dir="rtl"> إسم الشركة : </label>
+                                                        <input dir="rtl" value="${notification.importateur.nom_ar}" disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.personneacontacter"/> </label>
+                                                        <input value="${notification.importateur.contact_fr}" disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Adresse"/> </label>
+                                                        <input value="${notification.importateur.adresse_fr}" disabled type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Telephone"/> </label>
+                                                        <input value="${notification.importateur.tel}" disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Region"/>  </label>
+                                                        <input type="text" disabled value="${notification.region.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Province"/>  </label>
+                                                        <input type="text" disabled value="${notification.prefecture.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> Télécopie </label>
+                                                        <input value="${notification.importateur.fax}" disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> Courrier électronique </label>
+                                                        <input value="${notification.importateur.mail}" disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${notification.zf_et=='TR'}">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.NomdelexportateurNotifiant"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.nom}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Telecopie"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.telecopie}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.personneacontacter"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.personne}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Tel"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.tel}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.courrierelectronique"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.courrier}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Adresse"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.adresse}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.codeNationalXD}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.codeNationalIm}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
+                                                        <input class="form-control" type="text" disabled value="${notification.codeCE}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                            </c:if>
+                        </c:if>
+                         <c:if test="${notification.zf_et!='XD' && notification.zf_et!='ZF'}">
+                             <div class="">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn text-left text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.Numerodenotification"/>
+                                        <i class="fa fa-angle-double-right mr-3"></i>Exportateur - Notifiant
                                     </a>
                                 </h5>
                             </div>
 
                             <div id="collapseOne" class="collapse show fade" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
+                                    <c:if test="${notification.zf_et!='TR' && notification.zf_et != 'XD'}">
                                     <div class="row mb-2">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -104,28 +433,241 @@
                                             </div>
                                         </div>
                                     </div>
+                                    </c:if>
+                                    <c:if test="${notification.zf_et == 'XD'}">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.nomdesociete"/> </label>
+                                                    <input type="text" disabled value="${notification.importateur.nom_fr}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label dir="rtl"> إسم الشركة : </label>
+                                                    <input dir="rtl" value="${notification.importateur.nom_ar}" disabled type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.personneacontacter"/> </label>
+                                                    <input value="${notification.importateur.contact_fr}" disabled type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.Adresse"/> </label>
+                                                    <input value="${notification.importateur.adresse_fr}" disabled type="text"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.Telephone"/> </label>
+                                                    <input value="${notification.importateur.tel}" disabled type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.Region"/>  </label>
+                                                    <input type="text" disabled value="${notification.region.nom_fr}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> <spring:message code="label.Province"/>  </label>
+                                                    <input type="text" disabled value="${notification.prefecture.nom_fr}" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> Télécopie </label>
+                                                    <input value="${notification.importateur.fax}" disabled type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label> Courrier électronique </label>
+                                                    <input value="${notification.importateur.mail}" disabled type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${notification.zf_et=='TR'}">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.NomdelexportateurNotifiant"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.nom}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.Telecopie"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.telecopie}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.personneacontacter"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.personne}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.Tel"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.tel}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.courrierelectronique"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.courrier}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.Adresse"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.adresse}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.codeNationalXD}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.codeNationalIm}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
+                                                    <input class="form-control" type="text" disabled value="${notification.codeCE}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
+                         </c:if>
                         <div class="">
                             <div class="card-header" id="headingTwo">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         <i class="fa fa-angle-double-right mr-3"></i>
-                                        <spring:message code="label.ImportateurNotifiant"/>
+                                        Importateur - ${type.equals("XD")?"Destinataire":"Notifiant"}
                                     </a>
                                 </h5>
                             </div>
                             <div id="collapseTwo" class="collapse fade" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body">
+                                        <c:if test="${notification.zf_et=='XD'}">
+                                            <div class="row mb-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Nom de l'importateur destinataire</label>
+                                                <input class="form-control" type="text" disabled value="${notification.nom}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.Telecopie"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.telecopie}">
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.personneacontacter"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.personne}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.Tel"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.tel}">
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.courrierelectronique"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.courrier}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.Adresse"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.adresse}">
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.CodeNationaldanslepaysdexportation"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.codeNationalXD}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.CodeNationaldanslepaysdimportation"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.codeNationalIm}">
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                        <div class="col-md-6 col-sm-12 ">
+                                            <div class="form-group">
+                                                <label><spring:message code="label.ListeDesdechetsdeleCE"/></label>
+                                                <input class="form-control" type="text" disabled value="${notification.codeCE}">
+                                            </div>
+                                        </div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${notification.zf_et!='XD'}">
                                     <div class="row mb-2">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group" ${pageContext.response.locale=='ar'?'rtl':'ltr'}>
                                                 <label> <spring:message code="label.nomdesociete"/>  </label>
                                                 <c:choose>
                                                     <c:when test="${pageContext.response.locale=='ar'}">
-                                                        <input value="${notif.importateur.nom_ar}" type="text" name="Nom_ar" id="Nom_ar" class="form-control" dir="rtl">
+                                                        <input value="${notification.importateur.nom_ar}" type="text" name="Nom_ar" id="Nom_ar" class="form-control" dir="rtl">
                                                     </c:when>
                                                     <c:otherwise>
                                                         <input type="text" disabled value="${notification.importateur.nom_fr}" class="form-control">
@@ -151,12 +693,14 @@
                                     </div>
 
                                     <div class="row mb-2">
+                                        <c:if test="${type.equals('ZF')}">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label><spring:message code="label.identifiantfiscal"/> </label>
                                                 <input type="text" disabled value="${notification.importateur.idf}" class="form-control">
                                             </div>
                                         </div>
+                                            </c:if>
 
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -165,6 +709,26 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                            <div class="row mb-2">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Region"/> </label>
+                                                        <input type="text" disabled value="${notification.region.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> <spring:message code="label.Province"/>  </label>
+                                                        <input type="text" disabled value="${notification.prefecture.nom_fr}" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                     <div class="row mb-2">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -180,50 +744,142 @@
                                             </div>
                                         </div>
                                     </div>
+                                        </c:if>
                                 </div>
-                                <c:if test="${type.equals('TR') || type.equals('XD')}">
-                                    <h2>Autorité</h2>
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label><spring:message code="label.Adresse"/></label>
-                                                    <input disabled class="form-control" value="${notification.autorite.adresse}" type="text">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label><spring:message code="label.telephone"/></label>
-                                                    <input disabled class="form-control" value="${notification.autorite.tel}" type="text">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label><spring:message code="label.Fax"/></label>
-                                                    <input disabled class="form-control" value="${notification.autorite.fax}" type="text">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label><spring:message code="label.email"/></label>
-                                                    <input disabled class="form-control" value="${notification.autorite.email}" type="text">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </c:if>
                             </div>
                         </div>
+                        <c:if test="${notification.zf_et=='XD' || notification.zf_et=='TR'}">
                         <div class="">
                             <div class="card-header" id="headingThree">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <i class="fa fa-angle-double-right mr-3"></i>
+                                        Autorité
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse fade" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <c:if test="${notification.zf_et=='XD'}">
+                                            <h2>Autorité</h2>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label><spring:message code="label.Adresse"/></label>
+                                                            <input disabled class="form-control" value="${notification.autorite.adresse}" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label><spring:message code="label.telephone"/></label>
+                                                            <input disabled class="form-control" value="${notification.autorite.tel}" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label><spring:message code="label.Fax"/></label>
+                                                            <input disabled class="form-control" value="${notification.autorite.fax}" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label><spring:message code="label.email"/></label>
+                                                            <input disabled class="form-control" value="${notification.autorite.email}" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label><spring:message code="label.pays"/></label>
+                                                            <input disabled class="form-control" value="${notification.pays.nom_fr}" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </c:if>
+
+
+                                    <c:if test="${notification.zf_et=='TR'}">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Adresse"/></label>
+                                                        <input disabled class="form-control" value="${notification.autorite.adresse}" type="text">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.telephone"/></label>
+                                                        <input disabled class="form-control" value="${notification.autorite.tel}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.Fax"/></label>
+                                                        <input disabled class="form-control" value="${notification.autorite.fax}" type="text">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label><spring:message code="label.email"/></label>
+                                                        <input disabled class="form-control" value="${notification.autorite.email}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <table class="table my_table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th> Autorité </th>
+                                                    <th> Autorisation </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <c:if test="${not empty notification.paysAutorites}">
+                                                    <c:forEach items="${notification.paysAutorites}" var="tr">
+                                                        <tr>
+                                                            <td>${tr.pays.nom_fr}</td>
+                                                            <td><a href="${url_Admin}${fn:replace(tr.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:if>
+                                                <c:if test="${empty notification.paysAutorites}">
+                                                    <tr>
+                                                        <td class="text-center" colspan="5"> Aucune autorité  </td>
+                                                    </tr>
+                                                </c:if>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </c:if>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        </c:if>
+
+                        <div class="">
+                            <div class="card-header" id="headingFor">
+                                <h5 class="mb-0">
+                                    <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
                                         <i class="fa fa-angle-double-right mr-3"></i>
                                         <spring:message code="label.Documentdenotification"/>
                                         <button style="font-size: 12px !important;" type="button" id="Suivante" onclick="updatePdf(${notification.id_notification })" class="btn btn-warning btn-sm text-white">
@@ -232,7 +888,7 @@
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseThree" class="collapse fade" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div id="collapseFor" class="collapse fade" aria-labelledby="headingFor" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12">
@@ -316,9 +972,9 @@
                             </div>
                         </div>
                         <div class="">
-                            <div class="card-header" id="headingFour">
+                            <div class="card-header" id="headingFive">
                                 <h5 class="mb-0">
-                                    <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.documentdemouvement"/>
                                         <button onclick="go_link('/api/okPDF/${notification.id_notification}')" style="font-size: 12px !important;" class="btn btn-warning text-white btn-sm">
                                             <spring:message code="label.documentdemouvement"/>
@@ -326,42 +982,68 @@
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseFour" class="collapse fade" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div id="collapseFive" class="collapse fade" aria-labelledby="headingFive" data-parent="#accordionExample">
                                 <div class="card-body">
 
                                 </div>
                             </div>
                         </div>
+                        <c:if test="${notification.zf_et=='ET' ||notification.zf_et=='XD' || notification.zf_et=='ZF'}">
                         <div class="">
-                            <div class="card-header" id="headingFive">
+                            <div class="card-header" id="headingZero">
                                 <h5 class="mb-0">
-                                    <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.transporteurprevu"/>
+                                    <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="false" aria-controls="collapseZero">
+                                        <i class="fa fa-angle-double-right mr-3"></i>Transporteur national prévu
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseFive" class="collapse fade" aria-labelledby="headingfive" data-parent="#accordionExample">
+                            <div id="collapseZero" class="collapse fade" aria-labelledby="headingZero" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <c:if test="${notification.zf_et=='XD' || (notification.zf_et=='ZF' && notification.classification.id_classification==1)}">
+                                    <c:if test="${(notification.zf_et=='XD' || notification.zf_et=='ZF') && notification.classification.id_classification==1}">
+                                        <table id="tableProfils"
+                                               class="table my_table table-striped hover compact table-bordered text-md-nowrap">
+                                            <thead class="thead-bleu">
+                                            <tr>
+                                                <th class=""><spring:message code="label.nomdesociete"/></th>
+                                                <th class=""><spring:message code="label.identifiantfiscal"/></th>
+                                                <th class=""><spring:message code="label.telephone"/></th>
+                                                <th class=""><spring:message code="label.Fax"/></th>
+                                                <th class=""><spring:message code="label.Adresse"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tbodyTransporteur">
+                                            <c:forEach items="${notification.transporteur}" var="Tr_l">
+                                                <tr>
+                                                    <td>${Tr_l.nom} </td>
+                                                    <td>${Tr_l.identifiant} </td>
+                                                    <td>${Tr_l.tel} </td>
+                                                    <td>${Tr_l.fax} </td>
+                                                    <td>${Tr_l.adresse} </td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                            <c:if test="${(notification.zf_et=='XD' || notification.zf_et=='ZF') && notification.classification.id_classification==2}">
                                         <table class="table my_table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
                                                 <th> <spring:message code="label.nomdesociete"/> </th>
-                                                <th> <spring:message code="label.identifiantfiscal"/> </th>
-                                                <th> <spring:message code="label.telephone"/> </th>
-                                                <th> <spring:message code="label.Fax"/> </th>
-                                                <th> <spring:message code="label.Adresse"/> </th>
+                                                <th> <spring:message code="label.NMatriculation"/> </th>
+                                                <th> <spring:message code="label.Typedetransport"/> </th>
+                                                <th> <spring:message code="label.Assurance"/> </th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <c:if test="${not empty notification.transporteur}">
-                                                <c:forEach items="${notification.transporteur}" var="tr">
+                                            <c:if test="${not empty notification.transporteur_etranger}">
+                                                <c:forEach items="${notification.transporteur_etranger}" var="tr">
                                                     <tr>
-                                                        <td>${tr.nom}</td>
-                                                        <td>${tr.identifiant}</td>
-                                                        <td>${tr.tel}</td>
-                                                        <td>${tr.fax}</td>
-                                                        <td>${tr.adresse}</td>
+                                                        <c:if test="${tr.type=='tn'}">
+                                                        <td>${tr.raison_social}</td>
+                                                        <td>${tr.num_matricule}</td>
+                                                        <td>${tr.typeVehicule}</td>
+                                                        <td class="text-center"><a download="assurance" target="_blank" href="${fn:replace(tr.url_assurance, "/assets/myFile/","/dowload_uploaded/" )}" class="btn btn-success rounded"><span class="fa fa-download"></span></a></td>
+                                                        </c:if>
                                                     </tr>
                                                 </c:forEach>
                                             </c:if>
@@ -374,7 +1056,47 @@
                                                     <td>${declarationTrans.transporteurParam.adresse}</td>
                                                 </tr>
                                             </c:if>
-                                            <c:if test="${(empty notification.transporteur && empty declarationTrans)}">
+                                            <c:if test="${(empty notification.transporteur_etranger && empty declarationTrans)}">
+                                                <tr>
+                                                    <td class="text-center" colspan="5"> <spring:message code="label.AucunTransporteur"/>  </td>
+                                                </tr>
+                                            </c:if>
+                                            </tbody>
+                                        </table>
+                            </c:if>
+                                    <c:if test="${notification.zf_et !='ZF' && notification.zf_et!='XD'}">
+                                        <table class="table my_table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th> <spring:message code="label.nomdesociete"/> </th>
+                                                <th> <spring:message code="label.NMatriculation"/> </th>
+                                                <th> <spring:message code="label.Typedetransport"/> </th>
+                                                <th> <spring:message code="label.Assurance"/> </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:if test="${not empty notification.transporteur_etranger}">
+                                                <c:forEach items="${notification.transporteur_etranger}" var="tr">
+                                                    <tr>
+                                                        <c:if test="${tr.type=='tn'}">
+                                                            <td>${tr.raison_social}</td>
+                                                            <td>${tr.num_matricule}</td>
+                                                            <td>${tr.typeVehicule}</td>
+                                                            <td class="text-center"><a download="assurance" target="_blank" href="${fn:replace(tr.url_assurance, "/assets/myFile/","/dowload_uploaded/" )}" class="btn btn-success rounded"><span class="fa fa-download"></span></a></td>
+                                                        </c:if>
+                                                    </tr>
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${not empty declarationTrans}">
+                                                <tr class="bg-primary">
+                                                    <td>${declarationTrans.transporteurParam.nom}</td>
+                                                    <td>${declarationTrans.transporteurParam.identifiant}</td>
+                                                    <td>${declarationTrans.transporteurParam.tel}</td>
+                                                    <td>${declarationTrans.transporteurParam.fax}</td>
+                                                    <td>${declarationTrans.transporteurParam.adresse}</td>
+                                                </tr>
+                                            </c:if>
+                                            <c:if test="${(empty notification.transporteur_etranger && empty declarationTrans)}">
                                                 <tr>
                                                     <td class="text-center" colspan="5"> <spring:message code="label.AucunTransporteur"/>  </td>
                                                 </tr>
@@ -382,24 +1104,42 @@
                                             </tbody>
                                         </table>
                                     </c:if>
-                                    <c:if test="${notification.zf_et=='ET' ||notification.zf_et=='TR' || (notification.zf_et=='ZF' && notification.classification.id_classification==2)}">
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${notification.zf_et=='XD' || notification.zf_et=='ET' ||notification.zf_et=='TR'}">
+                            <div class="">
+                                <div class="card-header" id="headingZero1">
+                                    <h5 class="mb-0">
+                                        <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseZero1" aria-expanded="false" aria-controls="collapseZero1">
+                                            <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.TransporteurInternational"/>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseZero1" class="collapse fade" aria-labelledby="headingZero1" data-parent="#accordionExample">
+                                    <div class="card-body">
+
                                         <table class="table my_table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th> <spring:message code="label.raisonsocial"/> </th>
+                                                <th> <spring:message code="label.nomdesociete"/> </th>
                                                 <th> <spring:message code="label.NMatriculation"/> </th>
-                                                <th> <spring:message code="label.Typedevehicules"/> </th>
-                                                <th> <spring:message code="label.Attestationdassurance"/> </th>
+                                                <th> <spring:message code="label.Typedetransport"/> </th>
+                                                <th> <spring:message code="label.Assurance"/> </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <c:if test="${not empty notification.transporteur_etranger}">
                                                 <c:forEach items="${notification.transporteur_etranger}" var="tr">
                                                     <tr>
+                                                        <c:if test="${tr.type=='ti'}">
                                                         <td>${tr.raison_social}</td>
                                                         <td>${tr.num_matricule}</td>
                                                         <td>${tr.typeVehicule}</td>
                                                         <td class="text-center"><a download="assurance" target="_blank" href="${fn:replace(tr.url_assurance, "/assets/myFile/","/dowload_uploaded/" )}" class="btn btn-success rounded"><span class="fa fa-download"></span></a></td>
+                                                        </c:if>
                                                     </tr>
                                                 </c:forEach>
                                             </c:if>
@@ -410,83 +1150,122 @@
                                             </c:if>
                                             </tbody>
                                         </table>
-                                    </c:if>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:if>
                         <div class="">
                             <div class="card-header" id="headingSix">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.producteursdesdechets"/>
+                                        <i class="fa fa-angle-double-right mr-3"></i><c:if test="${notification.zf_et=='XD'}"><spring:message code="label.producteursdesdechets"/></c:if>
+                                        <c:if test="${notification.zf_et!='XD'}">Producteur</c:if>
                                     </a>
                                 </h5>
                             </div>
                             <div id="collapseSix" class="collapse fade" aria-labelledby="headingSix" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.nomdesociete"/></label>
-                                                <c:choose>
-                                                    <c:when test="">
-                                                        <input disabled class="form-control" value="${notification.producteur.nom_ar}" type="text">
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <input disabled class="form-control" value="${notification.producteur.nom_fr}" type="text">
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <c:if test="${notification.zf_et=='XD'}">
+                                            <table class="table my_table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th> <spring:message code="label.nomdesociete"/> </th>
+                                                    <th> <spring:message code="label.personneacontacter"/> </th>
+                                                    <th> <spring:message code="label.identifiantfiscal"/> </th>
+                                                    <th> <spring:message code="label.Adresse"/> </th>
+                                                    <th> <spring:message code="label.telephone"/> </th>
+                                                    <th> <spring:message code="label.Fax"/> </th>
+                                                    <th> <spring:message code="label.Email"/> </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <c:if test="${not empty notification.producteurs}">
+                                                    <c:forEach items="${notification.producteurs}" var="tr">
+                                                        <tr>
+                                                            <td>${tr.nom_fr}</td>
+                                                            <td>${tr.contact_fr}</td>
+                                                            <td>${tr.idf}</td>
+                                                            <td>${tr.adresse_fr}</td>
+                                                            <td>${tr.tel}</td>
+                                                            <td>${tr.fax}</td>
+                                                            <td>${tr.mail}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:if>
 
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.personneacontacter"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.contact_fr}" type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.identifiantfiscal"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.idf}" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.Adresse"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.adresse_fr}" type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.telephone"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.tel}" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.Fax"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.fax}" type="text">
+                                                <c:if test="${empty notification.producteurs}">
+                                                    <tr>
+                                                        <td class="text-center" colspan="5"> Aucun producteur  </td>
+                                                    </tr>
+                                                </c:if>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
+                                    <c:if test="${notification.zf_et!='XD'}">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.nomdesociete"/></label>
+                                                    <c:choose>
+                                                        <c:when test="">
+                                                            <input disabled class="form-control" value="${notification.producteur.nom_ar}" type="text">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input disabled class="form-control" value="${notification.producteur.nom_fr}" type="text">
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label><spring:message code="label.email"/></label>
-                                                <input disabled class="form-control" value="${notification.producteur.mail}" type="text">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.personneacontacter"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.contact_fr}" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.identifiantfiscal"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.idf}" type="text">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.Adresse"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.adresse_fr}" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.telephone"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.tel}" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.Fax"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.fax}" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label><spring:message code="label.email"/></label>
+                                                    <input disabled class="form-control" value="${notification.producteur.mail}" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
 
                                 </div>
                             </div>
@@ -602,8 +1381,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
 </div>
 
 

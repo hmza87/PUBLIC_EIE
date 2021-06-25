@@ -23,16 +23,19 @@
                 <c:forEach items="${notif.paysAutorites}" var="p">
                     <tr id="tr${p.id_paysautorite}">
                         <td>${p.pays.nom_fr}</td>
-                       <td class="text-center">
+                        <td class="text-center">
                             <c:if test="${not empty p.url_autorite}">
                                 <a href="${url_admin}${fn:replace(p.url_autorite, "/assets/myFile/", "/dowload_uploaded/")}" class="btn btn-primary rounded-circle"><span class="fa fa-download"></span></a>
                             </c:if>
                         </td>
                         <td class="">
-                            <button class="btn btn-danger rounded-circle">
+                            <button class="btn btn-danger rounded-circle"
+                                    >
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-warning rounded-circle">
+
+                            <button class="btn btn-warning rounded-circle"
+                                    >
                                 <span class="fas fa-pencil-alt"></span>
                             </button>
 
@@ -50,11 +53,7 @@
         </tbody>
     </table>
 </div>
-
-
-
 <div id="zone_form" class=" col-12 p-0 m-0">
-    <form id="add_autorite" >
         <div class="row m-0 p-0">
             <div class="col-6">
                 <div class="form-group">
@@ -62,9 +61,9 @@
                         Autorité
                     </label>
                     <select id="pays" name="pays" class="custom-select">
-                        <c:forEach items="${pays}" var="t">
+                        <c:forEach items="${pays1}" var="t">
                             <option <c:if
-                                    test="${paysautorites.pays.paysId== t[0]}"> selected </c:if>
+                                    test="${notif.pays.paysId== t[0]}"> selected </c:if>
                                     value="${t[0]}">${t[1]}</option>
                         </c:forEach>
                     </select>
@@ -96,5 +95,4 @@
                 <button onclick="Save_paysautorite2()" class="btn btn-primary btn-block">Enregistrer l'autorité</button>
             </div>
         </div>
-    </form>
 </div>

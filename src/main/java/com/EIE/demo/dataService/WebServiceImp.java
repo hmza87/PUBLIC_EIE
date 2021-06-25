@@ -1060,6 +1060,28 @@ class WebServiceImp implements WebService {
 		return response.getBody();
 	}
 
+	public String saveProducteurNotification(String nom_fr, String nom_ar, String contact_fr,String idf,String adresse_fr, String tel, String fax, String mail, int id_notif,int id_prod) {
+		final String uris = urlRest + "/saveProducteurNotificationRest/"+id_notif+"/"+id_prod;
+		MultiValueMap<String, Object> bodyMapw = new LinkedMultiValueMap<String,Object>();
+
+		bodyMapw.add("nom_fr", nom_fr);
+		bodyMapw.add("nom_ar", nom_ar);
+		bodyMapw.add("contact_fr",contact_fr);
+		bodyMapw.add("idf",idf);
+		bodyMapw.add("adresse_fr",adresse_fr);
+		bodyMapw.add("tel",tel);
+		bodyMapw.add("fax",fax);
+		bodyMapw.add("mail",mail);
+
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMapw, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = restTemplate.exchange(uris,
+				HttpMethod.POST, requestEntity, String.class);
+		String nn = response.getHeaders().getLocation().getPath().split("/")[2];
+		return nn;
+	}
+
 	@Override
 	public String saveTransporeuretranger(MultipartFile[] fileToUpload, String raison, String matricule, String type_vehicule,String adresse ,String port[],int id_notif, int id_trans) {
 		final String uris = urlRest + "/saveTransporeuretranger/"+id_notif+"/"+id_trans;
@@ -1116,6 +1138,21 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void deleteProducteurNotification(int id_notif, int id_prod) {
+		final String uri = urlRest+"/deleteProducteurNotificationRest/"+id_prod+"/"+id_notif ;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uri,String.class);
+	}
+
+
+	@Override
+	public void deleteAutoriteNotif(int id_notif, int id_aut) {
+		final String uri = urlRest+"/deleteAutoriteNotifRest/"+id_aut+"/"+id_notif ;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject(uri,String.class);
+	}
+
+	@Override
 	public void deletePort(int id, int id_trans) {
 		final String uri = urlRest+"/deletePortRest/"+id +"/"+id_trans;
 		RestTemplate restTemplate = new RestTemplate();
@@ -1127,6 +1164,14 @@ class WebServiceImp implements WebService {
 		final String uri = urlRest+"/getTransporteurEtrangerByIdRest/"+id_trans ;
 		RestTemplate restTemplate = new RestTemplate();
 		TransporteurEtranger result = restTemplate.getForObject(uri,TransporteurEtranger.class);
+		return result;
+	}
+
+	@Override
+	public Producteur getProducteurById(int id_trans) {
+		final String uri = urlRest+"/getProducteurByIdRest/"+id_trans ;
+		RestTemplate restTemplate = new RestTemplate();
+		Producteur result = restTemplate.getForObject(uri,Producteur.class);
 		return result;
 	}
 

@@ -534,6 +534,54 @@ function ajouterTranporteur_Etranger(id_name) {
         });
 
 }
+
+function ajouterProducteur(id_name) {
+    if(event!=null)
+        event.preventDefault();
+    var id = $("#" + id_name).val();
+    var nom_fr = $("#nom_fr").val();
+    var nom_ar = $("#nom_ar").val();
+    var contact_fr = $("#contact_fr").val();
+    var idf = $("#idf").val();
+    var adresse_fr = $("#adresse_fr").val();
+    var tel = $("#tel").val();
+    var fax = $("#faxe").val();
+    var mail = $("#mail").val();
+
+
+    var id_prod = $("#id_prod").val();
+    var data = new FormData();
+    data.append("nom_fr", nom_fr);
+    data.append("nom_ar", nom_ar);
+    data.append("contact_fr", contact_fr);
+    data.append("idf", idf);
+    data.append("adresse_fr", adresse_fr);
+    data.append("tel", tel);
+    data.append("fax", fax);
+    data.append("mail", mail);
+
+
+
+    $.ajax({
+        url: '/api/addProducteurNotification/' + id + "/" + id_prod,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        cache: false,
+        data: data,
+    })
+        .done(function (data) {
+            $("#producteur_table").html(data);
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
+}
+
 function removePort(btn,id,id_name,id_trans){
     if(event!=null)
         event.preventDefault();
@@ -581,7 +629,7 @@ function ajouterTranporteur_EtrangerNational(id_name) {
     for (var x = 0; x < ins; x++) {
         var file = document.getElementById("doc_assurance_n").files[x];
         if (file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-            swal("Alert", "Type de ficier non pris en charge", "error");
+            swal("Alert", "Type de fichier non pris en charge", "error");
             return false;
         }
         data.append("fileToUpload", file);
@@ -664,6 +712,63 @@ function delete_transp_etrang2(id, id_name, type) {
 }
 
 
+function deleteProducteurNotification(id_prod, id_name) {
+    var id_notif = $("#" + id_name).val();
+    $.ajax({
+        url: '/api/deleteProducteurNotification/' + id_notif + '/' + id_prod,
+        type: 'POST',
+        data: {},
+    })
+        .done(function (data) {
+            swal({
+                    title: "Suppression ",
+                    text: "Le producteur à été supprimer avec succès",
+                    type: "success",
+                },
+                function () {
+                    $("#producteur_table").html(data);
+                    $("#trr_"+id_prod).hide();
+                });
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
+}
+
+
+function deleteAutoriteNotif(id_aut, id_name) {
+    var id_notif = $("#" + id_name).val();
+    $.ajax({
+        url: '/api/deleteAutoriteNotif/' + id_notif + '/' + id_aut,
+        type: 'POST',
+        data: {},
+    })
+        .done(function (data) {
+            swal({
+                    title: "Suppression ",
+                    text: "L'autorité à été supprimer avec succès",
+                    type: "success",
+                },
+                function () {
+                    $("#pays_table").html(data);
+                    $("#trr_"+id_aut).hide();
+                });
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
+}
+
 function edit_transp_trang(id, id_name, type) {
     var id_notif = $("#" + id_name).val();
     $.ajax({
@@ -676,6 +781,24 @@ function edit_transp_trang(id, id_name, type) {
                 $("#row_from_groupe").html(data);
             else if (type === "etranger")
                 $("#row_from_groupe_port").html(data);
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+}
+
+function edit_producteur_notification(id_prod, id_name) {
+    var id_notif = $("#" + id_name).val();
+    $.ajax({
+        url: '/api/getoneProducteurNotification/' + id_prod + '/' + id_notif,
+        type: 'POST',
+        data: {},
+    })
+        .done(function (data) {
+                $("#producteur_table").html(data);
         })
         .fail(function () {
             console.log("error");

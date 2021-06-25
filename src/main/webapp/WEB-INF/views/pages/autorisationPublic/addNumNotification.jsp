@@ -125,7 +125,7 @@
             <div class="tab"  dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}" style="float: ${pageContext.response.locale=='ar'?'right':'left'}">
 
                 <button class="tablinks btn-primary btn" onclick="openCity(event, '1')" id="defaultOpen">1. <spring:message code="label.Demandedenumerodenotification"/> </button>
-                <button class="tablinks btn-primary btn my_tab " ${disabled} id="Btn2" onclick="openCity(event, '2')">2. <spring:message code="label.ImportateurNotifiant"/> </button>
+                <button class="tablinks btn-primary btn my_tab " ${disabled} id="Btn2" onclick="openCity(event, '2')">2. ${type.equals("ZF")?"Importateur":"Exportateur"} - Notifiant </button>
 
             </div>
 
@@ -345,7 +345,7 @@
 
             <div id="2" class="tabcontent pr-0">
 
-                <h4 class="titre_abs "><spring:message code="label.ImportateurNotifiant"/> </h4>
+                <h4 class="titre_abs ">${type.equals("ZF")?"Importateur":"Exportateur"} - Notifiant </h4>
                 <form id="formimportateur" name="formimportateur">
                     <div class="row m-0 p-0 mt-5">
                         <input type="hidden" id="notification_id" name="notification_id" value="${notif.importateur.notification_id}">

@@ -89,7 +89,7 @@
                                         <c:if test="${nt.statut.id_statut_projet==37 || nt.statut.id_statut_projet==55 || nt.statut.id_statut_projet==48 || nt.statut.id_statut_projet==65 || nt.statut.id_statut_projet==67 ||  nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==40}">
                                             <span class="badge badge-info">${nt.statut.nom_fr}</span>
                                         </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet!=37 && nt.statut.id_statut_projet!=54 && nt.statut.id_statut_projet!=55 && nt.statut.id_statut_projet!=48 && nt.statut.id_statut_projet!=64 && nt.statut.id_statut_projet!=65 && nt.statut.id_statut_projet!=67 &&  nt.statut.id_statut_projet!=68 && nt.statut.id_statut_projet!=40}">
+                                        <c:if test="${nt.statut.id_statut_projet!=84 && nt.statut.id_statut_projet!=37 && nt.statut.id_statut_projet!=54 && nt.statut.id_statut_projet!=55 && nt.statut.id_statut_projet!=48 && nt.statut.id_statut_projet!=64 && nt.statut.id_statut_projet!=65 && nt.statut.id_statut_projet!=67 &&  nt.statut.id_statut_projet!=68 && nt.statut.id_statut_projet!=40}">
                                             <span class="badge badge-info">en cours de traitement</span>
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==54}">
@@ -97,6 +97,9 @@
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==64}">
                                             <a type="button" onclick="show_popup2()" class="text-white"><span class="badge badge-info">${nt.statut.nom_fr}</span></a>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==84}">
+                                            <a type="button" onclick="show_popup3()" class="text-white"><span class="badge badge-info">${nt.statut.nom_fr}</span></a>
                                         </c:if>
                                     </td>
                                     <td>  ${nt.operation }  </td>
@@ -228,6 +231,9 @@
     }
     function show_popup2(){
         swal("","Vous pouvez vous déplacez pour l'obtention de votre garantie financière","success");
+    }
+    function show_popup3(){
+        swal("","Vous pouvez vous déplacez pour l'obtention de votre lettre originale","success");
     }
 </script>
 

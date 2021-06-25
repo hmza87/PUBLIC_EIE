@@ -12,14 +12,8 @@ import java.util.Date;
 @org.hibernate.annotations.Proxy(lazy = true)
 @Table(name = "producteur")
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonAutoDetect
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Producteur implements Serializable {
-	
-	
-	public Producteur() {
-		
-	}
 
 	@Id
     @GeneratedValue (strategy=GenerationType.IDENTITY)
