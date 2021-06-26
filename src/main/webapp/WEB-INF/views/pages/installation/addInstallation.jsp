@@ -565,6 +565,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <%--  <c:forEach items="${notif.codeTmp}" var="c">--%>
                                                         <c:forEach items="${notif.code}" var="c">
                                                             <tr  id="tr-${c.id_code}">
                                                                 <td>${c.nom_fr }</td>
