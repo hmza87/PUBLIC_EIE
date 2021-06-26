@@ -64,8 +64,8 @@
                     <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><spring:message
-                                    code="label.Installationdetraitementdesdechets"/></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="/api/checkUserHasCollecte/IT"><spring:message
+                                    code="label.Installationdetraitementdesdechets"/></a></li>
                         </ol>
                     </nav>
                 </div>

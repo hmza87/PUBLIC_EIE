@@ -25,7 +25,8 @@
                 <nav aria-label="breadcrumb" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Installation de traitement des déchets</li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/api/checkUserHasCollecte/IT"><spring:message
+                                code="label.Installationdetraitementdesdechets"/></a></li>
                     </ol>
                 </nav>
             </div>
@@ -198,6 +199,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12 table-responsive">
+                                <h4 id="myH"></h4>
                                 <table class="table table-hover table-striped table-bordered tab_vehicule" id="tab_code">
                                     <thead>
                                     <tr>
@@ -268,6 +270,15 @@
                 cache : false,
                 success : function(response) {
                     console.log(response);
+                    if(response.typeIT=="1"){
+                        $("#myH").text("Les codes non traiter");
+                    }
+                    else if(response.typeIT=="2"){
+                        $("#myH").text("Les codes traiter");
+                    }
+                    else{
+                        $("#myH").text("vous choisissez tous les codes");
+                    }
                     if(response.url_Admin==null || response.url_Admin==""){
                         window.location.href="/index";
                     }

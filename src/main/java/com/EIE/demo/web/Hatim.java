@@ -450,6 +450,7 @@ public class Hatim {
 		Installation v =  webt.getInstallationById(id_install,webt.getCompteConnected().getCompteId());
 		map.put("url_Admin",urlRest);
 		map.put("codes",v.getCode());
+		map.put("typeIT",v.getType());
 		map.put("user",webt.getCompteConnected());
 		return map;
 	}
