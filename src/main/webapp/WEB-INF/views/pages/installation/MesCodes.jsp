@@ -19,13 +19,7 @@
             </thead>
             <tbody>
             <c:forEach items="${inst.code}" var="c">
-                <c:set var="bg" value=""/>
-                <c:forEach items="${inst.codeTmp}" var="code_colle">
-                    <c:if test="${code_colle.id_code==c.id_code}">
-                        <c:set var="bg" value="bg-danger"/>
-                    </c:if>
-                </c:forEach>
-                <tr class="${bg}" id="tr-${c.id_code}">
+                <tr id="tr-${c.id_code}">
                     <td>${c.nom_fr }</td>
                     <td>${c.nom_ar }</td>
                     <td>

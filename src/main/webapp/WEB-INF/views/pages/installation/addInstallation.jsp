@@ -427,7 +427,7 @@
                                                                        value="3" onchange="my_function('3')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    sélectionné Tout
+                                                                    sélectionner Touts
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -440,7 +440,7 @@
                                                                        value="2" onchange="my_function('2')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                   sélectionné De la liste
+                                                                   sélectionner à partir de la liste
                                                                 </label>
                                                             </div>
 
@@ -454,7 +454,7 @@
                                                                         value="1" onchange="my_function('1')">
                                                                 <label class="form-check-label"
                                                                        style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    selectionné tout sauf
+                                                                    selectionner touts sauf
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -566,13 +566,7 @@
                                                         </thead>
                                                         <tbody>
                                                         <c:forEach items="${notif.code}" var="c">
-                                                            <c:set var="bg" value=""/>
-                                                            <c:forEach items="${notif.codeTmp}" var="code_colle">
-                                                                <c:if test="${code_colle.id_code==c.id_code}">
-                                                                    <c:set var="bg" value="bg-danger"/>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <tr class="${bg}" id="tr-${c.id_code}">
+                                                            <tr  id="tr-${c.id_code}">
                                                                 <td>${c.nom_fr }</td>
                                                                 <td>${c.nom_ar }</td>
                                                                 <td>
@@ -581,8 +575,6 @@
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
-
-
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -700,6 +692,7 @@
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                     <spring:message code="label.mespieces"/></h4>
                             <p>
+                                <%--                            cette modification demande par Mr mhamdi le 25/06--%>
                                 <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
                                 <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
                             </p>
@@ -896,9 +889,8 @@
                 if (type == "add") {
                     $('#id-' + id_code).attr("disabled", "true");
                 }
-                if (type == "delete") {
+                if (type == "delete" && typeIT =="1") {
                     $("#tr-"+id_code).hide();
-
                 }
                 console.log("complete");
             });

@@ -66,6 +66,10 @@
     <div class="col-md-10 col-sm-12">
       <div class="row p-0 mb-2">
 
+          <c:if test="${installation.statut.id_statut_projet==87 }">
+            <a href="/api/addInstallation/${installation.id_installation }/N" class="btn btn-primary rounded m-2"><span class="fas fa-file"></span> Compléter les document</a>
+          </c:if>
+
           <c:if test="${installation.statut.id_statut_projet==51}">
             <div class="col-md-3">
               <a href="/api/addInstallation/${installation.id_installation }/N" class="btn btn-primary btn-block"><i class="fa fa-pencil-alt " title="Modifier" style="margin:0 !important"></i> <spring:message code="label.Editer"/></a>

@@ -719,6 +719,7 @@
                                     </div>
                                 </div>
                                 <p>
+                                    <%--                            cette modification demande par Mr mhamdi le 25/06--%>
                                     <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
                                     <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
                                 </p>                                <c:if test="${collect.statut.id_statut_projet==42}">
