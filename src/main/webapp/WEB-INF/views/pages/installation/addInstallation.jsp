@@ -699,7 +699,10 @@
                                 <h4 class="titre_abs "
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                     <spring:message code="label.mespieces"/></h4>
-                                <p class="h5 text-center p-3 mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
+                            <p>
+                                <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
+                                <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
+                            </p>
 
                             <c:if test="${notif.statut.id_statut_projet!=87}">
                                 <c:forEach items="${doc}" var="dc">

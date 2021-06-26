@@ -3171,8 +3171,10 @@
                     <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                     <form id="document" name="document">
                     <input type="hidden" name="id_notif" id="id_notifss" value="${id_notif}">
-                    <p class="h5 text-center mt-2"> <span class=" p-2 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
-
+                        <p>
+                            <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
+                            <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
+                        </p>
                     <c:forEach items="${doc}" var="dc">
                         <c:set var="id_doc" value="${dc.id_docImport}"/>
                         <div class="row justify-content-center">

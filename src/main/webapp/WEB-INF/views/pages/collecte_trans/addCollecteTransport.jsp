@@ -718,8 +718,10 @@
                                         <h4 class="titre_abs "><spring:message code="label.mespieces"/></h4>
                                     </div>
                                 </div>
-                                <p class="h5 text-center p-3 bg danger mt-2"> <span class=" p-2 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
-                                <c:if test="${collect.statut.id_statut_projet==42}">
+                                <p>
+                                    <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
+                                    <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
+                                </p>                                <c:if test="${collect.statut.id_statut_projet==42}">
                                     <c:forEach items="${doc2}" var="dc">
                                         <c:if test="${dc.nom_ar!='oui'}">
                                             <div class="row justify-content-center">
