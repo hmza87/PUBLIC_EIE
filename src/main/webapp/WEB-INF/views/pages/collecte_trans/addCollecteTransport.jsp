@@ -260,7 +260,7 @@
                                                 <label> <spring:message code="label.EmailA"/> </label> <input
                                                     value="${collect.demandeurEmail}"
                                             ${((collect.statut.id_statut_projet==25) && (typeRenouv=='N'))?"disabled":""}
-                                                    type="text" name="demandeur_email" id="demandeurEmail"
+                                                    type="email" name="demandeur_email" id="demandeurEmail"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -1302,6 +1302,60 @@
         });
     }
 
+
+    $(function() {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        $("form[name='formdemandeur']").validate({
+
+
+
+
+            // Specify validation rules
+            rules: {
+                demandeur_email: {
+                    required: true
+                },
+                demandeur_tel : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+                demandeur_fax : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+
+
+
+            },
+
+
+            // Specify validation error messages
+            messages: {
+                demandeur_email: "S'il vous plaît, mettez une adresse email valide",
+                demandeur_tel: "S'il vous plaît, mettez un telephone valide",
+                demandeur_fax: "S'il vous plaît, mettez un fax valide",
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+
+
+        });
+
+
+
+    });
+
 </script>
 
+
 <jsp:include page="../../includes/footer1.jsp"/>
+

@@ -411,8 +411,8 @@
                         <div class="col-6">
                             <div class="form-group" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
                                 <label style="float: ${pageContext.response.locale=='ar'?'right':'left'}"> <spring:message code="label.Email"/> </label>
-                                <input  value="${notif.importateur.mail}" type="text" name="mail" id="emailentrprs"
-                                        class="form-control emailValide">
+                                <input  value="${notif.importateur.mail}" type="email" name="mail" id="emailentrprs"
+                                        class="form-control">
                             </div>
                         </div>
                     </div>
@@ -488,6 +488,56 @@
         alert(regex.test(email));
 
     }
+    $(function() {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        $("form[name='formimportateur']").validate({
+
+
+
+
+            // Specify validation rules
+            rules: {
+                email: {
+                    required: true
+                },
+                tel : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+                fax : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+
+
+
+            },
+
+
+            // Specify validation error messages
+            messages: {
+                email: "S'il vous plaît, mettez une adresse email valide",
+                tel: "S'il vous plaît, mettez un telephone valide",
+                fax: "S'il vous plaît, mettez un fax valide",
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+
+
+        });
+
+
+
+    });
 
 </script>
 
