@@ -11,19 +11,20 @@
     .accordion-toggle {
         background-color: #7dc7bd;
         display: block;
-        padding: 10px;
-        margin: -10px -15px;
+    //padding: 10px;
+        margin: -11px -20px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
     }
 
     .accordion-toggle.collapsed {
-        background-color: lightgrey;
+        background-color: #f6f6f6;
+        border-top-color: #c5c5c5;
+        font-weight: normal;
+        color: #454545 !important;
     }
 </style>
-<div class="container-fluid bg-gray" id="accordion-style-1">
-    <div class="container">
-        <section>
+<div class="bg-white" id="accordion-style-1">
             <div class="row">
                 <div class="col-12">
                     <div class="accordion" id="accordionExample">
@@ -292,8 +293,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
 </div>
 
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>

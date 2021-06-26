@@ -46,14 +46,8 @@
                                             <div class="form-group">
                                                 <label><spring:message code="label.Numerodenotification"/></label>
                                                 <input class="form-control" value="${notification.num_notification}" disabled>
-
                                             </div>
-
-
-
                                         </div>
-
-
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label><spring:message code="label.Classificationdesdechets"/> </label>
@@ -61,8 +55,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="row m-0 p-0 mt-2">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -70,7 +62,6 @@
                                                 <input type="text" disabled value="${notification.code.nom_fr}" class="form-control">
                                             </div>
                                         </div>
-
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label><spring:message code="label.typededechet"/> </label>
@@ -676,7 +667,7 @@
                                                 <label> <spring:message code="label.nomdesociete"/>  </label>
                                                 <c:choose>
                                                     <c:when test="${pageContext.response.locale=='ar'}">
-                                                        <input value="${notification.importateur.nom_ar}" type="text" name="Nom_ar" id="Nom_ar" class="form-control" dir="rtl">
+                                                        <input value="${notification.importateur.nom_ar}" type="text" disabled class="form-control" dir="rtl">
                                                     </c:when>
                                                     <c:otherwise>
                                                         <input type="text" disabled value="${notification.importateur.nom_fr}" class="form-control">
