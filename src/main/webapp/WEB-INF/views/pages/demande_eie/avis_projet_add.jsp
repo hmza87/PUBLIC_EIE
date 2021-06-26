@@ -638,7 +638,7 @@
                         Swal.fire({
                             title: '<strong>' + msg_alert + '</strong>',
                             icon: 'success',
-                            html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
+                            html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Afficher le Récapitulatif</a>',
                             showCloseButton: false,
                             showCancelButton: false,
                             showConfirmButton: false,
@@ -745,7 +745,7 @@
                 Swal.fire({
                     title: '<strong>' + msg_alert + '</strong>',
                     icon: 'success',
-                    html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Récapitulatif</a>',
+                    html: '<a href="' + link_recap + '" class="btn btn-success ml-2 ">Afficher le Récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
