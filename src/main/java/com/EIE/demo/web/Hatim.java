@@ -522,7 +522,7 @@ public class Hatim {
 		map.put("inst", v);
 		map.put("user",webt.getCompteConnected());
 		map.put("codes",v.getCode());
-		return new ModelAndView("installation/MesCodes",map);
+		return new ModelAndView("installation/MesCodes2",map);
 	}
 
 	@GetMapping("/api/generate_pdf_installation/{id}")
@@ -551,7 +551,6 @@ public class Hatim {
 			return "not existe";
 		}
 	}
-
 
 	@RequestMapping(value = "/api/UpdateRegion", method = RequestMethod.POST)
 	public ModelAndView updateRegion(@RequestParam int id,@RequestParam int regionId)

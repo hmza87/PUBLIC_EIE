@@ -504,7 +504,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-sm-4 listCode" style="margin-top: 4rem">
-                                                <div class="row pb-2 m-0" id="my_rows">
+                                                <div class="row pb-2 m-0" id="monT">
                                                     <table class="table table-striped">
                                                         <tr>
                                                             <th>Type de déchet</th>
@@ -589,7 +589,6 @@
                                                 <input type="hidden" id="cpt" value="${notif.codeTmp.size()}">
                                                 <input type="hidden" id="typeIT" value="${notif.type}">
                                                 <div class="col-sm-4 listCode" style="margin-top: 4rem">
-                                                    <div class="row pb-2 m-0" >
                                                         <table class="table table-striped">
                                                             <tr>
                                                                 <th>Type de déchet</th>
@@ -608,7 +607,6 @@
                                                             </c:forEach>
                                                             </tbody>
                                                         </table>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -702,9 +700,10 @@
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                     <spring:message code="label.mespieces"/></h4>
                                 <p class="h5 text-center p-3 mt-2"> <span class=" p-4 "><spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/></span> </p>
+
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
                                 <c:forEach items="${doc}" var="dc">
                                     <div class="row justify-content-center">
-                                        <c:if test="${notif.statut.id_statut_projet==87 && dc.id_docImport ==2770}">
                                             <div class="col-6 mt-3  ">
                                                 <div class="form-group"
                                                      style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -718,21 +717,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </c:if>
-                                        <div class="col-6 mt-3  ">
-                                            <div class="form-group"
-                                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                                <div>
-
-                                                    <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
-                                                    <input
-                                                            required
-                                                            onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','IT','id_installation')"
-                                                            accept=".pdf" type="file" id="doc${dc.id_docImport }"
-                                                            class="form-control mydoc">
-                                                </div>
-                                            </div>
-                                        </div>
                                         <c:if test="${not empty docNotify}">
                                             <div class="col-2">
                                                 <c:forEach items="${docNotify}" var="d">
@@ -746,7 +730,26 @@
                                         </c:if>
                                     </div>
                                 </c:forEach>
-                                <div class="row justify-content-center mb-5 mt-3">
+                            </c:if>
+                            <c:if test="${notif.statut.id_statut_projet==87}">
+                                    <div class="row justify-content-center">
+                                        <div class="col-6 mt-3  ">
+                                            <div class="form-group"
+                                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                                <div>
+                                                    <label style="width: 100%;"> ${pageContext.response.locale=='ar'?doc[0].nom_ar:doc[0].nom_fr} </label>
+                                                    <input
+                                                            required
+                                                            onchange="addDocG('0',${doc[0].id_docImport},'doc${doc[0].id_docImport }','IT','id_installation')"
+                                                            accept=".pdf" type="file" id="doc${doc[0].id_docImport }"
+                                                            class="form-control mydoc">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </c:if>
+
+                                    <div class="row justify-content-center mb-5 mt-3">
                                     <c:if test="${notif.statut.id_statut_projet == 87}">
                                         <div class="col-md-2 col-sm-6">
                                             <button  type="button" id="prec2"
@@ -776,7 +779,6 @@
                                     </c:if>
 
                                 </div>
-
                             </div>
 
 
@@ -877,12 +879,7 @@
             data: {},
         })
             .done(function (data) {
-                if(typeIT=="2"){
-                    $("#tbody_it").html(data);
-                }
-                else {
-                    $("#my_rows").html(data);
-                }
+               $("#my_rows").html(data);
                 console.log(cpt);
             })
             .fail(function () {
@@ -948,7 +945,7 @@
             data: {},
         })
             .done(function (data) {
-                $("#my_rows").html(data);
+                $("#monT").html(data);
             })
             .fail(function () {
                 console.log("error");

@@ -174,7 +174,7 @@
                                             <a href="/api/generateDocInstallFavorable/${nt.id_installation}" class="btn btn-primary rounded m-2"><span class="fas fa-file-download"></span></a>
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==87 }">
-                                            <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary rounded m-2"><span class="fas fa-file"></span>Compléter les document</a>
+                                            <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary rounded m-2"><span class="fas fa-file"></span> Compléter les document</a>
                                         </c:if>
                                 </td>
                             </tr>
