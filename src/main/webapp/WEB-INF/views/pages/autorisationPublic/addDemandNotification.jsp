@@ -3644,6 +3644,62 @@
             }
         });
     }
+
+    function ajouterTranporteur_EtrangerNational(id_name) {
+
+        event.preventDefault();
+        var id = $("#" + id_name).val();
+        var raison = $("#raison_social_n").val();
+        var matricule = $("#num_matriule_n").val();
+        var type_vehicule = $("#type_vehicule_n").val();
+        var adresse = $("#adresseTr_n").val();
+
+        var id_trans = $("#id_trans_n").val();
+        if ($.trim(id_trans) === "" || id_trans == null || !$.isNumeric(id_trans)) {
+            id_trans = 0;
+        }
+        var data = new FormData();
+        data.append("raison", raison);
+        data.append("matricule", matricule);
+        data.append("type_vehicule", type_vehicule);
+        data.append("adresse", adresse);
+
+
+        var ins = document.getElementById("doc_assurance_n").files.length;
+        if (ins == 0 && !$("#btn_downolad").is(":visible")) {
+            swal("Avertissement ! ", "Le fichier est obligatoire", 'error');
+            return false;
+        }
+
+        for (var x = 0; x < ins; x++) {
+            var file = document.getElementById("doc_assurance_n").files[x];
+            if (file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+                swal("Alert", "Type de fichier non pris en charge", "error");
+                return false;
+            }
+            data.append("fileToUpload", file);
+        }
+
+
+        $.ajax({
+            url: '/api/addTransporteuretrangerNational/' + id + "/" + id_trans,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: data,
+        })
+            .done(function (data) {
+                $("#row_from_groupe").html(data);
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            });
+
+    }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>

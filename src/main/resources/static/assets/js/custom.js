@@ -547,7 +547,7 @@ function ajouterProducteur(id_name) {
     var idf = $("#idf").val();
     var adresse_fr = $("#adresse_fr").val();
     var tel = $("#tel").val();
-    var fax = $("#faxe").val();
+    var fax = $("#fax").val();
     var mail = $("#mail").val();
 
 
