@@ -471,7 +471,7 @@
                                    <div class="col-6">
                                        <div class="form-group">
                                            <label><spring:message code="label.courrierelectronique"/></label>
-                                           <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
+                                           <input class="form-control" type="email" name="courrier" value="${notification.courrier}">
                                        </div>
                                    </div>
                                    <div class="col-6">
@@ -848,7 +848,7 @@
                                <div class="col-6">
                                    <div class="form-group">
                                        <label> ${type.equals("ZF")?"E-mail":"Courrier électronique"} </label>
-                                       <input value="${notification.importateur.mail}"  ${disabled} type="text" name="mail"
+                                       <input value="${notification.importateur.mail}"  ${disabled} type="email" name="mail"
                                               id="emailentrprs"
                                               class="form-control">
                                    </div>
@@ -1102,7 +1102,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label><spring:message code="label.courrierelectronique"/></label>
-                                            <input class="form-control" type="text" name="courrier" value="${notification.courrier}">
+                                            <input class="form-control" type="email" name="courrier" value="${notification.courrier}">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -1466,7 +1466,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div id="zone_form" class=" col-12 p-0 m-0">
+                                    <form id="zone_form">
+                                    <div  class=" col-12 p-0 m-0">
                                             <div class="row m-0 p-0">
                                                 <div class="col-6">
                                                     <div class="form-group">
@@ -1497,6 +1498,7 @@
                                                 </div>
                                             </div>
                                     </div>
+                                    </form>
 
                                 </div>
 
@@ -2422,7 +2424,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div id="zone_form" class=" col-12 p-0 m-0">
+                                <form id="zone_form1" name="zone_form1">
+                                <div  class=" col-12 p-0 m-0">
                                     <div class="row m-0 p-0 mt-5">
 
                                         <div class="col-6 ">
@@ -2491,6 +2494,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </form>
 
                             </div>
 
@@ -3748,6 +3752,56 @@
     $(function() {
         // Initialize form validation on the registration form.
         // It has the name attribute "registration"
+        $("form[name='zone_form1']").validate({
+
+
+
+
+            // Specify validation rules
+            rules: {
+                mail: {
+                    required: true
+                },
+                tel : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+                fax : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+
+
+
+            },
+
+
+            // Specify validation error messages
+            messages: {
+                email: "S'il vous plaît, mettez une adresse email valide",
+                tel: "S'il vous plaît, mettez un telephone valide",
+                fax: "S'il vous plaît, mettez un fax valide",
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+
+
+        });
+
+
+
+    });
+    $(function() {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
         $("form[name='formproducteur']").validate({
 
 
@@ -3881,6 +3935,56 @@
                 courrier: "S'il vous plaît, mettez une adresse courrier valide",
                 tel: "S'il vous plaît, mettez un telephone valide",
                 telecopie: "S'il vous plaît, mettez un telecopie valide",
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+
+
+        });
+
+
+
+    });
+    $(function() {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        $("form[name='formimportateur']").validate({
+
+
+
+
+            // Specify validation rules
+            rules: {
+                mail: {
+                    required: true
+                },
+                tel : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+                fax : {
+                    required: true,
+                    number : true,
+                    minlength:10,
+                    maxlength:10
+                },
+
+
+
+            },
+
+
+            // Specify validation error messages
+            messages: {
+                mail: "S'il vous plaît, mettez une adresse courrier valide",
+                tel: "S'il vous plaît, mettez un telephone valide",
+                fax: "S'il vous plaît, mettez un telecopie valide",
 
             },
             // Make sure the form is submitted to the destination defined
