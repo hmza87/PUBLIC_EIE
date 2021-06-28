@@ -9,11 +9,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 
 <jsp:include page="../../includes/head.jsp"/>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
 
-<section class="services-section" style="background-color: white" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
+<section class="services-section" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card cardstatistic" id="pagereload" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
             <c:choose>
@@ -69,32 +71,29 @@
                             <th class="" rowspan="2"><spring:message code="label.Quantite"/></th>
 
                             <th class="text-center" colspan="5"><spring:message code="label.societe"/></th>
-                            <th class="text-center" colspan="3"><spring:message code="label.Equipedetravail"/></th>
-                            <th class="" rowspan="2"><spring:message code="label.Informationdinstallation"/></th>
+                            <th class="" rowspan="2"><spring:message code="label.Nombredequipe"/></th>
+                            <th class="" rowspan="2">Nombre d'effectif</th>
                             <th class="" rowspan="2"><spring:message code="label.descriptiondinstallation"/></th>
                             <th class="" rowspan="2"><spring:message code="label.structuredinstallation"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Horairedexploitation"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Recepisse"/></th>
                             <th class="" rowspan="2"><spring:message code="label.Rapportdeconformite"/></th>
-                            <th class="" rowspan="2"><spring:message code="label.Action"/></th>
+                            <th  class="all" rowspan="2"><spring:message code="label.Action"/></th>
                         </tr>
 
-                        <tr >
+                        <tr>
                             <th class=""><spring:message code="label.Raisonsocial"/></th>
                             <th class=""><spring:message code="label.identifiantfiscal"/> </th>
                             <th class=""><spring:message code="label.Email"/></th>
                             <th class=""><spring:message code="label.Fax"/> </th>
                             <th class=""><spring:message code="label.telephone"/></th>
-                            <th class=""><spring:message code="label.Nombredequipe"/> </th>
-                            <th class=""><spring:message code="label.Qualification"/></th>
-                            <th class=""><spring:message code="label.Formation"/></th>
                         </tr>
 
 
 
                         </thead>
                         <tbody>
-                        <c:forEach items="${notif}" var="nt">
+                        <c:forEach items="${notif}" var="nt" varStatus="loopp">
                             <tr>
                                 <td class="font-weight-semibold">${nt.num_demande }</td>
 
@@ -104,9 +103,9 @@
                                 </td>
                                 <td>
                                     <c:if test="${not empty nt.code}">
-                                        <button class="btn btn-success btn-circle"
+                                        <button style=" color: #fff;background-color: #7d90c7;" class="btn  btn-circle"
                                                 onclick="show_code('${nt.id_installation}')">
-                                            <span class="fa fa-dumpster"></span>
+                                            <span  class="fa fa-dumpster" ></span>
                                         </button>
                                     </c:if>
                                     <c:if test="${empty nt.code}">
@@ -117,7 +116,7 @@
 
                                 </td>
                                 <td> ${nt.site } </td>
-                                <td> <span class="badge badge-info"> ${nt.statut.nom_fr }</span>  </td>
+                                <td> <span class="badge badge-success"> ${nt.statut.nom_fr }</span>  </td>
                                 <td> <span class="badge badge-success"> ${nt.typeRenouvellement.nom_fr }</span>  </td>
                                 <td>  ${nt.operation }  </td>
 
@@ -125,17 +124,12 @@
 
                                 <td> ${nt.raison }</td>
                                 <td>  ${nt.ife } </td>
-
                                 <td> ${nt.email }  </td>
                                 <td> ${nt.fax }</td>
                                 <td> ${nt.tel }  </td>
-                                <td> ${nt.nbr_equipe_travail}</td>
-                                <td> ${nt.qualification} </td>
 
-
-                                <td> ${nt.formation}</td>
-                                <td>  ${nt.projet }  </td>
-
+                                <td>  ${nt.nbr_equipe_travail }  </td>
+                                <td>  ${nt.formation }  </td>
 
 
                                 <td>${nt.description } </td>
@@ -155,27 +149,32 @@
                                 </c:if> </td>
 
                                 <td class="">
-
-                                    <c:if test="${nt.statut.id_statut_projet==14 }">
-                                        <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary m-2"><i class="fa fa-upload " title="Modifier" style="margin:0 !important"></i></a>
-
-                                    </c:if>
-                                    <c:if test="${nt.statut.id_statut_projet==15 }">
-                                        <a href="/api/infoInstallation/${nt.id_installation }" class="btn btn-primary rounded m-2"><span class="fa fa-plus "></span></a>
-                                    </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==51}">
-                                            <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary btn-block m-2"><i class="fa fa-pencil-alt " title="Modifier" style="margin:0 !important"></i> <spring:message code="label.Editer"/></a>
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <c:if test="${nt.statut.id_statut_projet==14 }">
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-upload"></i></a>
                                         </c:if>
-                                            <a href="/api/recapIT/${nt.id_installation }" class="btn btn-primary btn-block m-2"><i class="fa fa-print mr-2" title="Récap"></i><spring:message code="label.printRecap"/></a>
                                         <c:if test="${nt.statut.id_statut_projet==15 }">
-                                            <a href="/api/infoInstallation/${nt.id_installation }" class="btn btn-primary rounded m-2"><span class="fa fa-plus "></span> <spring:message code="label.Ameliorerlesdocuments"/></a>
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_installation}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-plus"></i></a>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==51}">
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-pencil-alt"></i></a>
+                                        </c:if>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                        <c:if test="${nt.statut.id_statut_projet==15 }">
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien3('${nt.id_installation}')" data-popover="true" data-html=true data-content="Ameliorer les documents"><i class="fa fa-plus"></i></a>
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==17 }">
-                                            <a href="/api/generateDocInstallFavorable/${nt.id_installation}" class="btn btn-primary rounded m-2"><span class="fas fa-file-download"></span></a>
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien4('${nt.id_installation}')" data-popover="true" data-html=true data-content=""><i class="fa fa-file-download"></i></a>
+
                                         </c:if>
                                         <c:if test="${nt.statut.id_statut_projet==87 }">
-                                            <a href="/api/addInstallation/${nt.id_installation }/N" class="btn btn-primary rounded m-2"><span class="fas fa-file"></span> Compléter les document</a>
+                                            <a type="button" style="background-color: #0db8db" onclick="goToLien5('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Compléter les document"><i class="fa fa-file"></i></a>
                                         </c:if>
+                                    </div>
+                                    <div class="tool-box">
+                                        <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                        <div class="clear"></div>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -277,7 +276,27 @@
     </div>
 
 <script>
-
+    function goToLien(val){
+        window.location.href='/api/addInstallation/'+val;
+    }
+    function goToLien1(val){
+        window.location.href='/api/infoInstallation/'+val;
+    }
+    function goToLien2(val){
+        window.location.href='/api/addInstallation/'+val;
+    }
+    function goToLien3(val){
+        window.location.href='/api/infoInstallation/'+val;
+    }
+    function goToLien4(val){
+        window.location.href='/api/generateDocInstallFavorable/'+val;
+    }
+    function goToLien5(val){
+        window.location.href='/api/addInstallation/'+val;
+    }
+    function goToLien6(val){
+        window.location.href='/api/recapIT/'+val;
+    }
     function show_code(id) {
         event.preventDefault();
         $("#staticBackdrop1").modal("show")
