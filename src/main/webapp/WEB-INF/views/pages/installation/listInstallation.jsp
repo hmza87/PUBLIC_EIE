@@ -149,32 +149,66 @@
                                 </c:if> </td>
 
                                 <td class="">
+                                    <c:if test="${nt.statut.id_statut_projet==14 }">
                                     <div id="toolbar-options${loopp.index+1}" class="hidden">
-                                        <c:if test="${nt.statut.id_statut_projet==14 }">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-upload"></i></a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==15 }">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_installation}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-plus"></i></a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==51}">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-pencil-alt"></i></a>
-                                        </c:if>
                                         <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
-                                        <c:if test="${nt.statut.id_statut_projet==15 }">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien3('${nt.id_installation}')" data-popover="true" data-html=true data-content="Ameliorer les documents"><i class="fa fa-plus"></i></a>
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==17 }">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien4('${nt.id_installation}')" data-popover="true" data-html=true data-content=""><i class="fa fa-file-download"></i></a>
-
-                                        </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==87 }">
-                                            <a type="button" style="background-color: #0db8db" onclick="goToLien5('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Compléter les document"><i class="fa fa-file"></i></a>
-                                        </c:if>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-upload"></i></a>
                                     </div>
                                     <div class="tool-box">
                                         <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
                                         <div class="clear"></div>
                                     </div>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==15 }">
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_installation}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-plus"></i></a>
+                                    </div>
+                                        <div class="tool-box">
+                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==51}">
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-pencil-alt"></i></a>
+                                    </div>
+                                        <div class="tool-box">
+                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==15 }">
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien3('${nt.id_installation}')" data-popover="true" data-html=true data-content="Ameliorer les documents"><i class="fa fa-plus"></i></a>
+                                    </div>
+                                        <div class="tool-box">
+                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==17 }">
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien4('${nt.id_installation}')" data-popover="true" data-html=true data-content=""><i class="fa fa-file-download"></i></a>
+                                    </div>
+                                        <div class="tool-box">
+                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        </c:if>
+                                        <c:if test="${nt.statut.id_statut_projet==87 }">
+                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien5('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Compléter les document"><i class="fa fa-file"></i></a>
+                                    </div>
+                                        <div class="tool-box">
+                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        </c:if>
+
                                 </td>
                             </tr>
                         </c:forEach>

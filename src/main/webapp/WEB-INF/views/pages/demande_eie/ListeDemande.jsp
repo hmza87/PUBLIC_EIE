@@ -42,7 +42,7 @@
 
                 <div class="row">
                     <div class="col-12 table-responsive" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
-                            <table style="width:100% !important; " id="tableProfils" class="table table-striped hover compact table-bordered text-md-nowrap">
+                            <table id="tab2" class="table table-striped hover compact table-bordered text-md-nowrap">
                                 <thead class="">
                                 <tr>
                                     <th rowspan="2" ><spring:message code="label.NDemande"/> </th>
@@ -82,7 +82,7 @@
 
 
                                         <%--<th rowspan="2" ><spring:message code="label.Informationcomplementaire"/></th>--%>
-                                    <th rowspan="2" ><spring:message code="label.Action"/></th>
+                                    <th class="all" rowspan="2" ><spring:message code="label.Action"/></th>
                                 </tr>
                                 <tr>
                                     <th><spring:message code="label.Raisonsocial"/>  </th>
@@ -93,7 +93,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${notif}" var="nt">
+                                <c:forEach items="${notif}" var="nt" varStatus="loopp">
                                     <tr>
                                         <td class="font-weight-semibold">${nt.num_demande}</td>
                                         <td>
@@ -201,48 +201,106 @@
 
                                         <td>
                                             <c:if test="${nt.statut.id_statut_projet==7 || nt.statut.id_statut_projet==10 }">
-                                                <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i><spring:message code="label.Attacherlesdocumentsdefinitifs"/> </a>
-                                            </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==6}">
-                                                <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" ><spring:message code="label.Telechargerlautorisation"/> </a>
-                                            </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==47}">
-                                                <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${nt.type}" ><spring:message code="label.Modifier"/> </a>
-                                            </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==60}">
-                                                <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" ><spring:message code="label.CompleterleDossier"/></button>
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
 
-                                            </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==13 }">
-                                                <a href="/api/demandeinformation/${nt.id_demande_information}/RS"
-                                                   class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i><spring:message code="label.Attacherlavisdeprojet"/> </a>
-                                            </c:if>
-
-                                            <c:if test="${(nt.statut.id_statut_projet==59 && nt.documents_AE.size()==0) }">
-                                                <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}"
-                                                   class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i><spring:message code="label.Validerlesdocuments"/> </a>
-                                            </c:if>
-                                            <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' && nt.documents_AE.size()>0}">
-                                                <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i><spring:message code="label.Completerlesdocuments"/> </a>
-                                            </c:if>
-
-                                            <c:if test="${nt.statut.id_statut_projet==71 && nt.type=='AE' }">
-                                                <button onclick="ajouter_rapport_ae('${nt.id_demande_information}')" class="btn btn-primary"><spring:message code="label.Ajouterlerapportdaudit"/></button>
-                                            </c:if>
-
-                                            <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
-                                                <a href="/api/demandeinformation/${nt.id_demande_information}/EE"
-                                                   class="btn btn-primary" title="Attacher les documents définitive"><i
-                                                        class="fa fa-pencil"></i> <spring:message code="label.Deposerlademande"/></a>
-                                            </c:if>
-
-                                            <c:if test="${nt.statut.id_statut_projet==73 && type=='AE'}">
-                                                <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Attacher les documents">
-                                                    <i class="fa fa-check"></i>
-                                                    <spring:message code="label.Attacherlesdocuments"/>
-                                                </a>
-                                            </c:if>
-
+<%--                                                    <a href="/api/piecejointdemande/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Attacher les documents définitifs"><i class="fa fa-check" style="margin:0 !important"></i><spring:message code="label.Attacherlesdocumentsdefinitifs"/> </a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_demande_information}/${nt.type}')" data-popover="true" data-html=true data-content="Attacher les documents définitifs"><i class="fa fa-check"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==6}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" ><spring:message code="label.Telechargerlautorisation"/> </a>--%>
+                                                    <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}"  data-popover="true" data-html=true data-content="Telecharger l'autorisation"><i class="fa fa-file-download"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==47}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a class="btn btn-primary btn-sm"  href="/api/demandeinformation/${nt.id_demande_information}/${nt.type}" ><spring:message code="label.Modifier"/> </a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_demande_information}/${nt.type}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+    </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==60}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <button class="btn btn-primary btn-sm" onclick="affiche_msg_file('${nt.id_demande_information}')" ><spring:message code="label.CompleterleDossier"/></button>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="affiche_msg_file('${nt.id_demande_information}')" data-popover="true" data-html=true data-content="Completer le Dossier"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==13 }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a href="/api/demandeinformation/${nt.id_demande_information}/RS" class="btn btn-primary" title="Attacher Avis de projet"><i class="fa fa-check"></i><spring:message code="label.Attacherlavisdeprojet"/> </a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_demande_information}/RS')" data-popover="true" data-html=true data-content="Attacher Avis de projet"><i class="fa fa-check"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+    </c:if>
+                                                <c:if test="${(nt.statut.id_statut_projet==59 && nt.documents_AE.size()==0) }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a href="/api/validateDocEIE/${nt.id_demande_information}/${nt.type}" class="btn btn-primary" title="Valider les documents"><i class="fa fa-check"></i><spring:message code="label.Validerlesdocuments"/> </a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien3('${nt.id_demande_information}/${nt.type}')" data-popover="true" data-html=true data-content="Valider les documents"><i class="fa fa-check"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==59 && nt.type=='AE' && nt.documents_AE.size()>0}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a href="/api/getListdocument/${nt.id_demande_information}" class="btn btn-primary"> <i class="fa fa-check"></i><spring:message code="label.Completerlesdocuments"/> </a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien4('${nt.id_demande_information}')" data-popover="true" data-html=true data-content="Completer les documents"><i class="fa fa-check"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==71 && nt.type=='AE' }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <button onclick="ajouter_rapport_ae('${nt.id_demande_information}')" class="btn btn-primary"><spring:message code="label.Ajouterlerapportdaudit"/></button>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="ajouter_rapport_ae('${nt.id_demande_information}')" data-popover="true" data-html=true data-content="Ajouter le rapport d'audit"><i class="fa fa-plus"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==12 && nt.type=='RS'}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a href="/api/demandeinformation/${nt.id_demande_information}/EE" class="btn btn-primary" title="Attacher les documents définitive"><i class="fa fa-pencil"></i> <spring:message code="label.Deposerlademande"/></a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien5('${nt.id_demande_information}/EE')" data-popover="true" data-html=true data-content="Attacher les documents définitive"><i class="fa fa-pencil"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+    </c:if>
+                                                <c:if test="${nt.statut.id_statut_projet==73 && type=='AE'}">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+<%--                                                    <a href="/api/AttacherListDocAE/${nt.id_demande_information}" class="btn btn-primary" title="Attacher les documents"><i class="fa fa-check"></i><spring:message code="label.Attacherlesdocuments"/></a>--%>
+                                                    <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_demande_information}')" data-popover="true" data-html=true data-content="Attacher les documents"><i class="fa fa-check"></i></a>
+                                            </div>
+                                                <div class="tool-box">
+                                                    <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                </c:if>
                                         </td>
                                     </tr>
                                     <!-- Modal -->
@@ -444,6 +502,27 @@
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>
 <script type="text/javascript">
+    function goToLien(val){
+        window.location.href='/api/piecejointdemande/'+val;
+    }
+    function goToLien1(val){
+        window.location.href='/api/demandeinformation/'+val;
+    }
+    function goToLien2(val){
+        window.location.href='/api/demandeinformation/'+val;
+    }
+    function goToLien3(val){
+        window.location.href='/api/validateDocEIE/'+val;
+    }
+    function goToLien4(val){
+        window.location.href='/api/getListdocument/'+val;
+    }
+    function goToLien5(val){
+        window.location.href='/api/demandeinformation/'+val;
+    }
+    function goToLien6(val){
+        window.location.href='/api/AttacherListDocAE'+val;
+    }
     function close_modal(val){
         $(val).closest(".modal").modal('hide');
     }
