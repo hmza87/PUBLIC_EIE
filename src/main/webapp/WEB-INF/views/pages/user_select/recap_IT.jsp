@@ -67,7 +67,9 @@
       <div class="row p-0 mb-2">
 
           <c:if test="${installation.statut.id_statut_projet==87 }">
-            <a href="/api/addInstallation/${installation.id_installation }/N" class="btn btn-primary rounded m-2"><span class="fas fa-file"></span> Compléter les document</a>
+            <div class="col-md-2 col-sm-6">
+               <a href="/api/addInstallation/${installation.id_installation }/N" class="btn btn-primary rounded"><span class="fas fa-file"></span>&nbsp; Compléter les documents</a>
+            </div>
           </c:if>
 
           <c:if test="${installation.statut.id_statut_projet==51}">

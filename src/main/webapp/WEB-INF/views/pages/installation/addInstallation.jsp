@@ -55,6 +55,8 @@
     /* Style the tab content */
 
 </style>
+
+
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -112,11 +114,13 @@
                                     3. <spring:message code="button.equipedetravail"/></button>
                                 </button>
                             </c:if>
-                            <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabled} id="Btn4"
-                                    onclick="openCity(event, '4')"
-                                    style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" id="${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'defaultOpen':'Btn4'}" ${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'':'disabled'}>
-                                4. <spring:message code="button.mespieces"/></button>
-                            </button>
+                            <c:if test="${notif.statut.id_statut_projet!=87}">
+                                <button class="tablinks btn-info btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabled} id="Btn4"
+                                        onclick="openCity(event, '4')"
+                                        style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" id="${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'defaultOpen':'Btn4'}" ${notif.statut.id_statut_projet==87 && empty notif.codeTmp ?'':'disabled'}>
+                                    4. <spring:message code="button.mespieces"/></button>
+                                </button>
+                            </c:if>
                             <c:if test="${notif.statut.id_statut_projet!=87}">
                                 <button class="tablinks btn-primary btn ${notif.statut.id_statut_projet==87?'':'my_tab'}" ${disabledBtnTab} id="Btn5"
                                         onclick="verif_champs_recap('4','IT','id_installation','5')" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}; background-color: #7dc7bd" >
@@ -550,38 +554,13 @@
                                 <h4 class="titre_abs"
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                     <spring:message code="label.Installationdetraitementdesdechets"/></h4>
-                                <form id="formimportateur1" name="formimportateur" class="mt-5">
-                                    <div class="row m-0 p-0 mt-2">
+                                <form id="formimportateur1" name="formimportateur" class="">
+                                    <div class="row m-0 p-0 ">
                                         <div class="col-12">
-                                            <div class="row" id="my_rows">
-                                                <div class="col-sm-8 listCode" >
-                                                    <table class="table MonTable table-striped" data-page-length="15">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col" style="min-width: 100px"><spring:message
-                                                                    code="label.CodeA"/></th>
-                                                            <th scope="col"><spring:message code="label.TypeA"/></th>
-                                                            <th scope="col">Sélectionner</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <%--  <c:forEach items="${notif.codeTmp}" var="c">--%>
-                                                        <c:forEach items="${notif.code}" var="c">
-                                                            <tr  id="tr-${c.id_code}">
-                                                                <td>${c.nom_fr }</td>
-                                                                <td>${c.nom_ar }</td>
-                                                                <td>
-                                                                    <input checked disabled class="h-15" type="checkbox"
-                                                                           id="id-${c.id_code }">
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            <div class="row justify-content-center" id="my_rows">
                                                 <input type="hidden" id="cpt" value="${notif.codeTmp.size()}">
                                                 <input type="hidden" id="typeIT" value="${notif.type}">
-                                                <div class="col-sm-4 listCode" style="margin-top: 4rem">
+                                                <div class="col-sm-10 listCode" style="margin-top: 4rem">
                                                         <table class="table table-striped">
                                                             <tr>
                                                                 <th>Type de déchet</th>
@@ -589,12 +568,29 @@
                                                             </tr>
                                                             <tbody id="tbody_it">
                                                             <c:forEach items="${notif.codeTmp}" var="code_colle" varStatus="loopp" >
-                                                                <tr style="background-color:${loopp.index%2==0?'#FA8072':'#F08080'};color: white !important;font-weight:bold" >
+                                                                <c:choose>
+                                                                    <c:when test="${loopp.index%2==0&& notif.type.equals('2')}">
+                                                                        <c:set var="bg" value="#FA8072"/>
+                                                                    </c:when>
+                                                                    <c:when test="${loopp.index%2!=0 && notif.type.equals('2')}">
+                                                                        <c:set var="bg" value="#F08080"/>
+                                                                    </c:when>
+                                                                    <c:when test="${loopp.index%2==0 && !notif.type.equals('2')}">
+                                                                        <c:set var="bg" value="#ABEBC6"/>
+                                                                    </c:when>
+                                                                    <c:when test="${loopp.index%2!=0 && !notif.type.equals('2')}">
+                                                                        <c:set var="bg" value="#82E0AA"/>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <c:set var="bg" value=""/>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                                <tr style="background-color:${bg};color: white !important;font-weight:bold" >
                                                                     <td class="col-8">${code_colle.nom_ar}</td>
                                                                     <td class="col-4 p-2 text-center">
-                                                                        <button class="btn btn-success rounded-circle"
+                                                                        <button class="btn btn-info rounded-circle"
                                                                                 onclick="addCodeIT_tmp('${code_colle.id_code}','delete')">
-                                                                            <span class="fa fa-times"></span></button>
+                                                                            <span class="${notif.type.equals('2')?'fa fa-times':'fa fa-plus'}"></span></button>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
@@ -604,10 +600,24 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-10 mt-3  ">
+                                            <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                                                <div>
+                                                    <label style="width: 100%;"> ${pageContext.response.locale=='ar'?doc[14].nom_ar:doc[14].nom_fr} </label>
+                                                    <input
+                                                         required
+                                                         onchange="addDocG('0',${doc[14].id_docImport},'doc${doc[14].id_docImport }','IT','id_installation')"
+                                                         accept=".pdf" type="file" id="doc${doc[14].id_docImport }"
+                                                         class="form-control mydoc">
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row justify-content-center mb-4">
                                             <div class="col-md-2 col-sm-6">
                                                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="MyBtn"
-                                                        onclick="changerEtat_IT()" disabled class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
+                                                        onclick="changerEtat_IT()" disabled class="btn btn-info btn-block">Enregistrer
                                                 </button>
                                             </div>
                                     </div>
@@ -686,8 +696,8 @@
                         </c:if>
 
                         <!-- tab3 -->
-
-                        <div id="4" class="tabcontent">
+                        <c:if test="${notif.statut.id_statut_projet!=87}">
+                            <div id="4" class="tabcontent">
 
                                 <h4 class="titre_abs "
                                     style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -697,8 +707,6 @@
                                 <img src="/assets/images/warning.png" style="width: 40px;margin-left: 10px">
                                 <spring:message code="label.Vouspouvezimporterdesdocumentsscannesen"/>
                             </p>
-
-                            <c:if test="${notif.statut.id_statut_projet!=87}">
                                 <c:forEach items="${doc}" var="dc">
                                     <div class="row justify-content-center">
                                             <div class="col-6 mt-3  ">
@@ -727,57 +735,20 @@
                                         </c:if>
                                     </div>
                                 </c:forEach>
-                            </c:if>
-                            <c:if test="${notif.statut.id_statut_projet==87}">
-                                    <div class="row justify-content-center">
-                                        <div class="col-6 mt-3  ">
-                                            <div class="form-group"
-                                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                                <div>
-                                                    <label style="width: 100%;"> ${pageContext.response.locale=='ar'?doc[0].nom_ar:doc[0].nom_fr} </label>
-                                                    <input
-                                                            required
-                                                            onchange="addDocG('0',${doc[0].id_docImport},'doc${doc[0].id_docImport }','IT','id_installation')"
-                                                            accept=".pdf" type="file" id="doc${doc[0].id_docImport }"
-                                                            class="form-control mydoc">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </c:if>
-
                                     <div class="row justify-content-center mb-5 mt-3">
-                                    <c:if test="${notif.statut.id_statut_projet == 87}">
-                                        <div class="col-md-2 col-sm-6">
-                                            <button  type="button" id="prec2"
-                                                     onclick="openCity2('#Btn2', '2')"
-                                                     class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
-                                            </button>
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${notif.statut.id_statut_projet != 87}">
                                         <div class="col-md-2 col-sm-6">
                                             <button  type="button" id="prec2"
                                                      onclick="openCity2('#btn3', '3')"
                                                      class="btn btn-info btn-block"><spring:message code="button.Precedent"/>
                                             </button>
                                         </div>
-                                    </c:if>
-                                    <c:if test="${notif.statut.id_statut_projet !=87}">
                                         <div class="col-md-3 col-sm-6">
                                             <a class="btn btn-success btn-block "
                                                onclick="verif_champs_it('4','IT','id_installation','5')"><spring:message code="label.Afficherlerecapitulatif"/></a>
                                         </div>
-                                    </c:if>
-                                    <c:if test="${notif.statut.id_statut_projet == 87}">
-                                        <div class="col-md-3 col-sm-6">
-                                            <a class="btn btn-success btn-block" href="/api/ListInstallation">Enregistrer</a>
-                                        </div>
-                                    </c:if>
-
                                 </div>
                             </div>
-
+                        </c:if>
 
                         <c:if test="${notif.statut.id_statut_projet!=87}">
                            <div id="5" class="tabcontent">
@@ -849,7 +820,7 @@
             contentType: 'application/json; charset=utf-8',
             data: {},
             success: function (response) {
-                openCity2('#Btn4', '4');
+               window.location.href="/api/ListInstallation";
             },
             error: function (response) {
             }
@@ -1111,6 +1082,7 @@
             confirmButtonText: `Enregistrer`,
             denyButtonText: `Annuler`,
         }).then((result) => {
+            down_load_recu();
             if (result.value) {
                 $.ajax({
                     url: '/api/changerStatus',
@@ -1121,7 +1093,7 @@
                     title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
-                        '<a href="/api/ListInstallation" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" onclick="down_load_recu()" class="btn btn-success ml-2 text-white">Download Recapitulation</a>',
+                        '<a href="/api/ListInstallation" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="api/recapIT/"'+id_install+' class="btn btn-success ml-2 text-white">Afficher le récapulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
