@@ -602,9 +602,9 @@ function removePort(btn,id,id_name,id_trans){
         })
 
 }
-/*function ajouterTranporteur_EtrangerNational(id_name) {
+function ajouterTranporteur_EtrangerNational(id_name) {
 
-    event.preventDefault();
+    //event.preventDefault();
     var id = $("#" + id_name).val();
     var raison = $("#raison_social_n").val();
     var matricule = $("#num_matriule_n").val();
@@ -656,7 +656,7 @@ function removePort(btn,id,id_name,id_trans){
             console.log("complete");
         });
 
-}*/
+}
 
 function delete_transp_etrang(id, id_name, type){
     var id_notif = $("#" + id_name).val();
