@@ -85,26 +85,28 @@
   <div class="row justify-content-center pl-3 pr-3">
     <div class="col-12">
       <div class="jumbotron p-3">
-      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==84 || notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68 || notification.statut.id_statut_projet==40)?notification.statut.nom_fr:"en cours de traitement" } </span>
+      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==84 || notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68 || notification.statut.id_statut_projet==40)?notification.statut.nom_fr:"en cours de traitement" } </span><span><c:if test="${notification.statut.id_statut_projet==54}">
+  <c:if test="${notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==55 || notification.statut.id_statut_projet==56 || notification.statut.id_statut_projet==57 }"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Votre demande est bien validée vous pouvez vous déplacez pour l'obtention de votre autorisation)</c:if>
+        <c:if test="${notification.statut.id_statut_projet==84}"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Vous pouvez vous déplacez pour l'obtention de votre lettre originale)</c:if>
+        <c:if test="${notification.statut.id_statut_projet==64}"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Vous pouvez vous déplacez pour l'obtenion votre garantie financière)</c:if>
+      </c:if></span>
       </div>
     </div>
   </div>
 
   <div class="row justify-content-center mb-2">
     <div class="col-md-10 col-sm-12">
-      <c:if test="${notification.statut.id_statut_projet==54}">
-        <h4 style="text-decoration: underline; color: #0d128e">Votre demande est bien validée vous pouvez vous déplacez pour l'obtention de votre autorisation</h4>
-      </c:if>
-      <c:if test="${notification.statut.id_statut_projet==64}">
-        <h4 style="text-decoration: underline; color: #0d128e">Vous pouvez vous déplacez pour l'obtenion votre garantie financière </h4>
-      </c:if>
-      <c:if test="${notification.statut.id_statut_projet==84}">
-        <h4 style="text-decoration: underline; color: #0d128e">Vous pouvez vous déplacez pour l'obtention de votre lettre originale</h4>
-      </c:if> <br>
       <div class="row p-0 mt-2 pl-3">
         <div class="col-md-3 col-sm-6 col-mt-4 pr-1 pl-1" >
           <a href="/api/generate_recap_imp/${notification.id_notification }" class="mt-1 mb-1 btn btn-primary btn-block"><i class="fa fa-print mr-2" title="Améliorer les documents"></i><spring:message code="label.printRecap"/></a>
         </div>
+        <c:if test="${nt.statut.id_statut_projet==29 }">
+          <a href="/api/addNumNotification/${type }/${nt.id_notification }" class="btn btn-warning"><i class="fa fa-edit " title="Modifier" style="margin:0 !important"></i></a>
+
+        </c:if>
+        <c:if test="${nt.statut.id_statut_projet==37 }">
+          <a href="/api/validateDoc/${nt.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
+        </c:if>
         <c:if test="${notification.statut.id_statut_projet==48 }">
           <div class="col-md-2 col-sm-6  pr-1 pl-1">
             <a href="/api/addDemandNotification/${notification.id_notification}/${type}/N" class="mt-1 mb-1 btn btn-primary btn-block"><i class="fa fa-pen " title="Améliorer les documents" ></i><spring:message code="label.modifier"/></a>
@@ -116,9 +118,9 @@
           </div>
         </c:if>
         <c:if test="${notification.statut.id_statut_projet==37 }">
-          <!-- <div class="col-md-3 col-sm-6 ">
+           <div class="col-md-3 col-sm-6 ">
           <a href="/api/validateDoc/${notification.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
-          </div>-->
+          </div>
         </c:if>
         <c:if test="${(type=='ET' || type=='TR') && (notification.statut.id_statut_projet==54)}">
           <div class="col-md-auto col-sm-6  pr-1 pl-1">
