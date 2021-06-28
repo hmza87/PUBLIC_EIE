@@ -449,7 +449,28 @@
 
                         </div>
                     </c:if>
-                    <c:if test="${type=='AE' || type=='RS'}">
+                    <c:if test="${type=='RS'}">
+                        <div id="step4" class="col-12 z_collecteur collapse">
+                            <div id="recap_ee"></div>
+                            <div class="row justify-content-center mt-2 mb-4">
+                                <div class="col-md-2 col-sm-6">
+                                    <button type="button"
+                                            onclick="affiche_eie_zone('#step2','#step_id2')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Precedent"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+
+                                    <button type="button"
+                                            onclick="changer_statut2('${type}','id_demande_information',11,'Votre demande est déposée avec succès')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Enregistrer"/>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </c:if>
+                    <c:if test="${type=='AE' }">
                         <div id="step4" class="col-12 z_collecteur collapse">
                             <div id="recap_ee"></div>
                             <div class="row justify-content-center mt-2 mb-4">
