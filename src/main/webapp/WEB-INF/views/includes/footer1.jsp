@@ -7,6 +7,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false"%>
 
+<%--DataTable%--%>
+<script src="${pageContext.request.contextPath}/assets/js/datatable/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/datatable/dataTables.responsive.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/datatable/responsive.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/datatable/dataTables.fixedColumns.min.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/toolbar/jquery.toolbar.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/toolbar/custom-toolbar.js"></script>
+<%--ddddd--%>
+
 <style>
     h6{
         color:#036;
@@ -354,6 +365,9 @@ $(document).ready(function() {
         "pageLength":4,
         "responsive":true,
         "ordering": false,
+        fixedColumns: {
+            rightColumns: 1
+        },
         language: {
             "sProcessing":     "Traitement en cours...",
             "sSearch":         "Rechercher&nbsp;:",

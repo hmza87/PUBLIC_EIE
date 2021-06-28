@@ -84,7 +84,16 @@
 
     <script src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/bs-stepper.min.js"></script>
+<%--  fffff  --%>
+    <link href="${pageContext.request.contextPath}/assets/css/datatable/bootstrap.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/datatable/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/datatable/fixedColumns.dataTables.min.css" rel="stylesheet">
 
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/toolbar/jquery.toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/toolbar/custom-toolbar.css">
+    <%--  fffff  --%>
 </head>
 
 <body style="overflow-x:hidden;">
