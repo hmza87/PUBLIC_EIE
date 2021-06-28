@@ -46,7 +46,7 @@
                 </div>
                 <div class="row-fluid">
                     <div class="col-12" id="pagereload" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                        <table id="tab2" class=" table table-striped hover compact table-bordered text-md-nowrap">
+                        <table id="tab2" class="table table-striped hover compact table-bordered text-md-nowrap">
                             <thead class="thead-bleu">
                             <tr>
                                 <th class=""><spring:message code="label.Numerodenotification"/> </th>
@@ -68,11 +68,11 @@
                                 <th class=""><spring:message code="label.Quantite"/></th>
 
 
-                                <th class=""><spring:message code="label.Action"/></th>
+                                <th class="all"><spring:message code="label.Action"/></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${notif}" var="nt">
+                            <c:forEach items="${notif}" var="nt" varStatus="loopp">
                                 <tr>
                                     <td class="font-weight-semibold">${nt.num_notification }</td>
 
@@ -108,33 +108,65 @@
 
 
                                     <td class="">
-
-
                                         <c:if test="${nt.statut.id_statut_projet==29 }">
-                                            <a href="/api/addNumNotification/${type }/${nt.id_notification }" class="btn btn-warning"><i class="fa fa-edit " title="Modifier" style="margin:0 !important"></i></a>
-
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien('${type }/${nt.id_notification }')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
                                         </c:if>
                                         <c:if test="${((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54)) || ((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54)) || ((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==67)) }">
-                                            <a href="/api/addDocmouvement/${nt.id_notification}" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> ${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination</a>
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_notification }')" data-popover="true" data-html=true data-content="${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination"><i class="fa fa-plus"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
                                         </c:if>
+
                                         <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==54) && nt.classification.id_classification==1  }">
-                                            <button onclick="load_modal_transporteur('${nt.id_notification}')" class="btn btn-primary btn-block"><i class="fa fa-plus " ></i> Déclarer un nouveau transporteur</button>
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="load_modal_transporteur('${nt.id_notification}')" data-popover="true" data-html=true data-content="Déclarer un nouveau transporteur"><i class="fa fa-plus"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
                                         </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==48}">
-                                            <a href="/api/addDemandNotification/${nt.id_notification}/${type}/N" class="btn btn-primary mb-2"><spring:message code="label.modifier"/></a>
+
+                                        <c:if test="${nt.statut.id_statut_projet==48 }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_notification}/${type}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </c:if>
+
+                                        <c:if test="${nt.statut.id_statut_projet!=48 }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien3('${type}/${nt.id_notification}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
                                         </c:if>
 
 
-                                        <div class="mt-2">
-                                            <c:if test="${nt.statut.id_statut_projet!=48}">
-                                            <a href="/api/getnotifById1/${type}/${nt.id_notification}"  class="btn btn-success" > Afficher le récapitulatif</a>
-                                            </c:if>
-                                        </div>
-                                        <div class="mt-2">
-                                            <c:if test="${nt.statut.id_statut_projet==37 }">
-                                                <a href="/api/validateDoc/${nt.id_notification }/${type}" class="btn btn-primary btn-block"><i class="fa fa-upload " title="Améliorer les documents" style="margin:0 !important"></i><spring:message code="label.Ameliorerlesdocuments"/></a>
-                                            </c:if>
-                                        </div>
+                                        <c:if test="${nt.statut.id_statut_projet==37 }">
+                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien4('${nt.id_notification }/${type}')" data-popover="true" data-html=true data-content="Améliorer les documents"><i class="fa fa-upload"></i></a>
+                                            </div>
+                                            <div class="tool-box">
+                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -226,6 +258,27 @@
 </div>
 
 <script>
+
+    $('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'top', delay: {show: 50, hide: 400}});
+
+    function goToLien(val){
+        window.location.href="/api/addNumNotification/"+val;
+    }
+    function goToLien1(val){
+        window.location.href="/api/addDocmouvement/"+val;
+    }
+    function goToLien2(val){
+        window.location.href="/api/addDemandNotification/"+val;
+    }
+    function goToLien3(val){
+        window.location.href="/api/getnotifById1/"+val;
+    }
+    function goToLien4(val){
+        window.location.href="/api/validateDoc/"+val;
+    }
+
+
+
     function show_popup(){
         swal("","Vous pouvez vous déplacez pour l'obtention de votre autorisation","success");
     }
