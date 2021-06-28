@@ -103,12 +103,12 @@
                                             <spring:message code="label.Autorisationdesdechets"/>
                                         </p>
                                         <div id="autorisation_footer" class="collapse">
-                                            <p><a class="text-white"  href="/api/checkUserDispatch/ZF"><spring:message code="label.Importationdechetszonefranche"/></a></p>
-                                            <p><a class="text-white" style=" font-size: 14px;" href="/api/checkUserDispatch/ET"><spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></a></p>
-                                            <p><a class="text-white" href="/api/checkUserDispatch/CT"><spring:message code="label.Collectetransportdesdechetsdangereux"/></a></p>
-                                            <p><a class="text-white" href="/api/checkUserDispatch/IT"><spring:message code="label.Installationdetraitementdesdechets"/></a></p>
-                                            <p><a class="text-white" href=/api/checkUserDispatch/XD"><spring:message code="label.Exportationdesdechetsdangereux"/> </a></p>
-                                            <p><a class="text-white" href="/api/checkUserDispatch/TR"><spring:message code="label.Transitdesdechets"/></a></p>
+                                            <p><a class="text-white"  href="/Preparezvotredemarche"><spring:message code="label.Importationdechetszonefranche"/></a></p>
+                                            <p><a class="text-white" style=" font-size: 14px;" href="/Preparezvotredemarche"><spring:message code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></a></p>
+                                            <p><a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Collectetransportdesdechetsdangereux"/></a></p>
+                                            <p><a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Installationdetraitementdesdechets"/></a></p>
+                                            <p><a class="text-white" href=/Preparezvotredemarche"><spring:message code="label.Exportationdesdechetsdangereux"/> </a></p>
+                                            <p><a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Transitdesdechets"/></a></p>
                                         </div>
 
 
@@ -118,12 +118,12 @@
                                         </p>
                                         <div id="eie_footer" class="collapse">
                                             <p class="mb-1 ">
-                                                <a class="text-white" href="/api/checkEIESelect/EE"><spring:message code="label.Etudedimpactenvironnementale"/></a>                                       </p>
+                                                <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Etudedimpactenvironnementale"/></a>                                       </p>
                                             <p class="mb-1 ">
-                                                <a class="text-white" href="/api/checkEIESelect/NT"><spring:message code="label.Noticedimpact"/></a>
+                                                <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Noticedimpact"/></a>
                                             </p>
                                             <p class="mb-1">
-                                                <a class="text-white" href="/api/checkEIESelect/AE"><spring:message code="label.Auditenvironnementale"/></a></a>
+                                                <a class="text-white" href="/Preparezvotredemarche"><spring:message code="label.Auditenvironnementale"/></a></a>
                                             </p>
                                         </div>
                                     </div>

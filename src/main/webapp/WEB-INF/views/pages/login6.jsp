@@ -852,8 +852,9 @@ margin-bottom: 10px;">
                                                 <div class="dddd" style="position: absolute;top: 110px;right: 10px;cursor: pointer">
                                                     <div class="badge pulsate" onclick="go_link('/new_procedure/ZF')"><spring:message code="label.Nouveau"/></div>
                                                 </div>
+
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ZF')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -876,7 +877,7 @@ margin-bottom: 10px;">
                                                     <spring:message
                                                             code="label.Importationdesdechetsnondangereuxdunpaysetranger"/></h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('ET')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -899,7 +900,7 @@ margin-bottom: 10px;">
                                                     <spring:message
                                                             code="label.Collectetransportdesdechetsdangereux"/></h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('CT')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -923,7 +924,7 @@ margin-bottom: 10px;">
                                                     <spring:message
                                                             code="label.Installationdetraitementdesdechets"/></h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('IT')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -945,7 +946,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center">
                                                     <spring:message code="label.Exportationdesdechetsdangereux"/></h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('XD')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -967,7 +968,7 @@ margin-bottom: 10px;">
                                                 <h6 style="min-height: 3.5em" class="card-title text-center ">
                                                     <spring:message code="label.Transitdesdechets"/></h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('TR')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -994,7 +995,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Etudedimpactenvironnementale"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -1017,7 +1018,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Noticedimpact"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE1')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
@@ -1040,7 +1041,7 @@ margin-bottom: 10px;">
                                                     <spring:message code="option.Auditenvironnementale"/>
                                                 </h6>
                                                 <c:choose>
-                                                    <c:when test="${empty user}">
+                                                    <c:when test="${empty user || Preparezvotredemarche==1 }">
                                                         <button class="btn btn-primary btn-sm" onclick="show_etape_perso2('EIE2')">
                                                             <spring:message code="label.Acceder"/>
                                                         </button>
