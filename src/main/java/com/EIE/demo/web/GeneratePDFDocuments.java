@@ -4172,7 +4172,7 @@ public class GeneratePDFDocuments {
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table3.addCell(tmp);
             }
-        }else if(!ns.getZf_et().equals("TR") || (ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()!=1)){
+        }else if(!ns.getZf_et().equals("TR") || (ns.getZf_et().equals("XD") || ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()!=1)){
 
 
             table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
@@ -4185,13 +4185,13 @@ public class GeneratePDFDocuments {
             table3.completeRow();
             if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
                 for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
-
+                    if(tp.getType().equals("tn")) {
                         table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
                         table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
                         table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
                         table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
                         table3.completeRow();
-
+                    }
 
                 }
             }else {
@@ -4626,14 +4626,13 @@ public class GeneratePDFDocuments {
             table3.completeRow();
             if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
                 for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
-
-                    table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
-                    table3.completeRow();
-
-
+                    if(tp.getType().equals("tn")){
+                        table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                        table3.completeRow();
+                    }
                 }
             }else {
                 PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
