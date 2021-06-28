@@ -3498,10 +3498,10 @@ img.lazy-image.loaded{
 .services-section{
 	position:relative;
 	padding: 110px 0px 80px;
-	background: #f1f1f1;
+	/*background: #f1f1f1;*/
 }
 
-.services-section .image-left{
+badge-success .image-left{
 	position:absolute;
 	left:0;
 	top:0;
@@ -14754,7 +14754,7 @@ img.lazy-image.loaded{
 	
 	
 	.badge-info{
-	background: #129c27 !important;
+	background: #7d90c7 !important;
     border-radius: 3px !important;
     padding: 12px  !important;
     color:white !important;
