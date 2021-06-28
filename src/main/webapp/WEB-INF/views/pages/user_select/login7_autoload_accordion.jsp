@@ -144,6 +144,9 @@
             .select2-results__option{
                 text-align: left;
             }
+            #accordion .ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e{
+                display: none !important;
+            }
         </style>
 
         <div class="row-fluid d-none border p-2 bg-white" id="dev_step">
@@ -614,12 +617,17 @@
                             <div class="col-12">
                                 <c:if test="${type.equals('EIE1')}">
                                     <p class="text-underline text-success font_bold">
-                                        La pièce accompagnant la demande:
+                                        Les pièces accompagnant la demande:
                                     </p>
                                 </c:if>
-                                <c:if test="${!type.equals('EIE1')}">
+                                <c:if test="${type.equals('EIE2')}">
                                     <p class="text-underline text-success font_bold">
                                         Les pièces accompagnant la demande:
+                                    </p>
+                                </c:if>
+                                <c:if test="${type.equals('EIE')}">
+                                    <p class="text-underline text-success font_bold">
+                                        Les documents nécessaires à l’obtention de l’acceptabilité environnementale des projets soumis à l’EIE
                                     </p>
                                 </c:if>
 
@@ -1333,7 +1341,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <c:if test="${type=='EIE'}">
+                                    <%--<c:if test="${type=='EIE'}">
                                         <li>
                                             <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
@@ -1407,8 +1415,8 @@
                                                 <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
                                             </a><br>
                                         </div>
-                                    </c:if>
-                                    <c:if test="${type=='EIE1'}">
+                                    </c:if>--%>
+                                    <%--<c:if test="${type=='EIE1'}">
                                         <li>
                                             <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
                                             <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
@@ -1481,7 +1489,7 @@
                                             </a><br>
 
                                         </div>
-                                    </c:if>
+                                    </c:if>--%>
                                 </ul>
 
                             </div>

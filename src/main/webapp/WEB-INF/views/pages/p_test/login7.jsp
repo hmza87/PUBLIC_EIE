@@ -2159,9 +2159,9 @@ margin-bottom: 10px;">
 
                     </div>
 
-                    <div class=" row p-0 m-0 ">
+                    <div class=" row p-0 m-0 justify-content-center">
 
-                        <div class="col-md-3 col-sm-3 hvr-float-shadow">
+                        <%--<div class="col-md-3 col-sm-3 hvr-float-shadow">
                             <div class="card widget-card-1">
                                 <div class="card-block-small">
                                     <a href="/guide">
@@ -2176,7 +2176,7 @@ margin-bottom: 10px;">
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="col-md-3 col-sm-3 hvr-float-shadow">
                             <div class="card widget-card-1">
                                 <div class="card-block-small">

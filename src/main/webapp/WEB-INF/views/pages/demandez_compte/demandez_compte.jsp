@@ -296,7 +296,7 @@
         mywindow.document.write('<html><head><title>' + document.title  + '</title>');
         mywindow.document.write('</head><body > ');
         mywindow.document.write('<img alt="" src="/assets/images/logo.png" style="height: 60px; margin-top: -8px;" id="frlogo">');
-        mywindow.document.write("<h1>Coordonnée d'identification</h1>");
+        mywindow.document.write("<h1>Coordonnées d'identification</h1>");
         mywindow.document.write(elem);
         mywindow.document.write(document.getElementById('EIE_Autorisation1').innerHTML);
         mywindow.document.write('</body></html>');

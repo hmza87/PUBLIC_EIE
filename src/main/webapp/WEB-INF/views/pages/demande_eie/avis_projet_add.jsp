@@ -58,8 +58,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/"><spring:message code="label.Accueil"/> </a></li>
-                        <li class="breadcrumb-item"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Demande </li>
+                        <li class="breadcrumb-item active"><a href="/api/checkEIESelect/${type=="RS"?"EE":type}">${p_page} </a></li>
 
                     </ol>
                 </nav>
@@ -76,7 +75,7 @@
                     <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" ><spring:message code="label.Localisationduprojet"/></button>
                     </c:if>
                     <c:if test="${type!='AE'}">
-                        <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">Information sur le projet </button>
+                        <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id1_2" onclick="affiche_eie_zone('#step1_2','#step_id1_2')">Informations sur le projet </button>
                         <button class="btn btn-success btn-block text-left pl-5 cls_step" ${id==0?'disabled':''} id="step_id2" onclick="affiche_eie_zone('#step2','#step_id2')" >Localisation du projet</button>
                     </c:if>
                     </c:if>
@@ -210,7 +209,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label> Inter-région  </label>
+                                                <label> Inter-régions  </label>
                                                 <select ${disabled } onchange="fun_disabled_region(this)" name="interregion" id="interregion" required class="form-control select2" data-width="100%" >
                                                     <option value="oui" ${demande.interregion.equals('oui')?"selected":"" } ><spring:message code="label.oui"/></option>
                                                     <option ${demande.interregion.equals('non')?"selected":"" }  value="non"><spring:message code="label.non"/></option>
@@ -467,10 +466,9 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </c:if>
-                    <c:if test="${type=='AE' }">
+                    <c:if test="${type=='AE'}">
                         <div id="step4" class="col-12 z_collecteur collapse">
                             <div id="recap_ee"></div>
                             <div class="row justify-content-center mt-2 mb-4">
@@ -488,7 +486,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </c:if>
                     <c:if test="${type=='NT'}">

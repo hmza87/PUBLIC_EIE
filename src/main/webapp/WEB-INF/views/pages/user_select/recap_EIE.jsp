@@ -179,7 +179,7 @@
               <h2><spring:message code="label.informationssurleprojet"/>  </h2>
             </c:if>
             <c:if test="${type!='AE'}">
-              <h2>Information sur le projet  </h2>
+              <h2>Informations sur le projet  </h2>
             </c:if>
             <div>
               <c:if test="${type=='EE' || type=='RS'}">

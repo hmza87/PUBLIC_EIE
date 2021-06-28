@@ -235,31 +235,88 @@
                                                             </p>
                                             </c:if>
                                                             <c:if test="${q.id_question==47}">
-                                                                <ul>
+                                                                <ul class="style_square">
                                                                     <li>
-                                                                        <spring:message code="label.Loinrelativeauxetudesdimpactsurlenvironnement"/>
+                                                                        Loi n° 12-03 relative aux études d'impact sur l'environnement
                                                                         <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N12_03.pdf">
                                                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <spring:message code="label.LoinrelativealEvaluationenvironnementale"/>
+                                                                        Loi n°47-18 portant réforme des Centres Régionaux d'Investissement
+                                                                        <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N47_18.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        Loi n°49-17 relative à l’Evaluation environnementale
                                                                         <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Lois_N49_17.pdf">
                                                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <spring:message code="label.DecretnrelatifauxattributionsetaufonctionnementducNEEetdesCREI"/>
+                                                                        Décret n°2-04-563 relatif aux attributions et au fonctionnement du CNEI et des CREI
                                                                         <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_563.pdf">
                                                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <spring:message code="label.Decretnfixantlesmodalitesdorganisationetdederoulementdelenquetepublique"/>
+                                                                        Décret n°2-04-564 fixant les modalités d’organisation et de déroulement de l’enquête publique
                                                                         <a target="_blank"  href="${pageContext.request.contextPath}/assets/file/Decret_n_2_04_564.pdf">
                                                                             <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
                                                                         </a>
                                                                     </li>
+                                                                    <li>
+                                                                        Référentiel des études d’impact sur l’environnement
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Referentiel_EIE.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        Référentiel des études d’impact sur l’environnement
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Referentiel_EIE.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="40px">
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        Directives
+                                                                    </li>
+                                                                    <div class="ml-4 size_12">
+                                                                        1. Projet de création des unités industrielles
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Unites_Industrielles.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        2. Projet d’aménagement des zones industrielles
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Zones_Industrielles.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        3. Projet de décharge contrôlée
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_Decharges_controlees.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        4. Projet aquacole
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Projets_aquacoles.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        5. Projet d’une Station d’Epuration des Eaux Usées
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_epuration_eau_usees.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        6. Projet d’extraction de matériaux de construction
+                                                                        <a target="_blank" href="${pageContext.request.contextPath}/assets/file/Directive_EIE_Extraction_materiaux_construction.pdf">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        7.Projet touristique
+                                                                        <a target="_blank">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                        8.Projet d’infrastructure linéaire
+                                                                        <a target="_blank">
+                                                                            <img src="${pageContext.request.contextPath}/assets/images/file_PDF.png" width="30px">
+                                                                        </a><br>
+                                                                    </div>
                                                                 </ul>
                                                             </c:if>
                                                         </div>
