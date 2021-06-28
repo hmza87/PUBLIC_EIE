@@ -206,73 +206,133 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Classificationdesdechets"/> </label>
-                                    <input class="form-control" value="${notification.classification.nom_fr}" disabled>
-                                </div>
+                            <div class="form-group">
+                                <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
+                                    <select name="classification_id" id="Classification" ${disabled}
+                                            onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                            class="form-control select2" data-width="100%">
+                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                        <c:forEach items="${classification}" var="t">
+                                            <option  <c:if
+                                                    test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                                    value="${t[0] }">${t[1] }</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:if>
+                                <c:if test="${type.equals('ET') }">
+                                    <select name="classification_id" id="Classification"
+                                        ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
+                                            onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                            class="form-control select2" data-width="100%">
+                                        <option value="" selected><spring:message code="label.choisir"/></option>
+                                        <option ${not empty notification?'selected':''} value="2"><spring:message
+                                                code="label.nondangereux"/></option>
+
+                                    </select>
+                                </c:if>
                             </div>
+                        </div>
                         </div>
                         <div class="row m-0 p-0 mt-2">
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-6">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.code"/> </label>
-                                    <input type="text" disabled value="${notification.code.nom_fr}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.typededechet"/> </label>
-                                    <input type="text" disabled value="${notification.code.nom_ar}" class="form-control">
-                                </div>
-                            </div>
 
-                        </div>
+                                    <label><spring:message code="label.code"/></label>
+                                    <select name="code_id" id="code" ${disabled}
+                                            onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
+                                            class="form-control select2" data-width="100%">
+                                        <c:if test="${notification!= null}">
+                                            <option value="">${notification.code.nom_fr}</option>
+                                        </c:if>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
 
-                        <div class="row m-0 p-0 mt-2">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>
-                                        <c:choose>
-                                            <c:when test="${type=='ZF'}">
-                                                <spring:message code="label.ZoneFranche"/>
-                                            </c:when>
-                                            <c:when test="${type=='XD'}">
-                                                Pays Destinataire
-                                            </c:when>
-                                            <c:otherwise>
-                                                <spring:message code="label.pays"/>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </label>
-                                    <input type="text" disabled value="${notification.zonneFranche.nom_fr} ${notification.pays.nom_fr}" class="form-control">
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-sm-12">
+
+
+                            <div class="col-6">
                                 <div class="form-group">
-                                    <label> <spring:message code="label.producteur"/>  </label>
-                                    <input type="text" disabled value="${notification.producteur_text}" class="form-control">
+                                    <label><spring:message code="label.typededechet"/></label>
+                                    <select id="id_type" class="form-control select2" data-width="100%" ${disabled}>
+                                        <c:if test="${notification!= null}">
+                                            <option value="">${notification.code.nom_ar}</option>
+                                        </c:if>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                    </select>
                                 </div>
+
                             </div>
 
                         </div>
 
-                        <div class="row m-0 p-0 mt-2">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.quantitetotaleprevu"/> </label>
-                                    <input type="text" disabled value="${notification.quantite}" class="form-control">
+                            <div class="row m-0 p-0 mt-2">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>${champ_zf_et }: </label>
+                                        <select name="${champ_zf_et=='Zone franche'?'idzonne_franche':'id_pays'}"
+                                                id="Zone_Franche"
+                                                class="form-control select2" ${disabled}
+                                                onchange="changer_zoneFranche(this)"
+                                                data-width="100%">
+                                            <c:if test="${type.equals('TR') || type.equals('ET') }">
+                                                <option value=""><spring:message code="option.Choisir"/></option>
+                                            </c:if>
+
+                                            <c:forEach items="${zonnefranche}" var="t">
+                                                <option
+                                                        <c:if test="${champ_zf_et=='Zone franche'}">
+                                                            <c:if
+                                                                    test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
+                                                        </c:if>
+                                                        <c:if test="${champ_zf_et!='Zone franche'}">
+                                                            <c:if
+                                                                    test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                        </c:if>
+                                                        value="${t[0]}">${t[1]}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.producteur"/> </label>
+                                        <input type="text" name="producteur_text" class="form-control"
+                                               value="${notification.producteur_text}"  ${disabled}>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row m-0 p-0 mt-2">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.quantitetotaleprevu"/></label>
+                                        <input type="text" name="quantite" id="quantite" onchange="changer_quantite(this)"
+                                               value="${notification.quantite}"   ${disabled}
+                                               class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label><spring:message code="label.unite"/></label>
+                                        <select name="unite_id" id="unite" class="form-control select2"
+                                                onchange="changer_unite(this)"
+                                                data-width="100%" ${disabled}>
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                            <c:forEach items="${unite_id}" var="t">
+                                                <option  <c:if
+                                                        test="${notification.unite.unite_id== t[0]}"> selected </c:if>
+                                                        value="${t[0] }">${t[1] }</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.unite"/>  </label>
-                                    <input type="text" disabled value="${notification.unite.nom_fr}" class="form-control">
-                                </div>
-                            </div>
-
-                        </div>
 
 
                         <div class="row justify-content-center mt-3 mb-5">
@@ -1120,7 +1180,6 @@
                             </form>
                         </c:if>
                     </div>
-
 
                     <%--********************Tab1***************************--%>
                     <div id="66" class="tabcontent pr-0">
@@ -2303,7 +2362,7 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <tr>
-                                                    <td colspan="7" class="bg-primary text-center">
+                                                    <td colspan="8" class="bg-primary text-center">
                                                         Aucun producteur dans cette demande</td>
                                                 </tr>
                                             </c:otherwise>
