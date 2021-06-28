@@ -256,7 +256,8 @@
 
     </div>
 </div>
-
+<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
+<jsp:include page="../../includes/footer1.jsp"/>
 <script>
 
     $('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'top', delay: {show: 50, hide: 400}});
@@ -292,5 +293,4 @@
 
 
 
-<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
-<jsp:include page="../../includes/footer1.jsp"/>
+
