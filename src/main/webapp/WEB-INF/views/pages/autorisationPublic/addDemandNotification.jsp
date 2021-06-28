@@ -106,8 +106,14 @@
 
                 <div class="tab" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}"
                      style="${pageContext.response.locale=='ar'?'float:right;':'float:left;'}">
-                    <c:if test="${type.equals('XD') || type.equals('ZF')}">
+                    <c:if test="${type.equals('ZF')}">
                         <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} onclick="openCity(this, '0')" id="defaultOpen"
+                                style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
+                            <spring:message code="label.Numerodenotification"/>
+                        </button>
+                    </c:if>
+                    <c:if test="${type.equals('XD')}">
+                        <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} onclick="openCity(this, '01')" id="defaultOpen"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                             <spring:message code="label.Numerodenotification"/>
                         </button>
@@ -196,9 +202,9 @@
                 </div>
 
                     <div id="0" class="tabcontent pr-0">
-                        <c:if test="${type=='XD' || type=='ZF'}">
+                        <c:if test="${type.equals('ZF')}">
                         <h4 class="titre_abs "><spring:message code="label.Numerodenotification"/></h4>
-                        <div class="row m-0 p-0 mt-2">
+                        <div class="row m-0 p-0 mt-5">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label><spring:message code="label.Numerodenotification"/></label>
@@ -267,8 +273,7 @@
                             </div>
 
                         </div>
-
-                            <div class="row m-0 p-0 mt-2">
+                        <div class="row m-0 p-0 mt-2">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>${champ_zf_et }: </label>
@@ -307,7 +312,7 @@
 
 
                             </div>
-                            <div class="row m-0 p-0 mt-2">
+                        <div class="row m-0 p-0 mt-2">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label><spring:message code="label.quantitetotaleprevu"/></label>
@@ -334,17 +339,9 @@
                                 </div>
                             </div>
 
-
                         <div class="row justify-content-center mt-3 mb-5">
                             <div class="col-md-2 col-sm-6">
-                                <c:if test="${type.equals('XD')}">
-                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
-                                        <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
-                                            onclick="openCity1('Btn66','66')"
-                                            class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
-                                    </button>
-                                </c:if>
-                                <c:if test="${type=='ZF'}">
+                                <c:if test="${type.equals('ZF')}">
                                     <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
                                         <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
                                             onclick="openCity1('Btn2','2')"
@@ -356,11 +353,161 @@
                         </div>
                 </c:if>
                     </div>
+                <div id="01" class="tabcontent pr-0">
+                    <c:if test="${type.equals('XD') }">
+                        <h4 class="titre_abs "><spring:message code="label.Numerodenotification"/></h4>
+                        <div class="row m-0 p-0 mt-5">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.Numerodenotification"/></label>
+                                    <input class="form-control" value="${notification.num_notification}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.Classificationdesdechets"/> </label>
+                                    <c:if test="${type.equals('ZF') || type.equals('XD') || type.equals('TR') }">
+                                        <select name="classification_id" id="Classification" ${disabled}
+                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                class="form-control select2" data-width="100%">
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                            <c:forEach items="${classification}" var="t">
+                                                <option  <c:if
+                                                        test="${notification.classification.id_classification== t[0]}"> selected </c:if>
+                                                        value="${t[0] }">${t[1] }</option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${type.equals('ET') }">
+                                        <select name="classification_id" id="Classification"
+                                            ${(not empty notification && notification.statut.id_statut_projet!=48)?'disabled':''}
+                                                onchange="getOptionByFilter(' id_Classification = '+this.value,' id_code,nom_fr,nom_ar  from code ','code')"
+                                                class="form-control select2" data-width="100%">
+                                            <option value="" selected><spring:message code="label.choisir"/></option>
+                                            <option ${not empty notification?'selected':''} value="2"><spring:message
+                                                    code="label.nondangereux"/></option>
 
+                                        </select>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0 mt-2">
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label><spring:message code="label.code"/></label>
+                                    <select name="code_id" id="code" ${disabled}
+                                            onchange="getOptionByFilter(' id_Code = '+this.value,' id_Code,nom_ar  from Code ','id_type')"
+                                            class="form-control select2" data-width="100%">
+                                        <c:if test="${notification!= null}">
+                                            <option value="">${notification.code.nom_fr}</option>
+                                        </c:if>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.typededechet"/></label>
+                                    <select id="id_type" class="form-control select2" data-width="100%" ${disabled}>
+                                        <c:if test="${notification!= null}">
+                                            <option value="">${notification.code.nom_ar}</option>
+                                        </c:if>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row m-0 p-0 mt-2">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>${champ_zf_et }: </label>
+                                    <select name="${champ_zf_et=='Zone franche'?'idzonne_franche':'id_pays'}"
+                                            id="Zone_Franche"
+                                            class="form-control select2" ${disabled}
+                                            onchange="changer_zoneFranche(this)"
+                                            data-width="100%">
+                                        <c:if test="${type.equals('TR') || type.equals('ET') }">
+                                            <option value=""><spring:message code="option.Choisir"/></option>
+                                        </c:if>
+
+                                        <c:forEach items="${zonnefranche}" var="t">
+                                            <option
+                                                    <c:if test="${champ_zf_et=='Zone franche'}">
+                                                        <c:if
+                                                                test="${notification.zonneFranche.id_zonnefranche== t[0]}"> selected </c:if>
+                                                    </c:if>
+                                                    <c:if test="${champ_zf_et!='Zone franche'}">
+                                                        <c:if
+                                                                test="${notification.pays.paysId== t[0]}"> selected </c:if>
+                                                    </c:if>
+                                                    value="${t[0]}">${t[1]}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.producteur"/> </label>
+                                    <input type="text" name="producteur_text" class="form-control"
+                                           value="${notification.producteur_text}"  ${disabled}>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row m-0 p-0 mt-2">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.quantitetotaleprevu"/></label>
+                                    <input type="text" name="quantite" id="quantite" onchange="changer_quantite(this)"
+                                           value="${notification.quantite}"   ${disabled}
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><spring:message code="label.unite"/></label>
+                                    <select name="unite_id" id="unite" class="form-control select2"
+                                            onchange="changer_unite(this)"
+                                            data-width="100%" ${disabled}>
+                                        <option value=""><spring:message code="option.Choisir"/></option>
+                                        <c:forEach items="${unite_id}" var="t">
+                                            <option  <c:if
+                                                    test="${notification.unite.unite_id== t[0]}"> selected </c:if>
+                                                    value="${t[0] }">${t[1] }</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-3 mb-5">
+                            <div class="col-md-2 col-sm-6">
+                                <c:if test="${type.equals('XD')}">
+                                    <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="Suivant"
+                                        <%--onclick="addObject_step('formnotif','notification','2','0')"--%>
+                                            onclick="openCity1('Btn66','66')"
+                                            class="btn btn-success btn-block"><spring:message code="button.Suivant"/>
+                                    </button>
+                                </c:if>
+                            </div>
+
+                        </div>
+                    </c:if>
+                </div>
                     <div id="1" class="tabcontent pr-0">
+                        <h4 class="titre_abs "><spring:message code="label.ImportateurNotifiant"/></h4>
                         <c:if test="${type!='XD'}">
-                        <h4 class="titre_abs ">${type.equals("ZF")?numNot:"Exportateur - Notifiant"}</h4>
-
                         <form id="formnotif" name="formnotif">
 
                             <input type="hidden" value="${type}" name="zf_et">
@@ -1323,10 +1470,6 @@
                         </form>
                         </c:if>
                     </div>
-
-
-
-
 
                 <%--********************Tab12***************************--%>
                 <c:if test="${type.equals('TR')}">
@@ -3468,7 +3611,7 @@
                     title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
-                        '<a href="/api/checkUserHasCollecte/'+type+'" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="/api/downloadRecuDepo/'+id_notif+'" class="btn btn-success ml-2 text-white">Download Recapitulation</a>',
+                        '<a href="/api/ListeAutorisation/'+type+'/d" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="/api/generate_recap_imp/'+id_notif+'" class="btn btn-success ml-2 text-white">Afficher le récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
@@ -3476,11 +3619,8 @@
                     allowOutsideClick: false
                 });
             }
+            window.location.href="/api/downloadRecuDepo/"+id_notif
         })
-    }
-
-    function retour(val){
-        window.location.href="/api/checkUserHasCollecte/"+val
     }
 
     var room = 1;

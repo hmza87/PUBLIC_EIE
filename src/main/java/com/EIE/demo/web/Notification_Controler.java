@@ -650,8 +650,9 @@ public class Notification_Controler {
 		ByteArrayInputStream bis;
 
 		Notification n = web.getNotiifcationById(id);
+		ListDocNotif[] l = web.listDocNotif(n.getId_notification(),"ZF");
 		if (n != null) {
-			bis = GeneratePDFDocuments.generateDocumentGeneraleDemandeNum(n);
+			bis = GeneratePDFDocuments.generateDocumentGeneraleDemandeNum(n,l);
 
 			return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_OCTET_STREAM)
 					.body(new InputStreamResource(bis));

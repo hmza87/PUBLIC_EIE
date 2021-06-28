@@ -32,7 +32,7 @@ public class GeneratePDFDocuments {
     private static void addFooter(PdfWriter writer, Image img){
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        PdfPTable footer = new PdfPTable(1);
+        PdfPTable footer = new PdfPTable(2);
         // set defaults
         footer.setWidthPercentage(100);
         footer.setTotalWidth(800);
@@ -43,13 +43,14 @@ public class GeneratePDFDocuments {
         // add copyright
         footer.addCell(img);
 
-        /* PdfPCell cell = new PdfPCell();
+        PdfPCell cell = new PdfPCell();
         cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         cell.setBorder(Rectangle.NO_BORDER);
 
         cell.addElement(new Phrase("Date Impression : "+String.valueOf(dateFormat.format(new Date()))));
         cell.setPaddingRight(40);
-        footer.addCell(cell);*/
+        //cell.setPadding(12);
+        footer.addCell(cell);
 
         // write page
         PdfContentByte canvas = writer.getDirectContent();
@@ -3260,407 +3261,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-    public static ByteArrayInputStream generateRecapNotification(Notification ns,ListDocNotif[] l,DocImport[] d) throws DocumentException, IOException {
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
-        PdfWriter writer = PdfWriter.getInstance(document,out);
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        document.open();
-
-        BaseFont base = null;
-        try {
-            base = BaseFont.createFont("/static/assets_admin/fonts/WingdingsRegular.ttf", BaseFont.IDENTITY_H, false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //Setting up the font to be used in Paragraphs
-        Font font=new Font(Font.FontFamily.TIMES_ROMAN,10.0f);
-        Font fontTitre = new Font(Font.FontFamily.TIMES_ROMAN,16.0f,Font.BOLD);
-        Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,10.0f,Font.BOLD);
-        Font fontBox = new Font(base, 20.0f);
-
-        String logo = "/word_header1.png";
-        Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
-        image.scaleToFit(550
-
-,800);
-
-        document.add(image);
-
-        //GLUE CHUNK
-        Chunk glue = new Chunk(new VerticalPositionMark());
-
-//        char checked='\u00FE';
-//        char unchecked='\u00A8';
-
-        Chunk checkedChunk=new Chunk(String.valueOf('\u00FE'),fontBox);
-        Chunk uncheckedChunk=new Chunk(String.valueOf('\u00A8'),fontBox);
-//        Chunk mCube=new Chunk(String.valueOf('\u33A5'),fontBox);
-
-        Chunk oui = new Chunk("Oui : ",font);
-        Chunk non = new Chunk("Non : ",font);
-
-
-        Paragraph headerPar=new Paragraph(10);
-        headerPar.setAlignment(Element.ALIGN_CENTER);
-        String title_type = "...";
-        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1){
-            title_type = "d'importation des déchets d'une zone franche dangereux";
-        }else if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==2){
-            title_type = "d'importation des déchets d'une zone franche non dangereux";
-        }else if(ns.getZf_et().equals("ET")){
-            title_type = "d'importation des déchets non dangereux d'un pays étranger";
-        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
-            title_type = "d'exportation des déchets dangereux";
-        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==2){
-            title_type = "d'exportation des déchets non dangereux";
-        }else if(ns.getZf_et().equals("TR")){
-            title_type = "Transit des déchets";
-        }
-        headerPar.add("Récapitulation de la demande d'autorisation "+title_type);
-        headerPar.setFont(fontTitre);
-        headerPar.setSpacingBefore(20);
-
-        //--------------------- Table numero de notification ---------------------
-        PdfPTable table0 = new PdfPTable(new float[]{2,3,1,2});
-        table0.setWidthPercentage(100);
-        table0.setSpacingBefore(12);
-        table0.setSpacingAfter(12);
-        //--------------------- Row Title ---------------------
-        table0.addCell(saisir_cellule_titre("Numéro de notification",4));
-        table0.completeRow();
-        //--------------------- completeRow ---------------------
-        table0.addCell( saisir_cellule("Numéro de notification : ",font,fontbold,ns.getNum_notification(),1));
-        table0.addCell( saisir_cellule("Classification des déchets : ",font,fontbold,ns.getClassification()!=null?ns.getClassification().getNom_fr():"-",1));
-        table0.addCell( saisir_cellule("Code : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_fr():"-",1));
-        if(ns.getZf_et().equals("ZF"))
-            table0.addCell( saisir_cellule("Zone Franche : ",font,fontbold,ns.getZonneFranche()!=null?ns.getZonneFranche().getNom_fr():"-",1));
-        else
-            table0.addCell( saisir_cellule("Pays Etranger : ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
-        table0.completeRow();
-
-        table0.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?ns.getQuantite():"",1));
-        table0.addCell( saisir_cellule("Opération : ",font,fontbold,ns.getOperation()!=null?ns.getOperation():"",1));
-        table0.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
-        table0.addCell( saisir_cellule("Producteur : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
-        table0.completeRow();
-
-        table0.addCell( saisir_cellule("Type de déchet : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_ar():"-",4));
-        table0.completeRow();
-
-        //---------------------Tableau Exportateur - Notifiant ----------------------
-
-
-            PdfPTable table01 = new PdfPTable(new float[]{2,2,2});
-        if (ns.getZf_et().equals("XD")){
-            table01.setWidthPercentage(100);
-            table01.setSpacingBefore(12);
-            table01.setSpacingAfter(12);
-
-            //--------------------- Row Title ---------------------
-            table01.addCell(saisir_cellule_titre("Exportateur - Notifiant",3));
-            table01.completeRow();
-            //--------------------- completeRow ---------------------
-
-            table01.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
-            table01.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
-            table01.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
-            table01.completeRow();
-            table01.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getFax():"-",1));
-            table01.addCell( saisir_cellule("Région: ",font,fontbold,ns.getRegion()!=null?ns.getRegion().getNom_fr():"-",1));
-            table01.addCell( saisir_cellule("Préfecture: ",font,fontbold,ns.getPrefecture()!=null?ns.getPrefecture().getNom_fr():"-",1));
-            table01.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getContact_fr():"-",1));
-            table01.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getIdf():"-",1));
-            table01.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getAdresse_fr():"-",3));
-            table01.completeRow();
-        }
-
-        //--------------------- Tableau Importateur - Notifiant ---------------------
-        PdfPTable table1 = new PdfPTable(new float[]{2,2,2});
-
-            table1.setWidthPercentage(100);
-            table1.setSpacingBefore(12);
-            table1.setSpacingAfter(12);
-        if (ns.getZf_et().equals("XD")) {
-
-            //--------------------- Row Title ---------------------
-            table1.addCell(saisir_cellule_titre("Importateur - Destinataire",3));
-            table1.completeRow();
-            //--------------------- completeRow ---------------------
-
-            table1.addCell( saisir_cellule("Nom de l'importateur destinataire : ",font,fontbold,ns.getNom()!=null?ns.getNom():"",1));
-            table1.addCell( saisir_cellule("Télécopie : ",font,fontbold,ns.getTelecopie()!=null?ns.getTelecopie():"",1));
-            table1.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getPersonne()!=null?ns.getPersonne():"",1));
-            table1.completeRow();
-            table1.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getTel()!=null?ns.getTel():"",1));
-            table1.addCell( saisir_cellule("courrier électronique : ",font,fontbold,ns.getCourrier()!=null?ns.getCourrier():"",1));
-            table1.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse()!=null?ns.getAdresse():"",1));
-            table1.completeRow();
-            table1.addCell( saisir_cellule("Code National dans le pays d'exportation : ",font,fontbold,ns.getCodeNationalXD()!=null?ns.getCodeNationalXD():"",1));
-            table1.addCell( saisir_cellule("Code National dans le pays d'importation : ",font,fontbold,ns.getCodeNationalIm()!=null?ns.getCodeNationalIm():"-",1));
-            table1.addCell( saisir_cellule("Liste Des déchets de le CE : ",font,fontbold,ns.getCodeCE()!=null?ns.getCodeCE():"-",3));
-            table1.completeRow();
-
-        }else {
-
-            //--------------------- Row Title ---------------------
-            table1.addCell(saisir_cellule_titre("Importateur - Notifiant", 3));
-            table1.completeRow();
-            //--------------------- completeRow ---------------------
-
-            table1.addCell(saisir_cellule("Nom de la société : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getNom_fr() : "-", 1));
-            table1.addCell(saisir_cellule("Email : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getMail() : "-", 1));
-            table1.addCell(saisir_cellule("Télephone : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getTel() : "-", 1));
-            table1.completeRow();
-            table1.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getFax() : "-", 1));
-            table1.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getContact_fr() : "-", 1));
-            table1.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getIdf() : "-", 1));
-            table1.addCell(saisir_cellule("Adresse : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getAdresse_fr() : "-", 3));
-            table1.completeRow();
-
-            }
-
-
-        //---------------------Tableau Autorite ----------------------
-
-
-        PdfPTable table02 = new PdfPTable(new float[]{2,2,2});
-
-            table02.setWidthPercentage(100);
-            table02.setSpacingBefore(12);
-            table02.setSpacingAfter(12);
-        if (ns.getZf_et().equals("XD")){
-            //--------------------- Row Title ---------------------
-            table02.addCell(saisir_cellule_titre("Autorité",3));
-            table02.completeRow();
-            //--------------------- completeRow ---------------------
-
-            table02.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getNom_fr():"-",1));
-            table02.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getTel():"-",1));
-            table02.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getFax():"-",1));
-            table02.completeRow();
-            table02.addCell( saisir_cellule("Mail : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getEmail():"-",1));
-            table02.addCell( saisir_cellule("Pays Destinataire: ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
-            table02.completeRow();
-        }else if(ns.getZf_et().equals("TR")){
-
-        }else{
-
-        }
-
-        //--------------------- Tableau Document de notification ---------------------
-        PdfPTable table2 = new PdfPTable(new float[]{1.5f,2f,2.2f});
-        table2.setWidthPercentage(100);
-        table2.setSpacingBefore(12);
-        table2.setSpacingAfter(12);
-
-        //--------------------- Row Title ---------------------
-        table2.addCell(saisir_cellule_titre("Document de notification",4));
-        table2.completeRow();
-        //--------------------- completeRow ---------------------
-        table2.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?ns.getQuantite():"",1));
-        table2.addCell( saisir_cellule("Opération : ",font,fontbold,ns.getOperation()!=null?ns.getOperation():"",1));
-        table2.addCell( saisir_cellule("Nombre total d'expéditions prévues : ",font,fontbold,ns.getExpedition()!=null?ns.getExpedition():"",1));
-        table2.completeRow();
-        table2.addCell( saisir_cellule("Caractéristiques physiques : ",font,fontbold,ns.getCaracteristquePhysique()!=null?ns.getCaracteristquePhysique().getNom_fr():"-",1));
-        table2.addCell( saisir_cellule("Notification Concernant : ",font,fontbold,ns.getUniques()!=null?ns.getUniques():"",1));
-        table2.addCell( saisir_cellule("Prescriptions spéciales de manutention : ",font,fontbold,ns.getManutention()!=null?ns.getManutention():"",1));
-        table2.completeRow();
-        table2.addCell( saisir_cellule("Premier départ : ",font,fontbold,ns.getPremier()!=null?ns.getPremier():"",1));
-        table2.addCell( saisir_cellule("Dernier  départ : ",font,fontbold,ns.getDernier()!=null?ns.getDernier():"",1));
-        table2.addCell( saisir_cellule("Destination finale : ",font,fontbold,ns.getDestination_final()!=null?ns.getDestination_final():"",1));
-        table2.completeRow();
-        table2.addCell( saisir_cellule("Type(s) de conditionnement : ",font,fontbold,ns.getTypeconditionnement()!=null?ns.getTypeconditionnement().getNom_fr():"-",3));
-        table2.setSpacingAfter(12);
-
-
-        //--------------------- Tableau Transporteur(s) prévu ---------------------
-        PdfPTable table3 = new PdfPTable(new float[]{2,2,2,2,2});
-        table3.setWidthPercentage(100);
-        table3.setSpacingBefore(12);
-        table3.setSpacingAfter(12);
-
-        //--------------------- Row Title ---------------------
-        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1 || ns.getZf_et().equals("XD")){
-            table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
-            table3.completeRow();
-            //--------------------- completeRow ---------------------
-            table3.addCell(saisir_cellule_transporteur_titre("Nom", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Identifiant fiscale ", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Téléphone", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Fax", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
-            table3.completeRow();
-            if (ns.getTransporteur() != null && ns.getTransporteur().size() > 0) {
-                for (TransporteurParam tp : ns.getTransporteur()) {
-                    table3.addCell(saisir_cellule(tp.getNom(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getIdentifiant(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getFax(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
-                    table3.completeRow();
-                }
-            } else {
-                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
-                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table3.addCell(tmp);
-            }
-        }
-        else{
-            table3.addCell(saisir_cellule_titre("Transporteur Etranger", 5));
-            table3.completeRow();
-            //--------------------- completeRow ---------------------
-            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Type véhicule", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Assurance", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
-            table3.completeRow();
-            if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
-                for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
-                    table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getUrl_assurance(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
-                    table3.completeRow();
-                }
-            } else {
-                PdfPCell tmp = saisir_cellule("Aucun Transporteur Etranger.", fontbold, fontbold, "", 5);
-                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table3.addCell(tmp);
-            }
-        }
-
-
-        //--------------------- Tableau Producteur(s) ---------------------
-        PdfPTable table4 = new PdfPTable(new float[]{2,2,2,2});
-        table4.setWidthPercentage(100);
-        table4.setSpacingBefore(12);
-        table4.setSpacingAfter(12);
-        if(ns.getZf_et().equals("XD")){
-            table4.addCell(saisir_cellule_titre("Producteur(s)", 4));
-            table4.completeRow();
-            //--------------------- completeRow ---------------------
-            table4.addCell(saisir_cellule_producteur_titre("Nom de la société", 1));
-            table4.addCell(saisir_cellule_producteur_titre("Téléphone", 1));
-            table4.addCell(saisir_cellule_producteur_titre("Email", 1));
-            table4.addCell(saisir_cellule_producteur_titre("Adresse", 1));
-            table4.completeRow();
-            if (ns.getProducteurs() != null && ns.getProducteurs().size() > 0) {
-                for (Producteur tp : ns.getProducteurs()) {
-                    table4.addCell(saisir_cellule(tp.getNom_fr(), font, font, "", 1));
-                    table4.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
-                    table4.addCell(saisir_cellule(tp.getMail(), font, font, "", 1));
-                    table4.addCell(saisir_cellule(tp.getAdresse_fr(), font, font, "", 1));
-                    table4.completeRow();
-                }
-            } else {
-                PdfPCell tmp = saisir_cellule("Aucun Producteur.", fontbold, fontbold, "", 4);
-                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table4.addCell(tmp);
-            }
-        }else {
-            //--------------------- Row Title ---------------------
-            table4.addCell(saisir_cellule_titre("Producteur", 4));
-            table4.completeRow();
-            //--------------------- completeRow ---------------------
-            table4.addCell(saisir_cellule("Nom de la société: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getNom_fr() : "-", 1));
-            table4.addCell(saisir_cellule("Téléphone : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getTel() : "-", 1));
-            table4.addCell(saisir_cellule("Email : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getMail() : "-", 1));
-            table4.completeRow();
-            table4.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getFax() : "-", 1));
-            table4.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getIdf() : "-", 1));
-            table4.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getContact_fr() : "-", 1));
-            table4.completeRow();
-            table4.addCell(saisir_cellule("Adresse: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getAdresse_fr() : "-", 3));
-            table4.completeRow();
-            table4.setSpacingAfter(12);
-        }
-
-
-        //--------------------- Tableau Installation d’élimination(s) ---------------------
-        PdfPTable table5 = new PdfPTable(new float[]{2,2,2});
-        table5.setWidthPercentage(100);
-        table5.setSpacingBefore(12);
-        table5.setSpacingAfter(12);
-
-        //--------------------- Row Title ---------------------
-        table5.addCell(saisir_cellule_titre("Installation de valorisation / élimination",4));
-        table5.completeRow();
-        //--------------------- completeRow ---------------------
-        table5.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
-        table5.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getTel():"-",1));
-        table5.addCell( saisir_cellule("Email : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getMail():"-",1));
-        table5.completeRow();
-        table5.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getFax():"-",1));
-        table5.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getIdf():"-",1));
-        table5.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getContact_fr():"-",1));
-        table5.completeRow();
-        table5.addCell( saisir_cellule("Adresse: ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getAdresse_fr():"-",3));
-        table5.completeRow();
-        table5.setSpacingAfter(12);
-
-        //--------------------- Tableau Les Pièces ---------------------
-        PdfPTable table7 = new PdfPTable(3);
-        table7.setWidthPercentage(100);
-        table7.setSpacingBefore(12);
-        table7.setSpacingAfter(12);
-        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
-        table7.completeRow();
-        //--------------------- Row Title ---------------------
-        int i=1;
-        for (ListDocNotif ld: l){
-            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
-            i++;
-            table7.completeRow();
-        }
-
-        //--------------------- Tableau Document de mouvements des déchets ---------------------
-        PdfPTable table6 = new PdfPTable(new float[]{2,1.5f,2,2.5f});
-        table6.setWidthPercentage(100);
-        table6.setSpacingBefore(12);
-        table6.setSpacingAfter(12);
-        //--------------------- Row Title ---------------------
-        table6.addCell(saisir_cellule_titre("Document de mouvements des déchets",4));
-        table6.completeRow();
-        //--------------------- completeRow ---------------------
-        table6.addCell( saisir_cellule("Quantité réelle : ",font,fontbold,ns.getQuantite_reel()!=null ? ns.getQuantite_reel() :"",1));
-        table6.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
-        table6.addCell( saisir_cellule("Nombre de colis : ",font,fontbold,ns.getNbr_colis()!=null?ns.getNbr_colis():"",1));
-        table6.addCell( saisir_cellule("Date réelle de l'expédition : ",font,fontbold,ns.getDate_reel()!=null ? dateFormat.format(ns.getDate_reel()):"",1));
-        table6.completeRow();
-        table6.addCell( saisir_cellule("Lieu effectif de l'élimination/valorisation: ",font,fontbold,ns.getLieux_elimination()!=null?ns.getLieux_elimination().getNom_fr():ns.getLieu(),4));
-        table6.completeRow();
-        table6.setSpacingAfter(12);
-
-        String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
-        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
-                + ns.getId_notification() + "\n Numero de notification : " + num_notification, 300,
-                300,null);
-        Image codeQrImage = barcodeQRCode.getImage();
-        codeQrImage.scaleAbsolute(100, 100);
-
-
-
-        document.add(headerPar);
-        document.add(table0);
-        document.add(table01);
-        document.add(table1);
-        document.add(table02);
-        document.add(table2);
-        document.add(table3);
-        document.add(table4);
-        document.add(table5);
-        document.add(table6);
-        document.add(table7);
-        addFooter(writer,codeQrImage);
-        document.close();
-
-        return new ByteArrayInputStream(out.toByteArray());
-    }
     public static ByteArrayInputStream generateRecapInstalation(Installation ns,ListDocNotif[] l, DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -4312,7 +3912,22 @@ public class GeneratePDFDocuments {
         cell0.setPaddingTop(2.5f);
         return cell0;
     }
-    public static ByteArrayInputStream generateDocumentGeneraleDemandeNum(Notification ns) throws DocumentException, IOException {
+    public static String convertDate(String type, Date date) {
+        String strDate = "";
+        if (date == null) {
+
+        } else {
+
+            SimpleDateFormat formatter = new SimpleDateFormat(type);
+            strDate = formatter.format(date);
+
+        }
+        return strDate;
+    }
+
+
+
+    public static ByteArrayInputStream generateRecapNotification(Notification ns,ListDocNotif[] l,DocImport[] d) throws DocumentException, IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Document document=new Document(PageSize.A4, 30, 30, 10, 10);
@@ -4337,7 +3952,449 @@ public class GeneratePDFDocuments {
         Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
         image.scaleToFit(550
 
-,800);
+                ,800);
+
+        document.add(image);
+
+        //GLUE CHUNK
+        Chunk glue = new Chunk(new VerticalPositionMark());
+
+//        char checked='\u00FE';
+//        char unchecked='\u00A8';
+
+        Chunk checkedChunk=new Chunk(String.valueOf('\u00FE'),fontBox);
+        Chunk uncheckedChunk=new Chunk(String.valueOf('\u00A8'),fontBox);
+//        Chunk mCube=new Chunk(String.valueOf('\u33A5'),fontBox);
+
+        Chunk oui = new Chunk("Oui : ",font);
+        Chunk non = new Chunk("Non : ",font);
+
+
+        Paragraph headerPar=new Paragraph(10);
+        headerPar.setAlignment(Element.ALIGN_CENTER);
+        String title_type = "...";
+        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1){
+            title_type = "d'importation des déchets d'une zone franche dangereux";
+        }else if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==2){
+            title_type = "d'importation des déchets d'une zone franche non dangereux";
+        }else if(ns.getZf_et().equals("ET")){
+            title_type = "d'importation des déchets non dangereux d'un pays étranger";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
+            title_type = "d'exportation des déchets dangereux";
+        }else if(ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==2){
+            title_type = "d'exportation des déchets non dangereux";
+        }else if(ns.getZf_et().equals("TR")){
+            title_type = "Transit des déchets";
+        }
+        headerPar.add("Récapitulation de la demande d'autorisation "+title_type);
+        headerPar.setFont(fontTitre);
+        headerPar.setSpacingBefore(20);
+
+        //--------------------- Table numero de notification ---------------------
+        PdfPTable table0 = new PdfPTable(new float[]{2,3,1,2});
+        table0.setWidthPercentage(100);
+        table0.setSpacingBefore(12);
+        table0.setSpacingAfter(12);
+        //--------------------- Row Title ---------------------
+        table0.addCell(saisir_cellule_titre("Numéro de notification",4));
+        table0.completeRow();
+        //--------------------- completeRow ---------------------
+        table0.addCell( saisir_cellule("Numéro de notification : ",font,fontbold,ns.getNum_notification(),1));
+        table0.addCell( saisir_cellule("Classification des déchets : ",font,fontbold,ns.getClassification()!=null?ns.getClassification().getNom_fr():"-",1));
+        table0.addCell( saisir_cellule("Code : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_fr():"-",1));
+        if(ns.getZf_et().equals("ZF"))
+            table0.addCell( saisir_cellule("Zone Franche : ",font,fontbold,ns.getZonneFranche()!=null?ns.getZonneFranche().getNom_fr():"-",1));
+        else
+            table0.addCell( saisir_cellule("Pays Etranger : ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
+        table0.completeRow();
+
+        table0.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?ns.getQuantite():"",1));
+        table0.addCell( saisir_cellule("Opération : ",font,fontbold,ns.getOperation()!=null?ns.getOperation():"",1));
+        table0.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
+        table0.addCell( saisir_cellule("Producteur : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
+        table0.completeRow();
+
+        table0.addCell( saisir_cellule("Type de déchet : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_ar():"-",4));
+        table0.completeRow();
+
+        //---------------------Tableau Exportateur - Notifiant ----------------------
+
+
+        PdfPTable table01 = new PdfPTable(new float[]{2,2,2});
+        if (ns.getZf_et().equals("XD") || ns.getZf_et().equals("TR") || ns.getZf_et().equals("ET")){
+            table01.setWidthPercentage(100);
+            table01.setSpacingBefore(12);
+            table01.setSpacingAfter(12);
+
+            //--------------------- Row Title ---------------------
+            table01.addCell(saisir_cellule_titre("Exportateur - Notifiant",3));
+            table01.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table01.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
+            table01.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
+            table01.completeRow();
+            table01.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getFax():"-",1));
+            table01.addCell( saisir_cellule("Région: ",font,fontbold,ns.getRegion()!=null?ns.getRegion().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Préfecture: ",font,fontbold,ns.getPrefecture()!=null?ns.getPrefecture().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getContact_fr():"-",1));
+            table01.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getIdf():"-",1));
+            table01.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getAdresse_fr():"-",3));
+            table01.completeRow();
+        }
+
+        //--------------------- Tableau Importateur - Notifiant ---------------------
+        PdfPTable table1 = new PdfPTable(new float[]{2,2,2});
+
+        table1.setWidthPercentage(100);
+        table1.setSpacingBefore(12);
+        table1.setSpacingAfter(12);
+        if (ns.getZf_et().equals("XD")) {
+
+            //--------------------- Row Title ---------------------
+            table1.addCell(saisir_cellule_titre("Importateur - Destinataire",3));
+            table1.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table1.addCell( saisir_cellule("Nom de l'importateur destinataire : ",font,fontbold,ns.getNom()!=null?ns.getNom():"",1));
+            table1.addCell( saisir_cellule("Télécopie : ",font,fontbold,ns.getTelecopie()!=null?ns.getTelecopie():"",1));
+            table1.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getPersonne()!=null?ns.getPersonne():"",1));
+            table1.completeRow();
+            table1.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getTel()!=null?ns.getTel():"",1));
+            table1.addCell( saisir_cellule("courrier électronique : ",font,fontbold,ns.getCourrier()!=null?ns.getCourrier():"",1));
+            table1.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse()!=null?ns.getAdresse():"",1));
+            table1.completeRow();
+            table1.addCell( saisir_cellule("Code National dans le pays d'exportation : ",font,fontbold,ns.getCodeNationalXD()!=null?ns.getCodeNationalXD():"",1));
+            table1.addCell( saisir_cellule("Code National dans le pays d'importation : ",font,fontbold,ns.getCodeNationalIm()!=null?ns.getCodeNationalIm():"-",1));
+            table1.addCell( saisir_cellule("Liste Des déchets de le CE : ",font,fontbold,ns.getCodeCE()!=null?ns.getCodeCE():"-",3));
+            table1.completeRow();
+
+        }else {
+
+            //--------------------- Row Title ---------------------
+            table1.addCell(saisir_cellule_titre("Importateur - Notifiant", 3));
+            table1.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table1.addCell(saisir_cellule("Nom de la société : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getNom_fr() : "-", 1));
+            table1.addCell(saisir_cellule("Email : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getMail() : "-", 1));
+            table1.addCell(saisir_cellule("Télephone : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getTel() : "-", 1));
+            table1.completeRow();
+            table1.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getFax() : "-", 1));
+            table1.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getContact_fr() : "-", 1));
+            table1.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getIdf() : "-", 1));
+            table1.addCell(saisir_cellule("Adresse : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getAdresse_fr() : "-", 3));
+            table1.completeRow();
+
+        }
+
+
+        //---------------------Tableau Autorite ----------------------
+
+
+        PdfPTable table02 = new PdfPTable(new float[]{2,2,2});
+
+        table02.setWidthPercentage(100);
+        table02.setSpacingBefore(12);
+        table02.setSpacingAfter(12);
+        if (ns.getZf_et().equals("XD")){
+            //--------------------- Row Title ---------------------
+            table02.addCell(saisir_cellule_titre("Autorité",3));
+            table02.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table02.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getNom_fr():"-",1));
+            table02.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getTel():"-",1));
+            table02.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getFax():"-",1));
+            table02.completeRow();
+            table02.addCell( saisir_cellule("Mail : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getEmail():"-",1));
+            table02.addCell( saisir_cellule("Pays Destinataire: ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
+            table02.completeRow();
+        }else if(ns.getZf_et().equals("TR")){
+
+        }else{
+
+        }
+
+        //--------------------- Tableau Document de notification ---------------------
+        PdfPTable table2 = new PdfPTable(new float[]{1.5f,2f,2.2f});
+        table2.setWidthPercentage(100);
+        table2.setSpacingBefore(12);
+        table2.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        table2.addCell(saisir_cellule_titre("Document de notification",4));
+        table2.completeRow();
+        //--------------------- completeRow ---------------------
+        table2.addCell( saisir_cellule("Quantité totale prévue : ",font,fontbold,ns.getQuantite()!=null?ns.getQuantite():"",1));
+        table2.addCell( saisir_cellule("Opération : ",font,fontbold,ns.getOperation()!=null?ns.getOperation():"",1));
+        table2.addCell( saisir_cellule("Nombre total d'expéditions prévues : ",font,fontbold,ns.getExpedition()!=null?ns.getExpedition():"",1));
+        table2.completeRow();
+        table2.addCell( saisir_cellule("Caractéristiques physiques : ",font,fontbold,ns.getCaracteristquePhysique()!=null?ns.getCaracteristquePhysique().getNom_fr():"-",1));
+        table2.addCell( saisir_cellule("Notification Concernant : ",font,fontbold,ns.getUniques()!=null?ns.getUniques():"",1));
+        table2.addCell( saisir_cellule("Prescriptions spéciales de manutention : ",font,fontbold,ns.getManutention()!=null?ns.getManutention():"",1));
+        table2.completeRow();
+        table2.addCell( saisir_cellule("Premier départ : ",font,fontbold,ns.getPremier()!=null?ns.getPremier():"",1));
+        table2.addCell( saisir_cellule("Dernier  départ : ",font,fontbold,ns.getDernier()!=null?ns.getDernier():"",1));
+        table2.addCell( saisir_cellule("Destination finale : ",font,fontbold,ns.getDestination_final()!=null?ns.getDestination_final():"",1));
+        table2.completeRow();
+        table2.addCell( saisir_cellule("Type(s) de conditionnement : ",font,fontbold,ns.getTypeconditionnement()!=null?ns.getTypeconditionnement().getNom_fr():"-",3));
+        table2.setSpacingAfter(12);
+
+
+        //--------------------- Tableau Transporteur(s) prévu ---------------------
+        PdfPTable table3 = new PdfPTable(new float[]{2,2,2,2});
+        table3.setWidthPercentage(100);
+        table3.setSpacingBefore(12);
+        table3.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        if(ns.getZf_et().equals("ZF") || ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
+            table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
+            table3.completeRow();
+            //--------------------- completeRow ---------------------
+            table3.addCell(saisir_cellule_transporteur_titre("Nom", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Identifiant fiscale ", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Téléphone", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
+            table3.completeRow();
+            if (ns.getTransporteur() != null && ns.getTransporteur().size() > 0) {
+                for (TransporteurParam tp : ns.getTransporteur()) {
+                    table3.addCell(saisir_cellule(tp.getNom(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getIdentifiant(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
+                    table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                    table3.completeRow();
+                }
+            }else {
+                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table3.addCell(tmp);
+            }
+        }if(!ns.getZf_et().equals("TR")){
+
+
+            table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
+            table3.completeRow();
+            //--------------------- completeRow ---------------------
+            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Type de transport", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
+            table3.completeRow();
+            if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
+                for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
+                    if(tp.getType().equals("tn")){
+                        table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                        table3.completeRow();
+                    }
+
+                }
+            }else {
+                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table3.addCell(tmp);
+            }
+        }
+
+
+        //--------------------- Tableau Transporteur(s) prévu ---------------------
+        PdfPTable table03 = new PdfPTable(new float[]{2,2,2,2});
+        table03.setWidthPercentage(100);
+        table03.setSpacingBefore(12);
+        table03.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        if(ns.getZf_et().equals("ET") || ns.getZf_et().equals("XD") || ns.getZf_et().equals("TR")){
+            table03.addCell(saisir_cellule_titre("Transporteur(s) International", 4));
+            table03.completeRow();
+            //--------------------- completeRow ---------------------
+            table03.addCell(saisir_cellule_transporteur_titre("Raison sociale", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Immatriculation ", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Type de transport", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
+            table03.completeRow();
+            if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
+                for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
+                    if(tp.getType().equals("ti")){
+                        table03.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                        table03.completeRow();
+                    }
+
+                }
+            } else {
+                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table03.addCell(tmp);
+            }
+        }
+
+        //--------------------- Tableau Producteur(s) ---------------------
+        PdfPTable table4 = new PdfPTable(new float[]{2,2,2,2});
+        table4.setWidthPercentage(100);
+        table4.setSpacingBefore(12);
+        table4.setSpacingAfter(12);
+        if(ns.getZf_et().equals("XD")){
+            table4.addCell(saisir_cellule_titre("Producteur(s)", 4));
+            table4.completeRow();
+            //--------------------- completeRow ---------------------
+            table4.addCell(saisir_cellule_producteur_titre("Nom de la société", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Téléphone", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Email", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Adresse", 1));
+            table4.completeRow();
+            if (ns.getProducteurs() != null && ns.getProducteurs().size() > 0) {
+                for (Producteur tp : ns.getProducteurs()) {
+                    table4.addCell(saisir_cellule(tp.getNom_fr(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getMail(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getAdresse_fr(), font, font, "", 1));
+                    table4.completeRow();
+                }
+            } else {
+                PdfPCell tmp = saisir_cellule("Aucun Producteur.", fontbold, fontbold, "", 4);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table4.addCell(tmp);
+            }
+        }else {
+            //--------------------- Row Title ---------------------
+            table4.addCell(saisir_cellule_titre("Producteur", 4));
+            table4.completeRow();
+            //--------------------- completeRow ---------------------
+            table4.addCell(saisir_cellule("Nom de la société: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getNom_fr() : "-", 1));
+            table4.addCell(saisir_cellule("Téléphone : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getTel() : "-", 1));
+            table4.addCell(saisir_cellule("Email : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getMail() : "-", 1));
+            table4.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getFax() : "-", 1));
+
+            table4.completeRow();
+            table4.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getIdf() : "-", 1));
+            table4.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getContact_fr() : "-", 1));
+            table4.addCell(saisir_cellule("Adresse: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getAdresse_fr() : "-", 3));
+            table4.completeRow();
+            table4.setSpacingAfter(12);
+        }
+
+
+        //--------------------- Tableau Installation d’élimination(s) ---------------------
+        PdfPTable table5 = new PdfPTable(new float[]{2,2,2});
+        table5.setWidthPercentage(100);
+        table5.setSpacingBefore(12);
+        table5.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        table5.addCell(saisir_cellule_titre("Installation de valorisation / élimination",4));
+        table5.completeRow();
+        //--------------------- completeRow ---------------------
+        table5.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
+        table5.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getTel():"-",1));
+        table5.addCell( saisir_cellule("Email : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getMail():"-",1));
+        table5.completeRow();
+        table5.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getFax():"-",1));
+        table5.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getIdf():"-",1));
+        table5.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getContact_fr():"-",1));
+        table5.completeRow();
+        table5.addCell( saisir_cellule("Adresse: ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getAdresse_fr():"-",3));
+        table5.completeRow();
+        table5.setSpacingAfter(12);
+
+        //--------------------- Tableau Les Pièces ---------------------
+        PdfPTable table7 = new PdfPTable(3);
+        table7.setWidthPercentage(100);
+        table7.setSpacingBefore(12);
+        table7.setSpacingAfter(12);
+        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
+        table7.completeRow();
+
+        //table7.addCell(new Paragraph(Chunk.NEWLINE));
+        //--------------------- Row Title ---------------------
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
+
+        //--------------------- Tableau Document de mouvements des déchets ---------------------
+        PdfPTable table6 = new PdfPTable(new float[]{2,1.5f,2,2.5f});
+        table6.setWidthPercentage(100);
+        table6.setSpacingBefore(12);
+        table6.setSpacingAfter(12);
+        //--------------------- Row Title ---------------------
+        table6.addCell(saisir_cellule_titre("Document de mouvements des déchets",4));
+        table6.completeRow();
+        //--------------------- completeRow ---------------------
+        table6.addCell( saisir_cellule("Quantité réelle : ",font,fontbold,ns.getQuantite_reel()!=null ? ns.getQuantite_reel() :"",1));
+        table6.addCell( saisir_cellule("Unité : ",font,fontbold,ns.getUnite()!=null?ns.getUnite().getNom_fr():"-",1));
+        table6.addCell( saisir_cellule("Nombre de colis : ",font,fontbold,ns.getNbr_colis()!=null?ns.getNbr_colis():"",1));
+        table6.addCell( saisir_cellule("Date réelle de l'expédition : ",font,fontbold,ns.getDate_reel()!=null ? dateFormat.format(ns.getDate_reel()):"",1));
+        table6.completeRow();
+        table6.addCell( saisir_cellule("Lieu effectif de l'élimination/valorisation: ",font,fontbold,ns.getLieux_elimination()!=null?ns.getLieux_elimination().getNom_fr():ns.getLieu(),4));
+        table6.completeRow();
+        table6.setSpacingAfter(12);
+
+        String num_notification = ns.getNum_notification()!=null?ns.getNum_notification():"";
+        BarcodeQRCode barcodeQRCode = new BarcodeQRCode("check this link : http://localhost:81/downloadRecuDepo/"
+                + ns.getId_notification() + "\n Numero de notification : " + num_notification, 300,
+                300,null);
+        Image codeQrImage = barcodeQRCode.getImage();
+        codeQrImage.scaleAbsolute(100, 100);
+
+
+
+
+        document.add(headerPar);
+        document.add(table0);
+        document.add(table01);
+        document.add(table1);
+        document.add(table02);
+        document.add(table2);
+        document.add(table3);
+        document.add(table03);
+        document.add(table4);
+        document.add(table5);
+        document.add(table6);
+        document.add(table7);
+        addFooter(writer,codeQrImage);
+        document.close();
+
+        return new ByteArrayInputStream(out.toByteArray());
+    }
+
+
+
+    public static ByteArrayInputStream generateDocumentGeneraleDemandeNum(Notification ns,ListDocNotif[] l) throws DocumentException, IOException {
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        Document document=new Document(PageSize.A4, 30, 30, 10, 10);
+        PdfWriter writer = PdfWriter.getInstance(document,out);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        document.open();
+
+        BaseFont base = null;
+        try {
+            base = BaseFont.createFont("/static/assets_admin/fonts/WingdingsRegular.ttf", BaseFont.IDENTITY_H, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Setting up the font to be used in Paragraphs
+        Font font=new Font(Font.FontFamily.TIMES_ROMAN,10.0f);
+        Font fontTitre = new Font(Font.FontFamily.TIMES_ROMAN,16.0f,Font.BOLD);
+        Font fontbold=new Font(Font.FontFamily.TIMES_ROMAN,10.0f,Font.BOLD);
+        Font fontBox = new Font(base, 20.0f);
+
+        String logo = "/word_header1.png";
+        Image image = Image.getInstance(GeneratePDFDocuments.class.getResource(logo));
+        image.scaleToFit(550
+
+                ,800);
 
         document.add(image);
 
@@ -4401,27 +4458,105 @@ public class GeneratePDFDocuments {
         table0.addCell( saisir_cellule("Type de déchet : ",font,fontbold,ns.getCode()!=null?ns.getCode().getNom_ar():"-",4));
         table0.completeRow();
 
+        //---------------------Tableau Exportateur - Notifiant ----------------------
+
+
+        PdfPTable table01 = new PdfPTable(new float[]{2,2,2});
+        if (ns.getZf_et().equals("XD") || ns.getZf_et().equals("TR") || ns.getZf_et().equals("ET")){
+            table01.setWidthPercentage(100);
+            table01.setSpacingBefore(12);
+            table01.setSpacingAfter(12);
+
+            //--------------------- Row Title ---------------------
+            table01.addCell(saisir_cellule_titre("Exportateur - Notifiant",3));
+            table01.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table01.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
+            table01.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
+            table01.completeRow();
+            table01.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getFax():"-",1));
+            table01.addCell( saisir_cellule("Région: ",font,fontbold,ns.getRegion()!=null?ns.getRegion().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Préfecture: ",font,fontbold,ns.getPrefecture()!=null?ns.getPrefecture().getNom_fr():"-",1));
+            table01.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getContact_fr():"-",1));
+            table01.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getIdf():"-",1));
+            table01.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getAdresse_fr():"-",3));
+            table01.completeRow();
+        }
+
         //--------------------- Tableau Importateur - Notifiant ---------------------
         PdfPTable table1 = new PdfPTable(new float[]{2,2,2});
+
         table1.setWidthPercentage(100);
         table1.setSpacingBefore(12);
         table1.setSpacingAfter(12);
+        if (ns.getZf_et().equals("XD")) {
 
-        //--------------------- Row Title ---------------------
-        table1.addCell(saisir_cellule_titre("Importateur - Notifiant",3));
-        table1.completeRow();
-        //--------------------- completeRow ---------------------
+            //--------------------- Row Title ---------------------
+            table1.addCell(saisir_cellule_titre("Importateur - Destinataire",3));
+            table1.completeRow();
+            //--------------------- completeRow ---------------------
 
-        table1.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getNom_fr():"-",1));
-        table1.addCell( saisir_cellule("Email : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getMail():"-",1));
-        table1.addCell( saisir_cellule("Tél : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getTel():"-",1));
-        table1.completeRow();
-        table1.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getFax():"-",1));
-        table1.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getContact_fr():"-",1));
-        table1.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getIdf():"-",1));
-        table1.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getImportateur()!=null?ns.getImportateur().getAdresse_fr():"-",3));
-        table1.completeRow();
+            table1.addCell( saisir_cellule("Nom de l'importateur destinataire : ",font,fontbold,ns.getNom()!=null?ns.getNom():"",1));
+            table1.addCell( saisir_cellule("Télécopie : ",font,fontbold,ns.getTelecopie()!=null?ns.getTelecopie():"",1));
+            table1.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getPersonne()!=null?ns.getPersonne():"",1));
+            table1.completeRow();
+            table1.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getTel()!=null?ns.getTel():"",1));
+            table1.addCell( saisir_cellule("courrier électronique : ",font,fontbold,ns.getCourrier()!=null?ns.getCourrier():"",1));
+            table1.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAdresse()!=null?ns.getAdresse():"",1));
+            table1.completeRow();
+            table1.addCell( saisir_cellule("Code National dans le pays d'exportation : ",font,fontbold,ns.getCodeNationalXD()!=null?ns.getCodeNationalXD():"",1));
+            table1.addCell( saisir_cellule("Code National dans le pays d'importation : ",font,fontbold,ns.getCodeNationalIm()!=null?ns.getCodeNationalIm():"-",1));
+            table1.addCell( saisir_cellule("Liste Des déchets de le CE : ",font,fontbold,ns.getCodeCE()!=null?ns.getCodeCE():"-",3));
+            table1.completeRow();
 
+        }else {
+
+            //--------------------- Row Title ---------------------
+            table1.addCell(saisir_cellule_titre("Importateur - Notifiant", 3));
+            table1.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table1.addCell(saisir_cellule("Nom de la société : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getNom_fr() : "-", 1));
+            table1.addCell(saisir_cellule("Email : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getMail() : "-", 1));
+            table1.addCell(saisir_cellule("Télephone : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getTel() : "-", 1));
+            table1.completeRow();
+            table1.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getFax() : "-", 1));
+            table1.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getContact_fr() : "-", 1));
+            table1.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getIdf() : "-", 1));
+            table1.addCell(saisir_cellule("Adresse : ", font, fontbold, ns.getImportateur() != null ? ns.getImportateur().getAdresse_fr() : "-", 3));
+            table1.completeRow();
+
+        }
+
+
+        //---------------------Tableau Autorite ----------------------
+
+
+        PdfPTable table02 = new PdfPTable(new float[]{2,2,2});
+
+        table02.setWidthPercentage(100);
+        table02.setSpacingBefore(12);
+        table02.setSpacingAfter(12);
+        if (ns.getZf_et().equals("XD")){
+            //--------------------- Row Title ---------------------
+            table02.addCell(saisir_cellule_titre("Autorité",3));
+            table02.completeRow();
+            //--------------------- completeRow ---------------------
+
+            table02.addCell( saisir_cellule("Adresse : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getNom_fr():"-",1));
+            table02.addCell( saisir_cellule("Télephone : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getTel():"-",1));
+            table02.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getFax():"-",1));
+            table02.completeRow();
+            table02.addCell( saisir_cellule("Mail : ",font,fontbold,ns.getAutorite()!=null?ns.getAutorite().getEmail():"-",1));
+            table02.addCell( saisir_cellule("Pays Destinataire: ",font,fontbold,ns.getPays()!=null?ns.getPays().getNom_fr():"-",1));
+            table02.completeRow();
+        }else if(ns.getZf_et().equals("TR")){
+
+        }else{
+
+        }
 
         //--------------------- Tableau Document de notification ---------------------
         PdfPTable table2 = new PdfPTable(new float[]{1.5f,2f,2.2f});
@@ -4450,20 +4585,19 @@ public class GeneratePDFDocuments {
 
 
         //--------------------- Tableau Transporteur(s) prévu ---------------------
-        PdfPTable table3 = new PdfPTable(new float[]{2,2,2,2,2});
+        PdfPTable table3 = new PdfPTable(new float[]{2,2,2,2});
         table3.setWidthPercentage(100);
         table3.setSpacingBefore(12);
         table3.setSpacingAfter(12);
 
         //--------------------- Row Title ---------------------
-        if(ns.getZf_et().equals("ZF") && ns.getClassification().getId_classification()==1 || ns.getZf_et().equals("XD")){
-            table3.addCell(saisir_cellule_titre("Transporteur(s) prévu", 5));
+        if(ns.getZf_et().equals("ZF") || ns.getZf_et().equals("XD") && ns.getClassification().getId_classification()==1){
+            table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
             table3.completeRow();
             //--------------------- completeRow ---------------------
             table3.addCell(saisir_cellule_transporteur_titre("Nom", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Identifiant fiscale ", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Téléphone", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Fax", 1));
             table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
             table3.completeRow();
             if (ns.getTransporteur() != null && ns.getTransporteur().size() > 0) {
@@ -4471,63 +4605,122 @@ public class GeneratePDFDocuments {
                     table3.addCell(saisir_cellule(tp.getNom(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getIdentifiant(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getFax(), font, font, "", 1));
                     table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
                     table3.completeRow();
                 }
-            } else {
+            }else {
+                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table3.addCell(tmp);
+            }
+        }if(!ns.getZf_et().equals("TR")){
+
+
+            table3.addCell(saisir_cellule_titre("Transporteur(s) national prévu", 5));
+            table3.completeRow();
+            //--------------------- completeRow ---------------------
+            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Type de transport", 1));
+            table3.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
+            table3.completeRow();
+            if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
+                for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
+                    if(tp.getType().equals("tn")){
+                        table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
+                        table3.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                        table3.completeRow();
+                    }
+
+                }
+            }else {
                 PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table3.addCell(tmp);
             }
         }
-        else{
-            table3.addCell(saisir_cellule_titre("Transporteur Etranger", 5));
-            table3.completeRow();
+
+
+        //--------------------- Tableau Transporteur(s) prévu ---------------------
+        PdfPTable table03 = new PdfPTable(new float[]{2,2,2,2});
+        table03.setWidthPercentage(100);
+        table03.setSpacingBefore(12);
+        table03.setSpacingAfter(12);
+
+        //--------------------- Row Title ---------------------
+        if(ns.getZf_et().equals("ET") || ns.getZf_et().equals("XD") || ns.getZf_et().equals("TR")){
+            table03.addCell(saisir_cellule_titre("Transporteur(s) International", 4));
+            table03.completeRow();
             //--------------------- completeRow ---------------------
-            table3.addCell(saisir_cellule_transporteur_titre("Nom de la société", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Matricule ", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Type véhicule", 1));
-            table3.addCell(saisir_cellule_transporteur_titre("Assurance", 2));
-            table3.completeRow();
+            table03.addCell(saisir_cellule_transporteur_titre("Raison sociale", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Immatriculation ", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Type de transport", 1));
+            table03.addCell(saisir_cellule_transporteur_titre("Adresse", 1));
+            table03.completeRow();
             if (ns.getTransporteur_etranger() != null && ns.getTransporteur_etranger().size() > 0) {
                 for (TransporteurEtranger tp : ns.getTransporteur_etranger()) {
-                    table3.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
-                    table3.addCell(saisir_cellule(tp.getUrl_assurance(), font, font, "", 2));
-                    table3.completeRow();
+                    if(tp.getType().equals("ti")){
+                        table03.addCell(saisir_cellule(tp.getRaison_social(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getNum_matricule(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getTypeVehicule(), font, font, "", 1));
+                        table03.addCell(saisir_cellule(tp.getAdresse(), font, font, "", 1));
+                        table03.completeRow();
+                    }
+
                 }
             } else {
-                PdfPCell tmp = saisir_cellule("Aucun Transporteur Etranger.", fontbold, fontbold, "", 5);
+                PdfPCell tmp = saisir_cellule("Aucun Transporteur.", fontbold, fontbold, "", 5);
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table3.addCell(tmp);
+                table03.addCell(tmp);
             }
         }
 
-
         //--------------------- Tableau Producteur(s) ---------------------
-        PdfPTable table4 = new PdfPTable(new float[]{2,2,2});
+        PdfPTable table4 = new PdfPTable(new float[]{2,2,2,2});
         table4.setWidthPercentage(100);
         table4.setSpacingBefore(12);
         table4.setSpacingAfter(12);
+        if(ns.getZf_et().equals("XD")){
+            table4.addCell(saisir_cellule_titre("Producteur(s)", 4));
+            table4.completeRow();
+            //--------------------- completeRow ---------------------
+            table4.addCell(saisir_cellule_producteur_titre("Nom de la société", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Téléphone", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Email", 1));
+            table4.addCell(saisir_cellule_producteur_titre("Adresse", 1));
+            table4.completeRow();
+            if (ns.getProducteurs() != null && ns.getProducteurs().size() > 0) {
+                for (Producteur tp : ns.getProducteurs()) {
+                    table4.addCell(saisir_cellule(tp.getNom_fr(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getTel(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getMail(), font, font, "", 1));
+                    table4.addCell(saisir_cellule(tp.getAdresse_fr(), font, font, "", 1));
+                    table4.completeRow();
+                }
+            } else {
+                PdfPCell tmp = saisir_cellule("Aucun Producteur.", fontbold, fontbold, "", 4);
+                tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table4.addCell(tmp);
+            }
+        }else {
+            //--------------------- Row Title ---------------------
+            table4.addCell(saisir_cellule_titre("Producteur", 4));
+            table4.completeRow();
+            //--------------------- completeRow ---------------------
+            table4.addCell(saisir_cellule("Nom de la société: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getNom_fr() : "-", 1));
+            table4.addCell(saisir_cellule("Téléphone : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getTel() : "-", 1));
+            table4.addCell(saisir_cellule("Email : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getMail() : "-", 1));
+            table4.addCell(saisir_cellule("Fax : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getFax() : "-", 1));
 
-        //--------------------- Row Title ---------------------
-        table4.addCell(saisir_cellule_titre("Producteur(s)",4));
-        table4.completeRow();
-        //--------------------- completeRow ---------------------
-        table4.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getNom_fr():"-",1));
-        table4.addCell( saisir_cellule("Téléphone : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getTel():"-",1));
-        table4.addCell( saisir_cellule("Email : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getMail():"-",1));
-        table4.completeRow();
-        table4.addCell( saisir_cellule("Fax : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getFax():"-",1));
-        table4.addCell( saisir_cellule("Identifiant fiscale : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getIdf():"-",1));
-        table4.addCell( saisir_cellule("Personne à contacter : ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getContact_fr():"-",1));
-        table4.completeRow();
-        table4.addCell( saisir_cellule("Adresse: ",font,fontbold,ns.getProducteur()!=null?ns.getProducteur().getAdresse_fr():"-",3));
-        table4.completeRow();
-        table4.setSpacingAfter(12);
-
+            table4.completeRow();
+            table4.addCell(saisir_cellule("Identifiant fiscale : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getIdf() : "-", 1));
+            table4.addCell(saisir_cellule("Personne à contacter : ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getContact_fr() : "-", 1));
+            table4.addCell(saisir_cellule("Adresse: ", font, fontbold, ns.getProducteur() != null ? ns.getProducteur().getAdresse_fr() : "-", 3));
+            table4.completeRow();
+            table4.setSpacingAfter(12);
+        }
 
 
         //--------------------- Tableau Installation d’élimination(s) ---------------------
@@ -4537,7 +4730,7 @@ public class GeneratePDFDocuments {
         table5.setSpacingAfter(12);
 
         //--------------------- Row Title ---------------------
-        table5.addCell(saisir_cellule_titre("Installation d’élimination",4));
+        table5.addCell(saisir_cellule_titre("Installation de valorisation / élimination",4));
         table5.completeRow();
         //--------------------- completeRow ---------------------
         table5.addCell( saisir_cellule("Nom de la société : ",font,fontbold,ns.getEliminateur()!=null?ns.getEliminateur().getNom_fr():"-",1));
@@ -4552,34 +4745,37 @@ public class GeneratePDFDocuments {
         table5.completeRow();
         table5.setSpacingAfter(12);
 
-
-        //--------------------- Tableau Document de mouvements des déchets ---------------------
-        PdfPTable table6 = new PdfPTable(new float[]{2,1.5f,2,2.5f});
-        table6.setWidthPercentage(100);
-        table6.setSpacingBefore(12);
-        table6.setSpacingAfter(12);
+        //--------------------- Tableau Les Pièces ---------------------
+        PdfPTable table7 = new PdfPTable(3);
+        table7.setWidthPercentage(100);
+        table7.setSpacingBefore(12);
+        table7.setSpacingAfter(12);
+        table7.addCell(saisir_cellule_titre("Piéces accompagnant la demande",3));
+        table7.completeRow();
         //--------------------- Row Title ---------------------
-        table6.addCell(saisir_cellule_titre("Document de mouvements des déchets",4));
-        table6.completeRow();
-        //--------------------- completeRow ---------------------
-        table6.addCell( saisir_cellule("Quantité réelle : ",font,fontbold,ns.getQuantite_reel()!=null ? ns.getQuantite_reel() +" "+(ns.getUnite()!=null?ns.getUnite().getNom_fr():" ") :"",1));
-        table6.addCell( saisir_cellule("Nombre de colis : ",font,fontbold,ns.getNbr_colis()!=null?ns.getNbr_colis():"",1));
-        table6.addCell( saisir_cellule("Date réelle de l'expédition : ",font,fontbold,ns.getDate_reel()!=null ? dateFormat.format(ns.getDate_reel()):"",2));
-        table6.completeRow();
-        table6.addCell( saisir_cellule("Lieu effectif de l'élimination/valorisation: ",font,fontbold,ns.getLieux_elimination()!=null?ns.getLieux_elimination().getNom_fr():ns.getLieu(),4));
-        table6.completeRow();
-        table6.setSpacingAfter(12);
+        int i=1;
+        for (ListDocNotif ld: l){
+            table7.addCell(saisir_cellule_2(ld.getDocImport().getNom_fr()!=null?String.valueOf(i)+". "+ld.getDocImport().getNom_fr():"-",3));
+            i++;
+            table7.completeRow();
+        }
 
         //--------------------- Tableau Document de mouvements des déchets ---------------------
-        PdfPTable table8 = new PdfPTable(new float[]{2,1.5f,2,2.5f});
+
+        //--------------------- Tableau Document de mouvements des déchets ---------------------
+        PdfPTable table8 = new PdfPTable(4);
         table8.setWidthPercentage(100);
         table8.setSpacingBefore(12);
         table8.setSpacingAfter(12);
         //--------------------- Row Title ---------------------
         table8.addCell(saisir_cellule_titre("reçus de dépôt." ,4));
         table8.completeRow();
+
+        //table8.addCell(new Paragraph(Chunk.NEWLINE));
+
         //--------------------- completeRow ---------------------
         //--------------------- completeRow ---------------------
+
         String username = "";
         String contact = "";
         if(ns.getImportateur()!=null){
@@ -4608,7 +4804,8 @@ public class GeneratePDFDocuments {
 
 
 
-        PdfPCell cell7 = new PdfPCell();
+
+        /*PdfPCell cell7 = new PdfPCell();
         Paragraph par15= new Paragraph();
         par15.setAlignment(Element.ALIGN_LEFT);
         cell7.setBorder(Rectangle.NO_BORDER);
@@ -4628,21 +4825,20 @@ public class GeneratePDFDocuments {
 
         table9.addCell(cell10);
         table9.addCell(cell7);
-
-
-
-
+*/
         table9.completeRow();
-
 
         document.add(headerPar);
         document.add(table0);
+        document.add(table01);
         document.add(table1);
+        document.add(table02);
         document.add(table2);
         document.add(table3);
+        document.add(table03);
         document.add(table4);
         document.add(table5);
-        document.add(table6);
+        document.add(table7);
         document.add(table8);
         document.add(table9);
         addFooter(writer,codeQrImage);
@@ -4650,19 +4846,6 @@ public class GeneratePDFDocuments {
 
         return new ByteArrayInputStream(out.toByteArray());
     }
-    public static String convertDate(String type, Date date) {
-        String strDate = "";
-        if (date == null) {
-
-        } else {
-
-            SimpleDateFormat formatter = new SimpleDateFormat(type);
-            strDate = formatter.format(date);
-
-        }
-        return strDate;
-    }
-
 
 }
 
