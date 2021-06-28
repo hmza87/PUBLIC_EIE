@@ -800,6 +800,13 @@ class WebServiceImp implements WebService {
 	}
 
 	@Override
+	public void deleteAllCodeByInstall(int id_inst,int id_user) {
+		final String uris = urlRest + "/deleteAllCodeByInstall/"+id_inst+"/"+id_user;
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uris,Code.class);
+	}
+
+	@Override
 	public CollecteTransporteur getCollecteByNumDemande(String id, int compteId) {
 		final String uri = urlRest+"/getCollecteByNumDemandeRest/"+id+"/"+compteId;
 		RestTemplate restTemplate = new RestTemplate();

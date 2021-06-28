@@ -52,6 +52,9 @@
         margin-top: 150px;
     }
 
+    .myLabel label{
+        line-height: 33px;
+    }
     /* Style the tab content */
 
 </style>
@@ -415,64 +418,34 @@
                                         </div>
                                     </div>
                                 </div>--%>
-                                <div class="row">
-                                    <div class="col-sm-8 mt-5" style="display: block;">
-                                        <div class="form-group" style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
-                                            <label><label>Les Types</label></label>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio"
-                                                                       id="saufque"
-                                                                <c:if test="${notif.type== '3'}">
-                                                                       checked  </c:if> name="type"
-                                                                       value="3" onchange="my_function('3')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    sélectionner Touts
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-check">
-                                                                <input checked class="form-check-input" type="radio"
-                                                                       id="tous"
-                                                                <c:if test="${notif.type== '2'}">
-                                                                       checked  </c:if> name="type"
-                                                                       value="2" onchange="my_function('2')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                   sélectionner à partir de la liste
-                                                                </label>
-                                                            </div>
+                                <div class="row m-0 justify-content-center p-0 mt-2">
+                                    <section class="border p-3 justify-content-center col-sm-12">
 
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-check">
-                                                                <input  class="form-check-input" type="radio"
-                                                                        id="parType"
-                                                                <c:if test="${notif.type== '1'}">
-                                                                        checked  </c:if> name="type"
-                                                                        value="1" onchange="my_function('1')">
-                                                                <label class="form-check-label"
-                                                                       style="padding-right: ${pageContext.response.locale=='ar'?'20px':''}">
-                                                                    selectionner touts sauf
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <!--Radio buttons-->
+                                        <div class="btn-group col-sm-12 justify-content-center myLabel" data-toggle="buttons">
+
+                                            <label class="btn btn-warning active form-check-label text-white col-md-4 m-2">
+                                                <input class="form-check-input " type="radio" id="saufque" ${notif.type== '3'?'checked':''} name="type" value="3" onchange="my_function('3','id_installation')"  autocomplete="off"> je veux traiter tous les déchets
+                                            </label>
+
+                                            <label class="btn btn-primary form-check-label col-md-4 m-2">
+                                                <input class="form-check-input" type="radio" autocomplete="off" id="tous" ${notif.type== '2'?'checked':''} name="type" value="2" onchange="my_function('2','id_installation')">  je veux traiter les déchets de la liste  sous-dessous
+                                            </label>
+
+                                            <label class="btn btn-danger form-check-label col-md-4 m-2">
+                                                <input class="form-check-input" type="radio" autocomplete="off"  id="parType" ${notif.type== '1'?'checked':'checked'}  name="type" value="1" onchange="my_function('1','id_installation')">  je veux traiter tous les déchets sauf
+                                            </label>
+
                                         </div>
-                                    </div>
+                                        <!--Radio buttons-->
+
+                                    </section>
                                 </div>
-                                <div class="row m-0 p-0 mt-2">
+                                <div class="row m-0 p-0 mt-4">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-sm-8" style="display: none;" id="msg">
-                                                <h1>Vous avez choisissez tous les codes</h1>
+                                                <h4>Vous avez choisi tous les codes</h4>
                                             </div>
                                             <div class="col-sm-8 listCode">
                                                 <table class="table MonTable table-striped" data-page-length="15">
@@ -557,10 +530,12 @@
                                 <form id="formimportateur1" name="formimportateur" class="">
                                     <div class="row m-0 p-0 ">
                                         <div class="col-12">
+                                            <h4>${notif.type.equals('2') && not empty notif.codeTmp?'Suite a l\'étude de votre demande d\'installation et traitement des déchets la commission a décidée de retirer les déchets ci-dessous  , pour suivre le traitement de votre demande  veuillez retirer  les déchets suivant :':'Suite a l\'étude de votre demande d\'installation et traitement des déchets la commission a décidée d\'ajouter à la liste des déchets ci-dessous  , pour suivre le traitement de votre demande  veuillez d\'ajouter  les déchets suivant :'}</h4>
                                             <div class="row justify-content-center" id="my_rows">
                                                 <input type="hidden" id="cpt" value="${notif.codeTmp.size()}">
                                                 <input type="hidden" id="typeIT" value="${notif.type}">
                                                 <div class="col-sm-10 listCode" style="margin-top: 4rem">
+
                                                         <table class="table table-striped">
                                                             <tr>
                                                                 <th>Type de déchet</th>
@@ -569,17 +544,11 @@
                                                             <tbody id="tbody_it">
                                                             <c:forEach items="${notif.codeTmp}" var="code_colle" varStatus="loopp" >
                                                                 <c:choose>
-                                                                    <c:when test="${loopp.index%2==0&& notif.type.equals('2')}">
+                                                                    <c:when test="${loopp.index%2==0}">
                                                                         <c:set var="bg" value="#FA8072"/>
                                                                     </c:when>
-                                                                    <c:when test="${loopp.index%2!=0 && notif.type.equals('2')}">
+                                                                    <c:when test="${loopp.index%2!=0}">
                                                                         <c:set var="bg" value="#F08080"/>
-                                                                    </c:when>
-                                                                    <c:when test="${loopp.index%2==0 && !notif.type.equals('2')}">
-                                                                        <c:set var="bg" value="#ABEBC6"/>
-                                                                    </c:when>
-                                                                    <c:when test="${loopp.index%2!=0 && !notif.type.equals('2')}">
-                                                                        <c:set var="bg" value="#82E0AA"/>
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <c:set var="bg" value=""/>
@@ -587,7 +556,7 @@
                                                                 </c:choose>
                                                                 <tr style="background-color:${bg};color: white !important;font-weight:bold" >
                                                                     <td class="col-8">${code_colle.nom_ar}</td>
-                                                                    <td class="col-4 p-2 text-center">
+                                                                    <td class="col-4 p-2 text-center" id="myBtn${code_colle.id_code}">
                                                                         <button class="btn btn-info rounded-circle"
                                                                                 onclick="addCodeIT_tmp('${code_colle.id_code}','delete')">
                                                                             <span class="${notif.type.equals('2')?'fa fa-times':'fa fa-plus'}"></span></button>
@@ -713,16 +682,19 @@
                                                 <div class="form-group"
                                                      style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
                                                     <div>
+                                                        <c:if test="${dc.id_docImport!=1581}">
                                                         <label style="width: 100%;"> ${pageContext.response.locale=='ar'?dc.nom_ar:dc.nom_fr} </label>
                                                         <input
                                                                 required
                                                                 onchange="addDocG('0',${dc.id_docImport},'doc${dc.id_docImport }','IT','id_installation')"
                                                                 accept=".pdf" type="file" id="doc${dc.id_docImport }"
                                                                 class="form-control mydoc">
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                             </div>
                                         <c:if test="${not empty docNotify}">
+                                        <c:if test="${dc.id_docImport!=1581}">
                                             <div class="col-2">
                                                 <c:forEach items="${docNotify}" var="d">
                                                     <c:if test="${d.docImport.id_docImport==dc.id_docImport}">
@@ -732,6 +704,7 @@
                                                     </c:if>
                                                 </c:forEach>
                                             </div>
+                                        </c:if>
                                         </c:if>
                                     </div>
                                 </c:forEach>
@@ -809,6 +782,7 @@
 
 <script>
 
+    var xx = 0;
     function changerEtat_IT() {
 
 
@@ -836,7 +810,8 @@
         var cpt = $("#cpt").val();
         var typeIT = $("#typeIT").val();
         var rowCount = $("#tbody_it tr").length;
-        console.log(rowCount);
+        console.log(cpt);
+        console.log(xx);
 
         if (id_ins == "") {
             return false;
@@ -846,15 +821,26 @@
             type: 'GET',
             data: {},
         })
-            .done(function (data) {
-               $("#my_rows").html(data);
-                console.log(cpt);
+            .done(function (data){
+                if(typeIT ==="2"){
+                    $("#my_rows").html(data);
+                }
+                else{
+                    $("#myBtn"+id_code).html('<button class="btn btn-info rounded-circle" disabled style="cursor: not-allowed" onclick="addCodeIT_tmp(\'' + id_code + '\',\'delete\')"> <span class="fa fa-check"></span></button>')
+                    xx++;
+                }
+
             })
             .fail(function () {
                 console.log("error");
             })
             .always(function () {
-                if(rowCount===1){
+
+                if(rowCount===1 && typeIT==="2"){
+                    $("#MyBtn").removeAttr("disabled");
+                    $("#Btn4").removeAttr("disabled");
+                }
+                if(xx===rowCount && typeIT!=="2"){
                     $("#MyBtn").removeAttr("disabled");
                     $("#Btn4").removeAttr("disabled");
                 }
@@ -885,20 +871,37 @@
                 }
             });
     }*/
-    function my_function(val){
-        if(val==='3'){
-            $("#msg").show()
-            $(".listCode").hide()
-        }
-        else{
-            var table1 = $(".MonTable").dataTable();
-            var checkbox = table1.$("input[type=checkbox]");
-            $(checkbox).removeAttr("disabled");
-            $(checkbox).prop("checked", false);
-            $("#msg").hide()
-            $(".listCode").show();
+    function my_function(val,id_installation){
 
-        }
+        var id_ins = $("#id_installation").val();
+
+            $.ajax({
+                url: '/api/deleteAllByCode/' + id_ins,
+                type: 'GET',
+                data: {},
+            })
+                .done(function (data) {
+                    $("#monT").html(data);
+                    if(val==='3'){
+                        $("#msg").show()
+                        $(".listCode").hide()
+                    }
+                    else{
+                        var table1 = $(".MonTable").dataTable();
+                        var checkbox = table1.$("input[type=checkbox]");
+                        $(checkbox).removeAttr("disabled");
+                        $(checkbox).prop("checked", false);
+                        $("#msg").hide()
+                        $(".listCode").show();
+                    }
+
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                });
     }
     function addCodeIT(id_installation, id_code, type) {
         event.preventDefault();
@@ -1093,7 +1096,7 @@
                     title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
-                        '<a href="/api/ListInstallation" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="api/recapIT/"'+id_install+' class="btn btn-success ml-2 text-white">Afficher le récapulatif</a>',
+                        '<a href="/api/ListInstallation" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="/api/generate_recap_instalation/'+id_install+'" class="btn btn-success ml-2 text-white">Imprimer le récapulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,
@@ -1119,9 +1122,6 @@
         // Initialize form validation on the registration form.
         // It has the name attribute "registration"
         $("form[name='formnotif']").validate({
-
-
-
 
             // Specify validation rules
             rules: {

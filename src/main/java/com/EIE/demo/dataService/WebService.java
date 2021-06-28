@@ -111,6 +111,9 @@ public interface WebService {
 
 	void setcodeinstall(int id_inst, int id_code, int id_user, String type);
 
+	void deleteAllCodeByInstall(int id_inst,int id_user);
+
+
 	CollecteTransporteur getCollecteByNumDemande(String id, int compteId);
 
 	CollecteTransporteur getCollecteByNumDemande2(String id, int compteId);

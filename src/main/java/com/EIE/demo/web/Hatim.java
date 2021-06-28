@@ -526,6 +526,18 @@ public class Hatim {
 		return new ModelAndView("installation/MesCodes2",map);
 	}
 
+	@RequestMapping(value = "/api/deleteAllByCode/{id_inst}", method = RequestMethod.GET)
+	public ModelAndView deleteAllByCode(@PathVariable int id_inst)
+			throws JsonParseException, IOException, MessagingException {
+		Map<String,Object> map = new HashMap<>();
+		webt.deleteAllCodeByInstall(id_inst,webt.getCompteConnected().getCompteId());
+		Installation v =  webt.getInstallationById(id_inst,webt.getCompteConnected().getCompteId());
+		map.put("inst", v);
+		map.put("user",webt.getCompteConnected());
+		map.put("codes",v.getCode());
+		return new ModelAndView("installation/MesCodes2",map);
+	}
+
 	@GetMapping("/api/generate_pdf_installation/{id}")
 	public ResponseEntity<InputStreamResource> generate_pdf_installation(@PathVariable int id) throws Exception {
 
