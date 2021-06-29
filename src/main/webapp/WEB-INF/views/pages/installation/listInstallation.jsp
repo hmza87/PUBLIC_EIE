@@ -159,16 +159,16 @@
                                         <div class="clear"></div>
                                     </div>
                                         </c:if>
-                                        <c:if test="${nt.statut.id_statut_projet==15 }">
-                                    <div id="toolbar-options${loopp.index+1}" class="hidden">
-                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
-                                        <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_installation}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                        <div class="tool-box">
-                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                        </c:if>
+<%--                                        <c:if test="${nt.statut.id_statut_projet==15 }">--%>
+<%--                                    <div id="toolbar-options${loopp.index+1}" class="hidden">--%>
+<%--                                        <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>--%>
+<%--                                        <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_installation}')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-plus"></i></a>--%>
+<%--                                    </div>--%>
+<%--                                        <div class="tool-box">--%>
+<%--                                            <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>--%>
+<%--                                            <div class="clear"></div>--%>
+<%--                                        </div>--%>
+<%--                                        </c:if>--%>
                                         <c:if test="${nt.statut.id_statut_projet==51}">
                                     <div id="toolbar-options${loopp.index+1}" class="hidden">
                                         <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-pencil-alt"></i></a>

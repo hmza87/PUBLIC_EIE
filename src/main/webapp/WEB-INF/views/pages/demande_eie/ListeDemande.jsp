@@ -214,7 +214,7 @@
                                                 <c:if test="${nt.statut.id_statut_projet==6}">
                                             <div id="toolbar-options${loopp.index+1}" class="hidden">
 <%--                                                    <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" ><spring:message code="label.Telechargerlautorisation"/> </a>--%>
-                                                    <a class="btn btn-primary btn-sm" type="button"  download onclick="window.location.href='${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}'"  data-popover="true" data-html=true data-content="Telecharger l'autorisation"><i class="fa fa-file-download"></i></a>
+                                                    <a class="btn btn-primary btn-sm" type="button"  download onclick="window.location.href='${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}'"  data-popover="true" data-html=true data-content="Telecharger l'autorisation"><i class="fa fa-download"></i></a>
                                             </div>
                                                 <div class="tool-box">
                                                     <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
