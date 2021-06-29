@@ -107,7 +107,7 @@
                  style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
 
                 <div class="tab" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}"
-                     style="${pageContext.response.locale=='ar'?'float:right;':'float:left;'}">
+                     style="${pageContext.response.locale=='ar'?'float:right;':'float:left;'}; margin-top: -5px;">
                     <c:if test="${type.equals('ZF')}">
                         <button class="tablinks btn-primary btn my_tab" ${disabledBtnTab} onclick="openCity(this, '0')" id="defaultOpen"
                                 style="${pageContext.response.locale=='ar'?'text-align:right;':'text-align:left;'}">
@@ -2162,50 +2162,50 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Nomdelasociete"/>  </label>
-                                    <input type="text" id="raison_social_n" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Matricule"/>   </label>
-                                    <input type="text" id="num_matriule_n" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Typedetransport"/> </label>
-                                    <input type="text" id="type_vehicule_n" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 ">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Assurance"/>  </label>
-                                    <input type="File" id="doc_assurance_n" class="form-control">
-                                </div>
-                            </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mt-3 justify-content-center p-0">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Nomdelasociete"/>  </label>
+                                            <input type="text" id="raison_social_n" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Matricule"/>   </label>
+                                            <input type="text" id="num_matriule_n" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Typedetransport"/> </label>
+                                            <input type="text" id="type_vehicule_n" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 ">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Assurance"/>  </label>
+                                            <input type="File" id="doc_assurance_n" class="form-control">
+                                        </div>
+                                    </div>
 
-                        </div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-8 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Adresse"/>   </label>
-                                    <input type="text" id="adresseTr_n" class="form-control">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-sm-6 col-md-3">
-                                <input type="hidden" value="0" id="id_trans_n">
-                                <button class="btn btn-success btn-block"
-                                        onclick="ajouterTranporteur_EtrangerNational('id_notification')"><spring:message code="button.Enregistrer"/>
-                                    <spring:message code="label.transporteur"/>
-                                </button>
+                                <div class="row mt-3 justify-content-center p-0">
+                                    <div class="col-md-9 col-sm-12">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Adresse"/>   </label>
+                                            <textarea type="text" id="adresseTr_n" rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3">
+                                        <input type="hidden" value="0" id="id_trans_n">
+                                        <button class="btn btn-success btn-block mt-5"
+                                                onclick="ajouterTranporteur_EtrangerNational('id_notification')"><spring:message code="button.Enregistrer"/>
+                                            <spring:message code="label.transporteur"/>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2360,69 +2360,67 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mt-3 justify-content-center p-0">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Nomdelasociete"/></label>
+                                            <input type="text" id="raison_social" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Matricule"/> </label>
+                                            <input type="text" id="num_matriule" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Typedetransport"/>  </label>
+                                            <input type="text" id="type_vehicule" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 ">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Assurance"/> </label>
+                                            <input type="file" class="form-control" id="doc_assurance">
+                                        </div>
+                                    </div>
 
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Nomdelasociete"/></label>
-                                    <input type="text" id="raison_social" class="form-control">
                                 </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Matricule"/> </label>
-                                    <input type="text" id="num_matriule" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Typedetransport"/>  </label>
-                                    <input type="text" id="type_vehicule" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 ">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Assurance"/> </label>
-                                    <input type="file" class="form-control" id="doc_assurance">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-md-8 col-sm-12">
-                                <div class="form-group">
-                                    <label><spring:message code="label.Adresse"/>  </label>
-                                    <input type="text" id="adresseTr" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="education_fields"></div>
-                        <div class="row mt-3 justify-content-center p-0">
-                            <div class="col-sm-8 nopadding">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="port[]"
-                                               placeholder="Entrez Un Port">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-success" type="button"
-                                                    onclick="education_fields();"><span class="fa fa-plus"
-                                                                                        aria-hidden="true"></span>
-                                            </button>
+                                <div class="row mt-3 justify-content-center p-0">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label><spring:message code="label.Adresse"/>  </label>
+                                            <textarea type="text" id="adresseTr" rows="3" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-sm-6 col-md-3">
-                                <input type="hidden" value="0" id="id_trans">
-                                <button class="btn btn-success btn-block"
-                                        onclick="ajouterTranporteur_Etranger('id_notification')"><spring:message code="button.Enregistrer"/>
-                                    <spring:message code="label.transporteur"/>
-                                </button>
+                                <div id="education_fields"></div>
+                                <div class="row mt-3 justify-content-center p-0">
+                                    <div class="col-sm-12 col-md-9 nopadding">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="port[]"
+                                                       placeholder="Entrez Un Port">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-success" type="button"
+                                                            onclick="education_fields();"><span class="fa fa-plus" aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-sm-12 col-md-3">
+                                        <input type="hidden" value="0" id="id_trans">
+                                        <button class="btn btn-success btn-block"
+                                                onclick="ajouterTranporteur_Etranger('id_notification')"><spring:message code="button.Enregistrer"/>
+                                            <spring:message code="label.transporteur"/>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2618,80 +2616,81 @@
                         <h4 class="titre_abs ">Producteur</h4>
 
                         <form id="formproducteur" name="formproducteur">
-                            <div class="row m-0 p-0 mt-5">
-
-                                <div class="col-6 ">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.nomdesociete"/> </label>
-                                        <input value="${notification.producteur.nom_fr}" type="text"
-                                               name="Nom_fr" class="form-control">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row m-0 p-0 mt-5">
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.nomdesociete"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.nom_fr}" type="text"
+                                                       name="Nom_fr" id="nom_producteur" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.personneacontacter"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.contact_fr}" type="text"
+                                                       name="contact_fr" id="contact_producteur" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group" style="text-align: right;">
+                                                <label dir="rtl"> إسم الشركة : </label>
+                                                <input dir="rtl" value="${notification.producteur.nom_ar}"
+                                                       type="text" id="arproducteur"
+                                                       name="Nom_ar" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6 ">
-                                    <div class="form-group" style="text-align: right;">
-                                        <label dir="rtl"> إسم الشركة : </label>
-                                        <input dir="rtl" value="${notification.producteur.nom_ar}"
-                                               type="text"
-                                               name="Nom_ar" class="form-control">
-                                    </div>
-                                </div>
+                                    <div class="row m-0 p-0">
 
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.identifiantfiscal"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input type="text" value="${notification.producteur.idf}" id="idf_producteur"
+                                                       name="idf" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.telephone"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.tel}" type="text" id="tel_producteur"
+                                                       name="tel"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.Fax"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.fax}" type="text" id="fa_producteur"
+                                                       name="fax"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-0 p-0">
+
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.Adresse"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.adresse_fr}" type="text" id="adresse_producteur"
+                                                       name="adresse_fr" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <div class="form-group">
+                                                <label> <spring:message code="label.email"/>  <sup class="text-danger">(*)</sup> </label>
+                                                <input value="${notification.producteur.mail}" type="text"
+                                                       name="mail" id="mail_producteur"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
-                            <div class="row m-0 p-0">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.personneacontacter"/> </label>
-                                        <input value="${notification.producteur.contact_fr}" type="text"
-                                               name="contact_fr" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.identifiantfiscal"/> </label>
-                                        <input type="text" value="${notification.producteur.idf}"
-                                               name="idf" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row m-0 p-0">
-
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.Adresse"/> </label>
-                                        <input value="${notification.producteur.adresse_fr}" type="text"
-                                               name="adresse_fr" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.telephone"/> </label>
-                                        <input value="${notification.producteur.tel}" type="text"
-                                               name="tel"
-                                               class="form-control">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="row m-0 p-0">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.Fax"/> </label>
-                                        <input value="${notification.producteur.fax}" type="text"
-                                               name="fax"
-                                               class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label> <spring:message code="label.email"/> </label>
-                                        <input value="${notification.producteur.mail}" type="text"
-                                               name="mail"
-                                               class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="row justify-content-center mt-3 mb-5">
                                 <div class="col-md-2 col-sm-6">
                                     <c:if test="${(type=='ZF') && notification.classification.id_classification==1 }">
@@ -2733,7 +2732,6 @@
                                     </c:choose>
                                 </div>
                             </div>
-
                         </form>
                     </c:if>
                 </div>
@@ -2745,84 +2743,83 @@
                     </h4>
 
                     <form id="formeliminateur" name="formeliminateur">
-                        <div class="row m-0 p-0 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row m-0 p-0 mt-5">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.nomdesociete"/> </label>
+                                            <input value="${notification.eliminateur.nom_fr}" type="text"
+                                                   name="Nom_fr" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.personneacontacter"/> </label>
+                                            <input value="${notification.eliminateur.contact_fr}" type="text"
+                                                   name="contact_fr" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group" style="text-align: right;">
+                                            <div class="form-group" style="text-align: right;">
+                                                <label dir="rtl"> إسم الشركة : </label>
+                                                <input dir="rtl" value="${notification.eliminateur.nom_ar}"
+                                                       type="text"
+                                                       name="Nom_ar" class="form-control">
+                                            </div>
+                                        </div>
 
-                            <div class="col-6 ">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.nomdesociete"/> </label>
-                                    <input value="${notification.eliminateur.nom_fr}" type="text"
-                                           name="Nom_fr" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 ">
-                                <div class="form-group" style="text-align: right;">
-                                    <div class="form-group" style="text-align: right;">
-                                        <label dir="rtl"> إسم الشركة : </label>
-                                        <input dir="rtl" value="${notification.eliminateur.nom_ar}"
-                                               type="text"
-                                               name="Nom_ar" class="form-control">
+                                <div class="row m-0 p-0 ">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.identifiantfiscal"/> </label>
+                                            <input type="text" value="${notification.eliminateur.idf}"
+                                                   name="idf" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.telephone"/> </label>
+                                            <input value="${notification.eliminateur.tel}" type="text"
+                                                   name="tel"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Fax"/> </label>
+                                            <input value="${notification.eliminateur.fax}" type="text"
+                                                   name="fax"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
-                        <div class="row m-0 p-0 ">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.personneacontacter"/> </label>
-                                    <input value="${notification.eliminateur.contact_fr}" type="text"
-                                           name="contact_fr" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.identifiantfiscal"/> </label>
-                                    <input type="text" value="${notification.eliminateur.idf}"
-                                           name="idf" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+                                <div class="row m-0 p-0">
 
-                        <div class="row m-0 p-0">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.Adresse"/> </label>
+                                            <input value="${notification.eliminateur.adresse_fr}" type="text"
+                                                   name="adresse_fr" class="form-control">
+                                        </div>
+                                    </div>
 
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Adresse"/> </label>
-                                    <input value="${notification.eliminateur.adresse_fr}" type="text"
-                                           name="adresse_fr" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.telephone"/> </label>
-                                    <input value="${notification.eliminateur.tel}" type="text"
-                                           name="tel"
-                                           class="form-control">
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.Fax"/> </label>
-                                    <input value="${notification.eliminateur.fax}" type="text"
-                                           name="fax"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label> <spring:message code="label.email"/> </label>
-                                    <input value="${notification.eliminateur.mail}" type="text"
-                                           name="mail"
-                                           class="form-control">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label> <spring:message code="label.email"/> </label>
+                                            <input value="${notification.eliminateur.mail}" type="text"
+                                                   name="mail"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="row justify-content-center mt-3 mb-5">
                             <div class="col-md-2 col-sm-6">
@@ -3633,7 +3630,7 @@
                     title: '<strong>votre demande a été effectuée avec succès</strong>',
                     icon: 'success',
                     html:
-                        '<a href="/api/ListeAutorisation/'+type+'/d" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="/api/generate_recap_imp/'+id_notif+'" class="btn btn-success ml-2 text-white">Afficher le récapitulatif</a>',
+                        '<a href="/api/ListeAutorisation/'+type+'/d" class="btn btn-success mx-2 ">Retour à la liste</a> <a type="button" href="/api/generate_recap_imp/'+id_notif+'" class="btn btn-success ml-2 text-white">Imprimer le récapitulatif</a>',
                     showCloseButton: false,
                     showCancelButton: false,
                     showConfirmButton: false,

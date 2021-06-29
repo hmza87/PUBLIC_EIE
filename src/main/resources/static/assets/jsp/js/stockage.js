@@ -84,7 +84,15 @@ function addObject_step(from,table,tap,id_notif) {
     if(event!=null)
         event.preventDefault();
     var se = $("#"+from).serializeObject();
-    // var se = $("#formnotif").serialize();
+
+    $('#formproducteur').each(function() {
+        if ($(this).val() === "") {
+            swal("Avertissement ! ", 'Tous les champs sont obligatoires', 'error');
+            return false;
+        }
+
+    });
+
     var Notchange = true;
     if(!$.isNumeric(id_notif)){
         id_notif = $("#"+id_notif).val();
@@ -306,8 +314,13 @@ function addDemandeInfomration(from,type,id,next_step,id_btn){
 function updateObject(from,table,url,tap,id_obj) {
 
     var se = $("#"+from).serializeObject();
-    // var se = $("#formnotif").serialize();
-    console.log(se);
+
+
+        /*if ($(".formproducteur").html() === "") {
+            swal("Avertissement ! ", 'Tous les champs sont obligatoires', 'error');
+            return false;
+        }
+        openCity1('Btn'+tap,tap)*/
 
 
     $.ajax({
@@ -322,10 +335,8 @@ function updateObject(from,table,url,tap,id_obj) {
             {
                 if(table=='notification')
                     $("#id_notification").val(response);
-
-                openCity1('Btn'+tap,tap)
+                    openCity1('Btn'+tap,tap)
             }else {
-
                 window.location = url;
             }
 
