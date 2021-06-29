@@ -921,7 +921,10 @@
                                         <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
                                             <option value="0"><spring:message code="option.Choisir"/></option>
                                             <c:if test="${notification.prefecture!=null }">
-                                                <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
+                                                <c:forEach items="${notification.region.prefecture}" var="t">
+                                                    <option <c:if
+                                                            test="${notification.prefecture.id_prefecture== t.id_prefecture}"> selected </c:if> value="${t.id_prefecture }">${t.nom_fr}</option>
+                                                </c:forEach>
                                             </c:if>
                                         </select>
                                     </div>
@@ -1415,7 +1418,10 @@
                                         <select name="prefecture_id" id="prefecture_id" class="form-control select2" data-width="100%"   onchange="updatePrefecture(this.value)">
                                             <option value="0"><spring:message code="option.Choisir"/></option>
                                             <c:if test="${notification.prefecture!=null }">
-                                                <option value="${notification.prefecture.id_prefecture }" selected>${pageContext.response.locale=='ar'?notification.prefecture.nom_ar:notification.prefecture.nom_fr}</option>
+                                                <c:forEach items="${notification.region.prefecture}" var="t">
+                                                <option <c:if
+                                                        test="${notification.prefecture.id_prefecture== t.id_prefecture}"> selected </c:if> value="${t.id_prefecture }">${t.nom_fr}</option>
+                                                </c:forEach>
                                             </c:if>
                                         </select>
                                     </div>
