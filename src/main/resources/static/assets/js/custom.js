@@ -567,6 +567,7 @@ function ajouterProducteur(id_name) {
     if ($.trim(nom_fr) === "" || nom_fr == null || $.trim(nom_ar) === "" || nom_ar == null ||
         $.trim(contact_fr) === "" || contact_fr == null || $.trim(idf) === "" || idf == null ||
         $.trim(adresse_fr) === "" || adresse_fr == null || $.trim(tel) === "" || tel == null ||
+        //$.trim(fax) === "" || fax == null ||
         $.trim(mail) === "" || mail == null) {
         swal("Avertissement ! ", 'Tous les champs sont obligatoires', 'error');
         return false;

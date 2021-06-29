@@ -3483,10 +3483,10 @@
 
 
     function check_producteur_ok(idBtn, cityName){
-        /*if($(".producteur_table").html()){
+        if($(".producteur_table").html()){
             swal("Avertissement!", "Les producteurs sont obligatoires, merci de saisir au moins un seul producteur", "error");
             return false;
-        }*/
+        }
         openCity1(idBtn,cityName)
     }
 
