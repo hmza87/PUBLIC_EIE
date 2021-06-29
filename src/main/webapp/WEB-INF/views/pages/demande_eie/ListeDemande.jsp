@@ -99,7 +99,7 @@
                                         <td>
                                             <fmt:formatDate   dateStyle="long" value="${nt.dateDepot }" />
                                         </td>
-                                        <td> <span class="badge badge-info"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
+                                        <td> <span class="badge badge-success"> ${(nt.statut.id_statut_projet==1 || nt.statut.id_statut_projet==3 ||
                                                 nt.statut.id_statut_projet==6 || nt.statut.id_statut_projet==7 || (nt.statut.id_statut_projet==73 && nt.type=='AE') || (nt.statut.id_statut_projet==12 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==10 || nt.statut.id_statut_projet==13 || (nt.statut.id_statut_projet==71 && nt.type=='AE') ||
                                                 nt.statut.id_statut_projet==47 || nt.statut.id_statut_projet==59 || (type=='AE' && nt.statut.id_statut_projet==58) ||
@@ -214,7 +214,7 @@
                                                 <c:if test="${nt.statut.id_statut_projet==6}">
                                             <div id="toolbar-options${loopp.index+1}" class="hidden">
 <%--                                                    <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}" ><spring:message code="label.Telechargerlautorisation"/> </a>--%>
-                                                    <a class="btn btn-primary btn-sm"  download href="${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}"  data-popover="true" data-html=true data-content="Telecharger l'autorisation"><i class="fa fa-file-download"></i></a>
+                                                    <a class="btn btn-primary btn-sm" type="button"  download onclick="window.location.href='${url_Admin}${fn:replace(nt.url_document_signee, "/assets/myFile/", "/dowload_uploaded/")}'"  data-popover="true" data-html=true data-content="Telecharger l'autorisation"><i class="fa fa-file-download"></i></a>
                                             </div>
                                                 <div class="tool-box">
                                                     <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
@@ -502,6 +502,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <jsp:include page="../../includes/footer1.jsp"/>
 <script type="text/javascript">
+    $('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'top', delay: {show: 50, hide: 400}});
     function goToLien(val){
         window.location.href='/api/piecejointdemande/'+val;
     }
