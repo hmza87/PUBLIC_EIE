@@ -60,13 +60,13 @@
 
         <div class="col-6 ">
             <div class="form-group">
-                <label> <spring:message code="label.nomdesociete"/> </label>
+                <label> <spring:message code="label.nomdesociete"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.nom_fr}" id="nom_fr" name="Nom_fr" class="form-control">
             </div>
         </div>
         <div class="col-6 ">
             <div class="form-group" style="text-align: right;">
-                <label dir="rtl"> إسم الشركة : </label>
+                <label dir="rtl">إسم الشركة : </label>
                 <input dir="rtl" type="text" value="${one.nom_ar}" id="nom_ar" name="Nom_ar" class="form-control">
             </div>
         </div>
@@ -75,13 +75,13 @@
     <div class="row m-0 p-0">
         <div class="col-6">
             <div class="form-group">
-                <label> <spring:message code="label.personneacontacter"/> </label>
+                <label> <spring:message code="label.personneacontacter"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.contact_fr}" id="contact_fr" name="contact_fr" class="form-control">
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label> <spring:message code="label.identifiantfiscal"/> </label>
+                <label> <spring:message code="label.identifiantfiscal"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.idf}" id="idf" name="idf" class="form-control">
             </div>
         </div>
@@ -90,13 +90,13 @@
 
         <div class="col-6">
             <div class="form-group">
-                <label> <spring:message code="label.Adresse"/> </label>
+                <label> <spring:message code="label.Adresse"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.adresse_fr}" id="adresse_fr" name="adresse_fr" class="form-control">
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label> <spring:message code="label.telephone"/> </label>
+                <label> <spring:message code="label.telephone"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.tel}" id="tel" name="tel" class="form-control">
             </div>
         </div>
@@ -112,7 +112,7 @@
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label> <spring:message code="label.email"/> </label>
+                <label> <spring:message code="label.email"/>  <sup class="text-danger">(*)</sup> </label>
                 <input type="text" value="${one.mail}" id="mail" name="mail" class="form-control">
                 <small style="color: red;font-style: italic" id="spemail"></small>
             </div>
