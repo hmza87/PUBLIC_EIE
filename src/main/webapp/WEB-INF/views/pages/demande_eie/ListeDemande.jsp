@@ -522,7 +522,7 @@
         window.location.href='/api/demandeinformation/'+val;
     }
     function goToLien6(val){
-        window.location.href='/api/AttacherListDocAE'+val;
+        window.location.href='/api/AttacherListDocAE/'+val;
     }
     function close_modal(val){
         $(val).closest(".modal").modal('hide');
