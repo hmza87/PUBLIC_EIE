@@ -8,7 +8,7 @@
 
 <div class="table-responsive">
     <table class="table table-bordered my_table">
-        <thead>
+        <thead style="background-color: #036; color: white">
         <tr>
             <th>Nom de la société</th>
             <th>Personne à contacter</th>
@@ -36,7 +36,7 @@
                         <td class="">
                             <button onclick="deleteProducteurNotification('${p.id_producteur}','id_notification')"
                                     class="btn btn-danger rounded-circle"><span
-                                    class="fas fa-trash"></span></button>
+                                    class="fa fa-trash"></span></button>
                             <button onclick="edit_producteur_notification('${p.id_producteur}','id_notification')"
                                     class="btn btn-warning rounded-circle"><span
                                     class="fa fa-pencil"></span></button>
@@ -46,7 +46,7 @@
             </c:when>
             <c:otherwise>
                 <tr>
-                    <td colspan="7" class="bg-primary text-center">
+                    <td colspan="8" class="bg-primary text-center">
                         Aucun producteur dans cette demande</td>
                 </tr>
             </c:otherwise>
@@ -54,6 +54,7 @@
         </tbody>
     </table>
 </div>
+<form id="zone_form1" name="zone_form1">
 <div id="zone_form" class=" col-12 p-0 m-0">
     <div class="row m-0 p-0 mt-5">
 
@@ -113,13 +114,17 @@
             <div class="form-group">
                 <label> <spring:message code="label.email"/> </label>
                 <input type="text" value="${one.mail}" id="mail" name="mail" class="form-control">
+                <small style="color: red;font-style: italic" id="spemail"></small>
             </div>
         </div>
     </div>
+</div>
+</form>
     <div class="row justify-content-center">
         <div class="col-md-3">
             <input type="hidden" value="${(not empty one)?one.id_producteur:'0'}" id="id_prod">
             <button onclick="ajouterProducteur('id_notification')" class="btn btn-primary btn-block">Enregistrer le producteur</button>
         </div>
     </div>
-</div>
+
+<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>

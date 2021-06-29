@@ -537,6 +537,20 @@ function ajouterTranporteur_Etranger(id_name) {
 
 }
 
+function validateEmail($email) {
+    var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailReg.test( $email );
+}
+
+function validatePhone($tel) {
+    var filter = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+    return filter.test( $tel );
+}
+function validateFax($tel) {
+    var filter = /^\\+[0-9]{1,3}-[0-9]{3}-[0-9]{7}$/;
+    return filter.test( $tel );
+}
+
 function ajouterProducteur(id_name) {
     if(event!=null)
         event.preventDefault();
@@ -550,6 +564,24 @@ function ajouterProducteur(id_name) {
     var fax = $("#fax").val();
     var mail = $("#mail").val();
 
+    if ($.trim(nom_fr) === "" || nom_fr == null || $.trim(nom_ar) === "" || nom_ar == null ||
+        $.trim(contact_fr) === "" || contact_fr == null || $.trim(idf) === "" || idf == null ||
+        $.trim(adresse_fr) === "" || adresse_fr == null || $.trim(tel) === "" || tel == null ||
+        $.trim(mail) === "" || mail == null) {
+        swal("Avertissement ! ", 'Tous les champs sont obligatoires', 'error');
+        return false;
+    }
+    /*if( !validateFax(fax)) {
+        return false;
+    }*/
+
+    if( !validateEmail(mail)) {
+        return false;
+    }
+
+    if( !validatePhone(tel)) {
+        return false;
+    }
 
     var id_prod = $("#id_prod").val();
     var data = new FormData();
@@ -562,27 +594,62 @@ function ajouterProducteur(id_name) {
     data.append("fax", fax);
     data.append("mail", mail);
 
-
-
-    $.ajax({
-        url: '/api/addProducteurNotification/' + id + "/" + id_prod,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        cache: false,
-        data: data,
-    })
-        .done(function (data) {
-            $("#producteur_table").html(data);
+        $.ajax({
+            url: '/api/addProducteurNotification/' + id + "/" + id_prod,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: data,
         })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        });
-
+            .done(function (data) {
+                $("#producteur_table").html(data);
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            });
 }
+
+
+$(function() {
+// Initialize form validation on the registration form.
+// It has the name attribute "registration"
+    $("form[name='zone_form1']").validate({
+        rules: {
+            mail: {
+                required: true,
+                email: true,
+                accept:"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}"
+            },
+            tel : {
+                required: true,
+                number : true,
+                minlength:10,
+                maxlength:10
+            },
+            /*fax : {
+                required: true,
+                number : true,
+                minlength:10,
+                maxlength:10
+            },*/
+        },
+
+        messages: {
+            mail: "S'il vous plaît, mettez une adresse email valide",
+            tel: "S'il vous plaît, mettez un telephone valide",
+            //fax: "S'il vous plaît, mettez un fax valide",
+
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+
+    });
+});
 
 function removePort(btn,id,id_name,id_trans){
     if(event!=null)
@@ -1582,14 +1649,14 @@ function afficher_accord(val){
 }
 
 function verifier_reg_pref(btn,id){
-    if(event=null)
-        event.preventDefault();
+    /*if(event=null)
+        event.preventDefault();*/
     var reg = $("#region_id").val();
     var pref = $("#prefecture_id").val();
 
     if(
-        $.trim(reg)==="" || reg==null || !$.isNumeric(reg) || reg==="0" ||
-        $.trim(pref)==="" || pref==null || !$.isNumeric(pref) || pref==="0"
+        $.trim(reg)==="" || reg==null ||  reg==="0" ||
+        $.trim(pref)==="" || pref==null ||  pref==="0"
     ){
         swal('Champs vide',"merci de saisir le champs region et prefecture","warning");
         return false;

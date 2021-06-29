@@ -318,7 +318,7 @@
 
     $('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'top', delay: {show: 50, hide: 400}});
 
-    
+
     function goToLien(val){
         window.location.href='/api/addInstallation/'+val;
     }

@@ -47,7 +47,7 @@
         <%--<th class="">Adresse</th>--%>
         <th class=""><spring:message code="label.Telephone"/></th>
         <th class=""><spring:message code="label.Fax"/></th>
-        <th class=""><spring:message code="label.Email"/></th>
+        <th class=""><spring:message code="label.Adresse"/></th>
 
        <%-- <th class="">Action</th>--%>
     </tr>

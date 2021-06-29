@@ -44,14 +44,16 @@
     }
 
     .tabsu {
-        pl-auto    padding-left: 50px;
+        padding-left: 50px;
         background-color: #045ab1 !important;
     }
 
     .main-panel {
         margin-top: 150px !important;
     }
-
+    * {
+        box-sizing: border-box
+    }
 
 </style>
 <div class="container-fluid page-body-wrapper" dir="${pageContext.response.locale=='ar'?'rtl':'ltr'}">
@@ -1442,7 +1444,7 @@
                                 <div class="col-md-2 col-sm-6">
 
                                     <button type="button"
-                                            onclick="openCity1('defaultOpen','0')"
+                                            onclick="openCity1('defaultOpen','01')"
                                             class="btn btn-success btn-block"><spring:message
                                             code="button.Precedent"/>
                                     </button>
@@ -2466,8 +2468,8 @@
                         <div class="row p-0 m-0">
                             <div class="col-12 p-0 m-0" id="producteur_table">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered producteur_table">
-                                        <thead>
+                                    <table class="table table-bordered my_table producteur_table">
+                                        <thead style="background-color: #036; color: white">
                                         <tr>
                                             <th>Nom de la société</th>
                                             <th>Personne à contacter</th>
@@ -2513,13 +2515,15 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div id="zone_form" class=" col-12 p-0 m-0">
+                                <form id="zone_form1" name="zone_form1">
+                                    <div id="zone_form" class=" col-12 p-0 m-0">
                                     <div class="row m-0 p-0 mt-5">
 
                                         <div class="col-6 ">
                                             <div class="form-group">
-                                                <label> <spring:message code="label.nomdesociete"/> </label>
+                                                <label> <spring:message code="label.nomdesociete"/> <sup class="text-danger">*</sup> </label>
                                                 <input type="text" id="nom_fr" name="Nom_fr" class="form-control">
+                                                <input type="hidden" id="id_producteur" name="id_producteur" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-6 ">
@@ -2555,7 +2559,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label> <spring:message code="label.telephone"/> </label>
-                                                <input type="text" id="tel" name="tel" class="form-control">
+                                                <input type="text" id="tel" name="tel" maxlength="10" class="form-control">
                                             </div>
                                         </div>
 
@@ -2565,7 +2569,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label> <spring:message code="label.Fax"/> </label>
-                                                <input type="text" id="fax" name="fax" class="form-control">
+                                                <input type="text" id="fax" name="fax" maxlength="10" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -2575,14 +2579,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-3">
-                                            <input type="hidden" value="0" id="id_prod">
-                                            <button onclick="ajouterProducteur('id_notification')" class="btn btn-primary btn-block">Enregistrer le producteur</button>
-                                        </div>
+                                </div>
+                            </form>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md-3">
+                                        <input type="hidden" value="0" id="id_prod">
+                                        <button onclick="ajouterProducteur('id_notification')" class="btn btn-primary btn-block">Enregistrer le producteur</button>
                                     </div>
                                 </div>
-
                             </div>
 
                         </div>
@@ -2595,7 +2600,7 @@
                             </div>
                             <div class="col-md-2 col-sm-6">
                                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                        onclick="openCity1('Btn7','7')"
+                                        onclick="check_producteur_ok('Btn7','7')"
                                         class="btn btn-success btn-block">
                                     <spring:message code="button.Suivant"/>
                                 </button>
@@ -3387,6 +3392,7 @@
                 .done(function (response) {
                     $("#prefecture_id").empty();
                     $("#prefecture_id").html(response);
+                    $("#prefecture_id").trigger("change");
                 })
                 .fail(function () {
                     console.log("error");
@@ -3474,6 +3480,16 @@
 
         document.getElementById(cityName).style.display = blo_none;
     }
+
+
+    function check_producteur_ok(idBtn, cityName){
+        /*if($(".producteur_table").html()){
+            swal("Avertissement!", "Les producteurs sont obligatoires, merci de saisir au moins un seul producteur", "error");
+            return false;
+        }*/
+        openCity1(idBtn,cityName)
+    }
+
 
     function compareQuantite(val, quantite, id) {
         if (quantite < val) {
