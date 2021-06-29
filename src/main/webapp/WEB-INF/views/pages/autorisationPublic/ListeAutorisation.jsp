@@ -117,19 +117,23 @@
                                                 <div class="clear"></div>
                                             </div>
                                         </c:if>
-                                        <c:if test="${((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54)) || ((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54)) || ((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==67)) }">
+                                        <c:if test="${(((type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==54 || nt.statut.id_statut_projet==67 || nt.statut.id_statut_projet==68) && nt.classification.id_classification==1)) || nt.statut.id_statut_projet!=48 }">
+                                            <c:if test="${nt.statut.id_statut_projet!=33 && nt.statut.id_statut_projet!=84 && nt.statut.id_statut_projet!=55 && nt.statut.id_statut_projet!=56 && nt.statut.id_statut_projet!=57 && type!='TR' && type!='ET'}">
                                             <div id="toolbar-options${loopp.index+1}" class="hidden">
                                                 <a type="button" style="background-color: #0db8db" onclick="goToLien1('${nt.id_notification }')" data-popover="true" data-html=true data-content="${nt.statut.id_statut_projet==54?'Ajouter':'Modifier'} le certificat d'élimination"><i class="fa fa-plus"></i></a>
+                                                <a type="button" style="background-color: #0db8db" onclick="load_modal_transporteur('${nt.id_notification}')" data-popover="true" data-html=true data-content="Déclarer un nouveau transporteur"><i class="fa fa-plus"></i></a>
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien3('${type}/${nt.id_notification}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
                                             </div>
                                             <div class="tool-box">
                                                 <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
                                                 <div class="clear"></div>
                                             </div>
+                                            </c:if>
                                         </c:if>
 
-                                        <c:if test="${(type=='ZF' || type=='XD') && (nt.statut.id_statut_projet==68 || nt.statut.id_statut_projet==54) && nt.classification.id_classification==1  }">
+                                        <c:if test="${nt.statut.id_statut_projet==33 || nt.statut.id_statut_projet==84 || nt.statut.id_statut_projet==55 || nt.statut.id_statut_projet==56 || nt.statut.id_statut_projet==57 || (type=='ET' || type=='TR' && nt.statut.id_statut_projet==54)}">
                                             <div id="toolbar-options${loopp.index+1}" class="hidden">
-                                                <a type="button" style="background-color: #0db8db" onclick="load_modal_transporteur('${nt.id_notification}')" data-popover="true" data-html=true data-content="Déclarer un nouveau transporteur"><i class="fa fa-plus"></i></a>
+                                                <a type="button" style="background-color: #0db8db" onclick="goToLien3('${type}/${nt.id_notification}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
                                             </div>
                                             <div class="tool-box">
                                                 <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
@@ -140,16 +144,6 @@
                                         <c:if test="${nt.statut.id_statut_projet==48 }">
                                             <div id="toolbar-options${loopp.index+1}" class="hidden">
                                                 <a type="button" style="background-color: #0db8db" onclick="goToLien2('${nt.id_notification}/${type}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-edit"></i></a>
-                                            </div>
-                                            <div class="tool-box">
-                                                <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
-                                                <div class="clear"></div>
-                                            </div>
-                                        </c:if>
-
-                                        <c:if test="${nt.statut.id_statut_projet!=48 }">
-                                            <div id="toolbar-options${loopp.index+1}" class="hidden">
-                                                <a type="button" style="background-color: #0db8db" onclick="goToLien3('${type}/${nt.id_notification}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
                                             </div>
                                             <div class="tool-box">
                                                 <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
