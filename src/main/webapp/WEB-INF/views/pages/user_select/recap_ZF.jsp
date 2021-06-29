@@ -85,11 +85,11 @@
   <div class="row justify-content-center pl-3 pr-3">
     <div class="col-12">
       <div class="jumbotron p-3">
-      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==84 || notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68 || notification.statut.id_statut_projet==40)?notification.statut.nom_fr:"en cours de traitement" } </span><span><c:if test="${notification.statut.id_statut_projet==54}">
+      <spring:message code="label.Statutdelademande"/>   : <span class="text-success h4 font-weight-bold"> ${(notification.statut.id_statut_projet==84 || notification.statut.id_statut_projet==37 || notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==64 || notification.statut.id_statut_projet==65 || notification.statut.id_statut_projet==67 || notification.statut.id_statut_projet==68 || notification.statut.id_statut_projet==40)?notification.statut.nom_fr:"en cours de traitement" } </span><span>
   <c:if test="${notification.statut.id_statut_projet==54 || notification.statut.id_statut_projet==55 || notification.statut.id_statut_projet==56 || notification.statut.id_statut_projet==57 }"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Votre demande est bien validée vous pouvez vous déplacez pour l'obtention de votre autorisation)</c:if>
         <c:if test="${notification.statut.id_statut_projet==84}"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Vous pouvez vous déplacez pour l'obtention de votre lettre originale)</c:if>
         <c:if test="${notification.statut.id_statut_projet==64}"> <i class="fa fa-info-circle ml-3" style="color: #f1c40f; font-size: 20px"></i> (Vous pouvez vous déplacez pour l'obtenion votre garantie financière)</c:if>
-      </c:if></span>
+     </span>
       </div>
     </div>
   </div>
