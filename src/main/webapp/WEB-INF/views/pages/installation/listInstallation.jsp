@@ -152,7 +152,7 @@
                                     <c:if test="${nt.statut.id_statut_projet==14 }">
                                     <div id="toolbar-options${loopp.index+1}" class="hidden">
                                         <a type="button" style="background-color: #0db8db" onclick="goToLien6('${nt.id_installation}')" data-popover="true" data-html=true data-content="Afficher le récapitulatif"><i class="fa fa-print"></i></a>
-                                        <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-upload"></i></a>
+                                        <a type="button" style="background-color: #0db8db" onclick="goToLien('${nt.id_installation}/N')" data-popover="true" data-html=true data-content="Modifier"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="tool-box">
                                         <div data-toolbar="user-options" class="btn-toolbar btn-toolbar-primary" id="info-toolbar${loopp.index+1}" style="background: linear-gradient(to right, #41BFFB, #059cf9) !important;"><i class="fa fa-cog"></i></div>
