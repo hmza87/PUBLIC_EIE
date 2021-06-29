@@ -313,7 +313,7 @@
             </div>
           </div>
         </div>
-        <h2>4. <spring:message code="label.mespieces" /></h2>
+        <h2>4. <spring:message code="label.Piecesaccompagnelademande"/></h2>
         <div>
           <table class="table my_table table-striped table-bordered table-hover">
             <c:if test="${not empty doc}">

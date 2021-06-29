@@ -145,6 +145,7 @@ function addObject(from,table,url) {
 function addObjectGeneral(from,table,url,nameId,btn) {
     var se = $("#"+from).serializeObject();
     // var se = $("#formnotif").serialize();
+
     var test_id = $("#"+nameId).val();
     if($.trim(test_id)!="" && test_id != null ){
         updateGeneral(from,table,'2',test_id,nameId,'non');

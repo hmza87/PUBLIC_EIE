@@ -165,7 +165,8 @@
 
                                     <div class="row mb-2">
                                         <div class="col-12">
-                                            <c:if test="${installation.type==2}">
+                                            <c:if test="${installation.type=='2'}">
+                                                <h5 class="text-center">les codes à traiter</h5>
                                                 <table class="table table-bordered table-striped table-hover my_table">
                                                     <thead>
                                                     <tr>
@@ -189,8 +190,8 @@
                                                     </tbody>
                                                 </table>
                                             </c:if>
-                                            <c:if test="${installation.type==1}">
-                                                <h3 class="text-center">Vous avez droit à tous les codes à l'exception de la liste ci-dessous</h3>
+                                            <c:if test="${installation.type=='1'}">
+                                                <h5 class="text-center">Vous avez droit à tous les codes à l'exception de la liste ci-dessous</h5>
                                                 <table class="table table-bordered table-striped table-hover my_table">
                                                     <thead>
                                                     <tr>
@@ -205,7 +206,7 @@
                                                             <td>${code.nom_ar}</td>
                                                         </tr>
                                                     </c:forEach>
-                                                    <c:if test="${empty installation.code}">
+                                                    <c:if test="${empty installation.code && installation.type!='3'}">
                                                         <tr>
                                                             <td colspan="2"><spring:message code="label.Ilnyaaucuneenregistrement"/></td>
                                                         </tr>
@@ -214,27 +215,12 @@
                                                     </tbody>
                                                 </table>
                                             </c:if>
-                                            <c:if test="${installation.type==3}">
-                                                <table class="table table-bordered table-striped table-hover my_table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th><spring:message code="label.code"/></th>
-                                                        <th><spring:message code="label.type"/></th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td colspan="2"><h3 class="text-center">Vous avez droit à tous les codes</h3></td>
-                                                    </tr>
-                                                    <c:if test="${empty installation.code}">
-                                                        <tr>
-                                                            <td colspan="2"><spring:message code="label.Ilnyaaucuneenregistrement"/></td>
-                                                        </tr>
-                                                    </c:if>
-                                                    </tbody>
-                                                </table>
+                                            <c:if test="${installation.type=='3'}">
+                                                <section class="border p-3">
+                                                    <h5 class="text-center">Vous avez droit à tous les codes</h5>
+                                                </section>
                                             </c:if>
-                                            <c:if test="${installation.type==0}">
+                                            <c:if test="${installation.type=='0'}">
                                                 <h3 class="text-center">Vous avez droit à les categories suivant :</h3>
                                                 <c:forEach items="${installation.categorie}" var="c">
                                                     <p>- ${c.nom_fr}</p>
@@ -293,7 +279,7 @@
                             <div class="card-header" id="headingFour">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="button.mespieces"/>
+                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.Piecesaccompagnelademande"/>
                                     </a>
                                 </h5>
                             </div>

@@ -108,10 +108,15 @@
                                             <span  class="fa fa-dumpster" ></span>
                                         </button>
                                     </c:if>
-                                    <c:if test="${empty nt.code}">
+                                    <c:if test="${empty nt.code && nt.type!='3'}">
 								<span class="f-12">
 									<spring:message code="label.Pasdecode"/>
 								</span>
+                                    </c:if>
+                                    <c:if test="${empty nt.code && nt.type=='3'}">
+                                        <span class="f-12">
+                                            vous avez choisi tous les codes
+                                        </span>
                                     </c:if>
 
                                 </td>

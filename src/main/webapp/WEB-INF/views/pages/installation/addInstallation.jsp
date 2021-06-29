@@ -250,7 +250,7 @@
                                     <div class="col-3" style="text-align: center">
                                         <c:if test="${id==0 }">
                                             <button style="margin-top: 10px;margin-bottom: 10px;" type="button"
-                                                    id="Suivant"
+                                                    id="Suivant" disabled
                                                     onclick="addObjectGeneral('formnotif','installation','','id_installation','2')"
                                                     class="btn btn-info btn-block"><spring:message code="button.Suivant"/>
                                             </button>
@@ -586,7 +586,7 @@
                                     <div class="row justify-content-center mb-4">
                                             <div class="col-md-2 col-sm-6">
                                                 <button style="margin-top: 10px;margin-bottom: 10px;" type="button" id="MyBtn"
-                                                        onclick="changerEtat_IT()" disabled class="btn btn-info btn-block">Enregistrer
+                                                        onclick="changerEtat_IT()"  class="btn btn-info btn-block">Enregistrer
                                                 </button>
                                             </div>
                                     </div>

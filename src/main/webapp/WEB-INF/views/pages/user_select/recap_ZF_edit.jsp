@@ -1350,7 +1350,7 @@
                             <div class="card-header" id="headingeight">
                                 <h5 class="mb-0">
                                     <a class="accordion-toggle btn collapsed text-left text-white" type="button" data-toggle="collapse" data-target="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
-                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.mespieces"/>
+                                        <i class="fa fa-angle-double-right mr-3"></i><spring:message code="label.Piecesaccompagnelademande"/>
                                     </a>
                                 </h5>
                             </div>
